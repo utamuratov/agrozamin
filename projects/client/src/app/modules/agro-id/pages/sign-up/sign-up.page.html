@@ -2,9 +2,9 @@
   <div nz-row>
     <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
       <nz-steps [nzCurrent]="currentStep">
-        <nz-step nzTitle="Ввод данных"></nz-step>
-        <nz-step nzTitle="Подтверждение"></nz-step>
-        <nz-step nzTitle="Регистрация"></nz-step>
+        <nz-step [nzTitle]="'signUpStep1' | translate"></nz-step>
+        <nz-step [nzTitle]="'signUpStep2' | translate"></nz-step>
+        <nz-step [nzTitle]="'signUpStep3' | translate"></nz-step>
       </nz-steps>
     </div>
   </div>
