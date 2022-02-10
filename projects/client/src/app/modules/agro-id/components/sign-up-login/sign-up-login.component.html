@@ -1,6 +1,6 @@
-<h2 nz-typography class="form__title agro-id-form-title">Регистрация</h2>
+<h2 nz-typography class="form__title agro-id-form-title">{{'registration' | translate}}</h2>
 <p nz-typography style="margin-top: 5px">
-  У меня уже есть аккаунт. <a routerLink="../">Войти</a>
+  {{'haveAnAccount' | translate}} <a routerLink="../">{{'toComeIn' | translate}}</a>
 </p>
 <nz-divider class="divider-custom-top"></nz-divider>
 <form
@@ -15,8 +15,8 @@
     <div nz-row nzGutter="16">
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
         <nz-form-item>
-          <nz-form-label>Имя</nz-form-label>
-          <nz-form-control nzErrorTip="Заполните поле">
+          <nz-form-label>{{'firstName' | translate}}</nz-form-label>
+          <nz-form-control [nzErrorTip]="'fillTheInput' | translate">
             <input
               class="form__inputGroup"
               nz-input
@@ -29,8 +29,8 @@
       </div>
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
         <nz-form-item>
-          <nz-form-label>Фамилия</nz-form-label>
-          <nz-form-control nzErrorTip="Заполните поле">
+          <nz-form-label>{{'lastName' | translate}}</nz-form-label>
+          <nz-form-control [nzErrorTip]="'fillTheInput' | translate">
             <input
               class="form__inputGroup"
               nz-input
@@ -45,14 +45,14 @@
     <ng-template #phone>
       <nz-form-item>
         <nz-form-label nzFor="email" [nzSpan]="24"
-          >Введите email адрес</nz-form-label
+          >{{'putEmailToReg' | translate}}</nz-form-label
         >
-        <nz-form-control [nzSpan]="24" nzErrorTip="Некорректное значение email">
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="'invalidEmailMessage' | translate">
           <input
             nz-input
             formControlName="email"
             id="email"
-            placeholder="Введите ваш Email адрес"
+            [placeholder]="'emailRegPlaceholder' | translate"
             nzSize="large"
           />
         </nz-form-control>
@@ -61,17 +61,17 @@
     <div *ngIf="toggle; else phone">
       <nz-form-item>
         <nz-form-label nzFor="phoneNumber" [nzSpan]="24"
-          >Номер телефона</nz-form-label
+          >{{'regPhoneLabel' | translate}}</nz-form-label
         >
         <nz-form-control
           [nzSpan]="24"
           [nzValidateStatus]="validateForm.controls['phoneNumber']"
-          nzErrorTip="Номер телефона заполнен не корректно"
+          [nzErrorTip]="'invalidPhoneMessage' | translate"
         >
           <input
             formControlName="phoneNumber"
             id="'phoneNumber'"
-            placeholder="Введите номер телефона"
+            [placeholder]="'putPhoneToReg' | translate"
             nzSize="large"
             nz-input
           />
@@ -79,17 +79,17 @@
       </nz-form-item>
     </div>
     <a style="padding: 4px 0" nzType="link" (click)="toggleInfo()">{{
-      buttonTxt ? "У меня нет телефона" : "У меня нет email адреса"
+      buttonTxt ? ('haveNotPhone' | translate) : ('haveNotEmail' | translate)
     }}</a>
     <nz-divider class="divider-custom-top"></nz-divider>
     <div nz-row nzGutter="16">
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
         <nz-form-item>
-          <nz-form-label>Придумайте пароль</nz-form-label>
+          <nz-form-label>{{'createPassword' | translate}}</nz-form-label>
           <nz-form-control
             nzDisableAutoTips
             nzHasFeedback
-            nzErrorTip="Введите пароль"
+            [nzErrorTip]="'errorTipToCreatePassword' | translate"
           >
             <input
               class="form__inputGroup"
@@ -105,7 +105,7 @@
       </div>
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
         <nz-form-item>
-          <nz-form-label>Повторите пароль</nz-form-label>
+          <nz-form-label>{{'repeatPassword' | translate}}</nz-form-label>
           <nz-form-control
             nzDisableAutoTips
             nzHasFeedback
@@ -119,10 +119,10 @@
             />
             <ng-template #passwordErrorTpl let-control>
               <ng-container *ngIf="control.hasError('required')"
-                >Подтвердите пароль</ng-container
+                >{{'confirmPassword' | translate}}</ng-container
               >
               <ng-container *ngIf="control.hasError('confirm')"
-                >Пароли не совпадают</ng-container
+                >{{'mismatchPassword' | translate}}</ng-container
               >
             </ng-template>
           </nz-form-control>
@@ -132,9 +132,9 @@
     <nz-form-item nz-row class="register-area">
       <nz-form-control [nzSpan]="24">
         <label nz-checkbox formControlName="agree">
-          <span> Я принимаю </span>
+          <span>{{'agree' | translate}}</span>
         </label>
-        <a style="font-size: 16px">правила использования</a>
+        <a style="font-size: 16px">{{'termsOfUse' | translate}}</a>
       </nz-form-control>
     </nz-form-item>
     <div class="custom-btn">
@@ -145,7 +145,7 @@
         nzType="primary"
         (click)="nextComponent()"
       >
-        Продолжить
+        {{'continue' | translate}}
       </button>
     </div>
   </div>
