@@ -1,5 +1,5 @@
 <div class="confirm-text">
-  <h3>Подтверждение</h3>
+  <h3 class="agro-id-form-title">Подтверждение</h3>
   <p nz-typography nzType="secondary">
     На номер телефона +998994313902 был отправлено сообщение с кодом, пожалуйста
     введите этот код.
@@ -11,68 +11,133 @@
 <div nz-row>
   <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="2" nzXl="2"></div>
   <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="20" nzXl="20">
-    <div>
+    <div></div>
+    <form
+      nz-form
+      class="confirm-form"
+      nzLayout="horizontal"
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+    >
+      <div nz-row nzGutter="16">
+        <div nz-col nzSpan="4">
+          <nz-form-item nz-row>
+            <nz-form-control nz-col class="confirm-control">
+              <input
+                maxlength="1"
+                formControlName="num1"
+                (ngModelChange)="checkLength(1)"
+                (keydown.backspace)="clearInput(1)"
+                (focus)="onFocusInput(1)"
+                nz-input
+                class="confirm-input"
+                type="text"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="4">
+          <nz-form-item nz-row>
+            <nz-form-control nz-col class="confirm-control">
+              <input
+                maxlength="1"
+                formControlName="num2"
+                (ngModelChange)="checkLength(2)"
+                (keydown.backspace)="clearInput(2)"
+                (focus)="onFocusInput(2)"
+                nz-input
+                class="confirm-input"
+                type="text"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="4">
+          <nz-form-item nz-row>
+            <nz-form-control nz-col class="confirm-control">
+              <input
+                maxlength="1"
+                formControlName="num3"
+                (ngModelChange)="checkLength(3)"
+                (keydown.backspace)="clearInput(3)"
+                (focus)="onFocusInput(3)"
+                nz-input
+                class="confirm-input"
+                type="text"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="4">
+          <nz-form-item nz-row>
+            <nz-form-control nz-col class="confirm-control">
+              <input
+                maxlength="1"
+                formControlName="num4"
+                (ngModelChange)="checkLength(4)"
+                (keydown.backspace)="clearInput(4)"
+                (focus)="onFocusInput(4)"
+                nz-input
+                class="confirm-input"
+                type="text"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="4">
+          <nz-form-item nz-row>
+            <nz-form-control nz-col class="confirm-control">
+              <input
+                maxlength="1"
+                formControlName="num5"
+                (ngModelChange)="checkLength(5)"
+                (keydown.backspace)="clearInput(5)"
+                (focus)="onFocusInput(5)"
+                nz-input
+                class="confirm-input"
+                type="text"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="4">
+          <nz-form-item nz-row>
+            <nz-form-control nz-col class="confirm-control">
+              <input
+                maxlength="1"
+                formControlName="num6"
+                (ngModelChange)="checkLength(6)"
+                (keydown.backspace)="clearInput(6)"
+                (focus)="onFocusInput(6)"
+                nz-input
+                class="confirm-input"
+                type="text"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
 
-    </div>
-    <form nz-form class="confirm-form" nzLayout="horizontal" [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <div nz-row nzGutter="16">
-      <div nz-col nzSpan="4">
-        <nz-form-item nz-row>
-          <nz-form-control nz-col class="confirm-control">
-            <input maxlength="1" formControlName="num1" (ngModelChange)="checkLength(1)" (keydown.backspace)="clearInput(1)" (focus)="onFocusInput(1)" nz-input class="confirm-input" type="text">
-          </nz-form-control>
-          </nz-form-item>
+      <div>
+        <a>Отправить код заново</a>
       </div>
-      <div nz-col nzSpan="4">
-        <nz-form-item nz-row>
-          <nz-form-control nz-col class="confirm-control">
-            <input maxlength="1" formControlName="num2" (ngModelChange)="checkLength(2)" (keydown.backspace)="clearInput(2)" (focus)="onFocusInput(2)" nz-input class="confirm-input" type="text">
-          </nz-form-control>
-          </nz-form-item>
+      <div class="custom-btn">
+        <button
+          nzBlock
+          nz-button
+          class="confirm-btn"
+          nzType="primary"
+          (click)="nextComponent()"
+          [disabled]="!validateForm.valid"
+        >
+          Подтвердить
+        </button>
       </div>
-      <div nz-col nzSpan="4">
-        <nz-form-item nz-row>
-          <nz-form-control nz-col class="confirm-control">
-            <input maxlength="1" formControlName="num3" (ngModelChange)="checkLength(3)" (keydown.backspace)="clearInput(3)" (focus)="onFocusInput(3)" nz-input class="confirm-input" type="text">
-          </nz-form-control>
-          </nz-form-item>
-      </div>
-      <div nz-col nzSpan="4">
-        <nz-form-item nz-row>
-          <nz-form-control nz-col class="confirm-control">
-            <input maxlength="1" formControlName="num4" (ngModelChange)="checkLength(4)" (keydown.backspace)="clearInput(4)" (focus)="onFocusInput(4)" nz-input class="confirm-input" type="text">
-          </nz-form-control>
-          </nz-form-item>
-      </div>
-      <div nz-col nzSpan="4">
-        <nz-form-item nz-row>
-          <nz-form-control nz-col class="confirm-control">
-            <input maxlength="1" formControlName="num5" (ngModelChange)="checkLength(5)" (keydown.backspace)="clearInput(5)" (focus)="onFocusInput(5)" nz-input class="confirm-input" type="text">
-          </nz-form-control>
-          </nz-form-item>
-      </div>
-      <div nz-col nzSpan="4">
-        <nz-form-item nz-row>
-          <nz-form-control nz-col class="confirm-control">
-            <input maxlength="1" formControlName="num6" (ngModelChange)="checkLength(6)" (keydown.backspace)="clearInput(6)" (focus)="onFocusInput(6)" nz-input class="confirm-input" type="text">
-          </nz-form-control>
-          </nz-form-item>
-      </div>
-    </div>
-  
-  <div>
-    <a>Отправить код заново</a>
+    </form>
+    <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="2" nzXl="2"></div>
   </div>
-  <div class="custom-btn">
-    <button nzBlock nz-button class="confirm-btn"  nzType="primary" (click)="nextComponent()" [disabled]="!validateForm.valid">Подтвердить</button>
-  </div> 
-</form>
-  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="2" nzXl="2"></div>
-</div>
 
-
-
-<!--  <form nz-form class="confirm-form" nzLayout="horizontal" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <!--  <form nz-form class="confirm-form" nzLayout="horizontal" [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <nz-form-item nz-row>
       <nz-form-control nz-col class="confirm-control">
         <input maxlength="1" formControlName="num1" nz-input class="confirm-input" type="text">
@@ -104,3 +169,4 @@
       </nz-form-control>
     </nz-form-item>
   </form> -->
+</div>
