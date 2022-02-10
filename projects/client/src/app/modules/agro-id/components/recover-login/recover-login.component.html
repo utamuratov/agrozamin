@@ -1,0 +1,63 @@
+<div nz-row class="recover-login">
+  <div
+    nz-col
+    nzXs="1"
+    nzSm="2"
+    nzMd="2"
+    nzLg="4"
+    nzXl="4"
+    class="height-100"
+  ></div>
+  <div
+    nz-col
+    nzXs="22"
+    nzSm="20"
+    nzMd="20"
+    nzLg="16"
+    nzXl="16"
+    class="height-100"
+  >
+    <h2 nz-typography class="agro-id-form-title">Укажите свой логин</h2>
+    <p nz-typography class="recover-login__desc">
+      Введите email адрес, или номер телефона для восстановления пароля
+    </p>
+    <nz-divider class="divider-custom-top"></nz-divider>
+    <form
+      nz-form
+      nzLayout="vertical"
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-control>
+          <input
+            nz-input
+            name="login"
+            type="text"
+            nzSize="large"
+            formControlName="login"
+            placeholder="Email или номер телефона"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <button
+        nz-button
+        nzType="primary"
+        nzBlock
+        class="recover-login__btn"
+        (click)="nexComponent()"
+      >
+        Продолжить
+      </button>
+    </form>
+  </div>
+  <div
+    nz-col
+    nzXs="1"
+    nzSm="2"
+    nzMd="2"
+    nzLg="4"
+    nzXl="4"
+    class="height-100"
+  ></div>
+</div>
