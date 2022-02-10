@@ -1,0 +1,15 @@
+{
+  "home": {
+    "title": "Главный",
+    "breadcrumb": "Главный",
+    "description": "Главная страница"
+  },
+  "onlineConsultant": {
+    "title": "Онлайн-консультанты",
+    "breadcrumb": "Онлайн-консультанты"
+  },
+  "market": {
+    "title": "Маркет",
+    "breadcrumb": "Маркет"
+  }
+}

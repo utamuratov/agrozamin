@@ -1,0 +1,15 @@
+{
+  "home": {
+    "title": "Asosiy",
+    "breadcrumb": "Asosiy",
+    "description": "Asosiy saxifa"
+  },
+  "onlineConsultant": {
+    "title": "Aktiv konsultantlar",
+    "breadcrumb": "Aktiv konsultantlar"
+  },
+  "market": {
+    "title": "O`zimizniki",
+    "breadcrumb": "O`zimizniki"
+  }
+}
