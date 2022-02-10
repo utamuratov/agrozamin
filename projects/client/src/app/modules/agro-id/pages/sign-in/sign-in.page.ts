@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
@@ -7,13 +12,28 @@ import { SignInRequest } from 'projects/client/src/app/shared/models/auth/sign-i
 @Component({
   templateUrl: './sign-in.page.html',
   styleUrls: ['./sign-in.page.less'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInPage implements OnInit {
   /**
    *
    */
-  isLoading = false;
+  _isWaitingResponse = false;
+
+  /**
+   *
+   */
+  get isWaitingResponse() {
+    return this._isWaitingResponse;
+  }
+
+  /**
+   *
+   */
+  set isWaitingResponse(isWaitingResponse: boolean) {
+    this._isWaitingResponse = isWaitingResponse;
+    this.cd.markForCheck();
+  }
 
   /**
    *
@@ -21,14 +41,18 @@ export class SignInPage implements OnInit {
   loginForm!: FormGroup;
 
   /**
-   * 
+   *
    */
   errorMessage!: string;
 
+  /**
+   *
+   */
   constructor(
     private fb: FormBuilder,
     private $auth: AuthService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) {}
 
   /**
@@ -42,7 +66,7 @@ export class SignInPage implements OnInit {
    *
    */
   submitForm(): void {
-    if (this.isLoading) {
+    if (this.isWaitingResponse) {
       return;
     }
 
@@ -77,20 +101,20 @@ export class SignInPage implements OnInit {
    *
    */
   private signIn(model: SignInRequest) {
-    this.isLoading = true;
+    this.isWaitingResponse = true;
     this.$auth.signIn(model).subscribe({
       next: (result) => {
-        this.isLoading = false;
+        this.isWaitingResponse = false;
+
         // !WORK ON TOKEN
         console.log(result);
 
         this.router.navigate(['/']);
       },
       error: (e) => {
-        this.isLoading = false;
-        this.errorMessage = 'Error'
+        this.isWaitingResponse = false;
+        this.errorMessage = 'Error';
       },
-      complete: () => (this.isLoading = false),
     });
   }
 }
