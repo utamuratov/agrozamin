@@ -1,0 +1,9 @@
+<nz-breadcrumb [nzAutoGenerate]="true">
+  <nz-breadcrumb-item>
+    <a routerLink="/" translate>home.breadcrumb</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item *ngFor="let bcElement of breadcrumbs; let last = last">
+    <a *ngIf="!last" [routerLink]="bcElement.url">{{bcElement.name|translate}}</a>
+    <a *ngIf="last">{{bcElement.name|translate}}</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
