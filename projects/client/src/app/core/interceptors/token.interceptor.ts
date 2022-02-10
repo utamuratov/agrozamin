@@ -17,7 +17,7 @@ export class SetTokenAndHandleErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         // !Catch error and do SMTH
-        alert(this.getError(error))
+        // alert(this.getError(error))
         return throwError(() => ErrorHelper.getServerErrors(error));
       })
     );

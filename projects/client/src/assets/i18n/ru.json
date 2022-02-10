@@ -1,15 +1,11 @@
 {
-  "home": {
-    "title": "Главный",
-    "breadcrumb": "Главный",
-    "description": "Главная страница"
-  },
-  "onlineConsultant": {
-    "title": "Онлайн-консультанты",
-    "breadcrumb": "Онлайн-консультанты"
-  },
-  "market": {
-    "title": "Маркет",
-    "breadcrumb": "Маркет"
-  }
+  "entrance": "Вход",
+  "wrongPassword": "Неверный логин или пароль",
+  "login": "Логин",
+  "plaeseEnterMailOrPhonenumber": "Пожалуйста введите почту или номер телефона",
+  "inputMailOrPhonenumber": "Введите почту или номер телефона",
+  "password": "Пароль",
+  "register": "Зарегистрироавться",
+  "forgotYourPassword": "Забыли пароль?",
+  "toComeIn": "Войти"
 }

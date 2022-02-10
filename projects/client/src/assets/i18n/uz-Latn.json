@@ -1,15 +1,11 @@
 {
-  "home": {
-    "title": "Asosiy",
-    "breadcrumb": "Asosiy",
-    "description": "Asosiy saxifa"
-  },
-  "onlineConsultant": {
-    "title": "Aktiv konsultantlar",
-    "breadcrumb": "Aktiv konsultantlar"
-  },
-  "market": {
-    "title": "O`zimizniki",
-    "breadcrumb": "O`zimizniki"
-  }
+  "entrance": "Kirish",
+  "wrongPassword": "Noto'g'ri login yoki parol",
+  "login": "Login",
+  "plaeseEnterMailOrPhonenumber": "Elektron manzil yoki telefon raqamingizni kiriting",
+  "inputMailOrPhonenumber": "Elektron manzil yoki telefon raqamingizni kiriting",
+  "password": "Parol",
+  "register": "Ro'yhatdan o'tish",
+  "forgotYourPassword": "Parolni unittingizmi?",
+  "toComeIn": "Kirish"
 }

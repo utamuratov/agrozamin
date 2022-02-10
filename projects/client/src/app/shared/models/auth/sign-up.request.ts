@@ -1,4 +1,4 @@
-export interface RequestSignUp {
+export interface SignUpRequest {
   f_name: string;
   s_name: string;
   l_name: string;
