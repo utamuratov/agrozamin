@@ -28,7 +28,12 @@
             "inlineStyleLanguage": "less",
             "assets": [
               "projects/admin/src/favicon.ico",
-              "projects/admin/src/assets"
+              "projects/admin/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "projects/admin/src/styles.less"
@@ -131,7 +136,12 @@
             "inlineStyleLanguage": "less",
             "assets": [
               "projects/client/src/favicon.ico",
-              "projects/client/src/assets"
+              "projects/client/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "projects/client/src/styles.less"
