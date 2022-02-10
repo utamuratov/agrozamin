@@ -1,5 +1,7 @@
-<h2 nz-typography class="form__title">Регистрация</h2>
-<p nz-typography style="margin-top: 5px;">У меня уже есть аккаунт. <a routerLink="../">Войти</a></p>
+<h2 nz-typography class="form__title agro-id-form-title">Регистрация</h2>
+<p nz-typography style="margin-top: 5px">
+  У меня уже есть аккаунт. <a routerLink="../">Войти</a>
+</p>
 <nz-divider class="divider-custom-top"></nz-divider>
 <form
   nz-form
@@ -136,9 +138,15 @@
       </nz-form-control>
     </nz-form-item>
     <div class="custom-btn">
-      <button [disabled]="!validateForm.controls['agree'].valid" nzBlock nz-button nzType="primary" (click)="nextComponent()">
+      <button
+        [disabled]="!validateForm.controls['agree'].valid"
+        nzBlock
+        nz-button
+        nzType="primary"
+        (click)="nextComponent()"
+      >
         Продолжить
       </button>
-    </div>        
+    </div>
   </div>
 </form>
