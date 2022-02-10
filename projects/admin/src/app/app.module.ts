@@ -7,14 +7,24 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { ru_RU } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+
+
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+
 
 registerLocaleData(ru);
 
@@ -31,8 +41,16 @@ registerLocaleData(ru);
     HttpClientModule,
     BrowserAnimationsModule,
     IconsProviderModule,
+    ReactiveFormsModule,
+
     NzLayoutModule,
-    NzMenuModule
+    NzMenuModule,
+    NzButtonModule, 
+    NzCheckboxModule,
+    NzFormModule,
+    NzGridModule,
+    NzInputModule,
+    NzDividerModule
   ],
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent]
