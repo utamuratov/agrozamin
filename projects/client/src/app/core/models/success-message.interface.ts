@@ -1,4 +1,4 @@
-export interface SuccessMessage {
+export interface SuccessMessage<T = unknown> {
   success: boolean;
-  data: any;
+  data: T;
 }

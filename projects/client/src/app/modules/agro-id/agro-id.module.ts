@@ -21,13 +21,16 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule, 
     AgroIdRoutes,
     ReactiveFormsModule, 
     FormsModule, 
+    
+    SharedModule,
+    
     /* NG-ZORRO-MODULES */
     NzFormModule,
     NzInputModule,

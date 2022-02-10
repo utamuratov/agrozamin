@@ -2,60 +2,127 @@
   <div nz-col nzSm="12" nzXs="0" class="sign-up__left_bg">
     <div class="shadow"></div>
     <div nz-row class="height-100">
-      <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="4" nzXl="4" class="height-100">
-
-      </div>
-      <div nz-col nzXs="22" nzSm="20" nzMd="20" nzLg="16" nzXl="16" class="height-100">
+      <div
+        nz-col
+        nzXs="1"
+        nzSm="2"
+        nzMd="2"
+        nzLg="4"
+        nzXl="4"
+        class="height-100"
+      ></div>
+      <div
+        nz-col
+        nzXs="22"
+        nzSm="20"
+        nzMd="20"
+        nzLg="16"
+        nzXl="16"
+        class="height-100"
+      >
         <h2 class="logo" nz-typography>AgroID</h2>
         <div class="sign-up__description">
           <div nz-col nzXs="24" nzSm="24" nzMd="0" nzLg="0" nzXl="0">
-            <h3 class="sign-up__title small-title" nz-typography>Вы хотите продавать?</h3>
+            <h3 class="sign-up__title small-title" nz-typography>
+              Вы хотите продавать?
+            </h3>
             <p class="sign-up__text small-text">
-              У вас есть собственный продукт или услуга? Вы можете начать продавать
-              его на нашей платформе.
+              У вас есть собственный продукт или услуга? Вы можете начать
+              продавать его на нашей платформе.
             </p>
           </div>
           <div nz-col nzXs="0" nzSm="0" nzMd="24" nzLg="24" nzXl="0">
-            <h3  class="sign-up__title medium-title" nz-typography>Вы хотите продавать?</h3>
-            <p  class="sign-up__text medium-text">
-              У вас есть собственный продукт или услуга? Вы можете начать продавать
-              его на нашей платформе.
+            <h3 class="sign-up__title medium-title" nz-typography>
+              Вы хотите продавать?
+            </h3>
+            <p class="sign-up__text medium-text">
+              У вас есть собственный продукт или услуга? Вы можете начать
+              продавать его на нашей платформе.
             </p>
           </div>
           <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
-            <h3 class="sign-up__title large-title" nz-typography>Вы хотите продавать?</h3>
+            <h3 class="sign-up__title large-title" nz-typography>
+              Вы хотите продавать?
+            </h3>
             <p class="sign-up__text large-text">
-              У вас есть собственный продукт или услуга? Вы можете начать продавать
-              его на нашей платформе.
+              У вас есть собственный продукт или услуга? Вы можете начать
+              продавать его на нашей платформе.
             </p>
           </div>
-          <img src="../../../../../assets/images/agro-id-images/logo.svg" alt="agrozamin logo">  
+          <img
+            src="../../../../../assets/images/agro-id-images/logo.svg"
+            alt="agrozamin logo"
+          />
         </div>
       </div>
-      <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="4" nzXl="4" class="height-100"></div>
+      <div
+        nz-col
+        nzXs="1"
+        nzSm="2"
+        nzMd="2"
+        nzLg="4"
+        nzXl="4"
+        class="height-100"
+      ></div>
     </div>
   </div>
-  <div nz-col nzSm="12" nzXs="24" style="overflow: auto; height: 100vh; position: relative;">
+  <div
+    nz-col
+    nzSm="12"
+    nzXs="24"
+    style="overflow: auto; height: 100vh; position: relative"
+  >
     <div class="triangle">
-      <img src="../../../../../assets/images/agro-id-images/topTriangle.png" alt="">
+      <img
+        src="../../../../../assets/images/agro-id-images/topTriangle.png"
+        alt=""
+      />
     </div>
     <div nz-row class="height-100">
-      <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="4" nzXl="4" class="height-100">
-      </div>
-      <div nz-col nzXs="22" nzSm="20" nzMd="20" nzLg="16" nzXl="16" class="height-100">
-        <div nz-row nzAlign="middle" style="margin-top: 2vh;">
-          <button  class="langBtn"  nz-button nzType="text">Рус</button>
-          <nz-divider nzType="vertical"></nz-divider>
-          <button class="langBtn" nz-button nzType="link">Узб</button>
-          <nz-divider nzType="vertical"></nz-divider>
-          <button class="langBtn" nz-button nzType="link">Uzb</button>
+      <div
+        nz-col
+        nzXs="1"
+        nzSm="2"
+        nzMd="2"
+        nzLg="4"
+        nzXl="4"
+        class="height-100"
+      ></div>
+      <div
+        nz-col
+        nzXs="22"
+        nzSm="20"
+        nzMd="20"
+        nzLg="16"
+        nzXl="16"
+        class="height-100"
+      >
+        <div nz-row nzAlign="middle" style="margin-top: 2vh">
+          <ng-container *ngFor="let language of languages">
+            <button
+              class="langBtn"
+              nz-button
+              (click)="onChangeLanguage(language)"
+              [nzType]="currentLanguageCode === language.code ? 'text' : 'link'"
+            >
+              {{ language.shortName }}
+            </button>
+            <nz-divider nzType="vertical"></nz-divider>
+          </ng-container>
         </div>
-        <div style="margin-top: 4vh; ">
-            <router-outlet></router-outlet>
+        <div style="margin-top: 4vh">
+          <router-outlet></router-outlet>
         </div>
       </div>
-      <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="4" nzXl="4" class="height-100">
-      </div>
+      <div
+        nz-col
+        nzXs="1"
+        nzSm="2"
+        nzMd="2"
+        nzLg="4"
+        nzXl="4"
+        class="height-100"
+      ></div>
     </div>
   </div>
 </div>

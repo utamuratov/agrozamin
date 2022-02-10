@@ -1,7 +1,7 @@
 <div nz-col nzSm="24">
   <div nz-row>
     <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
-      <nz-steps [nzCurrent]="signUpForm">
+      <nz-steps [nzCurrent]="currentStep">
         <nz-step nzTitle="Ввод данных"></nz-step>
         <nz-step nzTitle="Подтверждение"></nz-step>
         <nz-step nzTitle="Регистрация"></nz-step>
@@ -9,15 +9,15 @@
     </div>
   </div>
 
-  <div [ngSwitch]="signUpForm">
+  <div [ngSwitch]="currentStep">
     <app-sign-up-login
       (changeComponentEvent)="swtichTo($event)"
-      *ngSwitchCase="0"
+      *ngSwitchCase="step.Login"
     ></app-sign-up-login>
     <app-sign-up-confirmation
       (changeComponentEvent)="swtichTo($event)"
-      *ngSwitchCase="1"
+      *ngSwitchCase="step.Confirmation"
     ></app-sign-up-confirmation>
-    <app-sign-up-success *ngSwitchCase="2"></app-sign-up-success>
+    <app-sign-up-success *ngSwitchCase="step.Success"></app-sign-up-success>
   </div>
 </div>
