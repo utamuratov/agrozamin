@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: '/home' },
+      { path: '', pathMatch: 'full', redirectTo: '/sign-in' },
       {
         path: 'home',
         loadChildren: () =>
