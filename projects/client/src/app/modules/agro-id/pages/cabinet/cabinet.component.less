@@ -1,0 +1,48 @@
+.logo {
+  height: 32px;
+  margin: 16px;
+  color: #fff;
+}
+
+.cabinet {
+  background: none;
+  &__content {
+    position: relative;
+    img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300px;
+    }
+  }
+
+  &__sidebar {
+    &__menu {
+      color: #fff;
+
+      li:hover {
+        background: #fff;
+        color: #3c4bdc;
+      }
+    }
+
+    
+  }
+}
+
+.ant-menu-item-selected {
+  color: #3c4bdc;
+}
+
+.sidebar__mobile {
+    position: fixed;
+    height: 100%;
+    z-index: 1000;
+    top: 0;
+}
+
+.sidebar__desktop {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+}
