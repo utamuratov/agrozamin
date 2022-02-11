@@ -58,7 +58,7 @@ import { CreateNewPasswordComponent } from './components/create-new-password/cre
     ForgotPasswordComponent,
     RecoverLoginComponent,
     ConfirmLoginComponent,
-    CreateNewPasswordComponent
+    CreateNewPasswordComponent,
   ],
 })
 export class AgroIdModule {}

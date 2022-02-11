@@ -20,8 +20,12 @@ const routes: Routes = [
       {
         path: 'recovery',
         component: ForgotPasswordComponent,
-      },
+      }
     ],
+  },
+  {
+    path: 'cabinet', 
+    loadChildren: () => import('./pages/cabinet/cabinet.module').then(m => m.CabinetModule)
   },
 ];
 
