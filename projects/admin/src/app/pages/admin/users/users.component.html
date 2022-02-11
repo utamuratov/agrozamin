@@ -1,0 +1,53 @@
+<div style="margin-left: 750px">
+  <nz-input-group>
+    <nz-select style="width: 80px">
+      <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+      <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+      <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+    </nz-select>
+
+    <nz-input-group style="width: 140px" [nzSuffix]="suffixIconSearch">
+      <input type="text" nz-input placeholder="input search text" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
+
+    <button nz-button nzType="primary">ok</button>
+  </nz-input-group>
+</div>
+
+<nz-divider></nz-divider>
+
+<nz-table
+  #groupingTable
+  [nzData]="listOfData"
+  nzBordered
+  nzSize="middle"
+  [nzScroll]="{ y: '250px' }"
+>
+  <thead>
+    <tr>
+      <th nzAlign="center" nzWidth="70px" [nzSortFn]="sortFnId">Id</th>
+      <th [nzSortFn]="sortFnLogin">Логин</th>
+      <th [nzSortFn]="sortFnName">Имя</th>
+      <th>Коментарий</th>
+      <th [nzSortFn]="sortFnLoginDate">Последняя авторизация</th>
+      <th [nzFilters]="filterName" [nzFilterFn]="nameFilterFn">состаяние пользователя</th>
+      <th>требовать установки нового пароля</th>
+      <th>Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of groupingTable.data">
+      <td nzEllipsis>{{ data.name }}</td>
+      <td>{{ data.age }}</td>
+      <td>{{ data.street }}</td>
+      <td>{{ data.building }}</td>
+      <td>{{ data.number }}</td>
+      <td>{{ data.companyAddress }}</td>
+      <td>{{ data.companyName }}</td>
+      <td>{{ data.gender }}</td>
+    </tr>
+  </tbody>
+</nz-table>
