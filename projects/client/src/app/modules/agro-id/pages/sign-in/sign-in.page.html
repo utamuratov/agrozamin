@@ -26,13 +26,18 @@
     >
       <h2 nz-typography class="title">{{'entrance' | translate}}</h2>
       <nz-divider class="divider-custom-top divider-custom-bottom"></nz-divider>
-      <p class="error" nz-typography nzType="danger">
-        {{errorMessage ? ('wrongPassword' | translate)
-        : ''}}
-      </p>
+
+      <!-- ERRORS FROM SERVER -->
+      <div class="mb-1">
+        <error-from-server
+          *ngIf="errorMessageFromServer"
+          [error]="errorMessageFromServer"
+        ></error-from-server>
+      </div>
+
       <!-- LOGIN INPUT FIELD -->
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="email"
+        <nz-form-label class="font-agro-medium" [nzSpan]="6" nzFor="email"
           >{{'login' | translate}}</nz-form-label
         >
         <nz-form-control
@@ -51,10 +56,10 @@
 
       <!-- PASSWORD INPUT FIELD -->
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="email"
+        <nz-form-label class="font-agro-medium" [nzSpan]="6" nzFor="email"
           >{{'password' | translate}}</nz-form-label
         >
-        <nz-form-control nzErrorTip="Пожалуйста введите пароль">
+        <nz-form-control [nzErrorTip]="'pleaseFillPassword' | translate">
           <nz-input-group nzPrefixIcon="lock" nzSize="large">
             <input type="password" nz-input formControlName="password" />
           </nz-input-group>
@@ -64,7 +69,7 @@
       <!-- OPTIONS -->
       <div nz-row class="login-form-margin" nzJustify="space-between">
         <div nz-col>
-          <span nz-typography>
+          <span nz-typography class="font-agro-medium">
             <a routerLink="sign-up"> {{'register' | translate}} </a>
           </span>
         </div>
@@ -76,14 +81,14 @@
           >
         </div>
       </div>
-      <div class="custom-btn">
+      <div>
         <button
           style="margin-top: 30px"
           nz-button
-          class="login-form-button login-form-margin"
+          class="login-form-margin font-agro-medium"
           nzBlock
           [nzType]="'primary'"
-          [nzLoading]="isWaitingResponse"
+          [nzLoading]="$isWaitingResponse|async"
         >
           {{'toComeIn' | translate}}
         </button>

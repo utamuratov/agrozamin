@@ -1,23 +1,24 @@
 <div nz-col nzSm="24">
   <div nz-row>
-    <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
+    <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="19">
       <nz-steps [nzCurrent]="currentStep">
-        <nz-step [nzTitle]="'signUpStep1' | translate"></nz-step>
-        <nz-step [nzTitle]="'signUpStep2' | translate"></nz-step>
-        <nz-step [nzTitle]="'signUpStep3' | translate"></nz-step>
+        <nz-step [nzTitle]="currentStep == 0 ?  ('signUpStep1' | translate ): '' "></nz-step>
+        <nz-step [nzTitle]="currentStep == 1 ?  ('signUpStep2' | translate ): '' "></nz-step>
+        <nz-step [nzTitle]="currentStep == 2 ?  ('signUpStep3' | translate ): '' "></nz-step>
       </nz-steps>
     </div>
   </div>
 
   <div [ngSwitch]="currentStep">
-    <app-sign-up-login
-      (changeComponentEvent)="swtichTo($event)"
-      *ngSwitchCase="step.Login"
-    ></app-sign-up-login>
-    <app-sign-up-confirmation
-      (changeComponentEvent)="swtichTo($event)"
+    <sign-up
+      (changeStep)="changeStepFromSignUp($event)"
+      *ngSwitchCase="step.SignUp"
+    ></sign-up>
+    <sign-up-confirmation
+      (changeStep)="goToNextStep($event)"
+      [data]="data"
       *ngSwitchCase="step.Confirmation"
-    ></app-sign-up-confirmation>
+    ></sign-up-confirmation>
     <app-sign-up-success *ngSwitchCase="step.Success"></app-sign-up-success>
   </div>
 </div>

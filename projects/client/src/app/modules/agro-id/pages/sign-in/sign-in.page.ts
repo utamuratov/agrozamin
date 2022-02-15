@@ -1,13 +1,21 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { SignInRequest } from 'projects/client/src/app/shared/models/auth/sign-in.request';
+import {
+  catchError,
+  finalize,
+  map,
+  Observable,
+  of,
+  startWith,
+} from 'rxjs';
 
 @Component({
   templateUrl: './sign-in.page.html',
@@ -18,22 +26,7 @@ export class SignInPage implements OnInit {
   /**
    *
    */
-  _isWaitingResponse = false;
-
-  /**
-   *
-   */
-  get isWaitingResponse() {
-    return this._isWaitingResponse;
-  }
-
-  /**
-   *
-   */
-  set isWaitingResponse(isWaitingResponse: boolean) {
-    this._isWaitingResponse = isWaitingResponse;
-    this.cd.markForCheck();
-  }
+  $isWaitingResponse?: Observable<boolean>;
 
   /**
    *
@@ -43,7 +36,7 @@ export class SignInPage implements OnInit {
   /**
    *
    */
-  errorMessage!: string;
+  errorMessageFromServer?: ErrorItem;
 
   /**
    *
@@ -52,7 +45,6 @@ export class SignInPage implements OnInit {
     private fb: FormBuilder,
     private $auth: AuthService,
     private router: Router,
-    private cd: ChangeDetectorRef
   ) {}
 
   /**
@@ -66,7 +58,7 @@ export class SignInPage implements OnInit {
    *
    */
   submitForm(): void {
-    if (this.isWaitingResponse) {
+    if (this.$isWaitingResponse) {
       return;
     }
 
@@ -101,20 +93,22 @@ export class SignInPage implements OnInit {
    *
    */
   private signIn(model: SignInRequest) {
-    this.isWaitingResponse = true;
-    this.$auth.signIn(model).subscribe({
-      next: (result) => {
-        this.isWaitingResponse = false;
+    this.$isWaitingResponse = this.$auth.signIn(model).pipe(
+      map((result) => {
+        this.errorMessageFromServer = undefined;
 
         // !WORK ON TOKEN
         console.log(result);
 
         this.router.navigate(['/']);
-      },
-      error: (e) => {
-        this.isWaitingResponse = false;
-        this.errorMessage = 'Error';
-      },
-    });
+        return false;
+      }),
+      startWith(true),
+      catchError((errors: ErrorItem[]) => {
+        this.errorMessageFromServer = errors[0];
+        return of(false);
+      }),
+      finalize(() => (this.$isWaitingResponse = undefined))
+    );
   }
 }

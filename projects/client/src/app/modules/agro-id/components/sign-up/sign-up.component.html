@@ -1,0 +1,242 @@
+<!-- SIGN UP -->
+<h2 nz-typography class="form__title agro-id-form-title">
+  {{ "registration" | translate }}
+</h2>
+
+<!-- DO YOU HAVE ANY ACCOUNT? -->
+<p nz-typography style="margin-top: 5px">
+  {{ "haveAnAccount" | translate }}
+  <a routerLink="../">{{ "toComeIn" | translate }}</a>
+</p>
+
+<nz-divider class="divider-custom-top"></nz-divider>
+
+<!-- SIGN UP FORM -->
+<form
+  nz-form
+  class="form registration"
+  nzLayout="vertical"
+  [formGroup]="signUpForm"
+  (ngSubmit)="continue()"
+>
+  <!-- ERRORS FROM SERVER -->
+  <div class="mb-1">
+    <error-from-server
+      *ngIf="errorMessageFromServer"
+      [error]="errorMessageFromServer"
+    ></error-from-server>
+  </div>
+
+  <div>
+    <div nz-row nzGutter="16">
+      <!-- FIRSTNAME -->
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
+        <nz-form-item>
+          <nz-form-label>{{ "firstName" | translate }}</nz-form-label>
+          <nz-form-control [nzErrorTip]="error">
+            <input
+              class="form__inputGroup"
+              nz-input
+              onlyLetter
+              type="text"
+              nzSize="large"
+              formControlName="f_name"
+            />
+          </nz-form-control>
+          <ng-template #error let-control>
+            <error [control]="control"></error>
+          </ng-template>
+        </nz-form-item>
+      </div>
+
+      <!-- LASTNAME -->
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
+        <nz-form-item>
+          <nz-form-label>{{ "lastName" | translate }}</nz-form-label>
+          <nz-form-control [nzErrorTip]="error">
+            <input
+              class="form__inputGroup"
+              nz-input
+              onlyLetter
+              type="text"
+              nzSize="large"
+              formControlName="l_name"
+            />
+          </nz-form-control>
+          <ng-template #error let-control>
+            <error [control]="control"></error>
+          </ng-template>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <!-- PHONE NUMBER -->
+    <div *ngIf="byPhoneNumber; else email">
+      <nz-form-item>
+        <nz-form-label nzFor="phoneNumber" [nzSpan]="24">{{
+          "regPhoneLabel" | translate
+        }}</nz-form-label>
+        <nz-form-control
+          nzHasFeedback
+          [nzSpan]="24"
+          [nzValidateStatus]="signUpForm.controls['phone']"
+          [nzErrorTip]="error"
+        >
+          <input
+            formControlName="phone"
+            prefix="+998 "
+            mask="00 000 00 00"
+            id="phoneNumber"
+            [placeholder]="'putPhoneToReg' | translate"
+            nz-input
+            nzSize="large"
+          />
+        </nz-form-control>
+        <ng-template #error let-control>
+          <error [control]="control"></error>
+          <!-- ERRORS FROM SERVER -->
+          <ng-container *ngIf="control.hasError('errorMessageFromServer')">
+            <error-from-server
+              [error]="control.getError('errorMessageFromServer')"
+            ></error-from-server>
+          </ng-container>
+        </ng-template>
+      </nz-form-item>
+    </div>
+
+    <!-- EMAIL -->
+    <ng-template #email>
+      <nz-form-item>
+        <nz-form-label nzFor="email" [nzSpan]="24">{{
+          "putEmailToReg" | translate
+        }}</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="24" [nzErrorTip]="error">
+          <input
+            nz-input
+            formControlName="email"
+            id="email"
+            [placeholder]="'emailRegPlaceholder' | translate"
+            nzSize="large"
+            [nzAutocomplete]="auto"
+          />
+          <nz-autocomplete #auto>
+            <nz-auto-option
+              *ngFor="let option of mailTypes"
+              [nzValue]="option"
+              >{{ option }}</nz-auto-option
+            >
+          </nz-autocomplete>
+        </nz-form-control>
+        <ng-template #error let-control>
+          <error [control]="control"></error>
+          <!-- ERRORS FROM SERVER -->
+          <ng-container *ngIf="control.hasError('errorMessageFromServer')">
+            <error-from-server
+              [error]="control.getError('errorMessageFromServer')"
+            ></error-from-server>
+          </ng-container>
+        </ng-template>
+      </nz-form-item>
+    </ng-template>
+
+    <!-- TOGGLE PHONENUMBER OR EMAIL  -->
+    <a
+      style="padding: 4px 0"
+      nzType="link"
+      (click)="togglePhonenumberAndEmail()"
+      >{{
+        byPhoneNumber
+          ? ("haveNotPhone" | translate)
+          : ("haveNotEmail" | translate)
+      }}</a
+    >
+
+    <nz-divider class="divider-custom-top"></nz-divider>
+    <div nz-row nzGutter="16">
+      <!-- PASSWORD -->
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
+        <nz-form-item>
+          <nz-form-label>{{ "createPassword" | translate }}</nz-form-label>
+          <nz-form-control
+            nzDisableAutoTips
+            nzHasFeedback
+            [nzErrorTip]="errorPassword"
+          >
+            <input
+              class="form__inputGroup"
+              nz-input
+              type="password"
+              formControlName="password"
+              nzSize="large"
+            />
+          </nz-form-control>
+          <ng-template #errorPassword let-control>
+            <error
+              *ngIf="control.hasError('required'); else error"
+              [message]="'errorTipToCreatePassword' | translate"
+            ></error>
+            <ng-template #error>
+              <error [control]="control"></error>
+            </ng-template>
+          </ng-template>
+        </nz-form-item>
+      </div>
+
+      <!-- CONFIRMATION PASSWORD -->
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
+        <nz-form-item>
+          <nz-form-label>{{ "repeatPassword" | translate }}</nz-form-label>
+          <nz-form-control
+            nzDisableAutoTips
+            nzHasFeedback
+            [nzErrorTip]="errorConfirmationPassword"
+          >
+            <input
+              nz-input
+              type="password"
+              formControlName="confirmationPassword"
+              nzSize="large"
+            />
+            <ng-template #errorConfirmationPassword let-control>
+              <error
+                *ngIf="control.hasError('required'); else error"
+                [message]="'confirmPassword' | translate"
+              ></error>
+              <ng-template #error>
+                <error [control]="control"></error>
+              </ng-template>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <!-- DO YOU AGREE -->
+    <nz-form-item nz-row class="register-area">
+      <nz-form-control [nzSpan]="24">
+        <label nz-checkbox formControlName="agree">
+          <span>{{ "agree" | translate }}</span>
+        </label>
+        <a style="font-size: 16px">{{ "termsOfUse" | translate }}</a>
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- CONTINUE -->
+    <div nz-row>
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12">
+        <button
+          [disabled]="
+            !signUpForm.controls['agree'].valid || ($isWaitingResponse | async)
+          "
+          [nzLoading]="$isWaitingResponse | async"
+          nzBlock
+          nz-button
+          nzType="primary"
+          class="font-agro-medium"
+        >
+          {{ "continue" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

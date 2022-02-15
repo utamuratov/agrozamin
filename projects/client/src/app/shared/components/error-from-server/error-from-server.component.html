@@ -1,0 +1,5 @@
+<div class="ant-form-item-explain-error">
+  <div *ngFor="let errorMessage of error.message">
+    {{ error.field + "." + errorMessage.key | translate }}
+  </div>
+</div>

@@ -10,8 +10,76 @@
 @primary-color: #3c4bdc;
 @form-item-margin-bottom: 10px;
 @btn-height-base: 42px;
+
+@font-face {
+  font-family: Agrofont-BExpanded;
+  src: url(./assets/fonts/ALSAgrofont-BoldExpanded.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Agrofont-Black;
+  src: url(./assets/fonts/ALSAgrofont-Black.ttf);
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: Agrofont-Bold;
+  src: url(./assets/fonts/ALSAgrofont-Bold.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Agrofont-Medium;
+  src: url(./assets/fonts/ALSAgrofont-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Agrofont-Regular;
+  src: url(./assets/fonts/ALSAgrofont-Regular.ttf);
+  font-weight: 400;
+}
+
+body {
+  font-family: Agrofont-Regular;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Agrofont-BExpanded;
+}
+
+.font-agro-black {
+  font-family: Agrofont-Black;
+}
+
+.font-agro-bold {
+  font-family: Agrofont-Bold;
+}
+
+.font-agro-medium {
+  font-family: Agrofont-Medium;
+}
+
+label {
+  color: #696F79 !important;
+}
+
+.indigo-bg {
+  background: #3C4BDC;
+}
+
 .height-100 {
   height: 100%;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.text-size-16 {
+  font-size: 16px;
+  line-height: 18px;
 }
 
 .divider-custom-top {
@@ -32,4 +100,19 @@
   font-size: 36px;
   line-height: 38px;
   font-weight: 700;
+}
+
+.ant-layout {
+  background: none;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+// GLOBAL
+.mb-1 {
+  margin-bottom: 1rem;
 }

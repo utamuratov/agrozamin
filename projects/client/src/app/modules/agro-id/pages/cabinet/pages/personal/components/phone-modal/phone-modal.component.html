@@ -1,0 +1,21 @@
+<!-- USER EMAIL -->
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()">
+  <div *nzModalTitle>
+    <h4 nz-typography>{{userPhone != null ? 'Изменить' : 'Добавить'}} номер телефона</h4>
+    <span nz-typography>Введите ваш новый номер телефона. На него будет отправлен код подтверждения</span>
+  </div>
+   <ng-container *nzModalContent>
+
+    <form nz-form nzLayout="vertical" [formGroup]="validateForm">
+      <nz-form-item>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Поле заплнено не корректно. Перед цифрами дожен быть '+'">
+          <input nz-input type="number" formControlName="phone" nzSize="large" placeholder="Введите ваш номер телефона">
+        </nz-form-control>
+      </nz-form-item >
+    </form>
+
+   </ng-container>
+   <div *nzModalFooter nz-row nzGutter="10">
+     <div nz-col nzSpan="16"><button class="font-agro-medium" nzBlock nz-button nzType="primary" (click)="submitForm()">Продолжить</button></div>
+  </div>
+ </nz-modal>
