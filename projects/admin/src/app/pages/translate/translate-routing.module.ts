@@ -9,13 +9,44 @@ const routes: Routes = [
   {
     path: '',
     component: TranslateComponent,
+    data: {
+      bc: 'Translate'
+    },
     children: [
+      {path: '', pathMatch: 'full', redirectTo: 'interface'},
       {
         path: 'interface',
         component: InterfaceComponent,
+        data: {
+          bc: 'Interface',
+          meta: {
+            title: 'monitorTitle',
+            description: 'monitorDescription',
+          },
+        },
       },
-      { path: 'seo', component: SeoComponent },
-      { path: 'contents', component: ContentsComponent },
+      {
+        path: 'seo',
+        component: SeoComponent,
+        data: {
+          bc: 'Seo',
+          meta: {
+            title: 'monitorTitle',
+            description: 'monitorDescription',
+          },
+        },
+      },
+      {
+        path: 'contents',
+        component: ContentsComponent,
+        data: {
+          bc: 'Contents',
+          meta: {
+            title: 'monitorTitle',
+            description: 'monitorDescription',
+          },
+        },
+      },
     ],
   },
 ];

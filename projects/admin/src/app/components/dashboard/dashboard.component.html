@@ -14,7 +14,7 @@
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu nzOpen nzTitle="Translate" nzIcon="dashboard">
         <ul>
-          <li routerLink="/translate/interface" nz-menu-item nzMatchRouter>
+          <li routerLink="/translate/interface" onchange="changeName()" nz-menu-item nzMatchRouter>
             <a >Interface</a>
           </li>
           <li routerLink="/translate/seo" nz-menu-item nzMatchRouter>
@@ -38,7 +38,7 @@
 
       <li nz-submenu nzOpen nzTitle="Admins" nzIcon="form">
         <ul>
-          <li routerLink="/admin/users" nz-menu-item nzMatchRouter>
+          <li  routerLink="/admin/users" nz-menu-item nzMatchRouter>
             <span>Users</span>
           </li>
           <li routerLink="/admin/role" nz-menu-item nzMatchRouter>
@@ -73,16 +73,7 @@
 
                     <div nz-row>
                       <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24">
-                        <nz-breadcrumb>
-                          <nz-breadcrumb-item><a> Home </a></nz-breadcrumb-item>
-                          <nz-breadcrumb-item>
-                            <a>Admin Users</a>
-                          </nz-breadcrumb-item>
-                          <nz-breadcrumb-item>
-                          
-                          </nz-breadcrumb-item>
-                        </nz-breadcrumb>
-      
+                        <agro-breadcrumb></agro-breadcrumb>
                   </div>
                     </div>
 

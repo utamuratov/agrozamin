@@ -4,15 +4,43 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { RoleComponent } from './role/role.component';
 
-const routes: Routes = [{ path: '', component: AdminComponent,
-children: [
-    {path: 'users', component: UsersComponent},
-    {path: 'role', component: RoleComponent},
-],
-}];
+const routes: Routes = [
+  {
+    path: '',
+    component: AdminComponent,
+    data: {
+      bc: 'Admin'
+    },
+    children: [
+      {path: '', pathMatch: 'full', redirectTo: 'users'},
+      {
+        path: 'users',
+        component: UsersComponent,
+        data: {
+          bc: 'Users',
+          meta: {
+            title: 'monitorTitle',
+            description: 'monitorDescription',
+          },
+        },
+      },
+      {
+        path: 'role',
+        component: RoleComponent,
+        data: {
+          bc: 'Role',
+          meta: {
+            title: 'monitorTitle',
+            description: 'monitorDescription',
+          },
+        },
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

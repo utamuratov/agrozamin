@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -14,6 +15,9 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 
 
 @NgModule({
@@ -24,6 +28,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AdminRoutingModule,
     NzBreadCrumbModule,
     NzInputModule,
@@ -33,7 +38,10 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     NzGridModule,
     NzPageHeaderModule,
     NzDividerModule,
-    NzTableModule
+    NzTableModule,
+    NzModalModule,
+    NzSwitchModule,
+    NzAutocompleteModule
   ]
 })
 export class AdminModule { }

@@ -16,20 +16,40 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/home/home.module').then((m) => m.HomeModule),
       },
-      { path: 'user', component: UserComponent },
-      { path: 'category', component: CategoryComponent },
+      {
+        path: 'user',
+        component: UserComponent,
+        data: {
+          bc: 'User',
+          meta: {
+            title: 'monitorTitle',
+            description: 'monitorDescription',
+          },
+        },
+      },
+      {
+        path: 'category',
+        component: CategoryComponent,
+        data: {
+          bc: 'Category',
+          meta: {
+            title: 'monitorTitle',
+            description: 'monitorDescription',
+          },
+        },
+      },
       {
         path: 'translate',
         loadChildren: () =>
           import('./pages/translate/translate.module').then(
             (m) => m.TranslateModule
           ),
-      },
+       },
       {
         path: 'admin',
         loadChildren: () =>
           import('./pages/admin/admin.module').then((m) => m.AdminModule),
-      },
+       },
     ],
   },
   { path: 'sign-in', component: SignInComponent },

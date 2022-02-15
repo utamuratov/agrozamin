@@ -28,7 +28,7 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 registerLocaleData(ru);
 
@@ -36,7 +36,8 @@ registerLocaleData(ru);
   declarations: [
     AppComponent,
     SignInComponent,
-    DashboardComponent
+    DashboardComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,

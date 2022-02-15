@@ -1,53 +1,87 @@
-<div style="margin-left: 750px">
-  <nz-input-group>
-    <nz-select style="width: 80px">
-      <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-      <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-      <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
-    </nz-select>
+<div nz-row>
 
-    <nz-input-group style="width: 140px" [nzSuffix]="suffixIconSearch">
-      <input type="text" nz-input placeholder="input search text" />
+ <div  nz-col nzSpan="24">
+   <div style="display: inline-block; min-width: 450px; float: right;">
+
+    <form (submit)="search()">
+    <nz-input-group>
+
+      <nz-select  name="searchBy" [(ngModel)]="searchBy"  style="width: 200px;">
+        <nz-option nzValue="id" nzLabel="Id"></nz-option>
+        <nz-option nzValue="login" nzLabel="Логин"></nz-option>
+        <nz-option nzValue="name" nzLabel="Имя"></nz-option>
+      </nz-select>
+  
+        <nz-input-group  style="width: 200px; margin-top: 2px;" [nzSuffix]="suffixIconSearch">
+          <nz-autocomplete [nzDataSource]="filteredOptions" #auto></nz-autocomplete>
+          <input [nzAutocomplete]="auto"  name="searchText" (ngModelChange)="changeInput($event)" [(ngModel)]="searchText" type="text" nz-input placeholder="input search text" />
+        </nz-input-group>
+
+      <ng-template #suffixIconSearch>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+      <button nz-button nzType="primary">ok</button>
     </nz-input-group>
-    <ng-template #suffixIconSearch>
-      <i nz-icon nzType="search"></i>
-    </ng-template>
+  </form>
+   </div>
+ </div>
 
-    <button nz-button nzType="primary">ok</button>
-  </nz-input-group>
+ <div nz-col nzSpan="24">
+  <nz-divider></nz-divider>
+ </div>
+
+ <div nz-col nzSpan="24">
+  <nz-table
+      #groupingTable
+      [nzData]="filteredData"
+      nzBordered
+      nzSize="middle"
+      [nzScroll]="{ y: '270px' }"
+    >
+      <thead>
+        <tr>
+          <th nzAlign="center" nzWidth="50px" [nzSortFn]="sortFnId">Id</th>
+          <th nzAlign="center" nzWidth="100px">Логин</th>
+          <th nzAlign="center" nzWidth="100px" [nzSortFn]="sortFnName">Имя</th>
+          <th nzAlign="center" nzWidth="200px">Коментарий</th>
+          <th nzAlign="center" nzWidth="90px">Последняя авторизация</th>
+          <th nzAlign="center" nzWidth="90px" [nzFilters]="filterName" [nzFilterFn]="nameFilterFn">состаяние пользователя</th>
+          <th nzAlign="center" nzWidth="90px">требовать установки нового пароля</th>
+          <th nzAlign="center" nzWidth="150px">Действие</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of groupingTable.data">
+          <td nzEllipsis>{{ data.id }}</td>
+          <td>{{ data.login }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.building }}</td>
+          <td>{{ data.number }}</td>
+          <td>
+            <nz-switch [(ngModel)]="switchValue"></nz-switch>
+          </td>
+          <td>
+            <nz-switch [(ngModel)]="switchValue1"></nz-switch>
+          </td>
+          <td nzAlign="center" >
+            <button (click)="showModal()"  style="margin-right: 5px;" nz-button nzType="primary" [nzSize]="size"><i nz-icon nzType="download"></i></button>
+            <button (click)="showModal()" style="margin-right: 5px;" nz-button nzType="primary" [nzSize]="size"><i nz-icon nzType="download"></i></button>
+            <button (click)="showModal()" nz-button nzType="primary" [nzSize]="size"><i nz-icon nzType="download"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+ </div>
 </div>
-
-<nz-divider></nz-divider>
-
-<nz-table
-  #groupingTable
-  [nzData]="listOfData"
-  nzBordered
-  nzSize="middle"
-  [nzScroll]="{ y: '250px' }"
->
-  <thead>
-    <tr>
-      <th nzAlign="center" nzWidth="70px" [nzSortFn]="sortFnId">Id</th>
-      <th [nzSortFn]="sortFnLogin">Логин</th>
-      <th [nzSortFn]="sortFnName">Имя</th>
-      <th>Коментарий</th>
-      <th [nzSortFn]="sortFnLoginDate">Последняя авторизация</th>
-      <th [nzFilters]="filterName" [nzFilterFn]="nameFilterFn">состаяние пользователя</th>
-      <th>требовать установки нового пароля</th>
-      <th>Действие</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let data of groupingTable.data">
-      <td nzEllipsis>{{ data.name }}</td>
-      <td>{{ data.age }}</td>
-      <td>{{ data.street }}</td>
-      <td>{{ data.building }}</td>
-      <td>{{ data.number }}</td>
-      <td>{{ data.companyAddress }}</td>
-      <td>{{ data.companyName }}</td>
-      <td>{{ data.gender }}</td>
-    </tr>
-  </tbody>
-</nz-table>
+   
+    <nz-modal
+    [(nzVisible)]="isVisible"
+    [(nzVisible)]="isVisible"
+    nzTitle="Modal Title"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+    [nzOkLoading]="isOkLoading"
+    >
+    <p *nzModalContent>Modal Content</p>
+    </nz-modal>
