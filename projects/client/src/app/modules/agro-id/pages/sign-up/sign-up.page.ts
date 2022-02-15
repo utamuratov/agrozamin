@@ -1,9 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-enum Step {
-  Login,
+export enum SignUpStep {
+  SignUp,
   Confirmation,
   Success,
+}
+
+export interface SignUpOutputModel {
+  nextStep: number; 
+  login: string; 
+  byPhoneNumber: boolean
 }
 
 @Component({
@@ -15,14 +21,31 @@ export class SignUpPage {
   /**
    * 
    */
-  currentStep = Step.Login;
+  currentStep = SignUpStep.SignUp;
 
   /**
    * 
    */
-  step = Step;
+  step = SignUpStep;
 
-  swtichTo(item: number): void {
+  /**
+   * 
+   */
+  data!: SignUpOutputModel;
+
+  /**
+   * 
+   * @param item 
+   */
+  goToNextStep(item: number): void {
     this.currentStep = item;
   }
+
+  /**
+   * 
+   */
+   changeStepFromSignUp(data: SignUpOutputModel) {
+    this.data = data;
+    this.goToNextStep(data.nextStep);
+   }
 }

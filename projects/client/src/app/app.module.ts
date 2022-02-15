@@ -27,6 +27,7 @@ import { SetTokenAndHandleErrorInterceptor } from './core/interceptors/token.int
 import { DITokens } from './core/config/di-tokens';
 import { SettingsHelper } from './core/helpers/settings.helper';
 import { GlobalErrorHandler } from './core/helpers/global-error-handler';
+import { NgxMaskModule } from 'ngx-mask';
 
 registerLocaleData(ru);
 
@@ -52,6 +53,7 @@ registerLocaleData(ru);
         deps: [HttpClient],
       },
     }),
+    NgxMaskModule.forRoot(),
 
     // 
     AppRoutingModule,

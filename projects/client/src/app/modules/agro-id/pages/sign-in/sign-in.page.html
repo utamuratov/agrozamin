@@ -26,10 +26,15 @@
     >
       <h2 nz-typography class="title">{{'entrance' | translate}}</h2>
       <nz-divider class="divider-custom-top divider-custom-bottom"></nz-divider>
-      <p class="error" nz-typography nzType="danger">
-        {{errorMessage ? ('wrongPassword' | translate)
-        : ''}}
-      </p>
+
+      <!-- ERRORS FROM SERVER -->
+      <div class="mb-1">
+        <error-from-server
+          *ngIf="errorMessageFromServer"
+          [error]="errorMessageFromServer"
+        ></error-from-server>
+      </div>
+
       <!-- LOGIN INPUT FIELD -->
       <nz-form-item>
         <nz-form-label [nzSpan]="6" nzFor="email"
@@ -54,7 +59,7 @@
         <nz-form-label [nzSpan]="6" nzFor="email"
           >{{'password' | translate}}</nz-form-label
         >
-        <nz-form-control nzErrorTip="Пожалуйста введите пароль">
+        <nz-form-control [nzErrorTip]="'pleaseFillPassword' | translate">
           <nz-input-group nzPrefixIcon="lock" nzSize="large">
             <input type="password" nz-input formControlName="password" />
           </nz-input-group>
@@ -83,7 +88,7 @@
           class="login-form-button login-form-margin"
           nzBlock
           [nzType]="'primary'"
-          [nzLoading]="isWaitingResponse"
+          [nzLoading]="$isWaitingResponse|async"
         >
           {{'toComeIn' | translate}}
         </button>

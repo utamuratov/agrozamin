@@ -1,12 +1,10 @@
 import { SignUpPage } from './pages/sign-up/sign-up.page';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AgroIdComponent } from './components/agro-id/agro-id.component';
 import { AgroIdRoutes } from './agro-id.routing';
 import { SignInPage } from './pages/sign-in/sign-in.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /* Sign Components */
-import { SignUpLoginComponent } from './components/sign-up-login/sign-up-login.component';
 import { SignUpConfirmationComponent } from './components/sign-up-confirmation/sign-up-confirmation.component';
 import { SignUpSuccessComponent } from './components/sign-up-success/sign-up-success.component';
 /* NG-ZORRO-MODULES */
@@ -26,12 +24,16 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { RecoverLoginComponent } from './components/recover-login/recover-login.component';
 import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.component';
 import { CreateNewPasswordComponent } from './components/create-new-password/create-new-password.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { NgxMaskModule } from 'ngx-mask';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 
 @NgModule({
   imports: [
     AgroIdRoutes,
     ReactiveFormsModule, 
     FormsModule, 
+    NgxMaskModule,
     
     SharedModule,
     
@@ -46,13 +48,13 @@ import { CreateNewPasswordComponent } from './components/create-new-password/cre
     NzCarouselModule,
     NzLayoutModule,
     NzDividerModule,
-    NzTypographyModule
+    NzAutocompleteModule
   ],
   declarations: [
     AgroIdComponent,
     SignUpPage,
     SignInPage,
-    SignUpLoginComponent,
+    SignUpComponent,
     SignUpConfirmationComponent,
     SignUpSuccessComponent,
     ForgotPasswordComponent,
