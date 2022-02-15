@@ -1,104 +1,195 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-} from '@angular/forms';
-import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
+  Input,
   OnInit,
   Output,
 } from '@angular/core';
+import {
+  SignUpOutputModel,
+  SignUpStep,
+} from '../../pages/sign-up/sign-up.page';
+import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
+import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
+import {
+  catchError,
+  finalize,
+  interval,
+  map,
+  Observable,
+  of,
+  shareReplay,
+  startWith,
+  take,
+} from 'rxjs';
+
+const LEFT_SECONDS_BY_PHONE = 60;
+const LEFT_SECONDS_BY_EMAIL = 180;
 
 @Component({
-  selector: 'app-sign-up-confirmation',
+  selector: 'sign-up-confirmation',
   templateUrl: './sign-up-confirmation.component.html',
   styleUrls: ['./sign-up-confirmation.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpConfirmationComponent implements OnInit {
-  @Output() changeComponentEvent = new EventEmitter<number>();
-  switchComponentTo = 2;
-  validateForm!: FormGroup;
+  /**
+   *
+   */
+  @Output() changeStep = new EventEmitter<number>();
 
+  /**
+   *
+   */
+  @Input()
+  data!: SignUpOutputModel;
 
-  constructor(private fb: FormBuilder, private elem: ElementRef) {}
+  /**
+   *
+   */
+  confirmationForm!: FormGroup;
 
+  /**
+   *
+   */
+  errorMessageFromServer?: ErrorItem;
+
+  /**
+   *
+   */
+  $leftSeconds!: Observable<number>;
+
+  /**
+   *
+   */
+  $isWaitingResponse?: Observable<boolean>;
+
+  /**
+   *
+   * @param fb
+   * @param elem
+   */
+  constructor(
+    private fb: FormBuilder,
+    private elementRef: ElementRef,
+    private $auth: AuthService
+  ) {}
+
+  /**
+   *
+   */
   ngOnInit() {
-    this.validateForm = this.fb.group({
-      num1: [null, [Validators.required]],
-      num2: [null, [Validators.required]],
-      num3: [null, [Validators.required]],
-      num4: [null, [Validators.required]],
-      num5: [null, [Validators.required]],
-      num6: [null, [Validators.required]],
+    this.startTimer();
+    this.initForm();
+  }
+
+  /**
+   *
+   */
+  startTimer() {
+    let leftSeconds = this.data?.byPhoneNumber
+      ? LEFT_SECONDS_BY_PHONE
+      : LEFT_SECONDS_BY_EMAIL;
+    const count = leftSeconds;
+    this.$leftSeconds = interval(1000).pipe(
+      map(() => {
+        leftSeconds -= 1;
+        return leftSeconds * 1000;
+      }),
+      shareReplay(1),
+      take(count)
+    );
+  }
+
+  /**
+   *
+   */
+  private initForm() {
+    this.confirmationForm = this.fb.group({
+      activationCode1: [null, [Validators.required]],
+      activationCode2: [null, [Validators.required]],
+      activationCode3: [null, [Validators.required]],
+      activationCode4: [null, [Validators.required]],
+      activationCode5: [null, [Validators.required]],
     });
   }
 
-  submitForm(): void {
-    let confirmData = [];
-    for (const key in this.validateForm.value) {
-      confirmData.push(this.validateForm.value[key]);
+  /**
+   *
+   */
+  confirmPasscode(): void {
+    if (this.$isWaitingResponse) {
+      return;
     }
-    let concatedInputs = confirmData.join('');
-    console.log('submit', { concatedInputs });
-  }
 
-  nextComponent(): void {
-    this.submitForm();
-    this.changeComponentEvent.emit(this.switchComponentTo);
-  }
-
-  checkLength(n: number): void {
-    if (n < 6) {
-      if (!!this.validateForm.controls['num' + n].value) {
-        const elem = this.elem.nativeElement.querySelector(
-          'input[formControlName=num' + (n + 1) + ']'
-        );
-        if (elem) {
-          elem.focus();
-          // elem.select();
-        }
-      }
+    let activationCode = '';
+    for (const key in this.confirmationForm.value) {
+      activationCode += this.confirmationForm.value[key];
     }
-  }
-
-  onFocusInput(n: number): void {
-    /* const elem = this.elem.nativeElement.querySelectorAll(
-      'input[formControlName]'
-    );
-    for (let i = 0; i < elem.length; i++) {
-      const element = elem[i];
-      if (this.someMethod(element, 'focus')) {
-        element.focus();
-        break;
-      }
-    } */
-  }
-
-  clearInput(n: number): void {
-    if (n > 1) {
-      const elem = this.elem.nativeElement.querySelector(
-        'input[formControlName=num' + n + ']'
+    this.$isWaitingResponse = this.$auth
+      .sendAccountActivationCode({
+        login: this.data?.login,
+        secure_code: activationCode,
+      })
+      .pipe(
+        map((result) => {
+          console.log('submit', { result });
+          this.errorMessageFromServer = undefined;
+          this.changeStep.emit(SignUpStep.Success);
+          return false;
+        }),
+        startWith(true),
+        catchError((errors: ErrorItem[]) => {
+          this.errorMessageFromServer = errors[0];
+          return of(false);
+        }),
+        finalize(() => (this.$isWaitingResponse = undefined))
       );
-      if (this.someMethod(elem, 'backspace')) {
-        const el = this.elem.nativeElement.querySelector(
-          'input[formControlName=num' + (n - 1) + ']'
+  }
+
+  /**
+   *
+   * @param index
+   */
+  setFocus(index: number): void {
+    const control = this.confirmationForm.controls[`activationCode${index}`];
+    if (control?.value) {
+      const elem = this.elementRef.nativeElement.querySelector(
+        `input[id=activationCode${index + 1}]`
+      );
+      if (elem) {
+        elem.focus();
+      }
+    }
+  }
+
+  /**
+   *
+   * @param index
+   */
+  backspace(index: number): void {
+    if (index > 1) {
+      const inputClickedBackspase = this.elementRef.nativeElement.querySelector(
+        `input[id=activationCode${index}]`
+      );
+      if (!inputClickedBackspase?.value) {
+        const elemenForFocus = this.elementRef.nativeElement.querySelector(
+          `input[id=activationCode${index - 1}]`
         );
-        if (el) {
-          el.focus();
-          // elem.select();
+        if (elemenForFocus) {
+          elemenForFocus.focus();
         }
       }
     }
   }
 
-  someMethod(element: any, action: string): any {
-    if (element.value === null || element.value === '') {
-      return true
-    } else {
-      return false;
-    }
+  /**
+   *
+   */
+  askActivationCodeAgain() {
+    console.log('3');
   }
 }

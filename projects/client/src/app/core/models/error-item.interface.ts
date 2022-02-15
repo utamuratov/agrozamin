@@ -1,4 +1,4 @@
 export interface ErrorItem {
-    field: string;
-    message: string;
+  field: string;
+  message: { key: string; text: string }[];
 }

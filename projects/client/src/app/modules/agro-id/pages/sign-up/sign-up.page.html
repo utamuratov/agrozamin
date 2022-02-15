@@ -10,14 +10,15 @@
   </div>
 
   <div [ngSwitch]="currentStep">
-    <app-sign-up-login
-      (changeComponentEvent)="swtichTo($event)"
-      *ngSwitchCase="step.Login"
-    ></app-sign-up-login>
-    <app-sign-up-confirmation
-      (changeComponentEvent)="swtichTo($event)"
+    <sign-up
+      (changeStep)="changeStepFromSignUp($event)"
+      *ngSwitchCase="step.SignUp"
+    ></sign-up>
+    <sign-up-confirmation
+      (changeStep)="goToNextStep($event)"
+      [data]="data"
       *ngSwitchCase="step.Confirmation"
-    ></app-sign-up-confirmation>
+    ></sign-up-confirmation>
     <app-sign-up-success *ngSwitchCase="step.Success"></app-sign-up-success>
   </div>
 </div>
