@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { TriangleComponent } from './components/triangle/triangle.component';
 
 @NgModule({
   imports: [
@@ -9,8 +10,11 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   exports: [
     TranslateModule,
-    CommonModule
+    CommonModule,
+    TriangleComponent
   ],
-  declarations: []
+  declarations: [
+    TriangleComponent
+  ]
 })
 export class SharedModule { }

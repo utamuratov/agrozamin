@@ -18,12 +18,17 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { SharedModule } from 'projects/client/src/app/shared/shared.module';
+import { UserNameModalComponent } from './pages/personal/components/user-name-modal/user-name-modal.component';
+import { EmailModalComponent } from './pages/personal/components/email-modal/email-modal.component';
+import { PhoneModalComponent } from './pages/personal/components/phone-modal/phone-modal.component';
 
 @NgModule({
   imports: [
     CommonModule,
     CabinetRoutes,
     ReactiveFormsModule,
+    SharedModule,
     /* NG-ZORRO */
     NzLayoutModule,
     NzIconModule,
@@ -39,6 +44,13 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     /* ??????? */
     NzBreadCrumbModule,
   ],
-  declarations: [CabinetComponent, PersonalComponent, LegalPersonComponent],
+  declarations: [
+    CabinetComponent,
+    PersonalComponent,
+    LegalPersonComponent,
+    UserNameModalComponent,
+    EmailModalComponent,
+    PhoneModalComponent
+  ],
 })
 export class CabinetModule {}
