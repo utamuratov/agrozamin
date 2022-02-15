@@ -1,7 +1,7 @@
 <nz-layout class="height-100 cabinet">
   <nz-sider
     nzCollapsible
-    nzWidth="200px"
+    nzWidth="250px"
     class="cabinet__sidebar indigo-bg"
     
     nzBreakpoint="lg"
@@ -31,15 +31,11 @@
   <nz-layout>
     <nz-content style="overflow: auto;">
       <div class="height-100 cabinet__content" nz-row>
-        <img
-          src="../../../../../assets/images/agro-id-images/topTriangle.png"
-          class="triangle"
-          alt="triangle"
-        />
+        <triangle></triangle>
         <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="2" nzXl="2"></div>
         <div nz-col nzXs="22" nzSm="20" nzMd="20" nzLg="20" nzXl="20">
           <div style="padding-top: 10px">
-            <ng-container *ngFor="let language of languages">
+            <ng-container *ngFor="let language of languages; let i = index">
               <button
                 class="langBtn"
                 nz-button
@@ -50,7 +46,7 @@
               >
                 {{ language.shortName }}
               </button>
-              <nz-divider nzType="vertical"></nz-divider>
+              <nz-divider *ngIf="i !== languages.length - 1" nzType="vertical"></nz-divider>
             </ng-container>
           </div>
 

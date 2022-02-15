@@ -1,15 +1,42 @@
 .personal {
-    &__text {
-        padding-left: 20px;
-       p {
-           font-size: 22px;
-           line-height: 24px;
-       } 
+    &__avatar {
+        @media (max-width: 992px) {
+            justify-content: center;
+            text-align: center;
+        }
     }
 
-    a {
-        line-height: 0;
-        height: auto;
+    &__text {
+        font-size: 22px;
+        line-height: 24px;
+
+        @media (max-width: 1400px) {
+            font-size: 18px;
+            line-height: 20px;
+        }
+    }
+
+    &__subtitle {
+        font-size: 28px;
+        line-height: 40px;
+        font-family: Agrofont-Black;
+
+        @media (max-width: 768px) {
+            text-align: center;
+        }
+        @media (max-width: 576px) {
+            font-size: 22px;
+            line-height: 36px;
+        }
+    }
+
+    &__label {
+        font-size: 16px;
+        font-family: Agrofont-Medium;
+    }
+
+    &__info {
+        font-size: 18px;
     }
 }
 
