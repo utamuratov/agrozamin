@@ -120,7 +120,11 @@
             [nzAutocomplete]="auto"
           />
           <nz-autocomplete #auto>
-            <nz-auto-option *ngFor="let option of mailTypes" [nzValue]="option">{{ option }}</nz-auto-option>
+            <nz-auto-option
+              *ngFor="let option of mailTypes"
+              [nzValue]="option"
+              >{{ option }}</nz-auto-option
+            >
           </nz-autocomplete>
         </nz-form-control>
         <ng-template #error let-control>
@@ -218,16 +222,21 @@
     </nz-form-item>
 
     <!-- CONTINUE -->
-    <div class="custom-btn">
-      <button
-        [disabled]="!signUpForm.controls['agree'].valid || ($isWaitingResponse|async) "
-        nzBlock
-        nz-button
-        [nzLoading]="$isWaitingResponse|async"
-        nzType="primary"
-      >
-        {{ "continue" | translate }}
-      </button>
+    <div nz-row>
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12">
+        <button
+          [disabled]="
+            !signUpForm.controls['agree'].valid || ($isWaitingResponse | async)
+          "
+          [nzLoading]="$isWaitingResponse | async"
+          nzBlock
+          nz-button
+          nzType="primary"
+          class="font-agro-medium"
+        >
+          {{ "continue" | translate }}
+        </button>
+      </div>
     </div>
   </div>
 </form>

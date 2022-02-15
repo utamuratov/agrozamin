@@ -4,17 +4,15 @@ import { TranslateModule } from '@ngx-translate/core';
 import { OnlyLetterDirective } from './directives/only-letter.directive';
 import { ErrorComponent } from './components/error/error.component';
 import { ErrorFromServerComponent } from './components/error-from-server/error-from-server.component';
-import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { TriangleComponent } from './components/triangle/triangle.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, NzTypographyModule],
+  imports: [CommonModule, TranslateModule],
   exports: [
     CommonModule,
     TranslateModule,
     CommonModule,
-    TriangleComponent
-    NzTypographyModule,
+    TriangleComponent,
 
     OnlyLetterDirective,
     ErrorComponent,
@@ -24,7 +22,7 @@ import { TriangleComponent } from './components/triangle/triangle.component';
     OnlyLetterDirective,
     ErrorComponent,
     ErrorFromServerComponent,
-    TriangleComponent
-  ]
+    TriangleComponent,
+  ],
 })
 export class SharedModule {}

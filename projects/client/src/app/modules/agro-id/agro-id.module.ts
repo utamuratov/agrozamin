@@ -48,7 +48,8 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
     NzCarouselModule,
     NzLayoutModule,
     NzDividerModule,
-    NzAutocompleteModule
+    NzAutocompleteModule,
+    NzTypographyModule
   ],
   declarations: [
     AgroIdComponent,
