@@ -8,59 +8,57 @@ import { Language } from 'projects/client/src/app/shared/models/language.interfa
 @Component({
   selector: 'app-cabinet',
   templateUrl: './cabinet.component.html',
-  styleUrls: ['./cabinet.component.less']
+  styleUrls: ['./cabinet.component.less'],
 })
 export class CabinetComponent implements OnInit {
-  menuFixed = false
+  menuFixed = false;
   isCollapsed = false;
   /**
    *
    */
-   languages = Constants.LANGUAGES;
+  languages = Constants.LANGUAGES;
 
-   /**
-    *
-    */
-   currentLanguageCode!: string;
- 
-   /**
-    *
-    */
-   constructor(private router: Router, private translate: TranslateService) {
-     translate.setDefaultLang(Constants.DEFAULT_LANGUAGE_CODE);
-   }
- 
-   /**
-    *
-    */
-   ngOnInit() {
-     this.currentLanguageCode = LanguageUtilit.currentLanguage;
-     this.setCurrentLanguage(this.currentLanguageCode);
-   }
- 
-   /**
-    *
-    */
-   onChangeLanguage(language: Language) {
-     const previousLanguageCode = this.currentLanguageCode;
-     this.currentLanguageCode = language.code;
-     LanguageUtilit.currentLanguage = this.currentLanguageCode;
-     this.router.navigateByUrl(
-       this.router.url.replace(previousLanguageCode, this.currentLanguageCode)
-     );
-     this.setCurrentLanguage(this.currentLanguageCode);
-   }
- 
-   /**
-    *
-    */
-   private setCurrentLanguage(curentLanguage: string) {
-     this.translate.use(curentLanguage);
-   }
+  /**
+   *
+   */
+  currentLanguageCode!: string;
 
-   handleSidebarStyles($event: any): void {
-    console.log($event);
-    
-    this.menuFixed = $event
-   }
+  /**
+   *
+   */
+  constructor(private router: Router, private translate: TranslateService) {
+    translate.setDefaultLang(Constants.DEFAULT_LANGUAGE_CODE);
+  }
+
+  /**
+   *
+   */
+  ngOnInit() {
+    this.currentLanguageCode = LanguageUtilit.currentLanguage;
+    this.setCurrentLanguage(this.currentLanguageCode);
+  }
+
+  /**
+   *
+   */
+  onChangeLanguage(language: Language) {
+    const previousLanguageCode = this.currentLanguageCode;
+    this.currentLanguageCode = language.code;
+    LanguageUtilit.currentLanguage = this.currentLanguageCode;
+    this.router.navigateByUrl(
+      this.router.url.replace(previousLanguageCode, this.currentLanguageCode)
+    );
+    this.setCurrentLanguage(this.currentLanguageCode);
+  }
+
+  /**
+   *
+   */
+  private setCurrentLanguage(curentLanguage: string) {
+    this.translate.use(curentLanguage);
+  }
+
+  handleSidebarStyles($event: any): void {
+    this.menuFixed = $event;
+  }
 }

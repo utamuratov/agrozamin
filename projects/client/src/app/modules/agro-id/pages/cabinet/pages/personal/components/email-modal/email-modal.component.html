@@ -1,0 +1,21 @@
+<!-- USER EMAIL -->
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()">
+  <div *nzModalTitle>
+    <h4 nz-typography>{{userEmail != null ? 'Изменить' : 'Добавить'}} Email</h4>
+    <span nz-typography>Введите ваш новый электронный адрес. На него будет отправлен код подтверждения</span>
+  </div>
+   <ng-container *nzModalContent>
+
+    <form nz-form nzLayout="vertical" [formGroup]="validateForm">
+      <nz-form-item>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Поле заплнено не корректно">
+          <input nz-input type="email" id="email" formControlName="email" nzSize="large" placeholder="Введите ваш Email">
+        </nz-form-control>
+      </nz-form-item >
+    </form>
+
+   </ng-container>
+   <div *nzModalFooter nz-row nzGutter="10">
+     <div nz-col nzSpan="16"><button class="font-agro-medium" nzBlock nz-button nzType="primary" (click)="submitForm()">Продолжить</button></div>
+  </div>
+ </nz-modal>

@@ -137,8 +137,9 @@
         <a style="font-size: 16px">{{'termsOfUse' | translate}}</a>
       </nz-form-control>
     </nz-form-item>
-    <div class="custom-btn">
-      <button
+    <div nz-row>
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12">
+        <button
         [disabled]="!validateForm.controls['agree'].valid"
         nzBlock
         nz-button
@@ -147,7 +148,9 @@
         (click)="nextComponent()"
       >
         {{'continue' | translate}}
-      </button>
+        </button>
+      </div>
+      
     </div>
   </div>
 </form>
