@@ -60,7 +60,7 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
     ForgotPasswordComponent,
     RecoverLoginComponent,
     ConfirmLoginComponent,
-    CreateNewPasswordComponent
+    CreateNewPasswordComponent,
   ],
 })
 export class AgroIdModule {}

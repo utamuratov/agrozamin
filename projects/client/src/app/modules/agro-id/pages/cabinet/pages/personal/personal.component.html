@@ -1,0 +1,204 @@
+<div nz-row nzAlign="middle" class="personal">
+  <nz-avatar
+    nz-col
+    [nzSize]="230"
+    nzIcon="user"
+    nzSrc="../../../../../../../assets/images/agro-id-images/default-avatar.svg"
+  ></nz-avatar>
+  <div nz-col nzSm="14" class="personal__text">
+    <p nz-typography>
+      Персонализируйте свою учетную запись с помощью фотографии. Фотография
+      профиля будет отображаться в приложениях и устройствах, использующих вашу
+      учетную запись AgroID.
+    </p>
+    <button nz-button nzType="default" class="font-agro-medium" nzSize="large">
+      Добавить фотографию
+    </button>
+  </div>
+  <nz-divider></nz-divider>
+  <div nz-row class="width-100 text-size-16">
+    <div nz-col nzFlex="230px">Имя</div>
+    <div nz-col nzFlex="auto">Махмудов Кайрат</div>
+    <div nz-col nzFlex="100px">
+      <a
+        nz-button
+        nzType="link"
+        (click)="showUserNameModal()"
+        class="text-size-16"
+        >Изменить имя</a
+      >
+    </div>
+  </div>
+  <nz-divider></nz-divider>
+  <div class="width-100" style="margin-top: 3vw">
+    <h2 nz-typography>Сведения об учетной записи</h2>
+    <nz-divider></nz-divider>
+    <div nz-row class="width-100 text-size-16">
+      <div nz-col nzFlex="230px">Адрес электронной почты</div>
+      <div nz-col nzFlex="auto">shisudesign@outlook.com</div>
+      <div nz-col nzFlex="100px">
+        <a
+          nz-button
+          nzType="link"
+          class="text-size-16"
+          (click)="showEmailModal()"
+          >Изменить адрес электронной почты</a
+        >
+      </div>
+    </div>
+    <nz-divider></nz-divider>
+    <div nz-row class="width-100 text-size-16">
+      <div nz-col nzFlex="230px">Номер телефона</div>
+      <div nz-col nzFlex="auto">Нет</div>
+      <div nz-col nzFlex="100px">
+        <a
+          nz-button
+          class="text-size-16"
+          nzType="link"
+          (click)="showPhoneModal()"
+          >Добавить номер телефона</a
+        >
+      </div>
+    </div>
+    <nz-divider></nz-divider>
+    <button nz-button nzType="default" nzDanger>Удалить аккаунт</button>
+  </div>
+</div>
+
+<!-- MODAL FOR CHANGE NAME -->
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="userNameTitleModal"
+  [nzOkLoading]="isOkLoading"
+  nzOkText="Сохранить"
+  (nzOnCancel)="handleCancel()"
+  [nzFooter]="nzModalFooter"
+>
+  <form
+    nz-form
+    [formGroup]="validateForm"
+    nzLayout="vertical"
+    class="login-form"
+    (ngSubmit)="submitForm()"
+    *nzModalContent
+  >
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="email">Ваше имя</nz-form-label>
+      <nz-form-control nzErrorTip="Please input your username!">
+        <nz-input-group nzSize="large">
+          <input
+            type="text"
+            nz-input
+            formControlName="firstName"
+            placeholder="Ваше имя"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="email">Ваша фамилия</nz-form-label>
+      <nz-form-control nzErrorTip="Введите вашу фамилию">
+        <nz-input-group nzSize="large">
+          <input
+            type="text"
+            nz-input
+            formControlName="lastName"
+            placeholder="Ваша Фамилия"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <ng-template #nzModalFooter>
+    <div nz-row nzGutter="10">
+      <div nz-col nzSpan="12">
+        <button nzBlock nz-button nzType="default" (click)="handleCancel()">
+          Отмена
+        </button>
+      </div>
+      <div nz-col nzSpan="12">
+        <button
+          nz-button
+          nzBlock
+          nzType="primary"
+          (click)="submitForm()"
+          [nzLoading]="isOkLoading"
+        >
+          Сохранить
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</nz-modal>
+
+<ng-template #userNameTitleModal>
+  <h2>Изменить имя и фамилию</h2>
+</ng-template>
+
+<!-- CHANGE EMAIL MODAL -->
+<nz-modal
+  [(nzVisible)]="isVisibleEmailModal"
+  [nzTitle]="userNameTitleModal"
+  [nzOkLoading]="isOkLoading"
+  nzOkText="Сохранить"
+  (nzOnCancel)="handleCancel()"
+>
+  <form
+    nz-form
+    [formGroup]="validateForm"
+    nzLayout="vertical"
+    class="login-form"
+    (ngSubmit)="submitForm()"
+    *nzModalContent
+  >
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="email">Ваше имя</nz-form-label>
+      <nz-form-control nzErrorTip="Please input your username!">
+        <nz-input-group nzSize="large">
+          <input
+            type="text"
+            nz-input
+            formControlName="firstName"
+            [value]="userName"
+            placeholder="Ваше имя"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="email">Ваша фамилия</nz-form-label>
+      <nz-form-control nzErrorTip="Введите вашу фамилию">
+        <nz-input-group nzSize="large">
+          <input
+            type="text"
+            nz-input
+            formControlName="lastName"
+            [value]="userSurname"
+            placeholder="Ваша Фамилия"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <div *nzModalFooter>
+    <div>
+      <button nzSpan="" nz-button nzType="default" (click)="handleCancel()">
+        Отмена
+      </button>
+      <button
+        nz-button
+        nzType="primary"
+        (click)="submitForm()"
+        [nzLoading]="isOkLoading"
+      >
+        Сохранить
+      </button>
+    </div>
+  </div>
+</nz-modal>
+
+<ng-template #userNameTitleModal>
+  <h2>Изменить имя и фамилию</h2>
+</ng-template>

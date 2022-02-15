@@ -24,6 +24,10 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 
 registerLocaleData(ru);
@@ -42,7 +46,8 @@ registerLocaleData(ru);
     BrowserAnimationsModule,
     IconsProviderModule,
     ReactiveFormsModule,
-
+    
+    NzToolTipModule,
     NzLayoutModule,
     NzMenuModule,
     NzButtonModule, 
@@ -50,7 +55,10 @@ registerLocaleData(ru);
     NzFormModule,
     NzGridModule,
     NzInputModule,
-    NzDividerModule
+    NzDividerModule,
+    NzBreadCrumbModule,
+    NzPageHeaderModule,
+    NzAvatarModule
   ],
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent]
