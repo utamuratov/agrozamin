@@ -21,13 +21,20 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { SharedModule } from '../../shared/shared.module';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { RecoverLoginComponent } from './components/recover-login/recover-login.component';
+import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.component';
+import { CreateNewPasswordComponent } from './components/create-new-password/create-new-password.component';
 
 @NgModule({
   imports: [
-    CommonModule, 
     AgroIdRoutes,
     ReactiveFormsModule, 
     FormsModule, 
+    
+    SharedModule,
+    
     /* NG-ZORRO-MODULES */
     NzFormModule,
     NzInputModule,
@@ -47,7 +54,11 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
     SignInPage,
     SignUpLoginComponent,
     SignUpConfirmationComponent,
-    SignUpSuccessComponent
+    SignUpSuccessComponent,
+    ForgotPasswordComponent,
+    RecoverLoginComponent,
+    ConfirmLoginComponent,
+    CreateNewPasswordComponent,
   ],
 })
 export class AgroIdModule {}

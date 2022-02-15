@@ -1,18 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+
+enum Step {
+  Login,
+  Confirmation,
+  Success,
+}
 
 @Component({
-  selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
   styleUrls: ['./sign-up.page.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignUpPage implements OnInit {
-  signUpForm = 0;
+export class SignUpPage {
+  /**
+   * 
+   */
+  currentStep = Step.Login;
 
-  constructor() {}
-
-  ngOnInit() {}
+  /**
+   * 
+   */
+  step = Step;
 
   swtichTo(item: number): void {
-    this.signUpForm = item;
+    this.currentStep = item;
   }
 }

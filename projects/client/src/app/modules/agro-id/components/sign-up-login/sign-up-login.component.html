@@ -1,5 +1,7 @@
-<h2 nz-typography class="form__title">Регистрация</h2>
-<p nz-typography style="margin-top: 5px;">У меня уже есть аккаунт. <a routerLink="../">Войти</a></p>
+<h2 nz-typography class="form__title agro-id-form-title">{{'registration' | translate}}</h2>
+<p nz-typography class="font-agro-medium" style="margin-top: 5px">
+  {{'haveAnAccount' | translate}} <a routerLink="../">{{'toComeIn' | translate}}</a>
+</p>
 <nz-divider class="divider-custom-top"></nz-divider>
 <form
   nz-form
@@ -13,8 +15,8 @@
     <div nz-row nzGutter="16">
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
         <nz-form-item>
-          <nz-form-label>Имя</nz-form-label>
-          <nz-form-control nzErrorTip="Заполните поле">
+          <nz-form-label class="font-agro-medium">{{'firstName' | translate}}</nz-form-label>
+          <nz-form-control [nzErrorTip]="'fillTheInput' | translate">
             <input
               class="form__inputGroup"
               nz-input
@@ -27,8 +29,8 @@
       </div>
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
         <nz-form-item>
-          <nz-form-label>Фамилия</nz-form-label>
-          <nz-form-control nzErrorTip="Заполните поле">
+          <nz-form-label class="font-agro-medium">{{'lastName' | translate}}</nz-form-label>
+          <nz-form-control [nzErrorTip]="'fillTheInput' | translate">
             <input
               class="form__inputGroup"
               nz-input
@@ -42,15 +44,15 @@
     </div>
     <ng-template #phone>
       <nz-form-item>
-        <nz-form-label nzFor="email" [nzSpan]="24"
-          >Введите email адрес</nz-form-label
+        <nz-form-label class="font-agro-medium" nzFor="email" [nzSpan]="24"
+          >{{'putEmailToReg' | translate}}</nz-form-label
         >
-        <nz-form-control [nzSpan]="24" nzErrorTip="Некорректное значение email">
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="'invalidEmailMessage' | translate">
           <input
             nz-input
             formControlName="email"
             id="email"
-            placeholder="Введите ваш Email адрес"
+            [placeholder]="'emailRegPlaceholder' | translate"
             nzSize="large"
           />
         </nz-form-control>
@@ -58,36 +60,36 @@
     </ng-template>
     <div *ngIf="toggle; else phone">
       <nz-form-item>
-        <nz-form-label nzFor="phoneNumber" [nzSpan]="24"
-          >Номер телефона</nz-form-label
+        <nz-form-label class="font-agro-medium" nzFor="phoneNumber" [nzSpan]="24"
+          >{{'regPhoneLabel' | translate}}</nz-form-label
         >
         <nz-form-control
           [nzSpan]="24"
           [nzValidateStatus]="validateForm.controls['phoneNumber']"
-          nzErrorTip="Номер телефона заполнен не корректно"
+          [nzErrorTip]="'invalidPhoneMessage' | translate"
         >
           <input
             formControlName="phoneNumber"
             id="'phoneNumber'"
-            placeholder="Введите номер телефона"
+            [placeholder]="'putPhoneToReg' | translate"
             nzSize="large"
             nz-input
           />
         </nz-form-control>
       </nz-form-item>
     </div>
-    <a style="padding: 4px 0" nzType="link" (click)="toggleInfo()">{{
-      buttonTxt ? "У меня нет телефона" : "У меня нет email адреса"
+    <a class="font-agro-medium" style="padding: 4px 0" nzType="link" (click)="toggleInfo()">{{
+      buttonTxt ? ('haveNotPhone' | translate) : ('haveNotEmail' | translate)
     }}</a>
     <nz-divider class="divider-custom-top"></nz-divider>
     <div nz-row nzGutter="16">
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
         <nz-form-item>
-          <nz-form-label>Придумайте пароль</nz-form-label>
+          <nz-form-label class="font-agro-medium">{{'createPassword' | translate}}</nz-form-label>
           <nz-form-control
             nzDisableAutoTips
             nzHasFeedback
-            nzErrorTip="Введите пароль"
+            [nzErrorTip]="'errorTipToCreatePassword' | translate"
           >
             <input
               class="form__inputGroup"
@@ -103,7 +105,7 @@
       </div>
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
         <nz-form-item>
-          <nz-form-label>Повторите пароль</nz-form-label>
+          <nz-form-label class="font-agro-medium">{{'repeatPassword' | translate}}</nz-form-label>
           <nz-form-control
             nzDisableAutoTips
             nzHasFeedback
@@ -117,10 +119,10 @@
             />
             <ng-template #passwordErrorTpl let-control>
               <ng-container *ngIf="control.hasError('required')"
-                >Подтвердите пароль</ng-container
+                >{{'confirmPassword' | translate}}</ng-container
               >
               <ng-container *ngIf="control.hasError('confirm')"
-                >Пароли не совпадают</ng-container
+                >{{'mismatchPassword' | translate}}</ng-container
               >
             </ng-template>
           </nz-form-control>
@@ -129,16 +131,26 @@
     </div>
     <nz-form-item nz-row class="register-area">
       <nz-form-control [nzSpan]="24">
-        <label nz-checkbox formControlName="agree">
-          <span> Я принимаю </span>
+        <label class="font-agro-medium" nz-checkbox formControlName="agree">
+          <span>{{'agree' | translate}}</span>
         </label>
-        <a style="font-size: 16px">правила использования</a>
+        <a style="font-size: 16px">{{'termsOfUse' | translate}}</a>
       </nz-form-control>
     </nz-form-item>
-    <div class="custom-btn">
-      <button [disabled]="!validateForm.controls['agree'].valid" nzBlock nz-button nzType="primary" (click)="nextComponent()">
-        Продолжить
-      </button>
-    </div>        
+    <div nz-row>
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12">
+        <button
+        [disabled]="!validateForm.controls['agree'].valid"
+        nzBlock
+        nz-button
+        nzType="primary"
+        class="font-agro-medium"
+        (click)="nextComponent()"
+      >
+        {{'continue' | translate}}
+        </button>
+      </div>
+      
+    </div>
   </div>
 </form>
