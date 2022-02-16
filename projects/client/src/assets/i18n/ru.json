@@ -47,8 +47,8 @@
   "login.invalid_login": "Неверный логин или пароль",
   "login.required": "Поле login обязательно для заполнения.",
   "login.unique": "Такое логин уже существует.",
-  "phone.uniqueactiveuser": "Такое значение поля phone уже существует.",
-  "email.uniqueactiveuser": "Такое значение поля email уже существует.",
+  "phone.uniqueactiveuser": "Такое логин уже существует.",
+  "email.uniqueactiveuser": "Такое логин уже существует.",
   "secure_code.wrong_code": "Код неверный",
   "serverError.serverError": "Server or Internet error"
 }
