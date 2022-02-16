@@ -8,7 +8,11 @@ import { ru_RU } from 'ng-zorro-antd/i18n';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* NG-ZORRO-MODULES */
@@ -28,9 +32,11 @@ import { DITokens } from './core/config/di-tokens';
 import { SettingsHelper } from './core/helpers/settings.helper';
 import { GlobalErrorHandler } from './core/helpers/global-error-handler';
 import { NgxMaskModule } from 'ngx-mask';
+import { JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
+import { jwtOptionsFactory } from './core/helpers/jwt-options.factory';
+import { CookieService } from 'ngx-cookie-service';
 
 registerLocaleData(ru);
-
 
 @NgModule({
   declarations: [
@@ -38,7 +44,7 @@ registerLocaleData(ru);
     HomeComponent,
     LayoutComponent,
     HeaderComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
   ],
   imports: [
     // CORE MODULES
@@ -49,20 +55,32 @@ registerLocaleData(ru);
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
+        useFactory: createTranslateLoader,
         deps: [HttpClient],
       },
     }),
     NgxMaskModule.forRoot(),
 
-    // 
+    /**
+     * Module to support JWT Authentication.
+     * jwtOptionsProvider is for settings
+     */
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        // deps: [Store], // send STORE as parameter
+      },
+    }),
+
+    //
     AppRoutingModule,
     FormsModule,
 
     /* NG-ZORRO-MODULES */
     NzButtonModule,
     NzSelectModule,
-    NzBreadCrumbModule
+    NzBreadCrumbModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU },
@@ -73,12 +91,13 @@ registerLocaleData(ru);
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SetTokenAndHandleErrorInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,
     },
+    CookieService
   ],
   bootstrap: [AppComponent],
 })
