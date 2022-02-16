@@ -22,6 +22,10 @@ import { SharedModule } from 'projects/client/src/app/shared/shared.module';
 import { UserNameModalComponent } from './pages/personal/components/user-name-modal/user-name-modal.component';
 import { EmailModalComponent } from './pages/personal/components/email-modal/email-modal.component';
 import { PhoneModalComponent } from './pages/personal/components/phone-modal/phone-modal.component';
+import { BiznesCardsComponent } from './pages/biznes-cards/biznes-cards.component';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { BusinessCardModalComponent } from './components/business-card-modal/business-card-modal.component';
 
 @NgModule({
   imports: [
@@ -41,8 +45,8 @@ import { PhoneModalComponent } from './pages/personal/components/phone-modal/pho
     NzModalModule,
     NzFormModule,
     NzInputModule,
-    /* ??????? */
-    NzBreadCrumbModule,
+    NzCardModule,
+    NzUploadModule
   ],
   declarations: [
     CabinetComponent,
@@ -50,7 +54,9 @@ import { PhoneModalComponent } from './pages/personal/components/phone-modal/pho
     LegalPersonComponent,
     UserNameModalComponent,
     EmailModalComponent,
-    PhoneModalComponent
+    PhoneModalComponent,
+    BiznesCardsComponent,
+    BusinessCardModalComponent
   ],
 })
 export class CabinetModule {}

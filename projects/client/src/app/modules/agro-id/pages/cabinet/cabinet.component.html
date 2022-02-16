@@ -3,26 +3,39 @@
     nzCollapsible
     nzWidth="250px"
     class="cabinet__sidebar indigo-bg"
-    
+    [nzTrigger]="null"
+    [(nzCollapsed)]="isCollapsed"
     nzBreakpoint="lg"
     (nzCollapsedChange)="handleSidebarStyles($event)"
   >
-    <div class="logo">AgroID</div>
 
-    <ul nz-menu nzMode="inline" class="indigo-bg cabinet__sidebar__menu">
-      <li nz-menu-item nzSelected routerLink="personal" class="">
+  <div class="burger">
+    <i
+      class="trigger"
+      nz-icon
+      [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+      (click)="isCollapsed = !isCollapsed"
+    ></i>
+  </div>
+  <span class="logo">AgroID</span> 
+    <ul nzTheme="dark" nz-menu nzMode="inline" class="cabinet__sidebar__menu">
+      <li nz-menu-item nzSelected nzMatchRouter routerLink="personal" >
         <i nz-icon nzType="user"></i>
         <span>Персональные данные</span>
       </li>
-      <li nz-menu-item routerLink="legalperson" >
+      <li nz-menu-item nzMatchRouter routerLink="legalperson" >
         <i nz-icon nzType="idcard" nzTheme="outline"></i>
         <span>Юридическое лицо</span>
       </li>
-      <li nz-menu-item routerLink="">
-        <i nz-icon nzType="import" nzTheme="outline"></i>
+      <li nz-menu-item nzMatchRouter routerLink="biznescards" >
+        <i nz-icon nzType="contacts" nzTheme="outline"></i>
+        <span>Дополнительные контакты</span>
+      </li>
+      <li nz-menu-item nzMatchRouter routerLink="agro-id">
+        <i nz-icon nzType="logout" nzTheme="outline"></i>
         <span>Выход</span>
       </li>
-      <li nz-menu-item routerLink="">
+      <li nz-menu-item nzMatchRouter routerLink="help">
         <i nz-icon nzType="question-circle" nzTheme="outline"></i>
         <span>Помощь</span>
       </li>
@@ -59,4 +72,3 @@
     </nz-content>
   </nz-layout>
 </nz-layout>
-<!-- [ngClass]="menuFixed === true ? 'sidebar__mobile' : 'sidebar__desktop'" -->
