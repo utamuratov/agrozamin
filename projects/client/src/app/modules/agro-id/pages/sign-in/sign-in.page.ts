@@ -19,7 +19,6 @@ const DEFAULT_LOGIN_TYPE = LoginType.PhoneNumber;
 @Component({
   templateUrl: './sign-in.page.html',
   styleUrls: ['./sign-in.page.less'],
-  providers: [CookieService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInPage implements OnInit {
@@ -45,13 +44,18 @@ export class SignInPage implements OnInit {
 
   /**
    *
+   */
+  loginType: LoginType;
+
+  /**
+   *
    * @returns
    */
-  get loginType(): LoginType {
+  getLoginType(): LoginType {
     if (this.$cookie.check(Constants.LOGIN_TYPE)) {
       return this.$cookie.get(Constants.LOGIN_TYPE) as LoginType;
     }
-    this.loginType = DEFAULT_LOGIN_TYPE;
+    this.setLoginType(DEFAULT_LOGIN_TYPE);
     return this.loginType;
   }
 
@@ -59,8 +63,9 @@ export class SignInPage implements OnInit {
    *
    * @param loginType
    */
-  set loginType(loginType: LoginType) {
-    this.$cookie.set(Constants.LOGIN_TYPE, loginType);
+  setLoginType(loginType: LoginType) {
+    this.loginType = loginType;
+    this.$cookie.set(Constants.LOGIN_TYPE, loginType, { path: '/' });
   }
 
   /**
@@ -71,7 +76,9 @@ export class SignInPage implements OnInit {
     private $auth: AuthService,
     private router: Router,
     private $cookie: CookieService
-  ) {}
+  ) {
+    this.loginType = this.getLoginType();
+  }
 
   /**
    *
@@ -100,7 +107,9 @@ export class SignInPage implements OnInit {
     }
 
     const requestSignInModel = new SignInRequest(
-      this.loginForm.get(LOGIN)?.value,
+      (this.loginType === LoginType.PhoneNumber
+        ? Constants.PREFIX_PHONENUMBER
+        : '') + this.loginForm.get(LOGIN)?.value,
       this.loginForm.get(PASSWORD)?.value
     );
     this.signIn(requestSignInModel);
@@ -121,12 +130,8 @@ export class SignInPage implements OnInit {
    */
   private signIn(model: SignInRequest) {
     this.$isWaitingResponse = this.$auth.signIn(model).pipe(
-      map((result) => {
+      map(() => {
         this.errorMessageFromServer = undefined;
-
-        // !WORK ON TOKEN
-        console.log(result);
-
         this.router.navigate(['/']);
         return false;
       }),
@@ -143,7 +148,7 @@ export class SignInPage implements OnInit {
    *
    */
   switchLoginType(loginType: LoginType) {
-    this.loginType = loginType;
+    this.setLoginType(loginType);
     this.clearLoginControl();
     this.setLoginValidator(loginType);
   }

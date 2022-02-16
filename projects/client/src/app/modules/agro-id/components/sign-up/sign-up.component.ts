@@ -15,6 +15,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { Constants } from 'projects/client/src/app/core/config/constants';
 import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.service';
@@ -33,7 +34,6 @@ import {
   SignUpStep,
 } from '../../pages/sign-up/sign-up.page';
 
-const PREFIX_PHONENUMBER = '998';
 const ERROR_MESSAGE_FROM_SERVER = 'errorMessageFromServer';
 const EMAIL = 'email';
 const PHONE = 'phone';
@@ -210,7 +210,7 @@ export class SignUpComponent implements OnInit {
   private getSignUpRequest(): SignUpRequest {
     const model: SignUpRequest = this.signUpForm.getRawValue();
     if (this.byPhoneNumber) {
-      model.phone = `${PREFIX_PHONENUMBER}${model.phone}`;
+      model.phone = `${Constants.PREFIX_PHONENUMBER}${model.phone}`;
     }
     return model;
   }
@@ -261,7 +261,7 @@ export class SignUpComponent implements OnInit {
       return this.$auth
         .checkLoginToUnique(
           this.byPhoneNumber
-            ? { phone: PREFIX_PHONENUMBER + control.value }
+            ? { phone: Constants.PREFIX_PHONENUMBER + control.value }
             : { email: control.value }
         )
         .pipe(

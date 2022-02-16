@@ -6,6 +6,8 @@ export class Constants {
 
   public static readonly DEFAULT_LANGUAGE_CODE = 'ru';
 
+  public static readonly PREFIX_PHONENUMBER = '998';
+
   public static readonly LANGUAGES: Language[] = [
     {
       code: 'ru',
@@ -27,4 +29,6 @@ export class Constants {
   
   public static readonly LANGUAGE = 'language';
   public static readonly LOGIN_TYPE = 'loginType';
+  public static readonly ACCESS_TOKEN = 'access_tokent';
+  public static readonly REFRESH_TOKEN = 'refresh_tokent';
 }
