@@ -3,7 +3,7 @@ import { ErrorHandler } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpResponseStatusCode } from '../config/http-response-code';
 import { ErrorItem } from '../models/error-item.interface';
-import { InjectorHelper } from '../services/locator.service';
+import { InjectorHelper } from './injector.helper';
 
 /**
  * Helper to catch and treat errors
