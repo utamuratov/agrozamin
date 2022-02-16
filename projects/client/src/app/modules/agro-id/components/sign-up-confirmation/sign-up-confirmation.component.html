@@ -16,7 +16,6 @@
 
 <nz-divider class="divider-custom-top"></nz-divider>
 <div nz-row>
-  
   <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="20" nzXl="20">
     <div></div>
     <form
@@ -24,7 +23,6 @@
       class="confirm-form"
       nzLayout="horizontal"
       [formGroup]="confirmationForm"
-      (ngSubmit)="confirmPasscode()"
     >
       <!-- ERRORS FROM SERVER -->
       <div class="mb-1">
@@ -58,11 +56,23 @@
         </div>
       </div>
 
-      <div *ngIf="!($leftSeconds | async)">
-        <a (click)="askActivationCodeAgain()">{{
-          "getConfirmCodeAgain" | translate
-        }}</a>
+      <!-- Ask activation code again -->
+      <div *ngIf="($leftSeconds | async) === 0">
+        <ng-template #indicatorTemplate>
+          <i
+            nz-icon
+            nzType="loading"
+            *ngIf="$isWaitingActivationCodeResponse | async"
+          ></i>
+          <a
+            (click)="askActivationCodeAgain()"
+            [textContent]="'getConfirmCodeAgain' | translate"
+          ></a>
+        </ng-template>
+        <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
       </div>
+
+      <!-- Send activation code -->
       <div>
         <button
           nzBlock
@@ -71,6 +81,7 @@
           nzType="primary"
           [disabled]="!confirmationForm.valid"
           [nzLoading]="$isWaitingResponse | async"
+          (click)="confirmPasscode()"
         >
           {{ "confirm" | translate }}
         </button>

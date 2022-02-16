@@ -1,35 +1,23 @@
 <div class="success-text">
-  <h3 nz-typography class="agro-id-form-title">Успешная регистрация</h3>
+  <h3 nz-typography class="agro-id-form-title">
+    {{ "successfullyRegistration" | translate }}
+  </h3>
 </div>
 <nz-divider class="divider-custom-top"></nz-divider>
-<!-- <div>
-  <img class="success-img" src="../../../../../assets/images/agro-id-images/Frame.svg">
-</div>
-
-<div nz-result-extra class="custom-btn">
-  <button nzBlock nzSpan="10" routerLink="../" nz-button class="success-btn"  nzType="primary">Войти</button> 
-</div> -->
 
 <nz-result
   nzStatus="success"
-  nzTitle="Поздравляем!"
-  nzSubTitle="Регистрация прошла успешно, данные были сохранены!"
+  [nzTitle]="'congratulation' | translate"
+  [nzSubTitle]="'congratulationSubTitle' | translate"
 >
-<div nz-result-extra class="" style="margin-top: 35px">
-<div nz-row nzJustify="center">
-  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="16">
-   
-      <button
-        nzBlock
-        nzSpan="10"
-        routerLink="../"
-        nz-button
-        class="success-btn font-agro-medium"
-        nzType="primary"
-      >
-        Войти
-      </button>
+  <div nz-result-extra class="" style="margin-top: 35px">
+    <div nz-row nzJustify="center">
+      <div>
+        <span nz-typography nzType="secondary"
+          >{{ "redirectToLoginAfter" | translate }}
+        </span>
+        <span nz-typography nzType="danger">{{ $seconds | async }}</span>
+      </div>
     </div>
-  </div>
   </div>
 </nz-result>

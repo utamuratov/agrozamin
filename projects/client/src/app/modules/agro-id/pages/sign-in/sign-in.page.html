@@ -40,18 +40,48 @@
         <nz-form-label class="font-agro-medium" [nzSpan]="6" nzFor="email"
           >{{'login' | translate}}</nz-form-label
         >
-        <nz-form-control
-          [nzErrorTip]="'plaeseEnterMailOrPhonenumber' | translate"
+        <ng-container *ngIf="byPhoneNumber; else email">
+          <nz-form-control [nzErrorTip]="error">
+            <nz-input-group nzPrefixIcon="phone" nzSize="large">
+              <input
+                type="text"
+                nz-input
+                mask="00 000 00 00"
+                prefix="+998 "
+                formControlName="login"
+                [placeholder]="'inputPhonenumber' | translate"
+              />
+            </nz-input-group>
+          </nz-form-control>
+          <ng-template let-control #error>
+            <error [control]="control"></error>
+          </ng-template>
+        </ng-container>
+
+        <ng-template #email>
+          <nz-form-control [nzErrorTip]="error">
+            <nz-input-group nzPrefixIcon="mail" nzSize="large">
+              <input
+                type="text"
+                nz-input
+                formControlName="login"
+                [placeholder]="'inputMail' | translate"
+              />
+            </nz-input-group>
+          </nz-form-control>
+          <ng-template let-control #error>
+            <error [control]="control"></error>
+          </ng-template>
+        </ng-template>
+
+        <!-- TOGGLE PHONENUMBER OR EMAIL  -->
+        <a
+          style="padding: 4px 0"
+          nzType="link"
+          (click)="togglePhonenumberAndEmail()"
+          >{{ (byPhoneNumber ? "loginByEmail" : "loginByPhonenumber") |
+          translate }}</a
         >
-          <nz-input-group nzPrefixIcon="user" nzSize="large">
-            <input
-              type="text"
-              nz-input
-              formControlName="login"
-              [placeholder]="'inputMailOrPhonenumber' | translate"
-            />
-          </nz-input-group>
-        </nz-form-control>
       </nz-form-item>
 
       <!-- PASSWORD INPUT FIELD -->

@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AccountActivationRequest } from '../../../shared/models/auth/account-activation.request';
 import { AccountActivationResponse } from '../../../shared/models/auth/account-activation.response';
+import { AskActivationCodeRequest } from '../../../shared/models/auth/ask-activation-code.request';
 import { CheckLoginRequest } from '../../../shared/models/auth/check-login.request';
 import { ISignInRequest } from '../../../shared/models/auth/sign-in.request';
 import { SignInResponse } from '../../../shared/models/auth/sign-in.response';
 import { SignUpRequest } from '../../../shared/models/auth/sign-up.request';
-import { SignUpResponse } from '../../../shared/models/auth/sign-up.response';
+import { Message } from '../../../shared/models/message.interface';
 import { BaseService } from '../base.service';
 
 @Injectable({ providedIn: 'root' })
@@ -31,8 +32,8 @@ export class AuthService {
    * @param params
    * @returns
    */
-  signUp(model: SignUpRequest): Observable<SignUpResponse> {
-    return this.$baseService.post<SignUpResponse>('registration', model);
+  signUp(model: SignUpRequest): Observable<Message> {
+    return this.$baseService.post<Message>('registration', model);
   }
 
   /**
@@ -56,5 +57,16 @@ export class AuthService {
       'account-activation',
       model
     );
+  }
+
+  /**
+   *
+   * @param model
+   * @returns
+   */
+  askAccountActivationCode(
+    model: AskActivationCodeRequest
+  ): Observable<Message> {
+    return this.$baseService.post<Message>('resend-secure-code', model);
   }
 }
