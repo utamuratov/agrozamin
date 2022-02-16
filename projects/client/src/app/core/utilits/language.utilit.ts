@@ -6,7 +6,7 @@ export class LanguageUtilit {
    *
    */
   static get currentLanguage() {
-    let code = LocalStorageUtilit.get(LocalStorageUtilit.LANGUAGE);
+    let code = LocalStorageUtilit.get(Constants.LANGUAGE);
     if (!code) {
       code = Constants.DEFAULT_LANGUAGE_CODE;
       this.currentLanguage = code;
@@ -18,6 +18,6 @@ export class LanguageUtilit {
    *
    */
   static set currentLanguage(code: string) {
-    LocalStorageUtilit.set(LocalStorageUtilit.LANGUAGE, code);
+    LocalStorageUtilit.set(Constants.LANGUAGE, code);
   }
 }

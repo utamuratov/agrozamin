@@ -18,7 +18,7 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
-import { InjectorHelper } from './core/services/locator.service';
+import { InjectorHelper } from './core/helpers/injector.helper';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';

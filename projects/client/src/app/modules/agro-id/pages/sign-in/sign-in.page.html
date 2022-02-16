@@ -40,7 +40,7 @@
         <nz-form-label class="font-agro-medium" [nzSpan]="6" nzFor="email"
           >{{'login' | translate}}</nz-form-label
         >
-        <ng-container *ngIf="byPhoneNumber; else email">
+        <ng-container *ngIf="loginType === LoginType.PhoneNumber; else email">
           <nz-form-control [nzErrorTip]="error">
             <nz-input-group nzPrefixIcon="phone" nzSize="large">
               <input
@@ -78,9 +78,9 @@
         <a
           style="padding: 4px 0"
           nzType="link"
-          (click)="togglePhonenumberAndEmail()"
-          >{{ (byPhoneNumber ? "loginByEmail" : "loginByPhonenumber") |
-          translate }}</a
+          (click)="switchLoginType( loginType === LoginType.PhoneNumber ? LoginType.Email : LoginType.PhoneNumber)"
+          >{{ (loginType === LoginType.PhoneNumber ? "loginByEmail" :
+          "loginByPhonenumber") | translate }}</a
         >
       </nz-form-item>
 
