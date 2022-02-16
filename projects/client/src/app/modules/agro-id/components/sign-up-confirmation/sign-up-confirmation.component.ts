@@ -69,6 +69,11 @@ export class SignUpConfirmationComponent implements OnInit {
 
   /**
    *
+   */
+  $isWaitingActivationCodeResponse?: Observable<boolean>;
+
+  /**
+   *
    * @param fb
    * @param elem
    */
@@ -190,6 +195,26 @@ export class SignUpConfirmationComponent implements OnInit {
    *
    */
   askActivationCodeAgain() {
-    console.log('3');
+    if (this.$isWaitingActivationCodeResponse) {
+      return;
+    }
+
+    this.$isWaitingActivationCodeResponse = this.$auth
+      .askAccountActivationCode({ login: this.data?.login })
+      .pipe(
+        map((result) => {
+          if (result) {
+            this.errorMessageFromServer = undefined;
+            this.startTimer();
+          }
+          return false;
+        }),
+        startWith(true),
+        catchError((errors: ErrorItem[]) => {
+          this.errorMessageFromServer = errors[0];
+          return of(false);
+        }),
+        finalize(() => (this.$isWaitingActivationCodeResponse = undefined))
+      );
   }
 }

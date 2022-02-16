@@ -1,21 +1,13 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { SignInRequest } from 'projects/client/src/app/shared/models/auth/sign-in.request';
-import {
-  catchError,
-  finalize,
-  map,
-  Observable,
-  of,
-  startWith,
-} from 'rxjs';
+import { catchError, finalize, map, Observable, of, startWith } from 'rxjs';
+
+const LOGIN = 'login';
+const PASSWORD = 'password';
 
 @Component({
   templateUrl: './sign-in.page.html',
@@ -41,10 +33,15 @@ export class SignInPage implements OnInit {
   /**
    *
    */
+  byPhoneNumber = true;
+
+  /**
+   *
+   */
   constructor(
     private fb: FormBuilder,
     private $auth: AuthService,
-    private router: Router,
+    private router: Router
   ) {}
 
   /**
@@ -73,8 +70,8 @@ export class SignInPage implements OnInit {
     }
 
     const requestSignInModel = new SignInRequest(
-      this.loginForm.get('login')?.value,
-      this.loginForm.get('password')?.value
+      this.loginForm.get(LOGIN)?.value,
+      this.loginForm.get(PASSWORD)?.value
     );
     this.signIn(requestSignInModel);
   }
@@ -84,8 +81,8 @@ export class SignInPage implements OnInit {
    */
   private initForm() {
     this.loginForm = this.fb.group({
-      login: [null, [Validators.required]],
-      password: [null, [Validators.required]],
+      [LOGIN]: [null, [Validators.required]],
+      [PASSWORD]: [null, [Validators.required]],
     });
   }
 
@@ -110,5 +107,26 @@ export class SignInPage implements OnInit {
       }),
       finalize(() => (this.$isWaitingResponse = undefined))
     );
+  }
+
+  /**
+   *
+   */
+  togglePhonenumberAndEmail() {
+    this.clearLoginControl();
+    this.byPhoneNumber = !this.byPhoneNumber;
+    if (this.byPhoneNumber) {
+      this.loginForm.controls[LOGIN].removeValidators(Validators.email);
+      return;
+    }
+    this.loginForm.controls[LOGIN].setValidators(Validators.email);
+  }
+
+  /**
+   *
+   */
+  private clearLoginControl() {
+    this.errorMessageFromServer = undefined;
+    this.loginForm.controls[LOGIN].setValue('');
   }
 }

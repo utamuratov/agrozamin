@@ -4,6 +4,8 @@
   "plaeseEnterMailOrPhonenumber": "Пожалуйста введите почту или номер телефона",
   "pleaseFillPassword": "Пожалуйста введите пароль",
   "inputMailOrPhonenumber": "Введите почту или номер телефона",
+  "inputMail": "Введите почту",
+  "inputPhonenumber": "Введите номер телефона",
   "password": "Пароль",
   "register": "Зарегистрироваться",
   "forgotYourPassword": "Забыли пароль?",
@@ -50,5 +52,11 @@
   "phone.uniqueactiveuser": "Такое логин уже существует.",
   "email.uniqueactiveuser": "Такое логин уже существует.",
   "secure_code.wrong_code": "Код неверный",
-  "serverError.serverError": "Server or Internet error"
+  "serverError.serverError": "Server or Internet error",
+  "loginByPhonenumber": "Войти через номеру телефона",
+  "loginByEmail": "Войти через электронной почте",
+  "redirectToLoginAfter": "Через несколько секунд вы будете перенаправлены на страницу входа:",
+  "successfullyRegistration": "Успешная регистрация",
+  "congratulation": "Поздравляем!",
+  "congratulationSubTitle": "Регистрация прошла успешно, данные были сохранены!"
 }

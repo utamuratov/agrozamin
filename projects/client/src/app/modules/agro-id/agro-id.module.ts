@@ -27,6 +27,7 @@ import { CreateNewPasswordComponent } from './components/create-new-password/cre
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
     NzLayoutModule,
     NzDividerModule,
     NzAutocompleteModule,
-    NzTypographyModule
+    NzTypographyModule,
+    NzSpinModule
   ],
   declarations: [
     AgroIdComponent,
