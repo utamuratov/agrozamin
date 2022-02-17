@@ -36,53 +36,19 @@
       </div>
 
       <!-- LOGIN INPUT FIELD -->
-      <nz-form-item>
-        <nz-form-label class="font-agro-medium" [nzSpan]="6" nzFor="email"
-          >{{'login' | translate}}</nz-form-label
-        >
-        <ng-container *ngIf="loginType === LoginType.PhoneNumber; else email">
-          <nz-form-control [nzErrorTip]="error">
-            <nz-input-group nzPrefixIcon="phone" nzSize="large">
-              <input
-                type="text"
-                nz-input
-                mask="00 000 00 00"
-                prefix="+998 "
-                formControlName="login"
-                [placeholder]="'inputPhonenumber' | translate"
-              />
-            </nz-input-group>
-          </nz-form-control>
-          <ng-template let-control #error>
-            <error [control]="control"></error>
-          </ng-template>
-        </ng-container>
-
-        <ng-template #email>
-          <nz-form-control [nzErrorTip]="error">
-            <nz-input-group nzPrefixIcon="mail" nzSize="large">
-              <input
-                type="text"
-                nz-input
-                formControlName="login"
-                [placeholder]="'inputMail' | translate"
-              />
-            </nz-input-group>
-          </nz-form-control>
-          <ng-template let-control #error>
-            <error [control]="control"></error>
-          </ng-template>
-        </ng-template>
-
-        <!-- TOGGLE PHONENUMBER OR EMAIL  -->
-        <a
-          style="padding: 4px 0"
-          nzType="link"
-          (click)="switchLoginType( loginType === LoginType.PhoneNumber ? LoginType.Email : LoginType.PhoneNumber)"
-          >{{ (loginType === LoginType.PhoneNumber ? "loginByEmail" :
-          "loginByPhonenumber") | translate }}</a
-        >
-      </nz-form-item>
+      <input-phone-email
+        [config]="{
+          form: loginForm,
+          isLoginOnly: true, 
+          phoneFormControlName: 'login',
+          emailFormControlName: 'login',
+          titlePhone: 'login' | translate, 
+          titleEmail: 'login' | translate, 
+          toggleTitleForPhone: 'loginByEmail' | translate, 
+          toggleTitleForEmail: 'loginByPhonenumber' | translate,
+          titleClass: 'font-agro-medium'}"
+        (changedLoginType)="onChangedLoginType($event)"
+      ></input-phone-email>
 
       <!-- PASSWORD INPUT FIELD -->
       <nz-form-item>

@@ -8,10 +8,6 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import {
-  SignUpOutputModel,
-  SignUpStep,
-} from '../../pages/sign-up/sign-up.page';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import {
@@ -23,11 +19,18 @@ import {
   of,
   shareReplay,
   startWith,
-  take,
+  takeWhile,
 } from 'rxjs';
+import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';
 
 const LEFT_SECONDS_BY_PHONE = 60;
-const LEFT_SECONDS_BY_EMAIL = 180;
+const LEFT_SECONDS_BY_EMAIL = 10;
+
+export interface SignUpConfirmationConfig {
+  nextStep: number;
+  login: string;
+  byPhoneNumber: boolean;
+}
 
 @Component({
   selector: 'sign-up-confirmation',
@@ -45,7 +48,7 @@ export class SignUpConfirmationComponent implements OnInit {
    *
    */
   @Input()
-  data!: SignUpOutputModel;
+  data!: SignUpConfirmationConfig;
 
   /**
    *
@@ -98,14 +101,15 @@ export class SignUpConfirmationComponent implements OnInit {
     let leftSeconds = this.data?.byPhoneNumber
       ? LEFT_SECONDS_BY_PHONE
       : LEFT_SECONDS_BY_EMAIL;
-    const count = leftSeconds;
+    const START_WITH = leftSeconds;
     this.$leftSeconds = interval(1000).pipe(
       map(() => {
         leftSeconds -= 1;
         return leftSeconds * 1000;
       }),
-      shareReplay(1),
-      take(count)
+      startWith(START_WITH * 1000),
+      takeWhile((value) => value >= 0),
+      shareReplay(1)
     );
   }
 
@@ -140,8 +144,7 @@ export class SignUpConfirmationComponent implements OnInit {
         secure_code: activationCode,
       })
       .pipe(
-        map((result) => {
-          console.log('submit', { result });
+        map(() => {
           this.errorMessageFromServer = undefined;
           this.changeStep.emit(SignUpStep.Success);
           return false;

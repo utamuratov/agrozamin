@@ -5,16 +5,9 @@ import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interf
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { SignInRequest } from 'projects/client/src/app/shared/models/auth/sign-in.request';
 import { catchError, finalize, map, Observable, of, startWith } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
 import { Constants } from 'projects/client/src/app/core/config/constants';
-
-const LOGIN = 'login';
-const PASSWORD = 'password';
-enum LoginType {
-  Email = '0',
-  PhoneNumber = '1',
-}
-const DEFAULT_LOGIN_TYPE = LoginType.PhoneNumber;
+import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
+import { LoginType } from 'projects/client/src/app/core/enums/login-type.enum';
 
 @Component({
   templateUrl: './sign-in.page.html',
@@ -22,6 +15,11 @@ const DEFAULT_LOGIN_TYPE = LoginType.PhoneNumber;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInPage implements OnInit {
+  /**
+   *
+   */
+  loginType!: LoginType;
+
   /**
    *
    */
@@ -40,52 +38,17 @@ export class SignInPage implements OnInit {
   /**
    *
    */
-  readonly LoginType = LoginType;
-
-  /**
-   *
-   */
-  loginType: LoginType;
-
-  /**
-   *
-   * @returns
-   */
-  getLoginType(): LoginType {
-    if (this.$cookie.check(Constants.LOGIN_TYPE)) {
-      return this.$cookie.get(Constants.LOGIN_TYPE) as LoginType;
-    }
-    this.setLoginType(DEFAULT_LOGIN_TYPE);
-    return this.loginType;
-  }
-
-  /**
-   *
-   * @param loginType
-   */
-  setLoginType(loginType: LoginType) {
-    this.loginType = loginType;
-    this.$cookie.set(Constants.LOGIN_TYPE, loginType, { path: '/' });
-  }
-
-  /**
-   *
-   */
   constructor(
     private fb: FormBuilder,
     private $auth: AuthService,
-    private router: Router,
-    private $cookie: CookieService
-  ) {
-    this.loginType = this.getLoginType();
-  }
+    private router: Router
+  ) {}
 
   /**
    *
    */
   ngOnInit() {
     this.initForm();
-    this.setLoginValidator(this.loginType);
   }
 
   /**
@@ -97,22 +60,25 @@ export class SignInPage implements OnInit {
     }
 
     if (this.loginForm.invalid) {
-      Object.values(this.loginForm.controls).forEach((control) => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
+      markAllAsDirty(this.loginForm);
       return;
     }
 
-    const requestSignInModel = new SignInRequest(
+    const requestSignInModel = this.getSignInRequest();
+    this.signIn(requestSignInModel);
+  }
+
+  /**
+   *
+   * @returns
+   */
+  private getSignInRequest() {
+    return new SignInRequest(
       (this.loginType === LoginType.PhoneNumber
         ? Constants.PREFIX_PHONENUMBER
-        : '') + this.loginForm.get(LOGIN)?.value,
-      this.loginForm.get(PASSWORD)?.value
+        : '') + this.loginForm.get(Constants.LOGIN)?.value,
+      this.loginForm.get(Constants.PASSWORD)?.value
     );
-    this.signIn(requestSignInModel);
   }
 
   /**
@@ -120,8 +86,8 @@ export class SignInPage implements OnInit {
    */
   private initForm() {
     this.loginForm = this.fb.group({
-      [LOGIN]: [null, [Validators.required]],
-      [PASSWORD]: [null, [Validators.required]],
+      [Constants.LOGIN]: [null, [Validators.required]],
+      [Constants.PASSWORD]: [null, [Validators.required]],
     });
   }
 
@@ -146,36 +112,10 @@ export class SignInPage implements OnInit {
 
   /**
    *
+   * @param loginType
    */
-  switchLoginType(loginType: LoginType) {
-    this.setLoginType(loginType);
-    this.clearLoginControl();
-    this.setLoginValidator(loginType);
-  }
-
-  /**
-   *
-   */
-  private setLoginValidator(loginType: LoginType) {
-    switch (loginType) {
-      case LoginType.PhoneNumber:
-        this.loginType = LoginType.PhoneNumber;
-        this.loginForm.controls[LOGIN].removeValidators(Validators.email);
-        break;
-      case LoginType.Email:
-        this.loginType = LoginType.Email;
-        this.loginForm.controls[LOGIN].setValidators(Validators.email);
-        break;
-      default:
-        break;
-    }
-  }
-
-  /**
-   *
-   */
-  private clearLoginControl() {
+  onChangedLoginType(loginType: LoginType) {
+    this.loginType = loginType;
     this.errorMessageFromServer = undefined;
-    this.loginForm.controls[LOGIN].setValue('');
   }
 }

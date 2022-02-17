@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   EventEmitter,
   OnInit,
@@ -10,34 +9,20 @@ import {
   AbstractControl,
   AsyncValidatorFn,
   FormBuilder,
-  FormControl,
   FormGroup,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Constants } from 'projects/client/src/app/core/config/constants';
+import { LoginType } from 'projects/client/src/app/core/enums/login-type.enum';
+import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';
 import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.service';
 import { SignUpRequest } from 'projects/client/src/app/shared/models/auth/sign-up.request';
-import {
-  catchError,
-  finalize,
-  map,
-  Observable,
-  of,
-  startWith,
-  takeUntil,
-} from 'rxjs';
-import {
-  SignUpOutputModel,
-  SignUpStep,
-} from '../../pages/sign-up/sign-up.page';
+import { catchError, map, Observable, of, startWith, takeUntil } from 'rxjs';
+import { SignUpConfirmationConfig } from '../sign-up-confirmation/sign-up-confirmation.component';
 
-const ERROR_MESSAGE_FROM_SERVER = 'errorMessageFromServer';
-const EMAIL = 'email';
-const PHONE = 'phone';
-const PASSWORD = 'password';
 const CONFIRMATION_PASSWORD = 'confirmationPassword';
 
 @Component({
@@ -50,7 +35,7 @@ export class SignUpComponent implements OnInit {
   /**
    *
    */
-  @Output() changeStep = new EventEmitter<SignUpOutputModel>();
+  @Output() changeStep = new EventEmitter<SignUpConfirmationConfig>();
 
   /**
    *
@@ -60,7 +45,7 @@ export class SignUpComponent implements OnInit {
   /**
    *
    */
-  byPhoneNumber = true;
+  loginType!: LoginType;
 
   /**
    *
@@ -95,10 +80,10 @@ export class SignUpComponent implements OnInit {
 
   /**
    *
+   * @param loginType
    */
-  togglePhonenumberAndEmail(): void {
-    this.byPhoneNumber = !this.byPhoneNumber;
-    this.addPhoneNumberOrEmailControl();
+  onChangedLoginType(loginType: LoginType) {
+    this.loginType = loginType;
   }
 
   /**
@@ -108,7 +93,10 @@ export class SignUpComponent implements OnInit {
     this.signUpForm = this.fb.group({
       f_name: [null, [Validators.required, Validators.minLength(2)]],
       l_name: [null, [Validators.required, Validators.minLength(2)]],
-      [PASSWORD]: [null, [Validators.required, Validators.minLength(6)]],
+      [Constants.PASSWORD]: [
+        null,
+        [Validators.required, Validators.minLength(6)],
+      ],
       [CONFIRMATION_PASSWORD]: [
         null,
         [Validators.required],
@@ -116,7 +104,6 @@ export class SignUpComponent implements OnInit {
       ],
       agree: [null, [Validators.requiredTrue]],
     });
-    this.addPhoneNumberOrEmailControl();
     this.onPasswordValueChanges();
   }
 
@@ -125,7 +112,7 @@ export class SignUpComponent implements OnInit {
    */
   private onPasswordValueChanges() {
     this.signUpForm
-      .get(PASSWORD)
+      .get(Constants.PASSWORD)
       ?.valueChanges.pipe(takeUntil(this.$ngDestroy))
       .subscribe(() => {
         this.signUpForm.controls[CONFIRMATION_PASSWORD].markAsDirty();
@@ -133,61 +120,6 @@ export class SignUpComponent implements OnInit {
           onlySelf: true,
         });
       });
-  }
-
-  /**
-   *
-   */
-  private addPhoneNumberOrEmailControl() {
-    if (this.byPhoneNumber) {
-      this.addPhoneNumberControl();
-      return;
-    }
-
-    this.addEmailControl();
-  }
-
-  /**
-   *
-   */
-  private addEmailControl() {
-    this.signUpForm.removeControl(PHONE);
-    this.signUpForm.addControl(
-      EMAIL,
-      new FormControl(
-        null,
-        [Validators.required, Validators.email],
-        [this.loginAsyncValidator()]
-      )
-    );
-
-    this.onEmailChanges();
-  }
-
-  private onEmailChanges() {
-    this.signUpForm
-      .get(EMAIL)
-      ?.valueChanges.pipe(takeUntil(this.$ngDestroy))
-      .subscribe((email) => {
-        if (!email || email.indexOf('@') >= 0) {
-          this.mailTypes = [];
-        } else {
-          this.mailTypes = ['gmail.com', 'mail.ru', 'outlook.com'].map(
-            (domain) => `${email}@${domain}`
-          );
-        }
-      });
-  }
-
-  /**
-   *
-   */
-  private addPhoneNumberControl() {
-    this.signUpForm.removeControl(EMAIL);
-    this.signUpForm.addControl(
-      PHONE,
-      new FormControl(null, [Validators.required], [this.loginAsyncValidator()])
-    );
   }
 
   /**
@@ -209,7 +141,7 @@ export class SignUpComponent implements OnInit {
    */
   private getSignUpRequest(): SignUpRequest {
     const model: SignUpRequest = this.signUpForm.getRawValue();
-    if (this.byPhoneNumber) {
+    if (this.loginType === LoginType.PhoneNumber) {
       model.phone = `${Constants.PREFIX_PHONENUMBER}${model.phone}`;
     }
     return model;
@@ -226,8 +158,11 @@ export class SignUpComponent implements OnInit {
           this.errorMessageFromServer = undefined;
           this.changeStep.emit({
             nextStep: SignUpStep.Confirmation,
-            login: this.byPhoneNumber ? model.phone : model.email,
-            byPhoneNumber: this.byPhoneNumber,
+            login:
+              this.loginType === LoginType.PhoneNumber
+                ? model.phone
+                : model.email,
+            byPhoneNumber: this.loginType === LoginType.PhoneNumber,
           });
         }
         return false;
@@ -245,7 +180,7 @@ export class SignUpComponent implements OnInit {
    */
   private checkValidations() {
     Object.values(this.signUpForm.controls).forEach((control) => {
-      if (control.invalid && !control.hasError(ERROR_MESSAGE_FROM_SERVER)) {
+      if (control.invalid && !control.hasError(Constants.ERROR_MESSAGE_FROM_SERVER)) {
         control.markAsDirty();
         control.updateValueAndValidity({ onlySelf: true });
       }
@@ -256,32 +191,11 @@ export class SignUpComponent implements OnInit {
    *
    * @returns
    */
-  private loginAsyncValidator(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.$auth
-        .checkLoginToUnique(
-          this.byPhoneNumber
-            ? { phone: Constants.PREFIX_PHONENUMBER + control.value }
-            : { email: control.value }
-        )
-        .pipe(
-          map(() => {
-            return null;
-          }),
-          catchError((errors: ErrorItem[]) => {
-            return of({ [ERROR_MESSAGE_FROM_SERVER]: errors[0] });
-          })
-        );
-    };
-  }
-
-  /**
-   *
-   * @returns
-   */
   private mustMatchPAsswordAsyncValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      if (control.value !== this.signUpForm.controls[PASSWORD].value) {
+      if (
+        control.value !== this.signUpForm.controls[Constants.PASSWORD].value
+      ) {
         return of({ mustMatch: true });
       } else {
         return of(null);

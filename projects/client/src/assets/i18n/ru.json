@@ -31,7 +31,7 @@
   "putPhoneToReg": "Введите номер телефона",
   "haveNotPhone": "У меня нет телефона",
   "haveNotEmail": "У меня нет email адреса",
-  "createPassword": "Придумайте пароль",
+  "findPassword": "Придумайте пароль",
   "errorTipToCreatePassword": "Введите пароль",
   "repeatPassword": "Повторите пароль",
   "confirmPassword": "Подтвердите пароль",
@@ -58,5 +58,9 @@
   "redirectToLoginAfter": "Через несколько секунд вы будете перенаправлены на страницу входа:",
   "successfullyRegistration": "Успешная регистрация",
   "congratulation": "Поздравляем!",
-  "congratulationSubTitle": "Регистрация прошла успешно, данные были сохранены!"
+  "congratulationSubTitle": "Регистрация прошла успешно, данные были сохранены!",
+  "usersLogin": "Логин пользователя",
+  "createPassword": "Создать пароль",
+  "enterYourLogin": "Укажите свой логин",
+  "enterEmailOrPhoneNumber": "Введите email адрес, или номер телефона для восстановления пароля"
 }

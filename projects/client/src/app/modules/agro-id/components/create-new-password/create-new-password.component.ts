@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-create-new-password',
+  selector: 'create-new-password',
   templateUrl: './create-new-password.component.html',
   styleUrls: ['./create-new-password.component.less']
 })
