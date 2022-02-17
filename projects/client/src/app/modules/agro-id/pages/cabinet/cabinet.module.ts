@@ -4,11 +4,16 @@ import { CabinetComponent } from './cabinet.component';
 import { PersonalComponent } from './pages/personal/personal.component';
 import { LegalPersonComponent } from './pages/legal-person/legal-person.component';
 import { CabinetRoutes } from './cabinet.routing';
+import { NotificationComponent } from './pages/notification/notification.component';
+import { UserNameModalComponent } from './pages/personal/components/user-name-modal/user-name-modal.component';
+import { EmailModalComponent } from './pages/personal/components/email-modal/email-modal.component';
+import { PhoneModalComponent } from './pages/personal/components/phone-modal/phone-modal.component';
+import { BiznesCardsComponent } from './pages/biznes-cards/biznes-cards.component';
+import { BusinessCardModalComponent } from './components/business-card-modal/business-card-modal.component';
 /* NG-ZORRO */
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -19,13 +24,13 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { SharedModule } from 'projects/client/src/app/shared/shared.module';
-import { UserNameModalComponent } from './pages/personal/components/user-name-modal/user-name-modal.component';
-import { EmailModalComponent } from './pages/personal/components/email-modal/email-modal.component';
-import { PhoneModalComponent } from './pages/personal/components/phone-modal/phone-modal.component';
-import { BiznesCardsComponent } from './pages/biznes-cards/biznes-cards.component';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { BusinessCardModalComponent } from './components/business-card-modal/business-card-modal.component';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 @NgModule({
   imports: [
@@ -46,7 +51,12 @@ import { BusinessCardModalComponent } from './components/business-card-modal/bus
     NzFormModule,
     NzInputModule,
     NzCardModule,
-    NzUploadModule
+    NzUploadModule,
+    NzBadgeModule,
+    NzListModule,
+    NzTableModule,
+    NzSpaceModule,
+    NzAlertModule
   ],
   declarations: [
     CabinetComponent,
@@ -56,7 +66,8 @@ import { BusinessCardModalComponent } from './components/business-card-modal/bus
     EmailModalComponent,
     PhoneModalComponent,
     BiznesCardsComponent,
-    BusinessCardModalComponent
+    BusinessCardModalComponent,
+    NotificationComponent
   ],
 })
 export class CabinetModule {}
