@@ -28,6 +28,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { InputPhoneEmailComponent } from './components/input-phone-email/input-phone-email.component';
 
 @NgModule({
   imports: [
@@ -64,6 +65,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     RecoverLoginComponent,
     ConfirmLoginComponent,
     CreateNewPasswordComponent,
+    InputPhoneEmailComponent
   ],
 })
 export class AgroIdModule {}

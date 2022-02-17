@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { finalize, interval, map, Observable, startWith, take } from 'rxjs';
+import { finalize, interval, map, Observable, startWith, takeWhile } from 'rxjs';
 
 const WAITING_DELAY = 5;
 
@@ -39,7 +39,7 @@ export class SignUpSuccessComponent implements OnInit {
         return seconds;
       }),
       startWith(WAITING_DELAY),
-      take(WAITING_DELAY + 1),
+      takeWhile((value) => value > 0),
       finalize(() => this.router.navigate(['../'], { relativeTo: this.route }))
     );
   }

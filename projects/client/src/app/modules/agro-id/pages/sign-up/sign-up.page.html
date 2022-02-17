@@ -2,9 +2,15 @@
   <div nz-row>
     <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="19">
       <nz-steps [nzCurrent]="currentStep">
-        <nz-step [nzTitle]="currentStep == 0 ?  ('signUpStep1' | translate ): '' "></nz-step>
-        <nz-step [nzTitle]="currentStep == 1 ?  ('signUpStep2' | translate ): '' "></nz-step>
-        <nz-step [nzTitle]="currentStep == 2 ?  ('signUpStep3' | translate ): '' "></nz-step>
+        <nz-step
+          [nzTitle]="currentStep === signUpStep.SignUp ?  ('signUpStep1' | translate ): '' "
+        ></nz-step>
+        <nz-step
+          [nzTitle]="currentStep === signUpStep.Confirmation ?  ('signUpStep2' | translate ): '' "
+        ></nz-step>
+        <nz-step
+          [nzTitle]="currentStep === signUpStep.Success ?  ('signUpStep3' | translate ): '' "
+        ></nz-step>
       </nz-steps>
     </div>
   </div>
@@ -12,13 +18,13 @@
   <div [ngSwitch]="currentStep">
     <sign-up
       (changeStep)="changeStepFromSignUp($event)"
-      *ngSwitchCase="step.SignUp"
+      *ngSwitchCase="signUpStep.SignUp"
     ></sign-up>
     <sign-up-confirmation
       (changeStep)="goToNextStep($event)"
       [data]="data"
-      *ngSwitchCase="step.Confirmation"
+      *ngSwitchCase="signUpStep.Confirmation"
     ></sign-up-confirmation>
-    <sign-up-success *ngSwitchCase="step.Success"></sign-up-success>
+    <sign-up-success *ngSwitchCase="signUpStep.Success"></sign-up-success>
   </div>
 </div>
