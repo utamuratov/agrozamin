@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PhoneModalComponent } from './phone-modal.component';
+import { UserInfoModalComponent } from './user-info-modal.component';
 
-describe('PhoneModalComponent', () => {
-  let component: PhoneModalComponent;
-  let fixture: ComponentFixture<PhoneModalComponent>;
+describe('UserInfoModalComponent', () => {
+  let component: UserInfoModalComponent;
+  let fixture: ComponentFixture<UserInfoModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PhoneModalComponent ]
+      declarations: [ UserInfoModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PhoneModalComponent);
+    fixture = TestBed.createComponent(UserInfoModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

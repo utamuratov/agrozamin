@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
+import { BusinessCardConfig, UserCard } from '../../components/business-card-modal/business-card-modal.component';
 
 @Component({
   selector: 'app-biznes-cards',
@@ -14,6 +15,8 @@ export class BiznesCardsComponent implements OnInit {
   
   userName = 'Махмудов Кайрат';
   validateForm!: FormGroup;
+
+  card!: BusinessCardConfig;
 
   userCard = [
     {
@@ -70,8 +73,9 @@ export class BiznesCardsComponent implements OnInit {
     });
   }
 
-  showModal(): void {
+  showModal(data: BusinessCardConfig): void {
     this.isVisible = true;
+    this.card = data;
   }
 
   handleOk(): void {
@@ -83,6 +87,4 @@ export class BiznesCardsComponent implements OnInit {
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
-
-  
 }

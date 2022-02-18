@@ -1,6 +1,6 @@
-<nz-modal [(nzVisible)]="visibleEditModal" (nzOnCancel)="editModalCancel()" (nzOnOk)="editModalOk()">
+<nz-modal [(nzVisible)]="config.isVisibleEditModal" (nzOnCancel)="editModalCancel()" (nzOnOk)="editModalOk()">
   <div *nzModalTitle>
-    <h4 nz-typography>Изменить данные визитки</h4>
+    <h4 nz-typography>{{config.title}}</h4>
   </div>
   <ng-container *nzModalContent>
     <form nz-form nzLayout="vertical" [formGroup]="validateForm">
