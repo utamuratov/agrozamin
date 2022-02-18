@@ -3,11 +3,11 @@ import { ForgotPasswordStep } from 'projects/client/src/app/core/enums/forgot-pa
 
 @Component({
   selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.less'],
+  templateUrl: './forgot-password.page.html',
+  styleUrls: ['./forgot-password.page.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ForgotPasswordComponent {
+export class ForgotPasswordPage {
   /**
    *
    */

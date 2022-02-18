@@ -2,7 +2,7 @@ import {
   Component,
   Input
 } from '@angular/core';
-import { ErrorItem } from '../../../core/models/error-item.interface';
+import { ErrorItem } from '../../../../core/models/error-item.interface';
 
 @Component({
   selector: 'error-from-server',

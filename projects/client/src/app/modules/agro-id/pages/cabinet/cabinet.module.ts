@@ -26,14 +26,23 @@ import { BiznesCardsComponent } from './pages/biznes-cards/biznes-cards.componen
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { BusinessCardModalComponent } from './components/business-card-modal/business-card-modal.component';
+import { TriangleModule } from 'projects/client/src/app/shared/triangle/triangle.module';
 
 @NgModule({
   imports: [
     CommonModule,
     CabinetRoutes,
     ReactiveFormsModule,
+
+    /**
+     * CUSTOM MODULES
+     */
     SharedModule,
-    /* NG-ZORRO */
+    TriangleModule,
+
+    /**
+     * NG-ZORRO-MODULES
+     */
     NzLayoutModule,
     NzIconModule,
     NzMenuModule,
@@ -46,7 +55,7 @@ import { BusinessCardModalComponent } from './components/business-card-modal/bus
     NzFormModule,
     NzInputModule,
     NzCardModule,
-    NzUploadModule
+    NzUploadModule,
   ],
   declarations: [
     CabinetComponent,
@@ -56,7 +65,7 @@ import { BusinessCardModalComponent } from './components/business-card-modal/bus
     EmailModalComponent,
     PhoneModalComponent,
     BiznesCardsComponent,
-    BusinessCardModalComponent
+    BusinessCardModalComponent,
   ],
 })
 export class CabinetModule {}
