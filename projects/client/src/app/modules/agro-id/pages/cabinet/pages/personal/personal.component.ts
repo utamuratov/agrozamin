@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserInfoModal } from './components/user-info-modal/user-info-modal.component';
 
 @Component({
   selector: 'app-personal',
@@ -13,20 +14,22 @@ export class PersonalComponent implements OnInit {
   userName = 'Кайрат';
   userSurname = 'Махмудов';
   userEmail = 'shisudesign@outlook.com';
-  phone = null
+  phone = '';
+
+  data!: UserInfoModal;
 
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   showUserModal(): void {
-    this.isVisibleUserModal = true
+    this.isVisibleUserModal = true;
   }
-  showEmailModal(): void {
-    this.isVisibleEmailModal = true
+  showModal(data: UserInfoModal): void {
+    this.isVisibleEmailModal = true;
+    this.data = data
   }
   showPhoneModal(): void {
-    this.isVisiblePhoneModal = true
+    this.isVisiblePhoneModal = true;
   }
 }

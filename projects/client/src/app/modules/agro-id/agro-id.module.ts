@@ -22,7 +22,6 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { SharedModule } from '../../shared/shared.module';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { RecoverLoginComponent } from './components/recover-login/recover-login.component';
-import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.component';
 import { CreateNewPasswordComponent } from './components/create-new-password/create-new-password.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NgxMaskModule } from 'ngx-mask';
@@ -63,7 +62,6 @@ import { InputPhoneEmailComponent } from './components/input-phone-email/input-p
     SignUpSuccessComponent,
     ForgotPasswordComponent,
     RecoverLoginComponent,
-    ConfirmLoginComponent,
     CreateNewPasswordComponent,
     InputPhoneEmailComponent
   ],

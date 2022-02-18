@@ -6,8 +6,6 @@ import { LegalPersonComponent } from './pages/legal-person/legal-person.componen
 import { CabinetRoutes } from './cabinet.routing';
 import { NotificationComponent } from './pages/notification/notification.component';
 import { UserNameModalComponent } from './pages/personal/components/user-name-modal/user-name-modal.component';
-import { EmailModalComponent } from './pages/personal/components/email-modal/email-modal.component';
-import { PhoneModalComponent } from './pages/personal/components/phone-modal/phone-modal.component';
 import { BiznesCardsComponent } from './pages/biznes-cards/biznes-cards.component';
 import { BusinessCardModalComponent } from './components/business-card-modal/business-card-modal.component';
 /* NG-ZORRO */
@@ -31,6 +29,7 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { UserInfoModalComponent } from './pages/personal/components/user-info-modal/user-info-modal.component';
 
 @NgModule({
   imports: [
@@ -63,11 +62,10 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
     PersonalComponent,
     LegalPersonComponent,
     UserNameModalComponent,
-    EmailModalComponent,
-    PhoneModalComponent,
     BiznesCardsComponent,
     BusinessCardModalComponent,
-    NotificationComponent
+    NotificationComponent,
+    UserInfoModalComponent
   ],
 })
 export class CabinetModule {}
