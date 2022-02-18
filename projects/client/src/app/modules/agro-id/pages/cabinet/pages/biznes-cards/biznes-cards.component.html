@@ -5,7 +5,7 @@
       <div nz-row [nzGutter]="[8, 8]">
 
         <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12" nzXXl="8" *ngFor="let card of userCard">
-          <nz-card nzHoverable class=" ">
+          <nz-card nzHoverable>
             <div nz-row nzAlign="middle" nzGutter="15" nzJustify="center">
               <div nz-col nzXs="12" nzSm="4" nzMd="3" nzLg="5" nzXl="4" nzXXl="4" class="avatar"><nz-avatar nzSize="large" nzIcon="user"></nz-avatar></div>
               <div nz-col nzXs="16" nzSm="16" nzMd="18" nzLg="15" nzXl="16" nzXXl="16"><h5 nz-typography style="margin: 0;">{{card.firstName + ' ' + card.lastName}}</h5></div>
@@ -41,65 +41,3 @@
 
 
 <business-card-modal *ngIf="card && card.isVisibleEditModal" [config]="card"></business-card-modal>
-
-<!-- 
-<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-  <div *nzModalTitle>
-    <h4 nz-typography>Добавить новую визитку</h4>
-  </div>
-  <ng-container *nzModalContent>
-    <form nz-form nzLayout="vertical" [formGroup]="validateForm">
-      <nz-form-item>
-        <nz-form-label nzRequired="">Имя</nz-form-label>
-        <nz-form-control>
-          <input nz-input type="text" formControlName="firstName" nzSize="large">
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label nzRequired>Фамилия</nz-form-label>
-        <nz-form-control>
-          <input nz-input type="text" formControlName="lastName" nzSize="large">
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label nzRequired>Номер телефона</nz-form-label>
-        <nz-form-control>
-          <input nz-input type="number" formControlName="phone" nzSize="large">
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label>Дополнительный номер телефона (не обязательно)</nz-form-label>
-        <nz-form-control>
-          <input nz-input type="number" formControlName="additionalPhone" nzSize="large">
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label>Адресс электронной почты (не обязательно)</nz-form-label>
-        <nz-form-control>
-          <input nz-input type="mail" formControlName="mail" nzSize="large">
-        </nz-form-control>
-      </nz-form-item>
-      
-      <nz-upload
-        nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        (nzChange)="handleChange($event)"
-      >
-        <a nz-button>
-          <i nz-icon nzType="upload"></i>
-         Загрузить фотографию пользователя
-        </a>
-      </nz-upload>
-    </form>
-  </ng-container>
-  <div *nzModalFooter>
-    <div nz-row nzGutter="10">
-      <div nz-col nzSpan="12"><button nz-button nzBlock (click)="handleCancel()">Отмена</button></div>
-      <div nz-col nzSpan="12"><button nz-button nzBlock nzType="primary" (click)="handleOk()">Добавить</button></div>
-    </div>
-  </div>
-</nz-modal> -->
-

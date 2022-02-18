@@ -18,7 +18,6 @@ export class BiznesCardsComponent implements OnInit {
 
   card!: BusinessCardConfig;
 
-
   userCard = [
     {
       firstName: 'User 1',
@@ -88,6 +87,4 @@ export class BiznesCardsComponent implements OnInit {
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
-
-  
 }

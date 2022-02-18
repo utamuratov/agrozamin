@@ -101,7 +101,7 @@
     nzXl="6"
     style="text-align: end"
   >
-    <a nz-button nzType="link" class="text-size-16" (click)="showEmailModal()"
+    <a nz-button nzType="link" class="text-size-16" (click)="showModal({title: 'Email', isVisibleModal: true, text: 'Введите ваш новый электронный адрес На него будет отправлен код подтверждения', data: userEmail})"
       >{{ userEmail === null ? "Добавить Email" : "Изменить Email" }}
     </a>
   </div>
@@ -114,7 +114,7 @@
     nzXl="0"
     style="text-align: end"
   >
-    <a nz-button nzType="link" class="text-size-16" (click)="showEmailModal()"
+    <a nz-button nzType="link" class="text-size-16" (click)="showModal({title: 'Email', isVisibleModal: true, text: 'Введите ваш новый электронный адрес На него будет отправлен код подтверждения', data: userEmail})"
       ><i nz-icon nzType="edit"></i
     ></a>
   </div>
@@ -142,9 +142,9 @@
     nzXl="6"
     style="text-align: end"
   >
-    <a nz-button nzType="link" class="text-size-16" (click)="showPhoneModal()"
+    <a nz-button nzType="link" class="text-size-16" (click)="showModal({title: 'номер телефона', isVisibleModal: true, text: 'Введите ваш новый номер телефона. На него будет отправлен код подтверждения', data: phone})"
       >{{
-        phone === null ? "Добавить номер телефона" : "Изменить номер телефона"
+        phone === '' ? "Добавить номер телефона" : "Изменить номер телефона"
       }}
     </a>
   </div>
@@ -157,7 +157,7 @@
     nzXl="0"
     style="text-align: end"
   >
-    <a nz-button nzType="link" class="text-size-16" (click)="showPhoneModal()"
+    <a nz-button nzType="link" class="text-size-16" (click)="showModal({title: 'номер телефона', isVisibleModal: true, text: 'Введите ваш новый номер телефона. На него будет отправлен код подтверждения', data: phone})"
       ><i nz-icon nzType="edit"></i
     ></a>
   </div>
@@ -174,12 +174,4 @@
   [isVisible]="isVisibleUserModal"
 ></user-name-modal>
 
-<email-modal
-  (handleClose)="isVisibleEmailModal = false"
-  [isVisible]="isVisibleEmailModal"
-></email-modal>
-
-<phone-modal
-  (handleClose)="isVisiblePhoneModal = false"
-  [isVisible]="isVisiblePhoneModal"
-></phone-modal>
+<user-info-modal [config]="data" *ngIf="data && data.isVisibleModal"></user-info-modal>
