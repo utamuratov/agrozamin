@@ -24,6 +24,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { SharedModule } from 'projects/client/src/app/shared/shared.module';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { BusinessCardModalComponent } from './components/business-card-modal/business-card-modal.component';
+import { TriangleModule } from 'projects/client/src/app/shared/triangle/triangle.module';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -36,8 +38,16 @@ import { UserInfoModalComponent } from './pages/personal/components/user-info-mo
     CommonModule,
     CabinetRoutes,
     ReactiveFormsModule,
+
+    /**
+     * CUSTOM MODULES
+     */
     SharedModule,
-    /* NG-ZORRO */
+    TriangleModule,
+
+    /**
+     * NG-ZORRO-MODULES
+     */
     NzLayoutModule,
     NzIconModule,
     NzMenuModule,

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, HostListener } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 @Directive({
@@ -8,7 +8,7 @@ export class OnlyLetterDirective {
   /**
    *
    */
-  constructor(private el: ElementRef, private control: NgControl) {}
+  constructor(private control: NgControl) {}
 
   /**
    *
@@ -17,7 +17,7 @@ export class OnlyLetterDirective {
   onInputChanged() {
     let value: string = this.control?.control?.value;
     if (value) {
-      // *Replace non letters in unicode to ''
+      // *Replace non unicode letters to ''
       value = value.replace(/[^\p{Letter}]/u, '');
       this.control.control?.setValue(value);
     }
