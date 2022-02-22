@@ -1,0 +1,46 @@
+<div nz-row>
+  <div
+    nz-col
+    nzXs="1"
+    nzSm="2"
+    nzMd="2"
+    nzLg="2"
+    nzXl="2"
+    class="height-100"
+  ></div>
+  <div
+    nz-col
+    nzXs="22"
+    nzSm="20"
+    nzMd="20"
+    nzLg="20"
+    nzXl="20"
+    class="height-100"
+  >
+    <h2 style="margin-top: 8vw;" nz-typography class="title">Восстановление доступа</h2>
+    <nz-divider></nz-divider>
+    <div nz-row [nzGutter]="[15, 20]">
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
+        <button nzBlock nz-button nzType="default" nzSize="large" (click)="changeWithLogin()">
+          <i nz-icon nzType="user" nzTheme="outline"></i>
+          Через логин
+        </button>
+      </div>
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
+        <button nzBlock nz-button nzType="default" nzSize="large" (click)="goToNextStep()">
+          <i nz-icon nzType="contacts" nzTheme="outline"></i>
+          Через контактные данные
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    nz-col
+    nzXs="1"
+    nzSm="2"
+    nzMd="2"
+    nzLg="2"
+    nzXl="2"
+    class="height-100"
+  ></div>
+</div>

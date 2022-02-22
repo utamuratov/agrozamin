@@ -10,12 +10,14 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { ForgotPasswordPage } from './components/forgot-password-page/forgot-password.page';
 import { NzFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/nz-forms-shared.module';
 import { ReactiveFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/reactive-forms-shared.module';
+import { ForgotButtonsComponent } from './components/forgot-buttons/forgot-buttons.component';
 
 @NgModule({
   declarations: [
     ForgotPasswordPage,
     CreateNewPasswordComponent,
     RecoverLoginComponent,
+    ForgotButtonsComponent
   ],
   imports: [
     ForgotPasswordRoutingModule,

@@ -10,8 +10,7 @@ import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
   styleUrls: ['./recover-login.component.less'],
 })
 export class RecoverLoginComponent implements OnInit {
-  /**
-   *
+   /*
    */
   @Output() changeStep = new EventEmitter<ForgotPasswordStep>();
 

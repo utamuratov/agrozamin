@@ -70,8 +70,33 @@
       </div>
     </div>
 
+    <!-- USER LOGIN -->
+
+    <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
+      <nz-form-item>
+        <nz-form-label>{{ "login" | translate }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="error">
+          <input
+            class="form__inputGroup"
+            nz-input
+            onlyLetter
+            type="text"
+            nzSize="large"
+            formControlName="l_name"
+            placeholder="{{'createLogin' | translate}}"
+          />
+        </nz-form-control>
+        <ng-template #error let-control>
+          <error [control]="control"></error>
+        </ng-template>
+      </nz-form-item>
+    </div>
+    
+
+    
+
     <!-- LOGIN BY EMAIL OR PHONENUMBER -->
-    <input-phone-email
+    <!-- <input-phone-email
       [config]="{
         form: form,
         isLoginOnly: false,
@@ -83,7 +108,11 @@
         toggleTitleForEmail: 'haveNotEmail' | translate
       }"
       (changedLoginType)="onChangedLoginType($event)"
-    ></input-phone-email>
+    ></input-phone-email> -->
+
+
+
+
 
     <nz-divider class="divider-custom-top"></nz-divider>
     <div nz-row nzGutter="16">
@@ -145,6 +174,49 @@
       </div>
     </div>
 
+    <nz-divider class="divider-custom-top"></nz-divider>
+    
+    <!--  -->
+
+    <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
+      <nz-form-item>
+        <nz-form-label>{{ 'regPhoneLabel' | translate }} ({{'notRequired' | translate}})</nz-form-label>
+        <nz-form-control [nzErrorTip]="error">
+          <input
+            class="form__inputGroup"
+            nz-input
+            onlyLetter
+            type="text"
+            nzSize="large"
+            formControlName="l_name"
+          />
+        </nz-form-control>
+        <ng-template #error let-control>
+          <error [control]="control"></error>
+        </ng-template>
+      </nz-form-item>
+    </div>
+
+
+    <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
+      <nz-form-item>
+        <nz-form-label>{{ 'putEmailToReg' | translate }} ({{'notRequired' | translate}})</nz-form-label>
+        <nz-form-control [nzErrorTip]="error">
+          <input
+            class="form__inputGroup"
+            nz-input
+            onlyLetter
+            type="text"
+            nzSize="large"
+            formControlName="l_name"
+          />
+        </nz-form-control>
+        <ng-template #error let-control>
+          <error [control]="control"></error>
+        </ng-template>
+      </nz-form-item>
+    </div>
+
     <!-- DO YOU AGREE -->
     <nz-form-item nz-row class="register-area">
       <nz-form-control [nzSpan]="24">
@@ -166,7 +238,7 @@
           nzBlock
           nz-button
           nzType="primary"
-          class="font-agro-medium"
+          class="font-agro-medium mb-1"
         >
           {{ "continue" | translate }}
         </button>
@@ -174,3 +246,5 @@
     </div>
   </div>
 </form>
+
+
