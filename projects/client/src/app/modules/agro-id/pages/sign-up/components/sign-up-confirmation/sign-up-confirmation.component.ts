@@ -24,7 +24,7 @@ import {
 import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';
 
 const LEFT_SECONDS_BY_PHONE = 60;
-const LEFT_SECONDS_BY_EMAIL = 10;
+const LEFT_SECONDS_BY_EMAIL = 180;
 
 export interface SignUpConfirmationConfig {
   nextStep: number;

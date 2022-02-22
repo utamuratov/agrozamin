@@ -8,12 +8,11 @@ export interface ChangePassAndLogin {
 
 @Component({
   selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.less'],
+  templateUrl: './forgot-password.page.html',
+  styleUrls: ['./forgot-password.page.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ForgotPasswordComponent {
-  data!: ChangePassAndLogin;
+export class ForgotPasswordPage {
   /**
    *
    */

@@ -37,6 +37,7 @@ export class Constants {
   public static readonly PHONE = 'phone';
   public static readonly PASSWORD = 'password';
   public static readonly LOGIN = 'login';
+  public static readonly CONFIRMATION_PASSWORD = 'confirmationPassword';
 
   /**
    * LOCAL STORAGE KEYS

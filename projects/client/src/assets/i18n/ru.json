@@ -65,5 +65,8 @@
   "createLogin": "Придумайте логин",
   "notRequired": "Не обязательно",
   "enterYourLogin": "Укажите свой логин",
-  "enterEmailOrPhoneNumber": "Введите email адрес, или номер телефона для восстановления пароля"
+  "enterEmailOrPhoneNumber": "Введите email адрес, или номер телефона для восстановления пароля",
+  "createNewPassword": "Создайте новый пароль",
+  "save": "Сохранить"
+
 }

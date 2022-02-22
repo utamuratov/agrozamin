@@ -16,7 +16,7 @@
   nz-form
   class="form registration"
   nzLayout="vertical"
-  [formGroup]="signUpForm"
+  [formGroup]="form"
   (ngSubmit)="continue()"
 >
   <!-- ERRORS FROM SERVER -->
@@ -98,7 +98,7 @@
     <!-- LOGIN BY EMAIL OR PHONENUMBER -->
     <!-- <input-phone-email
       [config]="{
-        form: signUpForm,
+        form: form,
         isLoginOnly: false,
         phoneFormControlName: 'phone',
         emailFormControlName: 'email',
@@ -232,7 +232,7 @@
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12">
         <button
           [disabled]="
-            !signUpForm.controls['agree'].valid || ($isWaitingResponse | async)
+            !form.controls['agree'].valid || ($isWaitingResponse | async)
           "
           [nzLoading]="$isWaitingResponse | async"
           nzBlock
