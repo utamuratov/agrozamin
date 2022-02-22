@@ -28,6 +28,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { InputPhoneEmailComponent } from './components/input-phone-email/input-phone-email.component';
+import { ForgotButtonsComponent } from './components/forgot-buttons/forgot-buttons.component';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 @NgModule({
   imports: [
@@ -51,7 +53,8 @@ import { InputPhoneEmailComponent } from './components/input-phone-email/input-p
     NzDividerModule,
     NzAutocompleteModule,
     NzTypographyModule,
-    NzSpinModule
+    NzSpinModule,
+    NzSpaceModule
   ],
   declarations: [
     AgroIdComponent,
@@ -63,7 +66,8 @@ import { InputPhoneEmailComponent } from './components/input-phone-email/input-p
     ForgotPasswordComponent,
     RecoverLoginComponent,
     CreateNewPasswordComponent,
-    InputPhoneEmailComponent
+    InputPhoneEmailComponent,
+    ForgotButtonsComponent
   ],
 })
 export class AgroIdModule {}

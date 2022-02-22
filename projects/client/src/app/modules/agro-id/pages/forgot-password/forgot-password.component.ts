@@ -1,6 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ForgotPasswordStep } from 'projects/client/src/app/core/enums/forgot-password-step.enum';
 
+export interface ChangePassAndLogin {
+  title: string;
+  subtitle: string;
+}
+
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -8,6 +13,7 @@ import { ForgotPasswordStep } from 'projects/client/src/app/core/enums/forgot-pa
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ForgotPasswordComponent {
+  data!: ChangePassAndLogin;
   /**
    *
    */
@@ -16,7 +22,7 @@ export class ForgotPasswordComponent {
   /**
    *
    */
-  currentStep = ForgotPasswordStep.Login;
+  currentStep = ForgotPasswordStep.Choose;
 
   /**
    *
