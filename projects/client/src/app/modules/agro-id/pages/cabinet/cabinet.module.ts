@@ -31,6 +31,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { UserInfoModalComponent } from './pages/personal/components/user-info-modal/user-info-modal.component';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 @NgModule({
   imports: [
@@ -64,7 +65,8 @@ import { UserInfoModalComponent } from './pages/personal/components/user-info-mo
     NzListModule,
     NzTableModule,
     NzSpaceModule,
-    NzAlertModule
+    NzAlertModule,
+    NzDropDownModule
   ],
   declarations: [
     CabinetComponent,
