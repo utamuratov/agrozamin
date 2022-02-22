@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.service';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
@@ -36,6 +36,9 @@ export class CreateNewPasswordComponent
     this.initForm();
   }
 
+  /**
+   * 
+   */
   private initForm() {
     this.form = this.fb.group({});
     super.addPasswordAndConfrimationPasswordControls();
