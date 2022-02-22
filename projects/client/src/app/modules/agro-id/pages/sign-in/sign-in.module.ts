@@ -5,6 +5,7 @@ import { InputPhoneEmailModule } from '../../shared/input-phone-email/input-phon
 import { ReactiveFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/reactive-forms-shared.module';
 import { SignInPage } from './components/sign-in-page/sign-in.page';
 import { NzFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/nz-forms-shared.module';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 @NgModule({
   declarations: [SignInPage],
@@ -22,6 +23,7 @@ import { NzFormsSharedModule } from 'projects/client/src/app/shared/forms-shared
      * NG-ZORRO-MODULES
      */
     NzDividerModule,
+    NzTypographyModule
   ],
 })
 export class SignInModule {}

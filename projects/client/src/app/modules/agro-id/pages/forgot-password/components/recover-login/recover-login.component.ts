@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ForgotPasswordStep } from 'projects/client/src/app/core/enums/forgot-password-step.enum';
 import { LoginType } from 'projects/client/src/app/core/enums/login-type.enum';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
-import { ChangePassAndLogin } from '../../pages/forgot-password/forgot-password.component';
 
 @Component({
   selector: 'recover-login',
