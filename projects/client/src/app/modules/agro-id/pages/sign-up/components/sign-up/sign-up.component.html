@@ -198,24 +198,7 @@
     </div>
 
 
-    <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
-      <nz-form-item>
-        <nz-form-label>{{ 'putEmailToReg' | translate }} ({{'notRequired' | translate}})</nz-form-label>
-        <nz-form-control [nzErrorTip]="error">
-          <input
-            class="form__inputGroup"
-            nz-input
-            onlyLetter
-            type="text"
-            nzSize="large"
-            formControlName="l_name"
-          />
-        </nz-form-control>
-        <ng-template #error let-control>
-          <error [control]="control"></error>
-        </ng-template>
-      </nz-form-item>
-    </div>
+    
 
     <!-- DO YOU AGREE -->
     <nz-form-item nz-row class="register-area">
@@ -231,6 +214,7 @@
     <div nz-row>
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12">
         <button
+        nzShape="round"
           [disabled]="
             !form.controls['agree'].valid || ($isWaitingResponse | async)
           "

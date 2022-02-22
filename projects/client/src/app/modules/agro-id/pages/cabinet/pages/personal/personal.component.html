@@ -1,4 +1,5 @@
-<div nz-row nzAlign="middle" class="personal__avatar" [nzGutter]="[5, 10]">
+<!-- <div nz-row nzAlign="middle" class="personal__avatar" [nzGutter]="[5, 10]">
+
   <div nz-col nzXs="14" nzSm="12" nzMd="10" nzLg="6" nzXl="4">
     <nz-avatar
       style="width: 90%; height: 90%"
@@ -164,14 +165,190 @@
 </div>
 <nz-divider style="margin-top: 5px"></nz-divider>
 
-<!-- 
-  =
-  =
- -->
 
 <user-name-modal
   (handleClose)="isVisibleUserModal = false"
   [isVisible]="isVisibleUserModal"
 ></user-name-modal>
 
-<user-info-modal [config]="data" *ngIf="data && data.isVisibleModal"></user-info-modal>
+<user-info-modal [config]="data" *ngIf="data && data.isVisibleModal"></user-info-modal> -->
+
+<div nz-row class="personal">
+  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="16">
+    <div nz-row>
+      <div nz-col nzXs="1" nzSm="1" nzMd="1" nzLg="1" nzXl="1"></div>
+      <div nz-col nzXs="11" nzSm="11" nzMd="11" nzLg="11" nzXl="11">ID 562874</div>
+      <div nz-col nzXs="11" nzSm="11" nzMd="11" nzLg="11" nzXl="11" class="text-end">
+        <i nz-icon nzType="logout" nzTheme="outline"></i
+        ><span style="margin-left: 5px">Выход</span>
+      </div>
+      <div nz-col nzXs="1" nzSm="1" nzMd="1" nzLg="1" nzXl="1"></div>
+    </div>
+    <div nz-row class="personal__content">
+      <div nz-col nzXs="1" nzSm="1" nzMd="1" nzLg="1" nzXl="1"></div>
+      <div
+        nz-col
+        nzXs="22"
+        nzSm="22"
+        nzMd="22"
+        nzLg="22"
+        nzXl="22"
+        nzFlex="auto"
+        class="personal__content-padding"
+      >
+        <div class="personal__info">
+          <div nz-row>
+            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="16">
+              <div nz-row>
+                <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24"><h3 class="personal__info-title" nz-typography>Ваш профиль</h3></div>
+                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0" class="text-center"><h3 class="personal__info-title" nz-typography>Ваш профиль</h3></div>
+              </div>              
+            </div>
+            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="8">
+              <div nz-row>
+                <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24" class="text-end"><span class="personal__info-status">Ваш профиль заполнен на: 50%</span></div>
+                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0" class="text-center"><span class="personal__info-status">Ваш профиль заполнен на: 50%</span></div>
+              </div>              
+            </div>
+          </div>
+
+
+          <div nz-row [nzGutter]="[20, 15]" nzAlign="middle">
+            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="7" nzXl="8">
+              <div nz-row>
+                <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24"><div class="avatar"><img src="../../../../../../../assets/images/agro-id-images/avatar.jpg" alt=""></div></div>
+                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0" class="text-center"><div class="avatar"><img src="../../../../../../../assets/images/agro-id-images/avatar.jpg" alt=""></div></div>
+              </div>
+            </div>
+            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="17" nzXl="16">
+              <div nz-row nzAlign="middle">
+                <div nz-col nzXs="18" nzSm="18" nzMd="18" nzLg="18" nzXl="18">
+                  <div nz-row>
+                    <div nz-col nzSpan="24"><span nz-typography nzType="secondary">Полное имя</span></div>
+                    <div nz-col nzSpan="24"><i style="color: #22A33F; margin-right: 5px;" nz-icon nzType="check-circle" nzTheme="fill"></i><span class="personal__info-value">Нарбеков Артур</span></div>
+                  </div>
+                </div>
+                <div nz-col nzXs="6" nzSm="6" nzMd="6" nzLg="6" nzXl="6" class="text-end"><a nz-button nzType="link"><i nz-icon nzType="edit" nzTheme="twotone"></i></a></div>
+              </div>
+              <nz-divider class="info-divider"></nz-divider>
+              <div nz-row nzAlign="middle">
+                <div nz-col nzXs="18" nzSm="18" nzMd="18" nzLg="18" nzXl="18">
+                  <div nz-row>
+                    <div nz-col nzSpan="24"><span nz-typography nzType="secondary">Адрес электронной почты</span></div>
+                    <div nz-col nzSpan="24"><i style="margin-right: 5px; color: grey;" nz-icon nzType="question-circle" nzTheme="outline"></i><span class="personal__info-value">Нет данных</span></div>
+                  </div>
+                </div>
+                <div nz-col nzXs="6" nzSm="6" nzMd="6" nzLg="6" nzXl="6" class="text-end"><a nz-button nzType="link"><i nz-icon nzType="edit" nzTheme="twotone"></i></a></div>
+              </div>
+              <nz-divider class="info-divider"></nz-divider>
+              <div nz-row nzAlign="middle">
+                <div nz-col nzXs="18" nzSm="18" nzMd="18" nzLg="18" nzXl="18">
+                  <div nz-row>
+                    <div nz-col nzSpan="24"><span nz-typography nzType="secondary">Номер телефона</span></div>
+                    <div nz-col nzSpan="24"><i style="color: #22A33F; margin-right: 5px;" nz-icon nzType="check-circle" nzTheme="fill"></i><span class="personal__info-value">+998 90 326 20 13</span></div>
+                  </div>
+                </div>
+                <div nz-col nzXs="6" nzSm="6" nzMd="6" nzLg="6" nzXl="6" class="text-end"><a nz-button nzType="link"><i nz-icon nzType="edit" nzTheme="twotone"></i></a></div>
+              </div>
+              <nz-divider class="info-divider"></nz-divider>
+            </div>
+          </div>
+        </div>
+        
+        <div class="personal__business">
+          <h2>Ваши данные используются в следующих визитках</h2>
+          <div nz-row [nzGutter]="[20, 10]">
+            <div nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" nzXl="12" style="height: 150px; margin-bottom: 20px;">
+              <div class="personal__card">
+                <div nz-row  nzGutter="8">
+                  <div nz-col nzXs="6" nzSm="6" nzMd="6" nzLg="6" nzXl="6">
+                    <div  class="personal__card-avatar">
+                      <img src="../../../../../../../assets/images/agro-id-images/avatar.jpg" alt="avatar">
+                    </div>                    
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="16" nzLg="16" nzXl="16" >
+                    <p nz-typography><i nz-icon nzType="user" nzTheme="outline" style="margin-right: 5px;"></i>Нарбеков Артур</p>
+                    <p nz-typography><i nz-icon nzType="mail" nzTheme="outline" style="margin-right: 5px;"></i>---</p>
+                    <p nz-typography><i nz-icon nzType="phone" nzTheme="outline"></i>+998 90 326 20 13</p>
+                  </div>
+                  <div nz-col nzXs="2" nzSm="2" nzMd="2" nzLg="2" nzXl="2"> 
+                    <div class="personal__card-icons">
+                      <div>
+                        <a nz-button nzType="link"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+                      </div>
+                      <div>
+                        <a nz-button nzType="link"><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+                      </div>
+                    </div>                      
+                   </div>
+                </div>
+              </div>              
+            </div>
+
+            <div nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" nzXl="12" style="height: 150px; margin-bottom: 20px;">
+              <div class="personal__card">
+                <div nz-row  nzGutter="8">
+                  <div nz-col nzXs="6" nzSm="6" nzMd="6" nzLg="6" nzXl="6">
+                    <div  class="personal__card-avatar">
+                      <img src="../../../../../../../assets/images/agro-id-images/avatar.jpg" alt="avatar">
+                    </div>                    
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="16" nzLg="16" nzXl="16" >
+                    <p nz-typography><i nz-icon nzType="user" nzTheme="outline" style="margin-right: 5px;"></i>Нарбеков Артур</p>
+                    <p nz-typography><i nz-icon nzType="mail" nzTheme="outline" style="margin-right: 5px;"></i>---</p>
+                    <p nz-typography><i nz-icon nzType="phone" nzTheme="outline"></i>+998 90 326 20 13</p>
+                  </div>
+                  <div nz-col nzXs="2" nzSm="2" nzMd="2" nzLg="2" nzXl="2"> 
+                    <div class="personal__card-icons">
+                      <div>
+                        <a nz-button nzType="link"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+                      </div>
+                      <div>
+                        <a nz-button nzType="link"><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+                      </div>
+                    </div>                      
+                   </div>
+                </div>
+              </div>
+            </div>
+
+            <div nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" nzXl="12" style="height: 150px; margin-bottom: 20px;">
+              <div class="personal__card">
+                <div nz-row  nzGutter="8">
+                  <div nz-col nzXs="6" nzSm="6" nzMd="6" nzLg="6" nzXl="6">
+                    <div  class="personal__card-avatar">
+                      <img src="../../../../../../../assets/images/agro-id-images/avatar.jpg" alt="avatar">
+                    </div>
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="16" nzLg="16" nzXl="16" >
+                    <p nz-typography><i nz-icon nzType="user" nzTheme="outline" style="margin-right: 5px;"></i>Нарбеков Артур</p>
+                    <p nz-typography><i nz-icon nzType="mail" nzTheme="outline" style="margin-right: 5px;"></i>---</p>
+                    <p nz-typography><i nz-icon nzType="phone" nzTheme="outline"></i>+998 90 326 20 13</p>
+                  </div>
+                  <div nz-col nzXs="2" nzSm="2" nzMd="2" nzLg="2" nzXl="2"> 
+                    <div class="personal__card-icons">
+                      <div>
+                        <a nz-button nzType="link"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+                      </div>
+                      <div>
+                        <a nz-button nzType="link"><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+                      </div>
+                    </div>                      
+                   </div>
+                </div>
+              </div>
+            </div>
+
+            <div nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" nzXl="12" class="button-add-card">
+              <div class="personal__card" style="padding:0;">
+                <button nzBlock nz-button nzType="default"><i nz-icon nzType="plus" nzTheme="outline" style="font-size: 45px;"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div nz-col nzXs="1" nzSm="1" nzMd="1" nzLg="1" nzXl="1"></div>
+    </div>
+  </div>
+  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="8"></div>
+</div>
