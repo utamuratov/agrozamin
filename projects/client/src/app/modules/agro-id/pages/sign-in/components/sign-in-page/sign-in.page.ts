@@ -7,7 +7,6 @@ import { SignInRequest } from 'projects/client/src/app/shared/models/auth/sign-i
 import { catchError, finalize, map, Observable, of, startWith } from 'rxjs';
 import { Constants } from 'projects/client/src/app/core/config/constants';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
-import { LoginType } from 'projects/client/src/app/core/enums/login-type.enum';
 
 @Component({
   templateUrl: './sign-in.page.html',
@@ -15,11 +14,6 @@ import { LoginType } from 'projects/client/src/app/core/enums/login-type.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInPage implements OnInit {
-  /**
-   *
-   */
-  loginType!: LoginType;
-
   /**
    *
    */
@@ -74,9 +68,7 @@ export class SignInPage implements OnInit {
    */
   private getSignInRequest() {
     return new SignInRequest(
-      (this.loginType === LoginType.PhoneNumber
-        ? Constants.PREFIX_PHONENUMBER
-        : '') + this.loginForm.get(Constants.LOGIN)?.value,
+      this.loginForm.get(Constants.LOGIN)?.value,
       this.loginForm.get(Constants.PASSWORD)?.value
     );
   }
@@ -108,14 +100,5 @@ export class SignInPage implements OnInit {
       }),
       finalize(() => (this.$isWaitingResponse = undefined))
     );
-  }
-
-  /**
-   *
-   * @param loginType
-   */
-  onChangedLoginType(loginType: LoginType) {
-    this.loginType = loginType;
-    this.errorMessageFromServer = undefined;
   }
 }

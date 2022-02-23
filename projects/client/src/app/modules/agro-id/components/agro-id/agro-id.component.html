@@ -47,7 +47,7 @@
             </p>
           </div>
           <img
-            src="../../../../../assets/images/agro-id-images/logo.svg"
+            src="assets/images/agro-id-images/logo.svg"
             alt="agrozamin logo"
           />
         </div>
@@ -99,23 +99,9 @@
         nzLg="18"
         nzXl="16"
         class="height-100"
+        style="padding-top: 4vh; padding-bottom: 4vh;"
       >
-        <div nz-row nzAlign="middle" style="margin-top: 2vh">
-          <ng-container *ngFor="let language of languages">
-            <button
-              class="langBtn"
-              nz-button
-              (click)="onChangeLanguage(language)"
-              [nzType]="currentLanguageCode === language.code ? 'text' : 'link'"
-            >
-              {{ language.shortName }}
-            </button>
-            <nz-divider nzType="vertical"></nz-divider>
-          </ng-container>
-        </div>
-        <div style="margin-top: 4vh">
-          <router-outlet></router-outlet>
-        </div>
+        <router-outlet></router-outlet>
       </div>
       <div
         nz-col

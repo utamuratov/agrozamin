@@ -13,21 +13,4 @@ export interface ChangePassAndLogin {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ForgotPasswordPage {
-  /**
-   *
-   */
-  forgotPasswordStep = ForgotPasswordStep;
-
-  /**
-   *
-   */
-  currentStep = ForgotPasswordStep.Choose;
-
-  /**
-   *
-   * @param step
-   */
-  goToStep(step: ForgotPasswordStep) {
-    this.currentStep = step;
-  }
 }

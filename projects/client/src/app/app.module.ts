@@ -27,7 +27,6 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { createTranslateLoader } from './core/helpers/http-loader-factory';
-import { SetTokenAndHandleErrorInterceptor } from './core/interceptors/token.interceptor';
 import { DITokens } from './core/config/di-tokens';
 import { SettingsHelper } from './core/helpers/settings.helper';
 import { GlobalErrorHandler } from './core/helpers/global-error-handler';
@@ -35,6 +34,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { jwtOptionsFactory } from './core/helpers/jwt-options.factory';
 import { CookieService } from 'ngx-cookie-service';
+import { HandleErrorInterceptor } from './core/interceptors/handle.error.interceptor';
 
 registerLocaleData(ru);
 
@@ -90,7 +90,7 @@ registerLocaleData(ru);
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: SetTokenAndHandleErrorInterceptor,
+      useClass: HandleErrorInterceptor,
       multi: true,
     },
     {

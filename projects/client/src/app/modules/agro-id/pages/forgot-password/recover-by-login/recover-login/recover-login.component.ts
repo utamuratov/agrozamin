@@ -1,18 +1,24 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ForgotPasswordStep } from 'projects/client/src/app/core/enums/forgot-password-step.enum';
-import { LoginType } from 'projects/client/src/app/core/enums/login-type.enum';
+import { RecoverByLoginStep } from 'projects/client/src/app/core/enums/recover-by-login-step.enum';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
 
 @Component({
   selector: 'recover-login',
   templateUrl: './recover-login.component.html',
   styleUrls: ['./recover-login.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecoverLoginComponent implements OnInit {
-   /*
+  /*
    */
-  @Output() changeStep = new EventEmitter<ForgotPasswordStep>();
+  @Output() changeStep = new EventEmitter<RecoverByLoginStep>();
 
   /**
    *
@@ -54,17 +60,9 @@ export class RecoverLoginComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    */
   goToNextStep(): void {
-    this.changeStep.emit(ForgotPasswordStep.Confirmation);
-  }
-
-  /**
-   * 
-   * @param loginType 
-   */
-  onChangedLoginType(loginType: LoginType) {
-    console.log(loginType);
+    this.changeStep.emit(RecoverByLoginStep.LoginContactOptions);
   }
 }

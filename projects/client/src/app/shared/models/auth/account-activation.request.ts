@@ -1,4 +1,4 @@
-export interface AccountActivationRequest {
-  login: string;
+export interface PhoneActivationRequest {
+  phone: string;
   secure_code: string;
 }

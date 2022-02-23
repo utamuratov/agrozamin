@@ -1,8 +1,4 @@
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Constants } from 'projects/client/src/app/core/config/constants';
 import { ValidationHelper } from 'projects/client/src/app/core/helpers/validation.helper';
 import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.service';
@@ -53,7 +49,10 @@ export class PasswordAndConfirmationPassword {
   private addPasswordControl() {
     this.form.addControl(
       Constants.PASSWORD,
-      new FormControl(null, [Validators.required, Validators.minLength(6)])
+      new FormControl(null, [
+        Validators.required,
+        Validators.minLength(Constants.PASSWORD_MIN_LENGTH),
+      ])
     );
   }
 

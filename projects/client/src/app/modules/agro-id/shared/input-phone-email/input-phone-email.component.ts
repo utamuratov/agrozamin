@@ -212,8 +212,8 @@ export class InputPhoneEmailComponent implements OnInit {
       return this.$auth
         .checkLoginToUnique(
           this.loginType === LoginType.PhoneNumber
-            ? { phone: Constants.PREFIX_PHONENUMBER + control.value }
-            : { email: control.value }
+            ? { login: Constants.PREFIX_PHONENUMBER + control.value }
+            : { login: control.value }
         )
         .pipe(
           map(() => {

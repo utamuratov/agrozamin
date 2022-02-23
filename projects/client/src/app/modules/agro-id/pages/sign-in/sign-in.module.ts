@@ -6,6 +6,9 @@ import { ReactiveFormsSharedModule } from 'projects/client/src/app/shared/forms-
 import { SignInPage } from './components/sign-in-page/sign-in.page';
 import { NzFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/nz-forms-shared.module';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { BackAndLanguageModule } from '../../shared/back-and-language/back-and-language.module';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
   declarations: [SignInPage],
@@ -18,12 +21,15 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
     ReactiveFormsSharedModule,
     InputPhoneEmailModule,
     NzFormsSharedModule,
+    BackAndLanguageModule,
 
     /**
      * NG-ZORRO-MODULES
      */
     NzDividerModule,
-    NzTypographyModule
+    NzTypographyModule,
+    NzSpaceModule,
+    NzIconModule
   ],
 })
 export class SignInModule {}

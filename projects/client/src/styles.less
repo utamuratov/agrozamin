@@ -45,7 +45,12 @@ body {
   font-family: Agrofont-Regular;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: Agrofont-BExpanded;
 }
 
@@ -62,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 label {
-  color: #696F79 !important;
+  color: #696f79 !important;
 }
 
 .agro-id-form-title {
@@ -75,16 +80,21 @@ label {
   background: none;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .cabinet {
   .ant-menu.ant-menu-dark {
-    background: #3C4BDC;
+    background: #3c4bdc;
   }
+}
+
+.ant-input,
+.ant-input-affix-wrapper {
+  border-radius: 6px;
 }
 
 // GLOBAL
@@ -92,12 +102,24 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 1rem;
 }
 
+.mt {
+  &-1 {
+    margin-top: 1rem;
+  }
+  &-2 {
+    margin-top: 2rem;
+  }
+  &-3 {
+    margin-top: 3rem;
+  }
+}
+
 .m-0 {
   margin: 0;
 }
 
 .indigo-bg {
-  background: #3C4BDC;
+  background: #3c4bdc;
 }
 
 .height-100 {
@@ -108,22 +130,30 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100%;
 }
 
-.text-size-16 {
-  font-size: 16px;
-  line-height: 18px;
+.text {
+  &-center {
+    text-align: center;
+  }
+
+  &-start {
+    text-align: left;
+  }
+
+  &-end {
+    text-align: right;
+  }
+
+  &-size {
+    &-16 {
+      font-size: 16px;
+      line-height: 18px;
+    }
+    &-12 {
+      font-size: 12px;
+    }
+  }
 }
 
-.text-center {
-  text-align: center;
-}
-
-.text-start {
-  text-align: left;
-}
-
-.text-end {
-  text-align: right;
-}
 
 .d-block {
   display: block;
@@ -141,4 +171,38 @@ input[type=number]::-webkit-outer-spin-button {
   max-width: 300px;
   width: 100%;
   margin: auto;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items {
+  &-center {
+    align-items: center;
+  }
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.sub-title {
+  font-size: 18px;
 }

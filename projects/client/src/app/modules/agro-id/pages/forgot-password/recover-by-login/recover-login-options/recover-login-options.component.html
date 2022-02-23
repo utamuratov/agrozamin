@@ -1,0 +1,41 @@
+<div nz-row class="recover-login height-100">
+  <div
+    nz-col
+    nzXs="22"
+    nzSm="20"
+    nzMd="20"
+    nzLg="16"
+    nzXl="16"
+    class="d-flex flex-direction-column justify-content-center"
+  >
+    <!-- TITLE -->
+    <h2 nz-typography class="agro-id-form-title">
+      {{ "recover" | translate }}
+    </h2>
+
+    <nz-divider class="divider-custom-top"></nz-divider>
+
+    <p class="sub-title" nz-typography>
+      Выберите способ восстановления доступа
+    </p>
+
+    <div class="contact-option" (click)="goToNextStep()">
+      <i nz-icon nzType="bell" nzTheme="outline"></i>
+      <div class="contact-option-text">
+        <h5>По номеру телефона</h5>
+        <span nz-typography nzType="secondary">+99894*****10</span>
+      </div>
+      <i nz-icon nzType="arrow-right" nzTheme="outline" class="arrow-right"></i>
+    </div>
+    <div class="contact-option" (click)="goToNextStep()">
+      <i nz-icon nzType="mail" nzTheme="outline"></i>
+      <div class="contact-option-text">
+        <h5>По адресу электронной почты</h5>
+        <span nz-typography nzType="secondary">user****@gmail.com</span>
+      </div>
+      <i nz-icon nzType="arrow-right" nzTheme="outline" class="arrow-right"></i>
+    </div>
+  </div>
+  <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="4" nzXl="4"></div>
+  <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="4" nzXl="4"></div>
+</div>
