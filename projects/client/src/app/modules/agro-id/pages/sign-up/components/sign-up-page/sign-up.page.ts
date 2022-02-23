@@ -13,7 +13,7 @@ export class SignUpPage {
   /**
    *
    */
-  currentStep = SignUpStep.SetPassword;
+  currentStep = SignUpStep.SignUp;
 
   /**
    *
