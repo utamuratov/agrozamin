@@ -92,9 +92,26 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
+.ant-input,
+.ant-input-affix-wrapper {
+  border-radius: 6px;
+}
+
 // GLOBAL
 .mb-1 {
   margin-bottom: 1rem;
+}
+
+.mt {
+  &-1 {
+    margin-top: 1rem;
+  }
+  &-2 {
+    margin-top: 2rem;
+  }
+  &-3 {
+    margin-top: 3rem;
+  }
 }
 
 .m-0 {
@@ -113,22 +130,30 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 100%;
 }
 
-.text-size-16 {
-  font-size: 16px;
-  line-height: 18px;
+.text {
+  &-center {
+    text-align: center;
+  }
+
+  &-start {
+    text-align: left;
+  }
+
+  &-end {
+    text-align: right;
+  }
+
+  &-size {
+    &-16 {
+      font-size: 16px;
+      line-height: 18px;
+    }
+    &-12 {
+      font-size: 12px;
+    }
+  }
 }
 
-.text-center {
-  text-align: center;
-}
-
-.text-start {
-  text-align: left;
-}
-
-.text-end {
-  text-align: right;
-}
 
 .d-block {
   display: block;
@@ -146,4 +171,38 @@ input[type="number"]::-webkit-outer-spin-button {
   max-width: 300px;
   width: 100%;
   margin: auto;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items {
+  &-center {
+    align-items: center;
+  }
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.sub-title {
+  font-size: 18px;
 }

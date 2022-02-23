@@ -4,9 +4,9 @@ export class Constants {
   /**
    * SECURE DATA FOR LOGIN & REFRESH TOKEN
    */
-  public static readonly CLIENT_ID = '958cbf03-98f6-4506-ade9-b50ebbbdd0b8';
+  public static readonly CLIENT_ID = '95aafe79-4e63-4d6d-98cc-fde7b302fc3f';
   public static readonly CLIENT_SECRET =
-    'ElXRveZcAlVS2GuDvykIlSORdeOKrmOfog5pBZPl';
+    'K44OWIgGSqkpH55vY6QQwZldir6iN17IyepOXD4K';
 
   /**
    * DEFAULT DATA FOR USER INTERFACE LANGUAGE
@@ -38,6 +38,14 @@ export class Constants {
   public static readonly PASSWORD = 'password';
   public static readonly LOGIN = 'login';
   public static readonly CONFIRMATION_PASSWORD = 'confirmationPassword';
+
+  /**
+   * VALIDATIONS
+   */
+  public static readonly LOGIN_MIN_LENGTH = 5;
+  public static readonly FIRST_NAME_MIN_LENGTH = 2;
+  public static readonly LAST_NAME_MIN_LENGTH = 2;
+  public static readonly PASSWORD_MIN_LENGTH = 8;
 
   /**
    * LOCAL STORAGE KEYS

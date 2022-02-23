@@ -1,25 +1,33 @@
-<div class="sign-up__page" nz-col nzSm="24">
-  <div nz-row>
+<div nz-col nzSm="24" class="height-100 d-flex flex-direction-column">
+  <!-- <div nz-row>
     <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="19">
       <nz-steps [nzCurrent]="currentStep">
         <nz-step
-          [nzTitle]="currentStep === signUpStep.SignUp ?  ('signUpStep1' | translate ): '' "
+          [nzTitle]="currentStep === signUpStep.SignUp ?  ('signUp.signUp' | translate ): '' "
         ></nz-step>
         <nz-step
-          [nzTitle]="currentStep === signUpStep.Confirmation ?  ('signUpStep2' | translate ): '' "
+          [nzTitle]="currentStep === signUpStep.SetPassword ?  ('signUp.setPassword' | translate ): '' "
         ></nz-step>
         <nz-step
-          [nzTitle]="currentStep === signUpStep.Success ?  ('signUpStep3' | translate ): '' "
+          [nzTitle]="currentStep === signUpStep.Confirmation ?  ('signUp.confirmation' | translate ): '' "
+        ></nz-step>
+        <nz-step
+          [nzTitle]="currentStep === signUpStep.Success ?  ('signUp.register' | translate ): '' "
         ></nz-step>
       </nz-steps>
     </div>
-  </div>
+  </div> -->
 
-  <div [ngSwitch]="currentStep">
+  <div [ngSwitch]="currentStep" class="flex-grow-1">
     <sign-up
       (changeStep)="changeStepFromSignUp($event)"
       *ngSwitchCase="signUpStep.SignUp"
     ></sign-up>
+    <sign-up-set-password
+      [user]="user"
+      *ngSwitchCase="signUpStep.SetPassword"
+      (changeStep)="changeStepFromSetPassword($event)"
+    ></sign-up-set-password>
     <sign-up-confirmation
       (changeStep)="goToNextStep($event)"
       [data]="data"

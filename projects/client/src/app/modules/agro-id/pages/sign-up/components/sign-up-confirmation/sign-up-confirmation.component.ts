@@ -139,8 +139,8 @@ export class SignUpConfirmationComponent implements OnInit {
       activationCode += this.confirmationForm.value[key];
     }
     this.$isWaitingResponse = this.$auth
-      .sendAccountActivationCode({
-        login: this.data?.login,
+      .sendActivationCodeToPhone({
+        phone: this.data?.login,
         secure_code: activationCode,
       })
       .pipe(

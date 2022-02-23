@@ -13,11 +13,15 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { ReactiveFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/reactive-forms-shared.module';
 import { SignUpPage } from './components/sign-up-page/sign-up.page';
 import { NzFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/nz-forms-shared.module';
+import { BackAndLanguageModule } from '../../shared/back-and-language/back-and-language.module';
+import { SignUpSetPasswordComponent } from './components/sign-up-set-password/sign-up-set-password.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
-  declarations: [SignUpPage, SignUpComponent, SignUpSuccessComponent],
+  declarations: [SignUpPage, SignUpComponent, SignUpSuccessComponent, SignUpSetPasswordComponent],
   imports: [
     SignUpRoutingModule,
+    NgxMaskModule,
 
     /**
      * CUSTOM MODULES
@@ -26,6 +30,7 @@ import { NzFormsSharedModule } from 'projects/client/src/app/shared/forms-shared
     ReactiveFormsSharedModule,
     InputPhoneEmailModule,
     NzFormsSharedModule,
+    BackAndLanguageModule,
 
     /**
      * NG-ZORRO-MODULES

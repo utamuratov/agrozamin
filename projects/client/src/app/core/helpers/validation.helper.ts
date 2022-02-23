@@ -1,4 +1,9 @@
-import { AbstractControl, AsyncValidatorFn, FormGroup, ValidationErrors } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormGroup,
+  ValidationErrors,
+} from '@angular/forms';
 import { Observable, of } from 'rxjs';
 
 export class ValidationHelper {
@@ -11,6 +16,25 @@ export class ValidationHelper {
     const isNumber = /^[0-9]+$/.test(control.value);
     return !isNumber
       ? { number: { actualValue: control.value, pattern: '^[0-9]+$' } }
+      : null;
+  }
+
+  /**
+   *
+   * @param control
+   * @returns
+   */
+  static loginPatternValidator(
+    control: AbstractControl
+  ): ValidationErrors | null {
+    const validLogin = /^[^`~!@#$%^&*()={};:'"|\\?[\]/]+$/.test(control.value);
+    return !validLogin
+      ? {
+          login: {
+            actualValue: control.value,
+            pattern: '[]`~!@#$%^&*()={};:\'"|\\?/',
+          },
+        }
       : null;
   }
 
@@ -29,11 +53,14 @@ export class ValidationHelper {
   }
 
   /**
-   * 
-   * @param form 
-   * @returns 
+   *
+   * @param form
+   * @returns
    */
-  static mustMatchPAsswordAsyncValidator(form: FormGroup, passwordControlName: string): AsyncValidatorFn {
+  static mustMatchPAsswordAsyncValidator(
+    form: FormGroup,
+    passwordControlName: string
+  ): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       if (control.value !== form.controls[passwordControlName].value) {
         return of({ mustMatch: true });
@@ -69,9 +96,9 @@ export class ValidationHelper {
   }
 
   /**
-   * 
-   * @param control 
-   * @returns 
+   *
+   * @param control
+   * @returns
    */
   static strongPasswordValidator(
     control: AbstractControl
