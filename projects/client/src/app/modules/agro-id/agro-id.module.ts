@@ -8,6 +8,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { TriangleModule } from '../../shared/triangle/triangle.module';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 
+
 @NgModule({
   imports: [
     AgroIdRoutes,
@@ -25,6 +26,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
     NzButtonModule,
     NzDividerModule,
     NzTypographyModule,
+    
   ],
   declarations: [AgroIdComponent],
 })
