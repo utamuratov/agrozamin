@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { InputPhoneEmailModule } from '../../shared/input-phone-email/input-phone-email.module';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SignUpSuccessComponent } from './components/sign-up-success/sign-up-success.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -18,7 +16,12 @@ import { SignUpSetPasswordComponent } from './components/sign-up-set-password/si
 import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
-  declarations: [SignUpPage, SignUpComponent, SignUpSuccessComponent, SignUpSetPasswordComponent],
+  declarations: [
+    SignUpPage,
+    SignUpComponent,
+    SignUpSuccessComponent,
+    SignUpSetPasswordComponent,
+  ],
   imports: [
     SignUpRoutingModule,
     NgxMaskModule,
@@ -26,10 +29,9 @@ import { NgxMaskModule } from 'ngx-mask';
     /**
      * CUSTOM MODULES
      */
-    SignUpConfirmationModule,
     ReactiveFormsSharedModule,
-    InputPhoneEmailModule,
     NzFormsSharedModule,
+    SignUpConfirmationModule,
     BackAndLanguageModule,
 
     /**

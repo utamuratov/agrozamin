@@ -22,7 +22,7 @@ export class SignInPage implements OnInit {
   /**
    *
    */
-  loginForm!: FormGroup;
+  form!: FormGroup;
 
   /**
    *
@@ -48,13 +48,13 @@ export class SignInPage implements OnInit {
   /**
    *
    */
-  submitForm(): void {
+  submit(): void {
     if (this.$isWaitingResponse) {
       return;
     }
 
-    if (this.loginForm.invalid) {
-      markAllAsDirty(this.loginForm);
+    if (this.form.invalid) {
+      markAllAsDirty(this.form);
       return;
     }
 
@@ -68,8 +68,8 @@ export class SignInPage implements OnInit {
    */
   private getSignInRequest() {
     return new SignInRequest(
-      this.loginForm.get(Constants.LOGIN)?.value,
-      this.loginForm.get(Constants.PASSWORD)?.value
+      this.form.get(Constants.LOGIN)?.value,
+      this.form.get(Constants.PASSWORD)?.value
     );
   }
 
@@ -77,7 +77,7 @@ export class SignInPage implements OnInit {
    *
    */
   private initForm() {
-    this.loginForm = this.fb.group({
+    this.form = this.fb.group({
       [Constants.LOGIN]: [null, [Validators.required]],
       [Constants.PASSWORD]: [null, [Validators.required]],
     });
