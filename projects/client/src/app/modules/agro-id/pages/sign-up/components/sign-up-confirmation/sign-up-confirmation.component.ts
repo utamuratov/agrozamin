@@ -197,13 +197,13 @@ export class SignUpConfirmationComponent implements OnInit {
   /**
    *
    */
-  askActivationCodeAgain() {
+  resendActivationCode() {
     if (this.$isWaitingActivationCodeResponse) {
       return;
     }
 
     this.$isWaitingActivationCodeResponse = this.$auth
-      .askAccountActivationCode({ login: this.data?.login })
+      .resendAccountActivationCode({ phone: this.data?.login })
       .pipe(
         map((result) => {
           if (result) {

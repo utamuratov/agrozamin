@@ -16,19 +16,23 @@
         </h2>
 
         <nz-divider class="mt-10p"></nz-divider>
+
         <!-- FORM -->
         <form
           nz-form
           nzLayout="vertical"
           [formGroup]="form"
-          (ngSubmit)="submitForm()"
+          (ngSubmit)="submit()"
         >
-          <!-- LOGIN -->
+          <!-- LOGIN INPUT -->
           <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
             <nz-form-item>
-              <nz-form-label>{{ "login" | translate }}</nz-form-label>
+              <nz-form-label nzFor="login">{{
+                "login" | translate
+              }}</nz-form-label>
               <nz-form-control [nzErrorTip]="error">
                 <input
+                  id="login"
                   class="form__inputGroup"
                   nz-input
                   onlyLetter
@@ -44,7 +48,7 @@
             </nz-form-item>
           </div>
 
-          <!-- CONTINUE -->
+          <!-- CONTINUE BUTTON -->
           <button
             nz-button
             nzType="primary"

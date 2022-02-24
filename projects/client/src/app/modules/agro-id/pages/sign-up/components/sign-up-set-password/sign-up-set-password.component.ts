@@ -99,7 +99,6 @@ export class SignUpSetPasswordComponent
    */
   submit(): void {
     if (this.form.valid) {
-      console.log('submit', this.form.value);
       this.user.password = this.form.controls['password'].value;
       this.signUp(this.user);
     } else {

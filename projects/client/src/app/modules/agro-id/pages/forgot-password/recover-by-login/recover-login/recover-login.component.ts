@@ -50,7 +50,7 @@ export class RecoverLoginComponent implements OnInit {
   /**
    *
    */
-  submitForm(): void {
+  submit(): void {
     if (this.form.valid) {
       console.log('submit', this.form.value);
       this.goToNextStep();

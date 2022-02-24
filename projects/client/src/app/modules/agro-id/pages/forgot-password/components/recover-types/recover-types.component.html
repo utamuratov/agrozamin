@@ -1,12 +1,5 @@
 <div nz-row class="h-100">
-  <div
-    nz-col
-    nzXs="1"
-    nzSm="2"
-    nzMd="2"
-    nzLg="2"
-    nzXl="2"
-  ></div>
+  <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="2" nzXl="2"></div>
   <div
     nz-col
     nzXs="22"
@@ -18,20 +11,20 @@
   >
     <div class="flex-grow-1 d-flex align-items-center">
       <div>
-        <h2 nz-typography class="title">Восстановление доступа</h2>
+        <h2 nz-typography class="title">{{ "recover" | translate }}</h2>
         <nz-divider></nz-divider>
 
         <div nz-row [nzGutter]="[15, 20]">
           <div nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" nzXl="12">
             <div nzBlock class="custom-card grid" routerLink="by-login">
               <i nz-icon nzType="user" nzTheme="outline"></i>
-              Через логин
+              {{ "byLogin" | translate }}
             </div>
           </div>
           <div nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" nzXl="12">
             <div class="custom-card grid" routerLink="by-contacts">
               <i nz-icon nzType="phone" nzTheme="outline"></i>
-              Через контактные данные
+              {{ "byContacts" | translate }}
             </div>
           </div>
         </div>
@@ -40,12 +33,5 @@
 
     <back-and-language></back-and-language>
   </div>
-  <div
-    nz-col
-    nzXs="1"
-    nzSm="2"
-    nzMd="2"
-    nzLg="2"
-    nzXl="2"
-  ></div>
+  <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="2" nzXl="2"></div>
 </div>
