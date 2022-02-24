@@ -14,6 +14,7 @@ import { NzFormsSharedModule } from 'projects/client/src/app/shared/forms-shared
 import { BackAndLanguageModule } from '../../shared/back-and-language/back-and-language.module';
 import { SignUpSetPasswordComponent } from './components/sign-up-set-password/sign-up-set-password.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { PasswordShowHideModule } from '../../shared/password-eye/password-show-hide.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NgxMaskModule } from 'ngx-mask';
     NzFormsSharedModule,
     SignUpConfirmationModule,
     BackAndLanguageModule,
+    PasswordShowHideModule,
 
     /**
      * NG-ZORRO-MODULES

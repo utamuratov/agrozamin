@@ -8,6 +8,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { BackAndLanguageModule } from '../../shared/back-and-language/back-and-language.module';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { PasswordShowHideModule } from '../../shared/password-eye/password-show-hide.module';
 
 @NgModule({
   declarations: [SignInPage],
@@ -20,6 +21,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     ReactiveFormsSharedModule,
     NzFormsSharedModule,
     BackAndLanguageModule,
+    PasswordShowHideModule,
 
     /**
      * NG-ZORRO-MODULES
@@ -27,7 +29,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzDividerModule,
     NzTypographyModule,
     NzSpaceModule,
-    NzIconModule
+    NzIconModule,
   ],
 })
 export class SignInModule {}

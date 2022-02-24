@@ -65,16 +65,10 @@
                 nz-input
                 formControlName="password"
               />
+              <ng-template #eye>
+                <az-password-show-hide [password]="password"></az-password-show-hide>
+              </ng-template>
             </nz-input-group>
-            <ng-template #eye>
-              <a
-                *ngIf="password.value"
-                class="text-size-12"
-                (click)="password.type = password.type === 'password' ? 'text' : 'password'"
-                >{{(password.type === 'password' ? 'show' : 'hide')
-                |translate}}</a
-              >
-            </ng-template>
           </nz-form-control>
         </nz-form-item>
 
