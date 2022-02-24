@@ -83,7 +83,7 @@ export class AuthService {
    * @param model
    * @returns
    */
-  askAccountActivationCode(
+  resendAccountActivationCode(
     model: AskActivationCodeRequest
   ): Observable<Message> {
     return this.$baseService.post<Message>('resend-secure-code', model);

@@ -40,7 +40,7 @@ export class SignUpSuccessComponent implements OnInit {
       }),
       startWith(WAITING_DELAY),
       takeWhile((value) => value > 0),
-      // finalize(() => this.router.navigate(['../'], { relativeTo: this.route }))
+      finalize(() => this.router.navigate(['../'], { relativeTo: this.route }))
     );
   }
 }

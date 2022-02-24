@@ -1,3 +1,3 @@
 export interface AskActivationCodeRequest {
-  login: string;
+  phone: string;
 }

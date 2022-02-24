@@ -16,13 +16,13 @@
     <nz-divider class="mt-10p"></nz-divider>
 
     <p class="text-size-18" nz-typography>
-      Выберите способ восстановления доступа
+      {{ "chooseOptionsOfRecover" | translate }}
     </p>
 
     <div class="custom-card inline" (click)="goToNextStep()">
       <i nz-icon nzType="bell" nzTheme="outline"></i>
       <div class="title">
-        <h5>По номеру телефона</h5>
+        <h5>{{ "byPhoneNumber" | translate }}</h5>
         <span nz-typography nzType="secondary">+99894*****10</span>
       </div>
       <i nz-icon nzType="arrow-right" nzTheme="outline" class="arrow-right"></i>
@@ -30,7 +30,7 @@
     <div class="custom-card inline" (click)="goToNextStep()">
       <i nz-icon nzType="mail" nzTheme="outline"></i>
       <div class="title">
-        <h5>По адресу электронной почты</h5>
+        <h5>{{ "byEmail" | translate }}</h5>
         <span nz-typography nzType="secondary">user****@gmail.com</span>
       </div>
       <i nz-icon nzType="arrow-right" nzTheme="outline" class="arrow-right"></i>

@@ -60,6 +60,7 @@
   "login.uniqueactiveuser": "Такое логин уже существует.",
   "phone.unique": "Такое номер телефона уже существует.",
   "phone.uniqueactiveuser": "Такое логин уже существует.",
+  "phone.phoneverification": "Попробуйте позже",
   "email.uniqueactiveuser": "Такое логин уже существует.",
   "secure_code.wrong_code": "Код неверный",
   "secure_code.checksecurecode": "Неверный код",
@@ -84,5 +85,10 @@
   "recoverByLogin": "Восстановление доступа через логин",
   "recover": "Восстановление доступа",
   "show": "Показать",
-  "hide": "Скрывать"
+  "hide": "Скрывать",
+  "byLogin": "Через логин",
+  "byContacts": "Через контактные данные",
+  "chooseOptionsOfRecover": "Выберите способ восстановления доступа",
+  "byPhoneNumber": "По номеру телефона",
+  "byEmail": "По адресу электронной почты"
 }
