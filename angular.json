@@ -15,7 +15,7 @@
       },
       "root": "projects/admin",
       "sourceRoot": "projects/admin/src",
-      "prefix": "app",
+      "prefix": "az",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -123,7 +123,7 @@
       },
       "root": "projects/client",
       "sourceRoot": "projects/client/src",
-      "prefix": "app",
+      "prefix": "az",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -220,5 +220,5 @@
       }
     }
   },
-  "defaultProject": "admin"
+  "defaultProject": "client"
 }

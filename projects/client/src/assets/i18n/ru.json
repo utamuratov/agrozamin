@@ -57,6 +57,7 @@
   "login.failed": "Неверный логин или пароль",
   "login.required": "Поле login обязательно для заполнения.",
   "login.unique": "Такое логин уже существует.",
+  "login.uniqueactiveuser": "Такое логин уже существует.",
   "phone.unique": "Такое номер телефона уже существует.",
   "phone.uniqueactiveuser": "Такое логин уже существует.",
   "email.uniqueactiveuser": "Такое логин уже существует.",

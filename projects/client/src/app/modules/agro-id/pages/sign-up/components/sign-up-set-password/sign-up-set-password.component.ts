@@ -91,7 +91,6 @@ export class SignUpSetPasswordComponent
    */
   private initForm() {
     this.form = this.fb.group({});
-
     super.addPasswordAndConfrimationPasswordControls();
   }
 

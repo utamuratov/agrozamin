@@ -1,6 +1,9 @@
-<div class="height-100 d-flex flex-direction-column justify-content-center">
+<div class="h-100 d-flex flex-column justify-content-center">
+  <!-- TITLE -->
   <div class="confirm-text">
-    <h3 class="agro-id-form-title">{{ "confirmation" | translate }}</h3>
+    <h2 nz-typography class="agro-id-form-title">
+      {{ "confirmation" | translate }}
+    </h2>
     <p nz-typography nzType="secondary">
       {{
         (data?.byPhoneNumber
@@ -15,7 +18,9 @@
     </p>
   </div>
 
-  <nz-divider class="divider-custom-top"></nz-divider>
+  <nz-divider class="mt-10p"></nz-divider>
+
+  <!-- BODY -->
   <div nz-row>
     <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="20" nzXl="20">
       <div></div>
@@ -23,7 +28,8 @@
         nz-form
         class="confirm-form"
         nzLayout="horizontal"
-        [formGroup]="confirmationForm"
+        [formGroup]="form"
+        (submit)="submit()"
       >
         <!-- ERRORS FROM SERVER -->
         <div class="mb-1">
@@ -33,6 +39,7 @@
           ></error-from-server>
         </div>
 
+        <!-- SECURE CODE -->
         <div nz-row>
           <div
             nz-col
@@ -74,19 +81,16 @@
         </div>
 
         <!-- Send activation code -->
-        <div>
-          <button
-            nzBlock
-            nz-button
-            class="confirm-btn font-agro-medium"
-            nzType="primary"
-            [disabled]="!confirmationForm.valid"
-            [nzLoading]="$isWaitingResponse | async"
-            (click)="confirmPasscode()"
-          >
-            {{ "confirm" | translate }}
-          </button>
-        </div>
+        <button
+          nzBlock
+          nz-button
+          class="confirm-btn font-agro-medium"
+          nzType="primary"
+          [disabled]="!form.valid"
+          [nzLoading]="$isWaitingResponse | async"
+        >
+          {{ "confirm" | translate }}
+        </button>
       </form>
       <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="2" nzXl="2"></div>
       <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="2" nzXl="2"></div>

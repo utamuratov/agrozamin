@@ -1,5 +1,5 @@
-<div class="height-100 d-flex flex-direction-column">
-  <div class="d-flex flex-direction-column flex-grow-1 justify-content-center">
+<div class="h-100 d-flex flex-column">
+  <div class="flex-grow-1 d-flex flex-column justify-content-center">
     <!-- SIGN UP -->
     <h2 nz-typography class="form__title agro-id-form-title">
       {{ "registration" | translate }}
@@ -11,7 +11,7 @@
       <a routerLink="../">{{ "toComeIn" | translate }}</a>
     </p>
 
-    <nz-divider class="divider-custom-top"></nz-divider>
+    <nz-divider class="mt-10p"></nz-divider>
 
     <!-- SIGN UP FORM -->
     <form
@@ -21,127 +21,125 @@
       [formGroup]="form"
       (ngSubmit)="continue()"
     >
-      <div>
-        <div nz-row nzGutter="16">
-          <!-- FIRSTNAME -->
-          <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
-            <nz-form-item>
-              <nz-form-label>{{ "firstName" | translate }}</nz-form-label>
-              <nz-form-control [nzErrorTip]="error">
-                <input
-                  class="form__inputGroup"
-                  nz-input
-                  onlyLetter
-                  type="text"
-                  nzSize="large"
-                  formControlName="f_name"
-                />
-              </nz-form-control>
-              <ng-template #error let-control>
-                <error [control]="control"></error>
-              </ng-template>
-            </nz-form-item>
-          </div>
-
-          <!-- LASTNAME -->
-          <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
-            <nz-form-item>
-              <nz-form-label>{{ "lastName" | translate }}</nz-form-label>
-              <nz-form-control [nzErrorTip]="error">
-                <input
-                  class="form__inputGroup"
-                  nz-input
-                  onlyLetter
-                  type="text"
-                  nzSize="large"
-                  formControlName="l_name"
-                />
-              </nz-form-control>
-              <ng-template #error let-control>
-                <error [control]="control"></error>
-              </ng-template>
-            </nz-form-item>
-          </div>
+      <div nz-row nzGutter="16">
+        <!-- FIRSTNAME -->
+        <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
+          <nz-form-item>
+            <nz-form-label>{{ "firstName" | translate }}</nz-form-label>
+            <nz-form-control [nzErrorTip]="error">
+              <input
+                class="form__inputGroup"
+                nz-input
+                onlyLetter
+                type="text"
+                nzSize="large"
+                formControlName="f_name"
+              />
+            </nz-form-control>
+            <ng-template #error let-control>
+              <error [control]="control"></error>
+            </ng-template>
+          </nz-form-item>
         </div>
 
-        <!-- USER LOGIN -->
-        <nz-form-item>
-          <nz-form-label>{{ "login" | translate }}</nz-form-label>
-          <nz-form-control nzHasFeedback [nzErrorTip]="errorLogin">
+        <!-- LASTNAME -->
+        <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
+          <nz-form-item>
+            <nz-form-label>{{ "lastName" | translate }}</nz-form-label>
+            <nz-form-control [nzErrorTip]="error">
+              <input
+                class="form__inputGroup"
+                nz-input
+                onlyLetter
+                type="text"
+                nzSize="large"
+                formControlName="l_name"
+              />
+            </nz-form-control>
+            <ng-template #error let-control>
+              <error [control]="control"></error>
+            </ng-template>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <!-- USER LOGIN -->
+      <nz-form-item>
+        <nz-form-label>{{ "login" | translate }}</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="errorLogin">
+          <input
+            class="form__inputGroup"
+            nz-input
+            type="text"
+            nzSize="large"
+            formControlName="login"
+            placeholder="{{ 'createLogin' | translate }}"
+          />
+        </nz-form-control>
+        <ng-template #errorLogin let-control>
+          <error [control]="control"></error>
+          <!-- ERRORS FROM SERVER -->
+          <ng-container *ngIf="control.hasError('errorMessageFromServer')">
+            <error-from-server
+              [error]="control.getError('errorMessageFromServer')"
+            ></error-from-server>
+          </ng-container>
+        </ng-template>
+      </nz-form-item>
+
+      <!-- PHONE NUMBER  -->
+      <nz-form-item>
+        <nz-form-label nzFor="phone">{{
+          "regPhoneLabel" | translate
+        }}</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="errorPhone">
+          <nz-input-group nzPrefixIcon="phone" nzSize="large">
             <input
+              id="phone"
               class="form__inputGroup"
               nz-input
               type="text"
               nzSize="large"
-              formControlName="login"
-              placeholder="{{ 'createLogin' | translate }}"
+              mask="00 000 00 00"
+              prefix="+998 "
+              formControlName="phone"
             />
-          </nz-form-control>
-          <ng-template #errorLogin let-control>
-            <error [control]="control"></error>
-            <!-- ERRORS FROM SERVER -->
-            <ng-container *ngIf="control.hasError('errorMessageFromServer')">
-              <error-from-server
-                [error]="control.getError('errorMessageFromServer')"
-              ></error-from-server>
-            </ng-container>
-          </ng-template>
-        </nz-form-item>
+          </nz-input-group>
+        </nz-form-control>
+        <ng-template let-control #errorPhone>
+          <error [control]="control"></error>
+          <!-- ERRORS FROM SERVER -->
+          <ng-container *ngIf="control.hasError('errorMessageFromServer')">
+            <error-from-server
+              [error]="control.getError('errorMessageFromServer')"
+            ></error-from-server>
+          </ng-container>
+        </ng-template>
+      </nz-form-item>
 
-        <!-- PHONE NUMBER  -->
-        <nz-form-item>
-          <nz-form-label nzFor="phone">{{
-            "regPhoneLabel" | translate
-          }}</nz-form-label>
-          <nz-form-control nzHasFeedback [nzErrorTip]="errorPhone">
-            <nz-input-group nzPrefixIcon="phone" nzSize="large">
-              <input
-                id="phone"
-                class="form__inputGroup"
-                nz-input
-                type="text"
-                nzSize="large"
-                mask="00 000 00 00"
-                prefix="+998 "
-                formControlName="phone"
-              />
-            </nz-input-group>
-          </nz-form-control>
-          <ng-template let-control #errorPhone>
-            <error [control]="control"></error>
-            <!-- ERRORS FROM SERVER -->
-            <ng-container *ngIf="control.hasError('errorMessageFromServer')">
-              <error-from-server
-                [error]="control.getError('errorMessageFromServer')"
-              ></error-from-server>
-            </ng-container>
-          </ng-template>
-        </nz-form-item>
+      <!-- DO YOU AGREE -->
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="24">
+          <label nz-checkbox formControlName="agree">
+            <span>{{ "agree" | translate }}</span>
+          </label>
+          <a style="font-size: 16px">{{ "termsOfUse" | translate }}</a>
+        </nz-form-control>
+      </nz-form-item>
 
-        <!-- DO YOU AGREE -->
-        <nz-form-item nz-row class="register-area">
-          <nz-form-control [nzSpan]="24">
-            <label nz-checkbox formControlName="agree">
-              <span>{{ "agree" | translate }}</span>
-            </label>
-            <a style="font-size: 16px">{{ "termsOfUse" | translate }}</a>
-          </nz-form-control>
-        </nz-form-item>
-
-        <!-- CONTINUE -->
-        <div nz-row>
-          <button
-            [disabled]="!form.controls['agree'].valid"
-            nzBlock
-            nz-button
-            nzBlock
-            nzShape="round"
-            nzType="primary"
-            class="font-agro-medium mb-1"
-          >
-            {{ "continue" | translate }}
-          </button>
-        </div>
+      <!-- CONTINUE -->
+      <div nz-row>
+        <button
+          [disabled]="!form.controls['agree'].valid"
+          nzBlock
+          nz-button
+          nzBlock
+          nzShape="round"
+          nzType="primary"
+          class="font-agro-medium mb-1"
+        >
+          {{ "continue" | translate }}
+        </button>
       </div>
     </form>
   </div>

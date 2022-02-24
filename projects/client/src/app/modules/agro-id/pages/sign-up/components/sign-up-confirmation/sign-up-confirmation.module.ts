@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SignUpConfirmationComponent } from './sign-up-confirmation.component';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
@@ -10,15 +9,19 @@ import { NzFormsSharedModule } from 'projects/client/src/app/shared/forms-shared
 
 @NgModule({
   imports: [
-    CommonModule,
-    
+    /**
+     * CUSTOM MODULES
+     */
     ReactiveFormsSharedModule,
     NzFormsSharedModule,
 
+    /**
+     * NG-ZORRO-MODULES
+     */
     NzDividerModule,
     NzSpinModule,
     NzTypographyModule,
-    NzIconModule
+    NzIconModule,
   ],
   declarations: [SignUpConfirmationComponent],
   exports: [SignUpConfirmationComponent],

@@ -1,4 +1,4 @@
-<div nz-row class="height-100">
+<div nz-row class="h-100">
   <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="4" nzXl="4"></div>
   <div
     nz-col
@@ -7,22 +7,20 @@
     nzMd="20"
     nzLg="16"
     nzXl="16"
-    class="d-flex flex-direction-column"
+    class="d-flex flex-column"
   >
-    <div
-      class="d-flex flex-direction-column flex-grow-1 justify-content-center"
-    >
+    <div class="d-flex flex-column flex-grow-1 justify-content-center">
       <form
         nz-form
-        [formGroup]="loginForm"
+        [formGroup]="form"
         nzLayout="vertical"
         class="login-form"
-        (ngSubmit)="submitForm()"
+        (ngSubmit)="submit()"
       >
-        <h2 nz-typography class="title">{{'entrance' | translate}}</h2>
-        <nz-divider
-          class="divider-custom-top divider-custom-bottom"
-        ></nz-divider>
+        <h2 nz-typography class="agro-id-form-title">
+          {{'entrance' | translate}}
+        </h2>
+        <nz-divider class="mt-10p mb-4p"></nz-divider>
 
         <!-- ERRORS FROM SERVER -->
         <div class="mb-1">
@@ -95,18 +93,18 @@
             >
           </div>
         </div>
-        <div>
-          <button
-            class="login-form-margin font-agro-medium mt-2"
-            nz-button
-            nzShape="round"
-            nzBlock
-            [nzType]="'primary'"
-            [nzLoading]="$isWaitingResponse|async"
-          >
-            {{'toComeIn' | translate}}
-          </button>
-        </div>
+
+        <!-- LOGIN -->
+        <button
+          class="login-form-margin font-agro-medium mt-2"
+          nz-button
+          nzShape="round"
+          nzBlock
+          [nzType]="'primary'"
+          [nzLoading]="$isWaitingResponse|async"
+        >
+          {{'toComeIn' | translate}}
+        </button>
       </form>
     </div>
 

@@ -2,10 +2,7 @@
 // For more information: https://ng.ant.design/docs/customize-theme/en
 @import "../../../node_modules/ng-zorro-antd/ng-zorro-antd.less";
 
-// Override less variables to here
-// View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.les
-// @primary-color: #1890ff;
-/* You can add global styles to this file, and also import other style files */
+@import "assets/styles/az-global.less";
 
 @primary-color: #3c4bdc;
 @form-item-margin-bottom: 10px;
@@ -45,6 +42,17 @@ body {
   font-family: Agrofont-Regular;
 }
 
+label {
+  color: #696f79 !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+//#region HEADER
 h1,
 h2,
 h3,
@@ -54,42 +62,32 @@ h6 {
   font-family: Agrofont-BExpanded;
 }
 
-.font-agro-black {
-  font-family: Agrofont-Black;
-}
-
-.font-agro-bold {
-  font-family: Agrofont-Bold;
-}
-
-.font-agro-medium {
-  font-family: Agrofont-Medium;
-}
-
-label {
-  color: #696f79 !important;
-}
-
-.agro-id-form-title {
+h2.agro-id-form-title {
   font-size: 36px;
   line-height: 38px;
   font-weight: 700;
 }
+//#endregion
 
+//#region FONT
+.font {
+  &-agro-black {
+    font-family: Agrofont-Black;
+  }
+
+  &-agro-bold {
+    font-family: Agrofont-Bold;
+  }
+
+  &-agro-medium {
+    font-family: Agrofont-Medium;
+  }
+}
+//#endregion
+
+//#region NG ZORRO MODIFIED CLASSES
 .ant-layout {
   background: none;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.cabinet {
-  .ant-menu.ant-menu-dark {
-    background: #3c4bdc;
-  }
 }
 
 .ant-input,
@@ -97,75 +95,14 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 6px;
 }
 
-// GLOBAL
-.mb-1 {
-  margin-bottom: 1rem;
-}
-
-.mt {
-  &-1 {
-    margin-top: 1rem;
-  }
-  &-2 {
-    margin-top: 2rem;
-  }
-  &-3 {
-    margin-top: 3rem;
+.cabinet {
+  .ant-menu.ant-menu-dark {
+    background: #3c4bdc;
   }
 }
+//#endregion
 
-.m-0 {
-  margin: 0;
-}
-
-.indigo-bg {
-  background: #3c4bdc;
-}
-
-.height-100 {
-  height: 100%;
-}
-
-.width-100 {
-  width: 100%;
-}
-
-.text {
-  &-center {
-    text-align: center;
-  }
-
-  &-start {
-    text-align: left;
-  }
-
-  &-end {
-    text-align: right;
-  }
-
-  &-size {
-    &-16 {
-      font-size: 16px;
-      line-height: 18px;
-    }
-    &-12 {
-      font-size: 12px;
-    }
-  }
-}
-
-
-.d-block {
-  display: block;
-}
-
-.divider-custom-top {
-  margin-top: 10px;
-}
-
-.divider-custom-bottom {
-  margin-bottom: 4px;
-}
+//#region CUSTOM CLASSES
 
 .custom-btn {
   max-width: 300px;
@@ -173,36 +110,61 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: auto;
 }
 
-.d-flex {
-  display: flex;
+.indigo-bg {
+  background: #3c4bdc;
 }
 
-.flex-direction-column {
-  flex-direction: column;
-}
+//#region CUSTOM CARD
+.custom-card {
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 14px 1px rgba(0, 0, 0, 0.06);
+  border: 1px solid transparent;
+  background: white;
 
-.flex-grow-1 {
-  flex-grow: 1;
-}
+  &:hover {
+    background: #f9f8f8;
+    border: 1px solid #3c4bdc;
+    box-sizing: border-box;
+    cursor: pointer;
 
-.justify-content-center {
-  justify-content: center;
-}
+    i {
+      color: #3c4bdc;
+    }
+  }
 
-.align-items {
-  &-center {
+  &.inline {
+    display: flex;
     align-items: center;
+    margin-bottom: 10px;
+
+    i {
+      padding: 0 15px;
+      font-size: 18px;
+    }
+
+    .arrow-right {
+      opacity: 0;
+    }
+
+    .title {
+      flex-grow: 1;
+      padding-left: 15px;
+    }
+
+    &:hover {
+      .arrow-right {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.grid {
+    display: grid;
+    text-align: center;
+    height: 100px;
   }
 }
+//#endregion
 
-.p-0 {
-  padding: 0;
-}
-
-.m-0 {
-  margin: 0;
-}
-
-.sub-title {
-  font-size: 18px;
-}
+//#endregion
