@@ -7,29 +7,34 @@ import { UserInfoModal } from './components/user-info-modal/user-info-modal.comp
   styleUrls: ['./personal.component.less'],
 })
 export class PersonalComponent implements OnInit {
-  isVisibleUserModal = false;
-  isVisibleEmailModal = false;
-  isVisiblePhoneModal = false;
-
-  userName = 'Кайрат';
-  userSurname = 'Махмудов';
-  userEmail = 'shisudesign@outlook.com';
-  phone = '';
-
-  data!: UserInfoModal;
+  userInfo = [
+    {
+      firstName: 'Артур',
+      lastName: 'Нарбеков',
+      phone: 998903262013,
+      mail: null,
+      avatar: '../../../../../../../assets/images/agro-id-images/avatar.jpg',
+      main: true,
+    },
+    {
+      firstName: 'Тимур',
+      lastName: 'Мун',
+      phone: 998903262013,
+      mail: 'narbekov@gmail.com',
+      avatar: '../../../../../../../assets/images/agro-id-images/avatar3.jpg',
+      main: false
+    },
+    {
+      firstName: 'Кристина',
+      lastName: 'Варламова',
+      phone: 998903262013,
+      mail: 'narbekov@gmail.com',
+      avatar: '../../../../../../../assets/images/agro-id-images/avatar2.jpg',
+      main: false
+    },
+  ];
 
   constructor() {}
 
   ngOnInit(): void {}
-
-  showUserModal(): void {
-    this.isVisibleUserModal = true;
-  }
-  showModal(data: UserInfoModal): void {
-    this.isVisibleEmailModal = true;
-    this.data = data
-  }
-  showPhoneModal(): void {
-    this.isVisiblePhoneModal = true;
-  }
 }

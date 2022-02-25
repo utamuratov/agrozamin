@@ -1,4 +1,4 @@
-<nz-layout class="height-100 cabinet">
+<!-- <nz-layout class="height-100 cabinet">
   <nz-sider
     style="position: relative"
     nzCollapsible
@@ -11,9 +11,8 @@
   >
     <div style="position: relative">
 
-      <!-- TRIGGER BUTTON -->
 
-      <!-- <button
+      <button
         nz-button
         nzType="primary"
         style="position: absolute; top: 10px; right: -50px; z-index: 10000"
@@ -25,7 +24,9 @@
           [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
           
         ></i>
-      </button> -->
+      </button>
+
+
       <div style="padding: 8px;" *ngIf="isCollapsed === false; else langCollapsed">
         <ng-container  *ngFor="let language of languages; let i = index">
           <button
@@ -43,7 +44,7 @@
       </div>
 
       <ng-template #langCollapsed>
-        <!-- <a nz-dropdown [nzDropdownMenu]="menu" class="dropdown__active">
+        <a nz-dropdown [nzDropdownMenu]="menu" class="dropdown__active">
           Рус
           <i nz-icon nzType="down"></i>
         </a>
@@ -53,14 +54,13 @@
             <li nz-menu-item>Узб</li>
             <li nz-menu-item>Uzb</li>
           </ul>
-        </nz-dropdown-menu> -->
+        </nz-dropdown-menu>
       </ng-template>
       
     
 
 
 
-      <!-- <span class="logo">AgroID</span> -->
       <ul nzTheme="dark" nz-menu nzMode="inline" class="cabinet__sidebar__menu">
         <li nz-menu-item nzSelected nzMatchRouter routerLink="personal">
           <i nz-icon nzType="user"></i>
@@ -94,12 +94,20 @@
   <nz-layout>
     <nz-content style="overflow: auto">
       <div class="height-100 cabinet__content">
-        <!-- <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="2" nzXl="1"></div>
-        <div nz-col nzXs="22" nzSm="20" nzMd="20" nzLg="20" nzXl="22"> -->
             <router-outlet></router-outlet>
-        <!-- </div> -->
-        <!-- <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="2" nzXl="1"></div> -->
       </div>
     </nz-content>
+  </nz-layout>
+</nz-layout>
+ -->
+
+<nz-layout>
+  <nz-sider>Sider</nz-sider>
+  <nz-layout>
+    <nz-header>Header</nz-header>
+    <nz-layout>
+      <nz-content>Content</nz-content>
+      <nz-sider>Sider</nz-sider>
+    </nz-layout>
   </nz-layout>
 </nz-layout>
