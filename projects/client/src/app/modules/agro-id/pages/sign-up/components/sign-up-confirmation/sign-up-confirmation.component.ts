@@ -53,7 +53,7 @@ export class SignUpConfirmationComponent implements OnInit {
   /**
    *
    */
-  confirmationForm!: FormGroup;
+  form!: FormGroup;
 
   /**
    *
@@ -117,7 +117,7 @@ export class SignUpConfirmationComponent implements OnInit {
    *
    */
   private initForm() {
-    this.confirmationForm = this.fb.group({
+    this.form = this.fb.group({
       activationCode1: [null, [Validators.required]],
       activationCode2: [null, [Validators.required]],
       activationCode3: [null, [Validators.required]],
@@ -129,18 +129,18 @@ export class SignUpConfirmationComponent implements OnInit {
   /**
    *
    */
-  confirmPasscode(): void {
+  submit(): void {
     if (this.$isWaitingResponse) {
       return;
     }
 
     let activationCode = '';
-    for (const key in this.confirmationForm.value) {
-      activationCode += this.confirmationForm.value[key];
+    for (const key in this.form.value) {
+      activationCode += this.form.value[key];
     }
     this.$isWaitingResponse = this.$auth
-      .sendAccountActivationCode({
-        login: this.data?.login,
+      .sendActivationCodeToPhone({
+        phone: this.data?.login,
         secure_code: activationCode,
       })
       .pipe(
@@ -163,7 +163,7 @@ export class SignUpConfirmationComponent implements OnInit {
    * @param index
    */
   setFocus(index: number): void {
-    const control = this.confirmationForm.controls[`activationCode${index}`];
+    const control = this.form.controls[`activationCode${index}`];
     if (control?.value) {
       const elem = this.elementRef.nativeElement.querySelector(
         `input[id=activationCode${index + 1}]`
@@ -197,13 +197,13 @@ export class SignUpConfirmationComponent implements OnInit {
   /**
    *
    */
-  askActivationCodeAgain() {
+  resendActivationCode() {
     if (this.$isWaitingActivationCodeResponse) {
       return;
     }
 
     this.$isWaitingActivationCodeResponse = this.$auth
-      .askAccountActivationCode({ login: this.data?.login })
+      .resendAccountActivationCode({ phone: this.data?.login })
       .pipe(
         map((result) => {
           if (result) {

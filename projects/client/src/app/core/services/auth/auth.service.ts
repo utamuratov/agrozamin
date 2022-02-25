@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { AccountActivationRequest } from '../../../shared/models/auth/account-activation.request';
+import { PhoneActivationRequest } from '../../../shared/models/auth/account-activation.request';
 import { AccountActivationResponse } from '../../../shared/models/auth/account-activation.response';
 import { AskActivationCodeRequest } from '../../../shared/models/auth/ask-activation-code.request';
 import { CheckLoginRequest } from '../../../shared/models/auth/check-login.request';
+import { CheckPhoneRequest } from '../../../shared/models/auth/check-phone.request';
 import { RefreshTokenRequest } from '../../../shared/models/auth/refresh-token.request';
 import { RefreshTokenResponse } from '../../../shared/models/auth/refresh-token.response';
 import { ISignInRequest } from '../../../shared/models/auth/sign-in.request';
@@ -59,11 +60,20 @@ export class AuthService {
    * @param model
    * @returns
    */
-  sendAccountActivationCode(
-    model: AccountActivationRequest
+   checkPhoneToUnique(model: CheckPhoneRequest): Observable<[]> {
+    return this.$baseService.post<[]>('check-phone', model);
+  }
+
+  /**
+   *
+   * @param model
+   * @returns
+   */
+  sendActivationCodeToPhone(
+    model: PhoneActivationRequest
   ): Observable<AccountActivationResponse> {
     return this.$baseService.post<AccountActivationResponse>(
-      'account-activation',
+      'phone-activation',
       model
     );
   }
@@ -73,7 +83,7 @@ export class AuthService {
    * @param model
    * @returns
    */
-  askAccountActivationCode(
+  resendAccountActivationCode(
     model: AskActivationCodeRequest
   ): Observable<Message> {
     return this.$baseService.post<Message>('resend-secure-code', model);

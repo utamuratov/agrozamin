@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { InputPhoneEmailModule } from '../../shared/input-phone-email/input-phone-email.module';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SignUpSuccessComponent } from './components/sign-up-success/sign-up-success.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -13,19 +11,30 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { ReactiveFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/reactive-forms-shared.module';
 import { SignUpPage } from './components/sign-up-page/sign-up.page';
 import { NzFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/nz-forms-shared.module';
+import { BackAndLanguageModule } from '../../shared/back-and-language/back-and-language.module';
+import { SignUpSetPasswordComponent } from './components/sign-up-set-password/sign-up-set-password.component';
+import { NgxMaskModule } from 'ngx-mask';
+import { PasswordShowHideModule } from '../../shared/password-eye/password-show-hide.module';
 
 @NgModule({
-  declarations: [SignUpPage, SignUpComponent, SignUpSuccessComponent],
+  declarations: [
+    SignUpPage,
+    SignUpComponent,
+    SignUpSuccessComponent,
+    SignUpSetPasswordComponent,
+  ],
   imports: [
     SignUpRoutingModule,
+    NgxMaskModule,
 
     /**
      * CUSTOM MODULES
      */
-    SignUpConfirmationModule,
     ReactiveFormsSharedModule,
-    InputPhoneEmailModule,
     NzFormsSharedModule,
+    SignUpConfirmationModule,
+    BackAndLanguageModule,
+    PasswordShowHideModule,
 
     /**
      * NG-ZORRO-MODULES

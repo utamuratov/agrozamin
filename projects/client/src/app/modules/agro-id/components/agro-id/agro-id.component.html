@@ -1,7 +1,7 @@
 <div nz-row class="sign-up">
   <div nz-col nzSm="12" nzXs="0" class="sign-up__left_bg">
     <div class="shadow"></div>
-    <div nz-row class="height-100">
+    <div nz-row class="h-100">
       <div
         nz-col
         nzXs="1"
@@ -9,7 +9,7 @@
         nzMd="2"
         nzLg="4"
         nzXl="4"
-        class="height-100"
+        class="h-100"
       ></div>
       <div
         nz-col
@@ -18,7 +18,7 @@
         nzMd="20"
         nzLg="16"
         nzXl="16"
-        class="height-100"
+        class="h-100"
       >
         <h2 class="logo" nz-typography>{{ "agroId" | translate }}</h2>
         <div class="sign-up__description">
@@ -47,7 +47,7 @@
             </p>
           </div>
           <img
-            src="../../../../../assets/images/agro-id-images/logo.svg"
+            src="assets/images/agro-id-images/logo.svg"
             alt="agrozamin logo"
           />
         </div>
@@ -59,7 +59,7 @@
         nzMd="2"
         nzLg="4"
         nzXl="4"
-        class="height-100"
+        class="h-100"
       ></div>
     </div>
     
@@ -83,7 +83,7 @@
         alt=""
       />
     </div> -->
-    <div nz-row class="height-100">
+    <div nz-row class="h-100">
       <div
         nz-col
         nzXs="1"
@@ -91,7 +91,7 @@
         nzMd="2"
         nzLg="2"
         nzXl="4"
-        class="height-100"
+        class="h-100"
       ></div>
       <div
         nz-col
@@ -100,24 +100,10 @@
         nzMd="20"
         nzLg="18"
         nzXl="16"
-        class="height-100"
+        class="h-100"
+        style="padding-top: 4vh; padding-bottom: 4vh;"
       >
-        <div nz-row nzAlign="middle" style="margin-top: 2vh">
-          <ng-container *ngFor="let language of languages">
-            <button
-              class="langBtn"
-              nz-button
-              (click)="onChangeLanguage(language)"
-              [nzType]="currentLanguageCode === language.code ? 'text' : 'link'"
-            >
-              {{ language.shortName }}
-            </button>
-            <nz-divider nzType="vertical"></nz-divider>
-          </ng-container>
-        </div>
-        <div style="margin-top: 4vh">
-          <router-outlet></router-outlet>
-        </div>
+        <router-outlet></router-outlet>
       </div>
       <div
         nz-col
@@ -126,7 +112,7 @@
         nzMd="2"
         nzLg="4"
         nzXl="4"
-        class="height-100"
+        class="h-100"
       ></div>
     </div>
   </div>

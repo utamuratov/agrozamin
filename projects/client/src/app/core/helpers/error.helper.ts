@@ -18,6 +18,15 @@ export class ErrorHelper {
       return error.error.errors;
     }
 
+    if (!navigator.onLine) {
+      return [
+        {
+          field: 'offline',
+          message: [{ key: 'offline', text: 'You are offline' }],
+        },
+      ];
+    }
+
     return [
       {
         field: 'serverError',

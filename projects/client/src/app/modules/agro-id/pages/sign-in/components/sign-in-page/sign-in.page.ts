@@ -7,7 +7,6 @@ import { SignInRequest } from 'projects/client/src/app/shared/models/auth/sign-i
 import { catchError, finalize, map, Observable, of, startWith } from 'rxjs';
 import { Constants } from 'projects/client/src/app/core/config/constants';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
-import { LoginType } from 'projects/client/src/app/core/enums/login-type.enum';
 
 @Component({
   templateUrl: './sign-in.page.html',
@@ -18,17 +17,12 @@ export class SignInPage implements OnInit {
   /**
    *
    */
-  loginType!: LoginType;
-
-  /**
-   *
-   */
   $isWaitingResponse?: Observable<boolean>;
 
   /**
    *
    */
-  loginForm!: FormGroup;
+  form!: FormGroup;
 
   /**
    *
@@ -54,13 +48,13 @@ export class SignInPage implements OnInit {
   /**
    *
    */
-  submitForm(): void {
+  submit(): void {
     if (this.$isWaitingResponse) {
       return;
     }
 
-    if (this.loginForm.invalid) {
-      markAllAsDirty(this.loginForm);
+    if (this.form.invalid) {
+      markAllAsDirty(this.form);
       return;
     }
 
@@ -74,10 +68,8 @@ export class SignInPage implements OnInit {
    */
   private getSignInRequest() {
     return new SignInRequest(
-      (this.loginType === LoginType.PhoneNumber
-        ? Constants.PREFIX_PHONENUMBER
-        : '') + this.loginForm.get(Constants.LOGIN)?.value,
-      this.loginForm.get(Constants.PASSWORD)?.value
+      this.form.get(Constants.LOGIN)?.value,
+      this.form.get(Constants.PASSWORD)?.value
     );
   }
 
@@ -85,7 +77,7 @@ export class SignInPage implements OnInit {
    *
    */
   private initForm() {
-    this.loginForm = this.fb.group({
+    this.form = this.fb.group({
       [Constants.LOGIN]: [null, [Validators.required]],
       [Constants.PASSWORD]: [null, [Validators.required]],
     });
@@ -108,14 +100,5 @@ export class SignInPage implements OnInit {
       }),
       finalize(() => (this.$isWaitingResponse = undefined))
     );
-  }
-
-  /**
-   *
-   * @param loginType
-   */
-  onChangedLoginType(loginType: LoginType) {
-    this.loginType = loginType;
-    this.errorMessageFromServer = undefined;
   }
 }

@@ -6,19 +6,25 @@ import {
   Output,
 } from '@angular/core';
 import {
+  AbstractControl,
+  AsyncValidatorFn,
   FormBuilder,
+  FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Constants } from 'projects/client/src/app/core/config/constants';
-import { LoginType } from 'projects/client/src/app/core/enums/login-type.enum';
 import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';
+import { ValidationHelper } from 'projects/client/src/app/core/helpers/validation.helper';
 import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
-import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.service';
 import { SignUpRequest } from 'projects/client/src/app/shared/models/auth/sign-up.request';
-import { catchError, map, Observable, of, startWith } from 'rxjs';
-import { PasswordAndConfirmationPassword } from '../../../../shared/password-and-confirmation-password';
-import { SignUpConfirmationConfig } from '../sign-up-confirmation/sign-up-confirmation.component';
+import { catchError, map, Observable, of } from 'rxjs';
+
+export interface SignUpSetPasswordConfig {
+  nextStep: SignUpStep;
+  user: SignUpRequest;
+}
 
 @Component({
   selector: 'sign-up',
@@ -26,29 +32,17 @@ import { SignUpConfirmationConfig } from '../sign-up-confirmation/sign-up-confir
   styleUrls: ['./sign-up.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignUpComponent
-  extends PasswordAndConfirmationPassword
-  implements OnInit
-{
+export class SignUpComponent implements OnInit {
   /**
    *
    */
-  @Output() changeStep = new EventEmitter<SignUpConfirmationConfig>();
+  @Output()
+  changeStep = new EventEmitter<SignUpSetPasswordConfig>();
 
   /**
    *
    */
-  loginType!: LoginType;
-
-  /**
-   *
-   */
-  errorMessageFromServer?: ErrorItem;
-
-  /**
-   *
-   */
-  $isWaitingResponse!: Observable<boolean>;
+  form!: FormGroup;
 
   /**
    *
@@ -58,13 +52,7 @@ export class SignUpComponent
   /**
    *
    */
-  constructor(
-    private fb: FormBuilder,
-    private $auth: AuthService,
-    protected override $ngDestroy: NgDestroy
-  ) {
-    super($ngDestroy);
-  }
+  constructor(private fb: FormBuilder, private $auth: AuthService) {}
 
   /**
    *
@@ -75,19 +63,11 @@ export class SignUpComponent
 
   /**
    *
-   * @param loginType
    */
-  onChangedLoginType(loginType: LoginType) {
-    this.loginType = loginType;
-  }
-  
-  /**
-   *
-   */
-   continue(): void {
+  continue(): void {
     if (this.form.valid) {
       const model: SignUpRequest = this.getSignUpRequest();
-      this.signUp(model);
+      this.changeStep.emit({ nextStep: SignUpStep.SetPassword, user: model });
       return;
     }
 
@@ -99,12 +79,70 @@ export class SignUpComponent
    */
   private initForm() {
     this.form = this.fb.group({
-      f_name: [null, [Validators.required, Validators.minLength(2)]],
-      l_name: [null, [Validators.required, Validators.minLength(2)]],
+      login: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(Constants.LOGIN_MIN_LENGTH),
+          ValidationHelper.loginPatternValidator,
+        ],
+        [this.loginAsyncValidator()],
+      ],
+      f_name: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(Constants.FIRST_NAME_MIN_LENGTH),
+        ],
+      ],
+      l_name: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(Constants.LAST_NAME_MIN_LENGTH),
+        ],
+      ],
       agree: [null, [Validators.requiredTrue]],
+      phone: [null, [Validators.required], [this.phoneAsyncValidator()]],
     });
+  }
 
-    super.addPasswordAndConfrimationPasswordControls();
+  /**
+   *
+   * @returns
+   */
+  private loginAsyncValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.$auth.checkLoginToUnique({ login: control.value }).pipe(
+        map(() => {
+          return null;
+        }),
+        catchError((errors: ErrorItem[]) => {
+          return of({ [Constants.ERROR_MESSAGE_FROM_SERVER]: errors[0] });
+        })
+      );
+    };
+  }
+
+  /**
+   *
+   * @returns
+   */
+  private phoneAsyncValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.$auth
+        .checkPhoneToUnique({
+          phone: Constants.PREFIX_PHONENUMBER + control.value,
+        })
+        .pipe(
+          map(() => {
+            return null;
+          }),
+          catchError((errors: ErrorItem[]) => {
+            return of({ [Constants.ERROR_MESSAGE_FROM_SERVER]: errors[0] });
+          })
+        );
+    };
   }
 
   /**
@@ -113,38 +151,8 @@ export class SignUpComponent
    */
   private getSignUpRequest(): SignUpRequest {
     const model: SignUpRequest = this.form.getRawValue();
-    if (this.loginType === LoginType.PhoneNumber) {
-      model.phone = `${Constants.PREFIX_PHONENUMBER}${model.phone}`;
-    }
+    model.phone = `${Constants.PREFIX_PHONENUMBER}${model.phone}`;
     return model;
-  }
-
-  /**
-   *
-   * @param model
-   */
-  private signUp(model: SignUpRequest) {
-    this.$isWaitingResponse = this.$auth.signUp(model).pipe(
-      map((response) => {
-        if (response) {
-          this.errorMessageFromServer = undefined;
-          this.changeStep.emit({
-            nextStep: SignUpStep.Confirmation,
-            login:
-              this.loginType === LoginType.PhoneNumber
-                ? model.phone
-                : model.email,
-            byPhoneNumber: this.loginType === LoginType.PhoneNumber,
-          });
-        }
-        return false;
-      }),
-      startWith(true),
-      catchError((errors: ErrorItem[]) => {
-        this.errorMessageFromServer = errors[0];
-        return of(false);
-      })
-    );
   }
 
   /**

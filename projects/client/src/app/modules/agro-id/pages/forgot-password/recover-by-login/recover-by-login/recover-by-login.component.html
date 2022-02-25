@@ -1,0 +1,24 @@
+<div [ngSwitch]="currentStep" class="h-100">
+  <!-- LOGIN -->
+  <recover-login
+    *ngSwitchCase="forgotPasswordStep.Login"
+    (changeStep)="goToStep($event)"
+  ></recover-login>
+
+  <!-- LOGIN CONTACT OPTIONS -->
+  <recover-login-options
+    *ngSwitchCase="forgotPasswordStep.LoginContactOptions"
+    (changeStep)="goToStep($event)"
+  ></recover-login-options>
+
+  <!-- CONFIRMATION -->
+  <sign-up-confirmation
+    (changeStep)="goToStep($event)"
+    *ngSwitchCase="forgotPasswordStep.Confirmation"
+  ></sign-up-confirmation>
+
+  <!-- NEW PASSWORD -->
+  <create-new-password
+    *ngSwitchCase="forgotPasswordStep.NewPassword"
+  ></create-new-password>
+</div>
