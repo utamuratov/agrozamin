@@ -83,10 +83,18 @@
   }
 
   &__card {
-      padding: 20px;
-      background: #fff;
-      border-radius: 20px;
-      margin-bottom: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    transition: 0.5s;
+
+    &:hover {
+      box-shadow: 0px 2px 3px 0px rgba(186, 180, 180, 0.75);
+      -webkit-box-shadow: 0px 2px 3px 0px rgba(186, 180, 180, 0.75);
+      -moz-box-shadow: 0px 2px 3px 0px rgba(186, 180, 180, 0.75);
+    }
+
     &-avatar {
       width: 100px;
       height: 100px;
@@ -101,10 +109,10 @@
     }
 
     &-icons {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
   }
 }
@@ -137,12 +145,79 @@
 }
 
 .button-add-card {
-    height: 150px;
-    margin-bottom: 20px;
+  height: 150px;
+  margin-bottom: 20px;
 
-    button {
-        height: 150px;
-        border-radius: 20px;
-        font-size: 50px;
+  button {
+    height: 150px;
+    border-radius: 20px;
+    font-size: 50px;
+  }
+}
+
+.card {
+  padding-top: 40px;
+  &__news {
+    border: 1px solid #cfd3d8;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    &-text {
+      margin-top: 20px;
+      margin-bottom: 30px;
+      h4 {
+        font-size: 20px;
+        font-family: Agrofont-BExpanded;
+        line-height: 25px;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0.05em;
+      }
     }
+
+    &-img {
+      border-radius: 15px;
+      overflow: hidden;
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__widget {
+    padding: 30px;
+    border: 1px solid #CFD3D8;
+    border-radius: 15px;
+
+    &-title {
+      font-size: 20px;
+      font-family: Agrofont-BExpanded;
+      margin-bottom: 17px;
+    }
+
+    &-today {
+      font-family: Agrofont-Medium;
+      &_weather {
+        font-family: Agrofont-Medium;
+        font-size: 48px;
+      }
+    }
+
+    &-timeInterval {
+      .interval {
+        font-family: Agrofont-Medium;
+      }
+    }
+  }
+}
+
+
+nz-divider {
+  margin: 20px 0;
 }
