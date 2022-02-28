@@ -102,7 +102,7 @@ export class InputPhoneEmailComponent implements OnInit {
     this.setLoginType(loginType);
     if (this.config.isLoginOnly) {
       this.updateValidators();
-      return
+      return;
     }
 
     this.addPhoneNumberOrEmailControl();
@@ -124,17 +124,17 @@ export class InputPhoneEmailComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    */
   private updateValidators() {
     this.setLoginValidator(this.loginType);
     this.clearLoginControl();
   }
-  
+
   /**
    *
    */
-   private setLoginValidator(loginType: LoginType) {
+  private setLoginValidator(loginType: LoginType) {
     const loginControl = this.config.form.controls[Constants.LOGIN];
     switch (loginType) {
       case LoginType.PhoneNumber:
@@ -163,11 +163,10 @@ export class InputPhoneEmailComponent implements OnInit {
     this.config.form.controls[Constants.LOGIN].setValue('');
   }
 
-  
   /**
    *
    */
-   private addPhoneNumberOrEmailControl() {
+  private addPhoneNumberOrEmailControl() {
     if (this.loginType === LoginType.PhoneNumber) {
       this.addPhoneNumberControl();
       return;
@@ -185,8 +184,8 @@ export class InputPhoneEmailComponent implements OnInit {
       Constants.EMAIL,
       new FormControl(
         null,
-        [Validators.required, Validators.email],
-        [this.loginAsyncValidator()]
+        [Validators.required, Validators.email]
+        // [this.loginAsyncValidator()]
       )
     );
   }
@@ -198,16 +197,19 @@ export class InputPhoneEmailComponent implements OnInit {
     this.config.form.removeControl(Constants.EMAIL);
     this.config.form.addControl(
       Constants.PHONE,
-      new FormControl(null, [Validators.required], [this.loginAsyncValidator()])
+      new FormControl(
+        null,
+        [Validators.required]
+        // , [this.loginAsyncValidator()]
+      )
     );
   }
 
-  
   /**
    *
    * @returns
    */
-   private loginAsyncValidator(): AsyncValidatorFn {
+  private loginAsyncValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return this.$auth
         .checkLoginToUnique(

@@ -18,6 +18,7 @@ import { RecoverLoginComponent } from './recover-by-login/recover-login/recover-
 import { RecoverByLoginComponent } from './recover-by-login/recover-by-login/recover-by-login.component';
 import { RecoverContactsComponent } from './recover-by-contacts/recover-contacts/recover-contacts.component';
 import { RecoverTypesComponent } from './components/recover-types/recover-types.component';
+import { ConfirmationModule } from '../../shared/confirmation/confirmation.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RecoverTypesComponent } from './components/recover-types/recover-types.
      * CUSTOM MODULES
      */
     ReactiveFormsSharedModule,
-    SignUpConfirmationModule,
+    // SignUpConfirmationModule,
+    ConfirmationModule,
     InputPhoneEmailModule,
     NzFormsSharedModule,
     NzIconModule,

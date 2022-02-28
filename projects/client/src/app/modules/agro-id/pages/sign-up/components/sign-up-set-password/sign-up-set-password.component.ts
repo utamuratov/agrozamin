@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ConfirmationType } from 'projects/client/src/app/core/enums/confirmation-type.enum';
 import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';
 import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
@@ -7,8 +8,8 @@ import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.serv
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
 import { SignUpRequest } from 'projects/client/src/app/shared/models/auth/sign-up.request';
 import { catchError, map, Observable, of, startWith } from 'rxjs';
+import { ConfirmationConfig } from '../../../../shared/confirmation/confirmation.component';
 import { PasswordAndConfirmationPassword } from '../../../../shared/password-and-confirmation-password';
-import { SignUpConfirmationConfig } from '../sign-up-confirmation/sign-up-confirmation.component';
 
 @Component({
   selector: 'sign-up-set-password',
@@ -29,7 +30,7 @@ export class SignUpSetPasswordComponent
    *
    */
   @Output()
-  changeStep = new EventEmitter<SignUpConfirmationConfig>();
+  changeStep = new EventEmitter<ConfirmationConfig>();
 
   /**
    *
@@ -71,6 +72,7 @@ export class SignUpSetPasswordComponent
         if (response) {
           this.errorMessageFromServer = undefined;
           this.changeStep.emit({
+            confirmationType: ConfirmationType.SignUp,
             nextStep: SignUpStep.Confirmation,
             login: model.phone,
             byPhoneNumber: true,

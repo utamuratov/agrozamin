@@ -21,6 +21,15 @@
         </p>
 
         <nz-divider class="mt-10p"></nz-divider>
+
+        <!-- ERRORS FROM SERVER -->
+        <div class="mb-1">
+          <error-from-server
+            *ngIf="errorMessageFromServer"
+            [error]="errorMessageFromServer"
+          ></error-from-server>
+        </div>
+
         <!-- FORM -->
         <form
           nz-form
@@ -32,12 +41,11 @@
           <input-phone-email
             [config]="{
               form: form,
-              isLoginOnly: true,
-              phoneFormControlName: 'login',
-              emailFormControlName: 'login',
-              toggleTitleForPhone: 'loginByEmail' | translate,
-              toggleTitleForEmail: 'loginByPhonenumber' | translate,
-              titleClass: 'font-agro-medium'
+              isLoginOnly: false,
+              phoneFormControlName: 'phone',
+              emailFormControlName: 'email',
+              toggleTitleForPhone: 'byEmail' | translate,
+              toggleTitleForEmail: 'byPhoneNumber' | translate
             }"
             (changedLoginType)="onChangedLoginType($event)"
           ></input-phone-email>
@@ -47,6 +55,7 @@
             nz-button
             nzType="primary"
             nzBlock
+            [nzLoading]="$isWaitingResponse | async"
             class="recover-login__btn font-agro-medium"
           >
             {{ "continue" | translate }}

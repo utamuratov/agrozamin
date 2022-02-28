@@ -6,8 +6,11 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Constants } from 'projects/client/src/app/core/config/constants';
 import { RecoverByLoginStep } from 'projects/client/src/app/core/enums/recover-by-login-step.enum';
+import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
+import { RecoverLoginOptionsConfig } from '../recover-login-options/recover-login-options.component';
 
 @Component({
   selector: 'recover-login',
@@ -18,7 +21,7 @@ import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
 export class RecoverLoginComponent implements OnInit {
   /*
    */
-  @Output() changeStep = new EventEmitter<RecoverByLoginStep>();
+  @Output() changeStep = new EventEmitter<RecoverLoginOptionsConfig>();
 
   /**
    *
@@ -29,7 +32,7 @@ export class RecoverLoginComponent implements OnInit {
    *
    * @param fb
    */
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private $auth: AuthService) {}
 
   /**
    *
@@ -53,16 +56,22 @@ export class RecoverLoginComponent implements OnInit {
   submit(): void {
     if (this.form.valid) {
       console.log('submit', this.form.value);
-      this.goToNextStep();
+      this.$auth
+        .changePasswordStepOne({
+          login: this.form.controls[Constants.LOGIN].value,
+        })
+        .subscribe((response) => {
+          console.log(response);
+          this.changeStep.emit({
+            data: {
+              ...response,
+              login: this.form.controls[Constants.LOGIN].value,
+            },
+            nextStep: RecoverByLoginStep.LoginContactOptions,
+          });
+        });
     } else {
       markAllAsDirty(this.form);
     }
-  }
-
-  /**
-   *
-   */
-  goToNextStep(): void {
-    this.changeStep.emit(RecoverByLoginStep.LoginContactOptions);
   }
 }
