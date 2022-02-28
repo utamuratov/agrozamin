@@ -12,7 +12,9 @@ import { CheckPhoneRequest } from '../../../shared/models/auth/check-phone.reque
 import { Login } from '../../../shared/models/auth/login';
 import { RefreshTokenRequest } from '../../../shared/models/auth/refresh-token.request';
 import { RefreshTokenResponse } from '../../../shared/models/auth/refresh-token.response';
-import { RestoreLoginRequest } from '../../../shared/models/auth/restore-login.request';
+import { RestoreLoginStepOneRequest } from '../../../shared/models/auth/restore-login-step-one.request';
+import { RestoreLoginStepOneResponse } from '../../../shared/models/auth/restore-login-step-one.response';
+import { RestoreLoginStepTwoRequest } from '../../../shared/models/auth/restore-login-step-two.request';
 import { RestoreLoginResponse } from '../../../shared/models/auth/restore-login.response';
 import { ISignInRequest } from '../../../shared/models/auth/sign-in.request';
 import { SignInResponse } from '../../../shared/models/auth/sign-in.response';
@@ -117,8 +119,13 @@ export class AuthService {
    * @param model should be {email} or {phone}
    * @returns
    */
-  restoreLoginFirstStep(model: RestoreLoginRequest): Observable<Message> {
-    return this.$baseService.post<Message>('restore-login-step-one', model);
+  restoreLoginFirstStep(
+    model: RestoreLoginStepOneRequest
+  ): Observable<RestoreLoginStepOneResponse> {
+    return this.$baseService.post<RestoreLoginStepOneResponse>(
+      'restore-login-step-one',
+      model
+    );
   }
 
   /**
@@ -127,7 +134,7 @@ export class AuthService {
    * @returns
    */
   restoreLoginSecondStep(
-    model: RestoreLoginRequest
+    model: RestoreLoginStepTwoRequest
   ): Observable<RestoreLoginResponse> {
     return this.$baseService.post<RestoreLoginResponse>(
       'restore-login-step-two',

@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Constants } from 'projects/client/src/app/core/config/constants';
 import { ConfirmationType } from 'projects/client/src/app/core/enums/confirmation-type.enum';
 import { LoginType } from 'projects/client/src/app/core/enums/login-type.enum';
@@ -13,7 +13,7 @@ import { RecoverByContactsStep } from 'projects/client/src/app/core/enums/recove
 import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
-import { RestoreLoginRequest } from 'projects/client/src/app/shared/models/auth/restore-login.request';
+import { RestoreLoginStepOneRequest } from 'projects/client/src/app/shared/models/auth/restore-login-step-one.request';
 import { catchError, finalize, map, Observable, of, startWith } from 'rxjs';
 import { ConfirmationConfig } from '../../../../shared/confirmation/confirmation.component';
 
@@ -73,12 +73,8 @@ export class RecoverContactsComponent implements OnInit {
    *
    */
   submitForm(): void {
-    if (this.$isWaitingResponse) {
-      return;
-    }
-
     if (this.form.valid) {
-      const request: RestoreLoginRequest = this.getRestoreLoginRequest();
+      const request: RestoreLoginStepOneRequest = this.getRestoreLoginRequest();
       this.$isWaitingResponse = this.$auth.restoreLoginFirstStep(request).pipe(
         map(() => {
           this.errorMessageFromServer = undefined;
@@ -89,8 +85,7 @@ export class RecoverContactsComponent implements OnInit {
         catchError((errors: ErrorItem[]) => {
           this.errorMessageFromServer = errors[0];
           return of(false);
-        }),
-        finalize(() => (this.$isWaitingResponse = undefined))
+        })
       );
     } else {
       markAllAsDirty(this.form);
@@ -117,17 +112,22 @@ export class RecoverContactsComponent implements OnInit {
    *
    */
   goToNextStep(): void {
-    this.changeStep.emit({
+    const confirmationConfig: ConfirmationConfig = {
       confirmationType: ConfirmationType.RecoverByContacs,
       nextStep: RecoverByContactsStep.Confirmation,
-      byPhoneNumber: this.loginType === LoginType.PhoneNumber,
       login:
-        this.form.controls[
-          this.loginType === LoginType.PhoneNumber
-            ? Constants.PHONE
-            : Constants.EMAIL
-        ].value,
-    });
+        this.loginType === LoginType.PhoneNumber
+          ? Constants.PREFIX_PHONENUMBER + this.form.get(Constants.PHONE)?.value
+          : this.form.get(Constants.EMAIL)?.value,
+    };
+
+    if (this.loginType === LoginType.PhoneNumber) {
+      confirmationConfig.phone = confirmationConfig.login;
+    } else {
+      confirmationConfig.email = confirmationConfig.login;
+    }
+
+    this.changeStep.emit(confirmationConfig);
   }
 
   /**
@@ -136,6 +136,5 @@ export class RecoverContactsComponent implements OnInit {
    */
   onChangedLoginType(loginType: LoginType) {
     this.loginType = loginType;
-    console.log(loginType);
   }
 }

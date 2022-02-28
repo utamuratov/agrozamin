@@ -66,7 +66,9 @@
                 formControlName="password"
               />
               <ng-template #eye>
-                <az-password-show-hide [password]="password"></az-password-show-hide>
+                <az-password-show-hide
+                  [password]="password"
+                ></az-password-show-hide>
               </ng-template>
             </nz-input-group>
           </nz-form-control>
@@ -89,16 +91,18 @@
         </div>
 
         <!-- LOGIN -->
-        <button
-          class="login-form-margin font-agro-medium mt-2"
-          nz-button
-          nzShape="round"
-          nzBlock
-          [nzType]="'primary'"
-          [nzLoading]="$isWaitingResponse|async"
-        >
-          {{'toComeIn' | translate}}
-        </button>
+        <div class="mt-2" [ngClass]="{'not-allowed': $isWaitingResponse|async}">
+          <button
+            class="login-form-margin font-agro-medium"
+            nz-button
+            nzShape="round"
+            nzBlock
+            [nzType]="'primary'"
+            [nzLoading]="$isWaitingResponse|async"
+          >
+            {{'toComeIn' | translate}}
+          </button>
+        </div>
       </form>
     </div>
 

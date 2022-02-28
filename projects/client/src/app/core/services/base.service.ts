@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { DITokens } from '../config/di-tokens';
-import { map, Observable } from 'rxjs';
+import { map, Observable, shareReplay } from 'rxjs';
 import { SuccessMessage } from '../models/success-message.interface';
 import { Inject, Injectable } from '@angular/core';
 
@@ -25,7 +25,7 @@ export class BaseService {
    * @returns
    */
   get<T>(url: string, params?: HttpParams): Observable<T> {
-    return this.http.get<T>(this.endpoint + url, { params });
+    return this.http.get<T>(this.endpoint + url, { params }).pipe(shareReplay(1));
   }
 
   /**
@@ -37,6 +37,6 @@ export class BaseService {
   post<T>(url: string, model?: any): Observable<T> {
     return this.http
       .post<SuccessMessage<T>>(this.endpoint + url, model)
-      .pipe(map((result) => result.data));
+      .pipe(map((result) => result.data), shareReplay(1));
   }
 }

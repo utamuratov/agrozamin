@@ -19,12 +19,12 @@ export class Constants {
       shortName: 'Рус',
     },
     {
-      code: 'uz-Cyrl',
+      code: 'uz_cyrl',
       name: 'Ўзбекча',
       shortName: 'Узб',
     },
     {
-      code: 'uz-Latn',
+      code: 'uz_latn',
       name: "O'zbekcha",
       shortName: 'Uzb',
     },
@@ -43,8 +43,6 @@ export class Constants {
    * VALIDATIONS
    */
   public static readonly LOGIN_MIN_LENGTH = 5;
-  public static readonly FIRST_NAME_MIN_LENGTH = 2;
-  public static readonly LAST_NAME_MIN_LENGTH = 2;
   public static readonly PASSWORD_MIN_LENGTH = 8;
 
   /**
@@ -54,6 +52,11 @@ export class Constants {
   public static readonly LOGIN_TYPE = 'loginType';
   public static readonly ACCESS_TOKEN = 'access_tokent';
   public static readonly REFRESH_TOKEN = 'refresh_tokent';
+
+  /**
+   * HEADER
+   */
+  public static readonly HEADER_LANGUAGE = 'Language'
 
   /**
    * OTHER CONSTANTS

@@ -12,7 +12,7 @@
       <div>
         <!-- TITLE -->
         <h2 nz-typography class="agro-id-form-title">
-          {{ "enterYourLogin" | translate }}
+          {{ "recover" | translate }}
         </h2>
 
         <!-- SUB TITLE -->
@@ -51,15 +51,17 @@
           ></input-phone-email>
 
           <!-- CONTINUE -->
-          <button
-            nz-button
-            nzType="primary"
-            nzBlock
-            [nzLoading]="$isWaitingResponse | async"
-            class="recover-login__btn font-agro-medium"
-          >
-            {{ "continue" | translate }}
-          </button>
+          <div [ngClass]="{ 'not-allowed': $isWaitingResponse | async }">
+            <button
+              nz-button
+              nzType="primary"
+              nzBlock
+              [nzLoading]="$isWaitingResponse | async"
+              class="recover-login__btn font-agro-medium"
+            >
+              {{ "continue" | translate }}
+            </button>
+          </div>
         </form>
       </div>
     </div>

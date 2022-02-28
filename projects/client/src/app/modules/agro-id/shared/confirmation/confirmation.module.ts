@@ -7,9 +7,11 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { EmailAsteriskPipe } from './email-asterisk.pipe';
+import { PhoneAsteriskPipe } from './phone-asterisk.pipe';
 
 @NgModule({
-  declarations: [ConfirmationComponent],
+  declarations: [ConfirmationComponent, EmailAsteriskPipe, PhoneAsteriskPipe],
   imports: [
     /**
      * CUSTOM MODULES

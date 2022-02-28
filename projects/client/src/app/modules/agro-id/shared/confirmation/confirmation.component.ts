@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Constants } from 'projects/client/src/app/core/config/constants';
 import { ConfirmationType } from 'projects/client/src/app/core/enums/confirmation-type.enum';
 import { RecoverByLoginStep } from 'projects/client/src/app/core/enums/recover-by-login-step.enum';
@@ -34,7 +35,7 @@ export interface ConfirmationConfig {
   confirmationType: ConfirmationType;
   nextStep: number;
   login: string;
-  byPhoneNumber: boolean;
+  email?: string;
   phone?: string;
 }
 
@@ -54,6 +55,11 @@ export class ConfirmationComponent implements OnInit {
    */
   @Input()
   data!: ConfirmationConfig;
+
+  /**
+   * 
+   */
+  confirmationType = ConfirmationType;
 
   /**
    *
@@ -90,7 +96,8 @@ export class ConfirmationComponent implements OnInit {
     private elementRef: ElementRef,
     private $auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private translate: TranslateService
   ) {}
 
   /**
@@ -105,7 +112,7 @@ export class ConfirmationComponent implements OnInit {
    *
    */
   startTimer() {
-    let leftSeconds = this.data?.byPhoneNumber
+    let leftSeconds = this.data?.phone
       ? LEFT_SECONDS_BY_PHONE
       : LEFT_SECONDS_BY_EMAIL;
     const START_WITH = leftSeconds;
@@ -137,10 +144,6 @@ export class ConfirmationComponent implements OnInit {
    *
    */
   submit(): void {
-    if (this.$isWaitingResponse) {
-      return;
-    }
-
     let activationCode = '';
     for (const key in this.form.value) {
       activationCode += this.form.value[key];
@@ -163,8 +166,7 @@ export class ConfirmationComponent implements OnInit {
             catchError((errors: ErrorItem[]) => {
               this.errorMessageFromServer = errors[0];
               return of(false);
-            }),
-            finalize(() => (this.$isWaitingResponse = undefined))
+            })
           );
 
         break;
@@ -172,8 +174,7 @@ export class ConfirmationComponent implements OnInit {
       case ConfirmationType.RecoverByContacs:
         this.$isWaitingResponse = this.$auth
           .restoreLoginSecondStep({
-            [this.data.byPhoneNumber ? Constants.PHONE : Constants.EMAIL]:
-              (this.data.byPhoneNumber ? Constants.PREFIX_PHONENUMBER : '') +
+            [this.data.phone ? Constants.PHONE : Constants.EMAIL]:
               this.data?.login,
             secure_code: activationCode,
           })
@@ -191,8 +192,7 @@ export class ConfirmationComponent implements OnInit {
             catchError((errors: ErrorItem[]) => {
               this.errorMessageFromServer = errors[0];
               return of(false);
-            }),
-            finalize(() => (this.$isWaitingResponse = undefined))
+            })
           );
         break;
 
@@ -212,8 +212,7 @@ export class ConfirmationComponent implements OnInit {
             catchError((errors: ErrorItem[]) => {
               this.errorMessageFromServer = errors[0];
               return of(false);
-            }),
-            finalize(() => (this.$isWaitingResponse = undefined))
+            })
           );
         break;
 

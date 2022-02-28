@@ -5,7 +5,6 @@ import { SignUpSuccessComponent } from './components/sign-up-success/sign-up-suc
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzResultModule } from 'ng-zorro-antd/result';
-import { SignUpConfirmationModule } from './components/sign-up-confirmation/sign-up-confirmation.module';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { ReactiveFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/reactive-forms-shared.module';
@@ -33,7 +32,6 @@ import { ConfirmationModule } from '../../shared/confirmation/confirmation.modul
      */
     ReactiveFormsSharedModule,
     NzFormsSharedModule,
-    // SignUpConfirmationModule,
     ConfirmationModule,
     BackAndLanguageModule,
     PasswordShowHideModule,

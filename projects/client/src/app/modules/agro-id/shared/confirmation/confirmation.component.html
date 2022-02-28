@@ -6,15 +6,20 @@
     </h2>
     <p nz-typography nzType="secondary">
       {{
-        (data?.byPhoneNumber
+        (data?.phone
           ? "confirmationDescriptionPhone"
           : "confirmationDescriptionEmail"
         )
           | translate
             : {
                 value:
-                  (data?.phone || !data.byPhoneNumber ? "" : "+") +
-                  (data.phone ? data.phone : data?.login)
+                  data.confirmationType === confirmationType.RecoverByLogin
+                    ? data?.phone
+                      ? data.phone
+                      : data.email
+                    : data.phone
+                    ? (data.phone | phoneAsterisk)
+                    : (data?.email | emailAsterisk)
               }
       }}
       <span nz-typography nzType="warning" *ngIf="$leftSeconds | async"
@@ -87,16 +92,18 @@
         </div>
 
         <!-- Send activation code -->
-        <button
-          nzBlock
-          nz-button
-          class="confirm-btn font-agro-medium"
-          nzType="primary"
-          [disabled]="!form.valid"
-          [nzLoading]="$isWaitingResponse | async"
-        >
-          {{ "confirm" | translate }}
-        </button>
+        <div [ngClass]="{ 'not-allowed': $isWaitingResponse | async }">
+          <button
+            nzBlock
+            nz-button
+            class="confirm-btn font-agro-medium"
+            nzType="primary"
+            [disabled]="!form.valid"
+            [nzLoading]="$isWaitingResponse | async"
+          >
+            {{ "confirm" | translate }}
+          </button>
+        </div>
       </form>
       <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="2" nzXl="2"></div>
       <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="2" nzXl="2"></div>

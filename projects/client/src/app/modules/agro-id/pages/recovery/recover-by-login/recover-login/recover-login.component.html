@@ -48,15 +48,18 @@
           </div>
 
           <!-- CONTINUE BUTTON -->
-          <button
-            nz-button
-            nzType="primary"
-            nzBlock
-            nzShape="round"
-            class="recover-login__btn font-agro-medium mt-1"
-          >
-            {{ "continue" | translate }}
-          </button>
+          <div class="mt-1" [ngClass]="{ 'not-allowed': $isWaitingResponse | async }">
+            <button
+              nz-button
+              nzType="primary"
+              nzBlock
+              nzShape="round"
+              class="recover-login__btn font-agro-medium"
+              [nzLoading]="$isWaitingResponse | async"
+            >
+              {{ "continue" | translate }}
+            </button>
+          </div>
         </form>
       </div>
     </div>

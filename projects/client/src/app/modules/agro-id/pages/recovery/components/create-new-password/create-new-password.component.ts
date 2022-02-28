@@ -32,6 +32,9 @@ export class CreateNewPasswordComponent
     super($ngDestroy);
   }
 
+  /**
+   *
+   */
   @Input()
   login!: string;
 
