@@ -19,19 +19,30 @@
       {{ "chooseOptionsOfRecover" | translate }}
     </p>
 
-    <div class="custom-card inline" (click)="goToNextStep()">
+    <!-- PHONE -->
+    <div
+      class="custom-card inline"
+      *ngIf="data?.phone"
+      (click)="goToNextStep('phone')"
+    >
       <i nz-icon nzType="bell" nzTheme="outline"></i>
       <div class="title">
         <h5>{{ "byPhoneNumber" | translate }}</h5>
-        <span nz-typography nzType="secondary">+99894*****10</span>
+        <span nz-typography nzType="secondary">{{ data.phone }}</span>
       </div>
       <i nz-icon nzType="arrow-right" nzTheme="outline" class="arrow-right"></i>
     </div>
-    <div class="custom-card inline" (click)="goToNextStep()">
+
+    <!-- EMAIL -->
+    <div
+      class="custom-card inline"
+      *ngIf="data?.email"
+      (click)="goToNextStep('email')"
+    >
       <i nz-icon nzType="mail" nzTheme="outline"></i>
       <div class="title">
         <h5>{{ "byEmail" | translate }}</h5>
-        <span nz-typography nzType="secondary">user****@gmail.com</span>
+        <span nz-typography nzType="secondary">{{ data.email }}</span>
       </div>
       <i nz-icon nzType="arrow-right" nzTheme="outline" class="arrow-right"></i>
     </div>

@@ -2,12 +2,13 @@
   <!-- LOGIN -->
   <recover-contacts
     *ngSwitchCase="forgotPasswordStep.Contacts"
-    (changeStep)="goToStep($event)"
+    (changeStep)="changeStepFromSetPassword($event)"
   ></recover-contacts>
 
   <!-- CONFIRMATION -->
-  <sign-up-confirmation
-    (changeStep)="goToStep($event)"
+  <az-confirmation
+    (changeStep)="goToNextStep($event)"
+    [data]="data"
     *ngSwitchCase="forgotPasswordStep.Confirmation"
-  ></sign-up-confirmation>
+  ></az-confirmation>
 </div>

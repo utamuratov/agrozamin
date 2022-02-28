@@ -42,7 +42,8 @@ export class SignInPage implements OnInit {
    *
    */
   ngOnInit() {
-    this.initForm();
+    const login = history.state.login;
+    this.initForm(login);
   }
 
   /**
@@ -76,9 +77,9 @@ export class SignInPage implements OnInit {
   /**
    *
    */
-  private initForm() {
+  private initForm(login: string) {
     this.form = this.fb.group({
-      [Constants.LOGIN]: [null, [Validators.required]],
+      [Constants.LOGIN]: [login, [Validators.required]],
       [Constants.PASSWORD]: [null, [Validators.required]],
     });
   }

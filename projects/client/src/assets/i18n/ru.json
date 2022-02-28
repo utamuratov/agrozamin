@@ -47,7 +47,7 @@
   "termsOfUse": "правила использования",
   "continue": "Продолжить",
   "confirmation": "Подтверждение",
-  "confirmationDescriptionPhone": "На номер телефона +{{value}} был отправлено сообщение с кодом, пожалуйста введите этот код.",
+  "confirmationDescriptionPhone": "На номер телефона {{value}} был отправлено сообщение с кодом, пожалуйста введите этот код.",
   "confirmationDescriptionEmail": "На электронную почту {{value}} был отправлено сообщение с кодом, пожалуйста введите этот код.",
   "getConfirmCodeAgain": "Отправить код заново",
   "confirmTimer": "Осталось: ",

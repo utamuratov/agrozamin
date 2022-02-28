@@ -2,23 +2,26 @@
   <!-- LOGIN -->
   <recover-login
     *ngSwitchCase="forgotPasswordStep.Login"
-    (changeStep)="goToStep($event)"
+    (changeStep)="changeStepFromRecoverLogin($event)"
   ></recover-login>
 
   <!-- LOGIN CONTACT OPTIONS -->
   <recover-login-options
+    [data]="loginOptionsData"
     *ngSwitchCase="forgotPasswordStep.LoginContactOptions"
-    (changeStep)="goToStep($event)"
+    (changeStep)="changeStepFromLoginOptions($event)"
   ></recover-login-options>
 
   <!-- CONFIRMATION -->
-  <sign-up-confirmation
+  <az-confirmation
+    [data]="confirmationConfig"
     (changeStep)="goToStep($event)"
     *ngSwitchCase="forgotPasswordStep.Confirmation"
-  ></sign-up-confirmation>
+  ></az-confirmation>
 
   <!-- NEW PASSWORD -->
   <create-new-password
+  [login]="loginOptionsData.login"
     *ngSwitchCase="forgotPasswordStep.NewPassword"
   ></create-new-password>
 </div>

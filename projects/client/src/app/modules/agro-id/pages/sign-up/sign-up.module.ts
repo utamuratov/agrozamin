@@ -15,6 +15,7 @@ import { BackAndLanguageModule } from '../../shared/back-and-language/back-and-l
 import { SignUpSetPasswordComponent } from './components/sign-up-set-password/sign-up-set-password.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { PasswordShowHideModule } from '../../shared/password-eye/password-show-hide.module';
+import { ConfirmationModule } from '../../shared/confirmation/confirmation.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PasswordShowHideModule } from '../../shared/password-eye/password-show-
      */
     ReactiveFormsSharedModule,
     NzFormsSharedModule,
-    SignUpConfirmationModule,
+    // SignUpConfirmationModule,
+    ConfirmationModule,
     BackAndLanguageModule,
     PasswordShowHideModule,
 
