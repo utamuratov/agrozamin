@@ -102,14 +102,44 @@
   </nz-layout>
 </nz-layout>
  -->
-
-<nz-layout>
-  <nz-sider>Sider</nz-sider>
-  <nz-layout>
-    <nz-header>Header</nz-header>
+<div nz-row class="h-100 d-flex flex-column">
+  <nz-layout nz-row class="cabinet">
+    <nz-sider nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" class="cabinet__left-sidebar" nzWidth="300px">
+      <div class="cabinet__lang">
+        <ng-container *ngFor="let language of languages; let i = index">
+          <button
+            nz-button
+            (click)="onChangeLanguage(language)"
+            [nzType]="currentLanguageCode === language.code ? 'text' : 'link'"
+            [ngStyle]="{
+              color: currentLanguageCode === language.code ? '#ffffff' : '#CFD3D8'
+            }"
+          >
+            <span
+              [ngClass]="currentLanguageCode === language.code ? 'active' : ''"
+              >{{ language.shortName }}</span
+            >
+          </button>
+        </ng-container>
+      </div>
+  
+      <div class="cabinet__logo">
+        <h2 nz-typography><a>AgroID</a></h2>
+        <span nz-typography class="font-agro-medium"
+          >Единая система идентификации</span
+        >
+      </div>
+  
+      <side-bar-menu></side-bar-menu>
+    </nz-sider>
     <nz-layout>
-      <nz-content>Content</nz-content>
-      <nz-sider>Sider</nz-sider>
+      <nz-header class="cabinet__header">Header</nz-header>
+      <nz-layout nz-row>
+        <nz-content nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" class="cabinet__content">Content</nz-content>
+        <nz-sider nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="0" nzXXl="24" class="cabinet__right-sidebar" nzWidth="620px">Sider</nz-sider>
+      </nz-layout>
     </nz-layout>
   </nz-layout>
-</nz-layout>
+  <nz-footer nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0"><side-bar-menu [isGrid]="true"></side-bar-menu></nz-footer>
+</div>
+

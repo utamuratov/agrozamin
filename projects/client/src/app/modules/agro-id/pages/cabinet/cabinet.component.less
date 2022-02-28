@@ -1,4 +1,5 @@
 /* .logo {
+
   height: 32px;
   margin-left: 3px;
   color: #fff;
@@ -53,3 +54,82 @@
   }
 }
  */
+
+:host {
+  text-align: center;
+}
+
+nz-footer {
+  background: #3c4bdc;
+}
+
+.cabinet {
+  // height: 100%;
+
+  nz-header,
+  nz-footer {
+    background: #7dbcea;
+    color: #fff;
+  }
+
+  nz-footer {
+    line-height: 1.5;
+  }
+
+  nz-sider {
+    background: #3c4bdc;
+    color: #fff;
+    line-height: 120px;    
+  }
+
+  nz-content {
+    background: rgba(16, 142, 233, 1);
+    color: #fff;
+    min-height: 120px;
+    line-height: 120px;
+  }
+
+  nz-layout {
+    margin-bottom: 48px;
+  }
+
+ 
+
+  nz-layout nz-layout,
+  nz-layout:last-child {
+    margin: 0;
+  }
+
+  &__right-sidebar {
+  }
+
+  &__lang {
+    line-height: 50px;
+    margin-bottom: 44px;
+  }
+
+  &__logo {
+    line-height: 15px;
+    margin-bottom: 73px;
+    h2 {
+      margin-bottom: 0;
+    }
+    a {
+      color: #fff;
+      font-size: 47px;
+    }
+    span {
+      color: #fff;
+      font-size: 12px;
+    }
+  }
+
+  &__divider {
+    background: #fff;
+    opacity: 0.5;
+  }
+}
+
+.ant-layout-footer {
+  padding: 0px;
+}

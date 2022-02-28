@@ -19,7 +19,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { SharedModule } from 'projects/client/src/app/shared/shared.module';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -34,6 +34,8 @@ import { UserInfoModalComponent } from './pages/personal/components/user-info-mo
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { SideBarMenuComponent } from './pages/side-bar-menu/side-bar-menu.component';
 
 @NgModule({
   imports: [
@@ -70,7 +72,9 @@ import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
     NzAlertModule,
     NzDropDownModule,
     NzTagModule,
-    NzDescriptionsModule
+    NzDescriptionsModule,
+    NzSelectModule,
+    FormsModule
   ],
   declarations: [
     CabinetComponent,
@@ -80,7 +84,8 @@ import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
     BiznesCardsComponent,
     BusinessCardModalComponent,
     NotificationComponent,
-    UserInfoModalComponent
+    UserInfoModalComponent,
+    SideBarMenuComponent
   ],
 })
 export class CabinetModule {}
