@@ -24,6 +24,14 @@
           [formGroup]="form"
           (ngSubmit)="submit()"
         >
+          <!-- ERRORS FROM SERVER -->
+          <div class="mb-1">
+            <error-from-server
+              *ngIf="errorMessageFromServer"
+              [error]="errorMessageFromServer"
+            ></error-from-server>
+          </div>
+
           <!-- LOGIN INPUT -->
           <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
             <nz-form-item>
@@ -48,7 +56,10 @@
           </div>
 
           <!-- CONTINUE BUTTON -->
-          <div class="mt-1" [ngClass]="{ 'not-allowed': $isWaitingResponse | async }">
+          <div
+            class="mt-1"
+            [ngClass]="{ 'not-allowed': $isWaitingResponse | async }"
+          >
             <button
               nz-button
               nzType="primary"

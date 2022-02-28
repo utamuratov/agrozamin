@@ -37,6 +37,11 @@ export class RecoverLoginComponent implements OnInit {
 
   /**
    *
+   */
+  errorMessageFromServer!: ErrorItem;
+
+  /**
+   *
    * @param fb
    */
   constructor(private fb: FormBuilder, private $auth: AuthService) {}
@@ -80,6 +85,7 @@ export class RecoverLoginComponent implements OnInit {
           }),
           startWith(true),
           catchError((errors: ErrorItem[]) => {
+            this.errorMessageFromServer = errors[0];
             return of(false);
           })
         );
