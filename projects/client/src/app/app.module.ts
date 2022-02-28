@@ -1,6 +1,13 @@
 import { HomeComponent } from './pages/home/home.component';
 import { ErrorHandler, Injector, NgModule } from '@angular/core';
 
+import { HammerModule } from '@angular/platform-browser';
+import * as Hammer from 'hammerjs';
+import {
+  HammerGestureConfig,
+  HAMMER_GESTURE_CONFIG,
+} from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -31,13 +38,19 @@ import { DITokens } from './core/config/di-tokens';
 import { SettingsHelper } from './core/helpers/settings.helper';
 import { GlobalErrorHandler } from './core/helpers/global-error-handler';
 import { NgxMaskModule } from 'ngx-mask';
-import { JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { jwtOptionsFactory } from './core/helpers/jwt-options.factory';
 import { CookieService } from 'ngx-cookie-service';
 import { HandleErrorInterceptor } from './core/interceptors/handle.error.interceptor';
 import { HeaderInterceptor } from './core/interceptors/language.interceptor';
 
 registerLocaleData(ru);
+
+export class MyHammerConfig extends HammerGestureConfig {
+  override overrides = {
+    swipe: { direction: Hammer.DIRECTION_ALL },
+  } as any;
+}
 
 @NgModule({
   declarations: [
@@ -61,6 +74,7 @@ registerLocaleData(ru);
       },
     }),
     NgxMaskModule.forRoot(),
+    HammerModule,
 
     /**
      * Module to support JWT Authentication.
@@ -103,7 +117,11 @@ registerLocaleData(ru);
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,
     },
-    CookieService
+    CookieService,
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig,
+    },
   ],
   bootstrap: [AppComponent],
 })

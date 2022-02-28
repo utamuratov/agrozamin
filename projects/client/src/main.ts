@@ -5,6 +5,8 @@ import { AppModule } from './app/app.module';
 import { SettingsHelper } from './app/core/helpers/settings.helper';
 import { environment } from './environments/environment';
 
+import 'hammerjs';
+
 if (environment.production) {
   enableProdMode();
 }
