@@ -50,15 +50,13 @@ export class RecoverLoginOptionsComponent {
         contact_type: contactType,
         login: this.data.login,
       })
-      .subscribe((result) => {
-        console.log(result);
-
+      .subscribe(() => {
         this.changeStep.emit({
           login: this.data.login,
-          byPhoneNumber: contactType === 'phone',
           confirmationType: ConfirmationType.RecoverByLogin,
           nextStep: RecoverByLoginStep.Confirmation,
-          phone: this.data.phone
+          phone: this.data.phone,
+          email: this.data.email,
         });
       });
   }

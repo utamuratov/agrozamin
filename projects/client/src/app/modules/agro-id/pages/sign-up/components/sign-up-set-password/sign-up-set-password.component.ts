@@ -7,7 +7,7 @@ import { AuthService } from 'projects/client/src/app/core/services/auth/auth.ser
 import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.service';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
 import { SignUpRequest } from 'projects/client/src/app/shared/models/auth/sign-up.request';
-import { catchError, map, Observable, of, startWith } from 'rxjs';
+import { catchError, map, Observable, of, shareReplay, startWith } from 'rxjs';
 import { ConfirmationConfig } from '../../../../shared/confirmation/confirmation.component';
 import { PasswordAndConfirmationPassword } from '../../../../shared/password-and-confirmation-password';
 
@@ -75,7 +75,7 @@ export class SignUpSetPasswordComponent
             confirmationType: ConfirmationType.SignUp,
             nextStep: SignUpStep.Confirmation,
             login: model.phone,
-            byPhoneNumber: true,
+            phone: model.phone,
           });
         }
         return false;

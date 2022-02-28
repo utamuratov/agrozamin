@@ -19,8 +19,8 @@ const routes: Routes = [
       {
         path: 'recovery',
         loadChildren: () =>
-          import('./pages/forgot-password/forgot-password.module').then(
-            (m) => m.ForgotPasswordModule
+          import('./pages/recovery/recovery.module').then(
+            (m) => m.RecoveryModule
           ),
       },
     ],

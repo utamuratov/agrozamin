@@ -35,6 +35,7 @@ import { JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { jwtOptionsFactory } from './core/helpers/jwt-options.factory';
 import { CookieService } from 'ngx-cookie-service';
 import { HandleErrorInterceptor } from './core/interceptors/handle.error.interceptor';
+import { HeaderInterceptor } from './core/interceptors/language.interceptor';
 
 registerLocaleData(ru);
 
@@ -87,6 +88,11 @@ registerLocaleData(ru);
     {
       provide: DITokens.ENDPOINT_URL,
       useFactory: () => SettingsHelper.settings.endpoint,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,

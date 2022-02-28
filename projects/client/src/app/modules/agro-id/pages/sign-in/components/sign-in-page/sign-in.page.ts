@@ -50,10 +50,6 @@ export class SignInPage implements OnInit {
    *
    */
   submit(): void {
-    if (this.$isWaitingResponse) {
-      return;
-    }
-
     if (this.form.invalid) {
       markAllAsDirty(this.form);
       return;
@@ -91,15 +87,14 @@ export class SignInPage implements OnInit {
     this.$isWaitingResponse = this.$auth.signIn(model).pipe(
       map(() => {
         this.errorMessageFromServer = undefined;
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
         return false;
       }),
       startWith(true),
       catchError((errors: ErrorItem[]) => {
         this.errorMessageFromServer = errors[0];
         return of(false);
-      }),
-      finalize(() => (this.$isWaitingResponse = undefined))
+      })
     );
   }
 }

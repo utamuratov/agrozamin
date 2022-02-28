@@ -91,15 +91,13 @@ export class SignUpComponent implements OnInit {
       f_name: [
         null,
         [
-          Validators.required,
-          Validators.minLength(Constants.FIRST_NAME_MIN_LENGTH),
+          Validators.required
         ],
       ],
       l_name: [
         null,
         [
-          Validators.required,
-          Validators.minLength(Constants.LAST_NAME_MIN_LENGTH),
+          Validators.required
         ],
       ],
       agree: [null, [Validators.requiredTrue]],

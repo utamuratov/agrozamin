@@ -1,3 +1,3 @@
 export interface Phone {
-  phone: string;
+  phone?: string;
 }
