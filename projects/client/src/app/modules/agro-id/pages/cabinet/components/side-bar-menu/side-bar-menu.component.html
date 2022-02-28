@@ -1,0 +1,62 @@
+<div class="menu" [ngClass]="{ grid: isGrid }">
+  <div class="main-menu">
+    <div class="menu__item" routerLink="personal">
+      <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+      <div class="menu__item-text">Персональные данные</div>
+    </div>
+    <div class="menu__item" routerLink="legalperson">
+      <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+      <div class="menu__item-text">Юридические данные</div>
+    </div>
+    <div class="menu__item">
+      <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+      <div class="menu__item-text">Юридические данные</div>
+    </div>
+  </div>
+  <div
+    class="w-100 " [ngClass]="{swipped : isShowedFullMenu}"
+  >
+    <div
+      [ngClass]="{ 'tag': isGrid }"
+      
+    ></div>
+    <div [ngClass]="{ 'swipe': isGrid }"  (swipeup)="startAnimation()">
+      <div class="menu__item">
+        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+        <div class="menu__item-text">Юридические данные</div>
+      </div>
+      <div class="menu__item">
+        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+        <div class="menu__item-text">Юридические данные</div>
+      </div>
+      <div class="menu__item">
+        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+        <div class="menu__item-text">Юридические данные</div>
+      </div>
+      <div class="menu__item">
+        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+        <div class="menu__item-text">Юридические данные</div>
+      </div>
+      <div class="menu__item">
+        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+        <div class="menu__item-text">Юридические данные</div>
+      </div>
+      <div class="menu__item">
+        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+        <div class="menu__item-text">Юридические данные</div>
+      </div>
+      <div class="menu__item">
+        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+        <div class="menu__item-text">Юридические данные</div>
+      </div>
+      <div class="menu__item">
+        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+        <div class="menu__item-text">Юридические данные</div>
+      </div>
+      <div class="menu__item">
+        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
+        <div class="menu__item-text">Юридические данные</div>
+      </div>
+    </div>
+  </div>
+</div>

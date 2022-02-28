@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+
+
+
 import { CommonModule } from '@angular/common';
 import { CabinetComponent } from './cabinet.component';
 import { PersonalComponent } from './pages/personal/personal.component';
@@ -35,7 +38,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { SideBarMenuComponent } from './pages/side-bar-menu/side-bar-menu.component';
+import { SideBarMenuComponent } from './components/side-bar-menu/side-bar-menu.component';
 
 @NgModule({
   imports: [
@@ -48,6 +51,7 @@ import { SideBarMenuComponent } from './pages/side-bar-menu/side-bar-menu.compon
      */
     SharedModule,
     TriangleModule,
+    
 
     /**
      * NG-ZORRO-MODULES
@@ -87,5 +91,6 @@ import { SideBarMenuComponent } from './pages/side-bar-menu/side-bar-menu.compon
     UserInfoModalComponent,
     SideBarMenuComponent
   ],
+  
 })
 export class CabinetModule {}

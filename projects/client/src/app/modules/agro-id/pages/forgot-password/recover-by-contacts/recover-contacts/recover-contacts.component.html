@@ -12,7 +12,7 @@
       <div>
         <!-- TITLE -->
         <h2 nz-typography class="agro-id-form-title">
-          {{ "enterYourLogin" | translate }}
+          {{ "recover" | translate }}
         </h2>
 
         <!-- SUB TITLE -->
@@ -55,6 +55,7 @@
             nz-button
             nzType="primary"
             nzBlock
+            nzShape="round"
             [nzLoading]="$isWaitingResponse | async"
             class="recover-login__btn font-agro-medium"
           >
