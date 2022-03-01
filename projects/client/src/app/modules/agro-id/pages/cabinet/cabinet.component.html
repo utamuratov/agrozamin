@@ -104,8 +104,19 @@
  -->
 <div nz-row class="h-100 d-flex flex-column">
   <nz-layout nz-row class="cabinet">
-    <nz-sider nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" class="cabinet__left-sidebar" nzWidth="300px">
-      <div class="cabinet__lang">
+    <nz-sider
+      class="cabinet__left-sidebar"
+      [nzTrigger]="null"
+      [(nzCollapsed)]="isCollapsed"
+      nzWidth="250px"
+      nzBreakpoint="md"
+      (nzCollapsedChange)="handleSidebarStyles($event)"
+      [style.min-width]="isCollapsed ? '71px' : '250px'"
+      [style.max-width]="isCollapsed ? '71px' : '250px'"
+      [style.width]="isCollapsed ? '71px' : '250px'"
+      [style.flex]="isCollapsed ? '0 0 71px' : '0 0 250px'"
+    >
+      <!-- <div class="cabinet__lang">
         <ng-container *ngFor="let language of languages; let i = index">
           <button
             nz-button
@@ -121,24 +132,62 @@
             >
           </button>
         </ng-container>
-      </div>
-  
-      <div class="cabinet__logo">
-        <h2 nz-typography><a>AgroID</a></h2>
+      </div> -->
+
+      <div *ngIf="!isCollapsed; else logo" class="cabinet__logo">
+        <h2 nz-typography>
+          <img
+            src="../../../../../assets/images/agro-id-images/agro-id-logo.svg"
+            alt="logo"
+            style="padding-right: 5px"
+          />AgroID
+        </h2>
         <span nz-typography class="font-agro-medium"
           >Единая система идентификации</span
         >
       </div>
-  
-      <side-bar-menu></side-bar-menu>
+
+      <button
+        nzType="default"
+        nzShape="circle"
+        (click)="isCollapsed = !isCollapsed"
+        class="trigger-btn"
+      >
+        <i
+          class="trigger"
+          nz-icon
+          [nzType]="isCollapsed ? 'right' : 'left'"
+        ></i>
+      </button>
+
+      <ng-template #logo class="logo-img">
+        <div class="cabinet__logo collapsed-logo">
+          <img
+            src="../../../../../assets/images/agro-id-images/agro-id-logo.svg"
+            alt="logo"
+          />
+        </div>
+      </ng-template>
+
+      <side-bar-menu [isGrid]="isCollapsed"></side-bar-menu>
+
+      <social-links *ngIf="!isCollapsed"></social-links>
     </nz-sider>
     <nz-layout>
       <nz-header class="cabinet__header">Header</nz-header>
       <nz-layout nz-row>
-        <nz-content nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" class="cabinet__content">Content</nz-content>
+        <nz-content
+          nz-col
+          nzXs="24"
+          nzSm="24"
+          nzMd="24"
+          nzLg="24"
+          nzXl="24"
+          class="cabinet__content"
+          >Content</nz-content
+        >
       </nz-layout>
     </nz-layout>
   </nz-layout>
-  <nz-footer nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0"><side-bar-menu [isGrid]="true"></side-bar-menu></nz-footer>
+  <!-- <nz-footer nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0"><side-bar-menu [isGrid]="true"></side-bar-menu></nz-footer> -->
 </div>
-
