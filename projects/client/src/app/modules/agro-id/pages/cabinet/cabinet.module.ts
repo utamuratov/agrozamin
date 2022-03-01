@@ -39,6 +39,7 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { SideBarMenuComponent } from './components/side-bar-menu/side-bar-menu.component';
+import { SocialLinksComponent } from './components/social-links/social-links.component';
 
 @NgModule({
   imports: [
@@ -89,7 +90,8 @@ import { SideBarMenuComponent } from './components/side-bar-menu/side-bar-menu.c
     BusinessCardModalComponent,
     NotificationComponent,
     UserInfoModalComponent,
-    SideBarMenuComponent
+    SideBarMenuComponent,
+    SocialLinksComponent
   ],
   
 })

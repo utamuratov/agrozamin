@@ -64,8 +64,6 @@ nz-footer {
 }
 
 .cabinet {
-  // height: 100%;
-
   nz-header,
   nz-footer {
     background: #7dbcea;
@@ -80,7 +78,12 @@ nz-footer {
   nz-sider {
     background: #3c4bdc;
     color: #fff;
-    line-height: 120px;    
+    .collapse {
+      flex: 0 0 71px;
+      max-width: 71px;
+      min-width: 71px;
+      width: 71px;
+    }
   }
 
   nz-content {
@@ -94,14 +97,9 @@ nz-footer {
     margin-bottom: 48px;
   }
 
- 
-
   nz-layout nz-layout,
   nz-layout:last-child {
     margin: 0;
-  }
-
-  &__right-sidebar {
   }
 
   &__lang {
@@ -111,18 +109,26 @@ nz-footer {
 
   &__logo {
     line-height: 15px;
-    margin-bottom: 73px;
+    margin-bottom: 40px;
+    padding-top: 20px;
     h2 {
       margin-bottom: 0;
-    }
-    a {
       color: #fff;
-      font-size: 47px;
+      font-size: 40px;
+      line-height: 42px;
     }
     span {
       color: #fff;
       font-size: 12px;
     }
+
+    .collapsed-logo {
+      margin-bottom: 50px;
+    }
+  }
+
+  .logo-img {
+    margin-bottom: 80px;
   }
 
   &__divider {
@@ -133,4 +139,24 @@ nz-footer {
 
 .ant-layout-footer {
   padding: 0px;
+}
+
+.trigger-btn {
+  position: absolute;
+  top: 20px;
+  right: -12px;
+  z-index: 10000;
+  color: #b2b2b2;
+  border-radius: 50%;
+  outline: none;
+  border: 1px solid #b2b2b2;
+  width: 25px;
+  height: 25px;
+
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

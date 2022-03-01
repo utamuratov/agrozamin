@@ -1,16 +1,16 @@
-<div class="menu" [ngClass]="{ grid: isGrid }">
+<div class="menu" [ngClass]="{ 'text-disabled': isGrid }" (swipeup)="startAnimation()" >
   <div class="main-menu">
-    <div class="menu__item" routerLink="personal">
-      <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-      <div class="menu__item-text">Персональные данные</div>
+    <div class="menu__item" routerLinkActive="active" routerLink="home">
+      <i class="menu__item-icon" nz-icon nzType="exclamation-circle" nzTheme="outline"></i>
+      <div class="menu__item-text">Главная</div>
     </div>
-    <div class="menu__item" routerLink="legalperson">
+    <div class="menu__item" routerLinkActive="active" routerLink="personal">
       <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-      <div class="menu__item-text">Юридические данные</div>
+      <div class="menu__item-text">Профиль</div>
     </div>
-    <div class="menu__item">
-      <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-      <div class="menu__item-text">Юридические данные</div>
+    <div class="menu__item" routerLinkActive="active" routerLink="legalperson">
+      <i class="menu__item-icon" nz-icon nzType="credit-card" nzTheme="outline"></i>
+      <div class="menu__item-text">Бизнес</div>
     </div>
   </div>
   <div
@@ -20,42 +20,19 @@
       [ngClass]="{ 'tag': isGrid }"
       
     ></div>
-    <div [ngClass]="{ 'swipe': isGrid }"  (swipeup)="startAnimation()">
-      <div class="menu__item">
-        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-        <div class="menu__item-text">Юридические данные</div>
+    <div [ngClass]="{ 'swipe': isGrid }" (swipedown)="startAnimation()" >
+      <div class="menu__item" routerLinkActive="active" routerLink="biznescards">
+        <i class="menu__item-icon" nz-icon nzType="book" nzTheme="outline"></i>
+        <div class="menu__item-text">Мои визитки</div>
       </div>
-      <div class="menu__item">
-        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-        <div class="menu__item-text">Юридические данные</div>
+      <div class="menu__item" routerLinkActive="active" routerLink="settings">
+        <i class="menu__item-icon" nz-icon nzType="setting" nzTheme="outline"></i>
+        <div class="menu__item-text">Настройки</div>
       </div>
+      <nz-divider class="menu__divider"></nz-divider>
       <div class="menu__item">
-        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-        <div class="menu__item-text">Юридические данные</div>
-      </div>
-      <div class="menu__item">
-        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-        <div class="menu__item-text">Юридические данные</div>
-      </div>
-      <div class="menu__item">
-        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-        <div class="menu__item-text">Юридические данные</div>
-      </div>
-      <div class="menu__item">
-        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-        <div class="menu__item-text">Юридические данные</div>
-      </div>
-      <div class="menu__item">
-        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-        <div class="menu__item-text">Юридические данные</div>
-      </div>
-      <div class="menu__item">
-        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-        <div class="menu__item-text">Юридические данные</div>
-      </div>
-      <div class="menu__item">
-        <i class="menu__item-icon" nz-icon nzType="user" nzTheme="outline"></i>
-        <div class="menu__item-text">Юридические данные</div>
+        <i class="menu__item-icon" nz-icon nzType="logout" nzTheme="outline"></i>
+        <div class="menu__item-text">Выход</div>
       </div>
     </div>
   </div>
