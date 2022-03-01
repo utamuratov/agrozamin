@@ -8,14 +8,11 @@ import {
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { Constants } from 'projects/client/src/app/core/config/constants';
 import { ConfirmationType } from 'projects/client/src/app/core/enums/confirmation-type.enum';
 import { RecoverByLoginStep } from 'projects/client/src/app/core/enums/recover-by-login-step.enum';
 import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';
-import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
-import { LocalStorageUtilit } from 'projects/client/src/app/core/utilits/local-storage.utilit';
 import {
   Observable,
   interval,
@@ -23,9 +20,6 @@ import {
   startWith,
   takeWhile,
   shareReplay,
-  catchError,
-  of,
-  finalize,
 } from 'rxjs';
 
 const LEFT_SECONDS_BY_PHONE = 60;
@@ -57,7 +51,7 @@ export class ConfirmationComponent implements OnInit {
   data!: ConfirmationConfig;
 
   /**
-   * 
+   *
    */
   confirmationType = ConfirmationType;
 
@@ -65,11 +59,6 @@ export class ConfirmationComponent implements OnInit {
    *
    */
   form!: FormGroup;
-
-  /**
-   *
-   */
-  errorMessageFromServer?: ErrorItem;
 
   /**
    *
@@ -96,8 +85,7 @@ export class ConfirmationComponent implements OnInit {
     private elementRef: ElementRef,
     private $auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute,
-    private translate: TranslateService
+    private route: ActivatedRoute
   ) {}
 
   /**
@@ -144,81 +132,105 @@ export class ConfirmationComponent implements OnInit {
    *
    */
   submit(): void {
-    let activationCode = '';
-    for (const key in this.form.value) {
-      activationCode += this.form.value[key];
-    }
+    const activationCode = this.getActivationCode();
 
     switch (this.data.confirmationType) {
       case ConfirmationType.SignUp:
-        this.$isWaitingResponse = this.$auth
-          .sendActivationCodeToPhone({
-            phone: this.data?.login,
-            secure_code: activationCode,
-          })
-          .pipe(
-            map(() => {
-              this.errorMessageFromServer = undefined;
-              this.changeStep.emit(SignUpStep.Success);
-              return false;
-            }),
-            startWith(true),
-            catchError((errors: ErrorItem[]) => {
-              this.errorMessageFromServer = errors[0];
-              return of(false);
-            })
-          );
-
+        this.sendActivationCodeToPhone(activationCode);
         break;
 
       case ConfirmationType.RecoverByContacs:
-        this.$isWaitingResponse = this.$auth
-          .restoreLoginSecondStep({
-            [this.data.phone ? Constants.PHONE : Constants.EMAIL]:
-              this.data?.login,
-            secure_code: activationCode,
-          })
-          .pipe(
-            map((response) => {
-              this.errorMessageFromServer = undefined;
-              this.router.navigate(['../../'], {
-                relativeTo: this.route,
-                state: { login: response.login },
-              });
-
-              return false;
-            }),
-            startWith(true),
-            catchError((errors: ErrorItem[]) => {
-              this.errorMessageFromServer = errors[0];
-              return of(false);
-            })
-          );
+        this.restoreLoginStepTwo(activationCode);
         break;
 
       case ConfirmationType.RecoverByLogin:
-        this.$isWaitingResponse = this.$auth
-          .changePasswordStepThree({
-            login: this.data.login,
-            secure_code: activationCode,
-          })
-          .pipe(
-            map(() => {
-              this.errorMessageFromServer = undefined;
-              this.changeStep.emit(RecoverByLoginStep.NewPassword);
-              return false;
-            }),
-            startWith(true),
-            catchError((errors: ErrorItem[]) => {
-              this.errorMessageFromServer = errors[0];
-              return of(false);
-            })
-          );
+        this.changePasswordStepThree(activationCode);
         break;
 
       default:
         break;
     }
+  }
+
+  /**
+   *
+   * @returns
+   */
+  private getActivationCode() {
+    let activationCode = '';
+    for (const key in this.form.value) {
+      activationCode += this.form.value[key];
+    }
+    return activationCode;
+  }
+
+  /**
+   *
+   * @param activationCode
+   */
+  private changePasswordStepThree(activationCode: string) {
+    this.$isWaitingResponse = this.$auth
+      .changePasswordStepThree({
+        login: this.data.login,
+        secure_code: activationCode,
+      })
+      .pipe(
+        map((result) => {
+          if (result.success) {
+            this.changeStep.emit(RecoverByLoginStep.NewPassword);
+          }
+
+          return false;
+        }),
+        startWith(true)
+      );
+  }
+
+  /**
+   *
+   * @param activationCode
+   */
+  private restoreLoginStepTwo(activationCode: string) {
+    this.$isWaitingResponse = this.$auth
+      .restoreLoginStepTwo({
+        [this.data.phone ? Constants.PHONE : Constants.EMAIL]: this.data?.login,
+        secure_code: activationCode,
+      })
+      .pipe(
+        map((response) => {
+          if (response.success) {
+            this.router.navigate(['../../'], {
+              relativeTo: this.route,
+              state: { login: response.data.login },
+            });
+          }
+
+          return false;
+        }),
+        startWith(true)
+      );
+  }
+
+  /**
+   *
+   * @param activationCode
+   */
+  private sendActivationCodeToPhone(activationCode: string) {
+    this.$isWaitingResponse = this.$auth
+      .sendActivationCodeToPhone({
+        phone: this.data?.login,
+        secure_code: activationCode,
+      })
+      .pipe(
+        map((result) => {
+          if (result.success) {
+            this.changeStep.emit(SignUpStep.Success);
+          }
+
+          return false;
+        }),
+        startWith(true)
+      );
   }
 
   /**
@@ -261,26 +273,17 @@ export class ConfirmationComponent implements OnInit {
    *
    */
   resendActivationCode() {
-    if (this.$isWaitingActivationCodeResponse) {
-      return;
-    }
-
     this.$isWaitingActivationCodeResponse = this.$auth
       .resendAccountActivationCode({ phone: this.data?.login })
       .pipe(
         map((result) => {
-          if (result) {
-            this.errorMessageFromServer = undefined;
+          if (result.success) {
             this.startTimer();
           }
+
           return false;
         }),
-        startWith(true),
-        catchError((errors: ErrorItem[]) => {
-          this.errorMessageFromServer = errors[0];
-          return of(false);
-        }),
-        finalize(() => (this.$isWaitingActivationCodeResponse = undefined))
+        startWith(true)
       );
   }
 }

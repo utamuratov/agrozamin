@@ -1,5 +1,14 @@
-<div class="ant-form-item-explain-error">
-  <div *ngFor="let errorMessage of error.message">
-    {{ error.field + "." + errorMessage.key | translate }}
+<ng-container *ngIf="error; else fromAsyncData">
+  <div class="ant-form-item-explain-error mb-1">
+    <div *ngFor="let errorMessage of error.message">
+      {{ error.field + "." + errorMessage.key | translate }}
+    </div>
   </div>
-</div>
+</ng-container>
+<ng-template #fromAsyncData>
+  <div class="ant-form-item-explain-error mb-1" *ngIf="$error | async as error">
+    <div *ngFor="let errorMessage of error.message">
+      {{ error.field + "." + errorMessage.key | translate }}
+    </div>
+  </div>
+</ng-template>

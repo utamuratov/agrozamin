@@ -16,10 +16,9 @@ import {
 import { Constants } from 'projects/client/src/app/core/config/constants';
 import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';
 import { ValidationHelper } from 'projects/client/src/app/core/helpers/validation.helper';
-import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { SignUpRequest } from 'projects/client/src/app/shared/models/auth/sign-up.request';
-import { catchError, map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 export interface SignUpSetPasswordConfig {
   nextStep: SignUpStep;
@@ -88,18 +87,8 @@ export class SignUpComponent implements OnInit {
         ],
         [this.loginAsyncValidator()],
       ],
-      f_name: [
-        null,
-        [
-          Validators.required
-        ],
-      ],
-      l_name: [
-        null,
-        [
-          Validators.required
-        ],
-      ],
+      f_name: [null, [Validators.required]],
+      l_name: [null, [Validators.required]],
       agree: [null, [Validators.requiredTrue]],
       phone: [null, [Validators.required], [this.phoneAsyncValidator()]],
     });
@@ -112,11 +101,12 @@ export class SignUpComponent implements OnInit {
   private loginAsyncValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return this.$auth.checkLoginToUnique({ login: control.value }).pipe(
-        map(() => {
-          return null;
-        }),
-        catchError((errors: ErrorItem[]) => {
-          return of({ [Constants.ERROR_MESSAGE_FROM_SERVER]: errors[0] });
+        map((result) => {
+          if (result.success) {
+            return null;
+          }
+          
+          return { [Constants.ERROR_MESSAGE_FROM_SERVER]: result.error[0] };
         })
       );
     };
@@ -133,11 +123,12 @@ export class SignUpComponent implements OnInit {
           phone: Constants.PREFIX_PHONENUMBER + control.value,
         })
         .pipe(
-          map(() => {
-            return null;
-          }),
-          catchError((errors: ErrorItem[]) => {
-            return of({ [Constants.ERROR_MESSAGE_FROM_SERVER]: errors[0] });
+          map((result) => {
+            if (result.success) {
+              return null;
+            }
+
+            return { [Constants.ERROR_MESSAGE_FROM_SERVER]: result.error[0] };
           })
         );
     };

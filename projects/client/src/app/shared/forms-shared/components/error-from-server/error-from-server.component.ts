@@ -1,18 +1,28 @@
-import {
-  Component,
-  Input
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { errorMessageFromServer } from 'projects/client/src/app/core/services/base.service';
 import { ErrorItem } from '../../../../core/models/error-item.interface';
 
 @Component({
   selector: 'error-from-server',
   templateUrl: './error-from-server.component.html',
-  styleUrls: ['./error-from-server.component.less']
+  styleUrls: ['./error-from-server.component.less'],
 })
-export class ErrorFromServerComponent {
+export class ErrorFromServerComponent implements OnInit {
   /**
    *
    */
   @Input()
-  error!: ErrorItem;
+  error?: ErrorItem;
+
+  /**
+   *
+   */
+  $error = errorMessageFromServer.asObservable();
+
+  /**
+   *
+   */
+  ngOnInit(): void {
+    errorMessageFromServer.next(null);
+  }
 }

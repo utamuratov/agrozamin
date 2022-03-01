@@ -10,11 +10,10 @@ import { Constants } from 'projects/client/src/app/core/config/constants';
 import { ConfirmationType } from 'projects/client/src/app/core/enums/confirmation-type.enum';
 import { LoginType } from 'projects/client/src/app/core/enums/login-type.enum';
 import { RecoverByContactsStep } from 'projects/client/src/app/core/enums/recover-by-contacts-step.enum';
-import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
 import { RestoreLoginStepOneRequest } from 'projects/client/src/app/shared/models/auth/restore-login-step-one.request';
-import { catchError, finalize, map, Observable, of, startWith } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import { ConfirmationConfig } from '../../../../shared/confirmation/confirmation.component';
 
 @Component({
@@ -47,7 +46,16 @@ export class RecoverContactsComponent implements OnInit {
   /**
    *
    */
-  errorMessageFromServer?: ErrorItem;
+  get phone(): string {
+    return Constants.PREFIX_PHONENUMBER + this.form.get(Constants.PHONE)?.value;
+  }
+
+  /**
+   *
+   */
+  get email(): string {
+    return this.form.get(Constants.EMAIL)?.value;
+  }
 
   /**
    *
@@ -74,37 +82,37 @@ export class RecoverContactsComponent implements OnInit {
    */
   submitForm(): void {
     if (this.form.valid) {
-      const request: RestoreLoginStepOneRequest = this.getRestoreLoginRequest();
-      this.$isWaitingResponse = this.$auth.restoreLoginFirstStep(request).pipe(
-        map(() => {
-          this.errorMessageFromServer = undefined;
-          this.goToNextStep();
-          return false;
-        }),
-        startWith(true),
-        catchError((errors: ErrorItem[]) => {
-          this.errorMessageFromServer = errors[0];
-          return of(false);
-        })
-      );
+      this.restoreLoginStepOne();
     } else {
       markAllAsDirty(this.form);
     }
   }
 
+  private restoreLoginStepOne() {
+    const request: RestoreLoginStepOneRequest = this.getRestoreLoginRequest();
+    this.$isWaitingResponse = this.$auth.restoreLoginStepOne(request).pipe(
+      map((result) => {
+        if (result.success) {
+          this.goToNextStep();
+        }
+        return false;
+      }),
+      startWith(true)
+    );
+  }
+
   /**
    *
    */
-  private getRestoreLoginRequest() {
+  private getRestoreLoginRequest(): RestoreLoginStepOneRequest {
     if (this.loginType === LoginType.PhoneNumber) {
       return {
-        [Constants.PHONE]:
-          Constants.PREFIX_PHONENUMBER +
-          this.form.controls[Constants.PHONE].value,
+        [Constants.PHONE]: this.phone,
       };
     }
+
     return {
-      [Constants.EMAIL]: this.form.controls[Constants.EMAIL].value,
+      [Constants.EMAIL]: this.email,
     };
   }
 
@@ -115,17 +123,11 @@ export class RecoverContactsComponent implements OnInit {
     const confirmationConfig: ConfirmationConfig = {
       confirmationType: ConfirmationType.RecoverByContacs,
       nextStep: RecoverByContactsStep.Confirmation,
-      login:
-        this.loginType === LoginType.PhoneNumber
-          ? Constants.PREFIX_PHONENUMBER + this.form.get(Constants.PHONE)?.value
-          : this.form.get(Constants.EMAIL)?.value,
+      login: this.loginType === LoginType.PhoneNumber ? this.phone : this.email,
     };
-
-    if (this.loginType === LoginType.PhoneNumber) {
-      confirmationConfig.phone = confirmationConfig.login;
-    } else {
-      confirmationConfig.email = confirmationConfig.login;
-    }
+    confirmationConfig[
+      this.loginType === LoginType.PhoneNumber ? 'phone' : 'email'
+    ] = confirmationConfig.login;
 
     this.changeStep.emit(confirmationConfig);
   }

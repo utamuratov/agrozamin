@@ -21,6 +21,7 @@ import { SignInResponse } from '../../../shared/models/auth/sign-in.response';
 import { SignUpRequest } from '../../../shared/models/auth/sign-up.request';
 import { Message } from '../../../shared/models/message.interface';
 import { Constants } from '../../config/constants';
+import { BaseResponse } from '../../models/base-response.interface';
 import { LocalStorageUtilit } from '../../utilits/local-storage.utilit';
 import { BaseService } from '../base.service';
 
@@ -40,8 +41,10 @@ export class AuthService {
   signIn(model: ISignInRequest) {
     return this.$baseService.post<SignInResponse>('login', model).pipe(
       tap((result) => {
-        LocalStorageUtilit.set(Constants.ACCESS_TOKEN, result.access_token);
-        LocalStorageUtilit.set(Constants.REFRESH_TOKEN, result.refresh_token);
+        if (result.success) {
+          LocalStorageUtilit.set(Constants.ACCESS_TOKEN, result.data.access_token);
+          LocalStorageUtilit.set(Constants.REFRESH_TOKEN, result.data.refresh_token);
+        }
       })
     );
   }
@@ -51,7 +54,7 @@ export class AuthService {
    * @param params
    * @returns
    */
-  signUp(model: SignUpRequest): Observable<Message> {
+  signUp(model: SignUpRequest): Observable<BaseResponse<Message>> {
     return this.$baseService.post<Message>('registration', model);
   }
 
@@ -60,7 +63,7 @@ export class AuthService {
    * @param model
    * @returns
    */
-  checkLoginToUnique(model: CheckLoginRequest): Observable<[]> {
+  checkLoginToUnique(model: CheckLoginRequest): Observable<BaseResponse<[]>> {
     return this.$baseService.post<[]>('check-login', model);
   }
 
@@ -69,7 +72,7 @@ export class AuthService {
    * @param model
    * @returns
    */
-  checkPhoneToUnique(model: CheckPhoneRequest): Observable<[]> {
+  checkPhoneToUnique(model: CheckPhoneRequest): Observable<BaseResponse<[]>> {
     return this.$baseService.post<[]>('check-phone', model);
   }
 
@@ -80,7 +83,7 @@ export class AuthService {
    */
   sendActivationCodeToPhone(
     model: PhoneActivationRequest
-  ): Observable<AccountActivationResponse> {
+  ): Observable<BaseResponse<AccountActivationResponse>> {
     return this.$baseService.post<AccountActivationResponse>(
       'phone-activation',
       model
@@ -94,7 +97,7 @@ export class AuthService {
    */
   resendAccountActivationCode(
     model: AskActivationCodeRequest
-  ): Observable<Message> {
+  ): Observable<BaseResponse<Message>> {
     return this.$baseService.post<Message>('resend-secure-code', model);
   }
 
@@ -103,13 +106,15 @@ export class AuthService {
    * @param model
    * @returns
    */
-  refreshToken(model: RefreshTokenRequest): Observable<RefreshTokenResponse> {
+  refreshToken(model: RefreshTokenRequest): Observable<BaseResponse<RefreshTokenResponse>> {
     return this.$baseService
       .post<RefreshTokenResponse>('refresh-token', model)
       .pipe(
         tap((result) => {
-          LocalStorageUtilit.set(Constants.ACCESS_TOKEN, result.access_token);
-          LocalStorageUtilit.set(Constants.REFRESH_TOKEN, result.refresh_token);
+          if (result.success) {
+            LocalStorageUtilit.set(Constants.ACCESS_TOKEN, result.data.access_token);
+            LocalStorageUtilit.set(Constants.REFRESH_TOKEN, result.data.refresh_token);
+          }
         })
       );
   }
@@ -119,9 +124,9 @@ export class AuthService {
    * @param model should be {email} or {phone}
    * @returns
    */
-  restoreLoginFirstStep(
+  restoreLoginStepOne(
     model: RestoreLoginStepOneRequest
-  ): Observable<RestoreLoginStepOneResponse> {
+  ): Observable<BaseResponse<RestoreLoginStepOneResponse>> {
     return this.$baseService.post<RestoreLoginStepOneResponse>(
       'restore-login-step-one',
       model
@@ -133,9 +138,9 @@ export class AuthService {
    * @param model should be {email, secure_code} or {phone, secure_code}
    * @returns
    */
-  restoreLoginSecondStep(
+  restoreLoginStepTwo(
     model: RestoreLoginStepTwoRequest
-  ): Observable<RestoreLoginResponse> {
+  ): Observable<BaseResponse<RestoreLoginResponse>> {
     return this.$baseService.post<RestoreLoginResponse>(
       'restore-login-step-two',
       model
@@ -149,7 +154,7 @@ export class AuthService {
    */
   changePasswordStepOne(
     model: Login
-  ): Observable<ChangePasswordStepOneResponse> {
+  ): Observable<BaseResponse<ChangePasswordStepOneResponse>> {
     return this.$baseService.post<ChangePasswordStepOneResponse>(
       'change-password-step1',
       model
@@ -161,7 +166,7 @@ export class AuthService {
    * @param model
    * @returns
    */
-  changePasswordStepTwo(model: ChangePasswordStepTwoRequest): Observable<any> {
+  changePasswordStepTwo(model: ChangePasswordStepTwoRequest): Observable<BaseResponse<any>> {
     return this.$baseService.post<any>('change-password-step2', model);
   }
 
@@ -172,7 +177,7 @@ export class AuthService {
    */
   changePasswordStepThree(
     model: ChangePasswordStepThreeRequest
-  ): Observable<any> {
+  ): Observable<BaseResponse<any>> {
     return this.$baseService.post<any>('change-password-step3', model);
   }
 
@@ -183,7 +188,7 @@ export class AuthService {
    */
   changePasswordStepFour(
     model: ChangePasswordStepFourRequest
-  ): Observable<boolean> {
+  ): Observable<BaseResponse<boolean>> {
     return this.$baseService.post<boolean>('change-password-step4', model);
   }
 }

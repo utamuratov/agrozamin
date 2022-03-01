@@ -23,12 +23,7 @@
         <nz-divider class="mt-10p"></nz-divider>
 
         <!-- ERRORS FROM SERVER -->
-        <div class="mb-1">
-          <error-from-server
-            *ngIf="errorMessageFromServer"
-            [error]="errorMessageFromServer"
-          ></error-from-server>
-        </div>
+        <error-from-server></error-from-server>
 
         <!-- FORM -->
         <form
