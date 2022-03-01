@@ -23,12 +23,7 @@
         <nz-divider class="mt-10p mb-4p"></nz-divider>
 
         <!-- ERRORS FROM SERVER -->
-        <div class="mb-1">
-          <error-from-server
-            *ngIf="errorMessageFromServer"
-            [error]="errorMessageFromServer"
-          ></error-from-server>
-        </div>
+        <error-from-server></error-from-server>
 
         <!-- LOGIN INPUT FIELD -->
         <nz-form-item>
@@ -98,7 +93,6 @@
             nzShape="round"
             nzBlock
             [nzType]="'primary'"
-            [nzLoading]="$isWaitingResponse|async"
           >
             {{'toComeIn' | translate}}
           </button>

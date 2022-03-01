@@ -5,6 +5,7 @@ import { Constants } from 'projects/client/src/app/core/config/constants';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.service';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
+import { map, Observable, startWith } from 'rxjs';
 import { PasswordAndConfirmationPassword } from '../../../../shared/password-and-confirmation-password';
 
 @Component({
@@ -41,6 +42,15 @@ export class CreateNewPasswordComponent
   /**
    *
    */
+
+  /**
+   *
+   */
+  $isWaitingResponse?: Observable<boolean>;
+
+  /**
+   *
+   */
   ngOnInit() {
     this.initForm();
   }
@@ -58,17 +68,21 @@ export class CreateNewPasswordComponent
    */
   submit(): void {
     if (this.form.valid) {
-      console.log('submit', this.form.value);
-      this.$auth
+      this.$isWaitingResponse = this.$auth
         .changePasswordStepFour({
           login: this.login,
           password: this.form.controls[Constants.PASSWORD].value,
         })
-        .subscribe((response) => {
-          console.log(response);
+        .pipe(
+          map((response) => {
+            if (response.success) {
+              this.router.navigate(['../../'], { relativeTo: this.route });
+            }
 
-          this.router.navigate(['../../'], { relativeTo: this.route });
-        });
+            return false;
+          }),
+          startWith(true)
+        );
     } else {
       markAllAsDirty(this.form);
     }

@@ -2,12 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ConfirmationType } from 'projects/client/src/app/core/enums/confirmation-type.enum';
 import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';
-import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.service';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
 import { SignUpRequest } from 'projects/client/src/app/shared/models/auth/sign-up.request';
-import { catchError, map, Observable, of, shareReplay, startWith } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import { ConfirmationConfig } from '../../../../shared/confirmation/confirmation.component';
 import { PasswordAndConfirmationPassword } from '../../../../shared/password-and-confirmation-password';
 
@@ -39,11 +38,6 @@ export class SignUpSetPasswordComponent
 
   /**
    *
-   */
-  errorMessageFromServer?: ErrorItem;
-
-  /**
-   *
    * @param fb
    * @param $ngDestroy
    */
@@ -69,8 +63,7 @@ export class SignUpSetPasswordComponent
   private signUp(model: SignUpRequest) {
     this.$isWaitingResponse = this.$auth.signUp(model).pipe(
       map((response) => {
-        if (response) {
-          this.errorMessageFromServer = undefined;
+        if (response.success) {
           this.changeStep.emit({
             confirmationType: ConfirmationType.SignUp,
             nextStep: SignUpStep.Confirmation,
@@ -80,11 +73,7 @@ export class SignUpSetPasswordComponent
         }
         return false;
       }),
-      startWith(true),
-      catchError((errors: ErrorItem[]) => {
-        this.errorMessageFromServer = errors[0];
-        return of(false);
-      })
+      startWith(true)
     );
   }
 

@@ -25,12 +25,7 @@
           (ngSubmit)="submit()"
         >
           <!-- ERRORS FROM SERVER -->
-          <div class="mb-1">
-            <error-from-server
-              *ngIf="errorMessageFromServer"
-              [error]="errorMessageFromServer"
-            ></error-from-server>
-          </div>
+          <error-from-server></error-from-server>
 
           <!-- LOGIN INPUT -->
           <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">

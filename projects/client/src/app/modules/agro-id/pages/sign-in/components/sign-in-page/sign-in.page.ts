@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { SignInRequest } from 'projects/client/src/app/shared/models/auth/sign-in.request';
-import { catchError, finalize, map, Observable, of, startWith } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import { Constants } from 'projects/client/src/app/core/config/constants';
 import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
 
@@ -23,11 +22,6 @@ export class SignInPage implements OnInit {
    *
    */
   form!: FormGroup;
-
-  /**
-   *
-   */
-  errorMessageFromServer?: ErrorItem;
 
   /**
    *
@@ -85,16 +79,14 @@ export class SignInPage implements OnInit {
    */
   private signIn(model: SignInRequest) {
     this.$isWaitingResponse = this.$auth.signIn(model).pipe(
-      map(() => {
-        this.errorMessageFromServer = undefined;
-        // this.router.navigate(['/']);
+      map((result) => {
+        if (result.success) {
+          this.router.navigate(['/']);
+        }
+
         return false;
       }),
-      startWith(true),
-      catchError((errors: ErrorItem[]) => {
-        this.errorMessageFromServer = errors[0];
-        return of(false);
-      })
+      startWith(true)
     );
   }
 }
