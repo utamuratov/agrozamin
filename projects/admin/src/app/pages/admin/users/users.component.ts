@@ -69,10 +69,10 @@ export class UsersComponent implements OnInit {
   sortFnName = (a: DataItem, b: DataItem): number => (a.name > b.name ? 1 : -1);
   nameFilterFn = (list: string[], item: DataItem): boolean => list.some(name => item.name.indexOf(name) !== -1);
   
-  filterName = [
-    { text: 'Joe', value: 'Joe' },
-    { text: 'John', value: 'John' }
-  ];
+  // filterName = [
+  //   { text: 'Joe', value: 'Joe' },
+  //   { text: 'John', value: 'John' }
+  // ];
 
 
   constructor() {

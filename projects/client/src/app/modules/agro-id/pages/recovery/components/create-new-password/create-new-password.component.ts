@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Constants } from 'projects/client/src/app/core/config/constants';
+import { Constants, markAllAsDirty, NgDestroy } from 'ngx-az-core';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
-import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.service';
-import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
 import { map, Observable, startWith } from 'rxjs';
 import { PasswordAndConfirmationPassword } from '../../../../shared/password-and-confirmation-password';
 

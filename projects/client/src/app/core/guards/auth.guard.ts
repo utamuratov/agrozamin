@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import {
   CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
   UrlTree,
   Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { LanguageUtilit } from '../utilits/language.utilit';
+import { LanguageUtilit } from 'ngx-az-core';
 
 @Injectable({
   providedIn: 'root',

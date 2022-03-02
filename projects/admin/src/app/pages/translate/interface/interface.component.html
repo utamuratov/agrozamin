@@ -1,88 +1,74 @@
 <div nz-row>
-
-  <div  nz-col nzSpan="24">
-    <div style="display: inline-block; min-width: 450px; float: right;">
- 
-     <form (submit)="search()">
-     <nz-input-group>
- 
-       <nz-select  name="searchBy" [(ngModel)]="searchBy"  style="width: 200px;">
-         <nz-option nzValue="id" nzLabel="Ru"></nz-option>
-         <nz-option nzValue="login" nzLabel="Eng"></nz-option>
-         <nz-option nzValue="name" nzLabel="Key"></nz-option>
-       </nz-select>
-   
-         <nz-input-group  style="width: 200px; margin-top: 2px;" [nzSuffix]="suffixIconSearch">
-           <nz-autocomplete [nzDataSource]="filteredOptions" #auto></nz-autocomplete>
-           <input [nzAutocomplete]="auto"  name="searchText" (ngModelChange)="changeInput($event)" [(ngModel)]="searchText" type="text" nz-input placeholder="input search text" />
-         </nz-input-group>
- 
-       <ng-template #suffixIconSearch>
-         <i nz-icon nzType="search"></i>
-       </ng-template>
-       <button nz-button nzType="primary">ok</button>
-     </nz-input-group>
-   </form>
+  <div nz-col nzSpan="24">
+    <div style="display: inline-block; min-width: 450px">
+      <!-- FILTER -->
     </div>
+
+    <button
+      (click)="openModal()"
+      style="float: right; margin-right: 5px"
+      nz-button
+      nzType="primary"
+    >
+      Add
+    </button>
   </div>
- 
+
   <div nz-col nzSpan="24">
-   <nz-divider></nz-divider>
+    <nz-divider></nz-divider>
   </div>
- 
+
   <div nz-col nzSpan="24">
-   <nz-table
-       #groupingTable
-       [nzData]="filteredData"
-       nzBordered
-       nzSize="middle"
-       [nzScroll]="{ y: '270px' }"
-     >
-       <thead>
-         <tr>
-           <th nzAlign="center" nzWidth="50px" [nzSortFn]="sortFnId">Id</th>
-           <th nzAlign="center" nzWidth="100px">Логин</th>
-           <th nzAlign="center" nzWidth="100px" [nzSortFn]="sortFnName">Имя</th>
-           <th nzAlign="center" nzWidth="200px">Коментарий</th>
-           <th nzAlign="center" nzWidth="90px">Последняя авторизация</th>
-           <th nzAlign="center" nzWidth="90px" [nzFilters]="filterName" [nzFilterFn]="nameFilterFn">состаяние пользователя</th>
-           <th nzAlign="center" nzWidth="90px">требовать установки нового пароля</th>
-           <th nzAlign="center" nzWidth="150px">Действие</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr *ngFor="let data of groupingTable.data">
-           <td nzEllipsis>{{ data.id }}</td>
-           <td>{{ data.login }}</td>
-           <td>{{ data.name }}</td>
-           <td>{{ data.building }}</td>
-           <td>{{ data.number }}</td>
-           <td>
-             <nz-switch [(ngModel)]="switchValue"></nz-switch>
-           </td>
-           <td>
-             <nz-switch [(ngModel)]="switchValue1"></nz-switch>
-           </td>
-           <td nzAlign="center" >
-             <button (click)="showModal()"  style="margin-right: 5px;" nz-button nzType="primary" [nzSize]="size"><i nz-icon nzType="download"></i></button>
-             <button (click)="showModal()" style="margin-right: 5px;" nz-button nzType="primary" [nzSize]="size"><i nz-icon nzType="download"></i></button>
-             <button (click)="showModal()" nz-button nzType="primary" [nzSize]="size"><i nz-icon nzType="download"></i></button>
-           </td>
-         </tr>
-       </tbody>
-     </nz-table>
- 
+    <nz-table
+      #headerTable
+      [nzData]="filteredData"
+      [nzPageSize]="50"
+      [nzScroll]="{ y: '300px' }"
+    >
+      <thead>
+        <tr>
+          <th nzWidth="60px"></th>
+          <th nzWidth="250px" nzAlign="center">Key</th>
+          <th nzAlign="center">Translations</th>
+          <!-- <th>Address</th> -->
+          <th nzWidth="125px" nzAlign="center">Change</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let data of headerTable.data">
+          <tr>
+            <td
+              [nzExpand]="expandSet.has(data.id)"
+              (nzExpandChange)="onExpandChange(data.id, $event)"
+            ></td>
+            <td nzAlign="center">{{ data.id }}</td>
+            <td nzAlign="center">{{ data.name }}</td>
+            <td nzAlign="center">{{ data.address }}</td>
+            <td nzAlign="center" nzWidth="85px">
+              <button
+                (click)="openModal()"
+                style="margin-right: 5px"
+                nz-button
+                nzType="primary"
+              >
+                Edit
+              </button>
+            </td>
+          </tr>
+          <tr [nzExpand]="expandSet.has(data.id)">
+            <span>{{ data.description }}</span>
+          </tr>
+        </ng-container>
+      </tbody>
+    </nz-table>
   </div>
- </div>
-    
-     <nz-modal
-     [(nzVisible)]="isVisible"
-     [(nzVisible)]="isVisible"
-     nzTitle="Modal Title"
-     (nzOnCancel)="handleCancel()"
-     (nzOnOk)="handleOk()"
-     [nzOkLoading]="isOkLoading"
-     >
-     <p *nzModalContent>Modal Content</p>
-     </nz-modal>
- 
+</div>
+
+<nz-modal
+  [(nzVisible)]="isVisibleModal"
+  nzTitle="Modal Title"
+  (nzOnCancel)="closeModal()"
+  (nzOnOk)="closeModal()"
+>
+  <p *nzModalContent>Modal Content</p>
+</nz-modal>

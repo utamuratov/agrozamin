@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Constants } from 'projects/client/src/app/core/config/constants';
+import { Constants } from 'ngx-az-core';
 import { ConfirmationType } from 'projects/client/src/app/core/enums/confirmation-type.enum';
 import { RecoverByLoginStep } from 'projects/client/src/app/core/enums/recover-by-login-step.enum';
 import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';

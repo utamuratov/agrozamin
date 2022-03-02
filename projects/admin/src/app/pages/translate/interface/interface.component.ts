@@ -1,141 +1,64 @@
 import { Component, OnInit } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
+import { TranslateApiService } from '../services/translate-api.service';
 
-
-interface DataItem {
-  name: string;
+interface ItemData {
   id: number;
-  building: string;
-  number: number;
+  name: string;
+  age: number;
+  address: string;
   login: string;
+  description: string;
 }
 
 @Component({
   templateUrl: './interface.component.html',
-  styleUrls: ['./interface.component.less']
+  styleUrls: ['./interface.component.less'],
 })
-
-
 export class InterfaceComponent implements OnInit {
-
-  size: NzButtonSize = 'default';
-
-  /**
-   * 
-   */
-  data: DataItem[]  = [];
-
-  /**
-   * 
-   */
-  filteredData: DataItem[] = [];
-
-  /**
-   * 
-   */
-  searchText = '';
-
-  /**
-   * 
-   */
-  searchBy: 'id' | 'name' | 'login' = 'name';
-  /**
-   * 
-   */
-
-  filteredOptions: string[] = []
-  /**
-   * 
-   */
-
-  options = ['Ru', 'Eng', 'Key']
-  /**
-   * 
-   */
-
-  switchValue = false;
-  switchValue1 = false;
-
-  isVisible = false;
-  isOkLoading = false;
-
-
-  // list data
-  sortFnId = (a: DataItem, b: DataItem): number => a.id - b.id;
-  sortFnName = (a: DataItem, b: DataItem): number => (a.name > b.name ? 1 : -1);
-  nameFilterFn = (list: string[], item: DataItem): boolean => list.some(name => item.name.indexOf(name) !== -1);
-  
-  filterName = [
-    { text: 'Joe', value: 'Joe' },
-    { text: 'John', value: 'John' }
-  ];
-
-
-  constructor() {
-    this.filteredOptions = this.options;
-   }
-
-
-   ngOnInit(): void {
-
-    const data = [];
-
-    for (let i = 0; i < 100; i++) {
-      data.push({
-        name: 'John',
-        id: i +1,    
-        building: 'C',
-        number: 2035,      
-        login: 'login' + i
-      });
+  expandSet = new Set<number>();
+  onExpandChange(id: number, checked: boolean): void {
+    if (checked) {
+      this.expandSet.add(id);
+    } else {
+      this.expandSet.delete(id);
     }
-    this.data = data;
-    this.search();
+  }
+
+  /**
+   *
+   */
+  isVisibleModal = false;
+
+  /**
+   *
+   */
+  data: ItemData[] = [];
+
+  /**
+   *
+   */
+  filteredData: ItemData[] = [];
+
+  constructor(private $translate: TranslateApiService) {}
+
+  ngOnInit(): void {
+    this.getTranslations();
+  }
+
+  /**
+   *
+   */
+  getTranslations() {
+    this.$translate.getTranslations().subscribe((w) => console.log(w));
   }
 
   // Show Modal
-  showModal(): void {
-    this.isVisible = true;
+  openModal(): void {
+    this.isVisibleModal = true;
   }
 
-  handleOk(): void {
-    this.isOkLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isOkLoading = false;
-    }, 3000);
+  closeModal(): void {
+    this.isVisibleModal = false;
   }
-
-  handleCancel(): void {
-    this.isVisible = false;
-  }
-
-  // INput Handler
-
-  changeInput(event: any){
-    this.filteredOptions = this.options.filter(option => option.toLowerCase().indexOf(event.toLowerCase()) !== -1)
-    if(event === null || event === ''){
-      this.filteredData = this.data
-    }
-  }
-
-  search() {
-    // console.log(Name)
-    switch (this.searchBy) {
-      case 'name':
-        this.filteredData =  this.data.filter(data => data.name === this.searchText);
-        
-        break;
-        case 'id':
-        this.filteredData =  this.data.filter(data => data.id === +this.searchText);
-        break;
-        case 'login':
-        this.filteredData =  this.data.filter(data => data.login.includes(this.searchText));
-        break;
-    
-      default:
-        break;
-    }
-  }
-
 }

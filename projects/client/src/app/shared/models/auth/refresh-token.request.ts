@@ -1,4 +1,4 @@
-import { Constants } from '../../../core/config/constants';
+import { Constants } from "ngx-az-core";
 
 export interface IRefreshTokenRequest {
   refresh_token: string;
