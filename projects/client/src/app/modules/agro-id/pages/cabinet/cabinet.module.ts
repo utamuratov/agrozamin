@@ -38,8 +38,9 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { SideBarMenuComponent } from './components/side-bar-menu/side-bar-menu.component';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MainComponent } from './pages/main/main.component';
 
 @NgModule({
   imports: [
@@ -90,8 +91,9 @@ import { SocialLinksComponent } from './components/social-links/social-links.com
     BusinessCardModalComponent,
     NotificationComponent,
     UserInfoModalComponent,
-    SideBarMenuComponent,
-    SocialLinksComponent
+    SocialLinksComponent,
+    HeaderComponent,
+    MainComponent
   ],
   
 })

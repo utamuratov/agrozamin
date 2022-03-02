@@ -59,6 +59,8 @@ export class CabinetComponent implements OnInit {
   }
 
   handleSidebarStyles($event: any): void {
+    console.log(2, $event, this.isCollapsed);
     this.menuFixed = $event;
   }
+
 }
