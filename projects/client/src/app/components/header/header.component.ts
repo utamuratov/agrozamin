@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Constants } from '../../core/config/constants';
-import { LanguageUtilit } from '../../core/utilits/language.utilit';
+import { Constants, LanguageUtilit } from 'ngx-az-core';
 
 @Component({
   selector: 'header',

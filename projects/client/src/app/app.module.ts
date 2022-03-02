@@ -1,5 +1,5 @@
 import { HomeComponent } from './pages/home/home.component';
-import { ErrorHandler, Injector, NgModule } from '@angular/core';
+import { ErrorHandler, Injectable, Injector, NgModule } from '@angular/core';
 
 import { HammerModule } from '@angular/platform-browser';
 import * as Hammer from 'hammerjs';
@@ -29,28 +29,16 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
-import { InjectorHelper } from './core/helpers/injector.helper';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { createTranslateLoader } from './core/helpers/http-loader-factory';
-import { DITokens } from './core/config/di-tokens';
-import { SettingsHelper } from './core/helpers/settings.helper';
-import { GlobalErrorHandler } from './core/helpers/global-error-handler';
 import { NgxMaskModule } from 'ngx-mask';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { jwtOptionsFactory } from './core/helpers/jwt-options.factory';
 import { CookieService } from 'ngx-cookie-service';
-import { HandleErrorInterceptor } from './core/interceptors/handle.error.interceptor';
-import { HeaderInterceptor } from './core/interceptors/language.interceptor';
+import { createTranslateLoader, DITokens, GlobalErrorHandler, HandleErrorInterceptor, HeaderInterceptor, InjectorHelper, jwtOptionsFactory, SettingsHelper } from 'ngx-az-core';
+import { MyHammerConfig } from './core/configs/my-hammer.config';
 
 registerLocaleData(ru);
-
-export class MyHammerConfig extends HammerGestureConfig {
-  override overrides = {
-    swipe: { direction: Hammer.DIRECTION_ALL },
-  } as any;
-}
 
 @NgModule({
   declarations: [

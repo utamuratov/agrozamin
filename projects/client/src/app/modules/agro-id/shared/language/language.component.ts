@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Constants } from 'projects/client/src/app/core/config/constants';
-import { LanguageUtilit } from 'projects/client/src/app/core/utilits/language.utilit';
-import { Language } from 'projects/client/src/app/shared/models/language.interface';
+import { Constants, Language, LanguageUtilit } from 'ngx-az-core';
 
 @Component({
   selector: 'language',

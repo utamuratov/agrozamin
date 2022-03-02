@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { errorMessageFromServer } from 'projects/client/src/app/core/services/base.service';
-import { ErrorItem } from '../../../../core/models/error-item.interface';
+import { ErrorItem, errorMessageFromServer } from 'ngx-az-core';
 
 @Component({
   selector: 'error-from-server',

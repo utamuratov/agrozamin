@@ -1,4 +1,4 @@
-import { Language } from '../../shared/models/language.interface';
+import { Language } from "../models/language.interface";
 
 export class Constants {
   /**
@@ -56,7 +56,7 @@ export class Constants {
   /**
    * HEADER
    */
-  public static readonly HEADER_LANGUAGE = 'Language'
+  public static readonly HEADER_LANGUAGE = 'Language';
 
   /**
    * OTHER CONSTANTS

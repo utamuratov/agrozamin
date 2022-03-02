@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BaseResponse, BaseService, Constants, LocalStorageUtilit } from 'ngx-az-core';
 import { Observable, tap } from 'rxjs';
 import { PhoneActivationRequest } from '../../../shared/models/auth/account-activation.request';
 import { AccountActivationResponse } from '../../../shared/models/auth/account-activation.response';
@@ -20,10 +21,6 @@ import { ISignInRequest } from '../../../shared/models/auth/sign-in.request';
 import { SignInResponse } from '../../../shared/models/auth/sign-in.response';
 import { SignUpRequest } from '../../../shared/models/auth/sign-up.request';
 import { Message } from '../../../shared/models/message.interface';
-import { Constants } from '../../config/constants';
-import { BaseResponse } from '../../models/base-response.interface';
-import { LocalStorageUtilit } from '../../utilits/local-storage.utilit';
-import { BaseService } from '../base.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { SignInRequest } from 'projects/client/src/app/shared/models/auth/sign-in.request';
 import { map, Observable, startWith } from 'rxjs';
-import { Constants } from 'projects/client/src/app/core/config/constants';
-import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
+import { Constants, markAllAsDirty } from 'ngx-az-core';
 
 @Component({
   templateUrl: './sign-in.page.html',

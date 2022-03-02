@@ -2,9 +2,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
-import { SEOResolver } from './core/resolvers/seo.resolver';
-import { LanguageUtilit } from './core/utilits/language.utilit';
 import { AuthGuard } from './core/guards/auth.guard';
+import { LanguageUtilit, SEOResolver } from 'ngx-az-core';
 
 const routes: Routes = [
   {

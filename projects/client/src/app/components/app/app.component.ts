@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Constants } from '../../core/config/constants';
-import { LanguageUtilit } from '../../core/utilits/language.utilit';
+import { Constants, LanguageUtilit } from 'ngx-az-core';
 
 @Component({
   selector: 'app-root',
