@@ -42,20 +42,21 @@ export class BreadcrumbComponent
   parseRoute(node: ActivatedRouteSnapshot) {
     if (node.data['bc']) {
       let urlSegments: UrlSegment[] = [];
-      node.pathFromRoot.forEach(routerState => {
+      node.pathFromRoot.forEach((routerState) => {
         urlSegments = urlSegments.concat(routerState.url);
       });
-      let url = urlSegments.map(urlSegment => {
-        return urlSegment.path;
-      }).join('/');
+      const url = urlSegments
+        .map((urlSegment) => {
+          return urlSegment.path;
+        })
+        .join('/');
       this.breadcrumbs.push({
         name: node.data['bc'],
-        url: '/' + url
-      })
+        url: '/' + url,
+      });
     }
     if (node.firstChild) {
       this.parseRoute(node.firstChild);
     }
   }
-
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'projects/client/src/app/shared/shared.module';
+import { SharedModule } from 'ngx-az-core';
 import { PasswordShowHideComponent } from './password-show-hide.component';
 
 @NgModule({
