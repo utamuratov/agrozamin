@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 
-
-interface DataItem {
-  name: string;
+interface ItemData {
   id: number;
-  building: string;
-  number: number;
+  name: string;
+  age: number;
+  address: string;
   login: string;
+  description: string
 }
 
 @Component({
@@ -15,20 +15,29 @@ interface DataItem {
   styleUrls: ['./interface.component.less']
 })
 
-
 export class InterfaceComponent implements OnInit {
+
+  expandSet = new Set<number>();
+  onExpandChange(id: number, checked: boolean): void {
+    if (checked) {
+      this.expandSet.add(id);
+    } else {
+      this.expandSet.delete(id);
+    }
+  }
+
 
   size: NzButtonSize = 'default';
 
   /**
    * 
    */
-  data: DataItem[]  = [];
+  data: ItemData[]  = [];
 
   /**
    * 
    */
-  filteredData: DataItem[] = [];
+  filteredData: ItemData[] = [];
 
   /**
    * 
@@ -60,36 +69,26 @@ export class InterfaceComponent implements OnInit {
   isOkLoading = false;
 
 
-  // list data
-  sortFnId = (a: DataItem, b: DataItem): number => a.id - b.id;
-  sortFnName = (a: DataItem, b: DataItem): number => (a.name > b.name ? 1 : -1);
-  nameFilterFn = (list: string[], item: DataItem): boolean => list.some(name => item.name.indexOf(name) !== -1);
-  
-  filterName = [
-    { text: 'Joe', value: 'Joe' },
-    { text: 'John', value: 'John' }
-  ];
-
-
   constructor() {
     this.filteredOptions = this.options;
-   }
-
+    }
 
    ngOnInit(): void {
 
     const data = [];
-
     for (let i = 0; i < 100; i++) {
       data.push({
-        name: 'John',
-        id: i +1,    
-        building: 'C',
-        number: 2035,      
-        login: 'login' + i
+        login: '' ,
+        id: i,
+        name: `John ${i}`,
+        age: 32,
+        address: `London, Park Lane no. ${i}`,
+        description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.'
       });
     }
     this.data = data;
+    this.filteredData = data;
+    
     this.search();
   }
 
@@ -110,10 +109,13 @@ export class InterfaceComponent implements OnInit {
     this.isVisible = false;
   }
 
+
   // INput Handler
 
   changeInput(event: any){
-    this.filteredOptions = this.options.filter(option => option.toLowerCase().indexOf(event.toLowerCase()) !== -1)
+    this.filteredOptions = this.options.filter(
+      option => option.toLowerCase().indexOf(event.toLowerCase()) !== -1
+      )
     if(event === null || event === ''){
       this.filteredData = this.data
     }
@@ -123,9 +125,9 @@ export class InterfaceComponent implements OnInit {
     // console.log(Name)
     switch (this.searchBy) {
       case 'name':
-        this.filteredData =  this.data.filter(data => data.name === this.searchText);
-        
+        this.filteredData = this.data.filter(data => data.name.includes(this.searchText))    
         break;
+
         case 'id':
         this.filteredData =  this.data.filter(data => data.id === +this.searchText);
         break;
@@ -136,6 +138,7 @@ export class InterfaceComponent implements OnInit {
       default:
         break;
     }
+    console.log(this.searchBy);
   }
-
+  
 }
