@@ -1,5 +1,5 @@
 import { HomeComponent } from './pages/home/home.component';
-import { ErrorHandler, Injector, NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 
 import { HammerModule } from '@angular/platform-browser';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
@@ -10,9 +10,6 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { ru_RU } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
-import {
-  HTTP_INTERCEPTORS,
-} from '@angular/common/http';
 
 /* NG-ZORRO-MODULES */
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -24,15 +21,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { CookieService } from 'ngx-cookie-service';
-import {
-  DITokens,
-  GlobalErrorHandler,
-  HandleErrorInterceptor,
-  HeaderInterceptor,
-  InjectorHelper,
-  NgxAzCoreModule,
-  SettingsHelper,
-} from 'ngx-az-core';
+import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
 import { MyHammerConfig } from './core/configs/my-hammer.config';
 
 registerLocaleData(ru);
@@ -59,7 +48,6 @@ registerLocaleData(ru);
     NgxMaskModule.forRoot(),
     HammerModule,
 
-
     /* NG-ZORRO-MODULES */
     NzButtonModule,
     NzSelectModule,
@@ -68,28 +56,10 @@ registerLocaleData(ru);
   providers: [
     { provide: NZ_I18N, useValue: ru_RU },
     {
-      provide: DITokens.ENDPOINT_URL,
-      useFactory: () => SettingsHelper.settings.endpoint,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HeaderInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HandleErrorInterceptor,
-      multi: true,
-    },
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandler,
-    },
-    CookieService,
-    {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig,
     },
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })

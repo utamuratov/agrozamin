@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { ru_RU } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -24,8 +23,8 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import { NgxAzCoreModule } from 'ngx-az-core';
-import { LanguageModule } from 'projects/client/src/app/modules/agro-id/shared/language/language.module';
+import { InjectorHelper, LanguageModule, NgxAzCoreModule } from 'ngx-az-core';
+import { AppComponent } from './components/app/app.component';
 
 registerLocaleData(ru);
 
@@ -66,4 +65,8 @@ registerLocaleData(ru);
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private injector: Injector) {
+    InjectorHelper.injector = this.injector;
+  }
+}

@@ -1,5 +1,5 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { jwtOptionsFactory } from './helpers/jwt-options.factory';
@@ -7,6 +7,11 @@ import { createTranslateLoader } from './helpers/http-loader-factory';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DITokens } from './config/di-tokens';
+import { SettingsHelper } from './helpers/settings.helper';
+import { GlobalErrorHandler } from './helpers/global-error-handler';
+import { HandleErrorInterceptor } from './interceptors/handle.error.interceptor';
+import { HeaderInterceptor } from './interceptors/header.interceptor';
 
 @NgModule({
   declarations: [],
@@ -40,5 +45,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     }),
   ],
   exports: [TranslateModule, CommonModule],
+  providers: [
+    {
+      provide: DITokens.ENDPOINT_URL,
+      useFactory: () => SettingsHelper.settings.endpoint,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HandleErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+    },
+  ],
 })
 export class NgxAzCoreModule {}

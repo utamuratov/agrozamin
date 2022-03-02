@@ -22,17 +22,17 @@
       <li nz-submenu nzOpen nzTitle="Translate" nzIcon="dashboard">
         <ul>
           <li
-            routerLink="/translate/interface"
+            routerLink="./translate/interface"
             onchange="changeName()"
             nz-menu-item
             nzMatchRouter
           >
             <a>Interface</a>
           </li>
-          <li routerLink="/translate/seo" nz-menu-item nzMatchRouter>
+          <li routerLink="./translate/seo" nz-menu-item nzMatchRouter>
             <a>SEO</a>
           </li>
-          <li routerLink="/translate/contents" nz-menu-item nzMatchRouter>
+          <li routerLink="./translate/contents" nz-menu-item nzMatchRouter>
             <a>Contents</a>
           </li>
         </ul>
@@ -49,10 +49,10 @@
 
       <li nz-submenu nzOpen nzTitle="Admins" nzIcon="form">
         <ul>
-          <li routerLink="/admin/users" nz-menu-item nzMatchRouter>
+          <li routerLink="./admin/users" nz-menu-item nzMatchRouter>
             <span>Users</span>
           </li>
-          <li routerLink="/admin/role" nz-menu-item nzMatchRouter>
+          <li routerLink="./admin/role" nz-menu-item nzMatchRouter>
             <span>Roles</span>
           </li>
         </ul>
@@ -114,7 +114,7 @@
                 </div>
 
                 <div nz-col nzFlex="100px">
-                  <button nz-button nzType="primary">
+                  <button nz-button nzType="primary" routerLink="./sign-in">
                     <i nz-icon nzType="logout" nzTheme="outline"></i>Exit
                   </button>
                 </div>
