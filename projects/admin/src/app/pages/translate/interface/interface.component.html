@@ -1,51 +1,14 @@
 <div nz-row>
   <div nz-col nzSpan="24">
     <div style="display: inline-block; min-width: 450px">
-      <form (submit)="search()">
-        <nz-input-group>
-          <nz-select
-            name="searchBy"
-            [(ngModel)]="searchBy"
-            style="width: 200px"
-          >
-            <nz-option nzValue="id" nzLabel="ID"></nz-option>
-            <nz-option nzValue="login" nzLabel="Login"></nz-option>
-            <nz-option nzValue="name" nzLabel="Name"></nz-option>
-          </nz-select>
-
-          <nz-input-group
-            style="width: 200px; margin-top: 2px"
-            [nzSuffix]="suffixIconSearch"
-          >
-            <nz-autocomplete
-              [nzDataSource]="filteredOptions"
-              #auto
-            ></nz-autocomplete>
-            <input
-              [nzAutocomplete]="auto"
-              name="searchText"
-              (ngModelChange)="changeInput($event)"
-              [(ngModel)]="searchText"
-              type="text"
-              nz-input
-              placeholder="input search text"
-            />
-          </nz-input-group>
-
-          <ng-template #suffixIconSearch>
-            <i nz-icon nzType="search"></i>
-          </ng-template>
-          <button nz-button nzType="primary">ok</button>
-        </nz-input-group>
-      </form>
+      <!-- FILTER -->
     </div>
 
     <button
-      (click)="showModal()"
+      (click)="openModal()"
       style="float: right; margin-right: 5px"
       nz-button
       nzType="primary"
-      [nzSize]="size"
     >
       Add
     </button>
@@ -65,9 +28,8 @@
       <thead>
         <tr>
           <th nzWidth="60px"></th>
-          <th nzWidth="60px">id</th>
-          <th nzWidth="250px" nzAlign="center">Name</th>
-          <th nzAlign="center">Description</th>
+          <th nzWidth="250px" nzAlign="center">Key</th>
+          <th nzAlign="center">Translations</th>
           <!-- <th>Address</th> -->
           <th nzWidth="125px" nzAlign="center">Change</th>
         </tr>
@@ -84,13 +46,12 @@
             <td nzAlign="center">{{ data.address }}</td>
             <td nzAlign="center" nzWidth="85px">
               <button
-                (click)="showModal()"
+                (click)="openModal()"
                 style="margin-right: 5px"
                 nz-button
                 nzType="primary"
-                [nzSize]="size"
               >
-                ok
+                Edit
               </button>
             </td>
           </tr>
@@ -104,12 +65,10 @@
 </div>
 
 <nz-modal
-  [(nzVisible)]="isVisible"
-  [(nzVisible)]="isVisible"
+  [(nzVisible)]="isVisibleModal"
   nzTitle="Modal Title"
-  (nzOnCancel)="handleCancel()"
-  (nzOnOk)="handleOk()"
-  [nzOkLoading]="isOkLoading"
+  (nzOnCancel)="closeModal()"
+  (nzOnOk)="closeModal()"
 >
   <p *nzModalContent>Modal Content</p>
 </nz-modal>
