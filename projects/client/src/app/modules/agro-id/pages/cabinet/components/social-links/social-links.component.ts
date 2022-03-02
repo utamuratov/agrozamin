@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'social-links',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./social-links.component.less']
 })
 export class SocialLinksComponent implements OnInit {
+  @Input()
+  position!: boolean;
 
   constructor() { }
 
