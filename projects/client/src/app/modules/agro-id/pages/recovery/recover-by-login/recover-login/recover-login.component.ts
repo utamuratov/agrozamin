@@ -6,10 +6,9 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Constants } from 'projects/client/src/app/core/config/constants';
+import { Constants, markAllAsDirty } from 'ngx-az-core';
 import { RecoverByLoginStep } from 'projects/client/src/app/core/enums/recover-by-login-step.enum';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
-import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
 import { map, Observable, startWith } from 'rxjs';
 import { RecoverLoginOptionsConfig } from '../recover-login-options/recover-login-options.component';
 

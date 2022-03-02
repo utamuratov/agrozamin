@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { markAllAsDirty, NgDestroy } from 'ngx-az-core';
 import { ConfirmationType } from 'projects/client/src/app/core/enums/confirmation-type.enum';
 import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
-import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.service';
-import { markAllAsDirty } from 'projects/client/src/app/core/utilits/utilits';
 import { SignUpRequest } from 'projects/client/src/app/shared/models/auth/sign-up.request';
 import { map, Observable, startWith } from 'rxjs';
 import { ConfirmationConfig } from '../../../../shared/confirmation/confirmation.component';

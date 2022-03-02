@@ -1,7 +1,5 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Constants } from 'projects/client/src/app/core/config/constants';
-import { ValidationHelper } from 'projects/client/src/app/core/helpers/validation.helper';
-import { NgDestroy } from 'projects/client/src/app/core/services/ng-destroy.service';
+import { Constants, NgDestroy, ValidationHelper } from 'ngx-az-core';
 import { takeUntil } from 'rxjs';
 
 export class PasswordAndConfirmationPassword {

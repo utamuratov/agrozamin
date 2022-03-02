@@ -7,10 +7,9 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { Constants, ErrorItem } from 'ngx-az-core';
 import { CookieService } from 'ngx-cookie-service';
-import { Constants } from 'projects/client/src/app/core/config/constants';
 import { LoginType } from 'projects/client/src/app/core/enums/login-type.enum';
-import { ErrorItem } from 'projects/client/src/app/core/models/error-item.interface';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { Observable, map, catchError, of } from 'rxjs';
 

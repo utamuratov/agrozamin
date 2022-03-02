@@ -13,9 +13,8 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { Constants } from 'projects/client/src/app/core/config/constants';
+import { Constants, ValidationHelper } from 'ngx-az-core';
 import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';
-import { ValidationHelper } from 'projects/client/src/app/core/helpers/validation.helper';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
 import { SignUpRequest } from 'projects/client/src/app/shared/models/auth/sign-up.request';
 import { map, Observable } from 'rxjs';
