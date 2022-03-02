@@ -1,6 +1,5 @@
 <ng-container *ngFor="let language of languages">
   <button
-    class="langBtn"
     nz-button
     (click)="onChangeLanguage(language)"
     [nzType]="currentLanguageCode === language.code ? 'text' : 'link'"

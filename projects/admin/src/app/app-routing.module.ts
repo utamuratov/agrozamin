@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LanguageUtilit } from 'ngx-az-core';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
@@ -8,9 +9,14 @@ import { UserComponent } from './pages/user/user.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: LanguageUtilit.currentLanguage,
+    pathMatch: 'full',
+  },
+  {
+    path: ':language',
     component: DashboardComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: '/home' },
+      { path: '', pathMatch: 'full', redirectTo: 'home' },
       {
         path: 'home',
         loadChildren: () =>
@@ -52,7 +58,7 @@ const routes: Routes = [
        },
     ],
   },
-  { path: 'sign-in', component: SignInComponent },
+  { path: ':language/sign-in', component: SignInComponent },
 ];
 
 @NgModule({

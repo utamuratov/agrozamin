@@ -26,6 +26,9 @@ export class LanguageComponent implements OnInit {
     translate.setDefaultLang(Constants.DEFAULT_LANGUAGE_CODE);
   }
 
+  /**
+   * 
+   */
   ngOnInit(): void {
     this.currentLanguageCode = LanguageUtilit.currentLanguage;
     this.setCurrentLanguage(this.currentLanguageCode);
