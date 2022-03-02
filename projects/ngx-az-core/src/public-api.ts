@@ -2,7 +2,12 @@
  * Public API Surface of ngx-az-core
  */
 
+// MODULES
 export * from './lib/ngx-az-core.module';
+export * from './lib/shared/language/language.module';
+
+// COMPONENTS
+export * from './lib/shared/language/language.component';
 
 // CONFIG
 export * from './lib/config/constants';
@@ -19,7 +24,7 @@ export * from './lib/helpers/validation.helper';
 
 // INTERCEPTORS
 export * from './lib/interceptors/handle.error.interceptor';
-export * from './lib/interceptors/language.interceptor';
+export * from './lib/interceptors/header.interceptor';
 
 // MODELS
 export * from './lib/models/base-response.interface';

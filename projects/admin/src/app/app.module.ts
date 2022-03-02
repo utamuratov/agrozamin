@@ -1,20 +1,14 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { Injector, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { ru_RU } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
-
 
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -29,6 +23,8 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { InjectorHelper, LanguageModule, NgxAzCoreModule } from 'ngx-az-core';
+import { AppComponent } from './components/app/app.component';
 
 registerLocaleData(ru);
 
@@ -37,21 +33,26 @@ registerLocaleData(ru);
     AppComponent,
     SignInComponent,
     DashboardComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+
     FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    IconsProviderModule,
     ReactiveFormsModule,
-    
+
+    IconsProviderModule,
+
+    /**
+     * CUSTOM MODULES
+     */
+    NgxAzCoreModule,
+    LanguageModule,
+
     NzToolTipModule,
     NzLayoutModule,
     NzMenuModule,
-    NzButtonModule, 
+    NzButtonModule,
     NzCheckboxModule,
     NzFormModule,
     NzGridModule,
@@ -59,9 +60,13 @@ registerLocaleData(ru);
     NzDividerModule,
     NzBreadCrumbModule,
     NzPageHeaderModule,
-    NzAvatarModule
+    NzAvatarModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector) {
+    InjectorHelper.injector = this.injector;
+  }
+}

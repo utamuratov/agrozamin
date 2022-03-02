@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Constants, Language, LanguageUtilit } from 'ngx-az-core';
+import { Constants } from '../../config/constants';
+import { Language } from '../../models/language.interface';
+import { LanguageUtilit } from '../../utilits/language.utilit';
 
 @Component({
   selector: 'language',
@@ -26,6 +28,9 @@ export class LanguageComponent implements OnInit {
     translate.setDefaultLang(Constants.DEFAULT_LANGUAGE_CODE);
   }
 
+  /**
+   * 
+   */
   ngOnInit(): void {
     this.currentLanguageCode = LanguageUtilit.currentLanguage;
     this.setCurrentLanguage(this.currentLanguageCode);
