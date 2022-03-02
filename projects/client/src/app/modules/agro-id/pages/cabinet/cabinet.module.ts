@@ -24,7 +24,6 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { SharedModule } from 'projects/client/src/app/shared/shared.module';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { TriangleModule } from 'projects/client/src/app/shared/triangle/triangle.module';
@@ -40,17 +39,16 @@ import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { SideBarMenuComponent } from './components/side-bar-menu/side-bar-menu.component';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
+import { ReactiveFormsSharedModule } from 'ngx-az-core';
 
 @NgModule({
   imports: [
-    CommonModule,
     CabinetRoutes,
-    ReactiveFormsModule,
 
     /**
      * CUSTOM MODULES
      */
-    SharedModule,
+    ReactiveFormsSharedModule,
     TriangleModule,
     
 
@@ -79,7 +77,6 @@ import { SocialLinksComponent } from './components/social-links/social-links.com
     NzTagModule,
     NzDescriptionsModule,
     NzSelectModule,
-    FormsModule
   ],
   declarations: [
     CabinetComponent,

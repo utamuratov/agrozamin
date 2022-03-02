@@ -4,9 +4,9 @@ import { AgroIdRoutes } from './agro-id.routing';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
-import { SharedModule } from '../../shared/shared.module';
 import { TriangleModule } from '../../shared/triangle/triangle.module';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { SharedModule } from 'ngx-az-core';
 
 
 @NgModule({

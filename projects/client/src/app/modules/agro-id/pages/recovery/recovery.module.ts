@@ -3,8 +3,6 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { InputPhoneEmailModule } from '../../shared/input-phone-email/input-phone-email.module';
 import { CreateNewPasswordComponent } from './components/create-new-password/create-new-password.component';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
-import { NzFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/nz-forms-shared.module';
-import { ReactiveFormsSharedModule } from 'projects/client/src/app/shared/forms-shared/reactive-forms-shared.module';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { BackAndLanguageModule } from '../../shared/back-and-language/back-and-language.module';
@@ -17,6 +15,7 @@ import { RecoverTypesComponent } from './components/recover-types/recover-types.
 import { ConfirmationModule } from '../../shared/confirmation/confirmation.module';
 import { RecoveryRoutingModule } from './recovery-routing.module';
 import { RecoveryPage } from './components/recover-page/recovery.page';
+import { NzFormsSharedModule, ReactiveFormsSharedModule } from 'ngx-az-core';
 
 @NgModule({
   declarations: [

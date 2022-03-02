@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
+import { TranslateApiService } from '../services/translate-api.service';
 
 interface ItemData {
   id: number;
@@ -7,16 +8,14 @@ interface ItemData {
   age: number;
   address: string;
   login: string;
-  description: string
+  description: string;
 }
 
 @Component({
   templateUrl: './interface.component.html',
-  styleUrls: ['./interface.component.less']
+  styleUrls: ['./interface.component.less'],
 })
-
 export class InterfaceComponent implements OnInit {
-
   expandSet = new Set<number>();
   onExpandChange(id: number, checked: boolean): void {
     if (checked) {
@@ -26,40 +25,39 @@ export class InterfaceComponent implements OnInit {
     }
   }
 
-
   size: NzButtonSize = 'default';
 
   /**
-   * 
+   *
    */
-  data: ItemData[]  = [];
+  data: ItemData[] = [];
 
   /**
-   * 
+   *
    */
   filteredData: ItemData[] = [];
 
   /**
-   * 
+   *
    */
   searchText = '';
 
   /**
-   * 
+   *
    */
   searchBy: 'id' | 'name' | 'login' = 'name';
   /**
-   * 
+   *
    */
 
-  filteredOptions: string[] = []
+  filteredOptions: string[] = [];
   /**
-   * 
+   *
    */
 
-  options = ['Ru', 'Eng', 'Key']
+  options = ['Ru', 'Eng', 'Key'];
   /**
-   * 
+   *
    */
 
   switchValue = false;
@@ -68,28 +66,36 @@ export class InterfaceComponent implements OnInit {
   isVisible = false;
   isOkLoading = false;
 
-
-  constructor() {
+  constructor(private $translate: TranslateApiService) {
     this.filteredOptions = this.options;
-    }
+  }
 
-   ngOnInit(): void {
-
+  ngOnInit(): void {
     const data = [];
     for (let i = 0; i < 100; i++) {
       data.push({
-        login: '' ,
+        login: '',
         id: i,
         name: `John ${i}`,
         age: 32,
         address: `London, Park Lane no. ${i}`,
-        description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.'
+        description:
+          'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
       });
     }
     this.data = data;
     this.filteredData = data;
-    
+
     this.search();
+
+    this.getTranslations();
+  }
+
+  /**
+   *
+   */
+  getTranslations() {
+    this.$translate.getTranslations().subscribe((w) => console.log(w));
   }
 
   // Show Modal
@@ -109,15 +115,14 @@ export class InterfaceComponent implements OnInit {
     this.isVisible = false;
   }
 
-
   // INput Handler
 
-  changeInput(event: any){
+  changeInput(event: any) {
     this.filteredOptions = this.options.filter(
-      option => option.toLowerCase().indexOf(event.toLowerCase()) !== -1
-      )
-    if(event === null || event === ''){
-      this.filteredData = this.data
+      (option) => option.toLowerCase().indexOf(event.toLowerCase()) !== -1
+    );
+    if (event === null || event === '') {
+      this.filteredData = this.data;
     }
   }
 
@@ -125,20 +130,25 @@ export class InterfaceComponent implements OnInit {
     // console.log(Name)
     switch (this.searchBy) {
       case 'name':
-        this.filteredData = this.data.filter(data => data.name.includes(this.searchText))    
+        this.filteredData = this.data.filter((data) =>
+          data.name.includes(this.searchText)
+        );
         break;
 
-        case 'id':
-        this.filteredData =  this.data.filter(data => data.id === +this.searchText);
+      case 'id':
+        this.filteredData = this.data.filter(
+          (data) => data.id === +this.searchText
+        );
         break;
-        case 'login':
-        this.filteredData =  this.data.filter(data => data.login.includes(this.searchText));
+      case 'login':
+        this.filteredData = this.data.filter((data) =>
+          data.login.includes(this.searchText)
+        );
         break;
-    
+
       default:
         break;
     }
     console.log(this.searchBy);
   }
-  
 }
