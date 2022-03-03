@@ -19,6 +19,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { TranslateApiService } from './services/translate-api.service';
+import { NzFormModule } from 'ng-zorro-antd/form';
+
 
 
 @NgModule({
@@ -41,6 +43,7 @@ import { TranslateApiService } from './services/translate-api.service';
     NzTableModule,
     NzModalModule,
     NzSwitchModule,
+    NzFormModule,
     NzAutocompleteModule
   ],
   providers: [

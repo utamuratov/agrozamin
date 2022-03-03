@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NzButtonSize } from 'ng-zorro-antd/button';
+// import { NzButtonSize } from 'ng-zorro-antd/button';
 import { TranslateApiService } from '../services/translate-api.service';
+
+
 
 interface ItemData {
   id: number;
@@ -9,6 +11,7 @@ interface ItemData {
   address: string;
   login: string;
   description: string;
+  footer: null
 }
 
 @Component({
