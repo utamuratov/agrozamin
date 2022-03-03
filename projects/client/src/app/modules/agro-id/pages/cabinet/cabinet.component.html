@@ -110,7 +110,7 @@
       [nzTrigger]="null"
       [(nzCollapsed)]="isCollapsed"
       [nzWidth]="menuFixed ? '100%' : '250px'"
-      nzBreakpoint="sm"
+      nzBreakpoint="md"
       (nzCollapsedChange)="handleSidebarStyles($event)"
       [nzCollapsedWidth]="60"
     >
@@ -257,7 +257,8 @@
       <nz-header >
         <az-header [fixed]="menuFixed"></az-header>
       </nz-header>
-      <nz-layout nz-row>
+      <nz-layout nz-row style="overflow: auto;
+      height: calc(100vh - 64px);">
         <nz-content
           nz-col
           nzXs="24"
