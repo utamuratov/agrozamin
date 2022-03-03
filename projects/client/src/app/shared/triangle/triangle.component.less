@@ -1,0 +1,120 @@
+// :root {
+//   --width1: 500px;
+//   --width2: 400px;
+//   --width3: 280px;
+//   --width4: 170px;
+// }
+@width1: 500px;
+@width2: 400px;
+@width3: 300px;
+@width4: 200px;
+
+.img {
+  display: inline-block;
+  position: absolute;
+  background: #3c4bdc;
+  z-index: 9999;
+  top: calc(-@width1 / 2);
+  right: calc(-@width1 / 2);
+  width: @width1;
+  transform: rotate(45deg);
+  overflow: hidden;
+  &-block {
+    animation: move 3s 2 linear;
+    // animation: move 1s 4 linear;
+
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+      animation: prozrachnost 3s 1 linear;
+    //   animation: prozrachnost 4s 1 linear;
+      @keyframes prozrachnost {
+        0% {
+          opacity: 0.5;
+        }
+        25% {
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+        }
+        75% {
+          opacity: 0.7;
+        }
+        100% {
+          opacity: 0.5;
+        }
+      }
+    }
+    @keyframes move {
+      0% {
+        top: 0;
+      }
+      100% {
+        top: calc(@width1 * 0.335);
+      }
+    }
+
+    @media (max-width: 1605px) {
+      @keyframes move {
+        0% {
+          top: 0;
+        }
+        100% {
+          top: calc(@width2 * 0.335);
+        }
+      }
+    }
+    @media (max-width: 992px) {
+      @keyframes move {
+        0% {
+          top: 0;
+        }
+        100% {
+          top: calc(@width3 * 0.335);
+        }
+      }
+    }
+    @media (max-width: 576px) {
+      @keyframes move {
+        0% {
+          top: 0;
+        }
+        100% {
+          top: calc(@width4 * 0.335);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1605px) {
+    width: @width2;
+    top: calc(-@width2 / 2);
+    right: calc(-@width2 / 2);
+  }
+  @media (max-width: 992px) {
+    width: @width3;
+    top: calc(-@width3 / 2);
+    right: calc(-@width3 / 2);
+  }
+  @media (max-width: 576px) {
+    width: @width4;
+    top: calc(-@width4 / 2);
+    right: calc(-@width4 / 2);
+  }
+}
+
+.auth-style {
+  width: 240px;
+
+  @media (max-width: 1605px) {
+    width: 200px;
+  }
+  @media (max-width: 760px) {
+    width: 140px;
+  }
+  @media (max-width: 576px) {
+    width: 190px;
+  }
+}

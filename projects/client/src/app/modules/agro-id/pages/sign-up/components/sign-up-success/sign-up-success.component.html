@@ -1,0 +1,28 @@
+<div class="h-100 d-flex align-items-center">
+  <div>
+    <!-- TITLE -->
+    <h2 nz-typography class="agro-id-form-title">
+      {{ "successfullyRegistration" | translate }}
+    </h2>
+
+    <nz-divider class="mt-10p"></nz-divider>
+
+    <!-- BODY -->
+    <nz-result
+      nzStatus="success"
+      [nzTitle]="'congratulation' | translate"
+      [nzSubTitle]="'congratulationSubTitle' | translate"
+    >
+      <div nz-result-extra class="" style="margin-top: 35px">
+        <div nz-row nzJustify="center">
+          <div>
+            <span nz-typography nzType="secondary"
+              >{{ "redirectToLoginAfter" | translate }}
+            </span>
+            <span nz-typography nzType="danger">{{ $seconds | async }}</span>
+          </div>
+        </div>
+      </div>
+    </nz-result>
+  </div>
+</div>

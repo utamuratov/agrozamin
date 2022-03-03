@@ -1,7 +1,5 @@
-export interface SignInResponse {
-  access_token: string;
-  expires_in: number;
-  refresh_token: string;
-  token_type: string;
+import { RefreshTokenResponse } from './refresh-token.response';
+
+export interface SignInResponse extends RefreshTokenResponse {
   user_id: number;
 }

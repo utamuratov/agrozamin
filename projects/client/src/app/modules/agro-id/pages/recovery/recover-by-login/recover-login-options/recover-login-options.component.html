@@ -1,0 +1,52 @@
+<div nz-row class="recover-login h-100">
+  <div
+    nz-col
+    nzXs="22"
+    nzSm="20"
+    nzMd="20"
+    nzLg="16"
+    nzXl="16"
+    class="d-flex flex-column justify-content-center"
+  >
+    <!-- TITLE -->
+    <h2 nz-typography class="agro-id-form-title">
+      {{ "recover" | translate }}
+    </h2>
+
+    <nz-divider class="mt-10p"></nz-divider>
+
+    <p class="text-size-18" nz-typography>
+      {{ "chooseOptionsOfRecover" | translate }}
+    </p>
+
+    <!-- PHONE -->
+    <div
+      class="custom-card inline"
+      *ngIf="data?.phone"
+      (click)="goToNextStep('phone')"
+    >
+      <i nz-icon nzType="phone" nzTheme="outline"></i>
+      <div class="title">
+        <h5>{{ "byPhoneNumber" | translate }}</h5>
+        <span nz-typography nzType="secondary">{{ data.phone }}</span>
+      </div>
+      <i nz-icon nzType="arrow-right" nzTheme="outline" class="arrow-right"></i>
+    </div>
+
+    <!-- EMAIL -->
+    <div
+      class="custom-card inline"
+      *ngIf="data?.email"
+      (click)="goToNextStep('email')"
+    >
+      <i nz-icon nzType="mail" nzTheme="outline"></i>
+      <div class="title">
+        <h5>{{ "byEmail" | translate }}</h5>
+        <span nz-typography nzType="secondary">{{ data.email }}</span>
+      </div>
+      <i nz-icon nzType="arrow-right" nzTheme="outline" class="arrow-right"></i>
+    </div>
+  </div>
+  <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="4" nzXl="4"></div>
+  <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="4" nzXl="4"></div>
+</div>

@@ -1,15 +1,15 @@
 import { HomeComponent } from './pages/home/home.component';
-import { ErrorHandler, Injector, NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
+
+import { HammerModule } from '@angular/platform-browser';
+import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { ru_RU } from 'ng-zorro-antd/i18n';
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
-import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* NG-ZORRO-MODULES */
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -18,65 +18,54 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
-import { InjectorHelper } from './core/services/locator.service';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { createTranslateLoader } from './core/helpers/http-loader-factory';
-import { SetTokenAndHandleErrorInterceptor } from './core/interceptors/token.interceptor';
-import { DITokens } from './core/config/di-tokens';
-import { SettingsHelper } from './core/helpers/settings.helper';
-import { GlobalErrorHandler } from './core/helpers/global-error-handler';
+import { NgxMaskModule } from 'ngx-mask';
+import { CookieService } from 'ngx-cookie-service';
+import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
+import { MyHammerConfig } from './core/configs/my-hammer.config';
+import { RootLayoutComponent } from './components/root-layout/root-layout.component';
+import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 registerLocaleData(ru);
-
 
 @NgModule({
   declarations: [
     AppComponent,
+    RootLayoutComponent,
     HomeComponent,
     LayoutComponent,
     HeaderComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    InternalServerErrorComponent,
+    NotFoundPageComponent,
   ],
   imports: [
-    // CORE MODULES
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient],
-      },
-    }),
-
-    // 
     AppRoutingModule,
-    FormsModule,
+
+    /**
+     * CUSTOM MODULES
+     */
+    NgxAzCoreModule,
+
+    /**
+     * NPM MODULES
+     */
+    NgxMaskModule.forRoot(),
+    HammerModule,
 
     /* NG-ZORRO-MODULES */
     NzButtonModule,
     NzSelectModule,
-    NzBreadCrumbModule
+    NzBreadCrumbModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU },
     {
-      provide: DITokens.ENDPOINT_URL,
-      useFactory: () => SettingsHelper.settings.endpoint,
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: SetTokenAndHandleErrorInterceptor,
-      multi: true
-    },
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandler,
-    },
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,62 +1,279 @@
-<nz-layout class="height-100 cabinet">
+<!-- <nz-layout class="height-100 cabinet">
   <nz-sider
+    style="position: relative"
     nzCollapsible
-    nzWidth="250px"
+    nzWidth="300px"
     class="cabinet__sidebar indigo-bg"
-    
+    [nzTrigger]="null"
+    [(nzCollapsed)]="isCollapsed"
     nzBreakpoint="lg"
     (nzCollapsedChange)="handleSidebarStyles($event)"
   >
-    <div class="logo">AgroID</div>
+    <div style="position: relative">
 
-    <ul nz-menu nzMode="inline" class="indigo-bg cabinet__sidebar__menu">
-      <li nz-menu-item nzSelected routerLink="personal" class="">
-        <i nz-icon nzType="user"></i>
-        <span>Персональные данные</span>
-      </li>
-      <li nz-menu-item routerLink="legalperson" >
-        <i nz-icon nzType="idcard" nzTheme="outline"></i>
-        <span>Юридическое лицо</span>
-      </li>
-      <li nz-menu-item routerLink="">
-        <i nz-icon nzType="import" nzTheme="outline"></i>
-        <span>Выход</span>
-      </li>
-      <li nz-menu-item routerLink="">
-        <i nz-icon nzType="question-circle" nzTheme="outline"></i>
-        <span>Помощь</span>
-      </li>
-    </ul>
+
+      <button
+        nz-button
+        nzType="primary"
+        style="position: absolute; top: 10px; right: -50px; z-index: 10000"
+        (click)="isCollapsed = !isCollapsed"
+      >
+        <i
+          class="trigger"
+          nz-icon
+          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          
+        ></i>
+      </button>
+
+
+      <div style="padding: 8px;" *ngIf="isCollapsed === false; else langCollapsed">
+        <ng-container  *ngFor="let language of languages; let i = index">
+          <button
+            class="langBtn sidebar__lang"
+            nz-button
+            (click)="onChangeLanguage(language)"
+            [nzType]="
+              currentLanguageCode === language.code ? 'text' : 'link'
+            "
+            [ngStyle]="{'color':currentLanguageCode === language.code ? '#ffffff' : '#CFD3D8'}"
+          >
+           <span [ngClass]="currentLanguageCode === language.code ? 'active' : ''">{{ language.shortName }}</span>
+          </button>
+        </ng-container>
+      </div>
+
+      <ng-template #langCollapsed>
+        <a nz-dropdown [nzDropdownMenu]="menu" class="dropdown__active">
+          Рус
+          <i nz-icon nzType="down"></i>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item>Рус</li>
+            <li nz-menu-item>Узб</li>
+            <li nz-menu-item>Uzb</li>
+          </ul>
+        </nz-dropdown-menu>
+      </ng-template>
+      
+    
+
+
+
+      <ul nzTheme="dark" nz-menu nzMode="inline" class="cabinet__sidebar__menu">
+        <li nz-menu-item nzSelected nzMatchRouter routerLink="personal">
+          <i nz-icon nzType="user"></i>
+          <span>Персональные данные</span>
+        </li>
+        <li nz-menu-item nzMatchRouter routerLink="legalperson">
+          <i nz-icon nzType="idcard" nzTheme="outline"></i>
+          <span>Юридическое лицо</span>
+        </li>
+        <li nz-menu-item nzMatchRouter routerLink="biznescards">
+          <i nz-icon nzType="contacts" nzTheme="outline"></i>
+          <span>Дополнительные контакты</span>
+        </li>
+        <li nz-menu-item nzMatchRouter routerLink="notification">
+          <i nz-icon nzType="bell" nzTheme="outline"></i>
+          <span>Уведомления</span>
+          <nz-badge nzStandalone *ngIf="isCollapsed" [nzOffset]="[-100, -10]" nzDot></nz-badge>
+          <nz-badge nzStandalone  *ngIf="!isCollapsed" [nzOffset]="[0, -15]" [nzCount]="5"></nz-badge>
+        </li>
+        <li nz-menu-item nzMatchRouter routerLink="agro-id">
+          <i nz-icon nzType="logout" nzTheme="outline"></i>
+          <span>Выход</span>
+        </li>
+        <li nz-menu-item nzMatchRouter routerLink="help">
+          <i nz-icon nzType="question-circle" nzTheme="outline"></i>
+          <span>Помощь</span>
+        </li>
+      </ul>
+    </div>
   </nz-sider>
   <nz-layout>
-    <nz-content style="overflow: auto;">
-      <div class="height-100 cabinet__content" nz-row>
-        <triangle></triangle>
-        <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="2" nzXl="2"></div>
-        <div nz-col nzXs="22" nzSm="20" nzMd="20" nzLg="20" nzXl="20">
-          <div style="padding-top: 10px">
-            <ng-container *ngFor="let language of languages; let i = index">
-              <button
-                class="langBtn"
-                nz-button
-                (click)="onChangeLanguage(language)"
-                [nzType]="
-                  currentLanguageCode === language.code ? 'text' : 'link'
-                "
-              >
-                {{ language.shortName }}
-              </button>
-              <nz-divider *ngIf="i !== languages.length - 1" nzType="vertical"></nz-divider>
-            </ng-container>
-          </div>
+    <nz-content style="overflow: auto">
 
-          <div style="margin-top: 5vh">
+      <div class="height-100 cabinet__content">
+
             <router-outlet></router-outlet>
-          </div>
-        </div>
-        <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="2" nzXl="2"></div>
       </div>
     </nz-content>
   </nz-layout>
 </nz-layout>
-<!-- [ngClass]="menuFixed === true ? 'sidebar__mobile' : 'sidebar__desktop'" -->
+ -->
+<div nz-row class="h-100 d-flex flex-column">
+  <nz-layout nz-row class="cabinet">
+    <nz-sider
+      class="cabinet__left-sidebar"
+      [ngClass]="menuFixed ? 'phone' : ''"
+      [nzTrigger]="null"
+      [(nzCollapsed)]="isCollapsed"
+      [nzWidth]="menuFixed ? '100%' : '250px'"
+      nzBreakpoint="sm"
+      (nzCollapsedChange)="handleSidebarStyles($event)"
+      [nzCollapsedWidth]="60"
+    >
+      <!-- <div class="cabinet__lang">
+        <ng-container *ngFor="let language of languages; let i = index">
+          <button
+            nz-button
+            (click)="onChangeLanguage(language)"
+            [nzType]="currentLanguageCode === language.code ? 'text' : 'link'"
+            [ngStyle]="{
+              color: currentLanguageCode === language.code ? '#ffffff' : '#CFD3D8'
+            }"
+          >
+            <span
+              [ngClass]="currentLanguageCode === language.code ? 'active' : ''"
+              >{{ language.shortName }}</span
+            >
+          </button>
+        </ng-container>
+      </div> -->
+
+      <div class="cabinet__logo" style="overflow: hidden">
+        <ng-container *ngIf="!isCollapsed; else logo">
+          <div class="d-flex justify-content-center" nz-typography>
+            <img
+              src="../../../../../assets/images/agro-id-images/agro-id-logo.svg"
+              alt="logo"
+              style="padding-right: 5px"
+            />
+            <h2>AgroID</h2>
+          </div>
+          <span nz-typography class="font-agro-medium"
+            >Единая система идентификации</span>
+        </ng-container>
+          
+        
+      </div>
+
+      <ng-template #logo class="logo-img">
+        <img
+          src="../../../../../assets/images/agro-id-images/agro-id-logo.svg"
+          alt="logo"
+        />
+      </ng-template>
+
+      <div nz-row>
+        <button
+          nz-col
+          nzXs="0"
+          nzSm="24"
+          nzMd="24"
+          nzLg="0"
+          nzXl="0"
+          nzType="default"
+          nzShape="circle"
+          (click)="isCollapsed = !isCollapsed"
+          class="trigger-btn tablet"
+        >
+          <i
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'right' : 'left'"
+          ></i>
+        </button>
+        <button
+          nz-col
+          nzXs="24"
+          nzSm="0"
+          nzMd="0"
+          nzLg="0"
+          nzXl="0"
+          nzType="default"
+          nzShape="circle"
+          (click)="isCollapsed = !isCollapsed"
+          class="trigger-btn phone"
+        >
+          <i
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'right' : 'left'"
+          ></i>
+        </button>
+      </div>
+
+      <ul nz-menu nzTheme="dark" nzMode="inline" class="menu">
+        <li
+          nz-menu-item
+          class="menu__item"
+          routerLinkActive="active"
+          routerLink="home"
+        >
+          <i nz-icon nzType="exclamation-circle"></i>
+          <span>Главная</span>
+        </li>
+        <li
+          nz-menu-item
+          class="menu__item"
+          routerLinkActive="active"
+          routerLink="personal"
+        >
+          <i nz-icon nzType="user"></i>
+          <span>Профиль</span>
+        </li>
+        <li
+          nz-menu-item
+          class="menu__item"
+          routerLinkActive="active"
+          routerLink="legalperson"
+        >
+          <i nz-icon nzType="credit-card"></i>
+          <span>Бизнес</span>
+        </li>
+        <li
+          nz-menu-item
+          class="menu__item"
+          routerLinkActive="active"
+          routerLink="biznescards"
+        >
+          <i nz-icon nzType="book"></i>
+          <span>Мои визитки</span>
+        </li>
+        <li
+          nz-menu-item
+          class="menu__item"
+          routerLinkActive="active"
+          routerLink="settings"
+        >
+          <i nz-icon nzType="setting"></i>
+          <span>Настройки</span>
+        </li>
+      </ul>
+      <nz-divider class="menu__divider"></nz-divider>
+      <ul class="menu logout">
+        <li>
+          <i nz-icon nzType="logout"></i>
+          <span *ngIf="!isCollapsed">Выход</span>
+        </li>
+      </ul>
+
+      <social-links [position]="menuFixed" *ngIf="!isCollapsed"></social-links>
+    </nz-sider>
+
+    <nz-layout [ngClass]="menuFixed ? 'content-margin' : ''">
+      <nz-header >
+        <az-header [fixed]="menuFixed"></az-header>
+      </nz-header>
+      <nz-layout nz-row>
+        <nz-content
+          nz-col
+          nzXs="24"
+          nzSm="24"
+          nzMd="24"
+          nzLg="24"
+          nzXl="24"
+          class="cabinet__content"
+          ><router-outlet></router-outlet></nz-content
+        >
+      </nz-layout>
+    </nz-layout>
+  </nz-layout>
+</div>
+
+<!-- [style.min-width]="isCollapsed ? '71px' : '250px'"
+[style.max-width]="isCollapsed ? '71px' : '250px'"
+[style.width]="isCollapsed ? '71px' : '250px'"
+[style.flex]="isCollapsed ? '0 0 71px' : '0 0 250px'" -->

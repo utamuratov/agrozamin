@@ -1,0 +1,14 @@
+<div [ngSwitch]="currentStep" class="h-100">
+  <!-- LOGIN -->
+  <recover-contacts
+    *ngSwitchCase="forgotPasswordStep.Contacts"
+    (changeStep)="changeStepFromSetPassword($event)"
+  ></recover-contacts>
+
+  <!-- CONFIRMATION -->
+  <az-confirmation
+    (changeStep)="goToNextStep($event)"
+    [data]="data"
+    *ngSwitchCase="forgotPasswordStep.Confirmation"
+  ></az-confirmation>
+</div>

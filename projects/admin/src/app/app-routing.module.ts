@@ -1,22 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { LanguageUtilit } from 'ngx-az-core';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
-    children: [
-      { path: '', pathMatch: 'full', redirectTo: '/sign-in' },
-      {
-        path: 'home',
-        loadChildren: () =>
-          import('./pages/home/home.module').then((m) => m.HomeModule),
-      },
-    ],
+    redirectTo: LanguageUtilit.currentLanguage,
+    pathMatch: 'full',
   },
-  { path: 'sign-in', component: SignInComponent },
+  {
+    path: ':language',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+  },
+  {
+    path: ':language/sign-in',
+    loadChildren: () =>
+      import('./pages/sign-in/sign-in.module').then((m) => m.SignInModule),
+  },
 ];
 
 @NgModule({

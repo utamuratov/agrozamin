@@ -1,0 +1,44 @@
+<ng-container *ngIf="control; else messageTemplate">
+  <!-- REQUIRED -->
+  <div
+    *ngIf="control.hasError('required')"
+    [textContent]="'fillTheInput' | translate"
+  >
+    <!-- Заполните поле -->
+  </div>
+
+  <!-- EMAIL -->
+  <div *ngIf="control.hasError('email')">
+    {{ "invalidEmailMessage" | translate }}
+  </div>
+
+  <!-- MINLENGTH -->
+  <div *ngIf="control.hasError('minlength')">
+    {{
+      "minlength"
+        | translate: { value: control.getError("minlength").requiredLength }
+    }}
+    <!-- Минимум {{value}} символа -->
+  </div>
+
+  <!-- MASK -->
+  <div *ngIf="control.hasError('mask')">
+    {{ "mask." + control.getError("mask").requiredMask | translate }}
+  </div>
+
+  <!-- LOGIN -->
+  <div *ngIf="control.hasError('login')">
+    {{ "login.pattern" | translate }} {{control.getError("login").pattern}}
+  </div>
+
+  <!-- CONFIRMATION PASSWORD -->
+  <div *ngIf="control.hasError('mustMatch')">
+    {{ "musmatchPassword" | translate }}
+  </div>
+</ng-container>
+
+<ng-template #messageTemplate>
+  <div>
+    {{ message }}
+  </div>
+</ng-template>

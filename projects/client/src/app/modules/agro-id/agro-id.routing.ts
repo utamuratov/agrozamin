@@ -1,8 +1,5 @@
-import { SignUpPage } from './pages/sign-up/sign-up.page';
 import { AgroIdComponent } from './components/agro-id/agro-id.component';
 import { Routes, RouterModule } from '@angular/router';
-import { SignInPage } from './pages/sign-in/sign-in.page';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -11,21 +8,27 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: SignInPage,
+        loadChildren: () =>
+          import('./pages/sign-in/sign-in.module').then((m) => m.SignInModule),
       },
       {
         path: 'sign-up',
-        component: SignUpPage,
+        loadChildren: () =>
+          import('./pages/sign-up/sign-up.module').then((m) => m.SignUpModule),
       },
       {
         path: 'recovery',
-        component: ForgotPasswordComponent,
-      }
+        loadChildren: () =>
+          import('./pages/recovery/recovery.module').then(
+            (m) => m.RecoveryModule
+          ),
+      },
     ],
   },
   {
-    path: 'cabinet', 
-    loadChildren: () => import('./pages/cabinet/cabinet.module').then(m => m.CabinetModule)
+    path: 'cabinet',
+    loadChildren: () =>
+      import('./pages/cabinet/cabinet.module').then((m) => m.CabinetModule),
   },
 ];
 

@@ -1,0 +1,17 @@
+<div [ngSwitch]="currentStep" class="h-100">
+  <sign-up
+    (changeStep)="changeStepFromSignUp($event)"
+    *ngSwitchCase="signUpStep.SignUp"
+  ></sign-up>
+  <sign-up-set-password
+    [user]="user"
+    *ngSwitchCase="signUpStep.SetPassword"
+    (changeStep)="changeStepFromSetPassword($event)"
+  ></sign-up-set-password>
+  <az-confirmation
+    (changeStep)="goToNextStep($event)"
+    [data]="data"
+    *ngSwitchCase="signUpStep.Confirmation"
+  ></az-confirmation>
+  <sign-up-success *ngSwitchCase="signUpStep.Success"></sign-up-success>
+</div>
