@@ -19,6 +19,7 @@ export class HandleErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         // !Catch error and do SMTH
+        // ! IF SERVER ERROR REDIRECT SERVER ERROR SCREEN (in the future)
         // alert(this.getError(error))
         return throwError(() => ErrorHelper.getServerErrors(error));
       })

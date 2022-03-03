@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { LanguageUtilit } from 'ngx-az-core';
+import { Constants, LanguageUtilit } from 'ngx-az-core';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.$jwtHelper.isTokenExpired()) {
-      this.router.navigate([LanguageUtilit.currentLanguage, 'agro-id']);
+      this.router.navigate([Constants.AGROZAMIN_PREFIX_ROUTE_PATH, LanguageUtilit.currentLanguage, Constants.AGROID_ROUTE_PATH]);
       return false;
     }
     return true;
