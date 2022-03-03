@@ -5,7 +5,9 @@ import { Inject, Injectable } from '@angular/core';
 import { BaseResponse } from '../models/base-response.interface';
 import { ErrorItem } from '../models/error-item.interface';
 
-export const errorMessageFromServer = new BehaviorSubject<ErrorItem | null>(null);
+export const errorMessageFromServer = new BehaviorSubject<ErrorItem | null>(
+  null
+);
 
 @Injectable({
   providedIn: 'root',
@@ -27,10 +29,14 @@ export class BaseService {
    * @param params
    * @returns
    */
-  get<T>(url: string, params?: HttpParams): Observable<T> {
-    return this.http
-      .get<T>(this.endpoint + url, { params })
-      .pipe(shareReplay(1));
+  get<T>(url: string, params?: HttpParams): Observable<BaseResponse<T>> {
+    return this.http.get<BaseResponse<T>>(this.endpoint + url, { params }).pipe(
+      catchError((errors: ErrorItem[]) => {
+        errorMessageFromServer.next(errors[0]);
+        return of({ error: errors, success: false } as BaseResponse<T>);
+      }),
+      shareReplay(1)
+    );
   }
 
   /**

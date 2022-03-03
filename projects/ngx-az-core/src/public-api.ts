@@ -56,3 +56,6 @@ export * from './lib/utilits/utilits';
 
 //RESOLVERS
 export * from './lib/resolvers/seo.resolver';
+
+// GUARDS
+export * from './lib/guards/language.guard';

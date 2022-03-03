@@ -16,17 +16,17 @@ export class Constants {
     {
       code: 'ru',
       name: 'Russian',
-      shortName: 'Рус',
+      short_name: 'Рус',
     },
     {
       code: 'uz_cyrl',
       name: 'Ўзбекча',
-      shortName: 'Узб',
+      short_name: 'Узб',
     },
     {
       code: 'uz_latn',
       name: "O'zbekcha",
-      shortName: 'Uzb',
+      short_name: 'Uzb',
     },
   ];
 
@@ -49,6 +49,7 @@ export class Constants {
    * LOCAL STORAGE KEYS
    */
   public static readonly LANGUAGE = 'language';
+  public static readonly DEFAULT_LANGUAGE = 'defaultLanguage';
   public static readonly LOGIN_TYPE = 'loginType';
   public static readonly ACCESS_TOKEN = 'access_tokent';
   public static readonly REFRESH_TOKEN = 'refresh_tokent';
@@ -64,4 +65,12 @@ export class Constants {
   public static readonly EMAIL_TYPES = ['gmail.com', 'mail.ru', 'outlook.com'];
   public static readonly PREFIX_PHONENUMBER = '998';
   public static readonly ERROR_MESSAGE_FROM_SERVER = 'errorMessageFromServer';
+  public static readonly SERVER_ERROR = 'serverError';
+
+  /**
+   * ROUTE PATHS
+   */
+  public static readonly AGROZAMIN_PREFIX_ROUTE_PATH = 'az';
+  public static readonly AGROID_ROUTE_PATH = 'agro-id';
+
 }

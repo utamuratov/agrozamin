@@ -23,16 +23,22 @@ import { NgxMaskModule } from 'ngx-mask';
 import { CookieService } from 'ngx-cookie-service';
 import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
 import { MyHammerConfig } from './core/configs/my-hammer.config';
+import { RootLayoutComponent } from './components/root-layout/root-layout.component';
+import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 registerLocaleData(ru);
 
 @NgModule({
   declarations: [
     AppComponent,
+    RootLayoutComponent,
     HomeComponent,
     LayoutComponent,
     HeaderComponent,
     BreadcrumbComponent,
+    InternalServerErrorComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     AppRoutingModule,
