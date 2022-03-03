@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandler } from '@angular/core';
 import { Router } from '@angular/router';
+import { Constants } from '../config/constants';
 import { HttpResponseStatusCode } from '../config/http-response-code';
 import { ErrorItem } from '../models/error-item.interface';
 import { InjectorHelper } from './injector.helper';
@@ -29,8 +30,8 @@ export class ErrorHelper {
 
     return [
       {
-        field: 'serverError',
-        message: [{ key: 'serverError', text: 'Server error' }],
+        field: Constants.SERVER_ERROR,
+        message: [{ key: Constants.SERVER_ERROR, text: 'Server error' }],
       },
     ];
   }

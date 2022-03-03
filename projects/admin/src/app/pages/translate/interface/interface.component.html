@@ -67,11 +67,46 @@
   </div>
 </div>
 
+
 <nz-modal
   [(nzVisible)]="isVisibleModal"
-  nzTitle="Modal Title"
+  nzTitle="Add"
   (nzOnCancel)="closeModal()"
   (nzOnOk)="closeModal()"
+  modal footer={null}
 >
-  <p *nzModalContent>Modal Content</p>
-</nz-modal>
+<form *nzModalContent nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="key">Key</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input name="key" type="text" >
+    </nz-form-control>
+  </nz-form-item >
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="text">Uz</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input name="uz" type="text" >
+    </nz-form-control>
+  </nz-form-item >
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="ru">Ru</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input name="ru" type="text" >
+    </nz-form-control>
+  </nz-form-item >
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="cyrl">Cyrl</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input name="cyrl" type="text" >
+    </nz-form-control>
+  </nz-form-item >
+  <!-- <nz-form-item>
+    <nz-form-control [nzOffset]="6" [nzSpan]="6">
+      <button (click)="closeModal()" nzWidth="500px" nz-button nzType="primary">Submit</button>
+    </nz-form-control>
+  </nz-form-item> -->
+</form>
+<div *nzModalFooter>
+  <button nz-button nzType="primary" >Custom Submit</button>
+</div>
+</nz-modal> 

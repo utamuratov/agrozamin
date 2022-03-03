@@ -106,15 +106,13 @@
   <nz-layout nz-row class="cabinet">
     <nz-sider
       class="cabinet__left-sidebar"
+      [ngClass]="menuFixed ? 'phone' : ''"
       [nzTrigger]="null"
       [(nzCollapsed)]="isCollapsed"
-      nzWidth="250px"
-      nzBreakpoint="md"
+      [nzWidth]="menuFixed ? '100%' : '250px'"
+      nzBreakpoint="sm"
       (nzCollapsedChange)="handleSidebarStyles($event)"
-      [style.min-width]="isCollapsed ? '71px' : '250px'"
-      [style.max-width]="isCollapsed ? '71px' : '250px'"
-      [style.width]="isCollapsed ? '71px' : '250px'"
-      [style.flex]="isCollapsed ? '0 0 71px' : '0 0 250px'"
+      [nzCollapsedWidth]="60"
     >
       <!-- <div class="cabinet__lang">
         <ng-container *ngFor="let language of languages; let i = index">
@@ -134,47 +132,131 @@
         </ng-container>
       </div> -->
 
-      <div *ngIf="!isCollapsed; else logo" class="cabinet__logo">
-        <h2 nz-typography>
-          <img
-            src="../../../../../assets/images/agro-id-images/agro-id-logo.svg"
-            alt="logo"
-            style="padding-right: 5px"
-          />AgroID
-        </h2>
-        <span nz-typography class="font-agro-medium"
-          >Единая система идентификации</span
-        >
+      <div class="cabinet__logo" style="overflow: hidden">
+        <ng-container *ngIf="!isCollapsed; else logo">
+          <div class="d-flex justify-content-center" nz-typography>
+            <img
+              src="../../../../../assets/images/agro-id-images/agro-id-logo.svg"
+              alt="logo"
+              style="padding-right: 5px"
+            />
+            <h2>AgroID</h2>
+          </div>
+          <span nz-typography class="font-agro-medium"
+            >Единая система идентификации</span>
+        </ng-container>
+          
+        
       </div>
 
-      <button
-        nzType="default"
-        nzShape="circle"
-        (click)="isCollapsed = !isCollapsed"
-        class="trigger-btn"
-      >
-        <i
-          class="trigger"
-          nz-icon
-          [nzType]="isCollapsed ? 'right' : 'left'"
-        ></i>
-      </button>
-
       <ng-template #logo class="logo-img">
-        <div class="cabinet__logo collapsed-logo">
-          <img
-            src="../../../../../assets/images/agro-id-images/agro-id-logo.svg"
-            alt="logo"
-          />
-        </div>
+        <img
+          src="../../../../../assets/images/agro-id-images/agro-id-logo.svg"
+          alt="logo"
+        />
       </ng-template>
 
-      <side-bar-menu [isGrid]="isCollapsed"></side-bar-menu>
+      <div nz-row>
+        <button
+          nz-col
+          nzXs="0"
+          nzSm="24"
+          nzMd="24"
+          nzLg="0"
+          nzXl="0"
+          nzType="default"
+          nzShape="circle"
+          (click)="isCollapsed = !isCollapsed"
+          class="trigger-btn tablet"
+        >
+          <i
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'right' : 'left'"
+          ></i>
+        </button>
+        <button
+          nz-col
+          nzXs="24"
+          nzSm="0"
+          nzMd="0"
+          nzLg="0"
+          nzXl="0"
+          nzType="default"
+          nzShape="circle"
+          (click)="isCollapsed = !isCollapsed"
+          class="trigger-btn phone"
+        >
+          <i
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'right' : 'left'"
+          ></i>
+        </button>
+      </div>
 
-      <social-links *ngIf="!isCollapsed"></social-links>
+      <ul nz-menu nzTheme="dark" nzMode="inline" class="menu">
+        <li
+          nz-menu-item
+          class="menu__item"
+          routerLinkActive="active"
+          routerLink="home"
+        >
+          <i nz-icon nzType="exclamation-circle"></i>
+          <span>Главная</span>
+        </li>
+        <li
+          nz-menu-item
+          class="menu__item"
+          routerLinkActive="active"
+          routerLink="personal"
+        >
+          <i nz-icon nzType="user"></i>
+          <span>Профиль</span>
+        </li>
+        <li
+          nz-menu-item
+          class="menu__item"
+          routerLinkActive="active"
+          routerLink="legalperson"
+        >
+          <i nz-icon nzType="credit-card"></i>
+          <span>Бизнес</span>
+        </li>
+        <li
+          nz-menu-item
+          class="menu__item"
+          routerLinkActive="active"
+          routerLink="biznescards"
+        >
+          <i nz-icon nzType="book"></i>
+          <span>Мои визитки</span>
+        </li>
+        <li
+          nz-menu-item
+          class="menu__item"
+          routerLinkActive="active"
+          routerLink="settings"
+        >
+          <i nz-icon nzType="setting"></i>
+          <span>Настройки</span>
+        </li>
+      </ul>
+      <nz-divider class="menu__divider"></nz-divider>
+      <ul class="menu logout">
+        <li>
+          <i nz-icon nzType="logout"></i>
+          <span *ngIf="!isCollapsed">Выход</span>
+        </li>
+      </ul>
+
+      <social-links [position]="menuFixed" *ngIf="!isCollapsed"></social-links>
     </nz-sider>
-    <nz-layout>
-      <nz-header class="cabinet__header">Header</nz-header>
+
+    <nz-layout [ngClass]="menuFixed ? 'content-margin' : ''">
+      <nz-header >
+        <az-header [fixed]="menuFixed"></az-header>
+      </nz-header>
       <nz-layout nz-row>
         <nz-content
           nz-col
@@ -184,10 +266,14 @@
           nzLg="24"
           nzXl="24"
           class="cabinet__content"
-          >Content</nz-content
+          ><router-outlet></router-outlet></nz-content
         >
       </nz-layout>
     </nz-layout>
   </nz-layout>
-  <!-- <nz-footer nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0"><side-bar-menu [isGrid]="true"></side-bar-menu></nz-footer> -->
 </div>
+
+<!-- [style.min-width]="isCollapsed ? '71px' : '250px'"
+[style.max-width]="isCollapsed ? '71px' : '250px'"
+[style.width]="isCollapsed ? '71px' : '250px'"
+[style.flex]="isCollapsed ? '0 0 71px' : '0 0 250px'" -->

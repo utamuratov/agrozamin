@@ -55,19 +55,25 @@
 }
  */
 
-:host {
-  text-align: center;
-}
-
 nz-footer {
   background: #3c4bdc;
+}
+
+nz-header {
+  padding: 0;  
+  
 }
 
 .cabinet {
   nz-header,
   nz-footer {
-    background: #7dbcea;
-    color: #fff;
+    background: #fff;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    
+  }
+
+  &__content {
+    padding-top: 40px;
   }
 
   nz-footer {
@@ -78,6 +84,12 @@ nz-footer {
   nz-sider {
     background: #3c4bdc;
     color: #fff;
+    height: 100%;
+    &.phone {
+      position: absolute;
+      z-index: 10;
+      height: 100%;
+    }
     .collapse {
       flex: 0 0 71px;
       max-width: 71px;
@@ -87,19 +99,7 @@ nz-footer {
   }
 
   nz-content {
-    background: rgba(16, 142, 233, 1);
-    color: #fff;
-    min-height: 120px;
-    line-height: 120px;
-  }
-
-  nz-layout {
-    margin-bottom: 48px;
-  }
-
-  nz-layout nz-layout,
-  nz-layout:last-child {
-    margin: 0;
+    background: #F5F5F5;
   }
 
   &__lang {
@@ -108,27 +108,20 @@ nz-footer {
   }
 
   &__logo {
+    height: 70px;
     line-height: 15px;
-    margin-bottom: 40px;
-    padding-top: 20px;
+    margin: 20px 0 40px;
+    text-align: center;
     h2 {
       margin-bottom: 0;
       color: #fff;
       font-size: 40px;
-      line-height: 42px;
+      line-height:42px;
     }
     span {
       color: #fff;
       font-size: 12px;
     }
-
-    .collapsed-logo {
-      margin-bottom: 50px;
-    }
-  }
-
-  .logo-img {
-    margin-bottom: 80px;
   }
 
   &__divider {
@@ -143,15 +136,23 @@ nz-footer {
 
 .trigger-btn {
   position: absolute;
-  top: 20px;
-  right: -12px;
   z-index: 10000;
-  color: #b2b2b2;
   border-radius: 50%;
   outline: none;
-  border: 1px solid #b2b2b2;
-  width: 25px;
-  height: 25px;
+  border: none;
+  width: 30px;
+  height: 30px;
+  background: #00ce62;
+
+  &.tablet {
+    top: 20px;
+    right: -32px;
+  }
+
+  &.phone {
+    left: 16px;
+    bottom: 20px;
+  }
 
   i {
     position: absolute;
@@ -159,4 +160,53 @@ nz-footer {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+}
+
+.menu {
+  &.logout {
+    padding-left: 24px;
+    li {
+      cursor: pointer;
+      color: #b2b2b2;
+      transition: 0.5s;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+    span {
+      margin-left: 10px;
+      overflow: hidden;
+    }
+  }
+
+  &__divider {
+    margin: 10px 0;
+    background: #fff;
+  }
+
+  &__item {
+    &.active {
+      color: #fff;
+      position: relative;
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      &::before {
+        content: "";
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #fff;
+      }
+    }
+  }
+}
+
+.ant-menu-item-selected {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.content-margin {
+  margin-left: 60px;
 }

@@ -6,12 +6,7 @@ export class LanguageUtilit {
    *
    */
   static get currentLanguage() {
-    let code = LocalStorageUtilit.get(Constants.LANGUAGE);
-    if (!code) {
-      code = Constants.DEFAULT_LANGUAGE_CODE;
-      this.currentLanguage = code;
-    }
-    return code;
+    return LocalStorageUtilit.get(Constants.LANGUAGE) ?? '';
   }
 
   /**
@@ -19,5 +14,19 @@ export class LanguageUtilit {
    */
   static set currentLanguage(code: string) {
     LocalStorageUtilit.set(Constants.LANGUAGE, code);
+  }
+
+  /**
+   *
+   */
+   static get defaultLanguage() {
+    return LocalStorageUtilit.get(Constants.DEFAULT_LANGUAGE) ?? '';
+  }
+
+  /**
+   *
+   */
+  static set defaultLanguage(code: string) {
+    LocalStorageUtilit.set(Constants.DEFAULT_LANGUAGE, code);
   }
 }
