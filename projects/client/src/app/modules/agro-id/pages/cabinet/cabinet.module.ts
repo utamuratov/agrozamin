@@ -42,6 +42,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './pages/main/main.component';
 import { ReactiveFormsSharedModule } from 'ngx-az-core';
 
+
 @NgModule({
   imports: [
     CabinetRoutes,
@@ -78,6 +79,7 @@ import { ReactiveFormsSharedModule } from 'ngx-az-core';
     NzTagModule,
     NzDescriptionsModule,
     NzSelectModule,
+    
   ],
   declarations: [
     CabinetComponent,
