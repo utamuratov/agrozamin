@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from 'ngx-az-core';
+import { BaseResponse, BaseService } from 'ngx-az-core';
 import { Observable } from 'rxjs';
+import { GridModel } from '../models/grid-model';
+import { Translation } from '../models/translation.interface';
 
 @Injectable()
 export class TranslateApiService {
@@ -10,7 +12,7 @@ export class TranslateApiService {
    */
   constructor(private $baseService: BaseService) {}
 
-  getTranslations(): Observable<any> {
-    return this.$baseService.get<any>('admin/translate');
+  getTranslations(): Observable<BaseResponse<GridModel<Translation>>> {
+    return this.$baseService.get<GridModel<Translation>>('admin/translate');
   }
 }

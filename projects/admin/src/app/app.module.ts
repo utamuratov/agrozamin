@@ -7,12 +7,14 @@ import { registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
 import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
 import { AppComponent } from './components/app/app.component';
+import { RootLayoutComponent } from './components/root-layout/root-layout.component';
 
 registerLocaleData(ru);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RootLayoutComponent
   ],
   imports: [
     AppRoutingModule,
