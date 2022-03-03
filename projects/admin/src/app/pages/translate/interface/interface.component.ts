@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
+import { GridModel } from '../models/grid-model';
+import { Translation } from '../models/translation.interface';
 import { TranslateApiService } from '../services/translate-api.service';
-
-interface ItemData {
-  id: number;
-  name: string;
-  age: number;
-  address: string;
-  login: string;
-  description: string;
-}
 
 @Component({
   templateUrl: './interface.component.html',
@@ -33,12 +26,7 @@ export class InterfaceComponent implements OnInit {
   /**
    *
    */
-  data: ItemData[] = [];
-
-  /**
-   *
-   */
-  filteredData: ItemData[] = [];
+  data!: GridModel<Translation>;
 
   constructor(private $translate: TranslateApiService) {}
 
@@ -50,7 +38,11 @@ export class InterfaceComponent implements OnInit {
    *
    */
   getTranslations() {
-    this.$translate.getTranslations().subscribe((w) => console.log(w));
+    this.$translate.getTranslations().subscribe((w) => {
+      if (w.success) {
+        this.data = w.data;
+      }
+    });
   }
 
   // Show Modal

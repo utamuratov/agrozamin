@@ -18,10 +18,10 @@
     <nz-divider></nz-divider>
   </div>
 
-  <div nz-col nzSpan="24">
+  <div nz-col nzSpan="24" *ngIf="data">
     <nz-table
       #headerTable
-      [nzData]="filteredData"
+      [nzData]="data.data"
       [nzPageSize]="50"
       [nzScroll]="{ y: '300px' }"
     >
@@ -41,9 +41,12 @@
               [nzExpand]="expandSet.has(data.id)"
               (nzExpandChange)="onExpandChange(data.id, $event)"
             ></td>
-            <td nzAlign="center">{{ data.id }}</td>
-            <td nzAlign="center">{{ data.name }}</td>
-            <td nzAlign="center">{{ data.address }}</td>
+            <td nzAlign="center">{{ data.key }}</td>
+            <td nzAlign="center">
+              <div *ngFor="let language of data.text | keyvalue">
+                {{ language.key }}: {{ language.value }}
+              </div>
+            </td>
             <td nzAlign="center" nzWidth="85px">
               <button
                 (click)="openModal()"
@@ -56,7 +59,7 @@
             </td>
           </tr>
           <tr [nzExpand]="expandSet.has(data.id)">
-            <span>{{ data.description }}</span>
+            <span>{{ data.text | json }}</span>
           </tr>
         </ng-container>
       </tbody>
