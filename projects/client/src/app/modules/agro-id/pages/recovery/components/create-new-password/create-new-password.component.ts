@@ -44,7 +44,7 @@ export class CreateNewPasswordComponent
   /**
    *
    */
-  $isWaitingResponse?: Observable<boolean>;
+  isWaitingResponse$?: Observable<boolean>;
 
   /**
    *
@@ -66,7 +66,7 @@ export class CreateNewPasswordComponent
    */
   submit(): void {
     if (this.form.valid) {
-      this.$isWaitingResponse = this.$auth
+      this.isWaitingResponse$ = this.$auth
         .changePasswordStepFour({
           login: this.login,
           password: this.form.controls[Constants.PASSWORD].value,

@@ -40,7 +40,7 @@ export class RecoverContactsComponent implements OnInit {
   /**
    *
    */
-  $isWaitingResponse?: Observable<boolean>;
+  isWaitingResponse$?: Observable<boolean>;
 
   /**
    *
@@ -89,7 +89,7 @@ export class RecoverContactsComponent implements OnInit {
 
   private restoreLoginStepOne() {
     const request: RestoreLoginStepOneRequest = this.getRestoreLoginRequest();
-    this.$isWaitingResponse = this.$auth.restoreLoginStepOne(request).pipe(
+    this.isWaitingResponse$ = this.$auth.restoreLoginStepOne(request).pipe(
       map((result) => {
         if (result.success) {
           this.goToNextStep();

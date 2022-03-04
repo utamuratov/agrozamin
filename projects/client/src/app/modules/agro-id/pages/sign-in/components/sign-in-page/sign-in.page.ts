@@ -15,7 +15,7 @@ export class SignInPage implements OnInit {
   /**
    *
    */
-  $isWaitingResponse?: Observable<boolean>;
+  isWaitingResponse$?: Observable<boolean>;
 
   /**
    *
@@ -77,7 +77,7 @@ export class SignInPage implements OnInit {
    *
    */
   private signIn(model: SignInRequest) {
-    this.$isWaitingResponse = this.$auth.signIn(model).pipe(
+    this.isWaitingResponse$ = this.$auth.signIn(model).pipe(
       map((result) => {
         if (result.success) {
           this.router.navigate(['/']);

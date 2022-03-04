@@ -87,7 +87,7 @@
         </div>
 
         <!-- Send activation code -->
-        <div [ngClass]="{ 'not-allowed': $isWaitingResponse | async }">
+        <div [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }">
           <button
             nzBlock
             nz-button
@@ -95,7 +95,7 @@
             nzShape="round"
             nzType="primary"
             [disabled]="!form.valid"
-            [nzLoading]="$isWaitingResponse | async"
+            [nzLoading]="isWaitingResponse$ | async"
           >
             {{ "confirm" | translate }}
           </button>

@@ -3,5 +3,7 @@ export interface GridModel<T> {
   from: number;
   to: number;
   total: number;
+  page: number;
+  per_page: number;
   data: T[];
 }

@@ -68,7 +68,7 @@ export class ConfirmationComponent implements OnInit {
   /**
    *
    */
-  $isWaitingResponse?: Observable<boolean>;
+  isWaitingResponse$?: Observable<boolean>;
 
   /**
    *
@@ -169,7 +169,7 @@ export class ConfirmationComponent implements OnInit {
    * @param activationCode
    */
   private changePasswordStepThree(activationCode: string) {
-    this.$isWaitingResponse = this.$auth
+    this.isWaitingResponse$ = this.$auth
       .changePasswordStepThree({
         login: this.data.login,
         secure_code: activationCode,
@@ -191,7 +191,7 @@ export class ConfirmationComponent implements OnInit {
    * @param activationCode
    */
   private restoreLoginStepTwo(activationCode: string) {
-    this.$isWaitingResponse = this.$auth
+    this.isWaitingResponse$ = this.$auth
       .restoreLoginStepTwo({
         [this.data.phone ? Constants.PHONE : Constants.EMAIL]: this.data?.login,
         secure_code: activationCode,
@@ -216,7 +216,7 @@ export class ConfirmationComponent implements OnInit {
    * @param activationCode
    */
   private sendActivationCodeToPhone(activationCode: string) {
-    this.$isWaitingResponse = this.$auth
+    this.isWaitingResponse$ = this.$auth
       .sendActivationCodeToPhone({
         phone: this.data?.login,
         secure_code: activationCode,

@@ -54,4 +54,20 @@ export class BaseService {
       shareReplay(1)
     );
   }
+
+  /**
+   *
+   * @param url
+   * @param model
+   * @returns
+   */
+   put<T>(url: string, model?: any): Observable<BaseResponse<T>> {
+    return this.http.put<BaseResponse<T>>(this.endpoint + url, model).pipe(
+      catchError((errors: ErrorItem[]) => {
+        errorMessageFromServer.next(errors[0]);
+        return of({ error: errors, success: false } as BaseResponse<T>);
+      }),
+      shareReplay(1)
+    );
+  }
 }
