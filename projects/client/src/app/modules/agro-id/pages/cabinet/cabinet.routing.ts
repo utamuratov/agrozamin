@@ -4,6 +4,7 @@ import { BiznesCardsComponent } from './pages/biznes-cards/biznes-cards.componen
 import { LegalPersonComponent } from './pages/legal-person/legal-person.component';
 import { MainComponent } from './pages/main/main.component';
 import { PersonalComponent } from './pages/personal/personal.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
       { path: 'personal', component: PersonalComponent },
       { path: 'legalperson', component: LegalPersonComponent },
       { path: 'biznescards', component: BiznesCardsComponent },
-      { path: 'settings', component: BiznesCardsComponent },
+      { path: 'settings', component: SettingsComponent },
     ],
   },
 ];

@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
-
-
-
 import { CommonModule } from '@angular/common';
 import { CabinetComponent } from './cabinet.component';
 import { PersonalComponent } from './pages/personal/personal.component';
 import { LegalPersonComponent } from './pages/legal-person/legal-person.component';
 import { CabinetRoutes } from './cabinet.routing';
-import { NotificationComponent } from './pages/notification/notification.component';
 import { UserNameModalComponent } from './pages/personal/components/user-name-modal/user-name-modal.component';
 import { BiznesCardsComponent } from './pages/biznes-cards/biznes-cards.component';
 import { BusinessCardModalComponent } from './components/business-card-modal/business-card-modal.component';
@@ -41,6 +37,8 @@ import { SocialLinksComponent } from './components/social-links/social-links.com
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './pages/main/main.component';
 import { ReactiveFormsSharedModule } from 'ngx-az-core';
+import { SettingsComponent } from './pages/settings/settings.component';
+
 
 
 @NgModule({
@@ -88,11 +86,11 @@ import { ReactiveFormsSharedModule } from 'ngx-az-core';
     UserNameModalComponent,
     BiznesCardsComponent,
     BusinessCardModalComponent,
-    NotificationComponent,
     UserInfoModalComponent,
     SocialLinksComponent,
     HeaderComponent,
-    MainComponent
+    MainComponent,
+    SettingsComponent
   ],
   
 })
