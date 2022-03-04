@@ -224,9 +224,29 @@ nz-divider {
 
 .personal {
   &__block {
-    height: 660px;
+    // height: 660px;
     background: #fff;
     border-radius: 15px;
-    padding: 40px;
+    padding: 40px 0;
   }
+
+  h3 {
+    font-size: 18px;
+    line-height: 23px;
+
+    @media (max-width: 470px) {
+      font-size: 14px;
+    }
+  }
+
+  p {
+    @media (max-width: 470px) {
+      font-size: 12px;
+    }
+  }
+}
+
+
+.divider-margin {
+  margin: 10px 0;
 }
