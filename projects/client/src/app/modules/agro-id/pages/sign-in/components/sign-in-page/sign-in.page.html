@@ -86,7 +86,7 @@
         </div>
 
         <!-- LOGIN -->
-        <div class="mt-2" [ngClass]="{'not-allowed': $isWaitingResponse|async}">
+        <div class="mt-2" [ngClass]="{'not-allowed': isWaitingResponse$|async}">
           <button
             class="login-form-margin font-agro-medium"
             nz-button

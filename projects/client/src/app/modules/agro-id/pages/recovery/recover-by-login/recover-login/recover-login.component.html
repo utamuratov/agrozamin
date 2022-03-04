@@ -53,7 +53,7 @@
           <!-- CONTINUE BUTTON -->
           <div
             class="mt-1"
-            [ngClass]="{ 'not-allowed': $isWaitingResponse | async }"
+            [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }"
           >
             <button
               nz-button
@@ -61,7 +61,7 @@
               nzBlock
               nzShape="round"
               class="recover-login__btn font-agro-medium"
-              [nzLoading]="$isWaitingResponse | async"
+              [nzLoading]="isWaitingResponse$ | async"
             >
               {{ "continue" | translate }}
             </button>

@@ -33,7 +33,7 @@ export class SignUpSetPasswordComponent
   /**
    *
    */
-  $isWaitingResponse!: Observable<boolean>;
+  isWaitingResponse$!: Observable<boolean>;
 
   /**
    *
@@ -60,7 +60,7 @@ export class SignUpSetPasswordComponent
    * @param model
    */
   private signUp(model: SignUpRequest) {
-    this.$isWaitingResponse = this.$auth.signUp(model).pipe(
+    this.isWaitingResponse$ = this.$auth.signUp(model).pipe(
       map((response) => {
         if (response.success) {
           this.changeStep.emit({

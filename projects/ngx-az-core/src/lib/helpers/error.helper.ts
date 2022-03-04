@@ -15,7 +15,7 @@ export class ErrorHelper {
    * @param error Http Error
    */
   static getServerErrors(error: HttpErrorResponse): ErrorItem[] {
-    if (error.error.errors) {
+    if (error.error.errors && error.error.errors?.[0].field) {
       return error.error.errors;
     }
 

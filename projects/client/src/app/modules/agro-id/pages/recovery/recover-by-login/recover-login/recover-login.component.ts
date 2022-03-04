@@ -31,7 +31,7 @@ export class RecoverLoginComponent implements OnInit {
   /**
    *
    */
-  $isWaitingResponse!: Observable<boolean>;
+  isWaitingResponse$!: Observable<boolean>;
 
   /**
    *
@@ -60,7 +60,7 @@ export class RecoverLoginComponent implements OnInit {
    */
   submit(): void {
     if (this.form.valid) {
-      this.$isWaitingResponse = this.$auth
+      this.isWaitingResponse$ = this.$auth
         .changePasswordStepOne({
           login: this.form.controls[Constants.LOGIN].value,
         })
