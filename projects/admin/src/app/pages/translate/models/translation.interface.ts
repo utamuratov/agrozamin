@@ -12,6 +12,6 @@ export interface Translation extends Id, BaseModel {
 }
 
 export interface MyTranslation extends Translation {
-  text: KeyValue<string, string>[];
+  textKeyValue: KeyValue<string, string>[];
   transferItems: TransferItem[];
 }

@@ -25,10 +25,12 @@ export * from './lib/config/http-response-code';
 // HELPERS
 export * from './lib/helpers/injector.helper';
 export * from './lib/helpers/global-error-handler';
+export * from './lib/helpers/error.helper';
 export * from './lib/helpers/http-loader-factory';
 export * from './lib/helpers/jwt-options.factory';
 export * from './lib/helpers/settings.helper';
 export * from './lib/helpers/validation.helper';
+export * from './lib/helpers/sign-in.helper';
 
 // INTERCEPTORS
 export * from './lib/interceptors/handle.error.interceptor';
@@ -42,9 +44,13 @@ export * from './lib/models/key-text.interface';
 export * from './lib/models/settings-helper.model';
 export * from './lib/models/success-message.interface';
 export * from './lib/models/language.interface';
+export * from './lib/models/sign-in.request';
+export * from './lib/models/sign-in.response';
+export * from './lib/models/refresh-token.response';
 
 // SERVICES
 export * from './lib/services/base.service';
+export * from './lib/services/base-auth.service';
 export * from './lib/services/logger.service';
 export * from './lib/services/ng-destroy.service';
 export * from './lib/services/seo.service';

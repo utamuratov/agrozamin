@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BaseResponse, BaseService, Constants, LocalStorageUtilit } from 'ngx-az-core';
+import {
+  BaseAuthService,
+  BaseResponse,
+  BaseService,
+  Constants,
+  ISignInRequest,
+  LocalStorageUtilit,
+  RefreshTokenResponse,
+} from 'ngx-az-core';
 import { Observable, tap } from 'rxjs';
 import { PhoneActivationRequest } from '../../../shared/models/auth/account-activation.request';
 import { AccountActivationResponse } from '../../../shared/models/auth/account-activation.response';
@@ -12,13 +20,10 @@ import { CheckLoginRequest } from '../../../shared/models/auth/check-login.reque
 import { CheckPhoneRequest } from '../../../shared/models/auth/check-phone.request';
 import { Login } from '../../../shared/models/auth/login';
 import { RefreshTokenRequest } from '../../../shared/models/auth/refresh-token.request';
-import { RefreshTokenResponse } from '../../../shared/models/auth/refresh-token.response';
 import { RestoreLoginStepOneRequest } from '../../../shared/models/auth/restore-login-step-one.request';
 import { RestoreLoginStepOneResponse } from '../../../shared/models/auth/restore-login-step-one.response';
 import { RestoreLoginStepTwoRequest } from '../../../shared/models/auth/restore-login-step-two.request';
 import { RestoreLoginResponse } from '../../../shared/models/auth/restore-login.response';
-import { ISignInRequest } from '../../../shared/models/auth/sign-in.request';
-import { SignInResponse } from '../../../shared/models/auth/sign-in.response';
 import { SignUpRequest } from '../../../shared/models/auth/sign-up.request';
 import { Message } from '../../../shared/models/message.interface';
 
@@ -28,7 +33,10 @@ export class AuthService {
    *
    * @param $baseService
    */
-  constructor(private $baseService: BaseService) {}
+  constructor(
+    private $baseService: BaseService,
+    private $baseAuth: BaseAuthService
+  ) {}
 
   /**
    *
@@ -36,14 +44,7 @@ export class AuthService {
    * @returns
    */
   signIn(model: ISignInRequest) {
-    return this.$baseService.post<SignInResponse>('login', model).pipe(
-      tap((result) => {
-        if (result.success) {
-          LocalStorageUtilit.set(Constants.ACCESS_TOKEN, result.data.access_token);
-          LocalStorageUtilit.set(Constants.REFRESH_TOKEN, result.data.refresh_token);
-        }
-      })
-    );
+    return this.$baseAuth.signIn(model);
   }
 
   /**
@@ -103,14 +104,22 @@ export class AuthService {
    * @param model
    * @returns
    */
-  refreshToken(model: RefreshTokenRequest): Observable<BaseResponse<RefreshTokenResponse>> {
+  refreshToken(
+    model: RefreshTokenRequest
+  ): Observable<BaseResponse<RefreshTokenResponse>> {
     return this.$baseService
       .post<RefreshTokenResponse>('refresh-token', model)
       .pipe(
         tap((result) => {
           if (result.success) {
-            LocalStorageUtilit.set(Constants.ACCESS_TOKEN, result.data.access_token);
-            LocalStorageUtilit.set(Constants.REFRESH_TOKEN, result.data.refresh_token);
+            LocalStorageUtilit.set(
+              Constants.ACCESS_TOKEN,
+              result.data.access_token
+            );
+            LocalStorageUtilit.set(
+              Constants.REFRESH_TOKEN,
+              result.data.refresh_token
+            );
           }
         })
       );
@@ -163,7 +172,9 @@ export class AuthService {
    * @param model
    * @returns
    */
-  changePasswordStepTwo(model: ChangePasswordStepTwoRequest): Observable<BaseResponse<any>> {
+  changePasswordStepTwo(
+    model: ChangePasswordStepTwoRequest
+  ): Observable<BaseResponse<any>> {
     return this.$baseService.post<any>('change-password-step2', model);
   }
 

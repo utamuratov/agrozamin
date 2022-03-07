@@ -1,4 +1,4 @@
-<div class="h-100 d-flex flex-column">
+<div class="h-100 d-flex flex-column interface--height">
   <div>
     <div style="display: inline-block; min-width: 450px">
       <!-- FILTER -->
@@ -18,118 +18,119 @@
     <nz-divider></nz-divider>
   </div>
 
-  <div
-    class="flex-grow-1"
-    (window:resize)="onResize($event)"
-    *ngIf="data && projects"
-  >
-    <nz-table
-      #headerTable
-      [nzData]="data.data"
-      [nzFrontPagination]="false"
-      [nzPageIndex]="data.current_page"
-      [nzTotal]="data.total"
-      [nzPageSize]="data.per_page"
-      [nzLoading]="loading"
-      (nzQueryParams)="onQueryParamsChange($event)"
-      [nzScroll]="{ y: innerHeight - 350 + 'px' }"
-      nzSize="small"
-      [nzWidthConfig]="['35px', '200px', '', '200px']"
-      nzBordered
-    >
-      <thead>
-        <tr>
-          <th nzLeft></th>
-          <th nzAlign="center">Key</th>
-          <th nzAlign="center">Translations</th>
-          <th nzAlign="center">Projects</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let data of headerTable.data">
+  <div class="flex-grow-1">
+    <div (window:resize)="onResize($event)" *ngIf="data; else noData">
+      <nz-table
+        #headerTable
+        [nzData]="data.data"
+        [nzFrontPagination]="false"
+        [nzPageIndex]="data.current_page"
+        [nzTotal]="data.total"
+        [nzPageSize]="data.per_page"
+        (nzQueryParams)="onQueryParamsChange($event)"
+        [nzScroll]="{ y: innerHeight - 350 + 'px' }"
+        nzSize="small"
+        [nzWidthConfig]="['35px', '200px', '', '200px', '50px']"
+        nzBordered
+      >
+        <thead>
           <tr>
-            <td
-              nzLeft
-              [nzExpand]="expandSet.has(data.id)"
-              (nzExpandChange)="onExpandChange(data.id, $event)"
-            ></td>
-            <td
-              nzAlign="left"
-              nzEllipsis
-              nz-tooltip
-              [nzTooltipTitle]="data.key"
-            >
-              {{ data.key }}
-            </td>
-            <td nzAlign="left">
-              <span *ngFor="let language of data.text">
-                <b>{{ language.key }}</b
-                >: {{ language.value }}&nbsp;
-              </span>
-            </td>
-            <td>
-              <span *ngFor="let project of data.projects" nz-typography
-                ><code>{{ project.name }}</code></span
+            <th nzLeft></th>
+            <th nzAlign="center" [textContent]="'key' | translate"></th>
+            <th
+              nzAlign="center"
+              [textContent]="'translations' | translate"
+            ></th>
+            <th nzAlign="center" [textContent]="'projects' | translate"></th>
+            <th nzRight></th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let data of headerTable.data">
+            <tr>
+              <td
+                nzLeft
+                [nzExpand]="expandSet.has(data.id)"
+                (nzExpandChange)="onExpandChange(data.id, $event)"
+              ></td>
+              <td
+                nzAlign="left"
+                nzEllipsis
+                nz-tooltip
+                [nzTooltipTitle]="data.key"
               >
-            </td>
-          </tr>
-          <tr [nzExpand]="expandSet.has(data.id)">
-            <div nz-row>
-              <div nz-col nzFlex="auto" class="p-1">
-                <div nz-row>
-                  <div nz-col nzFlex="100px">
-                    <b>Key:</b>
+                {{ data.key }}
+              </td>
+              <td nzAlign="left">
+                <span *ngFor="let language of data.textKeyValue">
+                  <b>{{ language.key }}</b
+                  >: {{ language.value }}&nbsp;
+                </span>
+              </td>
+              <td>
+                <span *ngFor="let project of data.projects" nz-typography
+                  ><code>{{ project.name }}</code></span
+                >
+              </td>
+              <td nzRight nzAlign="center">
+                <a (click)="delete(data.id)">
+                  <span>
+                    <i nz-icon nzType="delete" nzTheme="twotone"></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+            <tr [nzExpand]="expandSet.has(data.id)">
+              <div nz-row>
+                <div nz-col nzFlex="auto" class="p-1">
+                  <div nz-row>
+                    <div nz-col nzFlex="100px">
+                      <b>Key:</b>
+                    </div>
+                    <div
+                      nz-col
+                      nzFlex="auto"
+                      nz-typography
+                      nzEditable
+                      (nzContentChange)="changedKey($event, data)"
+                      [(nzContent)]="data.key"
+                    ></div>
                   </div>
-                  <div
-                    nz-col
-                    nzFlex="auto"
-                    nz-typography
-                    nzEditable
-                    (nzContentChange)="changeKey($event, data)"
-                    [(nzContent)]="data.key"
-                  ></div>
-                </div>
-                <div nz-row *ngFor="let language of data.text">
-                  <div nz-col nzFlex="100px">
-                    <b>{{ language.key }}:</b>
-                  </div>
+                  <div nz-row *ngFor="let language of data.textKeyValue">
+                    <div nz-col nzFlex="100px">
+                      <b>{{ language.key }}:</b>
+                    </div>
 
-                  <div
-                    nz-col
-                    nzFlex="auto"
-                    nz-typography
-                    nzEditable
-                    (nzContentChange)="
-                      changedTranslation($event, language.key, data)
-                    "
-                    [(nzContent)]="language.value"
-                  ></div>
+                    <div
+                      nz-col
+                      nzFlex="auto"
+                      nz-typography
+                      nzEditable
+                      (nzContentChange)="
+                        changedTranslation($event, language.key, data)
+                      "
+                      [(nzContent)]="language.value"
+                    ></div>
+                  </div>
+                </div>
+                <div nz-col nzFlex="500px">
+                  <az-transfer-projects
+                    [transferItems]="data.transferItems"
+                    (nzChange)="changedProjects(data)"
+                  ></az-transfer-projects>
                 </div>
               </div>
-              <div nz-col nzFlex="500px">
-                <nz-transfer
-                  [nzDataSource]="data.transferItems"
-                  [nzDisabled]="disabled"
-                  (nzChange)="changedProjects(data)"
-                  [nzTitles]="['Remain projects', 'Selected projects']"
-                  [nzListStyle]="{ 'width.px': 250, 'height.px': 200 }"
-                ></nz-transfer>
-                <div style="margin-top: 8px">
-                  <nz-switch
-                    name="disabled"
-                    ngDefaultControl
-                    [(ngModel)]="disabled"
-                    nzCheckedChildren="disabled"
-                    nzUnCheckedChildren="disabled"
-                  ></nz-switch>
-                  <div></div>
-                </div>
-              </div>
-            </div>
-          </tr>
-        </ng-container>
-      </tbody>
-    </nz-table>
+            </tr>
+          </ng-container>
+        </tbody>
+      </nz-table>
+    </div>
+
+    <ng-template #noData>
+      <div class="d-flex flex-column h-100 justify-content-center">
+        <nz-empty></nz-empty>
+      </div>
+    </ng-template>
   </div>
 </div>
 

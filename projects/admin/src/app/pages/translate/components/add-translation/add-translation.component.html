@@ -1,52 +1,61 @@
 <nz-modal
   [(nzVisible)]="isVisible"
-  nzTitle="Add"
+  [nzTitle]="'add' | translate"
   (nzOnCancel)="close()"
-  (nzOnOk)="close()"
+  nzWidth="900px"
   modal
 >
   <div *nzModalContent>
     <form [formGroup]="form" nz-form nzLayout="vertical">
-      <nz-form-item>
-        <nz-form-label nzFor="key">Key</nz-form-label>
-        <nz-form-control>
-          <input nz-input formControlName="key" name="key" type="text" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item *ngFor="let language of languages">
-        <nz-form-label nzFor="text">{{ language.name }}</nz-form-label>
-        <nz-form-control>
-          <textarea
-            nz-input
-            [name]="language.code"
-            [formControlName]="language.code"
-            type="text"
-          ></textarea>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
+      <div nz-row>
+        <div nz-col nzSpan="12" class="pl-1 pr-1">
+          <!-- KEY -->
+          <nz-form-item>
+            <nz-form-label nzFor="key">{{ "key" | translate }}</nz-form-label>
+            <nz-form-control [nzErrorTip]="errorKey">
+              <input nz-input formControlName="key" name="key" type="text" />
+            </nz-form-control>
+            <ng-template #errorKey let-control>
+              <error [control]="control"></error>
+            </ng-template>
+          </nz-form-item>
 
-    <nz-transfer
-      [nzDataSource]="list"
-      [nzDisabled]="disabled"
-      [nzTitles]="['Source', 'Target']"
-      [nzListStyle]="{ 'width.px': 250, 'height.px': 200 }"
-    ></nz-transfer>
-    <div style="margin-top: 8px">
-      <nz-switch
-        name="disabled"
-        ngDefaultControl
-        [(ngModel)]="disabled"
-        nzCheckedChildren="disabled"
-        nzUnCheckedChildren="disabled"
-      ></nz-switch>
-      <div></div>
-    </div>
+          <!-- PROJECTS -->
+          <az-transfer-projects
+            [transferItems]="transferingProjects"
+          ></az-transfer-projects>
+        </div>
+        <div
+          nz-col
+          nzSpan="12"
+          class="pl-1 pr-1 overflow-auto languages--height"
+        >
+          <nz-form-item *ngFor="let language of languages">
+            <nz-form-label nzFor="text">{{ language.name }}</nz-form-label>
+            <nz-form-control [nzErrorTip]="'fillTheInput' | translate">
+              <textarea
+                rows="3"
+                nz-input
+                [name]="language.code"
+                [formControlName]="language.code"
+                type="text"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
   </div>
   <div *nzModalFooter>
-      <div 
-      [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }">
-      <button (click)="submit()" [nzLoading]="isWaitingResponse$ | async" nz-button nzType="primary">Custom Submit</button>
+    <div [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }">
+      <button
+        (click)="submit()"
+        [nzLoading]="isWaitingResponse$ | async"
+        nz-button
+        nzType="primary"
+      >
+        {{ "save" | translate }}
+      </button>
     </div>
   </div>
 </nz-modal>

@@ -1,15 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { TransferDirection, TransferItem } from 'ng-zorro-antd/transfer';
-import { Constants } from 'ngx-az-core';
+import { TransferItem } from 'ng-zorro-antd/transfer';
+import { Constants, markAllAsDirty } from 'ngx-az-core';
 import { map, Observable, startWith } from 'rxjs';
-import { TranslationPostRequest } from '../../models/translation-post.request';
+import { AddTranslationRequest } from '../../models/add-translation.request';
 import { ProjectService } from '../../services/project.service';
 import { TranslateApiService } from '../../services/translate-api.service';
 
@@ -41,11 +40,6 @@ export class AddTranslationComponent implements OnInit {
   /**
    *
    */
-  translationPostRequest!: TranslationPostRequest;
-
-  /**
-   *
-   */
   isWaitingResponse$!: Observable<boolean>;
 
   /**
@@ -53,10 +47,17 @@ export class AddTranslationComponent implements OnInit {
    */
   languages = Constants.LANGUAGES;
 
-  // DATA FOR TRANSFER
-  list: TransferItem[] = [];
-  disabled = false;
+  /**
+   *
+   */
+  transferingProjects: TransferItem[] = [];
 
+  /**
+   *
+   * @param fb
+   * @param $project
+   * @param $translate
+   */
   constructor(
     private fb: FormBuilder,
     private $project: ProjectService,
@@ -65,16 +66,22 @@ export class AddTranslationComponent implements OnInit {
     this.isVisible = false;
   }
 
+  /**
+   *
+   */
   ngOnInit(): void {
     this.initForm();
     this.getProjects();
   }
 
+  /**
+   *
+   */
   getProjects() {
     this.$project.getProjects().subscribe((result) => {
       if (result.success) {
         result.data.forEach((project) => {
-          this.list.push({
+          this.transferingProjects.push({
             key: project.id,
             title: project.name,
           });
@@ -83,10 +90,20 @@ export class AddTranslationComponent implements OnInit {
     });
   }
 
-  initForm() {
+  /**
+   *
+   */
+  private initForm() {
     this.form = this.fb.group({
       key: [null, Validators.required],
     });
+    this.addLanguageControls();
+  }
+
+  /**
+   *
+   */
+  private addLanguageControls() {
     this.languages.forEach((language) => {
       this.form.addControl(
         language.code,
@@ -95,13 +112,42 @@ export class AddTranslationComponent implements OnInit {
     });
   }
 
-  close(): void {
-    this.isVisible = false;
+  /**
+   *
+   */
+  submit() {
+    if (this.form.invalid) {
+      markAllAsDirty(this.form);
+      return;
+    }
+    const request = this.getTranslationRequest();
+    this.addTranslation(request);
   }
 
-  submit() {
-    this.translationPostRequest = {
-      project: this.list
+  /**
+   *
+   * @param request
+   */
+  private addTranslation(request: AddTranslationRequest) {
+    this.isWaitingResponse$ = this.$translate.addTranslation(request).pipe(
+      map((result) => {
+        if (result.success) {
+          this.added.emit(true);
+          this.close();
+        }
+
+        return false;
+      }),
+      startWith(true)
+    );
+  }
+
+  /**
+   *
+   */
+  private getTranslationRequest(): AddTranslationRequest {
+    const request: AddTranslationRequest = {
+      project: this.transferingProjects
         .filter((w) => w.direction === 'right')
         .map((w) => w['key']),
       key: this.form.value['key'],
@@ -110,21 +156,16 @@ export class AddTranslationComponent implements OnInit {
     };
 
     this.languages.forEach((w) => {
-      this.translationPostRequest.text[w.code] = this.form.value[w.code];
+      request.text[w.code] = this.form.value[w.code];
     });
 
-    this.isWaitingResponse$ = this.$translate
-      .addTranslation(this.translationPostRequest)
-      .pipe(
-        map((result) => {
-          if (result.success) {
-            this.added.emit(true);
-            this.close();
-          }
+    return request;
+  }
 
-          return false;
-        }),
-        startWith(true)
-      );
+  /**
+   *
+   */
+  close(): void {
+    this.isVisible = false;
   }
 }

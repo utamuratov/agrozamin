@@ -1,4 +1,4 @@
-import { Constants } from 'ngx-az-core';
+import { Constants } from '../config/constants';
 
 export interface ISignInRequest {
   client_id: string;

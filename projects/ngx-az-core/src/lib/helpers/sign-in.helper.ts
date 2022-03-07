@@ -1,16 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
-import { map, Observable, startWith } from 'rxjs';
-import { Constants, markAllAsDirty, SignInRequest } from 'ngx-az-core';
+import { Observable, map, startWith } from 'rxjs';
+import { Constants } from '../config/constants';
+import { SignInRequest } from '../models/sign-in.request';
+import { BaseAuthService } from '../services/base-auth.service';
+import { markAllAsDirty } from '../utilits/utilits';
 
-@Component({
-  templateUrl: './sign-in.page.html',
-  styleUrls: ['./sign-in.page.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class SignInPage implements OnInit {
+export class SignInHelper {
   /**
    *
    */
@@ -25,15 +21,15 @@ export class SignInPage implements OnInit {
    *
    */
   constructor(
-    private fb: FormBuilder,
-    private $auth: AuthService,
-    private router: Router
+    protected fb: FormBuilder,
+    protected $baseAuth: BaseAuthService,
+    protected router: Router
   ) {}
 
   /**
    *
    */
-  ngOnInit() {
+  onInit() {
     const login = history.state.login;
     this.initForm(login);
   }
@@ -76,7 +72,7 @@ export class SignInPage implements OnInit {
    *
    */
   private signIn(model: SignInRequest) {
-    this.isWaitingResponse$ = this.$auth.signIn(model).pipe(
+    this.isWaitingResponse$ = this.$baseAuth.signIn(model).pipe(
       map((result) => {
         if (result.success) {
           this.router.navigate(['/']);
