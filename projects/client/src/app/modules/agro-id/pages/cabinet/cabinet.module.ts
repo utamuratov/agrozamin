@@ -28,7 +28,6 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
-import { UserInfoModalComponent } from './pages/personal/components/user-info-modal/user-info-modal.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
@@ -38,6 +37,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './pages/main/main.component';
 import { ReactiveFormsSharedModule } from 'ngx-az-core';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { UserEmailModalComponent } from './pages/personal/components/user-email-modal/user-email-modal.component';
+import { UserPhoneModalComponent } from './pages/personal/components/user-phone-modal/user-phone-modal.component';
+import { UserLoginModalComponent } from './pages/personal/components/user-login-modal/user-login-modal.component';
+import { UserPasswordModalComponent } from './pages/personal/components/user-password-modal/user-password-modal.component';
 
 
 
@@ -77,6 +81,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     NzTagModule,
     NzDescriptionsModule,
     NzSelectModule,
+    NzCheckboxModule
     
   ],
   declarations: [
@@ -86,11 +91,14 @@ import { SettingsComponent } from './pages/settings/settings.component';
     UserNameModalComponent,
     BiznesCardsComponent,
     BusinessCardModalComponent,
-    UserInfoModalComponent,
     SocialLinksComponent,
     HeaderComponent,
     MainComponent,
-    SettingsComponent
+    SettingsComponent,
+    UserEmailModalComponent,
+    UserPhoneModalComponent,
+    UserLoginModalComponent,
+    UserPasswordModalComponent
   ],
   
 })

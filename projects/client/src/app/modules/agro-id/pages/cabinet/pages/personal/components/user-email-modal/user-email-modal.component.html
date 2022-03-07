@@ -1,0 +1,37 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle><h4 nz-typography>{{emailValue.email ? 'Изменить' : 'Добавить'}} Email</h4></ng-template>
+
+  <ng-template #modalContent>
+    <form nz-form [formGroup]="validateForm">
+      <p>
+        Введите ваш новый электронный адрес На него будет отправлен код
+        подтверждения
+      </p>
+      <input
+        nz-input
+        nzSize="large"
+        formControlName="email"
+        placeholder="Введите ваш Email"
+      />
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button
+      nz-button
+      nzBlock
+      nzShape="round"
+      nzType="primary"
+      (click)="handleOk()"
+      [nzLoading]="isConfirmLoading"
+    >
+      Далее
+    </button>
+  </ng-template>
+</nz-modal>

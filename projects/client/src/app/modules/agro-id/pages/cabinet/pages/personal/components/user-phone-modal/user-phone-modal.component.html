@@ -1,0 +1,39 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle
+    ><h4 nz-typography>{{phoneValue.phone ? 'Изменить': 'Добавить'}} номер телефона</h4></ng-template
+  >
+
+  <ng-template #modalContent>
+    <form nz-form [formGroup]="validateForm">
+      <p>
+        Введите ваш новый номер телефона На него будет отправлен код
+        подтверждения
+      </p>
+      <input
+        nz-input
+        nzSize="large"
+        formControlName="phone"
+        placeholder="Введите номер телефона"
+      />
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button
+      nz-button
+      nzBlock
+      nzShape="round"
+      nzType="primary"
+      (click)="handleOk()"
+      [nzLoading]="isConfirmLoading"
+    >
+      Далее
+    </button>
+  </ng-template>
+</nz-modal>
