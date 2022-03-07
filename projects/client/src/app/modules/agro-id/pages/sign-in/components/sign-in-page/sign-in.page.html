@@ -93,6 +93,7 @@
             nzShape="round"
             nzBlock
             [nzType]="'primary'"
+            [nzLoading]="isWaitingResponse$|async"
           >
             {{'toComeIn' | translate}}
           </button>

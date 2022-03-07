@@ -1,40 +1,23 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { BaseAuthService, SignInHelper } from 'ngx-az-core';
 
 @Component({
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignInComponent implements OnInit {
-   
-  error = false
-  
-
-  validateForm!: FormGroup;
-
-  submitForm(): void {
-    this.error = true
-    if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
+export class SignInComponent extends SignInHelper implements OnInit {
+  constructor(
+    protected override fb: FormBuilder,
+    protected override $baseAuth: BaseAuthService,
+    protected override router: Router
+  ) {
+    super(fb, $baseAuth, router);
   }
-
-  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
-    });
+    this.onInit();
   }
-
 }

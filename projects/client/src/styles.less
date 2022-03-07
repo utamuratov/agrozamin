@@ -2,7 +2,7 @@
 // For more information: https://ng.ant.design/docs/customize-theme/en
 @import "../../../node_modules/ng-zorro-antd/ng-zorro-antd.less";
 
-@import "assets/styles/az-global.less";
+@import "../../../dist/ngx-az-core/styles/az-global.less";
 
 @primary-color: #3c4bdc;
 @form-item-margin-bottom: 10px;
@@ -97,7 +97,6 @@ h2.cabinet-title {
     @media (max-width: 470px) {
       font-size: 12px;
     }
-    
   }
 }
 //#endregion
@@ -197,6 +196,11 @@ button.ant-btn.ant-btn-loading {
 
 .divider {
   color: #fff;
+}
+
+.legal__card {
+  .ant-card-body {
+  }
 }
 
 .ant-modal-content {
