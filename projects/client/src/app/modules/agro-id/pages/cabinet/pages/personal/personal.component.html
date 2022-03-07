@@ -427,8 +427,8 @@
               <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="6" nzXl="12" nzXXl="12"><span nz-typography>Мун Тимур</span></div>
               <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="12" nzXl="8" nzXXl="8" >
                 <div nz-row>
-                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" nzXXl="24" class="text-end"><button nz-button nzType="link" >Изменить имя</button></div>
-                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" nzXXl="0" class="text-end"><button nz-button nzType="link"><i nz-icon nzType="edit" nzTheme="outline"></i></button></div>
+                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" nzXXl="24" class="text-end"><button nz-button nzType="link" (click)="showModal('username')">Изменить имя</button></div>
+                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" nzXXl="0" class="text-end"><button nz-button nzType="link" (click)="showModal('username')"><i nz-icon nzType="edit" nzTheme="outline"></i></button></div>
                 </div>
               </div>
             </div>
@@ -442,8 +442,8 @@
               <div nz-col nzXs="16" nzSm="12" nzMd="8" nzLg="6" nzXl="12" nzXXl="12"><span nz-typography>shisudesign@outlook.com</span></div>
               <div nz-col nzXs="8" nzSm="12" nzMd="8" nzLg="12" nzXl="8" nzXXl="8" >
                 <div nz-row>
-                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" nzXXl="24" class="text-end"><button nz-button nzType="link" >Изменить адрес электронной почты</button></div>
-                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" nzXXl="0" class="text-end"><button nz-button nzType="link"><i nz-icon nzType="edit" nzTheme="outline"></i></button></div>
+                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" nzXXl="24" class="text-end"><button nz-button nzType="link" (click)="showModal('email')" >{{userInfo.email ? 'Изменить' : 'Добавить'}} адрес электронной почты</button></div>
+                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" nzXXl="0" class="text-end"><button nz-button nzType="link" (click)="showModal('email')" ><i nz-icon nzType="edit" nzTheme="outline"></i></button></div>
                 </div>
               </div>
             </div>
@@ -453,8 +453,8 @@
               <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="6" nzXl="12" nzXXl="12"><span nz-typography>Нет</span></div>
               <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="12" nzXl="8" nzXXl="8" >
                 <div nz-row>
-                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" nzXXl="24" class="text-end"><button nz-button nzType="link" >Изменить номер телефона</button></div>
-                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" nzXXl="0" class="text-end"><button nz-button nzType="link"><i nz-icon nzType="edit" nzTheme="outline"></i></button></div>
+                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" nzXXl="24" class="text-end"><button nz-button nzType="link" (click)="showModal('phone')" >Добавить номер телефона</button></div>
+                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" nzXXl="0" class="text-end"><button nz-button nzType="link" (click)="showModal('phone')"><i nz-icon nzType="edit" nzTheme="outline"></i></button></div>
                 </div>
               </div>
             </div>
@@ -468,8 +468,8 @@
               <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="6" nzXl="12" nzXXl="12"><span nz-typography>shisudesign</span></div>
               <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="12" nzXl="8" nzXXl="8" >
                 <div nz-row>
-                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" nzXXl="24" class="text-end"><button nz-button nzType="link" >Изменить логин</button></div>
-                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" nzXXl="0" class="text-end"><button nz-button nzType="link"><i nz-icon nzType="edit" nzTheme="outline"></i></button></div>
+                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" nzXXl="24" class="text-end"><button nz-button nzType="link" (click)="showModal('login')">Изменить логин</button></div>
+                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" nzXXl="0" class="text-end"><button nz-button nzType="link" (click)="showModal('login')"><i nz-icon nzType="edit" nzTheme="outline"></i></button></div>
                 </div>
               </div>
             </div>
@@ -479,8 +479,8 @@
               <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="6" nzXl="12" nzXXl="12"><span nz-typography>************</span></div>
               <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="12" nzXl="8" nzXXl="8" >
                 <div nz-row>
-                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" nzXXl="24" class="text-end"><button nz-button nzType="link" >Изменить логин</button></div>
-                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" nzXXl="0" class="text-end"><button nz-button nzType="link"><i nz-icon nzType="edit" nzTheme="outline"></i></button></div>
+                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" nzXXl="24" class="text-end"><button nz-button nzType="link" (click)="showModal('password')">Изменить пароль</button></div>
+                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" nzXXl="0" class="text-end"><button nz-button nzType="link" (click)="showModal('password')"><i nz-icon nzType="edit" nzTheme="outline"></i></button></div>
                 </div>
               </div>
             </div>
@@ -491,3 +491,9 @@
     </div>
   </div>
 </div>
+
+<user-name-modal [isVisible]="userNameModalVisible" (handleClose)="handleUserNameVisible($event)" [inputValues]="userInfo"></user-name-modal>
+<az-user-email-modal [emailValue]="userInfo" (handleVisible)="handleUserEmailVisible($event)" [isVisible]="userEmailModalVisible" ></az-user-email-modal>
+<az-user-phone-modal [phoneValue]="userInfo" [isVisible]="userPhoneModalVisible" (handleVisible)="handleUserPhoneVisible($event)"></az-user-phone-modal>
+<az-user-login-modal [isVisible]="userLoginModalVisible" (handleVisible)="handleUserLoginVisible($event)" [loginValue]="userInfo"></az-user-login-modal>
+<az-user-password-modal [isVisible]="userPasswordModalVisible" (handleClose)="handleUserPasswordVisible($event)"></az-user-password-modal>
