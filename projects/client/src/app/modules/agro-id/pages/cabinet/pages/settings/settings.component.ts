@@ -12,4 +12,8 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
   }
 
+  log(value: string[]): void {
+    console.log(value);
+  }
+
 }

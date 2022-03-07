@@ -1,0 +1,38 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle
+    ><h4 nz-typography>Изменение логина</h4></ng-template
+  >
+
+  <ng-template #modalContent>
+    <form nz-form [formGroup]="validateForm">
+      <p>
+        Напишите свой логин с помощью латинских букв
+      </p>
+      <input
+        nz-input
+        nzSize="large"
+        formControlName="login"
+        placeholder="Логин"
+      />
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button
+      nz-button
+      nzBlock
+      nzShape="round"
+      nzType="primary"
+      (click)="handleOk()"
+      [nzLoading]="isConfirmLoading"
+    >
+      Далее
+    </button>
+  </ng-template>
+</nz-modal>

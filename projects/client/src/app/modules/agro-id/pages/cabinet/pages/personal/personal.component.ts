@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { UserInfoModal } from './components/user-info-modal/user-info-modal.component';
+
+export interface Values {
+  firstName: string;
+  lastName: string;
+  email: string | null;
+  phone: string | null;
+  login: string;
+}
 
 @Component({
   selector: 'app-personal',
@@ -7,34 +14,55 @@ import { UserInfoModal } from './components/user-info-modal/user-info-modal.comp
   styleUrls: ['./personal.component.less'],
 })
 export class PersonalComponent implements OnInit {
-  userInfo = [
-    {
-      firstName: 'Артур',
-      lastName: 'Нарбеков',
-      phone: 998903262013,
-      mail: null,
-      avatar: '../../../../../../../assets/images/agro-id-images/avatar.jpg',
-      main: true,
-    },
-    {
-      firstName: 'Тимур',
-      lastName: 'Мун',
-      phone: 998903262013,
-      mail: 'narbekov@gmail.com',
-      avatar: '../../../../../../../assets/images/agro-id-images/avatar3.jpg',
-      main: false
-    },
-    {
-      firstName: 'Кристина',
-      lastName: 'Варламова',
-      phone: 998903262013,
-      mail: 'narbekov@gmail.com',
-      avatar: '../../../../../../../assets/images/agro-id-images/avatar2.jpg',
-      main: false
-    },
-  ];
+  userNameModalVisible = false;
+  userEmailModalVisible = false;
+  userPhoneModalVisible = false;
+  userLoginModalVisible = false;
+  userPasswordModalVisible = false;
+
+  userInfo: Values = {
+    firstName: 'Тимур',
+    lastName: 'Мун',
+    email: 'shisudesign@outlook.com',
+    phone: null,
+    login: 'shisudesign',
+  };
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  showModal(type: string): void {
+    if (type === 'username') {
+      this.userNameModalVisible = true;
+    } else if (type === 'email') {
+      this.userEmailModalVisible = true;
+    } else if (type === 'phone') {
+      this.userPhoneModalVisible = true;
+    } else if (type === 'login') {
+      this.userLoginModalVisible = true;
+    } else if (type === 'password') {
+      this.userPasswordModalVisible = true;
+    }
+  }
+
+  handleUserNameVisible($event: boolean): void {
+    this.userNameModalVisible = $event;
+  }
+
+  handleUserEmailVisible($event: boolean): void {
+    this.userEmailModalVisible = $event;
+  }
+
+  handleUserPhoneVisible($event: boolean): void {
+    this.userPhoneModalVisible = $event;
+  }
+
+  handleUserLoginVisible($event: boolean): void {
+    this.userLoginModalVisible = $event;
+  }
+
+  handleUserPasswordVisible($event: boolean): void {
+    this.userPasswordModalVisible = $event;
+  }
 }
