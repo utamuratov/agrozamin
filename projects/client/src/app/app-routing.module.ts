@@ -6,12 +6,15 @@ import { AuthGuard } from './core/guards/auth.guard';
 import {
   Constants,
   LanguageGuard,
-  LanguageUtilit,
+  LocalStorageUtilit,
   SEOResolver,
 } from 'ngx-az-core';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
 import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+
+const currentLanguage =
+  LocalStorageUtilit.get(Constants.CURRENT_LANGUAGE) ?? '';
 
 const routes: Routes = [
   {
@@ -26,7 +29,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: LanguageUtilit.currentLanguage,
+        redirectTo: currentLanguage,
         pathMatch: 'full',
       },
       {
@@ -96,7 +99,7 @@ const routes: Routes = [
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: `${Constants.AGROZAMIN_PREFIX_ROUTE_PATH}/${LanguageUtilit.currentLanguage}/404`,
+    redirectTo: `${Constants.AGROZAMIN_PREFIX_ROUTE_PATH}/${currentLanguage}/404`,
   },
 ];
 

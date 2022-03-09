@@ -1,4 +1,4 @@
-import { Language } from "../models/language.interface";
+import { Language } from '../models/language.interface';
 
 export class Constants {
   /**
@@ -21,7 +21,7 @@ export class Constants {
     {
       code: 'uz_cyrl',
       name: 'Ўзбекча',
-      short_name: 'Узб',
+      short_name: 'Ўзб',
     },
     {
       code: 'uz_latn',
@@ -48,7 +48,7 @@ export class Constants {
   /**
    * LOCAL STORAGE KEYS
    */
-  public static readonly LANGUAGE = 'language';
+  public static readonly CURRENT_LANGUAGE = 'currentLanguage';
   public static readonly DEFAULT_LANGUAGE = 'defaultLanguage';
   public static readonly LOGIN_TYPE = 'loginType';
   public static readonly ACCESS_TOKEN = 'access_tokent';
@@ -72,5 +72,4 @@ export class Constants {
    */
   public static readonly AGROZAMIN_PREFIX_ROUTE_PATH = 'az';
   public static readonly AGROID_ROUTE_PATH = 'agro-id';
-
 }

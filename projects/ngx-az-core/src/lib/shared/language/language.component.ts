@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { map, Observable } from 'rxjs';
-import { Constants } from '../../config/constants';
+import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { Language } from '../../models/language.interface';
-import { LanguageUtilit } from '../../utilits/language.utilit';
-import { LanguageService } from './language.service';
+import { CurrentLanguage } from '../store/language/language.action';
+import { LanguageState } from '../store/language/language.state';
 
 @Component({
   selector: 'language',
@@ -16,7 +16,9 @@ export class LanguageComponent implements OnInit {
   /**
    *
    */
-  language$!: Observable<Language[]>;
+  language$: Observable<Language[]> = this.$store.select(
+    LanguageState.languages
+  );
 
   /**
    *
@@ -29,37 +31,17 @@ export class LanguageComponent implements OnInit {
   constructor(
     private router: Router,
     private translate: TranslateService,
-    private $language: LanguageService
-  ) {
-    translate.setDefaultLang(Constants.DEFAULT_LANGUAGE_CODE);
-  }
+    private $store: Store
+  ) {}
 
   /**
    *
    */
   ngOnInit(): void {
-    this.getLanguages();
-    this.currentLanguageCode = LanguageUtilit.currentLanguage;
-    this.setCurrentLanguage(this.currentLanguageCode);
-  }
-
-  /**
-   *
-   */
-  getLanguages() {
-    this.language$ = this.$language.getLanguages().pipe(
-      map((result) => {
-        if (result.success) {
-          return result.data;
-        }
-
-        // !REMOVE ALERT and DO ANOTHER JOB
-        alert(
-          'SERVER ISSUE: The Language list has not brought from the server!'
-        );
-        return [];
-      })
+    this.currentLanguageCode = this.$store.selectSnapshot(
+      LanguageState.currentLanguage
     );
+    this.setCurrentLanguage(this.currentLanguageCode);
   }
 
   /**
@@ -68,7 +50,7 @@ export class LanguageComponent implements OnInit {
   onChangeLanguage(language: Language) {
     const previousLanguageCode = this.currentLanguageCode;
     this.currentLanguageCode = language.code;
-    LanguageUtilit.currentLanguage = this.currentLanguageCode;
+    this.$store.dispatch(new CurrentLanguage(this.currentLanguageCode));
     this.router.navigateByUrl(
       this.router.url.replace(previousLanguageCode, this.currentLanguageCode)
     );

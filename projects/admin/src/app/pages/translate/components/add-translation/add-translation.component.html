@@ -47,15 +47,8 @@
     </form>
   </div>
   <div *nzModalFooter>
-    <div [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }">
-      <button
-        (click)="submit()"
-        [nzLoading]="isWaitingResponse$ | async"
-        nz-button
-        nzType="primary"
-      >
-        {{ "save" | translate }}
-      </button>
-    </div>
+    <button (click)="submit()" nz-button nzType="primary">
+      {{ "save" | translate }}
+    </button>
   </div>
 </nz-modal>

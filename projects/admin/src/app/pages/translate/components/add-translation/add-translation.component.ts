@@ -5,10 +5,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngxs/store';
 import { TransferItem } from 'ng-zorro-antd/transfer';
-import { Constants, markAllAsDirty } from 'ngx-az-core';
-import { map, Observable, startWith } from 'rxjs';
+import { LanguageState, markAllAsDirty } from 'ngx-az-core';
+import { map, Observable } from 'rxjs';
 import { AddTranslationRequest } from '../../models/add-translation.request';
+import { Project } from '../../models/project.interface';
 import { ProjectService } from '../../services/project.service';
 import { TranslateApiService } from '../../services/translate-api.service';
 
@@ -40,17 +42,17 @@ export class AddTranslationComponent implements OnInit {
   /**
    *
    */
-  isWaitingResponse$!: Observable<boolean>;
-
-  /**
-   * !USE STORE
-   */
-  languages = Constants.LANGUAGES;
+  languages = this.$store.selectSnapshot(LanguageState.languages);
 
   /**
    *
    */
   transferingProjects: TransferItem[] = [];
+
+  /**
+   *
+   */
+  projects!: Project[];
 
   /**
    *
@@ -61,7 +63,8 @@ export class AddTranslationComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private $project: ProjectService,
-    private $translate: TranslateApiService
+    private $translate: TranslateApiService,
+    private $store: Store
   ) {
     this.isVisible = false;
   }
@@ -71,23 +74,40 @@ export class AddTranslationComponent implements OnInit {
    */
   ngOnInit(): void {
     this.initForm();
-    this.getProjects();
+    this.getProjects().subscribe((projects) => {
+      this.projects = projects;
+      this.transferingProjects = this.makeTransferingProjects(this.projects);
+    });
   }
 
   /**
    *
    */
-  getProjects() {
-    this.$project.getProjects().subscribe((result) => {
-      if (result.success) {
-        result.data.forEach((project) => {
-          this.transferingProjects.push({
-            key: project.id,
-            title: project.name,
-          });
-        });
-      }
+  getProjects(): Observable<Project[]> {
+    return this.$project.getProjects().pipe(
+      map((result) => {
+        if (result.success) {
+          return result.data;
+        }
+
+        return [];
+      })
+    );
+  }
+
+  /**
+   *
+   */
+  makeTransferingProjects(projects: Project[]): TransferItem[] {
+    const transferingProjects: TransferItem[] = [];
+    projects.forEach((project) => {
+      transferingProjects.push({
+        key: project.id,
+        title: project.name,
+      });
     });
+
+    return transferingProjects;
   }
 
   /**
@@ -129,17 +149,29 @@ export class AddTranslationComponent implements OnInit {
    * @param request
    */
   private addTranslation(request: AddTranslationRequest) {
-    this.isWaitingResponse$ = this.$translate.addTranslation(request).pipe(
-      map((result) => {
-        if (result.success) {
-          this.added.emit(true);
-          this.close();
-        }
+    this.$translate
+      .addTranslation(request)
+      .pipe(
+        map((result) => {
+          if (result.success) {
+            this.added.emit(true);
+            this.close();
 
-        return false;
-      }),
-      startWith(true)
-    );
+            this.resetForm();
+          }
+
+          return false;
+        })
+      )
+      .subscribe();
+  }
+
+  /**
+   *
+   */
+  private resetForm() {
+    this.form.reset();
+    this.transferingProjects = this.makeTransferingProjects(this.projects);
   }
 
   /**

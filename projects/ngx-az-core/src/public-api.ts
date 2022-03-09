@@ -54,9 +54,9 @@ export * from './lib/services/base-auth.service';
 export * from './lib/services/logger.service';
 export * from './lib/services/ng-destroy.service';
 export * from './lib/services/seo.service';
+export * from './lib/shared/language/language.service';
 
 // UTILITS
-export * from './lib/utilits/language.utilit';
 export * from './lib/utilits/local-storage.utilit';
 export * from './lib/utilits/utilits';
 
@@ -65,3 +65,7 @@ export * from './lib/resolvers/seo.resolver';
 
 // GUARDS
 export * from './lib/guards/language.guard';
+
+// STORE
+export * from './lib/shared/store/language/language.state';
+export * from './lib/shared/store/language/language.action';

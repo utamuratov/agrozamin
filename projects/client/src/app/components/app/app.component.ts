@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { Languages } from 'ngx-az-core';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent {
+  constructor(private store: Store) {
+    store.dispatch(new Languages());
+  }
 }
