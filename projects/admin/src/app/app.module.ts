@@ -11,7 +11,12 @@ import { RootLayoutComponent } from './components/root-layout/root-layout.compon
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HandleErrorInterceptor } from './core/interceptors/handle.error.interceptor';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
-import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import {
+  NgxUiLoaderConfig,
+  NgxUiLoaderHttpModule,
+  NgxUiLoaderModule,
+} from 'ngx-ui-loader';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 registerLocaleData(ru);
 
@@ -32,6 +37,7 @@ registerLocaleData(ru);
      * NZ MODULES
      */
     NzNotificationModule,
+    NzSpinModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU },
