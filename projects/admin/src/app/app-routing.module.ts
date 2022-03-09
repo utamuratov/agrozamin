@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Constants, LanguageGuard, LanguageUtilit } from 'ngx-az-core';
+import { Constants, LanguageGuard, LocalStorageUtilit } from 'ngx-az-core';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: LanguageUtilit.currentLanguage,
+        redirectTo: LocalStorageUtilit.get(Constants.CURRENT_LANGUAGE) ?? '',
         pathMatch: 'full',
       },
       {
