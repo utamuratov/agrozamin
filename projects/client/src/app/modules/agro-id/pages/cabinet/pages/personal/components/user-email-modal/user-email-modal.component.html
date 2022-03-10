@@ -5,7 +5,11 @@
   [nzFooter]="modalFooter"
   (nzOnCancel)="handleCancel()"
 >
-  <ng-template #modalTitle><h4 nz-typography>{{emailValue.email ? 'Изменить' : 'Добавить'}} Email</h4></ng-template>
+  <ng-template #modalTitle
+    ><h4 nz-typography>
+      {{ emailValue.email ? "Изменить" : "Добавить" }} Email
+    </h4></ng-template
+  >
 
   <ng-template #modalContent>
     <form nz-form [formGroup]="validateForm">
@@ -35,3 +39,12 @@
     </button>
   </ng-template>
 </nz-modal>
+
+<az-success-changes
+  [config]="{
+    type: 'Изменение Email',
+    description: 'Ваш Email успешно изменен!',
+    isVisible: isSuccess
+  }"
+  (handleSuccess)="handleSuccess($event)"
+></az-success-changes>

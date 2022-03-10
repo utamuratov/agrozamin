@@ -1,0 +1,65 @@
+<div nz-row>
+  <div nz-col nzXs="0" nzSm="24">
+    <div  nz-col nzSpan="24">
+      <nz-card class="home__card-setting" nzHoverable [nzTitle]="settingsTitle" [nzExtra]="settings">
+        <div nz-row [nzGutter]="[0, 10]">
+          <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+              <span nz-typography>Мои объявления</span>
+          </div>
+          <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+              <span nz-typography>E-mail рассылка</span>
+          </div>
+          <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+              <span nz-typography>Телеграм уведомления</span>
+          </div>
+          <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+              <span nz-typography>Добавить объявления</span>
+          </div>
+          <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+              <span nz-typography>Сообщения</span>
+          </div>
+        </div>
+      </nz-card>
+      <ng-template #settingsTitle>
+        <span class="home__card_title">Настройки</span>
+      </ng-template>
+      <ng-template #settings>
+        <a><i nz-icon nzType="arrow-right" nzTheme="outline" style="color: #CFD3D8;"></i></a>
+      </ng-template>
+    </div>
+  </div>
+  <div nz-col nzXs="24" nzSm="0">
+    <nz-collapse nzExpandIconPosition="right" class="widget-collpase">
+      <nz-collapse-panel
+        [nzHeader]="title3"
+        class="collpase-bg"
+        style="border-radius: 5px;"
+      >
+      <div nz-row [nzGutter]="[0, 10]">
+        <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+            <span nz-typography>Мои объявления</span>
+        </div>
+        <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+            <span nz-typography>E-mail рассылка</span>
+        </div>
+        <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+            <span nz-typography>Телеграм уведомления</span>
+        </div>
+        <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+            <span nz-typography>Добавить объявления</span>
+        </div>
+        <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+            <span nz-typography>Сообщения</span>
+        </div>
+      </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+
+    <ng-template #title3>
+      <div nz-row>
+        <div nz-col><i nz-icon nzType="setting" nzTheme="outline"></i></div>
+        <div nz-col><span class="home__card_title">Настройки</span></div>
+      </div>      
+    </ng-template>
+  </div>
+</div>

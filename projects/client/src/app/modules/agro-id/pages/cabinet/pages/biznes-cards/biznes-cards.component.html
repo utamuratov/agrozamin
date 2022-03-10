@@ -7,59 +7,36 @@
           <div nz-row nzAlign="middle" [nzGutter]="[15, 10]" nzJustify="center">
             <div nz-col nzXs="12" nzSm="5" nzMd="5" nzLg="5" nzXl="5" nzXXl="5" class="text-center"><nz-avatar [nzSize]="64" nzIcon="user"></nz-avatar></div>
             <div nz-col nzXs="20" nzSm="15" nzMd="15" nzLg="15" nzXl="15" nzXXl="15">
-              <p nz-typography>Нарбеков Артур</p>
-              <p nz-typography>narbekov@gmail.com</p>
-              <p nz-typography>+998 90 326 20 13</p>
+              <p nz-typography class="m-0">Нарбеков Артур</p>
+              <p nz-typography class="m-0">narbekov@gmail.com</p>
+              <p nz-typography class="m-0">+998 90 326 20 13</p>
             </div>
             <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4" nzXXl="4"><button nz-button nzType="text" nzShape="circle"><i nz-icon nzType="more" nzTheme="outline"></i></button></div>
           </div>
         </nz-card>
       </div>
     </div>
+    
     <nz-divider></nz-divider>
     <h2 class="cabinet-title" nz-typography>Мои визитки</h2>
     <div nz-row class="legal__block">
       <div nz-col nzSpan="24">
         <div nz-row [nzGutter]="[20, 20]">
-          <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12" nzXXl="8">
+
+          <div nz-col *ngFor="let user of userCard" nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12" nzXXl="8">
             <nz-card  nzHoverable class="legal__card">
               <div nz-row nzAlign="middle" [nzGutter]="[15, 10]" nzJustify="center">
-                <div nz-col nzXs="12" nzSm="5" nzMd="5" nzLg="5" nzXl="5" nzXXl="5" class="text-center"><img class="avatar" src="../../../../../../../assets/images/agro-id-images/avatar.jpg" alt="avatar"></div>
+                <div nz-col nzXs="12" nzSm="5" nzMd="5" nzLg="5" nzXl="5" nzXXl="5" class="text-center"><img class="avatar" [src]="user.avatar" alt="avatar"></div>
                 <div nz-col nzXs="20" nzSm="15" nzMd="15" nzLg="15" nzXl="15" nzXXl="15">
-                  <p nz-typography>Нарбеков Артур</p>
-                  <p nz-typography>narbekov@gmail.com</p>
-                  <p nz-typography>+998 90 326 20 13</p>
+                  <p nz-typography class="m-0">{{user.firstName}} {{user.lastName}}</p>
+                  <p nz-typography class="m-0">{{user.mail}}</p>
+                  <p nz-typography class="m-0">{{user.phone}}</p>
                 </div>
                 <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4" nzXXl="4"><button nz-button nzType="text" nzShape="circle"><i nz-icon nzType="more" nzTheme="outline"></i></button></div>
               </div>
             </nz-card>
-          </div> 
-          <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12" nzXXl="8">
-            <nz-card  nzHoverable class="legal__card">
-              <div nz-row nzAlign="middle" [nzGutter]="[15, 10]" nzJustify="center">
-                <div nz-col nzXs="12" nzSm="5" nzMd="5" nzLg="5" nzXl="5" nzXXl="5" class="text-center"><img class="avatar" src="../../../../../../../assets/images/agro-id-images/avatar2.jpg" alt="avatar"></div>
-                <div nz-col nzXs="20" nzSm="15" nzMd="15" nzLg="15" nzXl="15" nzXXl="15">
-                  <p nz-typography>Нарбеков Артур</p>
-                  <p nz-typography>narbekov@gmail.com</p>
-                  <p nz-typography>+998 90 326 20 13</p>
-                </div>
-                <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4" nzXXl="4"><button nz-button nzType="text" nzShape="circle"><i nz-icon nzType="more" nzTheme="outline"></i></button></div>
-              </div>
-            </nz-card>
-          </div> 
-          <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12" nzXXl="8">
-            <nz-card  nzHoverable class="legal__card">
-              <div nz-row nzAlign="middle" [nzGutter]="[15, 10]" nzJustify="center">
-                <div nz-col nzXs="12" nzSm="5" nzMd="5" nzLg="5" nzXl="5" nzXXl="5" class="text-center"><img class="avatar" src="../../../../../../../assets/images/agro-id-images/avatar3.jpg" alt="avatar"></div>
-                <div nz-col nzXs="20" nzSm="15" nzMd="15" nzLg="15" nzXl="15" nzXXl="15">
-                  <p nz-typography>Нарбеков Артур</p>
-                  <p nz-typography>narbekov@gmail.com</p>
-                  <p nz-typography>+998 90 326 20 13</p>
-                </div>
-                <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4" nzXXl="4"><button nz-button nzType="text" nzShape="circle"><i nz-icon nzType="more" nzTheme="outline"></i></button></div>
-              </div>
-            </nz-card>
-          </div> 
+          </div>
+
           <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12" nzXXl="8">
               <button nz-button nzBlock  class="legal__add-card" ><i nz-icon nzType="plus-circle" nzTheme="outline"></i></button>
           </div>          

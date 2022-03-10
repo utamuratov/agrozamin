@@ -13,7 +13,8 @@ export class UserEmailModalComponent implements OnInit {
   @Input() isVisible = false;
   @Output() handleVisible = new EventEmitter<boolean>()
   isConfirmLoading = false;
-  validateForm!: FormGroup
+  validateForm!: FormGroup;
+  isSuccess = false
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
@@ -27,6 +28,7 @@ export class UserEmailModalComponent implements OnInit {
     setTimeout(() => {
       this.isVisible = false;
       this.isConfirmLoading = false;
+      this.isSuccess = true
       this.handleVisible.emit(false)
     }, 1000);
   }
@@ -34,5 +36,9 @@ export class UserEmailModalComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
     this.handleVisible.emit(false)
+  }
+
+  handleSuccess($event: boolean): void {
+    this.isSuccess = $event
   }
 }

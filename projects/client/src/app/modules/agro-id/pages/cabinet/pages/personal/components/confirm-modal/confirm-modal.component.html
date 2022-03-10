@@ -1,0 +1,69 @@
+<nz-modal
+  *ngIf="confirmConfig"
+  [(nzVisible)]="confirmConfig.isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle
+    ><h4 nz-typography>Введите код из {{ confirmConfig.type }}</h4></ng-template
+  >
+
+  <ng-template #modalContent>
+    <p nz-typography>
+      Введите код который был отправлен на ваш {{ confirmConfig.description }}
+    </p>
+    <form nz-form [formGroup]="validateForm">
+      <div nz-row nzJustify="space-around">
+        <div
+          nz-col
+          nzSpan="4"
+          class="activation-code"
+          *ngFor="let index of [1, 2, 3, 4, 5]"
+        >
+          <nz-form-item nz-row>
+            <nz-form-control nz-col class="confirm-control">
+              <input
+                maxlength="1"
+                id="activationCode{{ index }}"
+                formControlName="activationCode{{ index }}"
+                (ngModelChange)="setFocus(index)"
+                (keydown.backspace)="backspace(index)"
+                nz-input
+                class="confirm-input"
+                type="text"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+
+    <div nz-row nzAlign="middle">
+      <div nz-col>
+        <span nz-typography
+          >Если Вам не пришло сообщение с кодом, нажмите сюда</span
+        >
+      </div>
+      <div nz-col>
+        <a nz-button nzType="link"
+          ><i nz-icon nzType="redo" nzTheme="outline"></i
+        ></a>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="handleOk()"
+      nzBlock
+      nzShape="round"
+      [nzLoading]="isConfirmLoading"
+    >
+      Далее
+    </button>
+  </ng-template>
+</nz-modal>

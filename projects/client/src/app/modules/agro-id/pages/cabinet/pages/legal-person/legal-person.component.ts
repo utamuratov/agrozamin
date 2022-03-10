@@ -10,23 +10,16 @@ export class LegalPersonComponent implements OnInit {
   isVisible = false;
   validateForm!: FormGroup;
 
-  companyName = 'AgroInvest';
-  bank = 'Agro Bank';
-  stir = '658424';
-  mfo = '85213845';
-  paymentAccount = '98465489465188'
+  companies = [
+    {name: 'Рога и копыта, ООО', stir: 369852741, city: 'г.Ташкент'},
+    {name: 'Рога и копыта, ООО', stir: 369852741, city: 'г.Ташкент'},
+    {name: 'Рога и копыта, ООО', stir: 369852741, city: 'г.Ташкент'},
+    {name: 'Рога и копыта, ООО', stir: 369852741, city: 'г.Ташкент'},
+  ]
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      companyName: [this.companyName, [Validators.required]],
-      bank: [this.bank, [Validators.required]],
-      stir: [this.stir, [Validators.required]],
-      mfo: [this.mfo, [Validators.required]],
-      paymentAccount: [this.paymentAccount, [Validators.required]]
-    })
-  }
+  ngOnInit() {}
 
   showModal(): void {
     this.isVisible = true;
@@ -37,12 +30,11 @@ export class LegalPersonComponent implements OnInit {
     this.isVisible = false;
   }
 
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.isVisible = false;
+  handleCancel($event: boolean): void {
+    this.isVisible = $event;
   }
 
-  submitForm():void {
+  submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
       setTimeout(() => {
