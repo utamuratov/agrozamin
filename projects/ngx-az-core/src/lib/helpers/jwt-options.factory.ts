@@ -1,16 +1,16 @@
-import { Constants } from '../config/constants';
-import { LocalStorageUtilit } from '../utilits/local-storage.utilit';
+import { Store } from '@ngxs/store';
+import { AuthState } from '../shared/store/auth/auth.state';
 import { getDomain } from '../utilits/utilits';
 import { SettingsHelper } from './settings.helper';
 
 /**
  *
  */
-export function jwtOptionsFactory() {
+export function jwtOptionsFactory(store: Store) {
   return {
     /** specifies where to get token */
     tokenGetter: () => {
-      return LocalStorageUtilit.get(Constants.ACCESS_TOKEN);
+      return store.selectSnapshot(AuthState.token);
     },
     whitelistedDomains: [getDomain(SettingsHelper.settings.endpoint)],
     allowedDomains: [getDomain(SettingsHelper.settings.endpoint)],

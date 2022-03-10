@@ -3,12 +3,9 @@ import {
   BaseAuthService,
   BaseResponse,
   BaseService,
-  Constants,
   ISignInRequest,
-  LocalStorageUtilit,
-  RefreshTokenResponse,
 } from 'ngx-az-core';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PhoneActivationRequest } from '../../../shared/models/auth/account-activation.request';
 import { AccountActivationResponse } from '../../../shared/models/auth/account-activation.response';
 import { AskActivationCodeRequest } from '../../../shared/models/auth/ask-activation-code.request';
@@ -19,7 +16,6 @@ import { ChangePasswordStepTwoRequest } from '../../../shared/models/auth/change
 import { CheckLoginRequest } from '../../../shared/models/auth/check-login.request';
 import { CheckPhoneRequest } from '../../../shared/models/auth/check-phone.request';
 import { Login } from '../../../shared/models/auth/login';
-import { RefreshTokenRequest } from '../../../shared/models/auth/refresh-token.request';
 import { RestoreLoginStepOneRequest } from '../../../shared/models/auth/restore-login-step-one.request';
 import { RestoreLoginStepOneResponse } from '../../../shared/models/auth/restore-login-step-one.response';
 import { RestoreLoginStepTwoRequest } from '../../../shared/models/auth/restore-login-step-two.request';
@@ -97,32 +93,6 @@ export class AuthService {
     model: AskActivationCodeRequest
   ): Observable<BaseResponse<Message>> {
     return this.$baseService.post<Message>('resend-secure-code', model);
-  }
-
-  /**
-   *
-   * @param model
-   * @returns
-   */
-  refreshToken(
-    model: RefreshTokenRequest
-  ): Observable<BaseResponse<RefreshTokenResponse>> {
-    return this.$baseService
-      .post<RefreshTokenResponse>('refresh-token', model)
-      .pipe(
-        tap((result) => {
-          if (result.success) {
-            LocalStorageUtilit.set(
-              Constants.ACCESS_TOKEN,
-              result.data.access_token
-            );
-            LocalStorageUtilit.set(
-              Constants.REFRESH_TOKEN,
-              result.data.refresh_token
-            );
-          }
-        })
-      );
   }
 
   /**

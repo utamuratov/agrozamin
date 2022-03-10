@@ -16,7 +16,7 @@ import { SettingsHelper } from './helpers/settings.helper';
 import { GlobalErrorHandler } from './helpers/global-error-handler';
 import { HandleErrorInterceptor } from './interceptors/handle.error.interceptor';
 import { HeaderInterceptor } from './interceptors/header.interceptor';
-import { NgxsModule } from '@ngxs/store';
+import { NgxsModule, Store } from '@ngxs/store';
 import { CoreStateList } from './shared/store/core-state-list';
 
 @NgModule({
@@ -46,7 +46,7 @@ import { CoreStateList } from './shared/store/core-state-list';
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
         useFactory: jwtOptionsFactory,
-        // deps: [Store], // send STORE as parameter
+        deps: [Store], // send STORE as parameter
       },
     }),
 

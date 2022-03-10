@@ -47,6 +47,7 @@ export * from './lib/models/language.interface';
 export * from './lib/models/sign-in.request';
 export * from './lib/models/sign-in.response';
 export * from './lib/models/refresh-token.response';
+export * from './lib/models/refresh-token.request';
 
 // SERVICES
 export * from './lib/services/base.service';
@@ -69,3 +70,5 @@ export * from './lib/guards/language.guard';
 // STORE
 export * from './lib/shared/store/language/language.state';
 export * from './lib/shared/store/language/language.action';
+export * from './lib/shared/store/auth/auth.state';
+export * from './lib/shared/store/auth/auth.action';

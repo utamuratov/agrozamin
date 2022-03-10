@@ -51,8 +51,8 @@ export class Constants {
   public static readonly CURRENT_LANGUAGE = 'currentLanguage';
   public static readonly DEFAULT_LANGUAGE = 'defaultLanguage';
   public static readonly LOGIN_TYPE = 'loginType';
-  public static readonly ACCESS_TOKEN = 'access_tokent';
-  public static readonly REFRESH_TOKEN = 'refresh_tokent';
+  public static readonly ACCESS_TOKEN = 'access_token';
+  public static readonly REFRESH_TOKEN = 'refresh_token';
 
   /**
    * HEADER
