@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateComponent } from './translate.component';
 import { TranslationComponent } from './translation/translation.component';
 import { TranslationType } from '../../core/enums/translation-type.enum';
+import { SEOResolver } from 'ngx-az-core';
 
 const routes: Routes = [
   {
@@ -32,10 +33,11 @@ const routes: Routes = [
       {
         path: TranslationType[TranslationType.seo],
         component: TranslationComponent,
+        resolve: [SEOResolver],
         data: {
           bc: 'Seo',
           meta: {
-            title: 'monitorTitle',
+            title: 'seoTitle',
             description: 'monitorDescription',
           },
         },

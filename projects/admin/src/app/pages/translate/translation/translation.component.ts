@@ -54,6 +54,11 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
+  TranslationType = TranslationType;
+
+  /**
+   *
+   */
   model!: Translation;
 
   /**
@@ -68,10 +73,9 @@ export class TranslationComponent implements OnInit {
     private $project: ProjectService,
     private destroy$: NgDestroy
   ) {
+    const path = route.snapshot.url[0].path;
     this.translationType =
-      TranslationType[
-        route.snapshot.url[0].path as keyof typeof TranslationType
-      ];
+      TranslationType[path as keyof typeof TranslationType];
   }
 
   /**
@@ -163,9 +167,17 @@ export class TranslationComponent implements OnInit {
     modal: AddTranslationComponent,
     editingData: Translation | null = null
   ) {
+    modal.projects = this.projects;
     modal.editingData = editingData;
     modal.onInit();
     modal.isVisible = true;
+  }
+
+  /**
+   *
+   */
+  search(searchText: string) {
+    console.log(searchText);
   }
 
   @HostListener('window:resize', ['$event'])

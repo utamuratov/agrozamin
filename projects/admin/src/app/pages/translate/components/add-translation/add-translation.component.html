@@ -1,14 +1,14 @@
 <nz-modal
   [(nzVisible)]="isVisible"
-  [nzTitle]="'add' | translate"
+  [nzTitle]="(editingData ? 'edit' : 'add') | translate"
   (nzOnCancel)="close()"
-  nzWidth="900px"
+  nzWidth="950px"
   modal
 >
   <div *nzModalContent>
     <form [formGroup]="form" nz-form nzLayout="vertical">
       <div nz-row>
-        <div nz-col nzSpan="12" class="pl-1 pr-1">
+        <div nz-col nzSpan="13" class="pl-1 pr-1">
           <!-- KEY -->
           <nz-form-item>
             <nz-form-label nzFor="key">{{ "key" | translate }}</nz-form-label>
@@ -27,7 +27,7 @@
         </div>
         <div
           nz-col
-          nzSpan="12"
+          nzSpan="11"
           class="pl-1 pr-1 overflow-auto languages--height"
         >
           <nz-form-item *ngFor="let language of language$ | async">

@@ -1,23 +1,39 @@
-<div class="h-100 d-flex flex-column interface--height">
-  <div>
-    <div style="display: inline-block; min-width: 450px">
-      <!-- FILTER -->
+<nz-divider [nzText]="divider" nzOrientation="left" style="position: relative">
+  <ng-template #divider>
+    <div class="divider__left">
+      <div>
+        {{ TranslationType[translationType] | translate }}
+      </div>
     </div>
+    <div class="divider__right">
+      <div class="divider__right__search">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input
+            #searchInput
+            type="text"
+            (input)="search(searchInput.value)"
+            nz-input
+            placeholder="input search text"
+          />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <a *ngIf="searchInput.value; else searchIcon">
+            <i nz-icon nzType="close"></i>
+          </a>
+          <ng-template #searchIcon>
+            <i nz-icon nzType="search"></i
+          ></ng-template>
+        </ng-template>
+      </div>
 
-    <button
-      (click)="addEdit(modal)"
-      style="float: right; margin-right: 5px"
-      nz-button
-      nzType="primary"
-    >
-      {{ "add" | translate }}
-    </button>
-  </div>
+      <button (click)="addEdit(modal)" nz-button nzType="primary" class="ml-1">
+        {{ "add" | translate }}
+      </button>
+    </div>
+  </ng-template></nz-divider
+>
 
-  <div>
-    <nz-divider></nz-divider>
-  </div>
-
+<div class="h-100 d-flex flex-column interface--height">
   <div class="flex-grow-1">
     <div (window:resize)="onResize($event)" *ngIf="data">
       <nz-table
@@ -49,8 +65,7 @@
               nzWidth="200px"
               [textContent]="'projects' | translate"
             ></th>
-            <th nzRight nzWidth="50px"></th>
-            <th nzRight nzWidth="50px"></th>
+            <th nzRight nzWidth="120px"></th>
           </tr>
         </thead>
         <tbody>
@@ -73,18 +88,20 @@
                 >
               </td>
               <td nzRight nzAlign="center">
-                <a (click)="delete(data.id)">
+                <button (click)="delete(data.id)" nz-button nzType="default">
                   <span>
                     <i nz-icon nzType="delete" nzTheme="twotone"></i>
                   </span>
-                </a>
-              </td>
-              <td nzRight nzAlign="center">
-                <a (click)="addEdit(modal, data)">
+                </button>
+                <button
+                  (click)="addEdit(modal, data)"
+                  nz-button
+                  nzType="default"
+                >
                   <span>
                     <i nz-icon nzType="edit" nzTheme="twotone"></i>
                   </span>
-                </a>
+                </button>
               </td>
             </tr>
           </ng-container>

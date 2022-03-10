@@ -14,7 +14,6 @@ import { map, Observable } from 'rxjs';
 import { AddTranslationRequest } from '../../models/add-translation.request';
 import { Project } from '../../models/project.interface';
 import { Translation } from '../../models/translation.interface';
-import { ProjectService } from '../../services/project.service';
 import { TranslateApiService } from '../../services/translate-api.service';
 
 @Component({
@@ -58,7 +57,7 @@ export class AddTranslationComponent {
   /**
    *
    */
-  projects!: Project[];
+  public projects!: Project[];
 
   /**
    *
@@ -74,7 +73,6 @@ export class AddTranslationComponent {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private $project: ProjectService,
     private $translate: TranslateApiService
   ) {
     this.isVisible = false;
@@ -89,25 +87,7 @@ export class AddTranslationComponent {
    */
   onInit(): void {
     this.initForm(this.editingData);
-    this.getProjects().subscribe((projects) => {
-      this.projects = projects;
-      this.transferingProjects = this.makeTransferingProjects(this.projects);
-    });
-  }
-
-  /**
-   *
-   */
-  getProjects(): Observable<Project[]> {
-    return this.$project.getProjects().pipe(
-      map((result) => {
-        if (result.success) {
-          return result.data;
-        }
-
-        return [];
-      })
-    );
+    this.transferingProjects = this.makeTransferingProjects(this.projects);
   }
 
   /**
