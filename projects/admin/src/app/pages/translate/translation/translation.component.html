@@ -5,12 +5,12 @@
     </div>
 
     <button
-      (click)="modal.isVisible = true"
+      (click)="addEdit(modal)"
       style="float: right; margin-right: 5px"
       nz-button
       nzType="primary"
     >
-      Add
+      {{ "add" | translate }}
     </button>
   </div>
 
@@ -30,29 +30,32 @@
         (nzQueryParams)="onQueryParamsChange($event)"
         [nzScroll]="{ y: innerHeight - 350 + 'px' }"
         nzSize="small"
-        [nzWidthConfig]="['35px', '200px', '', '200px', '50px']"
         nzBordered
       >
         <thead>
           <tr>
-            <th nzLeft></th>
-            <th nzAlign="center" [textContent]="'key' | translate"></th>
             <th
               nzAlign="center"
-              [textContent]="'translations' | translate"
+              nzWidth="200px"
+              [textContent]="'key' | translate"
             ></th>
-            <th nzAlign="center" [textContent]="'projects' | translate"></th>
-            <th nzRight></th>
+            <th
+              *ngFor="let language of language$ | async"
+              nzAlign="center"
+              [textContent]="language.name"
+            ></th>
+            <th
+              nzAlign="center"
+              nzWidth="200px"
+              [textContent]="'projects' | translate"
+            ></th>
+            <th nzRight nzWidth="50px"></th>
+            <th nzRight nzWidth="50px"></th>
           </tr>
         </thead>
         <tbody>
           <ng-container *ngFor="let data of headerTable.data">
             <tr>
-              <td
-                nzLeft
-                [nzExpand]="expandSet.has(data.id)"
-                (nzExpandChange)="onExpandChange(data.id, $event)"
-              ></td>
               <td
                 nzAlign="left"
                 nzEllipsis
@@ -61,11 +64,8 @@
               >
                 {{ data.key }}
               </td>
-              <td nzAlign="left">
-                <span *ngFor="let language of data.textKeyValue">
-                  <b>{{ language.key }}</b
-                  >: {{ language.value }}&nbsp;
-                </span>
+              <td nzAlign="left" *ngFor="let language of language$ | async">
+                {{ data.text[language.code] }}
               </td>
               <td>
                 <span *ngFor="let project of data.projects" nz-typography
@@ -79,8 +79,15 @@
                   </span>
                 </a>
               </td>
+              <td nzRight nzAlign="center">
+                <a (click)="addEdit(modal, data)">
+                  <span>
+                    <i nz-icon nzType="edit" nzTheme="twotone"></i>
+                  </span>
+                </a>
+              </td>
             </tr>
-            <tr [nzExpand]="expandSet.has(data.id)">
+            <!-- <tr [nzExpand]="expandSet.has(data.id)">
               <div nz-row>
                 <div nz-col nzFlex="auto" class="p-1">
                   <div nz-row>
@@ -120,7 +127,7 @@
                   ></az-transfer-projects>
                 </div>
               </div>
-            </tr>
+            </tr> -->
           </ng-container>
         </tbody>
       </nz-table>

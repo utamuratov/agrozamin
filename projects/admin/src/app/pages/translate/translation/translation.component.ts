@@ -1,12 +1,14 @@
 import { KeyValue } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Select } from '@ngxs/store';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { TransferItem } from 'ng-zorro-antd/transfer';
-import { BaseResponse, NgDestroy } from 'ngx-az-core';
+import { BaseResponse, Language, LanguageState, NgDestroy } from 'ngx-az-core';
 import { Observable, takeUntil, tap } from 'rxjs';
 import { TranslationType } from '../../../core/enums/translation-type.enum';
+import { AddTranslationComponent } from '../components/add-translation/add-translation.component';
 import { AddTranslationRequest } from '../models/add-translation.request';
 import { GridModel } from '../models/grid-model';
 import { Project } from '../models/project.interface';
@@ -22,11 +24,6 @@ const FIRST_PAGE = 1;
   styleUrls: ['./translation.component.less'],
 })
 export class TranslationComponent implements OnInit {
-  /**
-   *
-   */
-  expandSet = new Set<number>();
-
   /**
    *
    */
@@ -55,7 +52,18 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
+  @Select(LanguageState.languages)
+  language$!: Observable<Language[]>;
+
+  /**
+   *
+   */
   translationType!: TranslationType;
+
+  /**
+   *
+   */
+  model!: Translation;
 
   /**
    *
@@ -179,18 +187,6 @@ export class TranslationComponent implements OnInit {
         }
       })
     );
-  }
-
-  /**
-   *
-   * @param id
-   * @param checked
-   */
-  onExpandChange(id: number, checked: boolean): void {
-    this.expandSet = new Set<number>();
-    if (checked) {
-      this.expandSet.add(id);
-    }
   }
 
   /**
@@ -361,6 +357,18 @@ export class TranslationComponent implements OnInit {
           this.initTranslations();
         }
       });
+  }
+
+  /**
+   *
+   */
+  addEdit(
+    modal: AddTranslationComponent,
+    editingData: Translation | null = null
+  ) {
+    modal.editingData = editingData;
+    modal.onInit();
+    modal.isVisible = true;
   }
 
   @HostListener('window:resize', ['$event'])
