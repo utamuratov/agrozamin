@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -26,18 +26,18 @@ export class AddTranslationComponent {
   /**
    *
    */
-  editingData: Translation | null = null;
+  public editingData: Translation | null = null;
 
   /**
    *
    */
-  isVisible: boolean;
+  public isVisible: boolean;
 
   /**
    *
    */
   @Output()
-  added = new EventEmitter<boolean>();
+  modified = new EventEmitter();
 
   /**
    *
@@ -178,10 +178,8 @@ export class AddTranslationComponent {
       .pipe(
         map((result) => {
           if (result.success) {
-            this.added.emit(true);
+            this.modified.emit();
             this.close();
-
-            this.resetForm();
           }
 
           return false;
@@ -201,24 +199,14 @@ export class AddTranslationComponent {
       .pipe(
         map((result) => {
           if (result.success) {
-            this.added.emit(true);
+            this.modified.emit();
             this.close();
-
-            this.resetForm();
           }
 
           return false;
         })
       )
       .subscribe();
-  }
-
-  /**
-   *
-   */
-  private resetForm() {
-    this.form.reset();
-    this.transferingProjects = this.makeTransferingProjects(this.projects);
   }
 
   /**
@@ -248,5 +236,6 @@ export class AddTranslationComponent {
    */
   close(): void {
     this.isVisible = false;
+    this.transferingProjects = [];
   }
 }

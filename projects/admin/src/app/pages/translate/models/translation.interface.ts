@@ -1,5 +1,4 @@
-import { KeyValue } from '@angular/common';
-import { TransferItem } from 'ng-zorro-antd/transfer';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { BaseModel } from './base-model';
 import { Id } from './id.interface';
 import { Project } from './project.interface';
@@ -8,10 +7,5 @@ export interface Translation extends Id, BaseModel {
   projects: Project[];
   type: number;
   key: string;
-  text: any; // DYNAMIC: { "ru": "", "uz_cyrl": "", "uz_latn": "" }
-}
-
-export interface MyTranslation extends Translation {
-  textKeyValue: KeyValue<string, string>[];
-  transferItems: TransferItem[];
+  text: NzSafeAny; // DYNAMIC: { "ru": "", "uz_cyrl": "", "uz_latn": "" }
 }

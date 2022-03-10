@@ -1,18 +1,14 @@
-import { KeyValue } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Select } from '@ngxs/store';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { TransferItem } from 'ng-zorro-antd/transfer';
 import { BaseResponse, Language, LanguageState, NgDestroy } from 'ngx-az-core';
 import { Observable, takeUntil, tap } from 'rxjs';
 import { TranslationType } from '../../../core/enums/translation-type.enum';
 import { AddTranslationComponent } from '../components/add-translation/add-translation.component';
-import { AddTranslationRequest } from '../models/add-translation.request';
 import { GridModel } from '../models/grid-model';
 import { Project } from '../models/project.interface';
-import { MyTranslation, Translation } from '../models/translation.interface';
+import { Translation } from '../models/translation.interface';
 import { ProjectService } from '../services/project.service';
 import { TranslateApiService } from '../services/translate-api.service';
 
@@ -27,7 +23,7 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
-  data!: GridModel<MyTranslation>;
+  data!: GridModel<Translation>;
 
   /**
    *
@@ -38,11 +34,6 @@ export class TranslationComponent implements OnInit {
    *
    */
   isFirstTime = true;
-
-  /**
-   *
-   */
-  disabled = false;
 
   /**
    *
@@ -111,29 +102,9 @@ export class TranslationComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((w) => {
         if (w.success) {
-          this.data = {
-            ...w.data,
-            data: w.data.data.map((translation) => {
-              return {
-                ...translation,
-                transferItems: this.makeTransferItems(translation.projects),
-                textKeyValue: this.convertToKeyValueArray(translation.text),
-              };
-            }),
-          };
+          this.data = w.data;
         }
       });
-  }
-
-  /**
-   *
-   * @param translation
-   * @returns
-   */
-  private convertToKeyValueArray(text: NzSafeAny): KeyValue<string, string>[] {
-    return Object.keys(text).map((key) => {
-      return { key, value: text[key] };
-    });
   }
 
   /**
@@ -152,27 +123,9 @@ export class TranslationComponent implements OnInit {
 
   /**
    *
-   * @param isAdded
    */
-  addedTranslation(isAdded: boolean) {
-    if (isAdded) {
-      this.initTranslations();
-    }
-  }
-
-  /**
-   *
-   * @param projects
-   * @returns
-   */
-  makeTransferItems(projects: Project[]): TransferItem[] {
-    return this.projects.map((project) => {
-      return {
-        key: project.id,
-        title: project.name,
-        direction: projects.find((w) => w.id === project.id) ? 'right' : 'left',
-      };
-    });
+  modifiedTranslation() {
+    this.initTranslations();
   }
 
   /**
@@ -187,162 +140,6 @@ export class TranslationComponent implements OnInit {
         }
       })
     );
-  }
-
-  /**
-   *
-   * @param value
-   * @param key
-   * @param data
-   * @returns
-   */
-  changedTranslation(value: string, key: string, data: MyTranslation) {
-    if (data.text[key] === value) {
-      return;
-    }
-
-    const request = this.getRequestForChangedTranslation(data, key, value);
-
-    this.editTranslation(data.id, request).subscribe((response) => {
-      if (response.success) {
-        data.text = request.text;
-        return;
-      }
-
-      data.textKeyValue = this.convertToKeyValueArray(data.text);
-    });
-  }
-
-  /**
-   *
-   * @param data
-   * @param key
-   * @param value
-   * @returns
-   */
-  private getRequestForChangedTranslation(
-    data: MyTranslation,
-    key: string,
-    value: string
-  ) {
-    const request: AddTranslationRequest = {
-      key: data.key,
-      project: data.projects.map((v) => v.id),
-      type: data.type,
-      text: {},
-    };
-
-    data.textKeyValue.forEach((language) => {
-      request.text[language.key] = language.value;
-    });
-    request.text[key] = value;
-    return request;
-  }
-
-  /**
-   *
-   * @param data
-   */
-  changedProjects(data: MyTranslation) {
-    const request = this.getRequestForChangedProjects(data);
-    this.editTranslation(data.id, request).subscribe((response) => {
-      if (response.success) {
-        data.projects = this.getProjectsByIds(request.project);
-        return;
-      }
-
-      data.transferItems = this.makeTransferItems(data.projects);
-    });
-  }
-
-  /**
-   *
-   * @param ids
-   * @returns
-   */
-  getProjectsByIds(ids: number[]) {
-    return this.projects.filter((w) => ids.indexOf(w.id) >= 0);
-  }
-
-  /**
-   *
-   * @param key
-   * @param data
-   * @returns
-   */
-  changedKey(changedKeyValue: string, data: MyTranslation) {
-    const previousKeyValue = data.key;
-    if (data.key === changedKeyValue) {
-      return;
-    }
-    const request = this.getRequestForChangedKey(changedKeyValue, data);
-    this.editTranslation(data.id, request).subscribe((response) => {
-      if (response.success) {
-        data.key = request.key;
-        return;
-      }
-
-      data.key = previousKeyValue;
-    });
-  }
-
-  /**
-   *
-   * @param id
-   * @param request
-   */
-  private editTranslation(
-    id: number,
-    request: AddTranslationRequest
-  ): Observable<BaseResponse<Translation>> {
-    return this.$translate
-      .editTranslation(id, request)
-      .pipe(takeUntil(this.destroy$));
-  }
-
-  /**
-   *
-   * @param key
-   * @param data
-   * @returns
-   */
-  private getRequestForChangedKey(
-    key: string,
-    data: MyTranslation
-  ): AddTranslationRequest {
-    return {
-      key: key,
-      project: this.makeIds(data),
-      type: data.type,
-      text: data.text,
-    };
-  }
-
-  /**
-   *
-   * @param data
-   * @returns
-   */
-  private makeIds(data: MyTranslation): number[] {
-    return data.projects.map((v) => v.id);
-  }
-
-  /**
-   *
-   * @param data
-   * @returns
-   */
-  private getRequestForChangedProjects(
-    data: MyTranslation
-  ): AddTranslationRequest {
-    return {
-      key: data.key,
-      project: data.transferItems
-        .filter((w) => w.direction === 'right')
-        .map((w) => w['key']),
-      type: data.type,
-      text: data.text,
-    };
   }
 
   /**
