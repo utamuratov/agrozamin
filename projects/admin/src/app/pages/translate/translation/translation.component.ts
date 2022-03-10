@@ -1,10 +1,12 @@
 import { KeyValue } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { TransferItem } from 'ng-zorro-antd/transfer';
 import { BaseResponse, NgDestroy } from 'ngx-az-core';
 import { Observable, takeUntil, tap } from 'rxjs';
+import { TranslationType } from '../../../core/enums/translation-type.enum';
 import { AddTranslationRequest } from '../models/add-translation.request';
 import { GridModel } from '../models/grid-model';
 import { Project } from '../models/project.interface';
@@ -16,10 +18,10 @@ const PAGE_SIZE = 15;
 const FIRST_PAGE = 1;
 
 @Component({
-  templateUrl: './interface.component.html',
-  styleUrls: ['./interface.component.less'],
+  templateUrl: './translation.component.html',
+  styleUrls: ['./translation.component.less'],
 })
-export class InterfaceComponent implements OnInit {
+export class TranslationComponent implements OnInit {
   /**
    *
    */
@@ -52,15 +54,26 @@ export class InterfaceComponent implements OnInit {
 
   /**
    *
+   */
+  translationType!: TranslationType;
+
+  /**
+   *
    * @param $translate
    * @param notification
    * @param $project
    */
   constructor(
+    private route: ActivatedRoute,
     private $translate: TranslateApiService,
     private $project: ProjectService,
     private destroy$: NgDestroy
-  ) {}
+  ) {
+    this.translationType =
+      TranslationType[
+        route.snapshot.url[0].path as keyof typeof TranslationType
+      ];
+  }
 
   /**
    *
@@ -86,7 +99,7 @@ export class InterfaceComponent implements OnInit {
    */
   getTranslations(pageIndex: number, pageSize: number) {
     this.$translate
-      .getTranslations(pageIndex, pageSize)
+      .getTranslations(this.translationType, pageIndex, pageSize)
       .pipe(takeUntil(this.destroy$))
       .subscribe((w) => {
         if (w.success) {

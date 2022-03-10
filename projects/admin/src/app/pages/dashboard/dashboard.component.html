@@ -22,14 +22,20 @@
       <li nz-submenu nzOpen nzTitle="Translate" nzIcon="dashboard">
         <ul>
           <li
-            routerLink="./translate/interface"
+            [routerLink]="
+              './translate/' + TranslationType[TranslationType.interface]
+            "
             onchange="changeName()"
             nz-menu-item
             nzMatchRouter
           >
             <a>Interface</a>
           </li>
-          <li routerLink="./translate/seo" nz-menu-item nzMatchRouter>
+          <li
+            [routerLink]="'./translate/' + TranslationType[TranslationType.seo]"
+            nz-menu-item
+            nzMatchRouter
+          >
             <a>SEO</a>
           </li>
           <li routerLink="./translate/contents" nz-menu-item nzMatchRouter>

@@ -1,4 +1,3 @@
-import { InterfaceComponent } from './interface/interface.component';
 import { NgModule } from '@angular/core';
 import { TranslateRoutingModule } from './translate-routing.module';
 import { TranslateComponent } from './translate.component';
@@ -17,11 +16,12 @@ import { TransferProjectsComponent } from './components/transfer-projects/transf
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { TranslationComponent } from './translation/translation.component';
 
 @NgModule({
   declarations: [
     TranslateComponent,
-    InterfaceComponent,
+    TranslationComponent,
     AddTranslationComponent,
     TransferProjectsComponent,
   ],

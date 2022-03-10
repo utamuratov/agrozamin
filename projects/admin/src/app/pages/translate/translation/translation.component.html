@@ -19,7 +19,7 @@
   </div>
 
   <div class="flex-grow-1">
-    <div (window:resize)="onResize($event)" *ngIf="data; else noData">
+    <div (window:resize)="onResize($event)" *ngIf="data">
       <nz-table
         #headerTable
         [nzData]="data.data"
@@ -125,12 +125,6 @@
         </tbody>
       </nz-table>
     </div>
-
-    <ng-template #noData>
-      <div class="d-flex flex-column h-100 justify-content-center">
-        <nz-empty></nz-empty>
-      </div>
-    </ng-template>
   </div>
 </div>
 
