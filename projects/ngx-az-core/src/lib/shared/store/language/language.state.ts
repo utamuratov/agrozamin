@@ -113,12 +113,10 @@ export class LanguageState {
     action: CurrentLanguage
   ) {
     const state = ctx.getState();
-    console.log(state);
-
     ctx.setState({
       ...state,
-      currentLanguage: action.crrentLanguage,
+      currentLanguage: action.currentLanguage,
     });
-    LocalStorageUtilit.set(Constants.CURRENT_LANGUAGE, action.crrentLanguage);
+    LocalStorageUtilit.set(Constants.CURRENT_LANGUAGE, action.currentLanguage);
   }
 }

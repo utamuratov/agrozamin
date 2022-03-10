@@ -20,5 +20,5 @@ export class CurrentLanguage {
    */
   static readonly type = '[Current language] Get default language';
 
-  constructor(public crrentLanguage: string) {}
+  constructor(public currentLanguage: string) {}
 }
