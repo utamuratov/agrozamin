@@ -251,3 +251,28 @@ nz-divider {
 .divider-margin {
   margin: 10px 0;
 }
+
+.avatar-desc {
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+}
+
+.avatar-add-photo {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 30px;
+  min-width: 30px;
+  width: 30px;
+
+  @media (max-width: 425px) {
+    right: 35px;
+  }
+  @media (max-width: 375px) {
+    right: 20px;
+  }
+  @media (max-width: 320px) {
+    right: 0px;
+  }
+}

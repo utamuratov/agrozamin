@@ -1,0 +1,40 @@
+<nz-modal
+  *ngIf="config"
+  [(nzVisible)]="config.isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle><h4 nz-typography>{{config?.type}}</h4></ng-template>
+
+  <ng-template #modalContent>
+    <div nz-row nzAlign="middle">
+      <div nz-col nzSpan="6" class="text-center">
+        <img
+          src="../../../../../../../../../assets/images/agro-id-images/success.svg"
+          alt="success"
+        />
+      </div>
+      <div nz-col  nzSpan="18">
+        <div nz-row>
+          <div nz-col nzSpan="24"><span nz-typography>Поздравляем!</span></div>
+          <div nz-col nzSpan="24"><span nz-typography>{{config?.description}}</span></div>
+        </div>
+        
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="handleOk()"
+      nzBlock
+      nzShape="round"
+    >
+     ОК
+    </button>
+  </ng-template>
+</nz-modal>

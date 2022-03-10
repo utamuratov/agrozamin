@@ -4,262 +4,17 @@
 
     <!-- WIDGETS -->
     <div nz-row [nzGutter]="[15, 15]" class="home__items" >
-      <div class="home__card" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
-        <nz-card class="widget" nzHoverable [nzTitle]="title1" [nzExtra]="extraTemplate1">
-          <div nz-row [nzGutter]="[0, 10]">
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Мои объявления</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Импорт объявлений </span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Избранные объявления</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Добавить объявления </span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <nz-divider class="home__card_divider"></nz-divider>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Сообщения</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nz-card>
-        <ng-template #title1>
-          <img class="home__card_img" src="../../../../../../../assets/images/agro-id-images/bizningZamin-logo.jpg" alt="logo">
-          <span class="home__card_title">BizningZamin</span>
-        </ng-template>
-        <ng-template #extraTemplate1>
-          <a><i nz-icon nzType="arrow-right" nzTheme="outline" style="color: #CFD3D8;"></i></a>
-        </ng-template>
+      <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
+        <az-bizning-zamin></az-bizning-zamin>
       </div>
       <div class="home__card" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
-        <nz-card class="widget" nzHoverable [nzTitle]="title2" [nzExtra]="extraTemplate2">
-          <div nz-row [nzGutter]="[0, 10]">
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Мои объявления</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Добавить резюме</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <nz-divider class="home__card_divider"></nz-divider>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Мои вакансии</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Добавить вакансию </span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <nz-divider class="home__card_divider"></nz-divider>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Сообщения</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nz-card>
-        <ng-template #title2>
-          <img class="home__card_img" src="../../../../../../../assets/images/agro-id-images/agrojob-logo.jpg" alt="logo">
-          <span class="home__card_title">AgroJob</span>
-        </ng-template>
-        <ng-template #extraTemplate2>
-          <a><i nz-icon nzType="arrow-right" nzTheme="outline" style="color: #CFD3D8;"></i></a>
-        </ng-template>
+        <az-agro-job></az-agro-job>
       </div>
       <div class="home__card" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
-        <nz-card class="widget" nzHoverable [nzTitle]="title3" [nzExtra]="extraTemplate3">
-          <div nz-row [nzGutter]="[0, 10]">
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Кредит</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Субсидия</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Карты</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Микрозайм</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <nz-divider class="home__card_divider"></nz-divider>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Сообщения</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nz-card>
-        <ng-template #title3>
-          <img class="home__card_img" src="../../../../../../../assets/images/agro-id-images/agrojob-logo.jpg" alt="logo">
-          <span class="home__card_title">Agrobank</span>
-        </ng-template>
-        <ng-template #extraTemplate3>
-          <a><i nz-icon nzType="arrow-right" nzTheme="outline" style="color: #CFD3D8;"></i></a>
-        </ng-template>
+        <az-agro-bank></az-agro-bank>
       </div>
       <div class="home__card" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
-        <nz-card class="widget" nzHoverable [nzTitle]="title4" [nzExtra]="extraTemplate4">
-          <div nz-row [nzGutter]="[0, 10]">
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Мои объявления</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Импорт объявлений </span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Избранные объявления</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Добавить объявления </span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-            <nz-divider class="home__card_divider"></nz-divider>
-            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-              <div nz-row>
-                <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                  <span nz-typography>Сообщения</span>
-                </div>
-                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                  <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nz-card>
-        <ng-template #title4>
-          <img class="home__card_img" src="../../../../../../../assets/images/agro-id-images/agrojob-logo.jpg" alt="logo">
-          <span class="home__card_title">ТелеВетеринария</span>
-        </ng-template>
-        <ng-template #extraTemplate4>
-          <a><i nz-icon nzType="arrow-right" nzTheme="outline" style="color: #CFD3D8;"></i></a>
-        </ng-template>
+        <az-tele-veterinaria></az-tele-veterinaria>
       </div>
     </div>
     <!--  -->
@@ -271,96 +26,12 @@
         <div nz-row [nzGutter]="[0, 20]">
           <!-- PROFILE CARD -->
           <div  nz-col nzSpan="24">
-            <nz-card class="home__card-profile" nzHoverable [nzTitle]="profileTitle" [nzExtra]="profile">
-              <div nz-row [nzGutter]="[0, 10]">
-                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-                  <div nz-row>
-                    <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                      <span nz-typography>Мои объявления</span>
-                    </div>
-                    <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                      <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                    </div>
-                  </div>
-                </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-                  <div nz-row>
-                    <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                      <span nz-typography>Изменить адресс</span>
-                    </div>
-                    <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                      <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                    </div>
-                  </div>
-                </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-                  <div nz-row>
-                    <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                      <span nz-typography>Изменить номер телефона</span>
-                    </div>
-                    <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                      <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                    </div>
-                  </div>
-                </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-                  <div nz-row>
-                    <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                      <span nz-typography>Изменить логин</span>
-                    </div>
-                    <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                      <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                    </div>
-                  </div>
-                </div>
-                <nz-divider class="home__card_divider"></nz-divider>
-                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-                  <div nz-row>
-                    <div nz-col nzXs="21" nzSm="21" nzMd="21" nzLg="21" nzXl="21" nzXXl="21">
-                      <span nz-typography>Изменить пароль</span>
-                    </div>
-                    <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3" nzXXl="3">
-                      <nz-badge nzStandalone [nzCount]="2" [nzStyle]="{backgroundColor: '#1890FF'}"></nz-badge>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </nz-card>
-            <ng-template #profileTitle>
-              <img class="home__card_img" src="../../../../../../../assets/images/agro-id-images/profile-widget.jpg" alt="logo">
-              <span class="home__card_title">Профиль</span>
-            </ng-template>
-            <ng-template #profile>
-              <a><i nz-icon nzType="arrow-right" nzTheme="outline" style="color: #CFD3D8;"></i></a>
-            </ng-template>
+            <az-profile-widget></az-profile-widget>
           </div>
+          
           <!-- SETTINGS CARD -->
           <div  nz-col nzSpan="24">
-            <nz-card class="home__card-setting" nzHoverable [nzTitle]="settingsTitle" [nzExtra]="settings">
-              <div nz-row [nzGutter]="[0, 10]">
-                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-                    <span nz-typography>Мои объявления</span>
-                </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-                    <span nz-typography>E-mail рассылка</span>
-                </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-                    <span nz-typography>Телеграм уведомления</span>
-                </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-                    <span nz-typography>Добавить объявления</span>
-                </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-                    <span nz-typography>Сообщения</span>
-                </div>
-              </div>
-            </nz-card>
-            <ng-template #settingsTitle>
-              <span class="home__card_title">Настройки</span>
-            </ng-template>
-            <ng-template #settings>
-              <a><i nz-icon nzType="arrow-right" nzTheme="outline" style="color: #CFD3D8;"></i></a>
-            </ng-template>
+           <az-settings-widget></az-settings-widget>
           </div>
           <!-- ADD NEW CATEGORY CARD -->
         </div>
@@ -369,96 +40,15 @@
         <div nz-row [nzGutter]="[0, 20]">
           <!-- MY BUSINESS CARDS -->
           <div nz-col nzSpan="24">
-            <nz-card class="business-widget" nzHoverable [nzTitle]="businessCardTitle" [nzExtra]="businessCard">
-              <div nz-row [nzGutter]="[0, 10]">
-                <div nz-col class="business-widget__card" nzSpan="24">
-                  <div nz-row [nzGutter]="[10, 10]">
-                    <div nz-col nzSpan="4" class="business-widget__card__img">
-                      <img src="../../../../../../../assets/images/agro-id-images/avatar3.jpg" alt="avatar">
-                    </div>
-                    <div nz-col nzSpan="16" class="business-widget__card__desc">
-                      <h6 nz-typography>Тимур Мун</h6>
-                      <p nz-typography>narbekov@gmail.com</p>
-                      <p nz-typography>+998 90 326 20 13</p>
-                    </div>
-                    <div nz-col nzSpan="4">
-                      <div nz-row>
-                        <div nz-col>
-                          <button  nz-button nzType="text" nzShape="circle"><i nz-icon nzType="more" nzTheme="outline"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div nz-col class="business-widget__btn" nzSpan="24">
-                  <button nz-button nzBlock><i nz-icon nzType="plus" nzTheme="outline"></i></button>
-                </div>
-              </div>
-            </nz-card>
-            <ng-template #businessCardTitle>
-              <span class="home__card_title">Мои визитки</span>
-            </ng-template>
-            <ng-template #businessCard>
-              <a><i nz-icon nzType="arrow-right" nzTheme="outline" style="color: #CFD3D8;"></i></a>
-            </ng-template>
+            <az-my-cards-widget></az-my-cards-widget>
           </div>
           <!-- COMPANY BUSINESS CARDS -->
           <div nz-col nzSpan="24">
-            <nz-card class="business-widget" nzHoverable [nzTitle]="companyCardTitle" [nzExtra]="companyCard">
-              <div nz-row [nzGutter]="[0, 10]">
-                <div nz-col class="business-widget__card" nzSpan="24">
-                  <div nz-row [nzGutter]="[10, 10]">
-                    <div nz-col nzSpan="4" class="business-widget__card__img">
-                      <img src="../../../../../../../assets/images/agro-id-images/avatar3.jpg" alt="avatar">
-                    </div>
-                    <div nz-col nzSpan="16" class="business-widget__card__desc">
-                      <h6 nz-typography>Тимур Мун</h6>
-                      <p nz-typography>narbekov@gmail.com</p>
-                      <p nz-typography>+998 90 326 20 13</p>
-                    </div>
-                    <div nz-col nzSpan="4">
-                      <div nz-row>
-                        <div nz-col>
-                          <button  nz-button nzType="text" nzShape="circle"><i nz-icon nzType="more" nzTheme="outline"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div nz-col class="business-widget__card" nzSpan="24">
-                  <div nz-row [nzGutter]="[10, 10]">
-                    <div nz-col nzSpan="4" class="business-widget__card__img">
-                      <img src="../../../../../../../assets/images/agro-id-images/avatar3.jpg" alt="avatar">
-                    </div>
-                    <div nz-col nzSpan="16" class="business-widget__card__desc">
-                      <h6 nz-typography>Тимур Мун</h6>
-                      <p nz-typography>narbekov@gmail.com</p>
-                      <p nz-typography>+998 90 326 20 13</p>
-                    </div>
-                    <div nz-col nzSpan="4">
-                      <div nz-row>
-                        <div nz-col>
-                          <button  nz-button nzType="text" nzShape="circle"><i nz-icon nzType="more" nzTheme="outline"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div nz-col class="business-widget__btn" nzSpan="24">
-                  <button nz-button nzBlock><i nz-icon nzType="plus" nzTheme="outline"></i></button>
-                </div>
-              </div>
-            </nz-card>
-            <ng-template #companyCardTitle>
-              <span class="home__card_title">Мои организации</span>
-            </ng-template>
-            <ng-template #companyCard>
-              <a><i nz-icon nzType="arrow-right" nzTheme="outline" style="color: #CFD3D8;"></i></a>
-            </ng-template>
+            <az-my-companies-widget></az-my-companies-widget>
           </div>
       </div>
     </div>
-    <div nz-col class="home__card" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
+    <div nz-col class="home__card btn" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
       <button nz-button nzBlock class="add-new-widget" nzType="dashed" nzGhost><i nz-icon nzType="plus" nzTheme="outline"></i></button>
     </div>
   </div>

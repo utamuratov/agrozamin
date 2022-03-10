@@ -1,0 +1,66 @@
+<nz-modal
+  [(nzVisible)]="isVisibleModal"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle><h3 nz-typography>Добавить компанию</h3></ng-template>
+
+  <ng-template #modalContent>
+    <form nz-form [formGroup]="validateForm" nzLayout="vertical">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="companyName">Название компании</nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <input nz-input type="text" id="companyName" nzSize="large" formControlName="companyName" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="bank">Банк</nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <input nz-input type="text" id="bank" nzSize="large" formControlName="bank" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="stir">ИНН</nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <input nz-input type="number" id="stir" nzSize="large" formControlName="stir" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="mfo">МФО</nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <input nz-input type="number" id="mfo" nzSize="large" formControlName="mfo" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="paymentAccount">Расчетный счет</nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <input nz-input type="number" id="paymentAccount" nzSize="large" formControlName="paymentAccount" />
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <div nz-row [nzGutter]="[20,0]">
+      <div nz-col nzSpan="12">
+        <button nzShape="round" nz-button nzType="default" (click)="handleCancel()" nzBlock>
+         Отмена
+        </button>
+      </div>
+      <div nz-col nzSpan="12">
+        <button
+         nzShape="round"
+          nz-button
+          nzType="primary"
+          (click)="handleOk()"
+          [nzLoading]="isConfirmLoading"
+          nzBlock
+        >
+          Сохранить
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</nz-modal>

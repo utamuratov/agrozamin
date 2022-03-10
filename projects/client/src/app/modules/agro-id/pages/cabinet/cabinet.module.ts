@@ -42,8 +42,19 @@ import { UserEmailModalComponent } from './pages/personal/components/user-email-
 import { UserPhoneModalComponent } from './pages/personal/components/user-phone-modal/user-phone-modal.component';
 import { UserLoginModalComponent } from './pages/personal/components/user-login-modal/user-login-modal.component';
 import { UserPasswordModalComponent } from './pages/personal/components/user-password-modal/user-password-modal.component';
-
-
+import { SuccessChangesComponent } from './pages/personal/components/success-changes/success-changes.component';
+import { ConfirmModalComponent } from './pages/personal/components/confirm-modal/confirm-modal.component';
+import { BizningZaminComponent } from './pages/main/components/bizning-zamin/bizning-zamin.component';
+import { AgroJobComponent } from './pages/main/components/agro-job/agro-job.component';
+import { AgroBankComponent } from './pages/main/components/agro-bank/agro-bank.component';
+import { TeleVeterinariaComponent } from './pages/main/components/tele-veterinaria/tele-veterinaria.component';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { ProfileWidgetComponent } from './pages/main/components/profile-widget/profile-widget.component';
+import { SettingsWidgetComponent } from './pages/main/components/settings-widget/settings-widget.component';
+import { MyCardsWidgetComponent } from './pages/main/components/my-cards-widget/my-cards-widget.component';
+import { MyCompaniesWidgetComponent } from './pages/main/components/my-companies-widget/my-companies-widget.component';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { CompanyModalComponent } from './pages/legal-person/components/company-modal/company-modal.component';
 
 @NgModule({
   imports: [
@@ -54,7 +65,6 @@ import { UserPasswordModalComponent } from './pages/personal/components/user-pas
      */
     ReactiveFormsSharedModule,
     TriangleModule,
-    
 
     /**
      * NG-ZORRO-MODULES
@@ -81,8 +91,10 @@ import { UserPasswordModalComponent } from './pages/personal/components/user-pas
     NzTagModule,
     NzDescriptionsModule,
     NzSelectModule,
-    NzCheckboxModule
-    
+    NzCheckboxModule,
+    NzCollapseModule,
+    NzSwitchModule,
+    FormsModule
   ],
   declarations: [
     CabinetComponent,
@@ -98,8 +110,18 @@ import { UserPasswordModalComponent } from './pages/personal/components/user-pas
     UserEmailModalComponent,
     UserPhoneModalComponent,
     UserLoginModalComponent,
-    UserPasswordModalComponent
+    UserPasswordModalComponent,
+    SuccessChangesComponent,
+    ConfirmModalComponent,
+    BizningZaminComponent,
+    AgroJobComponent,
+    AgroBankComponent,
+    TeleVeterinariaComponent,
+    ProfileWidgetComponent,
+    SettingsWidgetComponent,
+    MyCardsWidgetComponent,
+    MyCompaniesWidgetComponent,
+    CompanyModalComponent
   ],
-  
 })
 export class CabinetModule {}

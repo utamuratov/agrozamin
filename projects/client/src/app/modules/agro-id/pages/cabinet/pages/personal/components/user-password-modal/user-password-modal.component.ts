@@ -19,6 +19,13 @@ export class UserPasswordModalComponent implements OnInit {
   validateForm!: FormGroup;
   constructor(private fb: FormBuilder) {}
 
+  passwordVisible = false;
+  confirmPasswordVisible = false;
+  password?: string;
+  confirmPassword?: string;
+  isSuccess = false;
+  isConfirmLoading = false;
+
   ngOnInit() {
     this.validateForm = this.fb.group({
       password: [null, [Validators.required]],
@@ -28,8 +35,13 @@ export class UserPasswordModalComponent implements OnInit {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
-      this.close();
+      this.isConfirmLoading = true;
+      setTimeout(() => {
+        this.isConfirmLoading = false;
+        console.log('submit', this.validateForm.value);
+        this.isSuccess = true;
+        this.close();
+      }, 1000);
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -57,8 +69,12 @@ export class UserPasswordModalComponent implements OnInit {
   };
 
   handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
+    this.isConfirmLoading = true;
+    setTimeout(() => {
+      this.isVisible = false;
+      this.isSuccess = true;
+      this.isConfirmLoading = false;
+    }, 1000);
   }
 
   handleCancel(): void {
@@ -69,5 +85,9 @@ export class UserPasswordModalComponent implements OnInit {
 
   close() {
     this.handleClose.emit(false);
+  }
+
+  handleSuccess($event: boolean): void {
+    this.isSuccess = $event;
   }
 }

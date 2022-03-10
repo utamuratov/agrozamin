@@ -12,6 +12,7 @@ export class UserPhoneModalComponent implements OnInit {
   @Input() isVisible = false;
   @Output() handleVisible = new EventEmitter<boolean>();
   isConfirmLoading = false;
+  isSuccess = false;
   validateForm!: FormGroup;
   constructor(private fb: FormBuilder) {}
 
@@ -25,6 +26,7 @@ export class UserPhoneModalComponent implements OnInit {
     this.isConfirmLoading = true;
     setTimeout(() => {
       this.isVisible = false;
+      this.isSuccess = true;
       this.isConfirmLoading = false;
       this.handleVisible.emit(false);
     }, 1000);
@@ -33,5 +35,9 @@ export class UserPhoneModalComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
     this.handleVisible.emit(false);
+  }
+  
+  handleSuccess($event: boolean): void {
+    this.isSuccess = $event;
   }
 }
