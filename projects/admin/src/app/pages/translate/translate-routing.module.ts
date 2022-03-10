@@ -1,22 +1,26 @@
 import { ContentsComponent } from './contents/contents.component';
-import { InterfaceComponent } from './interface/interface.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateComponent } from './translate.component';
-import { SeoComponent } from './seo/seo.component';
+import { TranslationComponent } from './translation/translation.component';
+import { TranslationType } from '../../core/enums/translation-type.enum';
 
 const routes: Routes = [
   {
     path: '',
     component: TranslateComponent,
     data: {
-      bc: 'Translate'
+      bc: 'Translate',
     },
     children: [
-      {path: '', pathMatch: 'full', redirectTo: 'interface'},
       {
-        path: 'interface',
-        component: InterfaceComponent,
+        path: '',
+        pathMatch: 'full',
+        redirectTo: TranslationType[TranslationType.interface],
+      },
+      {
+        path: TranslationType[TranslationType.interface],
+        component: TranslationComponent,
         data: {
           bc: 'Interface',
           meta: {
@@ -26,8 +30,8 @@ const routes: Routes = [
         },
       },
       {
-        path: 'seo',
-        component: SeoComponent,
+        path: TranslationType[TranslationType.seo],
+        component: TranslationComponent,
         data: {
           bc: 'Seo',
           meta: {

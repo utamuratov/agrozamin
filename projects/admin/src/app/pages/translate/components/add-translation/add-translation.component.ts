@@ -5,18 +5,17 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { TransferItem } from 'ng-zorro-antd/transfer';
 import { LanguageState, markAllAsDirty } from 'ngx-az-core';
+import { TranslationType } from 'projects/admin/src/app/core/enums/translation-type.enum';
 import { map, Observable } from 'rxjs';
 import { AddTranslationRequest } from '../../models/add-translation.request';
 import { Project } from '../../models/project.interface';
 import { ProjectService } from '../../services/project.service';
 import { TranslateApiService } from '../../services/translate-api.service';
 
-enum TranslationType {
-  Interface = 1,
-}
 @Component({
   selector: 'az-add-translation',
   templateUrl: './add-translation.component.html',
@@ -56,17 +55,27 @@ export class AddTranslationComponent implements OnInit {
 
   /**
    *
+   */
+  translationType!: TranslationType;
+
+  /**
+   *
    * @param fb
    * @param $project
    * @param $translate
    */
   constructor(
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private $project: ProjectService,
     private $translate: TranslateApiService,
     private $store: Store
   ) {
     this.isVisible = false;
+    this.translationType =
+      TranslationType[
+        route.snapshot.url[0].path as keyof typeof TranslationType
+      ];
   }
 
   /**
@@ -183,7 +192,7 @@ export class AddTranslationComponent implements OnInit {
         .filter((w) => w.direction === 'right')
         .map((w) => w['key']),
       key: this.form.value['key'],
-      type: TranslationType.Interface,
+      type: this.translationType,
       text: {},
     };
 

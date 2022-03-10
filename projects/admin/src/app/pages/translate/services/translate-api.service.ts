@@ -2,6 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseResponse, BaseService } from 'ngx-az-core';
 import { Observable } from 'rxjs';
+import { TranslationType } from '../../../core/enums/translation-type.enum';
 import { AddTranslationRequest } from '../models/add-translation.request';
 import { GridModel } from '../models/grid-model';
 import { Translation } from '../models/translation.interface';
@@ -15,10 +16,12 @@ export class TranslateApiService {
   constructor(private $baseService: BaseService) {}
 
   getTranslations(
+    translationType: TranslationType,
     pageIndex: number,
     pageSize: number
   ): Observable<BaseResponse<GridModel<Translation>>> {
     const params = new HttpParams()
+      .append('type', translationType)
       .append('page', `${pageIndex}`)
       .append('per_page', `${pageSize}`);
     return this.$baseService.get<GridModel<Translation>>(
