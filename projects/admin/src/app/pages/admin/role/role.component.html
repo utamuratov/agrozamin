@@ -1,1 +1,125 @@
-<p>role works!</p>
+<!-- <p>role works!</p> -->
+<div
+  style="overflow: auto"
+  class="scrol h-100 d-flex flex-column interface--height"
+>
+  <div>
+    <div style="display: inline-block; min-width: 450px">
+      <!-- FILTER -->
+    </div>
+
+    <button
+      (click)="showModal()"
+      style="float: right; margin-right: 5px"
+      nz-button
+      nzType="primary"
+    >
+      Add
+    </button>
+  </div>
+
+  <div>
+    <nz-divider></nz-divider>
+  </div>
+
+  <nz-table
+    [nzData]="data"
+    #groupingTable
+    nzBordered
+    nzSize="small"
+    [nzScroll]="{ y: '210px' }"
+  >
+    <thead>
+      <tr>
+        <th nzAlign="center" nzWidth="100px">Название</th>
+        <th nzAlign="center" nzWidth="200px">Описание</th>
+        <th nzAlign="center" nzWidth="90px">Статус</th>
+        <th nzAlign="center" nzWidth="150px">Действие</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of groupingTable.data">
+        <td (click)="showTransferfun()" nzAlign="center" nzEllipsis>
+          {{ data.name }}
+        </td>
+        <td (click)="showTransferfun()" nzAlign="center">
+          {{ data.address }}
+        </td>
+        <td nzAlign="center">
+          <nz-switch [(ngModel)]="switchValue1"></nz-switch>
+        </td>
+        <td nzAlign="center">
+          <button  (click)="showModal()" nz-button nzType="primary">
+            <i nz-icon nzType="download"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <div>
+    <nz-divider></nz-divider>
+  </div>
+
+
+  <div nz-row [nzGutter]="[20, 0]">
+
+    <div nz-col nzSpan="12" >
+      <div  *ngIf="showTransfer; else noCard">
+        <nz-transfer
+        [nzListStyle]="{width: '100%'}"
+          [nzDataSource]="list"
+          (nzSearchChange)="search($event)"
+          (nzSelectChange)="showTransferfun1()"
+          (nzChange)="change($event)"
+        ></nz-transfer>
+      </div>
+      <div>
+        <ng-template #noCard>
+          <p>no card</p>
+        </ng-template>
+      </div>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <div  *ngIf="showTransfer1; else noCard">
+        <nz-transfer
+        [nzListStyle]="{width: '100%'}"
+          [nzDataSource]="list"
+          (nzSearchChange)="search($event)"
+          (nzSelectChange)="select($event)"
+          (nzChange)="change($event)"
+        ></nz-transfer>
+      </div>
+      <div>
+        <ng-template #noCard>
+          <p>no card</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nz-modal
+  nzWidth="400px"
+  [(nzVisible)]="isVisible"
+  nzTitle="Add"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <form nz-form nzLayout="vertical">
+      <nz-form-item>
+        <nz-form-label style="margin-bottom: 10px" [nzSpan]="6" nzFor="role"
+          >Add Role</nz-form-label
+        >
+        <nz-form-control [nzSpan]="24">
+          <input nz-input name="role" type="text" />
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+  <div *nzModalFooter>
+    <button nz-button nzType="primary" (click)="handleOk()">Save</button>
+  </div>
+</nz-modal>
