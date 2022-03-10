@@ -18,6 +18,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzTransferModule } from 'ng-zorro-antd/transfer';
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
   ],
   imports: [
     CommonModule,
+    
     FormsModule,
     AdminRoutingModule,
     NzBreadCrumbModule,
@@ -41,7 +44,9 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
     NzTableModule,
     NzModalModule,
     NzSwitchModule,
-    NzAutocompleteModule
+    NzTypographyModule,
+    NzAutocompleteModule,
+    NzTransferModule
   ]
 })
 export class AdminModule { }
