@@ -14,8 +14,6 @@ import { AddTranslationComponent } from './components/add-translation/add-transl
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { TransferProjectsComponent } from './components/transfer-projects/transfer-projects.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { TranslationComponent } from './translation/translation.component';
 
 @NgModule({
@@ -38,8 +36,6 @@ import { TranslationComponent } from './translation/translation.component';
     /**
      * NG ZORRO MODULES
      */
-    NzEmptyModule,
-    NzSpinModule,
     NzIconModule,
     NzTypographyModule,
     NzNotificationModule,

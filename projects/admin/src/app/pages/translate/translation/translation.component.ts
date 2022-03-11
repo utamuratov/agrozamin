@@ -1,19 +1,16 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { BaseResponse, Language, LanguageState, NgDestroy } from 'ngx-az-core';
-import { Observable, takeUntil, tap } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { BaseResponse, LanguageState, NgDestroy } from 'ngx-az-core';
+import { map, Observable, takeUntil, tap } from 'rxjs';
+import { innerHeight$ } from '../../../components/app/app.component';
 import { TranslationType } from '../../../core/enums/translation-type.enum';
 import { AddTranslationComponent } from '../components/add-translation/add-translation.component';
-import { GridModel } from '../models/grid-model';
 import { Project } from '../models/project.interface';
 import { Translation } from '../models/translation.interface';
 import { ProjectService } from '../services/project.service';
 import { TranslateApiService } from '../services/translate-api.service';
-
-const PAGE_SIZE = 15;
-const FIRST_PAGE = 1;
 
 @Component({
   templateUrl: './translation.component.html',
@@ -23,17 +20,17 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
-  data!: GridModel<Translation>;
+  data!: Translation[];
 
   /**
    *
    */
-  innerHeight = window.innerHeight;
+  filteredData: Translation[] = [];
 
   /**
    *
    */
-  isFirstTime = true;
+  innerHeight$ = innerHeight$;
 
   /**
    *
@@ -43,8 +40,13 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
-  @Select(LanguageState.languages)
-  language$!: Observable<Language[]>;
+  language$!: Observable<
+    {
+      code: string;
+      name: string;
+      sortFn: NzSafeAny;
+    }[]
+  >;
 
   /**
    *
@@ -71,11 +73,14 @@ export class TranslationComponent implements OnInit {
     private route: ActivatedRoute,
     private $translate: TranslateApiService,
     private $project: ProjectService,
-    private destroy$: NgDestroy
+    private destroy$: NgDestroy,
+    private $store: Store
   ) {
     const path = route.snapshot.url[0].path;
     this.translationType =
       TranslationType[path as keyof typeof TranslationType];
+
+    this.addSortingFunctionToLanguage();
   }
 
   /**
@@ -85,58 +90,56 @@ export class TranslationComponent implements OnInit {
     this.getProjects()
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        this.initTranslations();
+        this.getTranslations();
       });
   }
 
   /**
    *
    */
-  private initTranslations() {
-    this.isFirstTime = true;
-    this.getTranslations(FIRST_PAGE, PAGE_SIZE);
-  }
-
-  /**
-   *
-   */
-  getTranslations(pageIndex: number, pageSize: number) {
+  getTranslations() {
     this.$translate
-      .getTranslations(this.translationType, pageIndex, pageSize)
+      .getTranslations(this.translationType)
       .pipe(takeUntil(this.destroy$))
       .subscribe((w) => {
         if (w.success) {
           this.data = w.data;
+          this.filteredData = this.data;
         }
       });
   }
 
   /**
    *
-   * @param params
-   * @returns
    */
-  onQueryParamsChange(params: NzTableQueryParams): void {
-    if (this.isFirstTime) {
-      this.isFirstTime = false;
-      return;
-    }
-    const { pageSize, pageIndex } = params;
-    this.getTranslations(pageIndex, pageSize);
+  private addSortingFunctionToLanguage() {
+    this.language$ = this.$store.select(LanguageState.languages).pipe(
+      map((languages) => {
+        return languages.map((language) => {
+          return {
+            ...language,
+            sortFn: (a: Translation, b: Translation) =>
+              a.text[language.code].localeCompare(
+                b.text[language.code]
+              ) as boolean,
+          };
+        });
+      })
+    );
   }
 
   /**
    *
    */
   modifiedTranslation() {
-    this.initTranslations();
+    this.getTranslations();
   }
 
   /**
    *
    * @returns
    */
-  getProjects(): Observable<BaseResponse<Project[]>> {
+  private getProjects(): Observable<BaseResponse<Project[]>> {
     return this.$project.getProjects().pipe(
       tap((result) => {
         if (result.success) {
@@ -155,7 +158,7 @@ export class TranslationComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         if (response.success) {
-          this.initTranslations();
+          this.getTranslations();
         }
       });
   }
@@ -176,12 +179,34 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
+  sortByKey = (a: Translation, b: Translation) => a.key.localeCompare(b.key);
+
+  /**
+   *
+   * Search by key and translations
+   */
   search(searchText: string) {
-    console.log(searchText);
+    if (searchText.length === 0) {
+      this.filteredData = this.data;
+      return;
+    }
+
+    if (searchText.length < 3) {
+      return;
+    }
+
+    this.filteredData = this.data.filter(
+      (w) =>
+        w.key.includes(searchText) ||
+        Object.keys(w.text).find((t) => w.text[t].includes(searchText))
+    );
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.innerHeight = event.target.innerHeight;
+  /**
+   *
+   */
+  clearSearch(searchInput: HTMLInputElement) {
+    searchInput.value = '';
+    this.filteredData = this.data;
   }
 }

@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Languages } from 'ngx-az-core';
+import { BehaviorSubject } from 'rxjs';
+
+export const innerHeight$ = new BehaviorSubject<number>(window.innerHeight);
 
 @Component({
   selector: 'app-root',
@@ -10,5 +13,14 @@ import { Languages } from 'ngx-az-core';
 export class AppComponent {
   constructor(private store: Store) {
     store.dispatch(new Languages());
+  }
+
+  /**
+   *
+   * @param event
+   */
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    innerHeight$.next(event.target.innerHeight);
   }
 }
