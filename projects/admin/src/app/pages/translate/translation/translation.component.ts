@@ -65,6 +65,11 @@ export class TranslationComponent implements OnInit {
 
   /**
    *
+   */
+  searchText = '';
+
+  /**
+   *
    * @param $translate
    * @param notification
    * @param $project
@@ -104,7 +109,7 @@ export class TranslationComponent implements OnInit {
       .subscribe((w) => {
         if (w.success) {
           this.data = w.data;
-          this.filteredData = this.data;
+          this.search(this.searchText);
         }
       });
   }
@@ -205,8 +210,8 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
-  clearSearch(searchInput: HTMLInputElement) {
-    searchInput.value = '';
+  clearSearch() {
+    this.searchText = '';
     this.filteredData = this.data;
   }
 }

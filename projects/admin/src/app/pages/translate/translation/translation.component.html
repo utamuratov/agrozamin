@@ -11,17 +11,17 @@
       <div class="divider__right__search">
         <nz-input-group [nzSuffix]="suffixIconSearch">
           <input
-            #searchInput
+            [(ngModel)]="searchText"
             type="text"
-            (input)="search(searchInput.value)"
+            (input)="search(searchText)"
             nz-input
             placeholder="input search text"
           />
         </nz-input-group>
         <ng-template #suffixIconSearch>
           <a
-            *ngIf="searchInput.value; else searchIcon"
-            (click)="clearSearch(searchInput)"
+            *ngIf="searchText.length > 0; else searchIcon"
+            (click)="clearSearch()"
           >
             <i nz-icon nzType="close"></i>
           </a>
