@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,14 +6,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { TransferItem } from 'ng-zorro-antd/transfer';
-import { LanguageState, markAllAsDirty } from 'ngx-az-core';
+import { Language, LanguageState, markAllAsDirty } from 'ngx-az-core';
 import { TranslationType } from 'projects/admin/src/app/core/enums/translation-type.enum';
 import { map, Observable } from 'rxjs';
 import { AddTranslationRequest } from '../../models/add-translation.request';
 import { Project } from '../../models/project.interface';
-import { ProjectService } from '../../services/project.service';
+import { Translation } from '../../models/translation.interface';
 import { TranslateApiService } from '../../services/translate-api.service';
 
 @Component({
@@ -21,17 +21,22 @@ import { TranslateApiService } from '../../services/translate-api.service';
   templateUrl: './add-translation.component.html',
   styleUrls: ['./add-translation.component.less'],
 })
-export class AddTranslationComponent implements OnInit {
+export class AddTranslationComponent {
   /**
    *
    */
-  isVisible: boolean;
+  public editingData: Translation | null = null;
+
+  /**
+   *
+   */
+  public isVisible: boolean;
 
   /**
    *
    */
   @Output()
-  added = new EventEmitter<boolean>();
+  modified = new EventEmitter();
 
   /**
    *
@@ -41,7 +46,8 @@ export class AddTranslationComponent implements OnInit {
   /**
    *
    */
-  languages = this.$store.selectSnapshot(LanguageState.languages);
+  @Select(LanguageState.languages)
+  language$!: Observable<Language[]>;
 
   /**
    *
@@ -51,7 +57,7 @@ export class AddTranslationComponent implements OnInit {
   /**
    *
    */
-  projects!: Project[];
+  public projects!: Project[];
 
   /**
    *
@@ -67,9 +73,7 @@ export class AddTranslationComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private $project: ProjectService,
-    private $translate: TranslateApiService,
-    private $store: Store
+    private $translate: TranslateApiService
   ) {
     this.isVisible = false;
     this.translationType =
@@ -81,27 +85,9 @@ export class AddTranslationComponent implements OnInit {
   /**
    *
    */
-  ngOnInit(): void {
-    this.initForm();
-    this.getProjects().subscribe((projects) => {
-      this.projects = projects;
-      this.transferingProjects = this.makeTransferingProjects(this.projects);
-    });
-  }
-
-  /**
-   *
-   */
-  getProjects(): Observable<Project[]> {
-    return this.$project.getProjects().pipe(
-      map((result) => {
-        if (result.success) {
-          return result.data;
-        }
-
-        return [];
-      })
-    );
+  onInit(): void {
+    this.initForm(this.editingData);
+    this.transferingProjects = this.makeTransferingProjects(this.projects);
   }
 
   /**
@@ -113,6 +99,9 @@ export class AddTranslationComponent implements OnInit {
       transferingProjects.push({
         key: project.id,
         title: project.name,
+        direction: this.editingData?.projects.find((w) => w.id === project.id)
+          ? 'right'
+          : 'left',
       });
     });
 
@@ -122,22 +111,24 @@ export class AddTranslationComponent implements OnInit {
   /**
    *
    */
-  private initForm() {
+  private initForm(model: Translation | null) {
     this.form = this.fb.group({
-      key: [null, Validators.required],
+      key: [model?.key, Validators.required],
     });
-    this.addLanguageControls();
+    this.addLanguageControls(this.editingData);
   }
 
   /**
    *
    */
-  private addLanguageControls() {
-    this.languages.forEach((language) => {
-      this.form.addControl(
-        language.code,
-        new FormControl(null, Validators.required)
-      );
+  private addLanguageControls(model: Translation | null) {
+    this.language$.subscribe((languages) => {
+      languages.forEach((language) => {
+        this.form.addControl(
+          language.code,
+          new FormControl(model?.text[language.code], Validators.required)
+        );
+      });
     });
   }
 
@@ -150,6 +141,10 @@ export class AddTranslationComponent implements OnInit {
       return;
     }
     const request = this.getTranslationRequest();
+    if (this.editingData?.id) {
+      this.editTranslation(this.editingData.id, request);
+      return;
+    }
     this.addTranslation(request);
   }
 
@@ -163,10 +158,8 @@ export class AddTranslationComponent implements OnInit {
       .pipe(
         map((result) => {
           if (result.success) {
-            this.added.emit(true);
+            this.modified.emit();
             this.close();
-
-            this.resetForm();
           }
 
           return false;
@@ -177,10 +170,23 @@ export class AddTranslationComponent implements OnInit {
 
   /**
    *
+   * @param id
+   * @param request
    */
-  private resetForm() {
-    this.form.reset();
-    this.transferingProjects = this.makeTransferingProjects(this.projects);
+  private editTranslation(id: number, request: AddTranslationRequest) {
+    return this.$translate
+      .editTranslation(id, request)
+      .pipe(
+        map((result) => {
+          if (result.success) {
+            this.modified.emit();
+            this.close();
+          }
+
+          return false;
+        })
+      )
+      .subscribe();
   }
 
   /**
@@ -196,9 +202,11 @@ export class AddTranslationComponent implements OnInit {
       text: {},
     };
 
-    this.languages.forEach((w) => {
-      request.text[w.code] = this.form.value[w.code];
-    });
+    this.language$.subscribe((languages) =>
+      languages.forEach((w) => {
+        request.text[w.code] = this.form.value[w.code];
+      })
+    );
 
     return request;
   }
@@ -208,5 +216,6 @@ export class AddTranslationComponent implements OnInit {
    */
   close(): void {
     this.isVisible = false;
+    this.transferingProjects = [];
   }
 }

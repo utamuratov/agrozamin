@@ -1,21 +1,16 @@
-import { KeyValue } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { TransferItem } from 'ng-zorro-antd/transfer';
-import { BaseResponse, NgDestroy } from 'ngx-az-core';
-import { Observable, takeUntil, tap } from 'rxjs';
+import { BaseResponse, LanguageState, NgDestroy } from 'ngx-az-core';
+import { map, Observable, takeUntil, tap } from 'rxjs';
+import { innerHeight$ } from '../../../components/app/app.component';
 import { TranslationType } from '../../../core/enums/translation-type.enum';
-import { AddTranslationRequest } from '../models/add-translation.request';
-import { GridModel } from '../models/grid-model';
+import { AddTranslationComponent } from '../components/add-translation/add-translation.component';
 import { Project } from '../models/project.interface';
-import { MyTranslation, Translation } from '../models/translation.interface';
+import { Translation } from '../models/translation.interface';
 import { ProjectService } from '../services/project.service';
 import { TranslateApiService } from '../services/translate-api.service';
-
-const PAGE_SIZE = 15;
-const FIRST_PAGE = 1;
 
 @Component({
   templateUrl: './translation.component.html',
@@ -25,27 +20,17 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
-  expandSet = new Set<number>();
+  data!: Translation[];
 
   /**
    *
    */
-  data!: GridModel<MyTranslation>;
+  filteredData: Translation[] = [];
 
   /**
    *
    */
-  innerHeight = window.innerHeight;
-
-  /**
-   *
-   */
-  isFirstTime = true;
-
-  /**
-   *
-   */
-  disabled = false;
+  innerHeight$ = innerHeight$;
 
   /**
    *
@@ -55,7 +40,28 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
+  language$!: Observable<
+    {
+      code: string;
+      name: string;
+      sortFn: NzSafeAny;
+    }[]
+  >;
+
+  /**
+   *
+   */
   translationType!: TranslationType;
+
+  /**
+   *
+   */
+  TranslationType = TranslationType;
+
+  /**
+   *
+   */
+  model!: Translation;
 
   /**
    *
@@ -67,12 +73,14 @@ export class TranslationComponent implements OnInit {
     private route: ActivatedRoute,
     private $translate: TranslateApiService,
     private $project: ProjectService,
-    private destroy$: NgDestroy
+    private destroy$: NgDestroy,
+    private $store: Store
   ) {
+    const path = route.snapshot.url[0].path;
     this.translationType =
-      TranslationType[
-        route.snapshot.url[0].path as keyof typeof TranslationType
-      ];
+      TranslationType[path as keyof typeof TranslationType];
+
+    this.addSortingFunctionToLanguage();
   }
 
   /**
@@ -82,96 +90,56 @@ export class TranslationComponent implements OnInit {
     this.getProjects()
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        this.initTranslations();
+        this.getTranslations();
       });
   }
 
   /**
    *
    */
-  private initTranslations() {
-    this.isFirstTime = true;
-    this.getTranslations(FIRST_PAGE, PAGE_SIZE);
-  }
-
-  /**
-   *
-   */
-  getTranslations(pageIndex: number, pageSize: number) {
+  getTranslations() {
     this.$translate
-      .getTranslations(this.translationType, pageIndex, pageSize)
+      .getTranslations(this.translationType)
       .pipe(takeUntil(this.destroy$))
       .subscribe((w) => {
         if (w.success) {
-          this.data = {
-            ...w.data,
-            data: w.data.data.map((translation) => {
-              return {
-                ...translation,
-                transferItems: this.makeTransferItems(translation.projects),
-                textKeyValue: this.convertToKeyValueArray(translation.text),
-              };
-            }),
-          };
+          this.data = w.data;
+          this.filteredData = this.data;
         }
       });
   }
 
   /**
    *
-   * @param translation
-   * @returns
    */
-  private convertToKeyValueArray(text: NzSafeAny): KeyValue<string, string>[] {
-    return Object.keys(text).map((key) => {
-      return { key, value: text[key] };
-    });
+  private addSortingFunctionToLanguage() {
+    this.language$ = this.$store.select(LanguageState.languages).pipe(
+      map((languages) => {
+        return languages.map((language) => {
+          return {
+            ...language,
+            sortFn: (a: Translation, b: Translation) =>
+              a.text[language.code].localeCompare(
+                b.text[language.code]
+              ) as boolean,
+          };
+        });
+      })
+    );
   }
 
   /**
    *
-   * @param params
-   * @returns
    */
-  onQueryParamsChange(params: NzTableQueryParams): void {
-    if (this.isFirstTime) {
-      this.isFirstTime = false;
-      return;
-    }
-    const { pageSize, pageIndex } = params;
-    this.getTranslations(pageIndex, pageSize);
-  }
-
-  /**
-   *
-   * @param isAdded
-   */
-  addedTranslation(isAdded: boolean) {
-    if (isAdded) {
-      this.initTranslations();
-    }
-  }
-
-  /**
-   *
-   * @param projects
-   * @returns
-   */
-  makeTransferItems(projects: Project[]): TransferItem[] {
-    return this.projects.map((project) => {
-      return {
-        key: project.id,
-        title: project.name,
-        direction: projects.find((w) => w.id === project.id) ? 'right' : 'left',
-      };
-    });
+  modifiedTranslation() {
+    this.getTranslations();
   }
 
   /**
    *
    * @returns
    */
-  getProjects(): Observable<BaseResponse<Project[]>> {
+  private getProjects(): Observable<BaseResponse<Project[]>> {
     return this.$project.getProjects().pipe(
       tap((result) => {
         if (result.success) {
@@ -183,174 +151,6 @@ export class TranslationComponent implements OnInit {
 
   /**
    *
-   * @param id
-   * @param checked
-   */
-  onExpandChange(id: number, checked: boolean): void {
-    this.expandSet = new Set<number>();
-    if (checked) {
-      this.expandSet.add(id);
-    }
-  }
-
-  /**
-   *
-   * @param value
-   * @param key
-   * @param data
-   * @returns
-   */
-  changedTranslation(value: string, key: string, data: MyTranslation) {
-    if (data.text[key] === value) {
-      return;
-    }
-
-    const request = this.getRequestForChangedTranslation(data, key, value);
-
-    this.editTranslation(data.id, request).subscribe((response) => {
-      if (response.success) {
-        data.text = request.text;
-        return;
-      }
-
-      data.textKeyValue = this.convertToKeyValueArray(data.text);
-    });
-  }
-
-  /**
-   *
-   * @param data
-   * @param key
-   * @param value
-   * @returns
-   */
-  private getRequestForChangedTranslation(
-    data: MyTranslation,
-    key: string,
-    value: string
-  ) {
-    const request: AddTranslationRequest = {
-      key: data.key,
-      project: data.projects.map((v) => v.id),
-      type: data.type,
-      text: {},
-    };
-
-    data.textKeyValue.forEach((language) => {
-      request.text[language.key] = language.value;
-    });
-    request.text[key] = value;
-    return request;
-  }
-
-  /**
-   *
-   * @param data
-   */
-  changedProjects(data: MyTranslation) {
-    const request = this.getRequestForChangedProjects(data);
-    this.editTranslation(data.id, request).subscribe((response) => {
-      if (response.success) {
-        data.projects = this.getProjectsByIds(request.project);
-        return;
-      }
-
-      data.transferItems = this.makeTransferItems(data.projects);
-    });
-  }
-
-  /**
-   *
-   * @param ids
-   * @returns
-   */
-  getProjectsByIds(ids: number[]) {
-    return this.projects.filter((w) => ids.indexOf(w.id) >= 0);
-  }
-
-  /**
-   *
-   * @param key
-   * @param data
-   * @returns
-   */
-  changedKey(changedKeyValue: string, data: MyTranslation) {
-    const previousKeyValue = data.key;
-    if (data.key === changedKeyValue) {
-      return;
-    }
-    const request = this.getRequestForChangedKey(changedKeyValue, data);
-    this.editTranslation(data.id, request).subscribe((response) => {
-      if (response.success) {
-        data.key = request.key;
-        return;
-      }
-
-      data.key = previousKeyValue;
-    });
-  }
-
-  /**
-   *
-   * @param id
-   * @param request
-   */
-  private editTranslation(
-    id: number,
-    request: AddTranslationRequest
-  ): Observable<BaseResponse<Translation>> {
-    return this.$translate
-      .editTranslation(id, request)
-      .pipe(takeUntil(this.destroy$));
-  }
-
-  /**
-   *
-   * @param key
-   * @param data
-   * @returns
-   */
-  private getRequestForChangedKey(
-    key: string,
-    data: MyTranslation
-  ): AddTranslationRequest {
-    return {
-      key: key,
-      project: this.makeIds(data),
-      type: data.type,
-      text: data.text,
-    };
-  }
-
-  /**
-   *
-   * @param data
-   * @returns
-   */
-  private makeIds(data: MyTranslation): number[] {
-    return data.projects.map((v) => v.id);
-  }
-
-  /**
-   *
-   * @param data
-   * @returns
-   */
-  private getRequestForChangedProjects(
-    data: MyTranslation
-  ): AddTranslationRequest {
-    return {
-      key: data.key,
-      project: data.transferItems
-        .filter((w) => w.direction === 'right')
-        .map((w) => w['key']),
-      type: data.type,
-      text: data.text,
-    };
-  }
-
-  /**
-   *
    */
   delete(id: number) {
     this.$translate
@@ -358,13 +158,55 @@ export class TranslationComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         if (response.success) {
-          this.initTranslations();
+          this.getTranslations();
         }
       });
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.innerHeight = event.target.innerHeight;
+  /**
+   *
+   */
+  addEdit(
+    modal: AddTranslationComponent,
+    editingData: Translation | null = null
+  ) {
+    modal.projects = this.projects;
+    modal.editingData = editingData;
+    modal.onInit();
+    modal.isVisible = true;
+  }
+
+  /**
+   *
+   */
+  sortByKey = (a: Translation, b: Translation) => a.key.localeCompare(b.key);
+
+  /**
+   *
+   * Search by key and translations
+   */
+  search(searchText: string) {
+    if (searchText.length === 0) {
+      this.filteredData = this.data;
+      return;
+    }
+
+    if (searchText.length < 3) {
+      return;
+    }
+
+    this.filteredData = this.data.filter(
+      (w) =>
+        w.key.includes(searchText) ||
+        Object.keys(w.text).find((t) => w.text[t].includes(searchText))
+    );
+  }
+
+  /**
+   *
+   */
+  clearSearch(searchInput: HTMLInputElement) {
+    searchInput.value = '';
+    this.filteredData = this.data;
   }
 }

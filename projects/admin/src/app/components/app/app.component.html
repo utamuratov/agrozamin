@@ -5,7 +5,7 @@
   [hasProgressBar]="false"
 ></ngx-ui-loader>
 
-<router-outlet></router-outlet>
+<router-outlet (window:resize)="onResize($event)"></router-outlet>
 
 <ng-template #foregroundSpinner>
   <nz-spin nzSimple></nz-spin>
