@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 // import { NzMessageService } from 'ng-zorro-antd/message';
 import { TransferItem } from 'ng-zorro-antd/transfer';
 
-
 interface DataItem {
   name: string;
   id: number;
@@ -10,19 +9,23 @@ interface DataItem {
   address: string;
 }
 
-
 @Component({
   templateUrl: './role.component.html',
-  styleUrls: ['./role.component.less']
+  styleUrls: ['./role.component.less'],
 })
 export class RoleComponent implements OnInit {
+  /**
+   *
+   */
+  filteredData: DataItem[] = [];
+  searchText = '';
 
   list: TransferItem[] = [];
 
-  showTransfer = false
-  showTransfer1 = false
+  showTransfer = false;
+  showTransfer1 = false;
 
-  data: readonly DataItem[]  = [];
+  data: readonly DataItem[] = [];
 
   switchValue = false;
   switchValue1 = false;
@@ -31,24 +34,24 @@ export class RoleComponent implements OnInit {
 
   constructor() {
     // this.filteredOptions = this.options;
-   }
+  }
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     for (let i = 0; i < 5; i++) {
       this.list.push({
         key: i.toString(),
         title: `content${i + 1}`,
         description: `description of content${i + 1}`,
-        direction: Math.random() * 2 > 1 ? 'right' : undefined
+        direction: Math.random() * 2 > 1 ? 'right' : undefined,
       });
     }
     const data = [];
     for (let i = 0; i < 100; i++) {
       data.push({
-        id: i+1,
+        id: i + 1,
         name: `Edward King ${i}`,
         age: 32,
-        address: `London, Park Lane no. ${i}`
+        address: `London, Park Lane no. ${i}`,
       });
     }
     this.data = data;
@@ -68,17 +71,16 @@ export class RoleComponent implements OnInit {
     this.isVisible = false;
   }
 
-  showP():void{
+  showP(): void {
     console.log('yozdi');
-    
   }
 
-  showTransferfun(){
-    this.showTransfer = true
+  showTransferfun() {
+    this.showTransfer = true;
   }
 
-  showTransferfun1(){
-    this.showTransfer1 = true
+  showTransferfun1() {
+    this.showTransfer1 = true;
   }
 
   // filterOption(inputValue: string, item: any): boolean {
@@ -97,9 +99,5 @@ export class RoleComponent implements OnInit {
     console.log('nzChange', ret);
   }
 
-
-
-
+  addEdit(modal: any) {}
 }
-
-

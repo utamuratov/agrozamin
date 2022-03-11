@@ -70,6 +70,11 @@ export class TranslationComponent implements OnInit {
 
   /**
    *
+   */
+  sortByKey = (a: Translation, b: Translation) => a.key.localeCompare(b.key);
+
+  /**
+   *
    * @param $translate
    * @param notification
    * @param $project
@@ -180,11 +185,6 @@ export class TranslationComponent implements OnInit {
     modal.onInit();
     modal.isVisible = true;
   }
-
-  /**
-   *
-   */
-  sortByKey = (a: Translation, b: Translation) => a.key.localeCompare(b.key);
 
   /**
    *

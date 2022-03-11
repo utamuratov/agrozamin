@@ -1,33 +1,54 @@
-<!-- <p>role works!</p> -->
-<div
-  style="overflow: auto"
-  class="scrol h-100 d-flex flex-column interface--height"
->
-  <div>
-    <div style="display: inline-block; min-width: 450px">
-      <!-- FILTER -->
+<!-- HEADER -->
+<nz-divider [nzText]="divider" nzOrientation="left" class="position-relative">
+  <ng-template #divider>
+    <div class="divider__left">
+      <div>
+        {{ "roles" | translate }}
+        {{ filteredData.length === 0 ? "" : "(" + filteredData.length + ")" }}
+      </div>
     </div>
+    <div class="divider__right">
+      <div class="divider__right__search">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input
+            [(ngModel)]="searchText"
+            type="text"
+            (input)="search(searchText)"
+            nz-input
+            placeholder="input search text"
+          />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <a
+            *ngIf="searchText.length > 0; else searchIcon"
+            (click)="search('')"
+          >
+            <i nz-icon nzType="close"></i>
+          </a>
+          <ng-template #searchIcon>
+            <i nz-icon nzType="search"></i
+          ></ng-template>
+        </ng-template>
+      </div>
 
-    <button
-      (click)="showModal()"
-      style="float: right; margin-right: 5px"
-      nz-button
-      nzType="primary"
-    >
-      Add
-    </button>
-  </div>
+      <button (click)="addEdit(modal)" nz-button nzType="primary" class="ml-1">
+        {{ "add" | translate }}
+      </button>
+    </div>
+  </ng-template>
+</nz-divider>
 
-  <div>
-    <nz-divider></nz-divider>
-  </div>
-
+<div class="mt-2">
   <nz-table
+    #table
     [nzData]="data"
-    #groupingTable
-    nzBordered
+    nzShowPagination
+    nzShowSizeChanger
     nzSize="small"
-    [nzScroll]="{ y: '210px' }"
+    nzBordered
+    [nzScroll]="
+      filteredData.length > 10 ? { y: (350 | calcScroll | async) + 'px' } : {}
+    "
   >
     <thead>
       <tr>
@@ -38,7 +59,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of groupingTable.data">
+      <tr *ngFor="let data of table.data">
         <td (click)="showTransferfun()" nzAlign="center" nzEllipsis>
           {{ data.name }}
         </td>
@@ -49,7 +70,7 @@
           <nz-switch [(ngModel)]="switchValue1"></nz-switch>
         </td>
         <td nzAlign="center">
-          <button  (click)="showModal()" nz-button nzType="primary">
+          <button (click)="showModal()" nz-button nzType="primary">
             <i nz-icon nzType="download"></i>
           </button>
         </td>
@@ -57,17 +78,11 @@
     </tbody>
   </nz-table>
 
-  <div>
-    <nz-divider></nz-divider>
-  </div>
-
-
   <div nz-row [nzGutter]="[20, 0]">
-
-    <div nz-col nzSpan="12" >
-      <div  *ngIf="showTransfer; else noCard">
+    <div nz-col nzSpan="12">
+      <div *ngIf="showTransfer; else noCard">
         <nz-transfer
-        [nzListStyle]="{width: '100%'}"
+          [nzListStyle]="{ width: '100%' }"
           [nzDataSource]="list"
           (nzSearchChange)="search($event)"
           (nzSelectChange)="showTransferfun1()"
@@ -82,9 +97,9 @@
     </div>
 
     <div nz-col nzSpan="12">
-      <div  *ngIf="showTransfer1; else noCard">
+      <div *ngIf="showTransfer1; else noCard">
         <nz-transfer
-        [nzListStyle]="{width: '100%'}"
+          [nzListStyle]="{ width: '100%' }"
           [nzDataSource]="list"
           (nzSearchChange)="search($event)"
           (nzSelectChange)="select($event)"
@@ -101,6 +116,7 @@
 </div>
 
 <nz-modal
+  #modal
   nzWidth="400px"
   [(nzVisible)]="isVisible"
   nzTitle="Add"
