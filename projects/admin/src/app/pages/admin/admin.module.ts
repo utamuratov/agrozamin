@@ -1,52 +1,51 @@
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { UsersComponent } from './users/users.component';
 import { RoleComponent } from './role/role.component';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NzSwitchModule } from 'ng-zorro-antd/switch';
-import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
-
+import { NzFormsSharedModule, ReactiveFormsSharedModule } from 'ngx-az-core';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
+import { AdminSharedModule } from '../../shared/admin-shared/admin-shared.module';
 
 @NgModule({
   declarations: [
     AdminComponent,
     RoleComponent,
-    UsersComponent
+    UsersComponent,
+    AddEditUserComponent,
   ],
   imports: [
-    CommonModule,
-    
-    FormsModule,
     AdminRoutingModule,
-    NzBreadCrumbModule,
-    NzInputModule,
+    FormsModule,
+
+    /**
+     * CUSTOM MODULES
+     */
+    ReactiveFormsSharedModule,
+    NzFormsSharedModule,
+    AdminSharedModule,
+
+    /**
+     * NG ZORRO MODULES
+     */
     NzIconModule,
-    NzSelectModule,
-    NzButtonModule,
-    NzGridModule,
-    NzPageHeaderModule,
+    NzTypographyModule,
+    NzToolTipModule,
+    NzTransferModule,
     NzDividerModule,
     NzTableModule,
     NzModalModule,
-    NzSwitchModule,
-    NzTypographyModule,
-    NzAutocompleteModule,
-    NzTransferModule
-  ]
+    NzSelectModule,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}
