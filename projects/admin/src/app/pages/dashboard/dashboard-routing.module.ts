@@ -19,7 +19,7 @@ const routes: Routes = [
         path: 'user',
         component: UserComponent,
         data: {
-          bc: 'User',
+          bc: 'user',
           meta: {
             title: 'monitorTitle',
             description: 'monitorDescription',
@@ -30,7 +30,7 @@ const routes: Routes = [
         path: 'category',
         component: CategoryComponent,
         data: {
-          bc: 'Category',
+          bc: 'category',
           meta: {
             title: 'monitorTitle',
             description: 'monitorDescription',

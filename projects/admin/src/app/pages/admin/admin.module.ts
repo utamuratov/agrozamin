@@ -15,7 +15,7 @@ import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzFormsSharedModule, ReactiveFormsSharedModule } from 'ngx-az-core';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
-import { AdminSharedModule } from '../../shared/admin-shared/admin-shared.module';
+import { AdminSharedModule } from '../../shared/admin-shared.module';
 
 @NgModule({
   declarations: [

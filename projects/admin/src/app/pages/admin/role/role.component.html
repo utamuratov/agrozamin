@@ -1,116 +1,84 @@
 <!-- HEADER -->
-<nz-divider [nzText]="divider" nzOrientation="left" class="position-relative">
-  <ng-template #divider>
-    <div class="divider__left">
-      <div>
-        {{ "roles" | translate }}
-        {{ filteredData.length === 0 ? "" : "(" + filteredData.length + ")" }}
-      </div>
+<az-header-with-divider-advanced
+  [title]="
+    ('roles' | translate) +
+    (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')')
+  "
+  (changedSearchText)="search($event)"
+  (clickedAddEditButton)="addEdit(modal)"
+></az-header-with-divider-advanced>
+
+<nz-table
+  #table
+  [nzData]="data"
+  nzShowPagination
+  nzShowSizeChanger
+  nzSize="small"
+  nzBordered
+  [nzScroll]="
+    filteredData.length > 10 ? { y: (350 | calcScroll | async) + 'px' } : {}
+  "
+>
+  <thead>
+    <tr>
+      <th nzAlign="center" nzWidth="100px">Название</th>
+      <th nzAlign="center" nzWidth="200px">Описание</th>
+      <th nzAlign="center" nzWidth="90px">Статус</th>
+      <th nzAlign="center" nzWidth="150px">Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data">
+      <td (click)="showTransferfun()" nzAlign="center" nzEllipsis>
+        {{ data.name }}
+      </td>
+      <td (click)="showTransferfun()" nzAlign="center">
+        {{ data.address }}
+      </td>
+      <td nzAlign="center">
+        <nz-switch [(ngModel)]="switchValue1"></nz-switch>
+      </td>
+      <td nzAlign="center">
+        <button (click)="showModal()" nz-button nzType="primary">
+          <i nz-icon nzType="download"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<div nz-row [nzGutter]="[20, 0]">
+  <div nz-col nzSpan="12">
+    <div *ngIf="showTransfer; else noCard">
+      <nz-transfer
+        [nzListStyle]="{ width: '100%' }"
+        [nzDataSource]="list"
+        (nzSearchChange)="search($event)"
+        (nzSelectChange)="showTransferfun1()"
+        (nzChange)="change($event)"
+      ></nz-transfer>
     </div>
-    <div class="divider__right">
-      <div class="divider__right__search">
-        <nz-input-group [nzSuffix]="suffixIconSearch">
-          <input
-            [(ngModel)]="searchText"
-            type="text"
-            (input)="search(searchText)"
-            nz-input
-            placeholder="input search text"
-          />
-        </nz-input-group>
-        <ng-template #suffixIconSearch>
-          <a
-            *ngIf="searchText.length > 0; else searchIcon"
-            (click)="search('')"
-          >
-            <i nz-icon nzType="close"></i>
-          </a>
-          <ng-template #searchIcon>
-            <i nz-icon nzType="search"></i
-          ></ng-template>
-        </ng-template>
-      </div>
-
-      <button (click)="addEdit(modal)" nz-button nzType="primary" class="ml-1">
-        {{ "add" | translate }}
-      </button>
+    <div>
+      <ng-template #noCard>
+        <p>no card</p>
+      </ng-template>
     </div>
-  </ng-template>
-</nz-divider>
+  </div>
 
-<div class="mt-2">
-  <nz-table
-    #table
-    [nzData]="data"
-    nzShowPagination
-    nzShowSizeChanger
-    nzSize="small"
-    nzBordered
-    [nzScroll]="
-      filteredData.length > 10 ? { y: (350 | calcScroll | async) + 'px' } : {}
-    "
-  >
-    <thead>
-      <tr>
-        <th nzAlign="center" nzWidth="100px">Название</th>
-        <th nzAlign="center" nzWidth="200px">Описание</th>
-        <th nzAlign="center" nzWidth="90px">Статус</th>
-        <th nzAlign="center" nzWidth="150px">Действие</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of table.data">
-        <td (click)="showTransferfun()" nzAlign="center" nzEllipsis>
-          {{ data.name }}
-        </td>
-        <td (click)="showTransferfun()" nzAlign="center">
-          {{ data.address }}
-        </td>
-        <td nzAlign="center">
-          <nz-switch [(ngModel)]="switchValue1"></nz-switch>
-        </td>
-        <td nzAlign="center">
-          <button (click)="showModal()" nz-button nzType="primary">
-            <i nz-icon nzType="download"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </nz-table>
-
-  <div nz-row [nzGutter]="[20, 0]">
-    <div nz-col nzSpan="12">
-      <div *ngIf="showTransfer; else noCard">
-        <nz-transfer
-          [nzListStyle]="{ width: '100%' }"
-          [nzDataSource]="list"
-          (nzSearchChange)="search($event)"
-          (nzSelectChange)="showTransferfun1()"
-          (nzChange)="change($event)"
-        ></nz-transfer>
-      </div>
-      <div>
-        <ng-template #noCard>
-          <p>no card</p>
-        </ng-template>
-      </div>
+  <div nz-col nzSpan="12">
+    <div *ngIf="showTransfer1; else noCard">
+      <nz-transfer
+        [nzListStyle]="{ width: '100%' }"
+        [nzDataSource]="list"
+        (nzSearchChange)="search($event)"
+        (nzSelectChange)="select($event)"
+        (nzChange)="change($event)"
+      ></nz-transfer>
     </div>
-
-    <div nz-col nzSpan="12">
-      <div *ngIf="showTransfer1; else noCard">
-        <nz-transfer
-          [nzListStyle]="{ width: '100%' }"
-          [nzDataSource]="list"
-          (nzSearchChange)="search($event)"
-          (nzSelectChange)="select($event)"
-          (nzChange)="change($event)"
-        ></nz-transfer>
-      </div>
-      <div>
-        <ng-template #noCard>
-          <p>no card</p>
-        </ng-template>
-      </div>
+    <div>
+      <ng-template #noCard>
+        <p>no card</p>
+      </ng-template>
     </div>
   </div>
 </div>

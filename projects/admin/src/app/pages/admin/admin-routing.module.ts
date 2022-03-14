@@ -9,15 +9,15 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     data: {
-      bc: 'Admin'
+      bc: 'admin',
     },
     children: [
-      {path: '', pathMatch: 'full', redirectTo: 'users'},
+      { path: '', pathMatch: 'full', redirectTo: 'users' },
       {
         path: 'users',
         component: UsersComponent,
         data: {
-          bc: 'Users',
+          bc: 'users',
           meta: {
             title: 'monitorTitle',
             description: 'monitorDescription',
@@ -28,7 +28,7 @@ const routes: Routes = [
         path: 'role',
         component: RoleComponent,
         data: {
-          bc: 'Role',
+          bc: 'role',
           meta: {
             title: 'monitorTitle',
             description: 'monitorDescription',
