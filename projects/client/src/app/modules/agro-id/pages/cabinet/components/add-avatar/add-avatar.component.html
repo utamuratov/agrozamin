@@ -7,7 +7,7 @@ nzTitle="{{null}}"
 >
 
 <ng-template #modalContent>
-  <div nz-row>
+  <div nz-row [nzGutter]="[0, 10]">
     <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24" class="text-center">
       <div nz-row>
         <div nz-col nzXs="0" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
@@ -42,9 +42,17 @@ nzTitle="{{null}}"
       </div>
     </div>
     <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-      
+      <button nz-button nzType="link" class="font-agro-medium">
+        <i nz-icon nzType="upload"></i>
+        Добавить фотографию
+      </button>
     </div>
-    <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24"></div>
+    <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+      <button nz-button nzType="link" nzDanger class="font-agro-medium">
+        <i nz-icon nzType="delete" nzTheme="outline"></i>
+        Удалить фотографию
+      </button>
+    </div>
   </div>
 </ng-template>
 

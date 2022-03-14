@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 
 
@@ -17,8 +17,9 @@ const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
   styleUrls: ['./add-avatar.component.less']
 })
 export class AddAvatarComponent implements OnInit {
+  @Input() isVisible = false;
 
-  isVisible = false;
+  @Output() handleClose = new EventEmitter<boolean>()
   isConfirmLoading = false;
 
   disabled = false;
@@ -30,19 +31,15 @@ export class AddAvatarComponent implements OnInit {
 
   ngOnInit() {}
 
-  showModal(): void {
-    this.isVisible = true;
-  }
-
   handleOk(): void {
     this.isConfirmLoading = true;
     setTimeout(() => {
-      this.isVisible = false;
+      this.handleClose.emit(false)
       this.isConfirmLoading = false;
     }, 1000);
   }
 
   handleCancel(): void {
-    this.isVisible = false;
+    this.handleClose.emit(false)
   }
 }

@@ -19,6 +19,7 @@ export class PersonalComponent implements OnInit {
   userPhoneModalVisible = false;
   userLoginModalVisible = false;
   userPasswordModalVisible = false;
+  userAvatarModalVisible = false;
 
   userInfo: Values = {
     firstName: 'Тимур',
@@ -43,6 +44,8 @@ export class PersonalComponent implements OnInit {
       this.userLoginModalVisible = true;
     } else if (type === 'password') {
       this.userPasswordModalVisible = true;
+    } else if (type === 'avatar') {
+      this.userAvatarModalVisible = true;
     }
   }
 
@@ -64,5 +67,9 @@ export class PersonalComponent implements OnInit {
 
   handleUserPasswordVisible($event: boolean): void {
     this.userPasswordModalVisible = $event;
+  }
+
+  handleUserAvatarVisible($event: boolean): void {
+    this.userAvatarModalVisible = $event;
   }
 }
