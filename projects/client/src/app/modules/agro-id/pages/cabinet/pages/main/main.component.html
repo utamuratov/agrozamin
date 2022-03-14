@@ -49,7 +49,10 @@
       </div>
     </div>
     <div nz-col class="home__card btn" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
-      <button nz-button nzBlock class="add-new-widget" nzType="dashed" nzGhost><i nz-icon nzType="plus" nzTheme="outline"></i></button>
+      <button nz-button nzBlock class="add-new-widget" nzType="dashed" nzGhost><i nz-icon nzType="plus" nzTheme="outline" (click)="addNewWidget()"></i></button>
     </div>
   </div>
 </div>
+
+
+<az-add-widget [isVisible]="isVisible" (isHide)="closeModal($event)"></az-add-widget>

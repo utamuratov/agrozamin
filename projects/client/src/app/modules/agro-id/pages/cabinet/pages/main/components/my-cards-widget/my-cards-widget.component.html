@@ -15,14 +15,14 @@
             <div nz-col nzSpan="4">
               <div nz-row>
                 <div nz-col>
-                  <button  nz-button nzType="text" nzShape="circle"><i nz-icon nzType="more" nzTheme="outline"></i></button>
+                  <button  nz-button nzType="text" nzShape="circle" (click)="showModal()"><i nz-icon nzType="more" nzTheme="outline"></i></button>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div nz-col class="business-widget__btn" nzSpan="24">
-          <button nz-button nzBlock><i nz-icon nzType="plus" nzTheme="outline"></i></button>
+          <button nz-button nzBlock (click)="showModal()"><i nz-icon nzType="plus" nzTheme="outline"></i></button>
         </div>
       </div>
     </nz-card>
@@ -54,14 +54,15 @@
             <div nz-col nzSpan="4">
               <div nz-row>
                 <div nz-col>
-                  <button  nz-button nzType="text" nzShape="circle"><i nz-icon nzType="more" nzTheme="outline"></i></button>
+                  <button  nz-button nzType="text" nzShape="circle" (click)="showModal()"><i nz-icon nzType="more" nzTheme="outline"></i></button>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div nz-col class="business-widget__btn" nzSpan="24">
-          <button nz-button nzBlock><i nz-icon nzType="plus" nzTheme="outline"></i></button>
+          
+          <button nz-button nzBlock (click)="showModal()"><i nz-icon nzType="plus" nzTheme="outline"></i></button>
         </div>
       </div>
       </nz-collapse-panel>
@@ -75,3 +76,5 @@
     </ng-template>
   </div>
 </div>
+
+<az-biznes-cards-modal [isVisibleModal]="openModal" (closeIsVisible)="closeModal($event)"></az-biznes-cards-modal>

@@ -12,6 +12,7 @@ import { BusinessCardConfig, UserCard } from '../../components/business-card-mod
 })
 export class BiznesCardsComponent implements OnInit {
   isVisible = false;
+  openModal = false
   
   userName = 'Махмудов Кайрат';
   validateForm!: FormGroup;
@@ -54,9 +55,12 @@ export class BiznesCardsComponent implements OnInit {
     });
   }
 
-  showModal(data: BusinessCardConfig): void {
-    this.isVisible = true;
-    this.card = data;
+  showModal(): void {
+    this.openModal = true
+  }
+
+  closeModal($event: boolean): void {
+    this.openModal = $event
   }
 
   handleOk(): void {

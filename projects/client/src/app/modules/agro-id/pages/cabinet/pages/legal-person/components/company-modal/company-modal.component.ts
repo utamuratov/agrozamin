@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'az-company-modal',
@@ -13,9 +13,17 @@ export class CompanyModalComponent implements OnInit {
   isConfirmLoading = false;
   validateForm!: FormGroup
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {    
+  }
   
   ngOnInit() {
+    this.validateForm = this.fb.group({
+      companyName: [null, [Validators.required]],
+      bank: [null, [Validators.required]],
+      stir: [null, [Validators.required]],
+      mfo: [null, [Validators.required]],
+      paymentAccount: [null, [Validators.required]]
+    })
   }
 
   showModal(): void {
