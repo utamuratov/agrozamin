@@ -410,7 +410,7 @@
                     </p>
                     <div nz-row>
                       <div nz-col nzXs="0" nzSm="0" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-                        <button nz-button nzType="default" nzShape="round" class="font-agro-medium" style="border-color: #3C4BDC;">Добавить фотографию</button>
+                        <button nz-button nzType="default" nzShape="round" class="font-agro-medium" style="border-color: #3C4BDC;" (click)="showModal('avatar')">Добавить фотографию</button>
                       </div>
                       <div nz-col nzXs="0" nzSm="24" nzMd="0" nzLg="0" nzXl="0" nzXXl="0">
                         <button nz-button nzBlock nzType="default" nzShape="round" nzSize="large" class="font-agro-medium" style="border-color: #3C4BDC; font-size: 12px;">Добавить фотографию</button>
@@ -501,4 +501,4 @@
 <az-user-password-modal [isVisible]="userPasswordModalVisible" (handleClose)="handleUserPasswordVisible($event)"></az-user-password-modal>
 <az-success-changes></az-success-changes>
 
-<az-add-avatar></az-add-avatar>
+<az-add-avatar [isVisible]="userAvatarModalVisible" (handleClose)="handleUserAvatarVisible($event)"></az-add-avatar>
