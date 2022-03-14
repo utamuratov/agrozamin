@@ -3,24 +3,22 @@ import {
   CanActivate,
   UrlTree,
   Router,
+  ActivatedRoute,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { map, Observable } from 'rxjs';
-import { LanguageService } from '../shared/language/language.service';
-import { Constants } from '../config/constants';
 import { Store } from '@ngxs/store';
-import { LanguageState } from '../../lib/shared/store/language/language.state';
 import {
-  DefaultLanguage,
+  LanguageState,
+  LanguageService,
+  Constants,
   CurrentLanguage,
-} from '../../lib/shared/store/language/language.action';
-import { BaseResponse } from '../models/base-response.interface';
+  DefaultLanguage,
+  BaseResponse,
+} from 'ngx-az-core';
 
-@Injectable({
-  providedIn: 'root',
-})
 @Injectable({
   providedIn: 'root',
 })

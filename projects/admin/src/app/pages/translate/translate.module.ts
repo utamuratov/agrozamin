@@ -14,7 +14,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { TransferProjectsComponent } from './components/transfer-projects/transfer-projects.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { TranslationComponent } from './translation/translation.component';
-import { AdminSharedModule } from '../../shared/admin-shared/admin-shared.module';
+import { AdminSharedModule } from '../../shared/admin-shared.module';
 
 @NgModule({
   declarations: [

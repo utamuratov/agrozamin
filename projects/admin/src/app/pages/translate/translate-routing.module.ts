@@ -35,7 +35,7 @@ const routes: Routes = [
         component: TranslationComponent,
         resolve: [SEOResolver],
         data: {
-          bc: 'Seo',
+          bc: 'seo',
           meta: {
             title: 'seoTitle',
             description: 'monitorDescription',
@@ -46,7 +46,7 @@ const routes: Routes = [
         path: 'contents',
         component: ContentsComponent,
         data: {
-          bc: 'Contents',
+          bc: 'contents',
           meta: {
             title: 'monitorTitle',
             description: 'monitorDescription',

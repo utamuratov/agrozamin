@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Constants, LanguageGuard, LocalStorageUtilit } from 'ngx-az-core';
+import { Constants, LanguageGuard } from 'ngx-az-core';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
 
 const routes: Routes = [
@@ -12,11 +12,10 @@ const routes: Routes = [
   {
     path: Constants.AGROZAMIN_PREFIX_ROUTE_PATH,
     component: RootLayoutComponent,
-    canActivate: [LanguageGuard],
     children: [
       {
         path: '',
-        redirectTo: LocalStorageUtilit.get(Constants.CURRENT_LANGUAGE) ?? '',
+        redirectTo: Constants.DEFAULT_LANGUAGE_CODE,
         pathMatch: 'full',
       },
       {
@@ -25,11 +24,13 @@ const routes: Routes = [
           import('./pages/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
+        canActivate: [LanguageGuard],
       },
       {
         path: ':language/sign-in',
         loadChildren: () =>
           import('./pages/sign-in/sign-in.module').then((m) => m.SignInModule),
+        canActivate: [LanguageGuard],
       },
     ],
   },
