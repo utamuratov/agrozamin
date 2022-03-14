@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -27,6 +28,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
      * NGX-AZ-CORE
      */
     LanguageModule,
+    TranslateModule,
 
     
     NzAvatarModule,

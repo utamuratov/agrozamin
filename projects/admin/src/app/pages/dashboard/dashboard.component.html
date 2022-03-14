@@ -19,7 +19,7 @@
       nzMode="inline"
       [nzInlineCollapsed]="isCollapsed"
     >
-      <li nz-submenu nzOpen nzTitle="Translate" nzIcon="dashboard">
+      <li nz-submenu nzOpen [nzTitle]="'Translate' | translate" nzIcon="dashboard">
         <ul>
           <li
             [routerLink]="
@@ -29,37 +29,37 @@
             nz-menu-item
             nzMatchRouter
           >
-            <a>Interface</a>
+            <a>{{'Interface' | translate}}</a>
           </li>
           <li
             [routerLink]="'./translate/' + TranslationType[TranslationType.seo]"
             nz-menu-item
             nzMatchRouter
           >
-            <a>SEO</a>
+            <a>{{'Seo' | translate}}</a>
           </li>
           <li routerLink="./translate/contents" nz-menu-item nzMatchRouter>
-            <a>Contents</a>
+            <a>{{'Contents' | translate}}</a>
           </li>
         </ul>
       </li>
       <li routerLink="category" nz-menu-item nzMatchRouter>
         <i nz-icon nzType="profile" nzTheme="outline"></i>
-        <span>Kategory</span>
+        <span>{{'category' | translate}}</span>
       </li>
 
       <li routerLink="user" nz-menu-item nzMatchRouter>
         <i nz-icon nzType="user"></i>
-        <span>Users</span>
+        <span>{{'users' | translate}}</span>
       </li>
-
-      <li nz-submenu nzOpen nzTitle="Admins" nzIcon="form">
+<!-- saca -->
+      <li nz-submenu nzOpen [nzTitle]="'Admin' | translate" nzIcon="form">
         <ul>
           <li routerLink="./admin/users" nz-menu-item nzMatchRouter>
-            <span>Users</span>
+            <span>{{'Users' | translate}}</span>
           </li>
           <li routerLink="./admin/role" nz-menu-item nzMatchRouter>
-            <span>Roles</span>
+            <span>{{'Role' | translate}}</span>
           </li>
         </ul>
       </li>
