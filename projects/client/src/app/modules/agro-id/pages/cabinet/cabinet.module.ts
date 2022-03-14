@@ -55,6 +55,10 @@ import { MyCardsWidgetComponent } from './pages/main/components/my-cards-widget/
 import { MyCompaniesWidgetComponent } from './pages/main/components/my-companies-widget/my-companies-widget.component';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { CompanyModalComponent } from './pages/legal-person/components/company-modal/company-modal.component';
+import { BiznesCardsModalComponent } from './pages/biznes-cards/components/biznes-cards-modal/biznes-cards-modal.component';
+import { AddWidgetComponent } from './pages/main/components/add-widget/add-widget.component';
+import { AddAvatarComponent } from './components/add-avatar/add-avatar.component';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
 
 @NgModule({
   imports: [
@@ -94,7 +98,8 @@ import { CompanyModalComponent } from './pages/legal-person/components/company-m
     NzCheckboxModule,
     NzCollapseModule,
     NzSwitchModule,
-    FormsModule
+    FormsModule,
+    NzSliderModule,
   ],
   declarations: [
     CabinetComponent,
@@ -121,7 +126,10 @@ import { CompanyModalComponent } from './pages/legal-person/components/company-m
     SettingsWidgetComponent,
     MyCardsWidgetComponent,
     MyCompaniesWidgetComponent,
-    CompanyModalComponent
+    CompanyModalComponent,
+    BiznesCardsModalComponent,
+    AddWidgetComponent,
+    AddAvatarComponent
   ],
 })
 export class CabinetModule {}

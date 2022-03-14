@@ -32,16 +32,19 @@
                   <p nz-typography class="m-0">{{user.mail}}</p>
                   <p nz-typography class="m-0">{{user.phone}}</p>
                 </div>
-                <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4" nzXXl="4"><button nz-button nzType="text" nzShape="circle"><i nz-icon nzType="more" nzTheme="outline"></i></button></div>
+                <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4" nzXXl="4"><button nz-button nzType="text" nzShape="circle" (click)="showModal()"><i nz-icon nzType="more" nzTheme="outline"></i></button></div>
               </div>
             </nz-card>
           </div>
 
           <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12" nzXXl="8">
-              <button nz-button nzBlock  class="legal__add-card" ><i nz-icon nzType="plus-circle" nzTheme="outline"></i></button>
+              <button nz-button nzBlock  class="legal__add-card" (click)="showModal()"><i nz-icon nzType="plus-circle" nzTheme="outline"></i></button>
           </div>          
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<az-biznes-cards-modal [isVisibleModal]="openModal" (closeIsVisible)="closeModal($event)"></az-biznes-cards-modal>
