@@ -9,9 +9,17 @@ export class HeaderComponent implements OnInit {
   @Input()
   fixed!: boolean;
   currency = false
+  visible = false;
   constructor() { }
 
   ngOnInit() {
+  } 
+
+  clickMe(): void {
+    this.visible = false;
   }
 
+  change(value: boolean): void {
+    console.log(value);
+  }
 }
