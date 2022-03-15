@@ -59,6 +59,8 @@ import { BiznesCardsModalComponent } from './pages/biznes-cards/components/bizne
 import { AddWidgetComponent } from './pages/main/components/add-widget/add-widget.component';
 import { AddAvatarComponent } from './components/add-avatar/add-avatar.component';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 @NgModule({
   imports: [
@@ -100,6 +102,8 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
     NzSwitchModule,
     FormsModule,
     NzSliderModule,
+    NzPopoverModule,
+    NzToolTipModule
   ],
   declarations: [
     CabinetComponent,

@@ -6,7 +6,7 @@
         <div nz-row [nzGutter]="[20, 20]">
           <div *ngFor="let company of companies" nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12" nzXXl="8">
             <nz-card  nzHoverable class="legal__card">
-              <div nz-row nzAlign="middle" [nzGutter]="[15, 10]" nzJustify="center">
+              <div nz-row nzAlign="bottom" [nzGutter]="[15, 10]" nzJustify="center">
                 <div nz-col nzXs="12" nzSm="5" nzMd="5" nzLg="5" nzXl="5" nzXXl="5" class="text-center"><nz-avatar [nzSize]="64" nzIcon="camera"></nz-avatar></div>
                 <div nz-col nzXs="20" nzSm="15" nzMd="15" nzLg="15" nzXl="15" nzXXl="15">
                   <p nz-typography class="m-0">{{company.name}}</p>
