@@ -4,21 +4,40 @@
     <div nz-row class="legal__block">
       <div nz-col nzSpan="24">
         <div nz-row [nzGutter]="[20, 20]">
+          <!-- ======================= -->
           <div *ngFor="let company of companies" nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12" nzXXl="8">
             <nz-card  nzHoverable class="legal__card">
               <div nz-row nzAlign="bottom" [nzGutter]="[15, 10]" nzJustify="center">
-                <div nz-col nzXs="12" nzSm="5" nzMd="5" nzLg="5" nzXl="5" nzXXl="5" class="text-center"><nz-avatar [nzSize]="64" nzIcon="camera"></nz-avatar></div>
+                <div nz-col nzXs="12" nzSm="5" nzMd="5" nzLg="5" nzXl="5" nzXXl="5" class="text-center"><nz-avatar [nzSize]="64" [nzIcon]="company.avatar ? '' : 'camera'" [nzSrc]="company.avatar ? company.avatar : ''" ></nz-avatar></div>
                 <div nz-col nzXs="20" nzSm="15" nzMd="15" nzLg="15" nzXl="15" nzXXl="15">
                   <p nz-typography class="m-0">{{company.name}}</p>
                   <p nz-typography class="m-0">{{company.stir}}</p>
                   <p nz-typography class="m-0">{{company.city}}</p>
                 </div>
-                <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4" nzXXl="4"><button nz-button nzType="text" nzShape="circle" (click)="showModal()"><i nz-icon nzType="more" nzTheme="outline"></i></button></div>
+                <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4" nzXXl="4">
+                  <button nz-button nzType="text" nzShape="circle"  
+                  nz-popover
+                  nzPopoverTitle="{{null}}"
+                  nzPopoverPlacement="bottomLeft"
+                  [(nzPopoverVisible)]="company.visibleDesktop"
+                  (nzPopoverVisibleChange)="change($event, company)"
+                  nzPopoverTrigger="click"
+                  [nzPopoverContent]="contentTemplate"><i nz-icon nzType="more" nzTheme="outline"></i></button></div>
               </div>
             </nz-card>
+
+            <ng-template #contentTemplate>
+              <div style="width: 132px;">
+                <button nz-button nzBlock nzType="link" class="text-start" (click)="modal.isVisibleModal = true; modal.info = activeCompany; modal.onInit()"><i nz-icon nzType="edit" nzTheme="outline"></i>Изменить</button>
+                <button nz-button nzBlock nzType="link" nzDanger class="text-start" (click)="deleteCard(company.id)"><i nz-icon nzType="delete" nzTheme="outline"></i>Удалить</button>
+            </div>
+
+            </ng-template>
+
           </div> 
+          <!-- ========================== -->
           <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12" nzXXl="8">
-              <button nz-button nzBlock  class="legal__add-card" (click)="showModal()" ><i nz-icon nzType="plus-circle" nzTheme="outline"></i></button>
+              <button nz-button nzBlock  class="legal__add-card" (click)="modal.isVisibleModal = true; modal.info = activeCompany; modal.onInit()" ><i nz-icon nzType="plus-circle" nzTheme="outline"></i></button>
           </div>          
         </div>
       </div>
@@ -26,5 +45,5 @@
   </div>
 </div>
 
+<az-company-modal #modal (closeIsVisible)="handleCancel($event)"></az-company-modal>
 
-<az-company-modal [isVisibleModal]="isVisible" (closeIsVisible)="handleCancel($event)"></az-company-modal>

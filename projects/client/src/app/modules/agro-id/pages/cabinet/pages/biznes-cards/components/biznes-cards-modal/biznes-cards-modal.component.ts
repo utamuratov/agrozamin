@@ -1,26 +1,29 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserInfo } from '../../biznes-cards.component';
 
 @Component({
   selector: 'az-biznes-cards-modal',
   templateUrl: './biznes-cards-modal.component.html',
   styleUrls: ['./biznes-cards-modal.component.less'],
 })
-export class BiznesCardsModalComponent implements OnInit {
-  @Input() isVisibleModal = true;
-
+export class BiznesCardsModalComponent {
+  isVisibleModal = false;
+  user!: UserInfo | null;
   @Output() closeIsVisible = new EventEmitter<boolean>();
   isConfirmLoading = false;
   validateForm!: FormGroup;
+  avatar: any
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
+  onInit() {
+    this.avatar = this.user?.avatar;
     this.validateForm = this.fb.group({
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
-      phone: [null, [Validators.required]],
-      mail: [null, [Validators.required]],
+      firstName: [this.user?.firstName, [Validators.required]],
+      lastName: [this.user?.lastName, [Validators.required]],
+      phone: [this.user?.phone, [Validators.required]],
+      mail: [this.user?.mail, [Validators.required]],
     })
   }
 
