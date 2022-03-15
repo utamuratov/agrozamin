@@ -1,11 +1,7 @@
 <!-- HEADER -->
 <az-header-with-divider-advanced
   [config]="{
-    title:
-      ('accessControl' | translate) +
-      (searchInputConfig.filteredData.length === 0
-        ? ''
-        : ' (' + searchInputConfig.filteredData.length + ')'),
+    title: 'accessControl' | translate,
     searchInputAdvancedConfig: searchInputConfig
   }"
   (clickedAddEditButton)="addEdit(modal)"
@@ -19,11 +15,7 @@
   nzSize="small"
   nzBordered
   [nzWidthConfig]="['100px', '200px', '', '', '120px']"
-  [nzScroll]="
-    searchInputConfig.filteredData.length > 10
-      ? { y: (350 | calcScroll | async) + 'px' }
-      : {}
-  "
+  [nzScroll]="(searchInputConfig.filteredData.length | makeNzScroll | async)!"
 >
   <thead>
     <tr>

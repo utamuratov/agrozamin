@@ -1,11 +1,7 @@
 <!-- HEADER -->
 <az-header-with-divider-advanced
   [config]="{
-    title:
-      ('roles' | translate) +
-      (searchInputConfig.filteredData.length === 0
-        ? ''
-        : ' (' + searchInputConfig.filteredData.length + ')'),
+    title: 'roles' | translate,
     searchInputAdvancedConfig: searchInputConfig
   }"
   (changedFilteredData)="search($event)"
@@ -20,11 +16,7 @@
   nzShowSizeChanger
   nzSize="small"
   nzBordered
-  [nzScroll]="
-    searchInputConfig.filteredData.length > 10
-      ? { y: (350 | calcScroll | async) + 'px' }
-      : {}
-  "
+  [nzScroll]="(searchInputConfig.filteredData.length | makeNzScroll | async)!"
 >
   <thead>
     <tr>

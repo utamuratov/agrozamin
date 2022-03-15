@@ -1,5 +1,10 @@
 <az-header-with-divider-basic
-  [title]="config.title"
+  [title]="
+    config.title +
+    (config.searchInputAdvancedConfig.filteredData.length === 0
+      ? ''
+      : ' (' + config.searchInputAdvancedConfig.filteredData.length + ')')
+  "
   (clickedAddEditButton)="addEdit()"
 >
   <az-search-input-advanced
