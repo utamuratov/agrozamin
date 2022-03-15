@@ -10,6 +10,11 @@ import { Translation } from '../models/translation.interface';
 export class TranslateApiService {
   /**
    *
+   */
+  readonly url = 'admin/translate';
+
+  /**
+   *
    * @param $baseService
    */
   constructor(private $baseService: BaseService) {}
@@ -18,23 +23,23 @@ export class TranslateApiService {
     translationType: TranslationType
   ): Observable<BaseResponse<Translation[]>> {
     const params = new HttpParams().append('type', translationType);
-    return this.$baseService.get<Translation[]>('admin/translate', params);
+    return this.$baseService.get<Translation[]>(this.url, params);
   }
 
   addTranslation(
     model: AddTranslationRequest
   ): Observable<BaseResponse<Translation>> {
-    return this.$baseService.post<Translation>('admin/translate', model);
+    return this.$baseService.post<Translation>(this.url, model);
   }
 
   editTranslation(
     id: number,
     model: AddTranslationRequest
   ): Observable<BaseResponse<Translation>> {
-    return this.$baseService.put<Translation>('admin/translate/' + id, model);
+    return this.$baseService.put<Translation>(`${this.url}/${id}`, model);
   }
 
   deleteTranslation(id: number): Observable<BaseResponse<Translation>> {
-    return this.$baseService.delete<Translation>('admin/translate/' + id);
+    return this.$baseService.delete<Translation>(`${this.url}/${id}`);
   }
 }

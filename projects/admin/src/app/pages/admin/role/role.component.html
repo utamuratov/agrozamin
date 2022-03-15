@@ -4,7 +4,11 @@
     title:
       ('roles' | translate) +
       (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')'),
-    searchInputAdvancedConfig: { data: data, keys: ['key', 'description'] }
+    searchInputAdvancedConfig: {
+      data: data,
+      keys: ['key', 'description'],
+      searchText: ''
+    }
   }"
   (changedFilteredData)="search($event)"
   (clickedAddEditButton)="addEdit(modal)"

@@ -114,7 +114,7 @@ export class TranslationComponent implements OnInit {
       .subscribe((w) => {
         if (w.success) {
           this.data = w.data;
-          this.search(this.searchText);
+          this.search(this.data);
         }
       });
   }
@@ -188,23 +188,10 @@ export class TranslationComponent implements OnInit {
 
   /**
    *
-   * Search by key and translations
    */
-  search(searchText: string) {
-    if (searchText.length === 0) {
-      this.filteredData = this.data;
-      return;
-    }
-
-    if (searchText.length < 3) {
-      return;
-    }
-
-    this.filteredData = this.data.filter(
-      (w) =>
-        w.key.includes(searchText) ||
-        Object.keys(w.text).find((t) => w.text[t].includes(searchText))
-    );
+  search(filteredData: Translation[]): void {
+    this.filteredData = filteredData;
+    console.log(filteredData);
   }
 
   /**

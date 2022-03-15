@@ -1,13 +1,19 @@
 <!-- HEADER -->
-<az-header-with-divider-basic
-  [title]="
-    (TranslationType[translationType] | translate) +
-    (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')')
-  "
+<az-header-with-divider-advanced
+  [config]="{
+    title:
+      (TranslationType[translationType] | translate) +
+      (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')'),
+    searchInputAdvancedConfig: {
+      data: data,
+      keys: ['key', 'text'],
+      searchText: ''
+    }
+  }"
+  (changedFilteredData)="search($event)"
   (clickedAddEditButton)="addEdit(modal)"
 >
-  <az-search-input (changedSearchText)="search($event)"></az-search-input>
-</az-header-with-divider-basic>
+</az-header-with-divider-advanced>
 
 <!-- BODY -->
 <nz-table

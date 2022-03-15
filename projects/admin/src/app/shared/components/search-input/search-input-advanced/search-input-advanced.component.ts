@@ -11,6 +11,11 @@ export interface SearchInputAdvancedConfig {
    * search by these keys
    */
   keys: string[];
+
+  /**
+   *
+   */
+  searchText: string;
 }
 
 @Component({
@@ -47,7 +52,14 @@ export class SearchInputAdvancedComponent {
 
     this.filteredData.emit(
       this.config.data.filter((item) =>
-        this.config.keys.find((key) => item[key].includes(searchText))
+        this.config.keys.find((key) => {
+          if (typeof item[key] === 'object') {
+            return Object.keys(item[key]).find((subKey) =>
+              item[key][subKey].includes(searchText)
+            );
+          }
+          return item[key].includes(searchText);
+        })
       )
     );
   }

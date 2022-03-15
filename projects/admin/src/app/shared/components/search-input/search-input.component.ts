@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'az-search-input',
@@ -15,6 +15,7 @@ export class SearchInputComponent {
   /**
    *
    */
+  @Input()
   searchText = '';
 
   /**

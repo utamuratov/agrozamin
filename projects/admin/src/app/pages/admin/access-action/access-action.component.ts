@@ -1,11 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
+import { Observable, takeUntil } from 'rxjs';
+import { AccessActionService } from './access-action.service';
+import { AddEditAccessActionComponent } from './add-edit-access-action/add-edit-access-action.component';
 import { AccessActionResponse } from './models/access-action.response';
 
 @Component({
-  selector: 'az-access-action',
   templateUrl: './access-action.component.html',
   styleUrls: ['./access-action.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccessActionComponent implements OnInit {
   /**
@@ -18,28 +27,60 @@ export class AccessActionComponent implements OnInit {
    */
   data: AccessActionResponse[] = [];
 
-  constructor() {}
+  /**
+   *
+   */
+  @Select(LanguageState.languages)
+  language$!: Observable<Language[]>;
+
+  constructor(
+    private $accessAction: AccessActionService,
+    private destroy$: NgDestroy,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
   }
 
-  private loadData() {
-    for (let index = 0; index < 10; index++) {
-      this.data.push({
-        id: index + 1,
-        key: 'key' + index,
-        description: 'desc' + index,
+  loadData() {
+    this.$accessAction
+      .getAll()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((result) => {
+        console.log(result);
+
+        if (result.success) {
+          this.data = result.data;
+          // search again
+          this.search(this.data);
+        }
       });
-    }
-    this.filteredData = this.data;
   }
 
-  search(ret: any): void {
-    this.filteredData = ret;
+  search(filteredData: AccessActionResponse[]): void {
+    this.filteredData = filteredData;
+    console.log(filteredData);
+
+    this.cd.markForCheck();
   }
 
-  addEdit(modal: any, data?: any) {}
+  addEdit(
+    modal: AddEditAccessActionComponent,
+    editingData: AccessActionResponse | null = null
+  ) {
+    modal.onInit(editingData);
+    modal.isVisible = true;
+  }
 
-  delete(id: number) {}
+  delete(id: number) {
+    this.$accessAction
+      .delete(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        if (response.success) {
+          this.loadData();
+        }
+      });
+  }
 }

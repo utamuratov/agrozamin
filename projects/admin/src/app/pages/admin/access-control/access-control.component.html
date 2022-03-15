@@ -1,9 +1,8 @@
 <!-- HEADER -->
 <az-header-with-divider-advanced
-  *ngIf="data"
   [config]="{
     title:
-      ('accessAction' | translate) +
+      ('accessControl' | translate) +
       (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')'),
     searchInputAdvancedConfig: {
       data: data,
@@ -22,27 +21,18 @@
   nzShowSizeChanger
   nzSize="small"
   nzBordered
+  [nzWidthConfig]="['100px', '200px', '', '', '120px']"
   [nzScroll]="
     filteredData.length > 10 ? { y: (350 | calcScroll | async) + 'px' } : {}
   "
 >
   <thead>
     <tr>
-      <th rowspan="2" width="100px" nzAlign="center">
-        {{ "id" | translate }}
-      </th>
-      <th rowspan="2" width="200px" nzAlign="center">
-        {{ "key" | translate }}
-      </th>
-      <th [colspan]="(language$ | async)!.length" nzAlign="center">
-        {{ "description" | translate }}
-      </th>
-      <th nzRight rowspan="2" width="120px"></th>
-    </tr>
-    <tr>
-      <th *ngFor="let language of language$ | async" nzAlign="center">
-        {{ language.name }}
-      </th>
+      <th nzAlign="center">{{ "id" | translate }}</th>
+      <th nzAlign="center">{{ "key" | translate }}</th>
+      <th nzAlign="center">{{ "description" | translate }}</th>
+      <th nzAlign="center">{{ "url" | translate }}</th>
+      <th nzRight></th>
     </tr>
   </thead>
   <tbody>
@@ -53,8 +43,11 @@
       <td nzAlign="center">
         {{ data.key }}
       </td>
-      <td nzAlign="left" *ngFor="let language of language$ | async">
-        {{ data.description[language.code] }}
+      <td nzAlign="center">
+        {{ data.description }}
+      </td>
+      <td nzAlign="center">
+        {{ data.url }}
       </td>
       <td nzRight nzAlign="center">
         <nz-button-group>
@@ -74,7 +67,4 @@
   </tbody>
 </nz-table>
 
-<az-add-edit-access-action
-  #modal
-  (modified)="loadData()"
-></az-add-edit-access-action>
+<div #modal></div>

@@ -17,6 +17,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
 import { AdminSharedModule } from '../../shared/admin-shared.module';
 import { AccessActionComponent } from './access-action/access-action.component';
+import { AccessControlComponent } from './access-control/access-control.component';
+import { AddEditAccessActionComponent } from './access-action/add-edit-access-action/add-edit-access-action.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { AccessActionComponent } from './access-action/access-action.component';
     UsersComponent,
     AddEditUserComponent,
     AccessActionComponent,
+    AccessControlComponent,
+    AddEditAccessActionComponent,
   ],
   imports: [
     AdminRoutingModule,

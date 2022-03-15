@@ -115,7 +115,7 @@ export class AddTranslationComponent {
     this.form = this.fb.group({
       key: [model?.key, Validators.required],
     });
-    this.addLanguageControls(this.editingData);
+    this.addLanguageControls(model);
   }
 
   /**
