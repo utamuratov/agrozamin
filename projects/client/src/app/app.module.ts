@@ -52,7 +52,7 @@ registerLocaleData(ru);
      * NPM MODULES
      */
     NgxMaskModule.forRoot(),
-    HammerModule,
+    // HammerModule,
 
     /* NG-ZORRO-MODULES */
     NzButtonModule,
@@ -61,11 +61,11 @@ registerLocaleData(ru);
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU },
-    {
-      provide: HAMMER_GESTURE_CONFIG,
-      useClass: MyHammerConfig,
-    },
     CookieService,
+    // {
+    //   provide: HAMMER_GESTURE_CONFIG,
+    //   useClass: MyHammerConfig,
+    // },
   ],
   bootstrap: [AppComponent],
 })

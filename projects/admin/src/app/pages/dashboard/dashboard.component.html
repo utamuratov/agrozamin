@@ -19,7 +19,12 @@
       nzMode="inline"
       [nzInlineCollapsed]="isCollapsed"
     >
-      <li nz-submenu nzOpen [nzTitle]="'Translate' | translate" nzIcon="dashboard">
+      <li
+        nz-submenu
+        nzOpen
+        [nzTitle]="'translate' | translate"
+        nzIcon="dashboard"
+      >
         <ul>
           <li
             [routerLink]="
@@ -29,37 +34,40 @@
             nz-menu-item
             nzMatchRouter
           >
-            <a>{{'Interface' | translate}}</a>
+            <a>{{ "interface" | translate }}</a>
           </li>
           <li
             [routerLink]="'./translate/' + TranslationType[TranslationType.seo]"
             nz-menu-item
             nzMatchRouter
           >
-            <a>{{'Seo' | translate}}</a>
+            <a>{{ "seo" | translate }}</a>
           </li>
           <li routerLink="./translate/contents" nz-menu-item nzMatchRouter>
-            <a>{{'Contents' | translate}}</a>
+            <a>{{ "contents" | translate }}</a>
           </li>
         </ul>
       </li>
       <li routerLink="category" nz-menu-item nzMatchRouter>
         <i nz-icon nzType="profile" nzTheme="outline"></i>
-        <span>{{'category' | translate}}</span>
+        <span>{{ "category" | translate }}</span>
       </li>
 
       <li routerLink="user" nz-menu-item nzMatchRouter>
         <i nz-icon nzType="user"></i>
-        <span>{{'users' | translate}}</span>
+        <span>{{ "users" | translate }}</span>
       </li>
-<!-- saca -->
-      <li nz-submenu nzOpen [nzTitle]="'Admin' | translate" nzIcon="form">
+      <!-- saca -->
+      <li nz-submenu nzOpen [nzTitle]="'admin' | translate" nzIcon="form">
         <ul>
           <li routerLink="./admin/users" nz-menu-item nzMatchRouter>
-            <span>{{'Users' | translate}}</span>
+            <span>{{ "users" | translate }}</span>
           </li>
           <li routerLink="./admin/role" nz-menu-item nzMatchRouter>
-            <span>{{'Role' | translate}}</span>
+            <span>{{ "roles" | translate }}</span>
+          </li>
+          <li routerLink="./admin/access-action" nz-menu-item nzMatchRouter>
+            <span>{{ "accessAction" | translate }}</span>
           </li>
         </ul>
       </li>

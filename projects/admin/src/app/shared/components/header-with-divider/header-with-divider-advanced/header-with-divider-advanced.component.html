@@ -1,6 +1,9 @@
 <az-header-with-divider-basic
-  [title]="title"
+  [title]="config.title"
   (clickedAddEditButton)="addEdit()"
 >
-  <az-search-input (changedSearchText)="search($event)"></az-search-input>
+  <az-search-input-advanced
+    [config]="config.searchInputAdvancedConfig"
+    (filteredData)="filterData($event)"
+  ></az-search-input-advanced>
 </az-header-with-divider-basic>

@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '',
     component: TranslateComponent,
     data: {
-      bc: 'Translate',
+      bc: 'translate',
     },
     children: [
       {
@@ -23,7 +23,7 @@ const routes: Routes = [
         path: TranslationType[TranslationType.interface],
         component: TranslationComponent,
         data: {
-          bc: 'Interface',
+          bc: 'interface',
           meta: {
             title: 'monitorTitle',
             description: 'monitorDescription',

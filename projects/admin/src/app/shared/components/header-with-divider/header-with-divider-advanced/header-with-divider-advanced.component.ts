@@ -1,4 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { SearchInputAdvancedConfig } from '../../search-input/search-input-advanced/search-input-advanced.component';
+
+export interface HeaderWithDividerAdvancedConfig {
+  title: string;
+  searchInputAdvancedConfig: SearchInputAdvancedConfig;
+}
 
 @Component({
   selector: 'az-header-with-divider-advanced',
@@ -9,13 +16,13 @@ export class HeaderWithDividerAdvancedComponent {
    *
    */
   @Input()
-  title!: string;
+  config!: HeaderWithDividerAdvancedConfig;
 
   /**
    *
    */
   @Output()
-  changedSearchText = new EventEmitter<string>();
+  changedFilteredData = new EventEmitter<NzSafeAny[]>();
 
   /**
    *
@@ -26,8 +33,8 @@ export class HeaderWithDividerAdvancedComponent {
   /**
    *
    */
-  search(searchText: string) {
-    this.changedSearchText.emit(searchText);
+  filterData(filteredData: NzSafeAny[]) {
+    this.changedFilteredData.emit(filteredData);
   }
 
   /**

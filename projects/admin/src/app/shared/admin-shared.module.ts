@@ -8,6 +8,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { HeaderWithDividerAdvancedComponent } from './components/header-with-divider/header-with-divider-advanced/header-with-divider-advanced.component';
 import { HeaderWithDividerBasicComponent } from './components/header-with-divider/header-with-divider-basic/header-with-divider-basic.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
+import { SearchInputAdvancedComponent } from './components/search-input/search-input-advanced/search-input-advanced.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { SearchInputComponent } from './components/search-input/search-input.com
     HeaderWithDividerAdvancedComponent,
     HeaderWithDividerBasicComponent,
     SearchInputComponent,
+    SearchInputAdvancedComponent,
   ],
   imports: [
     NzFormsSharedModule,
@@ -38,6 +40,7 @@ import { SearchInputComponent } from './components/search-input/search-input.com
     HeaderWithDividerAdvancedComponent,
     HeaderWithDividerBasicComponent,
     SearchInputComponent,
+    SearchInputAdvancedComponent,
   ],
 })
 export class AdminSharedModule {}

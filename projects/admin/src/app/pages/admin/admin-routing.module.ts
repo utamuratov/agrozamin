@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { RoleComponent } from './role/role.component';
+import { AccessActionComponent } from './access-action/access-action.component';
 
 const routes: Routes = [
   {
@@ -18,10 +19,6 @@ const routes: Routes = [
         component: UsersComponent,
         data: {
           bc: 'users',
-          meta: {
-            title: 'monitorTitle',
-            description: 'monitorDescription',
-          },
         },
       },
       {
@@ -29,10 +26,13 @@ const routes: Routes = [
         component: RoleComponent,
         data: {
           bc: 'role',
-          meta: {
-            title: 'monitorTitle',
-            description: 'monitorDescription',
-          },
+        },
+      },
+      {
+        path: 'access-action',
+        component: AccessActionComponent,
+        data: {
+          bc: 'accessAction',
         },
       },
     ],

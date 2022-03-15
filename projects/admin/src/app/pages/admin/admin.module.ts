@@ -16,6 +16,7 @@ import { NzFormsSharedModule, ReactiveFormsSharedModule } from 'ngx-az-core';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
 import { AdminSharedModule } from '../../shared/admin-shared.module';
+import { AccessActionComponent } from './access-action/access-action.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AdminSharedModule } from '../../shared/admin-shared.module';
     RoleComponent,
     UsersComponent,
     AddEditUserComponent,
+    AccessActionComponent,
   ],
   imports: [
     AdminRoutingModule,

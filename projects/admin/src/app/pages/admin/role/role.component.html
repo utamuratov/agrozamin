@@ -1,13 +1,16 @@
 <!-- HEADER -->
 <az-header-with-divider-advanced
-  [title]="
-    ('roles' | translate) +
-    (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')')
-  "
-  (changedSearchText)="search($event)"
+  [config]="{
+    title:
+      ('roles' | translate) +
+      (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')'),
+    searchInputAdvancedConfig: { data: data, keys: ['key', 'description'] }
+  }"
+  (changedFilteredData)="search($event)"
   (clickedAddEditButton)="addEdit(modal)"
 ></az-header-with-divider-advanced>
 
+<!-- BODY -->
 <nz-table
   #table
   [nzData]="data"

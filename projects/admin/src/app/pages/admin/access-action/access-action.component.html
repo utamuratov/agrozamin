@@ -1,0 +1,62 @@
+<!-- HEADER -->
+<az-header-with-divider-advanced
+  [config]="{
+    title:
+      ('accessAction' | translate) +
+      (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')'),
+    searchInputAdvancedConfig: { data: data, keys: ['key', 'description'] }
+  }"
+  (changedFilteredData)="search($event)"
+  (clickedAddEditButton)="addEdit(modal)"
+></az-header-with-divider-advanced>
+
+<nz-table
+  #table
+  [nzData]="filteredData"
+  nzShowPagination
+  nzShowSizeChanger
+  nzSize="small"
+  nzBordered
+  [nzWidthConfig]="['100px', '200px', '', '120px']"
+  [nzScroll]="
+    filteredData.length > 10 ? { y: (350 | calcScroll | async) + 'px' } : {}
+  "
+>
+  <thead>
+    <tr>
+      <th nzAlign="center">{{ "id" | translate }}</th>
+      <th nzAlign="center">{{ "key" | translate }}</th>
+      <th nzAlign="center">{{ "description" | translate }}</th>
+      <th nzRight></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data">
+      <td nzAlign="center">
+        {{ data.id }}
+      </td>
+      <td nzAlign="center">
+        {{ data.key }}
+      </td>
+      <td nzAlign="center">
+        {{ data.description }}
+      </td>
+      <td nzRight nzAlign="center">
+        <nz-button-group>
+          <button (click)="delete(data.id)" nz-button nzType="default">
+            <span>
+              <i nz-icon nzType="delete" nzTheme="twotone"></i>
+            </span>
+          </button>
+          <button (click)="addEdit(modal, data)" nz-button nzType="default">
+            <span>
+              <i nz-icon nzType="edit" nzTheme="twotone"></i>
+            </span>
+          </button>
+        </nz-button-group>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<div #modal></div>

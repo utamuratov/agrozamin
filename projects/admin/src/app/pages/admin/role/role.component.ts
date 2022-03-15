@@ -18,14 +18,13 @@ export class RoleComponent implements OnInit {
    *
    */
   filteredData: DataItem[] = [];
-  searchText = '';
 
   list: TransferItem[] = [];
 
   showTransfer = false;
   showTransfer1 = false;
 
-  data: readonly DataItem[] = [];
+  data: DataItem[] = [];
 
   switchValue = false;
   switchValue1 = false;
