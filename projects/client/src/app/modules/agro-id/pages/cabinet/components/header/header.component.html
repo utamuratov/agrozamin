@@ -94,7 +94,7 @@
       </div>
       <div nz-col nzXs="5" nzSm="3" nzMd="3" nzLg="2" nzXl="2" nzXXl="1">
         <nz-badge [nzCount]="5" [nzOffset]="[-5, 30]">
-          <button nz-button nzShape="circle"><i
+          <button nz-button nzShape="circle" nz-popover [nzPopoverContent]="notificationTemplate" nzPopoverPlacement="bottom"><i
             nz-icon
             nzType="bell"
             nzTheme="outline"
@@ -104,7 +104,7 @@
         
       </div>
       <div nz-col nzXs="4" nzSm="3" nzMd="3" nzLg="2" nzXl="2" nzXXl="1">
-        <button nz-button nzShape="circle" style="vertical-align: middle;"><i
+        <button nz-button nzShape="circle" style="vertical-align: middle;" nz-popover [nzPopoverContent]="servicesTemplate" nzPopoverPlacement="bottom"><i
           nz-icon
         ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M8 6C8 6.53043 7.78929 7.03914 7.41421 7.41421C7.03914 7.78929 6.53043 8 6 8C5.46957 8 4.96086 7.78929 4.58579 7.41421C4.21071 7.03914 4 6.53043 4 6C4 5.46957 4.21071 4.96086 4.58579 4.58579C4.96086 4.21071 5.46957 4 6 4C6.53043 4 7.03914 4.21071 7.41421 4.58579C7.78929 4.96086 8 5.46957 8 6Z" fill="black"/>
@@ -123,3 +123,76 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #notificationTemplate class="cabinet-notification">
+  <div class="notification-popover" nz-row>
+    <!-- Messages -->
+    <div nz-col nzSpan="24">
+      <div nz-row nzAlign="middle">
+        <div nz-col nzSpan="6" class="text-center">
+          <nz-avatar nzSize="large" nzIcon="user" nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+        </div>
+        <div nz-col nzSpan="18">
+          <p nz-typography class="m-0"><strong>Тимур Мун</strong> написал вам сообщение</p>
+          <span nz-typography nzType="secondary">1 день назад</span>
+        </div>
+      </div>
+      <nz-divider style="margin: 10px 0;"></nz-divider>
+    </div>
+    <!-- Info -->
+    <div nz-col nzSpan="24">
+      <div nz-row nzAlign="middle">
+        <div nz-col nzSpan="6" class="text-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24ZM11.5 6C10.6716 6 10 6.67157 10 7.5C10 8.32843 10.6716 9 11.5 9C12.3284 9 13 8.32843 13 7.5C13 6.67157 12.3284 6 11.5 6ZM11 10C10.4477 10 10 10.4477 10 11C10 11.5523 10.4477 12 11 12V15C10.4477 15 10 15.4477 10 16C10 16.5523 10.4477 17 11 17H13C13.5523 17 14 16.5523 14 16C14 15.4477 13.5523 15 13 15V11C13 10.4477 12.5523 10 12 10H11Z" fill="#00BDFF"/>
+            </svg>            
+        </div>
+        <div nz-col nzSpan="18">
+          <p nz-typography class="m-0">Вы изменили пароль от учетной запси</p>
+          <span nz-typography nzType="secondary">3 дня назад</span>
+        </div>
+      </div>
+      <nz-divider style="margin: 10px 0;"></nz-divider>
+    </div>
+    <!-- Warning -->
+    <div nz-col nzSpan="24">
+      <div nz-row nzAlign="middle">
+        <div nz-col nzSpan="6" class="text-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24ZM12.8887 12.9258C12.8682 13.5068 12.5674 13.8486 12 13.8486C11.4326 13.8486 11.1318 13.5068 11.1182 12.9258L11.0088 8.19531C11.0088 8.15923 11.0069 8.11933 11.0051 8.08166C11.0035 8.04797 11.002 8.01605 11.002 7.99023C11.002 7.36133 11.3916 6.98535 12.0068 6.98535C12.6152 6.98535 12.998 7.36133 12.998 7.99023C12.998 8.04492 12.998 8.12695 12.9912 8.19531L12.8887 12.9258ZM13.1143 16.0977C13.1143 16.6992 12.6221 17.1709 12 17.1709C11.3779 17.1709 10.8857 16.6992 10.8857 16.0977C10.8857 15.4961 11.3779 15.0244 12 15.0244C12.6221 15.0244 13.1143 15.4961 13.1143 16.0977Z" fill="#FFA800"/>
+          </svg>                      
+        </div>
+        <div nz-col nzSpan="18">
+          <p nz-typography class="m-0">Заполните ваш профиль</p>
+          <span nz-typography nzType="secondary">5 дней назад</span>
+        </div>
+      </div>
+      <nz-divider style="margin: 10px 0;"></nz-divider>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #servicesTemplate>
+  <div nz-row class="our-services">
+    <div nz-col nzSpan="12" class="text-center">
+      <img src="../../../../../../../assets/images/agro-id-images/L1.png" alt="logo">
+      <p>BizningZamin</p>
+    </div>
+    <div nz-col nzSpan="12" class="text-center">
+      <img src="../../../../../../../assets/images/agro-id-images/L2.jpg" alt="logo">
+      <p>BizningZamin</p></div>
+    <div nz-col nzSpan="12" class="text-center">
+      <img src="../../../../../../../assets/images/agro-id-images/L3.jpg" alt="logo">
+      <p>BizningZamin</p></div>
+    <div nz-col nzSpan="12" class="text-center">
+      <img style="border-radius: 12px;" src="../../../../../../../assets/images/agro-id-images/L4.jpg" alt="logo">
+      <p>BizningZamin</p></div>
+    <div nz-col nzSpan="24">
+      <button nz-button nzBlock nzType="text" nzShape="round">
+        Больше сервисов
+        <i nz-icon nzType="right" nzTheme="outline"></i>
+      </button>
+    </div>
+  </div>
+</ng-template>
