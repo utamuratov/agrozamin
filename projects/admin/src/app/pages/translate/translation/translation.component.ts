@@ -4,7 +4,6 @@ import { Store } from '@ngxs/store';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { BaseResponse, LanguageState, NgDestroy } from 'ngx-az-core';
 import { map, Observable, takeUntil, tap } from 'rxjs';
-import { innerHeight$ } from '../../../components/app/app.component';
 import { TranslationType } from '../../../core/enums/translation-type.enum';
 import { SearchInputAdvancedConfig } from '../../../shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { AddTranslationComponent } from '../components/add-translation/add-translation.component';
@@ -27,11 +26,6 @@ export class TranslationComponent implements OnInit {
     keys: ['key', 'text'],
     searchText: '',
   };
-
-  /**
-   *
-   */
-  innerHeight$ = innerHeight$;
 
   /**
    *
@@ -63,11 +57,6 @@ export class TranslationComponent implements OnInit {
    *
    */
   model!: Translation;
-
-  /**
-   *
-   */
-  searchText = '';
 
   /**
    *
@@ -114,9 +103,10 @@ export class TranslationComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((result) => {
         if (result.success) {
-          this.searchInputConfig.data = result.data;
-          this.searchInputConfig.filteredData = result.data;
-          this.searchInputConfig.searchText = '';
+          this.searchInputConfig = {
+            ...this.searchInputConfig,
+            data: result.data,
+          };
         }
       });
   }

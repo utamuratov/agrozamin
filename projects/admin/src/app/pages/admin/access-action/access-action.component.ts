@@ -34,29 +34,47 @@ export class AccessActionComponent implements OnInit {
   @Select(LanguageState.languages)
   language$!: Observable<Language[]>;
 
+  /**
+   *
+   * @param $accessAction
+   * @param destroy$
+   * @param cd
+   */
   constructor(
     private $accessAction: AccessActionService,
     private destroy$: NgDestroy,
     private cd: ChangeDetectorRef
   ) {}
 
+  /**
+   *
+   */
   ngOnInit(): void {
     this.loadData();
   }
 
+  /**
+   *
+   */
   loadData() {
     this.$accessAction
       .getAll()
       .pipe(takeUntil(this.destroy$))
       .subscribe((result) => {
         if (result.success) {
-          this.searchInputConfig.data = result.data;
-          this.searchInputConfig.filteredData = result.data;
-          this.searchInputConfig.searchText = '';
+          this.searchInputConfig = {
+            ...this.searchInputConfig,
+            data: result.data,
+          };
         }
       });
   }
 
+  /**
+   *
+   * @param modal
+   * @param editingData
+   */
   addEdit(
     modal: AddEditAccessActionComponent,
     editingData: AccessActionResponse | null = null
@@ -65,6 +83,10 @@ export class AccessActionComponent implements OnInit {
     modal.isVisible = true;
   }
 
+  /**
+   *
+   * @param id
+   */
   delete(id: number) {
     this.$accessAction
       .delete(id)

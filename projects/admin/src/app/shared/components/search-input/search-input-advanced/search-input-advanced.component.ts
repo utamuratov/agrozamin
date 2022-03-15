@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
 export interface SearchInputAdvancedConfig<T = NzSafeAny> {
@@ -27,14 +27,28 @@ export interface SearchInputAdvancedConfig<T = NzSafeAny> {
   selector: 'az-search-input-advanced',
   templateUrl: './search-input-advanced.component.html',
   styleUrls: ['./search-input-advanced.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchInputAdvancedComponent {
   /**
    *
    * Required
    */
+  private _config!: SearchInputAdvancedConfig;
+
   @Input()
-  config!: SearchInputAdvancedConfig;
+  public set config(v: SearchInputAdvancedConfig) {
+    this._config = v;
+
+    // TODO: IMPROVE THIS LOGIC
+    setTimeout(() => {
+      this.search(this.config.searchText);
+    });
+  }
+
+  public get config(): SearchInputAdvancedConfig {
+    return this._config;
+  }
 
   /**
    *
