@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SearchInputAdvancedConfig } from '../../search-input/search-input-advanced/search-input-advanced.component';
 
 export interface HeaderWithDividerAdvancedConfig {
@@ -22,20 +21,7 @@ export class HeaderWithDividerAdvancedComponent {
    *
    */
   @Output()
-  changedFilteredData = new EventEmitter<NzSafeAny[]>();
-
-  /**
-   *
-   */
-  @Output()
   clickedAddEditButton = new EventEmitter();
-
-  /**
-   *
-   */
-  filterData(filteredData: NzSafeAny[]) {
-    this.changedFilteredData.emit(filteredData);
-  }
 
   /**
    *

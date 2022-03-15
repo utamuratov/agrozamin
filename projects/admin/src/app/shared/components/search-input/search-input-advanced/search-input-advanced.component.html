@@ -1,1 +1,4 @@
-<az-search-input (changedSearchText)="search($event)"></az-search-input>
+<az-search-input
+  [(searchText)]="config.searchText"
+  (searchTextChange)="search($event)"
+></az-search-input>

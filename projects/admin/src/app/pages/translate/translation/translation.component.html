@@ -1,25 +1,22 @@
 <!-- HEADER -->
-<az-header-with-divider-basic
-  [title]="
-    (TranslationType[translationType] | translate) +
-    (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')')
-  "
+<az-header-with-divider-advanced
+  [config]="{
+    title: TranslationType[translationType] | translate,
+    searchInputAdvancedConfig: searchInputConfig
+  }"
   (clickedAddEditButton)="addEdit(modal)"
 >
-  <az-search-input (changedSearchText)="search($event)"></az-search-input>
-</az-header-with-divider-basic>
+</az-header-with-divider-advanced>
 
 <!-- BODY -->
 <nz-table
   #table
-  [nzData]="filteredData"
+  [nzData]="searchInputConfig.filteredData"
   nzShowPagination
   nzShowSizeChanger
   nzSize="small"
   nzBordered
-  [nzScroll]="
-    filteredData.length > 10 ? { y: (350 | calcScroll | async) + 'px' } : {}
-  "
+  [nzScroll]="(searchInputConfig.filteredData.length | makeNzScroll | async)!"
 >
   <thead>
     <tr>

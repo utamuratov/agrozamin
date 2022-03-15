@@ -1,45 +1,100 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
+import { Observable, takeUntil } from 'rxjs';
+import { SearchInputAdvancedConfig } from '../../../shared/components/search-input/search-input-advanced/search-input-advanced.component';
+import { AccessActionService } from './access-action.service';
+import { AddEditAccessActionComponent } from './add-edit-access-action/add-edit-access-action.component';
 import { AccessActionResponse } from './models/access-action.response';
 
 @Component({
-  selector: 'az-access-action',
   templateUrl: './access-action.component.html',
   styleUrls: ['./access-action.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccessActionComponent implements OnInit {
   /**
    *
    */
-  filteredData: AccessActionResponse[] = [];
+  searchInputConfig: SearchInputAdvancedConfig<AccessActionResponse> = {
+    data: [],
+    filteredData: [],
+    keys: ['key', 'description'],
+    searchText: '',
+  };
 
   /**
    *
    */
-  data: AccessActionResponse[] = [];
+  @Select(LanguageState.languages)
+  language$!: Observable<Language[]>;
 
-  constructor() {}
+  /**
+   *
+   * @param $accessAction
+   * @param destroy$
+   * @param cd
+   */
+  constructor(
+    private $accessAction: AccessActionService,
+    private destroy$: NgDestroy,
+    private cd: ChangeDetectorRef
+  ) {}
 
+  /**
+   *
+   */
   ngOnInit(): void {
     this.loadData();
   }
 
-  private loadData() {
-    for (let index = 0; index < 10; index++) {
-      this.data.push({
-        id: index + 1,
-        key: 'key' + index,
-        description: 'desc' + index,
+  /**
+   *
+   */
+  loadData() {
+    this.$accessAction
+      .getAll()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((result) => {
+        if (result.success) {
+          this.searchInputConfig = {
+            ...this.searchInputConfig,
+            data: result.data,
+          };
+        }
       });
-    }
-    this.filteredData = this.data;
   }
 
-  search(ret: any): void {
-    this.filteredData = ret;
+  /**
+   *
+   * @param modal
+   * @param editingData
+   */
+  addEdit(
+    modal: AddEditAccessActionComponent,
+    editingData: AccessActionResponse | null = null
+  ) {
+    modal.onInit(editingData);
+    modal.isVisible = true;
   }
 
-  addEdit(modal: any, data?: any) {}
-
-  delete(id: number) {}
+  /**
+   *
+   * @param id
+   */
+  delete(id: number) {
+    this.$accessAction
+      .delete(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        if (response.success) {
+          this.loadData();
+        }
+      });
+  }
 }

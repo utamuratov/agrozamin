@@ -12,7 +12,7 @@
       <nz-option nzValue="login" nzLabel="Логин"></nz-option>
       <nz-option nzValue="name" nzLabel="Имя"></nz-option>
     </nz-select>
-    <az-search-input (changedSearchText)="search($event)"></az-search-input>
+    <az-search-input (searchTextChange)="search($event)"></az-search-input>
   </nz-input-group>
 </az-header-with-divider-basic>
 

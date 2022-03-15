@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'az-search-input',
@@ -10,11 +10,12 @@ export class SearchInputComponent {
    *
    */
   @Output()
-  changedSearchText = new EventEmitter<string>();
+  searchTextChange = new EventEmitter<string>();
 
   /**
    *
    */
+  @Input()
   searchText = '';
 
   /**
@@ -22,6 +23,6 @@ export class SearchInputComponent {
    */
   search(searchText: string) {
     this.searchText = searchText;
-    this.changedSearchText.emit(this.searchText);
+    this.searchTextChange.emit(this.searchText);
   }
 }

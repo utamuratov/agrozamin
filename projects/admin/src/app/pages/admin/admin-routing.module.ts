@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { RoleComponent } from './role/role.component';
 import { AccessActionComponent } from './access-action/access-action.component';
+import { AccessControlComponent } from './access-control/access-control.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,13 @@ const routes: Routes = [
         component: AccessActionComponent,
         data: {
           bc: 'accessAction',
+        },
+      },
+      {
+        path: 'access-control',
+        component: AccessControlComponent,
+        data: {
+          bc: 'accessControl',
         },
       },
     ],

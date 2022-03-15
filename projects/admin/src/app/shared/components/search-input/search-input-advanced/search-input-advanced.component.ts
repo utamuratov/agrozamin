@@ -1,43 +1,61 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
-export interface SearchInputAdvancedConfig {
+export interface SearchInputAdvancedConfig<T = NzSafeAny> {
   /**
    * filtered data
    */
-  data: NzSafeAny[];
+  data: T[];
+
+  /**
+   *
+   */
+  filteredData: T[];
 
   /**
    * search by these keys
    */
   keys: string[];
+
+  /**
+   *
+   */
+  searchText: string;
 }
 
 @Component({
   selector: 'az-search-input-advanced',
   templateUrl: './search-input-advanced.component.html',
   styleUrls: ['./search-input-advanced.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchInputAdvancedComponent {
   /**
    *
    * Required
    */
-  @Input()
-  config!: SearchInputAdvancedConfig;
+  private _config!: SearchInputAdvancedConfig;
 
-  /**
-   *
-   */
-  @Output()
-  filteredData = new EventEmitter<NzSafeAny[]>();
+  @Input()
+  public set config(v: SearchInputAdvancedConfig) {
+    this._config = v;
+
+    // TODO: IMPROVE THIS LOGIC
+    setTimeout(() => {
+      this.search(this.config.searchText);
+    });
+  }
+
+  public get config(): SearchInputAdvancedConfig {
+    return this._config;
+  }
 
   /**
    *
    */
   search(searchText: string) {
     if (searchText.length === 0) {
-      this.filteredData.emit(this.config.data);
+      this.config.filteredData = this.config.data;
       return;
     }
 
@@ -45,10 +63,15 @@ export class SearchInputAdvancedComponent {
       return;
     }
 
-    this.filteredData.emit(
-      this.config.data.filter((item) =>
-        this.config.keys.find((key) => item[key].includes(searchText))
-      )
+    this.config.filteredData = this.config.data.filter((item) =>
+      this.config.keys.find((key) => {
+        if (typeof item[key] === 'object') {
+          return Object.keys(item[key]).find((subKey) =>
+            item[key][subKey].includes(searchText)
+          );
+        }
+        return item[key].includes(searchText);
+      })
     );
   }
 }

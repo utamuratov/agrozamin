@@ -1,10 +1,8 @@
 <!-- HEADER -->
 <az-header-with-divider-advanced
   [config]="{
-    title:
-      ('roles' | translate) +
-      (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')'),
-    searchInputAdvancedConfig: { data: data, keys: ['key', 'description'] }
+    title: 'roles' | translate,
+    searchInputAdvancedConfig: searchInputConfig
   }"
   (changedFilteredData)="search($event)"
   (clickedAddEditButton)="addEdit(modal)"
@@ -13,14 +11,12 @@
 <!-- BODY -->
 <nz-table
   #table
-  [nzData]="data"
+  [nzData]="searchInputConfig.data"
   nzShowPagination
   nzShowSizeChanger
   nzSize="small"
   nzBordered
-  [nzScroll]="
-    filteredData.length > 10 ? { y: (350 | calcScroll | async) + 'px' } : {}
-  "
+  [nzScroll]="(searchInputConfig.filteredData.length | makeNzScroll | async)!"
 >
   <thead>
     <tr>
