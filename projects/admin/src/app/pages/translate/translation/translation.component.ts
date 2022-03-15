@@ -6,6 +6,7 @@ import { BaseResponse, LanguageState, NgDestroy } from 'ngx-az-core';
 import { map, Observable, takeUntil, tap } from 'rxjs';
 import { innerHeight$ } from '../../../components/app/app.component';
 import { TranslationType } from '../../../core/enums/translation-type.enum';
+import { SearchInputAdvancedConfig } from '../../../shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { AddTranslationComponent } from '../components/add-translation/add-translation.component';
 import { Project } from '../models/project.interface';
 import { Translation } from '../models/translation.interface';
@@ -20,12 +21,12 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
-  data!: Translation[];
-
-  /**
-   *
-   */
-  filteredData: Translation[] = [];
+  searchInputConfig: SearchInputAdvancedConfig<Translation> = {
+    data: [],
+    filteredData: [],
+    keys: ['key', 'text'],
+    searchText: '',
+  };
 
   /**
    *
@@ -111,10 +112,11 @@ export class TranslationComponent implements OnInit {
     this.$translate
       .getTranslations(this.translationType)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((w) => {
-        if (w.success) {
-          this.data = w.data;
-          this.search(this.data);
+      .subscribe((result) => {
+        if (result.success) {
+          this.searchInputConfig.data = result.data;
+          this.searchInputConfig.filteredData = result.data;
+          this.searchInputConfig.searchText = '';
         }
       });
   }
@@ -184,21 +186,5 @@ export class TranslationComponent implements OnInit {
     modal.editingData = editingData;
     modal.onInit();
     modal.isVisible = true;
-  }
-
-  /**
-   *
-   */
-  search(filteredData: Translation[]): void {
-    this.filteredData = filteredData;
-    console.log(filteredData);
-  }
-
-  /**
-   *
-   */
-  clearSearch() {
-    this.searchText = '';
-    this.filteredData = this.data;
   }
 }

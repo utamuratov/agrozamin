@@ -10,7 +10,7 @@ export class SearchInputComponent {
    *
    */
   @Output()
-  changedSearchText = new EventEmitter<string>();
+  searchTextChange = new EventEmitter<string>();
 
   /**
    *
@@ -23,6 +23,6 @@ export class SearchInputComponent {
    */
   search(searchText: string) {
     this.searchText = searchText;
-    this.changedSearchText.emit(this.searchText);
+    this.searchTextChange.emit(this.searchText);
   }
 }

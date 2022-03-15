@@ -1,11 +1,16 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
-export interface SearchInputAdvancedConfig {
+export interface SearchInputAdvancedConfig<T = NzSafeAny> {
   /**
    * filtered data
    */
-  data: NzSafeAny[];
+  data: T[];
+
+  /**
+   *
+   */
+  filteredData: T[];
 
   /**
    * search by these keys
@@ -34,15 +39,9 @@ export class SearchInputAdvancedComponent {
   /**
    *
    */
-  @Output()
-  filteredData = new EventEmitter<NzSafeAny[]>();
-
-  /**
-   *
-   */
   search(searchText: string) {
     if (searchText.length === 0) {
-      this.filteredData.emit(this.config.data);
+      this.config.filteredData = this.config.data;
       return;
     }
 
@@ -50,17 +49,15 @@ export class SearchInputAdvancedComponent {
       return;
     }
 
-    this.filteredData.emit(
-      this.config.data.filter((item) =>
-        this.config.keys.find((key) => {
-          if (typeof item[key] === 'object') {
-            return Object.keys(item[key]).find((subKey) =>
-              item[key][subKey].includes(searchText)
-            );
-          }
-          return item[key].includes(searchText);
-        })
-      )
+    this.config.filteredData = this.config.data.filter((item) =>
+      this.config.keys.find((key) => {
+        if (typeof item[key] === 'object') {
+          return Object.keys(item[key]).find((subKey) =>
+            item[key][subKey].includes(searchText)
+          );
+        }
+        return item[key].includes(searchText);
+      })
     );
   }
 }

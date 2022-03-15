@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { NzMessageService } from 'ng-zorro-antd/message';
 import { TransferItem } from 'ng-zorro-antd/transfer';
+import { SearchInputAdvancedConfig } from '../../../shared/components/search-input/search-input-advanced/search-input-advanced.component';
 
 interface DataItem {
   name: string;
@@ -17,14 +18,17 @@ export class RoleComponent implements OnInit {
   /**
    *
    */
-  filteredData: DataItem[] = [];
+  searchInputConfig: SearchInputAdvancedConfig<DataItem> = {
+    data: [],
+    filteredData: [],
+    keys: ['key', 'description'],
+    searchText: '',
+  };
 
   list: TransferItem[] = [];
 
   showTransfer = false;
   showTransfer1 = false;
-
-  data: DataItem[] = [];
 
   switchValue = false;
   switchValue1 = false;
@@ -53,7 +57,7 @@ export class RoleComponent implements OnInit {
         address: `London, Park Lane no. ${i}`,
       });
     }
-    this.data = data;
+    this.searchInputConfig.data = data;
   }
 
   showModal(): void {

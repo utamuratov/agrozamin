@@ -3,12 +3,10 @@
   [config]="{
     title:
       ('roles' | translate) +
-      (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')'),
-    searchInputAdvancedConfig: {
-      data: data,
-      keys: ['key', 'description'],
-      searchText: ''
-    }
+      (searchInputConfig.filteredData.length === 0
+        ? ''
+        : ' (' + searchInputConfig.filteredData.length + ')'),
+    searchInputAdvancedConfig: searchInputConfig
   }"
   (changedFilteredData)="search($event)"
   (clickedAddEditButton)="addEdit(modal)"
@@ -17,13 +15,15 @@
 <!-- BODY -->
 <nz-table
   #table
-  [nzData]="data"
+  [nzData]="searchInputConfig.data"
   nzShowPagination
   nzShowSizeChanger
   nzSize="small"
   nzBordered
   [nzScroll]="
-    filteredData.length > 10 ? { y: (350 | calcScroll | async) + 'px' } : {}
+    searchInputConfig.filteredData.length > 10
+      ? { y: (350 | calcScroll | async) + 'px' }
+      : {}
   "
 >
   <thead>

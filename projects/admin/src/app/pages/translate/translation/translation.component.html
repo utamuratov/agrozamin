@@ -3,14 +3,11 @@
   [config]="{
     title:
       (TranslationType[translationType] | translate) +
-      (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')'),
-    searchInputAdvancedConfig: {
-      data: data,
-      keys: ['key', 'text'],
-      searchText: ''
-    }
+      (searchInputConfig.filteredData.length === 0
+        ? ''
+        : ' (' + searchInputConfig.filteredData.length + ')'),
+    searchInputAdvancedConfig: searchInputConfig
   }"
-  (changedFilteredData)="search($event)"
   (clickedAddEditButton)="addEdit(modal)"
 >
 </az-header-with-divider-advanced>
@@ -18,13 +15,15 @@
 <!-- BODY -->
 <nz-table
   #table
-  [nzData]="filteredData"
+  [nzData]="searchInputConfig.filteredData"
   nzShowPagination
   nzShowSizeChanger
   nzSize="small"
   nzBordered
   [nzScroll]="
-    filteredData.length > 10 ? { y: (350 | calcScroll | async) + 'px' } : {}
+    searchInputConfig.filteredData.length > 10
+      ? { y: (350 | calcScroll | async) + 'px' }
+      : {}
   "
 >
   <thead>

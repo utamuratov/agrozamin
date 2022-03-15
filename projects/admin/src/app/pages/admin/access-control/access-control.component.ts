@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchInputAdvancedConfig } from '../../../shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { AccessControlResponse } from './models/access-control.response';
 
 @Component({
@@ -10,12 +11,12 @@ export class AccessControlComponent implements OnInit {
   /**
    *
    */
-  filteredData: AccessControlResponse[] = [];
-
-  /**
-   *
-   */
-  data: AccessControlResponse[] = [];
+  searchInputConfig: SearchInputAdvancedConfig<AccessControlResponse> = {
+    data: [],
+    filteredData: [],
+    keys: ['key', 'description'],
+    searchText: '',
+  };
 
   constructor() {}
 
@@ -25,18 +26,14 @@ export class AccessControlComponent implements OnInit {
 
   private loadData() {
     for (let index = 0; index < 10; index++) {
-      this.data.push({
+      this.searchInputConfig.data.push({
         id: index + 1,
         key: 'key' + index,
         description: 'desc' + index,
         url: 'url' + index,
       });
     }
-    this.filteredData = this.data;
-  }
-
-  search(ret: any): void {
-    this.filteredData = ret;
+    this.searchInputConfig.filteredData = this.searchInputConfig.data;
   }
 
   addEdit(modal: any, data?: any) {}

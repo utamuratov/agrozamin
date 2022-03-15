@@ -3,27 +3,26 @@
   [config]="{
     title:
       ('accessControl' | translate) +
-      (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')'),
-    searchInputAdvancedConfig: {
-      data: data,
-      keys: ['key', 'description'],
-      searchText: ''
-    }
+      (searchInputConfig.filteredData.length === 0
+        ? ''
+        : ' (' + searchInputConfig.filteredData.length + ')'),
+    searchInputAdvancedConfig: searchInputConfig
   }"
-  (changedFilteredData)="search($event)"
   (clickedAddEditButton)="addEdit(modal)"
 ></az-header-with-divider-advanced>
 
 <nz-table
   #table
-  [nzData]="filteredData"
+  [nzData]="searchInputConfig.filteredData"
   nzShowPagination
   nzShowSizeChanger
   nzSize="small"
   nzBordered
   [nzWidthConfig]="['100px', '200px', '', '', '120px']"
   [nzScroll]="
-    filteredData.length > 10 ? { y: (350 | calcScroll | async) + 'px' } : {}
+    searchInputConfig.filteredData.length > 10
+      ? { y: (350 | calcScroll | async) + 'px' }
+      : {}
   "
 >
   <thead>

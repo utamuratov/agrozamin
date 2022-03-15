@@ -7,6 +7,7 @@ import {
 import { Select } from '@ngxs/store';
 import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
 import { Observable, takeUntil } from 'rxjs';
+import { SearchInputAdvancedConfig } from '../../../shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { AccessActionService } from './access-action.service';
 import { AddEditAccessActionComponent } from './add-edit-access-action/add-edit-access-action.component';
 import { AccessActionResponse } from './models/access-action.response';
@@ -20,12 +21,12 @@ export class AccessActionComponent implements OnInit {
   /**
    *
    */
-  filteredData: AccessActionResponse[] = [];
-
-  /**
-   *
-   */
-  data: AccessActionResponse[] = [];
+  searchInputConfig: SearchInputAdvancedConfig<AccessActionResponse> = {
+    data: [],
+    filteredData: [],
+    keys: ['key', 'description'],
+    searchText: '',
+  };
 
   /**
    *
@@ -48,21 +49,12 @@ export class AccessActionComponent implements OnInit {
       .getAll()
       .pipe(takeUntil(this.destroy$))
       .subscribe((result) => {
-        console.log(result);
-
         if (result.success) {
-          this.data = result.data;
-          // search again
-          this.search(this.data);
+          this.searchInputConfig.data = result.data;
+          this.searchInputConfig.filteredData = result.data;
+          this.searchInputConfig.searchText = '';
         }
       });
-  }
-
-  search(filteredData: AccessActionResponse[]): void {
-    this.filteredData = filteredData;
-    console.log(filteredData);
-
-    this.cd.markForCheck();
   }
 
   addEdit(
