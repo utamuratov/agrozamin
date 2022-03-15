@@ -133,7 +133,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     CompanyModalComponent,
     BiznesCardsModalComponent,
     AddWidgetComponent,
-    AddAvatarComponent
+    AddAvatarComponent,
   ],
 })
 export class CabinetModule {}
