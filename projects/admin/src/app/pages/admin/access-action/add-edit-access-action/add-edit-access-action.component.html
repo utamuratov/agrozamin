@@ -1,6 +1,6 @@
 <nz-modal
   [(nzVisible)]="isVisible"
-  [nzTitle]="(id ? 'edit' : 'add') | translate"
+  [nzTitle]="(editingData?.id ? 'edit' : 'add') | translate"
   (nzOnCancel)="close()"
   modal
 >

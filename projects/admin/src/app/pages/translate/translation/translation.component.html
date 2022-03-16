@@ -4,7 +4,7 @@
     title: TranslationType[translationType] | translate,
     searchInputAdvancedConfig: searchInputConfig
   }"
-  (clickedAddEditButton)="addEdit(modal)"
+  (clickedAddEditButton)="addEdit()"
 >
 </az-header-with-divider-advanced>
 
@@ -66,7 +66,7 @@
                 <i nz-icon nzType="delete" nzTheme="twotone"></i>
               </span>
             </button>
-            <button (click)="addEdit(modal, data)" nz-button nzType="default">
+            <button (click)="addEdit(data)" nz-button nzType="default">
               <span>
                 <i nz-icon nzType="edit" nzTheme="twotone"></i>
               </span>
@@ -80,6 +80,8 @@
 
 <!-- MODAL -->
 <az-add-translation
-  #modal
+  [(isVisible)]="isVisible"
+  [editingData]="editingData"
+  [projects]="projects"
   (modified)="modifiedTranslation()"
 ></az-add-translation>

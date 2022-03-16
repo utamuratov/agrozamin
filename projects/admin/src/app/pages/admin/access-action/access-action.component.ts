@@ -21,6 +21,16 @@ export class AccessActionComponent implements OnInit {
   /**
    *
    */
+  isVisible!: boolean;
+
+  /**
+   *
+   */
+  editingData?: AccessActionResponse;
+
+  /**
+   *
+   */
   searchInputConfig: SearchInputAdvancedConfig<AccessActionResponse> = {
     data: [],
     filteredData: [],
@@ -75,12 +85,9 @@ export class AccessActionComponent implements OnInit {
    * @param modal
    * @param editingData
    */
-  addEdit(
-    modal: AddEditAccessActionComponent,
-    editingData: AccessActionResponse | null = null
-  ) {
-    modal.onInit(editingData);
-    modal.isVisible = true;
+  addEdit(editingData?: AccessActionResponse) {
+    this.editingData = editingData;
+    this.isVisible = true;
   }
 
   /**
@@ -96,5 +103,9 @@ export class AccessActionComponent implements OnInit {
           this.loadData();
         }
       });
+  }
+
+  close() {
+    this.isVisible = false;
   }
 }
