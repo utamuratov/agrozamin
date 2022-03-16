@@ -156,26 +156,7 @@
         />
       </ng-template>
 
-      <div nz-row>
-        <button
-          nz-col
-          nzXs="24"
-          nzSm="24"
-          nzMd="24"
-          nzLg="0"
-          nzXl="0"
-          nzType="default"
-          nzShape="circle"
-          (click)="isCollapsed = !isCollapsed"
-          class="trigger-btn phone"
-        >
-          <i
-            class="trigger"
-            nz-icon
-            [nzType]="isCollapsed ? 'right' : 'left'"
-          ></i>
-        </button>
-      </div>
+      
 
       <ul nz-menu nzTheme="dark" nzMode="inline" class="menu">
         <li
@@ -263,3 +244,24 @@
 [style.max-width]="isCollapsed ? '71px' : '250px'"
 [style.width]="isCollapsed ? '71px' : '250px'"
 [style.flex]="isCollapsed ? '0 0 71px' : '0 0 250px'" -->
+
+<div nz-row>
+  <button
+    nz-col
+    nzXs="24"
+    nzSm="24"
+    nzMd="24"
+    nzLg="0"
+    nzXl="0"
+    nzType="default"
+    nzShape="circle"
+    (click)="isCollapsed = !isCollapsed"
+    class="trigger-btn phone"
+  >
+    <i
+      class="trigger"
+      nz-icon
+      [nzType]="isCollapsed ? 'right' : 'left'"
+    ></i>
+  </button>
+</div>

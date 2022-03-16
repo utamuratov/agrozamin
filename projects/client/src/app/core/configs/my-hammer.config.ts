@@ -3,7 +3,7 @@ import { HammerGestureConfig } from '@angular/platform-browser';
 
 @Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
-  override overrides = {
+  /* override overrides = {
     swipe: { direction: Hammer.DIRECTION_ALL },
-  } as any;
+  } as any; */
 }
