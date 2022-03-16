@@ -9,12 +9,12 @@
             <nz-card  nzHoverable class="legal__card">
               <div nz-row nzAlign="bottom" [nzGutter]="[15, 10]" nzJustify="center">
                 <div nz-col nzXs="12" nzSm="5" nzMd="5" nzLg="5" nzXl="5" nzXXl="5" class="text-center"><nz-avatar [nzSize]="64" [nzIcon]="company.avatar ? '' : 'camera'" [nzSrc]="company.avatar ? company.avatar : ''" ></nz-avatar></div>
-                <div nz-col nzXs="20" nzSm="15" nzMd="15" nzLg="15" nzXl="15" nzXXl="15">
+                <div nz-col nzXs="18" nzSm="15" nzMd="15" nzLg="15" nzXl="15" nzXXl="15">
                   <p nz-typography class="m-0">{{company.name}}</p>
                   <p nz-typography class="m-0">{{company.stir}}</p>
                   <p nz-typography class="m-0">{{company.city}}</p>
                 </div>
-                <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4" nzXXl="4">
+                <div nz-col nzXs="6" nzSm="4" nzMd="4" nzLg="4" nzXl="4" nzXXl="4">
                   <button nz-button nzType="text" nzShape="circle"  
                   nz-popover
                   nzPopoverTitle="{{null}}"
