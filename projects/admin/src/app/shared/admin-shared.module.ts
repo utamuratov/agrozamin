@@ -11,6 +11,8 @@ import { SearchInputComponent } from './components/search-input/search-input.com
 import { SearchInputAdvancedComponent } from './components/search-input/search-input-advanced/search-input-advanced.component';
 import { MakeNzScrollPipe } from './pipes/make-nz-scroll.pipe';
 import { SortPipe } from './pipes/sort.pipe';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
   declarations: [
@@ -24,21 +26,49 @@ import { SortPipe } from './pipes/sort.pipe';
     SearchInputAdvancedComponent,
   ],
   imports: [
+    /**
+     * CUSTOM MODULES
+     */
     NzFormsSharedModule,
     ReactiveFormsSharedModule,
 
+    /**
+     * NON_CUSTOM MODULES
+     **/
     FormsModule,
+
+    /**
+     * NG ZORRO MODULES
+     */
+    NzTableModule,
+    NzModalModule,
+    // WE NEED THESE MODULES FOR CUSTOM PIPES/COMPONENTS IN THIS SHARED MODULE
     NzDividerModule,
     NzIconModule,
   ],
   exports: [
+    /**
+     * CUSTOM MODULES
+     */
     NzFormsSharedModule,
     ReactiveFormsSharedModule,
 
+    /**
+     * NON_CUSTOM MODULES
+     **/
     FormsModule,
+
+    /**
+     * NG ZORRO MODULES
+     */
+    NzTableModule,
     NzDividerModule,
     NzIconModule,
+    NzModalModule,
 
+    /**
+     * CUSTOM PIPES/COMPONENTS
+     */
     CalcScrollPipe,
     MakeNzScrollPipe,
     SortPipe,

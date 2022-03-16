@@ -30,20 +30,14 @@ import { AdminSharedModule } from '../../shared/admin-shared.module';
     /**
      * CUSTOM MODULES
      */
-    ReactiveFormsSharedModule,
-    NzFormsSharedModule,
     AdminSharedModule,
 
     /**
      * NG ZORRO MODULES
      */
-    NzIconModule,
     NzTypographyModule,
     NzToolTipModule,
     NzTransferModule,
-    NzDividerModule,
-    NzTableModule,
-    NzModalModule,
   ],
   providers: [TranslateApiService],
 })

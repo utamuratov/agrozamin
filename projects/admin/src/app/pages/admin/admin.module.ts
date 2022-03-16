@@ -32,25 +32,18 @@ import { AddEditAccessActionComponent } from './access-action/add-edit-access-ac
   ],
   imports: [
     AdminRoutingModule,
-    FormsModule,
 
     /**
      * CUSTOM MODULES
      */
-    ReactiveFormsSharedModule,
-    NzFormsSharedModule,
     AdminSharedModule,
 
     /**
      * NG ZORRO MODULES
      */
-    NzIconModule,
     NzTypographyModule,
     NzToolTipModule,
     NzTransferModule,
-    NzDividerModule,
-    NzTableModule,
-    NzModalModule,
     NzSelectModule,
   ],
 })
