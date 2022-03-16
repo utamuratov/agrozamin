@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: './translate.component.html',
-  styleUrls: ['./translate.component.less'],
+  template: '<router-outlet></router-outlet>',
 })
 export class TranslateComponent {}

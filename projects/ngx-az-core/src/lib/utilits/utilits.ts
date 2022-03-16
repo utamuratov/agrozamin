@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 export const getDomain = (url: string) => new URL(url).host;
 
 /**
- * 
+ *
  * Checks for validation to the reactive form
  * @param form Forom needs validation
  */
