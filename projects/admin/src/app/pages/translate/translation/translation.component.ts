@@ -30,7 +30,17 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
-  projects!: Project[];
+  isVisible!: boolean;
+
+  /**
+   *
+   */
+  projects?: Project[];
+
+  /**
+   *
+   */
+  editingData?: Translation;
 
   /**
    *
@@ -156,7 +166,7 @@ export class TranslationComponent implements OnInit {
    */
   delete(id: number) {
     this.$translate
-      .deleteTranslation(id)
+      .delete(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         if (response.success) {
@@ -168,13 +178,8 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
-  addEdit(
-    modal: AddTranslationComponent,
-    editingData: Translation | null = null
-  ) {
-    modal.projects = this.projects;
-    modal.editingData = editingData;
-    modal.onInit();
-    modal.isVisible = true;
+  addEdit(editingData?: Translation) {
+    this.editingData = editingData;
+    this.isVisible = true;
   }
 }

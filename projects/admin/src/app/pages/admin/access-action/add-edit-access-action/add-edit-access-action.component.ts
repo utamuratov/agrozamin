@@ -1,4 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,8 +13,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { Select } from '@ngxs/store';
-import { LanguageState, Language, markAllAsDirty } from 'ngx-az-core';
-import { map, Observable } from 'rxjs';
+import {
+  LanguageState,
+  Language,
+  markAllAsDirty,
+  NgDestroy,
+} from 'ngx-az-core';
+import { map, Observable, takeUntil } from 'rxjs';
 import { AccessActionService } from '../access-action.service';
 import { AccessAction } from '../models/access-action.interface';
 import { AccessActionResponse } from '../models/access-action.response';
@@ -16,22 +28,33 @@ import { AccessActionResponse } from '../models/access-action.response';
   selector: 'az-add-edit-access-action',
   templateUrl: './add-edit-access-action.component.html',
   styleUrls: ['./add-edit-access-action.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddEditAccessActionComponent {
   /**
    *
    */
+  @Input()
   public isVisible!: boolean;
 
   /**
    *
    */
-  id?: number;
+  @Output()
+  isVisibleChange = new EventEmitter<boolean>();
 
   /**
    *
    */
-  form!: FormGroup;
+  private _editingData?: AccessActionResponse;
+  @Input()
+  public set editingData(v: AccessActionResponse | undefined) {
+    this._editingData = v;
+    this.init();
+  }
+  public get editingData(): AccessActionResponse | undefined {
+    return this._editingData;
+  }
 
   /**
    *
@@ -45,17 +68,34 @@ export class AddEditAccessActionComponent {
   @Select(LanguageState.languages)
   language$!: Observable<Language[]>;
 
+  /**
+   *
+   */
+  form!: FormGroup;
+
+  /**
+   *
+   * @param fb
+   * @param $accessAction
+   */
   constructor(
     private fb: FormBuilder,
+    private $destroy: NgDestroy,
     private $accessAction: AccessActionService
   ) {}
 
-  onInit(editingData: AccessActionResponse | null) {
-    this.id = editingData?.id;
-    this.initForm(editingData);
+  /**
+   *
+   */
+  private init() {
+    this.initForm(this.editingData);
   }
 
-  initForm(model: AccessActionResponse | null) {
+  /**
+   *
+   * @param model
+   */
+  initForm(model?: AccessActionResponse) {
     this.form = this.fb.group({
       key: [model?.key, Validators.required],
       description: this.fb.group({}),
@@ -64,8 +104,12 @@ export class AddEditAccessActionComponent {
     this.addDescriptionControls(model);
   }
 
-  private addDescriptionControls(model: AccessActionResponse | null) {
-    this.language$.subscribe((languages) => {
+  /**
+   *
+   * @param model
+   */
+  private addDescriptionControls(model?: AccessActionResponse) {
+    this.language$.pipe(takeUntil(this.$destroy)).subscribe((languages) => {
       languages.forEach((language) => {
         (this.form.get('description') as FormGroup)?.addControl(
           language.code,
@@ -78,14 +122,18 @@ export class AddEditAccessActionComponent {
     });
   }
 
+  /**
+   *
+   * @returns
+   */
   submit() {
     if (this.form.invalid) {
       markAllAsDirty(this.form);
       return;
     }
     const request = this.form.getRawValue();
-    if (this.id) {
-      this.editTranslation(this.id, request);
+    if (this.editingData?.id) {
+      this.editTranslation(this.editingData.id, request);
       return;
     }
     this.addAccessAction(request);
@@ -98,6 +146,7 @@ export class AddEditAccessActionComponent {
     this.$accessAction
       .add(request)
       .pipe(
+        takeUntil(this.$destroy),
         map((result) => {
           if (result.success) {
             this.modified.emit();
@@ -135,6 +184,6 @@ export class AddEditAccessActionComponent {
    *
    */
   close(): void {
-    this.isVisible = false;
+    this.isVisibleChange.emit(false);
   }
 }

@@ -1,43 +1,22 @@
 import { Injectable } from '@angular/core';
-import { BaseResponse, BaseService } from 'ngx-az-core';
-import { Observable } from 'rxjs';
+import { BaseService } from 'ngx-az-core';
+import { CrudService } from '../../../core/services/crud.service';
 import { AccessAction } from './models/access-action.interface';
 import { AccessActionResponse } from './models/access-action.response';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AccessActionService {
-  /**
-   *
-   */
-  readonly url = 'admin/access-action';
-
+export class AccessActionService extends CrudService<
+  AccessActionResponse,
+  AccessAction
+> {
   /**
    *
    * @param $baseService
    */
-  constructor(private $baseService: BaseService) {}
-
-  getAll(): Observable<BaseResponse<AccessActionResponse[]>> {
-    return this.$baseService.get<AccessActionResponse[]>(this.url);
-  }
-
-  add(model: AccessAction): Observable<BaseResponse<AccessActionResponse>> {
-    return this.$baseService.post<AccessActionResponse>(this.url, model);
-  }
-
-  edit(
-    id: number,
-    model: AccessAction
-  ): Observable<BaseResponse<AccessActionResponse>> {
-    return this.$baseService.put<AccessActionResponse>(
-      `${this.url}/${id}`,
-      model
-    );
-  }
-
-  delete(id: number): Observable<BaseResponse<AccessActionResponse>> {
-    return this.$baseService.delete<AccessActionResponse>(`${this.url}/${id}`);
+  constructor(protected override $baseService: BaseService) {
+    super($baseService);
+    this.url = 'admin/access-action';
   }
 }

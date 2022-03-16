@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -25,12 +25,33 @@ export class AddTranslationComponent {
   /**
    *
    */
-  public editingData: Translation | null = null;
+  @Input()
+  public projects?: Project[];
 
   /**
    *
    */
-  public isVisible: boolean;
+  private _editingData?: Translation;
+  public get editingData(): Translation | undefined {
+    return this._editingData;
+  }
+  @Input()
+  public set editingData(v: Translation | undefined) {
+    this._editingData = v;
+    this.init();
+  }
+
+  /**
+   *
+   */
+  @Input()
+  public isVisible!: boolean;
+
+  /**
+   *
+   */
+  @Output()
+  isVisibleChange = new EventEmitter<boolean>();
 
   /**
    *
@@ -53,11 +74,6 @@ export class AddTranslationComponent {
    *
    */
   transferingProjects: TransferItem[] = [];
-
-  /**
-   *
-   */
-  public projects!: Project[];
 
   /**
    *
@@ -85,7 +101,7 @@ export class AddTranslationComponent {
   /**
    *
    */
-  onInit(): void {
+  init() {
     this.initForm(this.editingData);
     this.transferingProjects = this.makeTransferingProjects(this.projects);
   }
@@ -93,9 +109,9 @@ export class AddTranslationComponent {
   /**
    *
    */
-  makeTransferingProjects(projects: Project[]): TransferItem[] {
+  makeTransferingProjects(projects: Project[] | undefined): TransferItem[] {
     const transferingProjects: TransferItem[] = [];
-    projects.forEach((project) => {
+    projects?.forEach((project) => {
       transferingProjects.push({
         key: project.id,
         title: project.name,
@@ -111,7 +127,7 @@ export class AddTranslationComponent {
   /**
    *
    */
-  private initForm(model: Translation | null) {
+  private initForm(model?: Translation) {
     this.form = this.fb.group({
       key: [model?.key, Validators.required],
     });
@@ -121,7 +137,7 @@ export class AddTranslationComponent {
   /**
    *
    */
-  private addLanguageControls(model: Translation | null) {
+  private addLanguageControls(model?: Translation) {
     this.language$.subscribe((languages) => {
       languages.forEach((language) => {
         this.form.addControl(
@@ -154,7 +170,7 @@ export class AddTranslationComponent {
    */
   private addTranslation(request: AddTranslationRequest) {
     this.$translate
-      .addTranslation(request)
+      .add(request)
       .pipe(
         map((result) => {
           if (result.success) {
@@ -175,7 +191,7 @@ export class AddTranslationComponent {
    */
   private editTranslation(id: number, request: AddTranslationRequest) {
     return this.$translate
-      .editTranslation(id, request)
+      .edit(id, request)
       .pipe(
         map((result) => {
           if (result.success) {
@@ -215,7 +231,7 @@ export class AddTranslationComponent {
    *
    */
   close(): void {
-    this.isVisible = false;
     this.transferingProjects = [];
+    this.isVisibleChange.emit(false);
   }
 }
