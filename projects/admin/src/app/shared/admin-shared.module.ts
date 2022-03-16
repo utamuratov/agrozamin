@@ -10,11 +10,13 @@ import { HeaderWithDividerBasicComponent } from './components/header-with-divide
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { SearchInputAdvancedComponent } from './components/search-input/search-input-advanced/search-input-advanced.component';
 import { MakeNzScrollPipe } from './pipes/make-nz-scroll.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
   declarations: [
     CalcScrollPipe,
     MakeNzScrollPipe,
+    SortPipe,
     HeaderWithDividerComponent,
     HeaderWithDividerAdvancedComponent,
     HeaderWithDividerBasicComponent,
@@ -39,6 +41,7 @@ import { MakeNzScrollPipe } from './pipes/make-nz-scroll.pipe';
 
     CalcScrollPipe,
     MakeNzScrollPipe,
+    SortPipe,
     HeaderWithDividerComponent,
     HeaderWithDividerAdvancedComponent,
     HeaderWithDividerBasicComponent,

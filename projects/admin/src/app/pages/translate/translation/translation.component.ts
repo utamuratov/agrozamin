@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { BaseResponse, LanguageState, NgDestroy } from 'ngx-az-core';
+import { BaseResponse, Language, LanguageState, NgDestroy } from 'ngx-az-core';
 import { map, Observable, takeUntil, tap } from 'rxjs';
 import { TranslationType } from '../../../core/enums/translation-type.enum';
 import { SearchInputAdvancedConfig } from '../../../shared/components/search-input/search-input-advanced/search-input-advanced.component';
-import { AddTranslationComponent } from '../components/add-translation/add-translation.component';
 import { Project } from '../models/project.interface';
 import { Translation } from '../models/translation.interface';
 import { ProjectService } from '../services/project.service';
@@ -17,6 +16,12 @@ import { TranslateApiService } from '../services/translate-api.service';
   styleUrls: ['./translation.component.less'],
 })
 export class TranslationComponent implements OnInit {
+  /**
+   *
+   */
+  @Select(LanguageState.languages)
+  language$!: Observable<Language[]>;
+
   /**
    *
    */
@@ -45,17 +50,6 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
-  language$!: Observable<
-    {
-      code: string;
-      name: string;
-      sortFn: NzSafeAny;
-    }[]
-  >;
-
-  /**
-   *
-   */
   translationType!: TranslationType;
 
   /**
@@ -67,11 +61,6 @@ export class TranslationComponent implements OnInit {
    *
    */
   model!: Translation;
-
-  /**
-   *
-   */
-  sortByKey = (a: Translation, b: Translation) => a.key.localeCompare(b.key);
 
   /**
    *
@@ -89,8 +78,6 @@ export class TranslationComponent implements OnInit {
     const path = route.snapshot.url[0].path;
     this.translationType =
       TranslationType[path as keyof typeof TranslationType];
-
-    this.addSortingFunctionToLanguage();
   }
 
   /**
@@ -119,25 +106,6 @@ export class TranslationComponent implements OnInit {
           };
         }
       });
-  }
-
-  /**
-   *
-   */
-  private addSortingFunctionToLanguage() {
-    this.language$ = this.$store.select(LanguageState.languages).pipe(
-      map((languages) => {
-        return languages.map((language) => {
-          return {
-            ...language,
-            sortFn: (a: Translation, b: Translation) =>
-              a.text[language.code].localeCompare(
-                b.text[language.code]
-              ) as boolean,
-          };
-        });
-      })
-    );
   }
 
   /**

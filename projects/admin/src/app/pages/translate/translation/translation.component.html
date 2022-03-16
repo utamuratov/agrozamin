@@ -20,13 +20,13 @@
 >
   <thead>
     <tr>
-      <th nzLeft nzAlign="center" nzWidth="200px" [nzSortFn]="sortByKey">
+      <th nzLeft nzAlign="center" nzWidth="200px" [nzSortFn]="'key' | azSort">
         {{ "key" | translate }}
       </th>
       <th
         *ngFor="let language of language$ | async"
         nzAlign="center"
-        [nzSortFn]="language.sortFn"
+        [nzSortFn]="'text.' + language.code | azSort"
       >
         {{ language.name }}
       </th>
