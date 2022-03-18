@@ -4,7 +4,7 @@
     title: 'accessControl' | translate,
     searchInputAdvancedConfig: searchInputConfig
   }"
-  (clickedAddEditButton)="addEdit(modal)"
+  (clickedAddEditButton)="addEdit()"
 ></az-header-with-divider-advanced>
 
 <nz-table
@@ -14,16 +14,42 @@
   nzShowSizeChanger
   nzSize="small"
   nzBordered
-  [nzWidthConfig]="['100px', '200px', '', '', '120px']"
   [nzScroll]="(searchInputConfig.filteredData.length | makeNzScroll | async)!"
 >
   <thead>
     <tr>
-      <th nzAlign="center">{{ "id" | translate }}</th>
-      <th nzAlign="center">{{ "key" | translate }}</th>
-      <th nzAlign="center">{{ "description" | translate }}</th>
-      <th nzAlign="center">{{ "url" | translate }}</th>
-      <th nzRight></th>
+      <th
+        rowspan="2"
+        width="100px"
+        nzAlign="center"
+        [nzSortFn]="'id' | azSort: false"
+      >
+        {{ "id" | translate }}
+      </th>
+      <th
+        rowspan="2"
+        width="200px"
+        nzAlign="center"
+        [nzSortFn]="'key' | azSort"
+      >
+        {{ "key" | translate }}
+      </th>
+      <th [colspan]="(language$ | async)!.length" nzAlign="center">
+        {{ "description" | translate }}
+      </th>
+      <th rowspan="2" width="200px" nzAlign="center">
+        {{ "url" | translate }}
+      </th>
+      <th nzRight rowspan="2" width="120px"></th>
+    </tr>
+    <tr>
+      <th
+        *ngFor="let language of language$ | async"
+        nzAlign="center"
+        [nzSortFn]="'description.' + language.code | azSort"
+      >
+        {{ language.name }}
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -34,8 +60,8 @@
       <td nzAlign="center">
         {{ data.key }}
       </td>
-      <td nzAlign="center">
-        {{ data.description }}
+      <td nzAlign="left" *ngFor="let language of language$ | async">
+        {{ data.description[language.code] }}
       </td>
       <td nzAlign="center">
         {{ data.url }}
@@ -47,7 +73,7 @@
               <i nz-icon nzType="delete" nzTheme="twotone"></i>
             </span>
           </button>
-          <button (click)="addEdit(modal, data)" nz-button nzType="default">
+          <button (click)="addEdit(data)" nz-button nzType="default">
             <span>
               <i nz-icon nzType="edit" nzTheme="twotone"></i>
             </span>
@@ -58,4 +84,8 @@
   </tbody>
 </nz-table>
 
-<div #modal></div>
+<az-add-edit-access-control
+  [(isVisible)]="isVisible"
+  [editingData]="editingData"
+  (modified)="loadData()"
+></az-add-edit-access-control>
