@@ -40,7 +40,7 @@ export class TranslationComponent implements OnInit {
   /**
    *
    */
-  projects?: Project[];
+  projects: Project[] = [];
 
   /**
    *

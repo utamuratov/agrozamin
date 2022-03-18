@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Select } from '@ngxs/store';
 // import { NzMessageService } from 'ng-zorro-antd/message';
 import { TransferItem } from 'ng-zorro-antd/transfer';
+import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
+import { Observable, takeUntil } from 'rxjs';
 import { SearchInputAdvancedConfig } from '../../../shared/components/search-input/search-input-advanced/search-input-advanced.component';
-
-interface DataItem {
-  name: string;
-  id: number;
-  age: number;
-  address: string;
-}
+import { AccessActionService } from '../access-action/access-action.service';
+import { AccessControlService } from '../access-control/access-control.service';
+import { AccessControlResponse } from '../access-control/models/access-control.response';
+import { Role } from './models/role.interface';
+import { RoleResponse } from './models/role.response';
+import { RoleService } from './role.service';
 
 @Component({
   templateUrl: './role.component.html',
@@ -18,89 +20,112 @@ export class RoleComponent implements OnInit {
   /**
    *
    */
-  searchInputConfig: SearchInputAdvancedConfig<DataItem> = {
+  @Select(LanguageState.languages)
+  language$!: Observable<Language[]>;
+
+  /**
+   *
+   */
+  searchInputConfig: SearchInputAdvancedConfig<RoleResponse> = {
     data: [],
     filteredData: [],
     keys: ['key', 'description'],
     searchText: '',
   };
 
-  list: TransferItem[] = [];
+  /**
+   *
+   */
+  isAddEditModalVisible!: boolean;
 
-  showTransfer = false;
-  showTransfer1 = false;
+  /**
+   *
+   */
+  editingData?: RoleResponse;
 
-  switchValue = false;
-  switchValue1 = false;
+  /**
+   *
+   */
+  accessControls: AccessControlResponse[] = [];
 
+  /**
+   *
+   */
+  accessActions: AccessControlResponse[] = [];
+
+  /**
+   *
+   */
   isVisible = false;
 
-  constructor() {
-    // this.filteredOptions = this.options;
+  constructor(
+    private $accessControl: AccessControlService,
+    private $accessAction: AccessActionService,
+    private $role: RoleService,
+    private destroy$: NgDestroy
+  ) {}
+
+  loadAccessControls() {
+    this.$accessControl.getAll().subscribe((result) => {
+      if (result.success) {
+        this.accessControls = result.data;
+      }
+    });
+  }
+
+  loadAccessActions() {
+    this.$accessAction.getAll().subscribe((result) => {
+      if (result.success) {
+        this.accessActions = result.data;
+      }
+    });
   }
 
   ngOnInit(): void {
-    for (let i = 0; i < 5; i++) {
-      this.list.push({
-        key: i.toString(),
-        title: `content${i + 1}`,
-        description: `description of content${i + 1}`,
-        direction: Math.random() * 2 > 1 ? 'right' : undefined,
-      });
-    }
-    const data = [];
-    for (let i = 0; i < 100; i++) {
-      data.push({
-        id: i + 1,
-        name: `Edward King ${i}`,
-        age: 32,
-        address: `London, Park Lane no. ${i}`,
-      });
-    }
-    this.searchInputConfig.data = data;
+    this.loadData();
+    this.loadAccessControls();
+    this.loadAccessActions();
   }
 
-  showModal(): void {
+  /**
+   *
+   */
+  loadData() {
+    this.$role
+      .getAll()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((result) => {
+        if (result.success) {
+          this.searchInputConfig = {
+            ...this.searchInputConfig,
+            data: result.data,
+          };
+        }
+      });
+  }
+
+  /**
+   *
+   * @param modal
+   * @param editingData
+   */
+  addEdit(editingData?: RoleResponse) {
+    this.editingData = editingData;
     this.isVisible = true;
   }
 
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
+  /**
+   *
+   * @param id
+   */
+  delete(id: number) {
+    this.$role
+      .delete(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        if (response.success) {
+          this.loadData();
+        }
+      });
   }
-
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.isVisible = false;
-  }
-
-  showP(): void {
-    console.log('yozdi');
-  }
-
-  showTransferfun() {
-    this.showTransfer = true;
-  }
-
-  showTransferfun1() {
-    this.showTransfer1 = true;
-  }
-
-  // filterOption(inputValue: string, item: any): boolean {
-  //   return item.description.indexOf(inputValue) > -1;
-  // }
-
-  search(ret: any): void {
-    console.log('nzSearchChange', ret);
-  }
-
-  select(ret: any): void {
-    console.log('nzSelectChange', ret);
-  }
-
-  change(ret: any): void {
-    console.log('nzChange', ret);
-  }
-
-  addEdit(modal: any) {}
 }

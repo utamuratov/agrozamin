@@ -14,8 +14,17 @@ export const getDomain = (url: string) => new URL(url).host;
 export function markAllAsDirty(form: FormGroup) {
   Object.values(form.controls).forEach((control) => {
     if (control.invalid) {
-      control.markAsDirty();
-      control.updateValueAndValidity({ onlySelf: true });
+      if (control instanceof FormGroup) {
+        Object.values(control.controls).forEach((subControl) => {
+          if (subControl.invalid) {
+            subControl.markAsDirty();
+            subControl.updateValueAndValidity({ onlySelf: true });
+          }
+        });
+      } else {
+        control.markAsDirty();
+        control.updateValueAndValidity({ onlySelf: true });
+      }
     }
   });
 }

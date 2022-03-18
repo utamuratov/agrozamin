@@ -9,7 +9,6 @@ import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
 import { Observable, takeUntil } from 'rxjs';
 import { SearchInputAdvancedConfig } from '../../../shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { AccessActionService } from './access-action.service';
-import { AddEditAccessActionComponent } from './add-edit-access-action/add-edit-access-action.component';
 import { AccessActionResponse } from './models/access-action.response';
 
 @Component({
