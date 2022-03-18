@@ -133,16 +133,16 @@ export class AddEditAccessActionComponent {
     }
     const request = this.form.getRawValue();
     if (this.editingData?.id) {
-      this.editTranslation(this.editingData.id, request);
+      this.edit(this.editingData.id, request);
       return;
     }
-    this.addAccessAction(request);
+    this.add(request);
   }
 
   /**
    *
    */
-  private addAccessAction(request: AccessAction) {
+  private add(request: AccessAction) {
     this.$accessAction
       .add(request)
       .pipe(
@@ -164,7 +164,7 @@ export class AddEditAccessActionComponent {
    * @param id
    * @param request
    */
-  private editTranslation(id: number, request: AccessAction) {
+  private edit(id: number, request: AccessAction) {
     return this.$accessAction
       .edit(id, request)
       .pipe(

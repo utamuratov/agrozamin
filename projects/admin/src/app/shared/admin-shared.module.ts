@@ -13,6 +13,8 @@ import { MakeNzScrollPipe } from './pipes/make-nz-scroll.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { TransferComponent } from './components/transfer-projects/transfer.component';
+import { NzTransferModule } from 'ng-zorro-antd/transfer';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     HeaderWithDividerBasicComponent,
     SearchInputComponent,
     SearchInputAdvancedComponent,
+    TransferComponent,
   ],
   imports: [
     /**
@@ -45,6 +48,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     // WE NEED THESE MODULES FOR CUSTOM PIPES/COMPONENTS IN THIS SHARED MODULE
     NzDividerModule,
     NzIconModule,
+    NzTransferModule,
   ],
   exports: [
     /**
@@ -65,6 +69,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzDividerModule,
     NzIconModule,
     NzModalModule,
+    NzTransferModule,
 
     /**
      * CUSTOM PIPES/COMPONENTS
@@ -77,6 +82,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     HeaderWithDividerBasicComponent,
     SearchInputComponent,
     SearchInputAdvancedComponent,
+    TransferComponent,
   ],
 })
 export class AdminSharedModule {}

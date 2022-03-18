@@ -1,7 +1,0 @@
-<nz-form-label *ngIf="title">{{ title }}</nz-form-label>
-<nz-transfer
-  [nzDataSource]="transferItems"
-  [nzTitles]="['Biriktirilmagan', 'Biriktirilgan']"
-  [nzListStyle]="{ 'width.px': 250, 'height.px': 250 }"
-  (nzChange)="nzChange.emit()"
-></nz-transfer>

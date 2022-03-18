@@ -1,0 +1,10 @@
+<nz-form-label *ngIf="title">{{ title }}</nz-form-label>
+<nz-transfer
+  *ngIf="transferItems"
+  [nzDataSource]="transferItems"
+  [nzTitles]="['Biriktirilmagan', 'Biriktirilgan']"
+  [nzListStyle]="{ 'width.px': width, 'height.px': height }"
+  [nzItemUnit]="'item'"
+  (nzChange)="nzChange.emit($event)"
+  (nzSelectChange)="nzSelectChange.emit($event)"
+></nz-transfer>

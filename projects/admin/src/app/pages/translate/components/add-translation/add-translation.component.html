@@ -21,9 +21,10 @@
           </nz-form-item>
 
           <!-- PROJECTS -->
-          <az-transfer-projects
+          <az-transfer
+            [title]="'projects' | translate"
             [transferItems]="transferingProjects"
-          ></az-transfer-projects>
+          ></az-transfer>
         </div>
         <div nz-col nzSpan="11" class="pl-1 overflow-auto languages--height">
           <nz-form-item *ngFor="let language of language$ | async">

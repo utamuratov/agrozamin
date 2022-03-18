@@ -25,8 +25,15 @@ export class AddTranslationComponent {
   /**
    *
    */
+  private _projects: Project[] = [];
+  public get projects(): Project[] {
+    return this._projects;
+  }
   @Input()
-  public projects?: Project[];
+  public set projects(v: Project[]) {
+    this._projects = v;
+    this.transferingProjects = this.makeTransferingProjects(this.projects);
+  }
 
   /**
    *
@@ -231,7 +238,6 @@ export class AddTranslationComponent {
    *
    */
   close(): void {
-    this.transferingProjects = [];
     this.isVisibleChange.emit(false);
   }
 }

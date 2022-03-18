@@ -23,3 +23,15 @@
   display: flex;
   align-items: center;
 }
+
+.header--d-none {
+  [direction="right"],
+  [direction="left"] {
+    .ant-transfer-list-header {
+      .ant-transfer-list-checkbox,
+      .ant-transfer-list-header-selected {
+        display: none;
+      }
+    }
+  }
+}
