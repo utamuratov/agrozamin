@@ -13,23 +13,23 @@ import {
 } from '@angular/forms';
 import { Select } from '@ngxs/store';
 import {
-  LanguageState,
   Language,
+  LanguageState,
   markAllAsDirty,
   NgDestroy,
 } from 'ngx-az-core';
 import { Observable, takeUntil, tap } from 'rxjs';
-import { AccessActionService } from '../access-action.service';
-import { AccessAction } from '../models/access-action.interface';
-import { AccessActionResponse } from '../models/access-action.response';
+import { AccessControlService } from '../access-control.service';
+import { AccessControl } from '../models/access-control.interface';
+import { AccessControlResponse } from '../models/access-control.response';
 
 @Component({
-  selector: 'az-add-edit-access-action',
-  templateUrl: './add-edit-access-action.component.html',
-  styleUrls: ['./add-edit-access-action.component.less'],
+  selector: 'az-add-edit-access-control',
+  templateUrl: './add-edit-access-control.component.html',
+  styleUrls: ['./add-edit-access-control.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddEditAccessActionComponent {
+export class AddEditAccessControlComponent {
   /**
    *
    */
@@ -45,13 +45,13 @@ export class AddEditAccessActionComponent {
   /**
    *
    */
-  private _editingData?: AccessActionResponse;
+  private _editingData?: AccessControlResponse;
   @Input()
-  public set editingData(v: AccessActionResponse | undefined) {
+  public set editingData(v: AccessControlResponse | undefined) {
     this._editingData = v;
     this.init();
   }
-  public get editingData(): AccessActionResponse | undefined {
+  public get editingData(): AccessControlResponse | undefined {
     return this._editingData;
   }
 
@@ -75,12 +75,12 @@ export class AddEditAccessActionComponent {
   /**
    *
    * @param fb
-   * @param $accessAction
+   * @param $accessControl
    */
   constructor(
     private fb: FormBuilder,
     private $destroy: NgDestroy,
-    private $accessAction: AccessActionService
+    private $accessControl: AccessControlService
   ) {}
 
   /**
@@ -94,9 +94,10 @@ export class AddEditAccessActionComponent {
    *
    * @param model
    */
-  initForm(model?: AccessActionResponse) {
+  initForm(model?: AccessControlResponse) {
     this.form = this.fb.group({
       key: [model?.key, Validators.required],
+      url: [model?.url],
       description: this.fb.group({}),
     });
 
@@ -107,7 +108,7 @@ export class AddEditAccessActionComponent {
    *
    * @param model
    */
-  private addDescriptionControls(model?: AccessActionResponse) {
+  private addDescriptionControls(model?: AccessControlResponse) {
     this.language$.pipe(takeUntil(this.$destroy)).subscribe((languages) => {
       languages.forEach((language) => {
         (this.form.get('description') as FormGroup)?.addControl(
@@ -141,8 +142,8 @@ export class AddEditAccessActionComponent {
   /**
    *
    */
-  private add(request: AccessAction) {
-    this.$accessAction
+  private add(request: AccessControl) {
+    this.$accessControl
       .add(request)
       .pipe(
         takeUntil(this.$destroy),
@@ -162,8 +163,8 @@ export class AddEditAccessActionComponent {
    * @param id
    * @param request
    */
-  private edit(id: number, request: AccessAction) {
-    this.$accessAction
+  private edit(id: number, request: AccessControl) {
+    this.$accessControl
       .edit(id, request)
       .pipe(
         takeUntil(this.$destroy),

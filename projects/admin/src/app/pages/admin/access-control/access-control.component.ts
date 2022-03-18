@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
+import { Observable, takeUntil } from 'rxjs';
 import { SearchInputAdvancedConfig } from '../../../shared/components/search-input/search-input-advanced/search-input-advanced.component';
+import { AccessControlService } from './access-control.service';
 import { AccessControlResponse } from './models/access-control.response';
 
 @Component({
@@ -11,6 +15,16 @@ export class AccessControlComponent implements OnInit {
   /**
    *
    */
+  isVisible!: boolean;
+
+  /**
+   *
+   */
+  editingData?: AccessControlResponse;
+
+  /**
+   *
+   */
   searchInputConfig: SearchInputAdvancedConfig<AccessControlResponse> = {
     data: [],
     filteredData: [],
@@ -18,25 +32,73 @@ export class AccessControlComponent implements OnInit {
     searchText: '',
   };
 
-  constructor() {}
+  /**
+   *
+   */
+  @Select(LanguageState.languages)
+  language$!: Observable<Language[]>;
 
+  /**
+   *
+   * @param $accessControl
+   * @param destroy$
+   * @param cd
+   */
+  constructor(
+    private $accessControl: AccessControlService,
+    private destroy$: NgDestroy
+  ) {}
+
+  /**
+   *
+   */
   ngOnInit(): void {
     this.loadData();
   }
 
-  private loadData() {
-    for (let index = 0; index < 10; index++) {
-      this.searchInputConfig.data.push({
-        id: index + 1,
-        key: 'key' + index,
-        description: 'desc' + index,
-        url: 'url' + index,
+  /**
+   *
+   */
+  loadData() {
+    this.$accessControl
+      .getAll()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((result) => {
+        if (result.success) {
+          this.searchInputConfig = {
+            ...this.searchInputConfig,
+            data: result.data,
+          };
+        }
       });
-    }
-    this.searchInputConfig.filteredData = this.searchInputConfig.data;
   }
 
-  addEdit(modal: any, data?: any) {}
+  /**
+   *
+   * @param modal
+   * @param editingData
+   */
+  addEdit(editingData?: AccessControlResponse) {
+    this.editingData = editingData;
+    this.isVisible = true;
+  }
 
-  delete(id: number) {}
+  /**
+   *
+   * @param id
+   */
+  delete(id: number) {
+    this.$accessControl
+      .delete(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        if (response.success) {
+          this.loadData();
+        }
+      });
+  }
+
+  close() {
+    this.isVisible = false;
+  }
 }

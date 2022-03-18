@@ -1,0 +1,68 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="(editingData?.id ? 'edit' : 'add') | translate"
+  (nzOnCancel)="close()"
+  modal
+>
+  <div *nzModalContent>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <div class="overflow-auto max-height">
+        <!-- KEY -->
+        <nz-form-item>
+          <nz-form-label nzFor="key">{{ "key" | translate }}</nz-form-label>
+          <nz-form-control [nzErrorTip]="errorKey">
+            <input
+              nz-input
+              id="key"
+              formControlName="key"
+              name="key"
+              type="text"
+            />
+          </nz-form-control>
+          <ng-template #errorKey let-control>
+            <error [control]="control"></error>
+          </ng-template>
+        </nz-form-item>
+
+        <!-- URL -->
+        <nz-form-item>
+          <nz-form-label nzFor="url">{{ "url" | translate }}</nz-form-label>
+          <nz-form-control [nzErrorTip]="errorKey">
+            <input
+              nz-input
+              id="url"
+              formControlName="url"
+              name="url"
+              type="text"
+            />
+          </nz-form-control>
+          <ng-template #errorKey let-control>
+            <error [control]="control"></error>
+          </ng-template>
+        </nz-form-item>
+
+        <h3>{{ "description" | translate }}</h3>
+
+        <div formGroupName="description">
+          <nz-form-item *ngFor="let language of language$ | async">
+            <nz-form-label nzFor="text">{{ language.name }}</nz-form-label>
+            <nz-form-control [nzErrorTip]="'fillTheInput' | translate">
+              <textarea
+                rows="3"
+                nz-input
+                [name]="language.code"
+                [formControlName]="language.code"
+                type="text"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div *nzModalFooter>
+    <button (click)="submit()" nz-button nzType="primary">
+      {{ "save" | translate }}
+    </button>
+  </div>
+</nz-modal>
