@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { SearchInputAdvancedConfig } from '../../search-input/search-input-advanced/search-input-advanced.component';
 
 export interface HeaderWithDividerAdvancedConfig {
@@ -9,6 +15,7 @@ export interface HeaderWithDividerAdvancedConfig {
 @Component({
   selector: 'az-header-with-divider-advanced',
   templateUrl: './header-with-divider-advanced.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderWithDividerAdvancedComponent {
   /**
