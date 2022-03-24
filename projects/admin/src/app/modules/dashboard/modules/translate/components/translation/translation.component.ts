@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { BaseResponse, Language, LanguageState, NgDestroy } from 'ngx-az-core';
 import { TranslationType } from 'projects/admin/src/app/core/enums/translation-type.enum';
 import { SearchInputAdvancedConfig } from 'projects/admin/src/app/shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { Observable, takeUntil, tap } from 'rxjs';
-import { Project } from '../models/project.interface';
-import { Translation } from '../models/translation.interface';
-import { ProjectService } from '../services/project.service';
-import { TranslateApiService } from '../services/translate-api.service';
+import { Project } from '../../models/project.interface';
+import { Translation } from '../../models/translation.interface';
+import { ProjectService } from '../../services/project.service';
+import { TranslateApiService } from '../../services/translate-api.service';
 
 @Component({
   templateUrl: './translation.component.html',
   styleUrls: ['./translation.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TranslationComponent implements OnInit {
   /**
@@ -72,7 +78,7 @@ export class TranslationComponent implements OnInit {
     private $translate: TranslateApiService,
     private $project: ProjectService,
     private destroy$: NgDestroy,
-    private $store: Store
+    private cd: ChangeDetectorRef
   ) {
     const path = route.snapshot.url[0].path;
     this.translationType =
@@ -103,6 +109,7 @@ export class TranslationComponent implements OnInit {
             ...this.searchInputConfig,
             data: result.data,
           };
+          this.cd.markForCheck();
         }
       });
   }

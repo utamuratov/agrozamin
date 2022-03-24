@@ -2,7 +2,7 @@ import { ContentsComponent } from './components/contents/contents.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateComponent } from './translate.component';
-import { TranslationComponent } from './translation/translation.component';
+import { TranslationComponent } from './components/translation/translation.component';
 import { SEOResolver } from 'ngx-az-core';
 import { TranslationType } from 'projects/admin/src/app/core/enums/translation-type.enum';
 

@@ -5,7 +5,7 @@ import { TranslateApiService } from './services/translate-api.service';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { FormsModule } from '@angular/forms';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
-import { TranslationComponent } from './translation/translation.component';
+import { TranslationComponent } from './components/translation/translation.component';
 import { AddEditTranslationComponent } from './components/add-edit-translation/add-edit-translation.component';
 import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
 

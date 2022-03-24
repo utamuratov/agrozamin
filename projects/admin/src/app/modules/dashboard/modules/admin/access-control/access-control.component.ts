@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
 import { SearchInputAdvancedConfig } from 'projects/admin/src/app/shared/components/search-input/search-input-advanced/search-input-advanced.component';
@@ -10,6 +15,7 @@ import { AccessControlResponse } from './models/access-control.response';
   selector: 'az-access-control',
   templateUrl: './access-control.component.html',
   styleUrls: ['./access-control.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccessControlComponent implements OnInit {
   /**
@@ -46,7 +52,8 @@ export class AccessControlComponent implements OnInit {
    */
   constructor(
     private $accessControl: AccessControlService,
-    private destroy$: NgDestroy
+    private destroy$: NgDestroy,
+    private cd: ChangeDetectorRef
   ) {}
 
   /**
@@ -69,6 +76,7 @@ export class AccessControlComponent implements OnInit {
             ...this.searchInputConfig,
             data: result.data,
           };
+          this.cd.markForCheck();
         }
       });
   }
