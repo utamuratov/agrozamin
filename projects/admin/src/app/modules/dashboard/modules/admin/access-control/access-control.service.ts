@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from 'ngx-az-core';
-import { CrudService } from '../../../core/services/crud.service';
+import { CrudService } from 'projects/admin/src/app/core/services/crud.service';
 import { AccessControl } from './models/access-control.interface';
 import { AccessControlResponse } from './models/access-control.response';
 

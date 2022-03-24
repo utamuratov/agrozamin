@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+} from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
 export interface SearchInputAdvancedConfig<T = NzSafeAny> {
@@ -43,6 +48,7 @@ export class SearchInputAdvancedComponent {
     // TODO: IMPROVE THIS LOGIC
     setTimeout(() => {
       this.search(this.config.searchText);
+      this.cd.markForCheck();
     });
   }
 
@@ -74,4 +80,9 @@ export class SearchInputAdvancedComponent {
       })
     );
   }
+
+  /**
+   *
+   */
+  constructor(private cd: ChangeDetectorRef) {}
 }

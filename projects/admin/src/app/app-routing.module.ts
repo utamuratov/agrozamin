@@ -21,7 +21,7 @@ const routes: Routes = [
       {
         path: ':language',
         loadChildren: () =>
-          import('./pages/dashboard/dashboard.module').then(
+          import('./modules/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
         canActivate: [LanguageGuard],
@@ -29,7 +29,9 @@ const routes: Routes = [
       {
         path: ':language/sign-in',
         loadChildren: () =>
-          import('./pages/sign-in/sign-in.module').then((m) => m.SignInModule),
+          import('./modules/sign-in/sign-in.module').then(
+            (m) => m.SignInModule
+          ),
         canActivate: [LanguageGuard],
       },
     ],

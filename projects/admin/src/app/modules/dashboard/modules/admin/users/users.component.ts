@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NzButtonSize } from 'ng-zorro-antd/button';
 
 interface DataItem {
   name: string;
