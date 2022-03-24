@@ -1,9 +1,9 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseResponse, BaseService } from 'ngx-az-core';
+import { TranslationType } from 'projects/admin/src/app/core/enums/translation-type.enum';
+import { CrudService } from 'projects/admin/src/app/core/services/crud.service';
 import { Observable } from 'rxjs';
-import { TranslationType } from '../../../core/enums/translation-type.enum';
-import { CrudService } from '../../../core/services/crud.service';
 import { AddTranslationRequest } from '../models/add-translation.request';
 import { Translation } from '../models/translation.interface';
 

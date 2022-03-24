@@ -17,11 +17,11 @@ import { Translation } from '../../models/translation.interface';
 import { TranslateApiService } from '../../services/translate-api.service';
 
 @Component({
-  selector: 'az-add-translation',
-  templateUrl: './add-translation.component.html',
-  styleUrls: ['./add-translation.component.less'],
+  selector: 'az-add-edit-translation',
+  templateUrl: './add-edit-translation.component.html',
+  styleUrls: ['./add-edit-translation.component.less'],
 })
-export class AddTranslationComponent {
+export class AddEditTranslationComponent {
   /**
    *
    */

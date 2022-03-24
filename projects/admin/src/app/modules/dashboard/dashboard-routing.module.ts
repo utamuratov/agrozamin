@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryComponent } from '../category/category.component';
-import { UserComponent } from '../user/user.component';
 import { DashboardComponent } from './dashboard.component';
+import { CategoryComponent } from './modules/category/category.component';
+import { UserComponent } from './modules/user/user.component';
 
 const routes: Routes = [
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: () =>
-          import('../../pages/home/home.module').then((m) => m.HomeModule),
+          import('./modules/home/home.module').then((m) => m.HomeModule),
       },
       {
         path: 'user',
@@ -40,14 +40,14 @@ const routes: Routes = [
       {
         path: 'translate',
         loadChildren: () =>
-          import('../../pages/translate/translate.module').then(
+          import('./modules/translate/translate.module').then(
             (m) => m.TranslateModule
           ),
       },
       {
         path: 'admin',
         loadChildren: () =>
-          import('../../pages/admin/admin.module').then((m) => m.AdminModule),
+          import('./modules/admin/admin.module').then((m) => m.AdminModule),
       },
     ],
   },

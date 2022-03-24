@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
+import { SearchInputAdvancedConfig } from 'projects/admin/src/app/shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { Observable, takeUntil } from 'rxjs';
-import { SearchInputAdvancedConfig } from '../../../shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { AccessControlService } from './access-control.service';
 import { AccessControlResponse } from './models/access-control.response';
 

@@ -1,10 +1,10 @@
-import { ContentsComponent } from './contents/contents.component';
+import { ContentsComponent } from './components/contents/contents.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateComponent } from './translate.component';
 import { TranslationComponent } from './translation/translation.component';
-import { TranslationType } from '../../core/enums/translation-type.enum';
 import { SEOResolver } from 'ngx-az-core';
+import { TranslationType } from 'projects/admin/src/app/core/enums/translation-type.enum';
 
 const routes: Routes = [
   {
