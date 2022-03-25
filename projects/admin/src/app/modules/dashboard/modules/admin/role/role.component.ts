@@ -4,6 +4,7 @@ import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
 import { SearchInputAdvancedConfig } from 'projects/admin/src/app/shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { Observable, takeUntil } from 'rxjs';
 import { AccessActionService } from '../access-action/access-action.service';
+import { AccessActionResponse } from '../access-action/models/access-action.response';
 import { AccessControlService } from '../access-control/access-control.service';
 import { AccessControlResponse } from '../access-control/models/access-control.response';
 import { RoleResponse } from './models/role.response';
@@ -48,7 +49,7 @@ export class RoleComponent implements OnInit {
   /**
    *
    */
-  accessActions: AccessControlResponse[] = [];
+  accessActions: AccessActionResponse[] = [];
 
   /**
    *

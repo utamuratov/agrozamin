@@ -15,6 +15,7 @@ import { AddEditAccessActionComponent } from './access-action/add-edit-access-ac
 import { AddEditRoleComponent } from './role/add-edit-role/add-edit-role.component';
 import { AddEditAccessControlComponent } from './access-control/add-edit-access-control/add-edit-access-control.component';
 import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
+import { BaseAddEditComponent } from './access-action/base-add-edit/base-add-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.mo
     AddEditAccessActionComponent,
     AddEditRoleComponent,
     AddEditAccessControlComponent,
+    BaseAddEditComponent,
   ],
   imports: [
     AdminRoutingModule,

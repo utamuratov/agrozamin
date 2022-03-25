@@ -1,6 +1,6 @@
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { BaseModel } from './base-model';
-import { Id } from './id.interface';
+import { Id } from '../../../../../shared/models/id.interface';
 import { Project } from './project.interface';
 
 export interface Translation extends Id, BaseModel {

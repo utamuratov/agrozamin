@@ -33,14 +33,14 @@ const routes: Routes = [
         path: 'access-action',
         component: AccessActionComponent,
         data: {
-          bc: 'accessAction',
+          bc: 'actions',
         },
       },
       {
         path: 'access-control',
         component: AccessControlComponent,
         data: {
-          bc: 'accessControl',
+          bc: 'controls',
         },
       },
     ],
