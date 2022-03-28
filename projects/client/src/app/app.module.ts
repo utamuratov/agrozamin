@@ -33,7 +33,7 @@ registerLocaleData(ru);
   declarations: [
     AppComponent,
     RootLayoutComponent,
-    HomeComponent,
+    
     LayoutComponent,
     HeaderComponent,
     BreadcrumbComponent,
