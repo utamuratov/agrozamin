@@ -10,6 +10,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { InlineCardModule } from '../../shared/inline-card/inline-card.module';
 
 @NgModule({
   declarations: [BusinessCardPage, AddEditBusinessCardComponent],
@@ -21,6 +22,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
      */
     ReactiveFormsSharedModule,
     NzFormsSharedModule,
+    InlineCardModule,
 
     /**
      * NG-ZORRO-MODULES

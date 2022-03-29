@@ -1,0 +1,55 @@
+<nz-card nzHoverable class="legal__card">
+  <div nz-row nzAlign="bottom" [nzGutter]="[15, 10]" nzJustify="center">
+    <div
+      nz-col
+      nzXs="12"
+      nzSm="5"
+      nzMd="5"
+      nzLg="5"
+      nzXl="5"
+      nzXXl="5"
+      class="text-center"
+    >
+      <nz-avatar
+        [nzSize]="64"
+        [nzIcon]="avatar ? '' : iconForAvatar"
+        [nzSrc]="avatar ? avatar : ''"
+      ></nz-avatar>
+    </div>
+    <div nz-col nzXs="18" nzSm="15" nzMd="15" nzLg="15" nzXl="15" nzXXl="15">
+      <p nz-typography class="m-0">
+        {{ titleOne }}
+        <!-- {{user.firstName}} {{user.lastName}} -->
+      </p>
+      <p nz-typography class="m-0">
+        <!-- {{user.mail}} -->
+        {{ titleTwo }}
+      </p>
+      <p nz-typography class="m-0">
+        {{ titleThree }}
+        <!-- {{user.phone}} -->
+      </p>
+    </div>
+    <div nz-col nzXs="6" nzSm="4" nzMd="4" nzLg="4" nzXl="4" nzXXl="4">
+      <button
+        *ngIf="hasThreeDots"
+        nz-button
+        nzType="text"
+        nzShape="circle"
+        (click)="showModal()"
+        nz-popover
+        nzPopoverTitle="{{ null }}"
+        nzPopoverPlacement="bottomLeft"
+        [(nzPopoverVisible)]="isVisiblePopover"
+        (nzPopoverVisibleChange)="isVisiblePopover = false"
+        nzPopoverTrigger="click"
+        [nzPopoverContent]="contentTemplate"
+      >
+        <i nz-icon nzType="more" nzTheme="outline"></i>
+      </button>
+      <ng-template #contentTemplate>
+        <ng-content></ng-content>
+      </ng-template>
+    </div>
+  </div>
+</nz-card>
