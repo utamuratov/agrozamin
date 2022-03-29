@@ -94,7 +94,7 @@ export class RoleComponent implements OnInit {
             isLeaf: !control.access.length,
             children: control.access.map((action) => {
               return {
-                title: `${control.key} - ${action.description}`,
+                title: `${control.description} - ${action.description}`,
                 key: `${control.id}${AdminConstants.SPLITTER_FOR_TREE}${action.id}`,
                 description: `${action.description}`,
                 isLeaf: true,

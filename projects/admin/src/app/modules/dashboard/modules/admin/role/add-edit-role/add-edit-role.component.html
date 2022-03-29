@@ -2,6 +2,7 @@
   [(nzVisible)]="isVisible"
   [nzTitle]="(editingData?.id ? 'edit' : 'add') | translate"
   (nzOnCancel)="close()"
+  [nzWidth]="'650px'"
   modal
 >
   <div *nzModalContent>

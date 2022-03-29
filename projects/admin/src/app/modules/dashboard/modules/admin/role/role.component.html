@@ -65,12 +65,14 @@
         {{ data.description[language.code] }}
       </td>
       <td nzAlign="center">
-        <span
+        <div
           *ngFor="let control of data.access_controls"
           nz-typography
+          class="mb-0"
           [nz-tooltip]="control.access_actions | controlActionToString"
-          ><code>{{ control.description }}</code>
-        </span>
+        >
+          <code>{{ control.description }}</code>
+        </div>
       </td>
       <td nzRight nzAlign="center">
         <nz-button-group>
