@@ -39,7 +39,7 @@
         {{ "description" | translate }}
       </th>
       <th nzAlign="center" [width]="'300px'" rowspan="2">
-        {{ "actions" | translate }}
+        {{ "controls" | translate }}
       </th>
       <th nzRight rowspan="2" width="120px"></th>
     </tr>
@@ -66,12 +66,11 @@
       </td>
       <td nzAlign="center">
         <span
-          *ngFor="let controlAction of data.access_control_action"
+          *ngFor="let control of data.access_controls"
           nz-typography
-          ><code
-            >{{ controlAction.control }} - {{ controlAction.action }}</code
-          ></span
-        >
+          [nz-tooltip]="control.access_actions | controlActionToString"
+          ><code>{{ control.description }}</code>
+        </span>
       </td>
       <td nzRight nzAlign="center">
         <nz-button-group>
@@ -94,8 +93,6 @@
 <az-add-edit-role
   [(isVisible)]="isVisible"
   [editingData]="editingData"
-  [accessControls]="accessControls"
-  [accessActions]="accessActions"
   [controlAction]="controlActionAsTree"
   (modified)="loadData()"
 ></az-add-edit-role>

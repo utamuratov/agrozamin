@@ -14,9 +14,8 @@ import {
   markAllAsDirty,
   NgDestroy,
 } from 'ngx-az-core';
+import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { map, Observable, takeUntil } from 'rxjs';
-import { AccessActionResponse } from '../../access-action/models/access-action.response';
-import { AccessControlResponse } from '../../access-control/models/access-control.response';
 import { AddEditRole } from '../models/add-edit-role.interface';
 import { RoleService } from '../role.service';
 
@@ -38,38 +37,6 @@ export class AddEditRoleComponent {
   @Output()
   isVisibleChange = new EventEmitter<boolean>();
 
-  onChange($event: string[]): void {
-    console.log($event);
-  }
-
-  /**
-   *
-   */
-  private _accessControls: AccessControlResponse[] = [];
-  public get accessControls(): AccessControlResponse[] {
-    return this._accessControls;
-  }
-  @Input()
-  public set accessControls(v: AccessControlResponse[]) {
-    this._accessControls = v;
-    // this.transferingAccessControls = this.makeTransferingAccessControls(
-    //   this.accessControls
-    // );
-  }
-
-  /**
-   *
-   */
-  private _accessActions: AccessActionResponse[] = [];
-  public get accessActions(): AccessActionResponse[] {
-    return this._accessActions;
-  }
-  @Input()
-  public set accessActions(v: AccessActionResponse[]) {
-    this._accessActions = v;
-    //  this.transferingAccessControls = [];
-  }
-
   /**
    *
    */
@@ -80,9 +47,6 @@ export class AddEditRoleComponent {
   @Input()
   public set controlAction(v: NzTreeNodeOptions[]) {
     this._controlAction = v;
-    console.log(v);
-
-    //  this.transferingAccessControls = [];
   }
 
   /**
@@ -111,16 +75,6 @@ export class AddEditRoleComponent {
    */
   @Select(LanguageState.languages)
   language$!: Observable<Language[]>;
-
-  /**
-   *
-   */
-  transferingAccessControls: TransferItem[] = [];
-
-  /**
-   *
-   */
-  transferingAccessActions: TransferItem[] = [];
 
   /**
    *
@@ -179,125 +133,6 @@ export class AddEditRoleComponent {
 
   /**
    *
-   */
-  // makeTransferingAccessControls(
-  //   accessControls: AccessControlResponse[]
-  // ): TransferItem[] {
-  //   const transferItems: TransferItem[] = [];
-  //   accessControls.forEach((accessControl) => {
-  //     transferItems.push({
-  //       key: accessControl.id,
-  //       title: accessControl.key,
-  //       direction: (this.form.get('access')?.value as Access[])?.find(
-  //         (w) => w.access_control_id === accessControl.id
-  //       )
-  //         ? 'right'
-  //         : 'left',
-  //     });
-  //   });
-
-  //   return transferItems;
-  // }
-
-  /**
-   *
-   */
-  // getTransferingAccessActions(
-  //   accessActions: AccessActionResponse[],
-  //   accessControlKey: number
-  // ): TransferItem[] {
-  //   const transferItems: TransferItem[] = [];
-  //   // const accessAction = this.transferingAccessControls.find(w => w. == accessControlKey)
-  //   accessActions.forEach((accessAction) => {
-  //     transferItems.push({
-  //       key: accessAction.id,
-  //       title: accessAction.key,
-  //       direction: (this.form.get('access')?.value as Access[])?.find(
-  //         (w) =>
-  //           w.access_control_id === accessControlKey &&
-  //           w.access_action_id.find((t) => t === accessAction.id)
-  //       )
-  //         ? 'right'
-  //         : 'left',
-  //     });
-  //   });
-
-  //   return transferItems;
-  // }
-
-  // selectChangeAccessControls(data: TransferSelectChange) {
-  //   this.transferingAccessControls.forEach((w) => {
-  //     if (w['key'] !== data.item?.['key']) {
-  //       w.checked = false;
-  //     }
-  //   });
-  //   this.transferingAccessControls = [...this.transferingAccessControls];
-
-  //   if (data.checked && data.direction === 'right') {
-  //     this.transferingAccessActions = this.getTransferingAccessActions(
-  //       this.accessActions,
-  //       data.item?.['key']
-  //     );
-  //   } else {
-  //     this.transferingAccessActions = [];
-  //   }
-  // }
-
-  // changedAccessControlPosition(data: TransferChange) {
-  //   this.transferingAccessControls = [...this.transferingAccessControls];
-  //   if (data.from === 'right') {
-  //     this.transferingAccessActions = [];
-  //   }
-
-  //   const access = this.form.get('access');
-  //   const value: Access[] = access?.value ?? [];
-  //   if (data.from === 'left') {
-  //     value.push({
-  //       access_control_id: data.list[0]['key'],
-  //       access_action_id: [],
-  //     } as Access);
-  //     access?.setValue(value);
-  //   } else {
-  //     access?.setValue(
-  //       value.filter((w) => w.access_control_id !== data.list[0]['key'])
-  //     );
-  //   }
-
-  //   console.log(access);
-  //   console.log(this.form);
-  // }
-
-  // changedAccessActionPosition(data: TransferChange) {
-  //   // this.transferingAccessControls = [...this.transferingAccessControls];
-  //   // if (data.from === 'right') {
-  //   //   this.transferingAccessActions = [];
-  //   // }
-  //   const selectedAccessControl = this.transferingAccessControls.find(
-  //     (w) => w.checked && w.direction === 'right'
-  //   );
-  //   if (!selectedAccessControl) {
-  //     return;
-  //   }
-
-  //   const access = this.form.get('access');
-  //   const value: Access[] = access?.value ?? [];
-  //   const actions = value.find(
-  //     (access) => access.access_control_id === selectedAccessControl['key']
-  //   );
-
-  //   if (actions) {
-  //     actions.access_action_id = this.transferingAccessActions
-  //       .filter((action) => action.direction === 'right')
-  //       .map((t) => t['key']);
-  //   }
-
-  //   console.log(access);
-  //   console.log(actions);
-  //   console.log(this.form);
-  // }
-
-  /**
-   *
    * @returns
    */
   submit() {
@@ -306,10 +141,12 @@ export class AddEditRoleComponent {
       return;
     }
 
-    const request = this.form.getRawValue();
-    this.makeAccess(request);
+    const formRawValue: AddEditRole<string> = this.form.getRawValue();
+    const request: AddEditRole<number> = {
+      ...formRawValue,
+      access: this.getControlActionIds(formRawValue.access),
+    };
 
-    // request.access = this.transferingAccessControls.map((w) => {return {access_control_id: w['key'], access_action_id: }})
     if (this.editingData?.id) {
       this.edit(this.editingData.id, request);
       return;
@@ -317,23 +154,28 @@ export class AddEditRoleComponent {
     this.add(request);
   }
 
-  private makeAccess(request: any) {
-    const access: number[] = [];
-    request.access.forEach((value: string) => {
-      const splitted = value.split('-');
+  /**
+   *
+   * @param controlActionIds e.g. 'controlId-controlActionId' => '1-2', or 'controlId' => '1'
+   * @returns
+   */
+  private getControlActionIds(controlActionIds: string[]) {
+    const ids: number[] = [];
+    controlActionIds.forEach((value: string) => {
+      const splitted = value.split(AdminConstants.SPLITTER_FOR_TREE);
       if (splitted.length > 1) {
-        access.push(+splitted[1]);
+        ids.push(+splitted[1]);
       } else {
         const actions = this.controlAction.find(
           (w) => w.key === value
         )?.children;
 
         actions?.forEach((action) => {
-          access.push(+action.key.split('-')[1]);
+          ids.push(+action.key.split(AdminConstants.SPLITTER_FOR_TREE)[1]);
         });
       }
     });
-    request.access = access;
+    return ids;
   }
 
   /**

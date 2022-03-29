@@ -1,8 +1,7 @@
 import { Id } from 'projects/admin/src/app/shared/models/id.interface';
+import { AccessAction } from './access-action.interface';
 
-export interface AccessControlAction extends Id {
-  access_action_id: number;
-  access_control_id: number;
-  action: string;
-  control: string;
+export interface AccessControl extends Id {
+  description: string;
+  access_actions: AccessAction[];
 }

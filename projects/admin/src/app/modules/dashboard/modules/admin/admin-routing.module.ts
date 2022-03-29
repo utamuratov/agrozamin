@@ -26,7 +26,7 @@ const routes: Routes = [
         path: 'role',
         component: RoleComponent,
         data: {
-          bc: 'role',
+          bc: 'roles',
         },
       },
       {

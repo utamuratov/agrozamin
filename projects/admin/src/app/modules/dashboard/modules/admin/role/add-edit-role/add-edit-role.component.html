@@ -27,17 +27,12 @@
               id="actions"
               formControlName="access"
               [nzNodes]="controlAction"
-              (ngModelChange)="onChange($event)"
               nzShowSearch
               nzCheckable
               [nzTreeTemplate]="nzTreeTemplate"
             ></nz-tree-select>
             <ng-template #nzTreeTemplate let-node let-origin="origin">
               <span>{{ origin.description }}</span>
-              <!-- <br />
-              <div class="custom-option">
-                <small>{{ origin.description }}</small>
-              </div> -->
             </ng-template>
           </nz-form-control>
           <ng-template #errorActions let-control>
@@ -62,25 +57,6 @@
           </nz-form-item>
         </div>
       </div>
-      <!-- <div nz-col nzSpan="13" class="pl-1">
-          <az-transfer
-            class="header--d-none"
-            [title]="'accessControl' | translate"
-            [transferItems]="transferingAccessControls"
-            [height]="220"
-            (nzSelectChange)="selectChangeAccessControls($event)"
-            (nzChange)="changedAccessControlPosition($event)"
-          ></az-transfer>
-
-          <div class="mt-1">
-            <az-transfer
-              [title]="'accessAction' | translate"
-              [transferItems]="transferingAccessActions"
-              (nzChange)="changedAccessActionPosition($event)"
-              [height]="200"
-            ></az-transfer>
-          </div>
-        </div> -->
     </form>
   </div>
   <div *nzModalFooter>
