@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
+import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
 import { SearchInputAdvancedConfig } from 'projects/admin/src/app/shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { Observable, takeUntil } from 'rxjs';
@@ -7,6 +8,8 @@ import { AccessActionService } from '../access-action/access-action.service';
 import { AccessActionResponse } from '../access-action/models/access-action.response';
 import { AccessControlService } from '../access-control/access-control.service';
 import { AccessControlResponse } from '../access-control/models/access-control.response';
+import { AddEditRole } from './models/add-edit-role.interface';
+import { ControlAction } from './models/control-action.interface';
 import { RoleResponse } from './models/role.response';
 import { RoleService } from './role.service';
 
@@ -39,7 +42,7 @@ export class RoleComponent implements OnInit {
   /**
    *
    */
-  editingData?: RoleResponse;
+  editingData?: AddEditRole<string>;
 
   /**
    *
@@ -54,6 +57,12 @@ export class RoleComponent implements OnInit {
   /**
    *
    */
+  controlAction!: ControlAction[];
+  controlActionAsTree!: NzTreeNodeOptions[];
+
+  /**
+   *
+   */
   isVisible = false;
 
   constructor(
@@ -62,6 +71,31 @@ export class RoleComponent implements OnInit {
     private $role: RoleService,
     private destroy$: NgDestroy
   ) {}
+
+  loadControlAction() {
+    this.$role.getControlAction().subscribe((result) => {
+      if (result.success) {
+        this.controlAction = result.data;
+        this.controlActionAsTree = result.data.map((control) => {
+          return {
+            title: `${control.description}`,
+            description: `${control.description}`,
+            key: `${control.id}`,
+            isLeaf: !control.access.length,
+            children: control.access.map((action) => {
+              return {
+                title: `${control.key} - ${action.description}`,
+                key: `${control.id}-${action.id}`,
+                description: `${action.description}`,
+                isLeaf: true,
+                value: action.id,
+              } as NzTreeNodeOptions;
+            }),
+          } as NzTreeNodeOptions;
+        });
+      }
+    });
+  }
 
   loadAccessControls() {
     this.$accessControl.getAll().subscribe((result) => {
@@ -81,8 +115,9 @@ export class RoleComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    this.loadAccessControls();
-    this.loadAccessActions();
+    // this.loadAccessControls();
+    // this.loadAccessActions();
+    this.loadControlAction();
   }
 
   /**
@@ -108,7 +143,18 @@ export class RoleComponent implements OnInit {
    * @param editingData
    */
   addEdit(editingData?: RoleResponse) {
-    this.editingData = editingData;
+    if (editingData) {
+      this.editingData = {
+        id: editingData.id,
+        description: editingData.description,
+        key: editingData.key,
+        access: editingData.access_control_action.map(
+          (w) => `${w.access_control_id}-${w.id}`
+        ),
+      };
+    } else {
+      this.editingData = undefined;
+    }
     this.isVisible = true;
   }
 

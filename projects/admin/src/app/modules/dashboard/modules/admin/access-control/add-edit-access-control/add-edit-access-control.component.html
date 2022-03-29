@@ -28,7 +28,7 @@
           <nz-form-label nzFor="accessAction">{{
             "actions" | translate
           }}</nz-form-label>
-          <nz-form-control [nzErrorTip]="errorKey">
+          <nz-form-control [nzErrorTip]="errorActions">
             <nz-select
               id="accessAction"
               formControlName="actions"
@@ -54,12 +54,15 @@
               </div>
             </ng-template>
           </nz-form-control>
+          <ng-template #errorActions let-control>
+            <error [control]="control"></error>
+          </ng-template>
         </nz-form-item>
 
         <!-- URL -->
         <nz-form-item>
           <nz-form-label nzFor="url">{{ "url" | translate }}</nz-form-label>
-          <nz-form-control [nzErrorTip]="errorKey">
+          <nz-form-control>
             <input
               nz-input
               id="url"
@@ -68,9 +71,6 @@
               type="text"
             />
           </nz-form-control>
-          <ng-template #errorKey let-control>
-            <error [control]="control"></error>
-          </ng-template>
         </nz-form-item>
 
         <h3>{{ "description" | translate }}</h3>
