@@ -1,19 +1,25 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserInfo } from '../../biznes-cards.component';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  EventEmitter,
+  Output,
+} from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserInfo } from '../business-card/business-card.page';
 
 @Component({
-  selector: 'az-biznes-cards-modal',
-  templateUrl: './biznes-cards-modal.component.html',
-  styleUrls: ['./biznes-cards-modal.component.less'],
+  selector: 'az-add-edit-business-card',
+  templateUrl: './add-edit-business-card.component.html',
+  styleUrls: ['./add-edit-business-card.component.less'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BiznesCardsModalComponent {
+export class AddEditBusinessCardComponent {
   isVisibleModal = false;
   user!: UserInfo | null;
   @Output() closeIsVisible = new EventEmitter<boolean>();
   isConfirmLoading = false;
   validateForm!: FormGroup;
-  avatar: any
+  avatar: any;
 
   constructor(private fb: FormBuilder) {}
 
@@ -24,7 +30,7 @@ export class BiznesCardsModalComponent {
       lastName: [this.user?.lastName, [Validators.required]],
       phone: [this.user?.phone, [Validators.required]],
       mail: [this.user?.mail, [Validators.required]],
-    })
+    });
   }
 
   showModal(): void {

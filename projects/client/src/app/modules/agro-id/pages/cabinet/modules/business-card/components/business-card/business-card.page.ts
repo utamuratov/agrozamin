@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { BusinessCardConfig } from '../../components/business-card-modal/business-card-modal.component';
+import { BusinessCardConfig } from '../../../../components/business-card-modal/business-card-modal.component';
 
 export interface UserInfo {
   id: number;
@@ -14,16 +13,15 @@ export interface UserInfo {
 }
 
 @Component({
-  selector: 'app-biznes-cards',
-  templateUrl: './biznes-cards.component.html',
-  styleUrls: ['./biznes-cards.component.less'],
-  providers: [NzMessageService],
+  templateUrl: './business-card.page.html',
+  styleUrls: ['./business-card.page.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BiznesCardsComponent implements OnInit {
+export class BusinessCardPage implements OnInit {
   isVisible = false;
   openModal = false;
   activeUser!: UserInfo | null;
-  
+
   userName = 'Махмудов Кайрат';
   validateForm!: FormGroup;
 
@@ -37,7 +35,7 @@ export class BiznesCardsComponent implements OnInit {
       phone: '+998 90 326 20 13',
       avatar: '../../../../../../../assets/images/agro-id-images/avatar.jpg',
       mail: 'narbekov@gmail.com',
-      visible: false
+      visible: false,
     },
     {
       id: 2,
@@ -46,7 +44,7 @@ export class BiznesCardsComponent implements OnInit {
       phone: '+998 90 326 20 14',
       avatar: '../../../../../../../assets/images/agro-id-images/avatar2.jpg',
       mail: 'narbekovaKR@gmail.com',
-      visible: false
+      visible: false,
     },
     {
       id: 3,
@@ -55,11 +53,11 @@ export class BiznesCardsComponent implements OnInit {
       phone: '+998 90 326 20 15',
       avatar: '../../../../../../../assets/images/agro-id-images/avatar3.jpg',
       mail: 'Ijhony@gmail.com',
-      visible: false
+      visible: false,
     },
   ];
 
-  constructor(private msg: NzMessageService, private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.validateForm = this.fb.group({
@@ -80,16 +78,16 @@ export class BiznesCardsComponent implements OnInit {
   }
 
   showModal(): void {
-    this.openModal = true
+    this.openModal = true;
   }
 
   deleteCard(id: number): void {
-    const companiesList = this.userCard.filter(el => el.id !== id)
-    this.userCard = companiesList
+    const companiesList = this.userCard.filter((el) => el.id !== id);
+    this.userCard = companiesList;
   }
 
   closeModal($event: boolean): void {
-    this.openModal = $event
+    this.openModal = $event;
   }
 
   handleOk(): void {

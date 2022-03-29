@@ -1,4 +1,3 @@
-import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
@@ -30,7 +29,8 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+            loadChildren: () =>
+              import('./pages/home/home.module').then((m) => m.HomeModule),
             canActivate: [AuthGuard],
             resolve: [SEOResolver],
             data: {

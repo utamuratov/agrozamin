@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CabinetComponent } from './cabinet.component';
 import { PersonalComponent } from './pages/personal/personal.component';
 import { LegalPersonComponent } from './pages/legal-person/legal-person.component';
 import { CabinetRoutes } from './cabinet.routing';
 import { UserNameModalComponent } from './pages/personal/components/user-name-modal/user-name-modal.component';
-import { BiznesCardsComponent } from './pages/biznes-cards/biznes-cards.component';
 import { BusinessCardModalComponent } from './components/business-card-modal/business-card-modal.component';
 /* NG-ZORRO */
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -18,7 +16,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
@@ -55,7 +53,6 @@ import { MyCardsWidgetComponent } from './pages/main/components/my-cards-widget/
 import { MyCompaniesWidgetComponent } from './pages/main/components/my-companies-widget/my-companies-widget.component';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { CompanyModalComponent } from './pages/legal-person/components/company-modal/company-modal.component';
-import { BiznesCardsModalComponent } from './pages/biznes-cards/components/biznes-cards-modal/biznes-cards-modal.component';
 import { AddWidgetComponent } from './pages/main/components/add-widget/add-widget.component';
 import { AddAvatarComponent } from './components/add-avatar/add-avatar.component';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
@@ -103,14 +100,13 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     FormsModule,
     NzSliderModule,
     NzPopoverModule,
-    NzToolTipModule
+    NzToolTipModule,
   ],
   declarations: [
     CabinetComponent,
     PersonalComponent,
     LegalPersonComponent,
     UserNameModalComponent,
-    BiznesCardsComponent,
     BusinessCardModalComponent,
     SocialLinksComponent,
     HeaderComponent,
@@ -131,7 +127,6 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     MyCardsWidgetComponent,
     MyCompaniesWidgetComponent,
     CompanyModalComponent,
-    BiznesCardsModalComponent,
     AddWidgetComponent,
     AddAvatarComponent,
   ],
