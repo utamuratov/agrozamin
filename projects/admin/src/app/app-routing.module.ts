@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { Constants, LanguageGuard } from 'ngx-az-core';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
 

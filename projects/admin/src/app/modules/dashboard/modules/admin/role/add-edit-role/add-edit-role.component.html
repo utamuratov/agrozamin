@@ -2,61 +2,59 @@
   [(nzVisible)]="isVisible"
   [nzTitle]="(editingData?.id ? 'edit' : 'add') | translate"
   (nzOnCancel)="close()"
-  [nzWidth]="'1000px'"
   modal
 >
   <div *nzModalContent>
     <form [formGroup]="form" nz-form nzLayout="vertical">
-      <div nz-row>
-        <div nz-col nzSpan="11" class="pr-1 overflow-auto max-height">
-          <!-- KEY -->
-          <nz-form-item>
-            <nz-form-label nzFor="key">{{ "key" | translate }}</nz-form-label>
-            <nz-form-control [nzErrorTip]="errorKey">
-              <input nz-input formControlName="key" name="key" type="text" />
-            </nz-form-control>
-            <ng-template #errorKey let-control>
-              <error [control]="control"></error>
+      <div class="overflow-auto">
+        <!-- KEY -->
+        <nz-form-item>
+          <nz-form-label nzFor="key">{{ "key" | translate }}</nz-form-label>
+          <nz-form-control [nzErrorTip]="errorKey">
+            <input nz-input formControlName="key" name="key" type="text" />
+          </nz-form-control>
+          <ng-template #errorKey let-control>
+            <error [control]="control"></error>
+          </ng-template>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzFor="actions">{{
+            "actions" | translate
+          }}</nz-form-label>
+          <nz-form-control [nzErrorTip]="errorActions">
+            <nz-tree-select
+              id="actions"
+              formControlName="access"
+              [nzNodes]="controlAction"
+              nzShowSearch
+              nzCheckable
+              [nzTreeTemplate]="nzTreeTemplate"
+            ></nz-tree-select>
+            <ng-template #nzTreeTemplate let-node let-origin="origin">
+              <span>{{ origin.description }}</span>
             </ng-template>
+          </nz-form-control>
+          <ng-template #errorActions let-control>
+            <error [control]="control"></error>
+          </ng-template>
+        </nz-form-item>
+
+        <h3>{{ "description" | translate }}</h3>
+
+        <div formGroupName="description">
+          <nz-form-item *ngFor="let language of language$ | async">
+            <nz-form-label nzFor="text">{{ language.name }}</nz-form-label>
+            <nz-form-control [nzErrorTip]="'fillTheInput' | translate">
+              <textarea
+                rows="2"
+                nz-input
+                [name]="language.code"
+                [formControlName]="language.code"
+                type="text"
+              ></textarea>
+            </nz-form-control>
           </nz-form-item>
-
-          <h3>{{ "description" | translate }}</h3>
-
-          <div formGroupName="description">
-            <nz-form-item *ngFor="let language of language$ | async">
-              <nz-form-label nzFor="text">{{ language.name }}</nz-form-label>
-              <nz-form-control [nzErrorTip]="'fillTheInput' | translate">
-                <textarea
-                  rows="3"
-                  nz-input
-                  [name]="language.code"
-                  [formControlName]="language.code"
-                  type="text"
-                ></textarea>
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-        </div>
-        <div nz-col nzSpan="13" class="pl-1">
-          <!-- ACCESS CONTROL -->
-          <az-transfer
-            class="header--d-none"
-            [title]="'accessControl' | translate"
-            [transferItems]="transferingAccessControls"
-            [height]="220"
-            (nzSelectChange)="selectChangeAccessControls($event)"
-            (nzChange)="changedAccessControlPosition($event)"
-          ></az-transfer>
-
-          <!-- ACCESS ACTION -->
-          <div class="mt-1">
-            <az-transfer
-              [title]="'accessAction' | translate"
-              [transferItems]="transferingAccessActions"
-              (nzChange)="changedAccessActionPosition($event)"
-              [height]="200"
-            ></az-transfer>
-          </div>
         </div>
       </div>
     </form>

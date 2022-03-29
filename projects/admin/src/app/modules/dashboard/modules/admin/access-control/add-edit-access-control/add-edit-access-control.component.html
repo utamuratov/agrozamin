@@ -24,10 +24,45 @@
           </ng-template>
         </nz-form-item>
 
+        <nz-form-item>
+          <nz-form-label nzFor="accessAction">{{
+            "actions" | translate
+          }}</nz-form-label>
+          <nz-form-control [nzErrorTip]="errorActions">
+            <nz-select
+              id="accessAction"
+              formControlName="actions"
+              nzMode="multiple"
+              [nzCustomTemplate]="multipleTemplate"
+            >
+              <nz-option
+                nzCustomContent
+                *ngFor="let option of accessAction$ | async"
+                [nzLabel]="option.key"
+                [nzValue]="option.id"
+              >
+                {{ option.key }}
+                <br />
+                <div class="custom-option">
+                  <small>{{ option.description }}</small>
+                </div>
+              </nz-option>
+            </nz-select>
+            <ng-template #multipleTemplate let-selected>
+              <div class="ant-select-selection-item-content">
+                {{ selected.nzLabel }}
+              </div>
+            </ng-template>
+          </nz-form-control>
+          <ng-template #errorActions let-control>
+            <error [control]="control"></error>
+          </ng-template>
+        </nz-form-item>
+
         <!-- URL -->
         <nz-form-item>
           <nz-form-label nzFor="url">{{ "url" | translate }}</nz-form-label>
-          <nz-form-control [nzErrorTip]="errorKey">
+          <nz-form-control>
             <input
               nz-input
               id="url"
@@ -36,9 +71,6 @@
               type="text"
             />
           </nz-form-control>
-          <ng-template #errorKey let-control>
-            <error [control]="control"></error>
-          </ng-template>
         </nz-form-item>
 
         <h3>{{ "description" | translate }}</h3>
@@ -48,7 +80,7 @@
             <nz-form-label nzFor="text">{{ language.name }}</nz-form-label>
             <nz-form-control [nzErrorTip]="'fillTheInput' | translate">
               <textarea
-                rows="3"
+                rows="2"
                 nz-input
                 [name]="language.code"
                 [formControlName]="language.code"

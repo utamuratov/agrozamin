@@ -26,21 +26,21 @@ const routes: Routes = [
         path: 'role',
         component: RoleComponent,
         data: {
-          bc: 'role',
+          bc: 'roles',
         },
       },
       {
         path: 'access-action',
         component: AccessActionComponent,
         data: {
-          bc: 'accessAction',
+          bc: 'actions',
         },
       },
       {
         path: 'access-control',
         component: AccessControlComponent,
         data: {
-          bc: 'accessControl',
+          bc: 'controls',
         },
       },
     ],

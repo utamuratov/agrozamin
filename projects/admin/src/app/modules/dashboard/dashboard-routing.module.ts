@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { CategoryComponent } from './modules/category/category.component';
-import { UserComponent } from './modules/user/user.component';
 
 const routes: Routes = [
   {
@@ -17,24 +16,14 @@ const routes: Routes = [
       },
       {
         path: 'user',
-        component: UserComponent,
-        data: {
-          bc: 'user',
-          meta: {
-            title: 'monitorTitle',
-            description: 'monitorDescription',
-          },
-        },
+        loadChildren: () =>
+          import('./modules/user/user.module').then((m) => m.UserModule),
       },
       {
         path: 'category',
         component: CategoryComponent,
         data: {
           bc: 'category',
-          meta: {
-            title: 'monitorTitle',
-            description: 'monitorDescription',
-          },
         },
       },
       {

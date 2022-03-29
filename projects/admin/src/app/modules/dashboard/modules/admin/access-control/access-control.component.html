@@ -1,7 +1,7 @@
 <!-- HEADER -->
 <az-header-with-divider-advanced
   [config]="{
-    title: 'accessControl' | translate,
+    title: 'controls' | translate,
     searchInputAdvancedConfig: searchInputConfig
   }"
   (clickedAddEditButton)="addEdit()"
@@ -19,16 +19,16 @@
   <thead>
     <tr>
       <th
+        nzWidth="100px"
         rowspan="2"
-        width="100px"
         nzAlign="center"
         [nzSortFn]="'id' | azSort: false"
       >
         {{ "id" | translate }}
       </th>
       <th
+        nzWidth="200px"
         rowspan="2"
-        width="200px"
         nzAlign="center"
         [nzSortFn]="'key' | azSort"
       >
@@ -37,10 +37,13 @@
       <th [colspan]="(language$ | async)!.length" nzAlign="center">
         {{ "description" | translate }}
       </th>
-      <th rowspan="2" width="200px" nzAlign="center">
+      <th rowspan="2" nzAlign="center">
         {{ "url" | translate }}
       </th>
-      <th nzRight rowspan="2" width="120px"></th>
+      <th rowspan="2" nzAlign="center">
+        {{ "actions" | translate }}
+      </th>
+      <th nzRight rowspan="2"></th>
     </tr>
     <tr>
       <th
@@ -65,6 +68,11 @@
       </td>
       <td nzAlign="center">
         {{ data.url }}
+      </td>
+      <td nzAlign="center">
+        <span *ngFor="let action of data.actions" nz-typography
+          ><code>{{ action.key }}</code></span
+        >
       </td>
       <td nzRight nzAlign="center">
         <nz-button-group>

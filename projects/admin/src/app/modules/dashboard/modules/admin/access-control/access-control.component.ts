@@ -26,7 +26,7 @@ export class AccessControlComponent implements OnInit {
   /**
    *
    */
-  editingData?: AccessControlResponse;
+  editingData?: AccessControlResponse<number>;
 
   /**
    *
@@ -87,7 +87,14 @@ export class AccessControlComponent implements OnInit {
    * @param editingData
    */
   addEdit(editingData?: AccessControlResponse) {
-    this.editingData = editingData;
+    if (editingData) {
+      this.editingData = {
+        ...editingData,
+        actions: editingData?.actions.map((w) => w.id) ?? [],
+      };
+    } else {
+      this.editingData = editingData;
+    }
     this.isVisible = true;
   }
 
