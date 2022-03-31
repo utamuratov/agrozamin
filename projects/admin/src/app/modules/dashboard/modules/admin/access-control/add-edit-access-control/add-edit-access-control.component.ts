@@ -50,8 +50,6 @@ export class AddEditAccessControlComponent {
   @Input()
   public set editingData(v: AccessControlResponse<number> | undefined) {
     this._editingData = v;
-    console.log(v);
-
     this.init();
   }
   public get editingData(): AccessControlResponse<number> | undefined {
