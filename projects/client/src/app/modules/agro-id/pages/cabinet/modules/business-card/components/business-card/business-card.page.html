@@ -21,7 +21,7 @@
         <div nz-row [nzGutter]="[20, 20]">
           <div
             nz-col
-            *ngFor="let user of userCard"
+            *ngFor="let businessCard of data"
             nzXs="24"
             nzSm="24"
             nzMd="24"
@@ -30,11 +30,11 @@
             nzXXl="8"
           >
             <az-inline-card
-              [titleOne]="user.firstName + ' ' + user.lastName"
-              [titleTwo]="user.mail"
-              [titleThree]="user.phone"
-              [avatar]="user.avatar"
-              [isVisiblePopover]="user.visible"
+              [titleOne]="businessCard.f_name + ' ' + businessCard.l_name"
+              [titleTwo]="businessCard.email"
+              [titleThree]="'+' + businessCard.phone"
+              [avatar]="businessCard.thumbnail"
+              [(isVisiblePopover)]="businessCard.isVisiblePopover"
               [hasThreeDots]="true"
             >
               <div style="width: 132px">
@@ -43,7 +43,7 @@
                   nzBlock
                   nzType="link"
                   class="text-start"
-                  (click)="modal.isVisibleModal = true; modal.user = activeUser; modal.onInit()"
+                  (click)="addEdit(businessCard)"
                 >
                   <i nz-icon nzType="edit" nzTheme="outline"></i>Изменить
                 </button>
@@ -53,7 +53,7 @@
                   nzType="link"
                   nzDanger
                   class="text-start"
-                  (click)="deleteCard(user.id)"
+                  (click)="delete(businessCard.id!)"
                 >
                   <i nz-icon nzType="delete" nzTheme="outline"></i>Удалить
                 </button>
@@ -74,7 +74,7 @@
               nz-button
               nzBlock
               class="legal__add-card"
-              (click)="modal.isVisibleModal = true; modal.user = activeUser; modal.onInit()"
+              (click)="addEdit()"
             >
               <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
             </button>
@@ -86,6 +86,21 @@
 </div>
 
 <az-add-edit-business-card
-  #modal
-  (closeIsVisible)="closeModal($event)"
+  [(isVisible)]="isVisibleAddEditModal"
+  [editingData]="editingData"
+  (modified)="modifiedData($event)"
 ></az-add-edit-business-card>
+
+<az-success-modal
+  [(isVisible)]="isVisibleSuccessModal"
+  [title]="'Добавление визитки'"
+  [bodyOne]="'Поздравляем!'"
+  [bodyTwo]="'Визитка успешно добавлена!'"
+></az-success-modal>
+
+<az-confirmation-modal
+  [(isVisible)]="isVisibleConfirmationModal"
+  [title]="'Введите код из смс'"
+  [phone]="phoneNumberForSendingActivationCode"
+  (activationCodeSucceed)="loadData()"
+></az-confirmation-modal>

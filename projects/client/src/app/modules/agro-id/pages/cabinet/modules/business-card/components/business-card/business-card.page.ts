@@ -1,16 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BusinessCardConfig } from '../../../../components/business-card-modal/business-card-modal.component';
-
-export interface UserInfo {
-  id: number;
-  firstName: string;
-  lastName: string;
-  phone: string;
-  avatar: string;
-  mail: string;
-  visible: boolean;
-}
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
+import { NgDestroy } from 'ngx-az-core';
+import { takeUntil } from 'rxjs';
+import { BusinessCardResponse } from '../../models/business-card.response';
+import { BusinessCardService } from '../../services/business-card.service';
 
 @Component({
   templateUrl: './business-card.page.html',
@@ -18,85 +15,95 @@ export interface UserInfo {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BusinessCardPage implements OnInit {
-  isVisible = false;
-  openModal = false;
-  activeUser!: UserInfo | null;
+  /**
+   *
+   */
+  isVisibleAddEditModal = false;
 
-  userName = 'Махмудов Кайрат';
-  validateForm!: FormGroup;
+  /**
+   *
+   */
+  isVisibleSuccessModal = false;
 
-  card!: BusinessCardConfig;
+  /**
+   *
+   */
+  isVisibleConfirmationModal = false;
 
-  userCard: UserInfo[] = [
-    {
-      id: 1,
-      firstName: 'Нарбеков',
-      lastName: ' Артур',
-      phone: '+998 90 326 20 13',
-      avatar: '../../../../../../../assets/images/agro-id-images/avatar.jpg',
-      mail: 'narbekov@gmail.com',
-      visible: false,
-    },
-    {
-      id: 2,
-      firstName: 'Нарбекова',
-      lastName: ' Кристина',
-      phone: '+998 90 326 20 14',
-      avatar: '../../../../../../../assets/images/agro-id-images/avatar2.jpg',
-      mail: 'narbekovaKR@gmail.com',
-      visible: false,
-    },
-    {
-      id: 3,
-      firstName: 'Нарбеков',
-      lastName: ' Джони',
-      phone: '+998 90 326 20 15',
-      avatar: '../../../../../../../assets/images/agro-id-images/avatar3.jpg',
-      mail: 'Ijhony@gmail.com',
-      visible: false,
-    },
-  ];
+  /**
+   *
+   */
+  editingData?: BusinessCardResponse;
 
-  constructor(private fb: FormBuilder) {}
+  /**
+   *
+   */
+  data: BusinessCardResponse[] = [];
 
+  /**
+   *
+   */
+  phoneNumberForSendingActivationCode!: string;
+
+  constructor(
+    private $businessCard: BusinessCardService,
+    private $destroy: NgDestroy,
+    private cd: ChangeDetectorRef
+  ) {}
+
+  /**
+   *
+   */
   ngOnInit() {
-    this.validateForm = this.fb.group({
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
-      phone: [null, [Validators.required]],
-      additionalPhone: [null],
-      mail: [null],
+    this.loadData();
+  }
+
+  /**
+   *
+   */
+  loadData() {
+    this.$businessCard
+      .getAll()
+      .pipe(takeUntil(this.$destroy))
+      .subscribe((response) => {
+        // if (response.success) {
+        this.data = response.data;
+        this.cd.markForCheck();
+        // }
+      });
+  }
+
+  /**
+   *
+   * @param id
+   */
+  delete(id: number): void {
+    this.$businessCard.delete(id).subscribe((result) => {
+      if (result.success) {
+        this.data = this.data.filter((businessCard) => businessCard.id !== id);
+        this.cd.markForCheck();
+      }
     });
   }
 
-  change(value: boolean, item: UserInfo): void {
-    if (value) {
-      this.activeUser = item;
-    } else {
-      this.activeUser = null;
+  /**
+   *
+   * @param modal
+   * @param editingData
+   */
+  addEdit(editingData?: BusinessCardResponse) {
+    if (editingData) {
+      editingData.isVisiblePopover = false;
     }
+    this.editingData = editingData;
+    this.isVisibleAddEditModal = true;
   }
 
-  showModal(): void {
-    this.openModal = true;
-  }
-
-  deleteCard(id: number): void {
-    const companiesList = this.userCard.filter((el) => el.id !== id);
-    this.userCard = companiesList;
-  }
-
-  closeModal($event: boolean): void {
-    this.openModal = $event;
-  }
-
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
-  }
-
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.isVisible = false;
+  /**
+   *
+   */
+  modifiedData(phoneNumber: string) {
+    this.phoneNumberForSendingActivationCode = phoneNumber;
+    this.isVisibleConfirmationModal = true;
   }
 }

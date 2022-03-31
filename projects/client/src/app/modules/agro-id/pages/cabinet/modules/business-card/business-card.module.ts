@@ -11,11 +11,16 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { InlineCardModule } from '../../shared/inline-card/inline-card.module';
+import { BusinessCardService } from './services/business-card.service';
+import { NgxMaskModule } from 'ngx-mask';
+import { SuccessModalModule } from '../../shared/modals/success-modal/success-modal.module';
+import { ConfirmationModalModule } from '../../shared/modals/confirmation-modal/confirmation-modal.module';
 
 @NgModule({
   declarations: [BusinessCardPage, AddEditBusinessCardComponent],
   imports: [
     BusinessCardRoutingModule,
+    NgxMaskModule,
 
     /**
      * CUSTOM MODULES
@@ -23,6 +28,8 @@ import { InlineCardModule } from '../../shared/inline-card/inline-card.module';
     ReactiveFormsSharedModule,
     NzFormsSharedModule,
     InlineCardModule,
+    SuccessModalModule,
+    ConfirmationModalModule,
 
     /**
      * NG-ZORRO-MODULES
@@ -35,5 +42,6 @@ import { InlineCardModule } from '../../shared/inline-card/inline-card.module';
     NzModalModule,
     NzIconModule,
   ],
+  providers: [BusinessCardService],
 })
 export class BusinessCardModule {}

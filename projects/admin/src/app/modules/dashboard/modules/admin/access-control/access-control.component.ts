@@ -52,7 +52,7 @@ export class AccessControlComponent implements OnInit {
    */
   constructor(
     private $accessControl: AccessControlService,
-    private destroy$: NgDestroy,
+    private $destroy: NgDestroy,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -69,7 +69,7 @@ export class AccessControlComponent implements OnInit {
   loadData() {
     this.$accessControl
       .getAll()
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.$destroy))
       .subscribe((result) => {
         if (result.success) {
           this.searchInputConfig = {
@@ -105,7 +105,7 @@ export class AccessControlComponent implements OnInit {
   delete(id: number) {
     this.$accessControl
       .delete(id)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.$destroy))
       .subscribe((response) => {
         if (response.success) {
           this.loadData();
