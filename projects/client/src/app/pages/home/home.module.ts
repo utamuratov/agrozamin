@@ -16,11 +16,25 @@ import { CatalogMembersComponent } from './components/catalog-members/catalog-me
 import { PartnersComponent } from './components/partners/partners.component';
 import { AgrozaminAppComponent } from './components/agrozamin-app/agrozamin-app.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
-  imports: [CommonModule, HomeRoutes, NzButtonModule, FormsModule],
+  imports: [
+    CommonModule, 
+    HomeRoutes,
+     NzButtonModule,
+      FormsModule,
+      NzGridModule,
+      NzCarouselModule,
+      NzCardModule,
+      NzIconModule
+    ],
   declarations: [
     HomeComponent,
+    
     HeaderComponent,
     AllComponentsComponent,
     BannerComponent,

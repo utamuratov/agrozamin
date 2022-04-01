@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 @Component({
   selector: 'az-credits',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreditsComponent implements OnInit {
 
+  
   constructor() { }
 
   ngOnInit() {
