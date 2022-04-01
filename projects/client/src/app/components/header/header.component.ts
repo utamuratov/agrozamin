@@ -15,12 +15,18 @@ export class HeaderComponent implements OnInit {
   placement: NzDrawerPlacement = 'left';
   categoryChilds: any = [];
   touched = false;
-  serachInputDrawer = true
-  inputValue = 2
+  serachInputDrawer = true;
+  inputValue = 2;
   searchForm!: FormGroup;
-  searchDropDown = false
+  searchDropDown = false;
+  searchCityDropDown = false
+  search = ''
 
-  isAuth = false
+  cityFilter!: FormGroup;
+  isAuth = false;
+  regionsChild: any = [];
+
+  regionsValue: any = []
 
   categories = [
     {
@@ -530,45 +536,313 @@ export class HeaderComponent implements OnInit {
   ];
 
   searchParamas = [
-    {type: 'История поиска:', id: 1, values: [
-      {name: 'ворес', id: 1},
-      {name: 'овощная сеялка', id: 2},
-    ]},
-    {type: 'Часто ищут:', id: 1, values: [
-      {name: 'виноград', id: 1},
-      {name: 'время кофе', id: 2},
-    ]},
-    {type: 'Категории:', id: 1, values: [
-      {name: 'В мешках', id: 1},
-    ]},
-    {type: 'Продавец:', id: 1, values: [
-      {name: 'ООО “Вымпел”', id: 1},
-    ]},
-    {type: 'Товары:', id: 1, values: [
-      {name: 'Круглошлифовальный станок', id: 1},
-    ]},
-    {type: 'Производитель:', id: 1, values: [
-      {name: 'ООО Company', id: 1},
-    ]},
-  ]
+    {
+      type: 'История поиска:',
+      id: 1,
+      values: [
+        { name: 'ворес', id: 1 },
+        { name: 'овощная сеялка', id: 2 },
+      ],
+    },
+    {
+      type: 'Часто ищут:',
+      id: 1,
+      values: [
+        { name: 'виноград', id: 1 },
+        { name: 'время кофе', id: 2 },
+      ],
+    },
+    { type: 'Категории:', id: 1, values: [{ name: 'В мешках', id: 1 }] },
+    { type: 'Продавец:', id: 1, values: [{ name: 'ООО “Вымпел”', id: 1 }] },
+    {
+      type: 'Товары:',
+      id: 1,
+      values: [{ name: 'Круглошлифовальный станок', id: 1 }],
+    },
+    { type: 'Производитель:', id: 1, values: [{ name: 'ООО Company', id: 1 }] },
+  ];
+
+  regions = [
+    { id: 1, name: 'Весь Узбекистан', cities: [] },
+    {
+      id: 2,
+      name: 'Андижанская область',
+      cities: [
+        { id: 1, name: 'Акалтын' },
+        { id: 2, name: 'Алтынкуль' },
+        { id: 3, name: 'Андижан' },
+        { id: 4, name: 'Асака' },
+        { id: 5, name: 'Ахунбабаев' },
+        { id: 6, name: 'Балыкчи' },
+        { id: 7, name: 'Боз' },
+        { id: 8, name: 'Булакбаши' },
+        { id: 10, name: 'Карасу' },
+        { id: 11, name: 'Куйганъяр' },
+        { id: 12, name: 'Кургантепа' },
+        { id: 13, name: 'Мархамат' },
+        { id: 14, name: 'Пайтуг' },
+        { id: 15, name: 'Пахтаабад' },
+        { id: 16, name: 'Шахрихан' },
+        { id: 17, name: 'Ханабад' },
+      ],
+    },
+    {
+      id: 3,
+      name: 'Бухарская область',
+      cities: [
+        { id: 1, name: 'Акалтын' },
+        { id: 2, name: 'Алтынкуль' },
+        { id: 3, name: 'Андижан' },
+        { id: 4, name: 'Асака' },
+        { id: 5, name: 'Ахунбабаев' },
+        { id: 6, name: 'Балыкчи' },
+        { id: 7, name: 'Боз' },
+        { id: 8, name: 'Булакбаши' },
+        { id: 10, name: 'Карасу' },
+        { id: 11, name: 'Куйганъяр' },
+        { id: 12, name: 'Кургантепа' },
+        { id: 13, name: 'Мархамат' },
+        { id: 14, name: 'Пайтуг' },
+        { id: 15, name: 'Пахтаабад' },
+        { id: 16, name: 'Шахрихан' },
+        { id: 17, name: 'Ханабад' },
+      ],
+    },
+    {
+      id: 4,
+      name: 'Джизакская область',
+      cities: [
+        { id: 1, name: 'Акалтын' },
+        { id: 2, name: 'Алтынкуль' },
+        { id: 3, name: 'Андижан' },
+        { id: 4, name: 'Асака' },
+        { id: 5, name: 'Ахунбабаев' },
+        { id: 6, name: 'Балыкчи' },
+        { id: 7, name: 'Боз' },
+        { id: 8, name: 'Булакбаши' },
+        { id: 10, name: 'Карасу' },
+        { id: 11, name: 'Куйганъяр' },
+        { id: 12, name: 'Кургантепа' },
+        { id: 13, name: 'Мархамат' },
+        { id: 14, name: 'Пайтуг' },
+        { id: 15, name: 'Пахтаабад' },
+        { id: 16, name: 'Шахрихан' },
+        { id: 17, name: 'Ханабад' },
+      ],
+    },
+    {
+      id: 5,
+      name: 'Каракалпакстан',
+      cities: [
+        { id: 1, name: 'Акалтын' },
+        { id: 2, name: 'Алтынкуль' },
+        { id: 3, name: 'Андижан' },
+        { id: 4, name: 'Асака' },
+        { id: 5, name: 'Ахунбабаев' },
+        { id: 6, name: 'Балыкчи' },
+        { id: 7, name: 'Боз' },
+        { id: 8, name: 'Булакбаши' },
+        { id: 10, name: 'Карасу' },
+        { id: 11, name: 'Куйганъяр' },
+        { id: 12, name: 'Кургантепа' },
+        { id: 13, name: 'Мархамат' },
+        { id: 14, name: 'Пайтуг' },
+        { id: 15, name: 'Пахтаабад' },
+        { id: 16, name: 'Шахрихан' },
+        { id: 17, name: 'Ханабад' },
+      ],
+    },
+    {
+      id: 6,
+      name: 'Навоийская область',
+      cities: [
+        { id: 1, name: 'Акалтын' },
+        { id: 2, name: 'Алтынкуль' },
+        { id: 3, name: 'Андижан' },
+        { id: 4, name: 'Асака' },
+        { id: 5, name: 'Ахунбабаев' },
+        { id: 6, name: 'Балыкчи' },
+        { id: 7, name: 'Боз' },
+        { id: 8, name: 'Булакбаши' },
+        { id: 10, name: 'Карасу' },
+        { id: 11, name: 'Куйганъяр' },
+        { id: 12, name: 'Кургантепа' },
+        { id: 13, name: 'Мархамат' },
+        { id: 14, name: 'Пайтуг' },
+        { id: 15, name: 'Пахтаабад' },
+        { id: 16, name: 'Шахрихан' },
+        { id: 17, name: 'Ханабад' },
+      ],
+    },
+    {
+      id: 7,
+      name: 'Наманганская область',
+      cities: [
+        { id: 1, name: 'Акалтын' },
+        { id: 2, name: 'Алтынкуль' },
+        { id: 3, name: 'Андижан' },
+        { id: 4, name: 'Асака' },
+        { id: 5, name: 'Ахунбабаев' },
+        { id: 6, name: 'Балыкчи' },
+        { id: 7, name: 'Боз' },
+        { id: 8, name: 'Булакбаши' },
+        { id: 10, name: 'Карасу' },
+        { id: 11, name: 'Куйганъяр' },
+        { id: 12, name: 'Кургантепа' },
+        { id: 13, name: 'Мархамат' },
+        { id: 14, name: 'Пайтуг' },
+        { id: 15, name: 'Пахтаабад' },
+        { id: 16, name: 'Шахрихан' },
+        { id: 17, name: 'Ханабад' },
+      ],
+    },
+    {
+      id: 8,
+      name: 'Самаркандская область',
+      cities: [
+        { id: 1, name: 'Акалтын' },
+        { id: 2, name: 'Алтынкуль' },
+        { id: 3, name: 'Андижан' },
+        { id: 4, name: 'Асака' },
+        { id: 5, name: 'Ахунбабаев' },
+        { id: 6, name: 'Балыкчи' },
+        { id: 7, name: 'Боз' },
+        { id: 8, name: 'Булакбаши' },
+        { id: 10, name: 'Карасу' },
+        { id: 11, name: 'Куйганъяр' },
+        { id: 12, name: 'Кургантепа' },
+        { id: 13, name: 'Мархамат' },
+        { id: 14, name: 'Пайтуг' },
+        { id: 15, name: 'Пахтаабад' },
+        { id: 16, name: 'Шахрихан' },
+        { id: 17, name: 'Ханабад' },
+      ],
+    },
+    {
+      id: 9,
+      name: 'Сурхандарьинская область',
+      cities: [
+        { id: 1, name: 'Акалтын' },
+        { id: 2, name: 'Алтынкуль' },
+        { id: 3, name: 'Андижан' },
+        { id: 4, name: 'Асака' },
+        { id: 5, name: 'Ахунбабаев' },
+        { id: 6, name: 'Балыкчи' },
+        { id: 7, name: 'Боз' },
+        { id: 8, name: 'Булакбаши' },
+        { id: 10, name: 'Карасу' },
+        { id: 11, name: 'Куйганъяр' },
+        { id: 12, name: 'Кургантепа' },
+        { id: 13, name: 'Мархамат' },
+        { id: 14, name: 'Пайтуг' },
+        { id: 15, name: 'Пахтаабад' },
+        { id: 16, name: 'Шахрихан' },
+        { id: 17, name: 'Ханабад' },
+      ],
+    },
+    {
+      id: 10,
+      name: 'Сырдарьинская область',
+      cities: [
+        { id: 1, name: 'Акалтын' },
+        { id: 2, name: 'Алтынкуль' },
+        { id: 3, name: 'Андижан' },
+        { id: 4, name: 'Асака' },
+        { id: 5, name: 'Ахунбабаев' },
+        { id: 6, name: 'Балыкчи' },
+        { id: 7, name: 'Боз' },
+        { id: 8, name: 'Булакбаши' },
+        { id: 10, name: 'Карасу' },
+        { id: 11, name: 'Куйганъяр' },
+        { id: 12, name: 'Кургантепа' },
+        { id: 13, name: 'Мархамат' },
+        { id: 14, name: 'Пайтуг' },
+        { id: 15, name: 'Пахтаабад' },
+        { id: 16, name: 'Шахрихан' },
+        { id: 17, name: 'Ханабад' },
+      ],
+    },
+    {
+      id: 11,
+      name: 'Ташкентская область',
+      cities: [
+        { id: 1, name: 'Акалтын' },
+        { id: 2, name: 'Алтынкуль' },
+        { id: 3, name: 'Андижан' },
+        { id: 4, name: 'Асака' },
+        { id: 5, name: 'Ахунбабаев' },
+        { id: 6, name: 'Балыкчи' },
+        { id: 7, name: 'Боз' },
+        { id: 8, name: 'Булакбаши' },
+        { id: 10, name: 'Карасу' },
+        { id: 11, name: 'Куйганъяр' },
+        { id: 12, name: 'Кургантепа' },
+        { id: 13, name: 'Мархамат' },
+        { id: 14, name: 'Пайтуг' },
+        { id: 15, name: 'Пахтаабад' },
+        { id: 16, name: 'Шахрихан' },
+        { id: 17, name: 'Ханабад' },
+      ],
+    },
+    {
+      id: 12,
+      name: 'Ферганская область',
+      cities: [
+        { id: 1, city: 'Акалтын' },
+        { id: 2, city: 'Алтынкуль' },
+        { id: 3, city: 'Андижан' },
+        { id: 4, city: 'Асака' },
+        { id: 5, city: 'Ахунбабаев' },
+        { id: 6, city: 'Балыкчи' },
+        { id: 7, city: 'Боз' },
+        { id: 8, city: 'Булакбаши' },
+        { id: 10, city: 'Карасу' },
+        { id: 11, city: 'Куйганъяр' },
+        { id: 12, city: 'Кургантепа' },
+        { id: 13, city: 'Мархамат' },
+        { id: 14, city: 'Пайтуг' },
+        { id: 15, city: 'Пахтаабад' },
+        { id: 16, city: 'Шахрихан' },
+        { id: 17, city: 'Ханабад' },
+      ],
+    },
+    {
+      id: 13,
+      name: 'Хорезмская область',
+      cities: [
+        { id: 1, name: 'Акалтын' },
+        { id: 2, name: 'Алтынкуль' },
+        { id: 3, name: 'Андижан' },
+        { id: 4, name: 'Асака' },
+        { id: 5, name: 'Ахунбабаев' },
+        { id: 6, name: 'Балыкчи' },
+        { id: 7, name: 'Боз' },
+        { id: 8, name: 'Булакбаши' },
+        { id: 10, name: 'Карасу' },
+        { id: 11, name: 'Куйганъяр' },
+        { id: 12, name: 'Кургантепа' },
+        { id: 13, name: 'Мархамат' },
+        { id: 14, name: 'Пайтуг' },
+        { id: 15, name: 'Пахтаабад' },
+        { id: 16, name: 'Шахрихан' },
+        { id: 17, name: 'Ханабад' },
+      ],
+    },
+  ];
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       searchInput: [null],
-      cityInput: [null]
-    })
+      cityInput: [null],
+    });    
   }
 
   submit() {
-    console.log(this.searchForm);  
+    console.log(this.searchForm);
   }
 
-  showDropFilter() {
-
-  }
-  
   open(): void {
     this.visible = true;
   }
@@ -580,7 +854,7 @@ export class HeaderComponent implements OnInit {
 
   openSubmenu(id: any) {
     this.isOpened = true;
-    this.activeLink = id
+    this.activeLink = id;
   }
 
   closed() {
@@ -592,6 +866,24 @@ export class HeaderComponent implements OnInit {
     this.categoryChilds = this.categories.filter(
       (e) => e.id === id
     )[0].categories;
+  }
+
+  getCities(id: any) {
+    this.regionsChild = this.regions.filter(e => e.id === id)[0].cities
+  }
+
+  openSearchDrop() {
+    if(this.searchCityDropDown) {
+      this.searchCityDropDown = false
+    }
+    this.searchDropDown = true
+  }
+
+  openFilterDrop() {
+    if(this.searchDropDown) {
+      this.searchDropDown = false
+    }
+    this.searchCityDropDown = true
   }
 
   calcDrawerWidth(): string {

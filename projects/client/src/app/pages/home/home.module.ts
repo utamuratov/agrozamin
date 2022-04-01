@@ -29,6 +29,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCascaderModule } from 'ng-zorro-antd/cascader';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { FilterPipe } from '../../components/header/pipes/filter.pipe';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { FooterComponent } from '../../components/footer/footer.component';
     PartnersComponent,
     AgrozaminAppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    FilterPipe    
   ],
 })
 export class HomeModule {}
