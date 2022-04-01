@@ -28,6 +28,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCascaderModule } from 'ng-zorro-antd/cascader';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 
 @NgModule({
@@ -55,7 +56,6 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
   ],
   declarations: [
     HomeComponent,
-    HeaderComponent,
     AllComponentsComponent,
     BannerComponent,
     NewsComponent,
@@ -66,7 +66,8 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
     CatalogMembersComponent,
     PartnersComponent,
     AgrozaminAppComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
 })
 export class HomeModule {}
