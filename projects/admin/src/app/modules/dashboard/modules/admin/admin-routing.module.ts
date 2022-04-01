@@ -1,4 +1,3 @@
-import { UsersComponent } from './users/users.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
@@ -17,7 +16,8 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'users' },
       {
         path: 'users',
-        component: UsersComponent,
+        loadChildren: () =>
+          import('./../user/user.module').then((m) => m.UserModule),
         data: {
           bc: 'users',
         },

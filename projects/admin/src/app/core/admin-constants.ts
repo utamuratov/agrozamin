@@ -12,4 +12,6 @@ export class AdminConstants {
     sortOrder: '',
     filter: [],
   };
+
+  public static readonly ROUTER_ADMIN = 'admin';
 }

@@ -15,12 +15,15 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { TransferComponent } from './components/transfer-projects/transfer.component';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { TitleTotalPipe } from './pipes/title-total.pipe';
 
 @NgModule({
   declarations: [
     CalcScrollPipe,
     MakeNzScrollPipe,
     SortPipe,
+    TitleTotalPipe,
     HeaderWithDividerComponent,
     HeaderWithDividerAdvancedComponent,
     HeaderWithDividerBasicComponent,
@@ -48,6 +51,7 @@ import { NzTransferModule } from 'ng-zorro-antd/transfer';
     // WE NEED THESE MODULES FOR CUSTOM PIPES/COMPONENTS IN THIS SHARED MODULE
     NzDividerModule,
     NzIconModule,
+    NzTypographyModule,
     NzTransferModule,
   ],
   exports: [
@@ -70,6 +74,7 @@ import { NzTransferModule } from 'ng-zorro-antd/transfer';
     NzIconModule,
     NzModalModule,
     NzTransferModule,
+    NzTypographyModule,
 
     /**
      * CUSTOM PIPES/COMPONENTS
@@ -77,6 +82,7 @@ import { NzTransferModule } from 'ng-zorro-antd/transfer';
     CalcScrollPipe,
     MakeNzScrollPipe,
     SortPipe,
+    TitleTotalPipe,
     HeaderWithDividerComponent,
     HeaderWithDividerAdvancedComponent,
     HeaderWithDividerBasicComponent,
