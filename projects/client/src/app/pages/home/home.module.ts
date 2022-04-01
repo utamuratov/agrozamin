@@ -49,10 +49,13 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
     NzMenuModule,
     NzInputModule,
     NzCascaderModule,
-    NzDrawerModule
+    NzDrawerModule,
+    NzCardModule,
+    NzIconModule
   ],
   declarations: [
     HomeComponent,
+    HeaderComponent,
     AllComponentsComponent,
     BannerComponent,
     NewsComponent,
