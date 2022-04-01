@@ -1,0 +1,293 @@
+.header {
+  position: relative;
+
+  .nav {
+    box-shadow: 0px 5px 20px rgba(26, 26, 26, 0.1);
+    font-family: Agrofont-Regular;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    background: #fff;
+    width: 100%;
+
+    &__top {
+      padding-top: 8px;
+      font-size: 13px;
+    }
+
+    &__menu {
+      &-item {
+        margin-right: 24px;
+        a {
+          padding: 0;
+          color: #333333;
+        }
+
+        .link-divider {
+          display: block;
+          width: 1px;
+          height: 100%;
+          background: #cfd3d8;
+        }
+      }
+    }
+
+    &__currency {
+      i {
+        margin-right: 10px;
+
+        &.red {
+          color: #f57952;
+        }
+      }
+
+      span {
+        font-size: 12px;
+        line-height: 15px;
+        color: #333333;
+        font-family: Agrofont-Regular;
+      }
+    }
+
+    &__weather {
+      display: flex;
+      align-items: center;
+      img {
+        margin-right: 10px;
+      }
+
+      span {
+        font-size: 12px;
+        color: #333333;
+        line-height: 15px;
+      }
+    }
+
+    &__select {
+      font-size: 13px;
+    }
+
+    &__middle {
+      margin-top: 20px;
+    }
+
+    &__contacts {
+      img {
+        margin-right: 12px;
+      }
+
+      span {
+        font-size: 18px;
+        font-family: Agrofont-Medium;
+        color: #333333;
+      }
+    }
+
+    &__bottom {
+      padding-bottom: 16px;
+      &-btn-text {
+        margin-left: 8px;
+      }
+    }
+
+    &__cascader {
+      border-radius: none !important;
+    }
+  }
+
+  &__search-dropdown {
+    position: fixed;
+    top: 193px;
+    width: 100%;
+    min-height: 500px;
+    z-index: 500;
+    overflow-y: auto;
+
+    .region {
+      font-size: 16px;
+      font-family: Agrofont-Medium;
+      color: #1A1A1A;
+      padding: 8px 12px;
+      border-radius: 8px;
+
+      
+
+      &:hover {
+        background: #F1F2F5;
+        color: #1a1a1a !important;
+      }
+
+      &:active {
+        background: #1E8F37;
+        color: #fff !important;
+      }
+    }
+
+    .regions_border {
+      border-right: 1px solid #CFD3D8;
+    }
+
+    .city {
+      font-size: 16px;
+      color: #1A1A1A;
+      padding: 8px 12px;
+      border-radius: 8px;
+
+      &:hover {
+        background: #F1F2F5;
+        color: #1a1a1a !important;
+      }
+
+      &:active {
+        background: #1E8F37;
+        color: #fff !important;
+      }
+    }
+  }
+
+  &__dropdown {
+    padding: 50px 0;
+  }
+
+  .search__type {
+    color: #86898c;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  
+  .search__values {
+      color: #000;
+  }
+
+  .drop-top {
+      background: #fff;
+  }
+
+  .backdrop {
+      background: rgba(0, 0, 0, 0.384);
+      height: 800px;
+  }
+}
+
+.drawer {
+  height: 100%;
+
+  .menu {
+    background: #f1f2f5;
+    height: 100%;
+
+    &__title {
+      font-size: 20px;
+      line-height: 25px;
+      color: #1a1a1a;
+      padding: 40px 20px 30px;
+    }
+
+    &__link {
+      display: block;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.3s;
+
+      &.active {
+        background: #fff;
+        color: #22a33f;
+      }
+
+      img {
+        margin-right: 20px;
+      }
+      i {
+        color: #86898c;
+      }
+
+      &:hover {
+        background: #fff;
+
+        i {
+          color: #22a33f;
+        }
+      }
+
+      &-text {
+        color: #1a1a1a;
+        font-family: Agrofont-Medium;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .submenu {
+    background: #fff;
+    padding: 40px 30px 40px 35px;
+    height: 100%;
+    overflow-y: auto;
+    position: fixed;
+    max-width: 1355px;
+    width: 100%;
+    top: 0;
+    left: 280px;
+
+    &__title {
+      font-size: 16px;
+      line-height: 20px;
+      color: #1a1a1a;
+      font-family: Agrofont-Bold;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    &__item {
+      margin-bottom: 8px;
+    }
+
+    &__link {
+      display: inline-block;
+      font-size: 14px;
+      line-height: 18px;
+      color: #1a1a1a;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+
+      &:hover {
+        background: #f1f2f5;
+        color: #1a1a1a !important;
+      }
+
+      &:active {
+        background: #1e8f37;
+        color: #fff !important;
+      }
+    }
+
+    .adv {
+      width: 300px;
+      height: 400px;
+
+      a {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .close-btn {
+    position: fixed;
+    top: 30px;
+    left: 300px;
+  }
+  .close-btn-right {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+  }
+}

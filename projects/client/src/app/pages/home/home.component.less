@@ -1,13 +1,75 @@
 @import "../../../../../../node_modules/ng-zorro-antd/ng-zorro-antd.less";
 
-@primary-color: #22A33F;
-@primary-color-hover: #29C34C;
-@primary-color-active: #1E8F37;
+@primary-color: #22a33f;
+@primary-color-hover: #29c34c;
+@primary-color-active: #1e8f37;
 @btn-disable-color: #fff;
-@btn-disable-bg: #CFD3D8;
+@btn-disable-bg: #cfd3d8;
 @border-radius-base: 8px;
-@btn-default-color: #22A33F;
-@link-color: #22A33F;
-@link-hover-color: #FFAA46 !important;
-@link-active-color: #1E8F37 !important;
+@btn-default-color: #22a33f;
+@link-color: #22a33f;
+@link-hover-color: #ffaa46 !important;
+@link-active-color: #1e8f37 !important;
 
+.container {
+  max-width: 1320px;
+  width: 100%;
+  margin: auto;
+  padding: 0 15px;
+}
+
+.transparent-btn {
+  background: rgba(255, 255, 255, 0.5);
+  color: rgba(26, 26, 26, 0.5);
+  border: none;
+
+  &:hover {
+    background: rgba(255, 255, 255);
+    border: none;
+    color: #22a33f;
+  }
+
+  &:active {
+    background: #1e8f37;
+    color: #fff;
+  }
+}
+
+.block-title {
+  font-size: 32px;
+  line-height: 40px;
+  color: #1a1a1a;
+}
+
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.ml-a {
+  margin-left: auto;
+}
+
+.text-end {
+  text-align: end;
+}
+
+
+/* drawer */
+.ant-drawer-header {
+  border-bottom: none;
+  border-radius: 0;
+}
+
+.ant-drawer-body {
+  background: #F1F2F5;
+  padding: 0;
+}
+
+.container {
+    max-width: 1320px;
+    width: 100%;
+    margin: auto;
+    padding: 0 15px;
+}
