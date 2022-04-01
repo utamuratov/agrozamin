@@ -26,7 +26,7 @@
   "putEmailToReg": "Введите email адрес",
   "invalidEmailMessage": "Некорректное значение email",
   "emailRegPlaceholder": "Введите ваш Email адрес",
-  "regPhoneLabel": "Номер телефона",
+  "phoneNumber": "Номер телефона",
   "mask": {
     "00 000 00 00": "Номер телефона заполнен не корректно"
   },

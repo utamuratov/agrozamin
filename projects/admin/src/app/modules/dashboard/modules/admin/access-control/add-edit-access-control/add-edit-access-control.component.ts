@@ -168,13 +168,20 @@ export class AddEditAccessControlComponent {
         takeUntil(this.$destroy),
         tap((result) => {
           if (result.success) {
-            this.modified.emit();
-            this.close();
-            this.initForm();
+            this.closeAndInitForm();
           }
         })
       )
       .subscribe();
+  }
+
+  /**
+   *
+   */
+  private closeAndInitForm() {
+    this.modified.emit();
+    this.close();
+    this.initForm();
   }
 
   /**
@@ -189,9 +196,7 @@ export class AddEditAccessControlComponent {
         takeUntil(this.$destroy),
         tap((result) => {
           if (result.success) {
-            this.modified.emit();
-            this.close();
-            this.initForm();
+            this.closeAndInitForm();
           }
         })
       )

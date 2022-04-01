@@ -73,12 +73,16 @@ export class SearchInputAdvancedComponent {
       this.config.keys.find((key) => {
         if (typeof item[key] === 'object') {
           return Object.keys(item[key]).find((subKey) =>
-            item[key][subKey].includes(searchText)
+            this.isIncludes(item[key][subKey], searchText)
           );
         }
-        return item[key].includes(searchText);
+        return this.isIncludes(item[key], searchText);
       })
     );
+  }
+
+  isIncludes(searchedText: string, searchingText: string) {
+    return searchedText.toLowerCase().includes(searchingText.toLowerCase());
   }
 
   /**

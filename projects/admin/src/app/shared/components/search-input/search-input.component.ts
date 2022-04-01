@@ -28,6 +28,15 @@ export class SearchInputComponent {
   /**
    *
    */
+  @Input()
+  width = '300px';
+
+  @Input()
+  showSearchIcon = true;
+
+  /**
+   *
+   */
   search(searchText: string) {
     this.searchText = searchText;
     this.searchTextChange.emit(this.searchText);

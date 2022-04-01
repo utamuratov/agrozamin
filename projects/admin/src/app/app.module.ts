@@ -13,6 +13,7 @@ import { HandleErrorInterceptor } from './core/interceptors/handle.error.interce
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NgxMaskModule } from 'ngx-mask';
 
 registerLocaleData(ru);
 
@@ -28,6 +29,11 @@ registerLocaleData(ru);
      * CUSTOM MODULES
      */
     NgxAzCoreModule,
+
+    /**
+     * NPM MODULES
+     */
+    NgxMaskModule.forRoot(),
 
     /**
      * NZ MODULES

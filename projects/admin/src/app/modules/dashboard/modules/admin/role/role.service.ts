@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseResponse, BaseService } from 'ngx-az-core';
 import { CrudService } from 'projects/admin/src/app/core/services/crud.service';
+import { IdKeyDescription } from 'projects/admin/src/app/shared/models/id-key-description.interface';
 import { Observable } from 'rxjs';
 import { AddEditRole } from './models/add-edit-role.interface';
 import { ControlAction } from './models/control-action.interface';
@@ -21,5 +22,9 @@ export class RoleService extends CrudService<RoleResponse, AddEditRole> {
 
   getControlAction(): Observable<BaseResponse<ControlAction[]>> {
     return this.$baseService.get<ControlAction[]>(`${this.url}/create`);
+  }
+
+  getRoleList(): Observable<BaseResponse<IdKeyDescription[]>> {
+    return this.$baseService.get<IdKeyDescription[]>(`${this.url}/list`);
   }
 }

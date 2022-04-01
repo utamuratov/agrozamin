@@ -17,6 +17,8 @@ import { AddEditAccessControlComponent } from './access-control/add-edit-access-
 import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { ControlActionToStringPipe } from './role/pipes/control-action-to-string.pipe';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { ControlActionToStringPipe } from './role/pipes/control-action-to-string
   ],
   imports: [
     AdminRoutingModule,
+    NgxMaskModule,
 
     /**
      * CUSTOM MODULES
@@ -48,6 +51,7 @@ import { ControlActionToStringPipe } from './role/pipes/control-action-to-string
     NzTransferModule,
     NzSelectModule,
     NzTreeSelectModule,
+    NzSwitchModule,
   ],
 })
 export class AdminModule {}

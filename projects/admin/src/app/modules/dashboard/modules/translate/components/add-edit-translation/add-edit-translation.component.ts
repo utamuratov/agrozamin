@@ -183,7 +183,7 @@ export class AddEditTranslationComponent {
           if (result.success) {
             this.modified.emit();
             this.close();
-            this.initForm();
+            this.init();
           }
 
           return false;
@@ -205,7 +205,7 @@ export class AddEditTranslationComponent {
           if (result.success) {
             this.modified.emit();
             this.close();
-            this.initForm();
+            this.init();
           }
 
           return false;

@@ -1,4 +1,4 @@
-<div class="divider__right__search">
+<div [style.width]="width">
   <nz-input-group [nzSuffix]="suffixIconSearch">
     <input
       nz-input
@@ -12,6 +12,8 @@
     <a *ngIf="searchText.length > 0; else searchIcon" (click)="search('')">
       <i nz-icon nzType="close"></i>
     </a>
-    <ng-template #searchIcon> <i nz-icon nzType="search"></i></ng-template>
+    <ng-template #searchIcon
+      ><i *ngIf="showSearchIcon" nz-icon nzType="search"></i
+    ></ng-template>
   </ng-template>
 </div>
