@@ -17,7 +17,6 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 import { LayoutComponent } from './components/layout/layout.component';
-import { HeaderComponent } from './components/header/header.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { CookieService } from 'ngx-cookie-service';
@@ -27,6 +26,7 @@ import { RootLayoutComponent } from './components/root-layout/root-layout.compon
 import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
+
 registerLocaleData(ru);
 
 @NgModule({
@@ -35,7 +35,6 @@ registerLocaleData(ru);
     RootLayoutComponent,
     
     LayoutComponent,
-    HeaderComponent,
     BreadcrumbComponent,
     InternalServerErrorComponent,
     NotFoundPageComponent,

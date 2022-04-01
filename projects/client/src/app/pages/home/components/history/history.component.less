@@ -1,0 +1,62 @@
+.history {
+  margin-bottom: 70px;
+
+  &-title {
+    font-size: 32px;
+    line-height: 40px;
+    color: #1a1a1a;
+    margin-bottom: 50px;
+  }
+
+  [nz-carousel-content] {
+    text-align: center;
+    height: 338px;
+    line-height: 160px;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .carousel {
+    height: 338px;
+
+    &__img {
+      border-radius: 12px;
+    }
+  }
+
+  &__carousel {
+    position: relative;
+
+    .prev,
+    .next {
+      position: absolute;
+      top: 50%;
+      z-index: 100;
+      color: #cfd3d8;
+
+      &:hover {
+        color: #22a33f;
+        border: 1px solid #22a33f;
+      }
+
+      &:active {
+        background: #1e8f37;
+        color: #fff;
+      }
+
+      &:focus {
+        color: #22a33f;
+      }
+    }
+
+    .prev {
+      left: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    .next {
+      right: 0;
+      transform: translate(50%, -50%);
+    }
+  }
+}
