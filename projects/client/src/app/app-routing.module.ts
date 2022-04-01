@@ -29,9 +29,8 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () =>
-              import('./pages/home/home.module').then((m) => m.HomeModule),
-            canActivate: [AuthGuard],
+            loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+            // canActivate: [AuthGuard],
             resolve: [SEOResolver],
             data: {
               meta: {

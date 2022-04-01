@@ -1,3 +1,20 @@
-<p>
-  history works!
-</p>
+<div class="container history">
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <h3 nz-typography class="history-title">История</h3>
+    </div>
+    <div nz-col nzSpan="24" class="history__carousel">
+      <button nzSize="large" nz-button nzType="default" nzShape="circle" class="prev" (click)="pre(carusel)"><i nz-icon nzType="left" nzTheme="outline"></i></button>
+      <nz-carousel [nzEffect]="effect" class="carousel" #carusel [nzDots]="false">
+        <div nz-carousel-content *ngFor="let card of history">
+          <div nz-row [nzGutter]="[30, 0]">
+            <div nz-col *ngFor="let info of card.cards">
+              <img width="190" height="338" class="carousel__img" [src]="info" alt="history">
+            </div>
+          </div>
+        </div>
+      </nz-carousel>
+      <button nzSize="large" nz-button nzType="default" nzShape="circle" class="next" (click)="next(carusel)"><i nz-icon nzType="right" nzTheme="outline"></i></button>
+    </div>
+  </div>
+</div>

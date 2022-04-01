@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutes } from './home.routing';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from './shared/header/header.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AllComponentsComponent } from './components/all-components/all-components.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { NewsComponent } from './components/news/news.component';
@@ -15,13 +14,45 @@ import { CreditsComponent } from './components/credits/credits.component';
 import { CatalogMembersComponent } from './components/catalog-members/catalog-members.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { AgrozaminAppComponent } from './components/agrozamin-app/agrozamin-app.component';
-import { FooterComponent } from './shared/footer/footer.component';
+/* NG-ZORRO */
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { HeaderComponent } from '../../components/header/header.component';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzCascaderModule } from 'ng-zorro-antd/cascader';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+
 
 @NgModule({
-  imports: [CommonModule, HomeRoutes, NzButtonModule, FormsModule],
+  imports: [
+    CommonModule,
+    HomeRoutes,
+    NzButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    /* NG-Zorro */
+    NzGridModule,
+    NzTypographyModule,
+    NzCarouselModule,
+    NzIconModule,
+    NzCardModule,
+    NzTagModule,
+    NzSelectModule,
+    NzDividerModule,
+    NzMenuModule,
+    NzInputModule,
+    NzCascaderModule,
+    NzDrawerModule
+  ],
   declarations: [
     HomeComponent,
-    HeaderComponent,
     AllComponentsComponent,
     BannerComponent,
     NewsComponent,
@@ -32,7 +63,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     CatalogMembersComponent,
     PartnersComponent,
     AgrozaminAppComponent,
-    FooterComponent
+    HeaderComponent
   ],
 })
 export class HomeModule {}
