@@ -1,0 +1,89 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  (nzOnCancel)="close()"
+  [nzFooter]="null"
+>
+  <ng-template #modalTitle
+    ><h4 nz-typography>{{ title }}</h4></ng-template
+  >
+
+  <ng-template #modalContent>
+    <div>
+      <div class="mb-1">
+        <span nz-typography>
+          {{
+            (phone
+              ? "confirmationDescriptionPhone"
+              : "confirmationDescriptionEmail"
+            )
+              | translate
+                : {
+                    value: phone
+                      ? (phone | phoneAsterisk)
+                      : (email | emailAsterisk)
+                  }
+          }}</span
+        >
+        <span
+          nz-typography
+          nzType="warning"
+          *ngIf="confirmationForm.$leftSeconds | async"
+          >{{ "confirmTimer" | translate }}
+          {{ confirmationForm.$leftSeconds | async | date: "mm:ss" }}</span
+        >
+      </div>
+      <az-confirmation-form
+        #confirmationForm
+        [phone]="phone"
+      ></az-confirmation-form>
+
+      <!-- Ask activation code again -->
+      <div *ngIf="(confirmationForm.$leftSeconds | async) === 0">
+        <ng-template #indicatorTemplate>
+          <i
+            nz-icon
+            nzType="loading"
+            *ngIf="isWaitingActivationCodeResponse$ | async"
+          ></i>
+          <a
+            (click)="resendActivationCode(confirmationForm)"
+            [textContent]="'getConfirmCodeAgain' | translate"
+          ></a>
+        </ng-template>
+        <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
+      </div>
+    </div>
+
+    <!-- Send activation code -->
+    <div [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }">
+      <button
+        nzBlock
+        nz-button
+        nzShape="round"
+        nzType="primary"
+        class="mt-1"
+        [disabled]="!confirmationForm.form.valid"
+        [nzLoading]="isWaitingResponse$ | async"
+        (click)="
+          sendActivationCodeToPhone(confirmationForm.getActivationCode())
+        "
+      >
+        {{ "confirm" | translate }}
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- <ng-template #modalFooter>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="sendActivationCodeToPhone(confirmationForm.getActivationCode())"
+      nzBlock
+      nzShape="round"
+    >
+      ОК
+    </button>
+  </ng-template> -->
+</nz-modal>

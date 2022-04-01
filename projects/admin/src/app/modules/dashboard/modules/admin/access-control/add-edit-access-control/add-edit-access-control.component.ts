@@ -18,8 +18,9 @@ import {
   markAllAsDirty,
   NgDestroy,
 } from 'ngx-az-core';
-import { Observable, takeUntil, tap } from 'rxjs';
+import { map, Observable, takeUntil, tap } from 'rxjs';
 import { AccessControlService } from '../access-control.service';
+import { AccessControlAction } from '../models/access-control-action.interface';
 import { AccessControl } from '../models/access-control.interface';
 import { AccessControlResponse } from '../models/access-control.response';
 
@@ -45,13 +46,13 @@ export class AddEditAccessControlComponent {
   /**
    *
    */
-  private _editingData?: AccessControlResponse;
+  private _editingData?: AccessControlResponse<number>;
   @Input()
-  public set editingData(v: AccessControlResponse | undefined) {
+  public set editingData(v: AccessControlResponse<number> | undefined) {
     this._editingData = v;
     this.init();
   }
-  public get editingData(): AccessControlResponse | undefined {
+  public get editingData(): AccessControlResponse<number> | undefined {
     return this._editingData;
   }
 
@@ -70,6 +71,11 @@ export class AddEditAccessControlComponent {
   /**
    *
    */
+  accessAction$!: Observable<AccessControlAction[]>;
+
+  /**
+   *
+   */
   form!: FormGroup;
 
   /**
@@ -81,7 +87,9 @@ export class AddEditAccessControlComponent {
     private fb: FormBuilder,
     private $destroy: NgDestroy,
     private $accessControl: AccessControlService
-  ) {}
+  ) {
+    this.loadAccessAction();
+  }
 
   /**
    *
@@ -94,11 +102,12 @@ export class AddEditAccessControlComponent {
    *
    * @param model
    */
-  initForm(model?: AccessControlResponse) {
+  initForm(model?: AccessControlResponse<number>) {
     this.form = this.fb.group({
       key: [model?.key, Validators.required],
       url: [model?.url],
       description: this.fb.group({}),
+      actions: [model?.actions, Validators.required],
     });
 
     this.addDescriptionControls(model);
@@ -108,7 +117,7 @@ export class AddEditAccessControlComponent {
    *
    * @param model
    */
-  private addDescriptionControls(model?: AccessControlResponse) {
+  private addDescriptionControls(model?: AccessControlResponse<number>) {
     this.language$.pipe(takeUntil(this.$destroy)).subscribe((languages) => {
       languages.forEach((language) => {
         (this.form.get('description') as FormGroup)?.addControl(
@@ -120,6 +129,16 @@ export class AddEditAccessControlComponent {
         );
       });
     });
+  }
+
+  /**
+   *
+   */
+  loadAccessAction() {
+    this.accessAction$ = this.$accessControl
+      .getActions()
+      .pipe(takeUntil(this.$destroy))
+      .pipe(map((w) => w.data));
   }
 
   /**

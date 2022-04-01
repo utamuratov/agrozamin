@@ -38,6 +38,9 @@
       <th [colspan]="(language$ | async)!.length" nzAlign="center">
         {{ "description" | translate }}
       </th>
+      <th nzAlign="center" [width]="'300px'" rowspan="2">
+        {{ "controls" | translate }}
+      </th>
       <th nzRight rowspan="2" width="120px"></th>
     </tr>
     <tr>
@@ -61,6 +64,16 @@
       <td nzAlign="left" *ngFor="let language of language$ | async">
         {{ data.description[language.code] }}
       </td>
+      <td nzAlign="center">
+        <div
+          *ngFor="let control of data.access_controls"
+          nz-typography
+          class="mb-0"
+          [nz-tooltip]="control.access_actions | controlActionToString"
+        >
+          <code>{{ control.description }}</code>
+        </div>
+      </td>
       <td nzRight nzAlign="center">
         <nz-button-group>
           <button (click)="delete(data.id)" nz-button nzType="default">
@@ -82,7 +95,6 @@
 <az-add-edit-role
   [(isVisible)]="isVisible"
   [editingData]="editingData"
-  [accessControls]="accessControls"
-  [accessActions]="accessActions"
+  [controlAction]="controlActionAsTree"
   (modified)="loadData()"
 ></az-add-edit-role>

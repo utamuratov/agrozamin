@@ -1,0 +1,29 @@
+<form nz-form class="confirm-form" nzLayout="horizontal" [formGroup]="form">
+  <!-- ERRORS FROM SERVER -->
+  <error-from-server></error-from-server>
+
+  <!-- SECURE CODE -->
+  <div nz-row>
+    <div
+      nz-col
+      nzFlex="2"
+      class="activation-code"
+      *ngFor="let index of [1, 2, 3, 4, 5]"
+    >
+      <nz-form-item nz-row>
+        <nz-form-control nz-col class="confirm-control">
+          <input
+            maxlength="1"
+            id="activationCode{{ index }}"
+            formControlName="activationCode{{ index }}"
+            (ngModelChange)="setFocus(index)"
+            (keydown.backspace)="backspace(index)"
+            nz-input
+            class="confirm-input"
+            type="text"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>

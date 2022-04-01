@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
 import { CabinetComponent } from './cabinet.component';
-import { BiznesCardsComponent } from './pages/biznes-cards/biznes-cards.component';
 import { LegalPersonComponent } from './pages/legal-person/legal-person.component';
 import { MainComponent } from './pages/main/main.component';
 import { PersonalComponent } from './pages/personal/personal.component';
@@ -15,7 +14,13 @@ const routes: Routes = [
       { path: 'home', component: MainComponent },
       { path: 'personal', component: PersonalComponent },
       { path: 'legalperson', component: LegalPersonComponent },
-      { path: 'biznescards', component: BiznesCardsComponent },
+      {
+        path: 'busines-card',
+        loadChildren: () =>
+          import('./modules/business-card/business-card.module').then(
+            (m) => m.BusinessCardModule
+          ),
+      },
       { path: 'settings', component: SettingsComponent },
     ],
   },

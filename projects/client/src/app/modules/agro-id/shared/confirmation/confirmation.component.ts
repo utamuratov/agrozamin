@@ -1,29 +1,12 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from 'ngx-az-core';
 import { ConfirmationType } from 'projects/client/src/app/core/enums/confirmation-type.enum';
 import { RecoverByLoginStep } from 'projects/client/src/app/core/enums/recover-by-login-step.enum';
 import { SignUpStep } from 'projects/client/src/app/core/enums/sign-up-step.enum';
 import { AuthService } from 'projects/client/src/app/core/services/auth/auth.service';
-import {
-  Observable,
-  interval,
-  map,
-  startWith,
-  takeWhile,
-  shareReplay,
-} from 'rxjs';
-
-const LEFT_SECONDS_BY_PHONE = 60;
-const LEFT_SECONDS_BY_EMAIL = 180;
+import { Observable, map, startWith } from 'rxjs';
+import { ConfirmationFormComponent } from '../confirmation-form/confirmation-form.component';
 
 export interface ConfirmationConfig {
   confirmationType: ConfirmationType;
@@ -38,7 +21,7 @@ export interface ConfirmationConfig {
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.less'],
 })
-export class ConfirmationComponent implements OnInit {
+export class ConfirmationComponent {
   /**
    *
    */
@@ -58,22 +41,12 @@ export class ConfirmationComponent implements OnInit {
   /**
    *
    */
-  form!: FormGroup;
-
-  /**
-   *
-   */
-  $leftSeconds!: Observable<number>;
-
-  /**
-   *
-   */
   isWaitingResponse$?: Observable<boolean>;
 
   /**
    *
    */
-  $isWaitingActivationCodeResponse?: Observable<boolean>;
+  isWaitingActivationCodeResponse$?: Observable<boolean>;
 
   /**
    *
@@ -81,8 +54,6 @@ export class ConfirmationComponent implements OnInit {
    * @param elem
    */
   constructor(
-    private fb: FormBuilder,
-    private elementRef: ElementRef,
     private $auth: AuthService,
     private router: Router,
     private route: ActivatedRoute
@@ -91,49 +62,7 @@ export class ConfirmationComponent implements OnInit {
   /**
    *
    */
-  ngOnInit() {
-    this.startTimer();
-    this.initForm();
-  }
-
-  /**
-   *
-   */
-  startTimer() {
-    let leftSeconds = this.data?.phone
-      ? LEFT_SECONDS_BY_PHONE
-      : LEFT_SECONDS_BY_EMAIL;
-    const START_WITH = leftSeconds;
-    this.$leftSeconds = interval(1000).pipe(
-      map(() => {
-        leftSeconds -= 1;
-        return leftSeconds * 1000;
-      }),
-      startWith(START_WITH * 1000),
-      takeWhile((value) => value >= 0),
-      shareReplay(1)
-    );
-  }
-
-  /**
-   *
-   */
-  private initForm() {
-    this.form = this.fb.group({
-      activationCode1: [null, [Validators.required]],
-      activationCode2: [null, [Validators.required]],
-      activationCode3: [null, [Validators.required]],
-      activationCode4: [null, [Validators.required]],
-      activationCode5: [null, [Validators.required]],
-    });
-  }
-
-  /**
-   *
-   */
-  submit(): void {
-    const activationCode = this.getActivationCode();
-
+  submit(activationCode: string): void {
     switch (this.data.confirmationType) {
       case ConfirmationType.SignUp:
         this.sendActivationCodeToPhone(activationCode);
@@ -150,18 +79,6 @@ export class ConfirmationComponent implements OnInit {
       default:
         break;
     }
-  }
-
-  /**
-   *
-   * @returns
-   */
-  private getActivationCode() {
-    let activationCode = '';
-    for (const key in this.form.value) {
-      activationCode += this.form.value[key];
-    }
-    return activationCode;
   }
 
   /**
@@ -235,50 +152,14 @@ export class ConfirmationComponent implements OnInit {
 
   /**
    *
-   * @param index
    */
-  setFocus(index: number): void {
-    const control = this.form.controls[`activationCode${index}`];
-    if (control?.value) {
-      const elem = this.elementRef.nativeElement.querySelector(
-        `input[id=activationCode${index + 1}]`
-      );
-      if (elem) {
-        elem.focus();
-      }
-    }
-  }
-
-  /**
-   *
-   * @param index
-   */
-  backspace(index: number): void {
-    if (index > 1) {
-      const inputClickedBackspase = this.elementRef.nativeElement.querySelector(
-        `input[id=activationCode${index}]`
-      );
-      if (!inputClickedBackspase?.value) {
-        const elemenForFocus = this.elementRef.nativeElement.querySelector(
-          `input[id=activationCode${index - 1}]`
-        );
-        if (elemenForFocus) {
-          elemenForFocus.focus();
-        }
-      }
-    }
-  }
-
-  /**
-   *
-   */
-  resendActivationCode() {
-    this.$isWaitingActivationCodeResponse = this.$auth
+  resendActivationCode(confirmationForm: ConfirmationFormComponent) {
+    this.isWaitingActivationCodeResponse$ = this.$auth
       .resendAccountActivationCode({ phone: this.data?.login })
       .pipe(
         map((result) => {
           if (result.success) {
-            this.startTimer();
+            confirmationForm.startTimer();
           }
 
           return false;

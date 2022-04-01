@@ -1,4 +1,7 @@
-import { Id } from '../../../translate/models/id.interface';
+import { Id } from '../../../../../../shared/models/id.interface';
+import { AccessControlAction } from './access-control-action.interface';
 import { AccessControl } from './access-control.interface';
 
-export interface AccessControlResponse extends AccessControl, Id {}
+export interface AccessControlResponse<T = AccessControlAction>
+  extends AccessControl<T>,
+    Id {}

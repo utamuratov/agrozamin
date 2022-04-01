@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
+import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
+import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { SearchInputAdvancedConfig } from 'projects/admin/src/app/shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { Observable, takeUntil } from 'rxjs';
-import { AccessActionService } from '../access-action/access-action.service';
-import { AccessControlService } from '../access-control/access-control.service';
+import { AccessActionResponse } from '../access-action/models/access-action.response';
 import { AccessControlResponse } from '../access-control/models/access-control.response';
+import { AddEditRole } from './models/add-edit-role.interface';
+import { ControlAction } from './models/control-action.interface';
 import { RoleResponse } from './models/role.response';
 import { RoleService } from './role.service';
 
@@ -38,7 +41,7 @@ export class RoleComponent implements OnInit {
   /**
    *
    */
-  editingData?: RoleResponse;
+  editingData?: AddEditRole<string>;
 
   /**
    *
@@ -48,40 +51,60 @@ export class RoleComponent implements OnInit {
   /**
    *
    */
-  accessActions: AccessControlResponse[] = [];
+  accessActions: AccessActionResponse[] = [];
+
+  /**
+   *
+   */
+  controlAction!: ControlAction[];
+  controlActionAsTree!: NzTreeNodeOptions[];
 
   /**
    *
    */
   isVisible = false;
 
-  constructor(
-    private $accessControl: AccessControlService,
-    private $accessAction: AccessActionService,
-    private $role: RoleService,
-    private destroy$: NgDestroy
-  ) {}
+  /**
+   *
+   * @param $role
+   * @param destroy$
+   */
+  constructor(private $role: RoleService, private destroy$: NgDestroy) {}
 
-  loadAccessControls() {
-    this.$accessControl.getAll().subscribe((result) => {
-      if (result.success) {
-        this.accessControls = result.data;
-      }
-    });
-  }
-
-  loadAccessActions() {
-    this.$accessAction.getAll().subscribe((result) => {
-      if (result.success) {
-        this.accessActions = result.data;
-      }
-    });
-  }
-
+  /**
+   *
+   */
   ngOnInit(): void {
     this.loadData();
-    this.loadAccessControls();
-    this.loadAccessActions();
+    this.loadControlAction();
+  }
+
+  /**
+   *
+   */
+  loadControlAction() {
+    this.$role.getControlAction().subscribe((result) => {
+      if (result.success) {
+        this.controlAction = result.data;
+        this.controlActionAsTree = result.data.map((control) => {
+          return {
+            title: `${control.description}`,
+            description: `${control.description}`,
+            key: `${control.id}`,
+            isLeaf: !control.access.length,
+            children: control.access.map((action) => {
+              return {
+                title: `${control.description} - ${action.description}`,
+                key: `${control.id}${AdminConstants.SPLITTER_FOR_TREE}${action.id}`,
+                description: `${action.description}`,
+                isLeaf: true,
+                value: action.id,
+              } as NzTreeNodeOptions;
+            }),
+          } as NzTreeNodeOptions;
+        });
+      }
+    });
   }
 
   /**
@@ -107,7 +130,24 @@ export class RoleComponent implements OnInit {
    * @param editingData
    */
   addEdit(editingData?: RoleResponse) {
-    this.editingData = editingData;
+    if (editingData) {
+      const access: string[] = [];
+      editingData.access_controls.forEach((control) => {
+        control.access_actions.forEach((action) => {
+          access.push(
+            `${control.id}${AdminConstants.SPLITTER_FOR_TREE}${action.control_action_id}`
+          );
+        });
+      });
+      this.editingData = {
+        id: editingData.id,
+        description: editingData.description,
+        key: editingData.key,
+        access,
+      };
+    } else {
+      this.editingData = undefined;
+    }
     this.isVisible = true;
   }
 

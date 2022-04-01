@@ -28,7 +28,7 @@
 
   <!-- LOGIN -->
   <div *ngIf="control.hasError('login')">
-    {{ "login.pattern" | translate }} {{control.getError("login").pattern}}
+    {{ "login.pattern" | translate }} {{ control.getError("login").pattern }}
   </div>
 
   <!-- CONFIRMATION PASSWORD -->

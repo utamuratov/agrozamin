@@ -1,1 +1,57 @@
-<p>user works!</p>
+<!-- HEADER -->
+<az-header-with-divider-basic
+  [title]="
+    ('users' | translate) +
+    (filteredData.length === 0 ? '' : ' (' + filteredData.length + ')')
+  "
+  (clickedAddEditButton)="addEdit(modal)"
+>
+  <nz-input-group nzCompact>
+    <nz-select
+      name="searchBy"
+      [(ngModel)]="searchBy"
+      style="width: 150px; text-align: left"
+    >
+      <nz-option nzValue="id" nzLabel="Id"></nz-option>
+      <nz-option nzValue="login" nzLabel="Логин"></nz-option>
+      <nz-option nzValue="name" nzLabel="Имя"></nz-option>
+    </nz-select>
+    <az-search-input (searchTextChange)="search($event)"></az-search-input>
+  </nz-input-group>
+</az-header-with-divider-basic>
+
+<!-- BODY -->
+<nz-table
+  #groupingTable
+  [nzData]="filteredData"
+  nzBordered
+  nzSize="middle"
+  [nzScroll]="{ y: '270px' }"
+>
+  <thead>
+    <tr>
+      <th nzAlign="center" nzWidth="50px" [nzSortFn]="sortFnId">Id</th>
+      <th nzAlign="center" nzWidth="100px">Логин</th>
+      <th nzAlign="center" nzWidth="100px" [nzSortFn]="sortFnName">Имя</th>
+      <th nzAlign="center" nzWidth="200px">Коментарий</th>
+      <th nzAlign="center" nzWidth="90px">Последняя авторизация</th>
+      <th nzAlign="center" nzWidth="90px">состаяние пользователя</th>
+      <th nzAlign="center" nzWidth="150px">Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of groupingTable.data">
+      <td nzEllipsis>{{ data.id }}</td>
+      <td>{{ data.login }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.building }}</td>
+      <td>{{ data.number }}</td>
+      <td>Active</td>
+      <td nzAlign="center">
+        <nz-switch [(ngModel)]="switchValue"></nz-switch>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<div #modal></div>

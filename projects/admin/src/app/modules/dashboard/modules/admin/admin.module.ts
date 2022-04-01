@@ -15,6 +15,8 @@ import { AddEditAccessActionComponent } from './access-action/add-edit-access-ac
 import { AddEditRoleComponent } from './role/add-edit-role/add-edit-role.component';
 import { AddEditAccessControlComponent } from './access-control/add-edit-access-control/add-edit-access-control.component';
 import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
+import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
+import { ControlActionToStringPipe } from './role/pipes/control-action-to-string.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.mo
     AddEditAccessActionComponent,
     AddEditRoleComponent,
     AddEditAccessControlComponent,
+
+    ControlActionToStringPipe,
   ],
   imports: [
     AdminRoutingModule,
@@ -43,6 +47,7 @@ import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.mo
     NzToolTipModule,
     NzTransferModule,
     NzSelectModule,
+    NzTreeSelectModule,
   ],
 })
 export class AdminModule {}

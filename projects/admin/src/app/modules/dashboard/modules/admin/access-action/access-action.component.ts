@@ -51,7 +51,7 @@ export class AccessActionComponent implements OnInit {
    */
   constructor(
     private $accessAction: AccessActionService,
-    private destroy$: NgDestroy,
+    private $destroy: NgDestroy,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -68,7 +68,7 @@ export class AccessActionComponent implements OnInit {
   loadData() {
     this.$accessAction
       .getAll()
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.$destroy))
       .subscribe((result) => {
         if (result.success) {
           this.searchInputConfig = {
@@ -97,7 +97,7 @@ export class AccessActionComponent implements OnInit {
   delete(id: number) {
     this.$accessAction
       .delete(id)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.$destroy))
       .subscribe((response) => {
         if (response.success) {
           this.loadData();
