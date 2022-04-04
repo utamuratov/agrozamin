@@ -1,20 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { CompanyInfo } from '../../../legal-person/legal-person.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+export interface CompanyInfo {
+  id: number;
+  name: string;
+  stir: number;
+  city: string;
+  avatar?: string;
+  visibleDesktop: boolean;
+  visibleMobile?: boolean;
+  serviceBanking: string;
+  mfo: number;
+  contributinCount: number;
+}
 
 @Component({
-  selector: 'az-my-companies-widget',
-  templateUrl: './my-companies-widget.component.html',
-  styleUrls: ['./my-companies-widget.component.less']
+  templateUrl: './legal-person.page.html',
+  styleUrls: ['./legal-person.page.less'],
 })
-export class MyCompaniesWidgetComponent implements OnInit {
-  isVisible = false
+export class LegalPersonPage implements OnInit {
+  isVisible = false;
+  validateForm!: FormGroup;
   activeCompany!: CompanyInfo | null;
 
   companies: CompanyInfo[] = [
     {
       id: 1,
       visibleDesktop: false,
-      visibleMobile: false,
       name: 'ООО Global',
       serviceBanking: 'АТБ АГРОБАНК',
       stir: 369852741,
@@ -27,7 +39,6 @@ export class MyCompaniesWidgetComponent implements OnInit {
     {
       id: 2,
       visibleDesktop: false,
-      visibleMobile: false,
       name: 'АО Elite',
       serviceBanking: 'АТБ АГРОБАНК',
       stir: 369852741,
@@ -40,7 +51,6 @@ export class MyCompaniesWidgetComponent implements OnInit {
     {
       id: 3,
       visibleDesktop: false,
-      visibleMobile: false,
       name: 'АО Hilton',
       serviceBanking: 'АТБ АГРОБАНК',
       stir: 369852741,
@@ -59,19 +69,10 @@ export class MyCompaniesWidgetComponent implements OnInit {
       mfo: 123456789,
       city: 'г.Ташкент',
       contributinCount: 5465461987984351,
-      avatar: null,
     },
   ];
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  deleteCard(id: number): void {
-    const companiesList = this.companies.filter(el => el.id !== id)
-    this.companies = companiesList
-  }
+  constructor(private fb: FormBuilder) {}
 
   change(value: boolean, item: CompanyInfo): void {
     if (value) {
@@ -81,11 +82,43 @@ export class MyCompaniesWidgetComponent implements OnInit {
     }
   }
 
-  handleCancel($event: boolean) {
-    this.isVisible = $event
+  ngOnInit() {}
+
+  deleteCard(id: number): void {
+    const companiesList = this.companies.filter((el) => el.id !== id);
+    this.companies = companiesList;
   }
 
-  showModal() {
-    this.isVisible = true
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  showEditModal($event: boolean): void {
+    this.isVisible = $event;
+  }
+
+  handleOk(): void {
+    console.log('Button ok clicked!');
+    this.isVisible = false;
+  }
+
+  handleCancel($event: boolean): void {
+    this.isVisible = $event;
+  }
+
+  submitForm(): void {
+    if (this.validateForm.valid) {
+      console.log('submit', this.validateForm.value);
+      setTimeout(() => {
+        this.isVisible = false;
+      }, 1000);
+    } else {
+      Object.values(this.validateForm.controls).forEach((control) => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
   }
 }

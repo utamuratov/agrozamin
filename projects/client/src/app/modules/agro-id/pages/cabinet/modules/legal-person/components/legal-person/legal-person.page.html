@@ -1,0 +1,85 @@
+<div nz-row>
+  <div nz-col nzSpan="20" nzOffset="2" class="legal">
+    <h2 class="cabinet-title" nz-typography>Мои компании</h2>
+    <div nz-row class="legal__block">
+      <div nz-col nzSpan="24">
+        <div nz-row [nzGutter]="[20, 20]">
+          <!-- ======================= -->
+          <div
+            *ngFor="let company of companies"
+            nz-col
+            nzXs="24"
+            nzSm="24"
+            nzMd="24"
+            nzLg="24"
+            nzXl="12"
+            nzXXl="8"
+          >
+            <az-inline-card
+              [titleOne]="company.name"
+              [titleTwo]="company.stir + ''"
+              [titleThree]="company.city"
+              [avatar]="company.avatar"
+              [(isVisiblePopover)]="company.visibleDesktop"
+              [hasThreeDots]="true"
+            >
+              <div style="width: 132px">
+                <button
+                  nz-button
+                  nzBlock
+                  nzType="link"
+                  class="text-start"
+                  (click)="
+                    modal.isVisibleModal = true;
+                    modal.info = activeCompany;
+                    modal.onInit()
+                  "
+                >
+                  <i nz-icon nzType="edit" nzTheme="outline"></i>Изменить
+                </button>
+                <button
+                  nz-button
+                  nzBlock
+                  nzType="link"
+                  nzDanger
+                  class="text-start"
+                  (click)="deleteCard(company.id)"
+                >
+                  <i nz-icon nzType="delete" nzTheme="outline"></i>Удалить
+                </button>
+              </div>
+            </az-inline-card>
+          </div>
+          <!-- ========================== -->
+          <div
+            nz-col
+            nzXs="24"
+            nzSm="24"
+            nzMd="24"
+            nzLg="24"
+            nzXl="12"
+            nzXXl="8"
+          >
+            <button
+              nz-button
+              nzBlock
+              class="legal__add-card"
+              (click)="
+                modal.isVisibleModal = true;
+                modal.info = activeCompany;
+                modal.onInit()
+              "
+            >
+              <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<az-company-modal
+  #modal
+  (closeIsVisible)="handleCancel($event)"
+></az-company-modal>

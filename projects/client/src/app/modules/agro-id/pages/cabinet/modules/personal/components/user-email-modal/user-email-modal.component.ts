@@ -1,24 +1,24 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Values } from '../../personal.component';
+import { Values } from '../personal/personal.component';
 
 @Component({
-  selector: 'az-user-login-modal',
-  templateUrl: './user-login-modal.component.html',
-  styleUrls: ['./user-login-modal.component.less']
+  selector: 'az-user-email-modal',
+  templateUrl: './user-email-modal.component.html',
+  styleUrls: ['./user-email-modal.component.less'],
 })
-export class UserLoginModalComponent implements OnInit {
-  @Input() loginValue!: Values;
+export class UserEmailModalComponent implements OnInit {
+  @Input() emailValue!: Values;
   @Input() isVisible = false;
   @Output() handleVisible = new EventEmitter<boolean>();
   isConfirmLoading = false;
-  isSuccess = false
   validateForm!: FormGroup;
+  isSuccess = false;
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.validateForm = this.fb.group({
-      login: [this.loginValue.login, [Validators.required]],
+      email: [this.emailValue.email, [Validators.required]],
     });
   }
 
@@ -26,8 +26,8 @@ export class UserLoginModalComponent implements OnInit {
     this.isConfirmLoading = true;
     setTimeout(() => {
       this.isVisible = false;
-       this.isSuccess = true
       this.isConfirmLoading = false;
+      this.isSuccess = true;
       this.handleVisible.emit(false);
     }, 1000);
   }
@@ -38,6 +38,6 @@ export class UserLoginModalComponent implements OnInit {
   }
 
   handleSuccess($event: boolean): void {
-    this.isSuccess = $event
+    this.isSuccess = $event;
   }
 }

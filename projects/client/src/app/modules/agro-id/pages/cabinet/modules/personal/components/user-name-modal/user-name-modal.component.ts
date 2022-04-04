@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Values } from '../../personal.component';
+import { Values } from '../personal/personal.component';
 
 @Component({
   selector: 'user-name-modal',
