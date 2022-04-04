@@ -15,7 +15,7 @@ export class CatalogMembersComponent implements OnInit {
         logo: '../../../../../assets/images/agrozamin/logo1.svg',
         images: [
           {
-            img1:'../../../../../assets/images/agrozamin/image1.jpg',
+            img1:'https://www.deere.co.in/assets/images/region-1/products/tractors/d-series-tractors/john-deere-india-d-series-tractors.jpg',
             img2: '../../../../../assets/images/agrozamin/image2.jpg',
             img3:'../../../../../assets/images/agrozamin/image3.jpg',
             img4:'../../../../../assets/images/agrozamin/image4.jpg',

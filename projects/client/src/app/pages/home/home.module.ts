@@ -30,6 +30,7 @@ import { NzCascaderModule } from 'ng-zorro-antd/cascader';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { FilterPipe } from '../../components/header/pipes/filter.pipe';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { FilterPipe } from '../../components/header/pipes/filter.pipe';
     NzCascaderModule,
     NzDrawerModule,
     NzCardModule,
-    NzIconModule
+    NzIconModule,
+    NzPopoverModule
   ],
   declarations: [
     HomeComponent,

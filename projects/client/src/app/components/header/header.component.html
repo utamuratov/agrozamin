@@ -105,7 +105,18 @@
                   </button>
                 </div>
                 <div nz-col>
-                  <button nz-button nzType="default" nzSize="large">
+                  <button
+                    nz-button 
+                    nzType="default" 
+                    nzSize="large"
+                    nz-button
+                    nz-popover
+                    [(nzPopoverVisible)]="visibleServicesPopover"
+                    (nzPopoverVisibleChange)="change($event)"
+                    nzPopoverTrigger="click"
+                    [nzPopoverContent]="servicesPopover"
+                    nzPopoverPlacement="leftBottom"
+                   >
                     <i
                       ><img
                         src="../../../assets/images/agrozamin/services-icon.svg"
@@ -212,7 +223,6 @@
       </div>
     </div>
   </nav>
-
   
   <div class="header__search-dropdown" *ngIf="searchDropDown">
       <div class="drop-top">
@@ -285,7 +295,6 @@
       </div>
       <div class="backdrop"></div>
   </div>
-
 
 </div>
 
@@ -396,4 +405,7 @@
   </ng-container>
 </nz-drawer>
 
-<!-- SEARCH DRAWER -->
+<!-- SERVICES POPUP -->
+  <ng-template #servicesPopover>
+      <a (click)="clickMe()">Close</a>
+  </ng-template>
