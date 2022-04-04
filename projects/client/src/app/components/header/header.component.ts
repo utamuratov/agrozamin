@@ -22,6 +22,11 @@ export class HeaderComponent implements OnInit {
   searchCityDropDown = false
   search = ''
 
+
+  visibleServicesPopover = true;
+
+  
+
   cityFilter!: FormGroup;
   isAuth = false;
   regionsChild: any = [];
@@ -841,6 +846,14 @@ export class HeaderComponent implements OnInit {
 
   submit() {
     console.log(this.searchForm);
+  }
+
+  clickMe(): void {
+    this.visibleServicesPopover = false;
+  }
+
+  change(value: boolean): void {
+    console.log(value);
   }
 
   open(): void {
