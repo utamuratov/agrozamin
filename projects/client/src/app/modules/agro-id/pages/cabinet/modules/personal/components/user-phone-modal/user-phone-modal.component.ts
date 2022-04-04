@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Values } from '../../personal.component';
+import { Values } from '../personal/personal.component';
 
 @Component({
   selector: 'az-user-phone-modal',
@@ -36,7 +36,7 @@ export class UserPhoneModalComponent implements OnInit {
     this.isVisible = false;
     this.handleVisible.emit(false);
   }
-  
+
   handleSuccess($event: boolean): void {
     this.isSuccess = $event;
   }

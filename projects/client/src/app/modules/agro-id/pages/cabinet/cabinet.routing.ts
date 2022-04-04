@@ -1,9 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
 import { CabinetComponent } from './cabinet.component';
-import { LegalPersonComponent } from './pages/legal-person/legal-person.component';
-import { MainComponent } from './pages/main/main.component';
-import { PersonalComponent } from './pages/personal/personal.component';
-import { SettingsComponent } from './pages/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -11,9 +7,25 @@ const routes: Routes = [
     component: CabinetComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: MainComponent },
-      { path: 'personal', component: PersonalComponent },
-      { path: 'legalperson', component: LegalPersonComponent },
+      {
+        path: 'home',
+        loadChildren: () =>
+          import('./modules/main/main.module').then((m) => m.MainModule),
+      },
+      {
+        path: 'personal',
+        loadChildren: () =>
+          import('./modules/personal/personal.module').then(
+            (m) => m.PersonalModule
+          ),
+      },
+      {
+        path: 'legalperson',
+        loadChildren: () =>
+          import('./modules/legal-person/legal-person.module').then(
+            (m) => m.LegalPersonModule
+          ),
+      },
       {
         path: 'busines-card',
         loadChildren: () =>
@@ -21,7 +33,13 @@ const routes: Routes = [
             (m) => m.BusinessCardModule
           ),
       },
-      { path: 'settings', component: SettingsComponent },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./modules/settings/settings.module').then(
+            (m) => m.SettingsModule
+          ),
+      },
     ],
   },
 ];
