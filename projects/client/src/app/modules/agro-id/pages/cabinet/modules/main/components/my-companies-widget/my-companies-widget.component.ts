@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CompanyInfo } from '../../../legal-person/components/legal-person/legal-person.page';
 
 @Component({
   selector: 'az-my-companies-widget',
@@ -8,9 +7,9 @@ import { CompanyInfo } from '../../../legal-person/components/legal-person/legal
 })
 export class MyCompaniesWidgetComponent implements OnInit {
   isVisible = false;
-  activeCompany!: CompanyInfo | null;
+  activeCompany!: any | null;
 
-  companies: CompanyInfo[] = [
+  companies: any[] = [
     {
       id: 1,
       visibleDesktop: false,
@@ -71,7 +70,7 @@ export class MyCompaniesWidgetComponent implements OnInit {
     this.companies = companiesList;
   }
 
-  change(value: boolean, item: CompanyInfo): void {
+  change(value: boolean, item: any): void {
     if (value) {
       this.activeCompany = item;
     } else {

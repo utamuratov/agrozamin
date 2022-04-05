@@ -1,4 +1,5 @@
 <az-search-input
   [(searchText)]="config.searchText"
   (searchTextChange)="search($event)"
+  (keyupEnter)="search($event, true)"
 ></az-search-input>

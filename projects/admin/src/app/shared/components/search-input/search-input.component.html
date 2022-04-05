@@ -3,6 +3,7 @@
     <input
       nz-input
       type="text"
+      (keyup.enter)="keyUpEnter(searchText)"
       [(ngModel)]="searchText"
       (ngModelChange)="search(searchText)"
       [placeholder]="'searchText' | translate"

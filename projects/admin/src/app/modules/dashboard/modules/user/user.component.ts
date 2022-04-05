@@ -17,6 +17,7 @@ import { AdminUsersService } from './admin-users.service';
 import { AdminUserBody } from './models/admin-user.body';
 import { AdminUserGridData } from './models/admin-user.grid.data';
 import { AdminUserResponse } from './models/admin-user.response';
+import { Moderator } from './models/moderator.interface';
 
 @Component({
   templateUrl: './user.component.html',
@@ -52,12 +53,27 @@ export class UserComponent implements OnInit {
   /**
    *
    */
+  moderator$!: Observable<Moderator[]>;
+
+  /**
+   *
+   */
   filterBlocked?: boolean | null;
 
   /**
    *
    */
   filterRole?: number | null;
+
+  /**
+   *
+   */
+  filterModerator?: number | null;
+
+  /**
+   *
+   */
+  moderatorId?: number;
 
   /**
    *
@@ -77,7 +93,17 @@ export class UserComponent implements OnInit {
   /**
    *
    */
-  isAdmin: boolean;
+  isAdminUsers: boolean;
+
+  /**
+   *
+   */
+  checked = false;
+
+  /**
+   *
+   */
+  checkedUsers: AdminUserGridData[] = [];
 
   /**
    *
@@ -100,8 +126,8 @@ export class UserComponent implements OnInit {
     private $destroy: NgDestroy,
     private cd: ChangeDetectorRef
   ) {
-    this.isAdmin = this.router.url.includes(AdminConstants.ROUTER_ADMIN);
-    this.getGridData = this.isAdmin
+    this.isAdminUsers = this.router.url.includes(AdminConstants.ROUTER_ADMIN);
+    this.getGridData = this.isAdminUsers
       ? this.$adminUser.getGridData.bind($adminUser)
       : this.$adminUser.getAgroIdUsers.bind($adminUser);
   }
@@ -111,6 +137,7 @@ export class UserComponent implements OnInit {
    */
   ngOnInit(): void {
     this.loadRoles();
+    this.loadModerators();
     this.loadInitData();
   }
 
@@ -132,7 +159,7 @@ export class UserComponent implements OnInit {
         this.data = {
           ...result.data,
           data: result.data.data.map((user) => {
-            return { ...user, isActive: !user.blocked };
+            return { ...user, isActive: !user.blocked, isChecked: false };
           }),
         };
         this.cd.markForCheck();
@@ -153,6 +180,7 @@ export class UserComponent implements OnInit {
         ],
       },
       { key: 'role', value: [String(this.filterRole || '')] },
+      { key: 'moderator', value: [String(this.filterModerator || '')] },
       { key: 'search_by', value: [this.searchBy] },
       { key: 'search_text', value: [this.searchText] },
     ];
@@ -163,6 +191,15 @@ export class UserComponent implements OnInit {
    */
   loadRoles() {
     this.role$ = this.$adminUser.getRoles().pipe(map((result) => result.data));
+  }
+
+  /**
+   *
+   */
+  loadModerators() {
+    this.moderator$ = this.$adminUser
+      .getModerators()
+      .pipe(map((result) => result.data));
   }
 
   /**
@@ -209,7 +246,7 @@ export class UserComponent implements OnInit {
     if (editingData) {
       this.editingData = {
         ...editingData,
-        role: editingData.role.id,
+        role: editingData.role?.id,
       };
     } else {
       this.editingData = editingData;
@@ -257,5 +294,58 @@ export class UserComponent implements OnInit {
    */
   modified() {
     this.loadInitData();
+  }
+
+  /**
+   *
+   * @param checked
+   */
+  onAllChecked(checked: boolean) {
+    this.checkedUsers = [];
+    this.data.data.forEach((user) => {
+      user.isChecked = checked;
+      if (checked) {
+        this.checkedUsers.push(user);
+      }
+    });
+  }
+
+  /**
+   *
+   * @param data
+   * @param checked
+   */
+  onItemChecked(data: AdminUserGridData, checked: boolean) {
+    data.isChecked = checked;
+    if (checked) {
+      this.checkedUsers.push(data);
+    } else {
+      this.checkedUsers = this.checkedUsers.filter(
+        (user) => user.id !== data.id
+      );
+    }
+
+    this.checked = this.checkedUsers.length === this.data.data.length;
+  }
+
+  /**
+   *
+   */
+  assignToModerator() {
+    if (this.moderatorId === undefined) {
+      return;
+    }
+
+    this.$adminUser
+      .asignUsersToModerator(
+        this.moderatorId,
+        this.checkedUsers.map((user) => user.id)
+      )
+      .subscribe(() => {
+        this.checked = false;
+        this.loadInitData();
+        this.checkedUsers = [];
+        this.moderatorId = undefined;
+      });
   }
 }

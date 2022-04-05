@@ -18,9 +18,6 @@ const routes: Routes = [
         path: 'users',
         loadChildren: () =>
           import('./../user/user.module').then((m) => m.UserModule),
-        data: {
-          bc: 'users',
-        },
       },
       {
         path: 'role',

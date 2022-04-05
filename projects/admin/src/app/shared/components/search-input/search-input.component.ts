@@ -19,6 +19,9 @@ export class SearchInputComponent {
   @Output()
   searchTextChange = new EventEmitter<string>();
 
+  @Output()
+  keyupEnter = new EventEmitter<string>();
+
   /**
    *
    */
@@ -40,5 +43,9 @@ export class SearchInputComponent {
   search(searchText: string) {
     this.searchText = searchText;
     this.searchTextChange.emit(this.searchText);
+  }
+
+  keyUpEnter(searchText: string) {
+    this.keyupEnter.emit(searchText);
   }
 }

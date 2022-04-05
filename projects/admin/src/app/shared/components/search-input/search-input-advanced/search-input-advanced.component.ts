@@ -59,13 +59,13 @@ export class SearchInputAdvancedComponent {
   /**
    *
    */
-  search(searchText: string) {
+  search(searchText: string, isKeyUpEnter?: boolean) {
     if (searchText.length === 0) {
       this.config.filteredData = this.config.data;
       return;
     }
 
-    if (searchText.length < 3) {
+    if (searchText.length < 3 && !isKeyUpEnter) {
       return;
     }
 

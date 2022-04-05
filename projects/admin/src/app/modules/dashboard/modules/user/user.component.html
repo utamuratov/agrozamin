@@ -4,39 +4,30 @@
     [title]="('users' | translate) + (data.total | titleTotal)"
     (clickedAddEditButton)="addEdit()"
   >
-    <!-- STATUS -->
-    <nz-select
-      [nzAllowClear]="true"
-      [nzPlaceHolder]="'status' | translate"
-      [(ngModel)]="filterBlocked"
-      (ngModelChange)="loadInitData()"
-      style="width: 150px"
-    >
-      <nz-option
-        [nzValue]="false"
-        [nzLabel]="'userStatus.active' | translate"
-      ></nz-option>
-      <nz-option
-        [nzValue]="true"
-        [nzLabel]="'userStatus.blocked' | translate"
-      ></nz-option>
-    </nz-select>
-
-    <!-- ROLE -->
-    <nz-select
-      [nzAllowClear]="true"
-      [nzPlaceHolder]="'roles' | translate"
-      [(ngModel)]="filterRole"
-      (ngModelChange)="loadInitData()"
-      class="ml-1"
-      style="width: 200px"
-    >
-      <nz-option
-        *ngFor="let role of role$ | async"
-        [nzValue]="role.id"
-        [nzLabel]="role.description"
-      ></nz-option>
-    </nz-select>
+    <div *ngIf="!isAdminUsers && checkedUsers.length > 0">
+      <nz-input-group nzCompact>
+        <nz-select
+          name="moderator"
+          [(ngModel)]="moderatorId"
+          [nzPlaceHolder]="'moderators' | translate"
+          style="width: 200px"
+        >
+          <nz-option
+            [nzValue]="moderator.id"
+            [nzLabel]="moderator.full_name"
+            *ngFor="let moderator of moderator$ | async"
+          ></nz-option>
+        </nz-select>
+        <button
+          [disabled]="!moderatorId"
+          (click)="assignToModerator()"
+          nz-button
+          nzType="primary"
+        >
+          {{ "attach" | translate }}
+        </button>
+      </nz-input-group>
+    </div>
 
     <div class="ml-1">
       <nz-input-group nzCompact>
@@ -61,6 +52,7 @@
           [width]="'230px'"
           [showSearchIcon]="false"
           [(searchText)]="searchText"
+          (keyupEnter)="search($event)"
           (searchTextChange)="searchTextChanged($event)"
         ></az-search-input>
 
@@ -82,49 +74,144 @@
     (nzQueryParams)="onQueryParamsChange($event)"
     nzShowSizeChanger
     nzBordered
-    nzSize="middle"
-    [nzScroll]="(data.total | makeNzScroll: 400:1340 | async)!"
-    [nzWidthConfig]="[
-      '70px',
-      '200px',
-      '300px',
-      '180px',
-      '150px',
-      '150px',
-      '150px',
-      '140px'
-    ]"
+    nzSize="small"
+    [nzScroll]="(data.total | makeNzScroll: 400:1320 | async)!"
   >
     <thead>
-      <tr>
-        <th nzAlign="center" nzColumnKey="id" [nzSortFn]="true">
+      <tr class="tr__th--border-bottom-0">
+        <th
+          *ngIf="!isAdminUsers"
+          [nzWidth]="'50px'"
+          [(nzChecked)]="checked"
+          (nzCheckedChange)="onAllChecked($event)"
+          nzLeft
+        ></th>
+        <th
+          [nzWidth]="'70px'"
+          nzAlign="center"
+          nzColumnKey="id"
+          [nzSortFn]="true"
+          nzLeft
+        >
           {{ "id" | translate }}
         </th>
-        <th nzAlign="center" nzColumnKey="login" [nzSortFn]="true">
+        <th
+          [nzWidth]="'150px'"
+          nzAlign="center"
+          nzColumnKey="login"
+          [nzSortFn]="true"
+          nzLeft
+        >
           {{ "login" | translate }}
         </th>
-        <th nzAlign="center" nzColumnKey="f_name" [nzSortFn]="true">
+        <th
+          [nzWidth]="'200px'"
+          nzAlign="center"
+          nzColumnKey="f_name"
+          [nzSortFn]="true"
+        >
           {{ "givenName" | translate }}
         </th>
-        <th nzAlign="center">
+        <th [nzWidth]="'150px'" nzAlign="center">
           {{ "phoneNumber" | translate }}
         </th>
-        <th nzAlign="center">{{ "role" | translate }}</th>
-        <th nzAlign="center">{{ "commentary" | translate }}</th>
-        <th nzAlign="center">
+        <th [nzWidth]="'150px'" nzAlign="center" *ngIf="isAdminUsers">
+          {{ "role" | translate }}
+        </th>
+        <th [nzWidth]="'150px'" nzAlign="center" *ngIf="!isAdminUsers">
+          {{ "attachedModerator" | translate }}
+        </th>
+        <th [nzWidth]="'150px'" nzAlign="center">
+          {{ "commentary" | translate }}
+        </th>
+        <th [nzWidth]="'150px'" nzAlign="center">
           {{ "lastAuthorization" | translate }}
         </th>
-        <th nzAlign="center">{{ "userStatus" | translate }}</th>
-        <th nzAlign="center" nzRight></th>
+        <th [nzWidth]="'110px'" nzAlign="center">
+          {{ "userStatus" | translate }}
+        </th>
+        <th [nzWidth]="'140px'" nzAlign="center" nzRight></th>
+      </tr>
+      <tr>
+        <th *ngIf="!isAdminUsers" nzLeft></th>
+        <th nzLeft></th>
+        <th nzLeft></th>
+        <th></th>
+        <th></th>
+        <th *ngIf="isAdminUsers">
+          <nz-select
+            *ngIf="isAdminUsers"
+            [nzAllowClear]="true"
+            [nzPlaceHolder]="'roles' | translate"
+            [(ngModel)]="filterRole"
+            (ngModelChange)="loadInitData()"
+            class="w-100"
+          >
+            <nz-option
+              *ngFor="let role of role$ | async"
+              [nzValue]="role.id"
+              [nzLabel]="role.description"
+            ></nz-option>
+          </nz-select>
+        </th>
+        <th *ngIf="!isAdminUsers">
+          <nz-select
+            *ngIf="!isAdminUsers"
+            name="moderator"
+            class="w-100"
+            [nzAllowClear]="true"
+            [(ngModel)]="filterModerator"
+            (ngModelChange)="loadInitData()"
+            [nzPlaceHolder]="'moderators' | translate"
+          >
+            <nz-option
+              [nzValue]="'0'"
+              [nzLabel]="'Biriktirilmagan'"
+            ></nz-option>
+            <nz-option
+              [nzValue]="moderator.id"
+              [nzLabel]="moderator.full_name"
+              *ngFor="let moderator of moderator$ | async"
+            ></nz-option>
+          </nz-select>
+        </th>
+        <th></th>
+        <th></th>
+        <th>
+          <!-- STATUS -->
+          <nz-select
+            [nzAllowClear]="true"
+            [nzPlaceHolder]="'status' | translate"
+            [(ngModel)]="filterBlocked"
+            (ngModelChange)="loadInitData()"
+            class="w-100"
+          >
+            <nz-option
+              [nzValue]="false"
+              [nzLabel]="'userStatus.active' | translate"
+            ></nz-option>
+            <nz-option
+              [nzValue]="true"
+              [nzLabel]="'userStatus.blocked' | translate"
+            ></nz-option>
+          </nz-select>
+        </th>
+        <th nzRight></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of groupingTable.data">
+        <td
+          *ngIf="!isAdminUsers"
+          [(nzChecked)]="data.isChecked"
+          (nzCheckedChange)="onItemChecked(data, $event)"
+          nzLeft
+        ></td>
         <!-- ID -->
-        <td nzAlign="center">{{ data.id }}</td>
+        <td nzAlign="center" nzLeft>{{ data.id }}</td>
 
         <!-- LOGIN -->
-        <td>{{ data.login }}</td>
+        <td nzLeft>{{ data.login }}</td>
 
         <!-- GIVEN NAME -->
         <td>{{ [data.f_name, data.l_name, data.s_name].join(" ") }}</td>
@@ -133,13 +220,20 @@
         <td nzAlign="center">+{{ data.phone | mask: "000 00 000 00 00" }}</td>
 
         <!-- ROLE -->
-        <td nzAlign="center">{{ data.role?.description }}</td>
+        <td nzAlign="center" *ngIf="isAdminUsers">
+          {{ data.role?.description }}
+        </td>
+
+        <!-- ASSIGNED MODERATOR -->
+        <td nzAlign="center" *ngIf="!isAdminUsers">
+          {{ data.moderator?.full_name }}
+        </td>
 
         <!-- COMMENTARY -->
-        <td></td>
+        <td nzAlign="center">{{ data.description }}</td>
 
         <!-- LAST ACTIVATION TIME -->
-        <td>{{ data.last_active_time }}</td>
+        <td nzAlign="center">{{ data.last_active_time }}</td>
 
         <!-- STATUS -->
         <td nzAlign="center">
@@ -168,6 +262,7 @@
 </ng-container>
 
 <az-add-edit-user
+  [isAdminUsers]="isAdminUsers"
   [(isVisible)]="isVisible"
   [editingData]="editingData"
   [role$]="role$"

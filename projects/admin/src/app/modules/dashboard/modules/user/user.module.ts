@@ -9,6 +9,7 @@ import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 
 @NgModule({
   declarations: [UserComponent, AddEditUserComponent],
@@ -28,6 +29,7 @@ import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
     NzSelectModule,
     NzTreeSelectModule,
     NzSwitchModule,
+    NzTagModule,
   ],
 })
 export class UserModule {}

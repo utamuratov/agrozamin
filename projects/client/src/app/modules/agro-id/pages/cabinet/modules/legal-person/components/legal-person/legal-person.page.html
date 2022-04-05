@@ -6,7 +6,7 @@
         <div nz-row [nzGutter]="[20, 20]">
           <!-- ======================= -->
           <div
-            *ngFor="let company of companies"
+            *ngFor="let company of data"
             nz-col
             nzXs="24"
             nzSm="24"
@@ -17,10 +17,10 @@
           >
             <az-inline-card
               [titleOne]="company.name"
-              [titleTwo]="company.stir + ''"
-              [titleThree]="company.city"
-              [avatar]="company.avatar"
-              [(isVisiblePopover)]="company.visibleDesktop"
+              [titleTwo]="company.inn + ''"
+              [titleThree]="company.address"
+              [avatar]="company.photo"
+              [(isVisiblePopover)]="company.isVisiblePopover"
               [hasThreeDots]="true"
             >
               <div style="width: 132px">
@@ -30,9 +30,7 @@
                   nzType="link"
                   class="text-start"
                   (click)="
-                    modal.isVisibleModal = true;
-                    modal.info = activeCompany;
-                    modal.onInit()
+                    addEdit(company)
                   "
                 >
                   <i nz-icon nzType="edit" nzTheme="outline"></i>Изменить
@@ -43,7 +41,7 @@
                   nzType="link"
                   nzDanger
                   class="text-start"
-                  (click)="deleteCard(company.id)"
+                  (click)="delete(company.id)"
                 >
                   <i nz-icon nzType="delete" nzTheme="outline"></i>Удалить
                 </button>
@@ -65,9 +63,7 @@
               nzBlock
               class="legal__add-card"
               (click)="
-                modal.isVisibleModal = true;
-                modal.info = activeCompany;
-                modal.onInit()
+                addEdit()
               "
             >
               <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
@@ -80,6 +76,7 @@
 </div>
 
 <az-company-modal
-  #modal
-  (closeIsVisible)="handleCancel($event)"
+  [(isVisible)]="isVisibleAddEditModal"
+  [editingData]="editingData"
+  (modified)="modifiedData()"
 ></az-company-modal>

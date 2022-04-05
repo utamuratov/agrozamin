@@ -5,7 +5,12 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Constants, markAllAsDirty, NgDestroy } from 'ngx-az-core';
 import { IdKeyDescription } from 'projects/admin/src/app/shared/models/id-key-description.interface';
 import { Observable, takeUntil, tap } from 'rxjs';
@@ -24,6 +29,12 @@ export class AddEditUserComponent {
    */
   @Input()
   public isVisible!: boolean;
+
+  /**
+   *
+   */
+  @Input()
+  public isAdminUsers!: boolean;
 
   /**
    *
@@ -80,7 +91,6 @@ export class AddEditUserComponent {
    */
   initForm(model?: AdminUserBody) {
     this.form = this.fb.group({
-      role: [model?.role, Validators.required],
       login: [model?.login, Validators.required],
       phone: [
         model?.phone ? model.phone % 1000000000 : null,
@@ -88,7 +98,15 @@ export class AddEditUserComponent {
       ],
       f_name: [model?.f_name, Validators.required],
       l_name: [model?.l_name, Validators.required],
+      description: [model?.description],
     });
+
+    if (this.isAdminUsers) {
+      this.form.addControl(
+        'role',
+        new FormControl(model?.role, Validators.required)
+      );
+    }
   }
 
   /**
