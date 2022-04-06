@@ -20,20 +20,11 @@
 
         <h3>{{ "description" | translate }}</h3>
 
-        <div formGroupName="description">
-          <nz-form-item *ngFor="let language of language$ | async">
-            <nz-form-label nzFor="text">{{ language.name }}</nz-form-label>
-            <nz-form-control [nzErrorTip]="'fillTheInput' | translate">
-              <textarea
-                rows="3"
-                nz-input
-                [name]="language.code"
-                [formControlName]="language.code"
-                type="text"
-              ></textarea>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
+        <az-language-controls
+          [form]="form"
+          [translations]="editingData?.description"
+          formGroupName="description"
+        ></az-language-controls>
       </div>
     </form>
   </div>

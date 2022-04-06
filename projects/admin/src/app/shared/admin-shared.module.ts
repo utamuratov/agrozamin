@@ -17,6 +17,9 @@ import { TransferComponent } from './components/transfer-projects/transfer.compo
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { TitleTotalPipe } from './pipes/title-total.pipe';
+import { GridComponent } from './components/grid/grid.component';
+import { GetDeepValuePipe } from './pipes/getDeepValue.pipe';
+import { LanguageControlsComponent } from './components/language-controls/language-controls.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +27,15 @@ import { TitleTotalPipe } from './pipes/title-total.pipe';
     MakeNzScrollPipe,
     SortPipe,
     TitleTotalPipe,
+    GetDeepValuePipe,
     HeaderWithDividerComponent,
     HeaderWithDividerAdvancedComponent,
     HeaderWithDividerBasicComponent,
     SearchInputComponent,
     SearchInputAdvancedComponent,
     TransferComponent,
+    GridComponent,
+    LanguageControlsComponent,
   ],
   imports: [
     /**
@@ -83,12 +89,15 @@ import { TitleTotalPipe } from './pipes/title-total.pipe';
     MakeNzScrollPipe,
     SortPipe,
     TitleTotalPipe,
+    GetDeepValuePipe,
     HeaderWithDividerComponent,
     HeaderWithDividerAdvancedComponent,
     HeaderWithDividerBasicComponent,
     SearchInputComponent,
     SearchInputAdvancedComponent,
     TransferComponent,
+    GridComponent,
+    LanguageControlsComponent,
   ],
 })
 export class AdminSharedModule {}

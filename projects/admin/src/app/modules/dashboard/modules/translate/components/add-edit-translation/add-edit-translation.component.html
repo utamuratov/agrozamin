@@ -27,18 +27,11 @@
           ></az-transfer>
         </div>
         <div nz-col nzSpan="11" class="pl-1 overflow-auto languages--height">
-          <nz-form-item *ngFor="let language of language$ | async">
-            <nz-form-label nzFor="text">{{ language.name }}</nz-form-label>
-            <nz-form-control [nzErrorTip]="'fillTheInput' | translate">
-              <textarea
-                rows="3"
-                nz-input
-                [name]="language.code"
-                [formControlName]="language.code"
-                type="text"
-              ></textarea>
-            </nz-form-control>
-          </nz-form-item>
+          <az-language-controls
+            [form]="form"
+            [translations]="editingData?.text"
+            [formGroupName]="'text'"
+          ></az-language-controls>
         </div>
       </div>
     </form>

@@ -1,0 +1,68 @@
+<!-- HEADER -->
+<az-header-with-divider-advanced
+  [config]="{
+    title: 'category' | translate,
+    searchInputAdvancedConfig: searchInputConfig
+  }"
+  (clickedAddEditButton)="addEdit()"
+>
+</az-header-with-divider-advanced>
+
+<!-- BODY -->
+<nz-table
+  #table
+  [nzData]="searchInputConfig.filteredData"
+  nzShowPagination
+  nzShowSizeChanger
+  nzSize="small"
+  nzBordered
+  [nzScroll]="(searchInputConfig.filteredData.length | makeNzScroll | async)!"
+>
+  <thead>
+    <tr>
+      <th nzLeft nzAlign="center">{{ "id" | translate }}</th>
+      <th
+        *ngFor="let language of language$ | async"
+        nzAlign="center"
+        [nzSortFn]="'name.' + language.code | azSort"
+      >
+        {{ language.name }}
+      </th>
+      <th
+        nzAlign="center"
+        nzWidth="200px"
+        [textContent]="'icon' | translate"
+      ></th>
+      <th nzRight nzWidth="120px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let data of table.data">
+      <tr>
+        <td nzAlign="center" nzLeft>
+          {{ data.id }}
+        </td>
+        <td *ngFor="let language of language$ | async">
+          {{ data.name[language.code] }}
+        </td>
+        <td>
+          <img [src]="data.icon" />
+        </td>
+        <td nzRight nzAlign="center">
+          <nz-button-group>
+            <button (click)="delete(data.id)" nz-button nzType="default">
+              <span>
+                <i nz-icon nzType="delete" nzTheme="twotone"></i>
+              </span>
+            </button>
+            <button (click)="addEdit(data)" nz-button nzType="default">
+              <span>
+                <i nz-icon nzType="edit" nzTheme="twotone"></i>
+              </span>
+            </button>
+          </nz-button-group>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</nz-table>

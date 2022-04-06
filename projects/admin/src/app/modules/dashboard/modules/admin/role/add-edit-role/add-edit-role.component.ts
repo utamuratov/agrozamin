@@ -6,7 +6,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Select } from '@ngxs/store';
-import { TransferItem } from 'ng-zorro-antd/transfer';
 import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 import {
   Language,
@@ -56,8 +55,6 @@ export class AddEditRoleComponent {
   @Input()
   public set editingData(v: AddEditRole<string> | undefined) {
     this._editingData = v;
-    console.log(v);
-
     this.init();
   }
   public get editingData(): AddEditRole<string> | undefined {
@@ -69,12 +66,6 @@ export class AddEditRoleComponent {
    */
   @Output()
   modified = new EventEmitter();
-
-  /**
-   *
-   */
-  @Select(LanguageState.languages)
-  language$!: Observable<Language[]>;
 
   /**
    *
@@ -108,26 +99,6 @@ export class AddEditRoleComponent {
       key: [model?.key, Validators.required],
       description: this.fb.group({}),
       access: [model?.access, Validators.required],
-    });
-
-    this.addDescriptionControls(model);
-  }
-
-  /**
-   *
-   * @param model
-   */
-  private addDescriptionControls(model?: AddEditRole<string>) {
-    this.language$.pipe(takeUntil(this.$destroy)).subscribe((languages) => {
-      languages.forEach((language) => {
-        (this.form.get('description') as FormGroup)?.addControl(
-          language.code,
-          new FormControl(
-            model?.description[language.code],
-            Validators.required
-          )
-        );
-      });
     });
   }
 

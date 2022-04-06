@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+  <div [formGroupName]="formGroupName">
+    <nz-form-item *ngFor="let language of language$ | async">
+      <nz-form-label nzFor="text">{{ language.name }}</nz-form-label>
+      <nz-form-control [nzErrorTip]="error">
+        <textarea
+          [rows]="rows"
+          nz-input
+          [name]="language.code"
+          [formControlName]="language.code"
+          type="text"
+        ></textarea>
+      </nz-form-control>
+      <ng-template #error let-control>
+        <error [control]="control"></error>
+      </ng-template>
+    </nz-form-item>
+  </div>
+</form>

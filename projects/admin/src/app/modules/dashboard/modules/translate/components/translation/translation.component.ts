@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { BaseResponse, Language, LanguageState, NgDestroy } from 'ngx-az-core';
 import { TranslationType } from 'projects/admin/src/app/core/enums/translation-type.enum';
+import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
 import { SearchInputAdvancedConfig } from 'projects/admin/src/app/shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { Observable, takeUntil, tap } from 'rxjs';
 import { Project } from '../../models/project.interface';
@@ -69,6 +70,11 @@ export class TranslationComponent implements OnInit {
 
   /**
    *
+   */
+  columns: Column[] = [];
+
+  /**
+   *
    * @param $translate
    * @param notification
    * @param $project
@@ -109,9 +115,46 @@ export class TranslationComponent implements OnInit {
             ...this.searchInputConfig,
             data: result.data,
           };
+          this.makeColumnsForGrid();
           this.cd.markForCheck();
         }
       });
+  }
+
+  /**
+   *
+   */
+  makeColumnsForGrid() {
+    this.language$.subscribe((languages) => {
+      this.columns = [
+        {
+          field: 'key',
+          header: 'key',
+          sortable: true,
+          sortByLocalCompare: true,
+          width: '200px',
+          nzLeft: true,
+          nzAlignHeader: 'center',
+        },
+      ];
+      languages.forEach((language) => {
+        this.columns.push({
+          field: 'text.' + language.code,
+          header: language.name,
+          sortable: true,
+          sortByLocalCompare: true,
+          nzAlignHeader: 'center',
+        });
+      });
+      this.columns.push({
+        field: 'projects',
+        header: 'projects',
+        width: '200px',
+        nzAlignHeader: 'center',
+        nzRight: true,
+        hasTemplate: true,
+      });
+    });
   }
 
   /**

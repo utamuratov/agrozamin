@@ -1,0 +1,61 @@
+<nz-table
+  #table
+  [nzData]="data"
+  nzShowPagination
+  nzShowSizeChanger
+  nzSize="small"
+  nzBordered
+  [nzScroll]="(data.length | makeNzScroll | async)!"
+>
+  <thead>
+    <tr>
+      <th
+        [nzAlign]="column.nzAlignHeader ?? null"
+        [nzLeft]="!!column.nzLeft"
+        [nzRight]="!!column.nzRight"
+        [nzWidth]="column.width ?? null"
+        [nzShowSort]="column.sortable"
+        [nzSortFn]="column.field | azSort: column.sortByLocalCompare"
+        *ngFor="let column of columns"
+      >
+        {{ column.header | translate }}
+      </th>
+      <th nzRight nzWidth="120px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data">
+      <td
+        [nzAlign]="column.nzAlignBody ?? null"
+        [nzLeft]="!!column.nzLeft"
+        [nzRight]="!!column.nzRight"
+        *ngFor="let column of columns"
+      >
+        <ng-container
+          *ngIf="column.hasTemplate; else justData"
+          [ngTemplateOutlet]="columnTemplate"
+          [ngTemplateOutletContext]="{ $implicit: column, data: this.data }"
+        >
+        </ng-container>
+        <ng-template #justData>
+          {{ column.field | getDeepValue: data }}
+        </ng-template>
+      </td>
+
+      <td nzRight nzAlign="center">
+        <nz-button-group>
+          <button (click)="delete(data.id)" nz-button nzType="default">
+            <span>
+              <i nz-icon nzType="delete" nzTheme="twotone"></i>
+            </span>
+          </button>
+          <button (click)="addEdit(data)" nz-button nzType="default">
+            <span>
+              <i nz-icon nzType="edit" nzTheme="twotone"></i>
+            </span>
+          </button>
+        </nz-button-group>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

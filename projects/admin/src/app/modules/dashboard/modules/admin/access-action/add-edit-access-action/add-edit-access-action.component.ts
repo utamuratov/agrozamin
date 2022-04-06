@@ -5,20 +5,9 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { Select } from '@ngxs/store';
-import {
-  LanguageState,
-  Language,
-  markAllAsDirty,
-  NgDestroy,
-} from 'ngx-az-core';
-import { Observable, takeUntil, tap } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { markAllAsDirty, NgDestroy } from 'ngx-az-core';
+import { takeUntil, tap } from 'rxjs';
 import { AccessActionService } from '../access-action.service';
 import { AccessAction } from '../models/access-action.interface';
 import { AccessActionResponse } from '../models/access-action.response';
@@ -64,12 +53,6 @@ export class AddEditAccessActionComponent {
   /**
    *
    */
-  @Select(LanguageState.languages)
-  language$!: Observable<Language[]>;
-
-  /**
-   *
-   */
   form!: FormGroup;
 
   /**
@@ -98,26 +81,6 @@ export class AddEditAccessActionComponent {
     this.form = this.fb.group({
       key: [model?.key, Validators.required],
       description: this.fb.group({}),
-    });
-
-    this.addDescriptionControls(model);
-  }
-
-  /**
-   *
-   * @param model
-   */
-  private addDescriptionControls(model?: AccessActionResponse) {
-    this.language$.pipe(takeUntil(this.$destroy)).subscribe((languages) => {
-      languages.forEach((language) => {
-        (this.form.get('description') as FormGroup)?.addControl(
-          language.code,
-          new FormControl(
-            model?.description[language.code],
-            Validators.required
-          )
-        );
-      });
     });
   }
 

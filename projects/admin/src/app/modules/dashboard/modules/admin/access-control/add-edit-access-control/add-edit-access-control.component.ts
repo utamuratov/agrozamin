@@ -5,19 +5,8 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { Select } from '@ngxs/store';
-import {
-  Language,
-  LanguageState,
-  markAllAsDirty,
-  NgDestroy,
-} from 'ngx-az-core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { markAllAsDirty, NgDestroy } from 'ngx-az-core';
 import { map, Observable, takeUntil, tap } from 'rxjs';
 import { AccessControlService } from '../access-control.service';
 import { AccessControlAction } from '../models/access-control-action.interface';
@@ -65,12 +54,6 @@ export class AddEditAccessControlComponent {
   /**
    *
    */
-  @Select(LanguageState.languages)
-  language$!: Observable<Language[]>;
-
-  /**
-   *
-   */
   accessAction$!: Observable<AccessControlAction[]>;
 
   /**
@@ -108,26 +91,6 @@ export class AddEditAccessControlComponent {
       url: [model?.url],
       description: this.fb.group({}),
       actions: [model?.actions, Validators.required],
-    });
-
-    this.addDescriptionControls(model);
-  }
-
-  /**
-   *
-   * @param model
-   */
-  private addDescriptionControls(model?: AccessControlResponse<number>) {
-    this.language$.pipe(takeUntil(this.$destroy)).subscribe((languages) => {
-      languages.forEach((language) => {
-        (this.form.get('description') as FormGroup)?.addControl(
-          language.code,
-          new FormControl(
-            model?.description[language.code],
-            Validators.required
-          )
-        );
-      });
     });
   }
 

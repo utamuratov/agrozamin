@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminConstants } from '../../core/admin-constants';
 import { DashboardComponent } from './dashboard.component';
-import { CategoryComponent } from './modules/category/category.component';
 
 const routes: Routes = [
   {
@@ -22,10 +21,10 @@ const routes: Routes = [
       },
       {
         path: 'category',
-        component: CategoryComponent,
-        data: {
-          bc: 'category',
-        },
+        loadChildren: () =>
+          import('./modules/category/category.module').then(
+            (m) => m.CategoryModule
+          ),
       },
       {
         path: 'translate',

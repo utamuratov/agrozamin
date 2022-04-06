@@ -1,0 +1,87 @@
+<!-- HEADER -->
+<az-header-with-divider-advanced
+  [config]="{
+    title: TranslationType[translationType] | translate,
+    searchInputAdvancedConfig: searchInputConfig
+  }"
+  (clickedAddEditButton)="addEdit()"
+>
+</az-header-with-divider-advanced>
+
+<!-- BODY -->
+<nz-table
+  #table
+  [nzData]="searchInputConfig.filteredData"
+  nzShowPagination
+  nzShowSizeChanger
+  nzSize="small"
+  nzBordered
+  [nzScroll]="(searchInputConfig.filteredData.length | makeNzScroll | async)!"
+>
+  <thead>
+    <tr>
+      <th nzLeft nzAlign="center" nzWidth="200px" [nzSortFn]="'key' | azSort">
+        {{ "key" | translate }}
+      </th>
+      <th
+        *ngFor="let language of language$ | async"
+        nzAlign="center"
+        [nzSortFn]="'text.' + language.code | azSort"
+      >
+        {{ language.name }}
+      </th>
+      <th
+        nzRight
+        nzAlign="center"
+        nzWidth="200px"
+        [textContent]="'projects' | translate"
+      ></th>
+      <th nzRight nzWidth="120px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let data of table.data">
+      <tr>
+        <td
+          nzLeft
+          nzAlign="left"
+          nzEllipsis
+          nz-tooltip
+          [nzTooltipTitle]="data.key"
+        >
+          {{ data.key }}
+        </td>
+        <td nzAlign="left" *ngFor="let language of language$ | async">
+          {{ data.text[language.code] }}
+        </td>
+        <td nzRight>
+          <span *ngFor="let project of data.projects" nz-typography
+            ><code>{{ project.name }}</code></span
+          >
+        </td>
+        <td nzRight nzAlign="center">
+          <nz-button-group>
+            <button (click)="delete(data.id)" nz-button nzType="default">
+              <span>
+                <i nz-icon nzType="delete" nzTheme="twotone"></i>
+              </span>
+            </button>
+            <button (click)="addEdit(data)" nz-button nzType="default">
+              <span>
+                <i nz-icon nzType="edit" nzTheme="twotone"></i>
+              </span>
+            </button>
+          </nz-button-group>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</nz-table>
+
+<!-- MODAL -->
+<az-add-edit-translation
+  [(isVisible)]="isVisible"
+  [editingData]="editingData"
+  [projects]="projects"
+  (modified)="modifiedTranslation()"
+></az-add-edit-translation>
