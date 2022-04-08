@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
 
 @Component({
-  selector: 'az-catalog-members',
-  templateUrl: './catalog-members.component.html',
-  styleUrls: ['./catalog-members.component.less'],
+  selector: 'az-catalog-partner-company',
+  templateUrl: './catalog-partner-company.component.html',
+  styleUrls: ['./catalog-partner-company.component.less']
 })
-export class CatalogMembersComponent implements OnInit {
+export class CatalogPartnerCompanyComponent implements OnInit {
+
   partners = [
     [
       {
@@ -182,7 +183,11 @@ export class CatalogMembersComponent implements OnInit {
     e.next()
   }
   
-  constructor() {}
 
-  ngOnInit() {}
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+
 }
