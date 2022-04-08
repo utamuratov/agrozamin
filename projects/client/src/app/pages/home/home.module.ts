@@ -55,7 +55,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     NzDrawerModule,
     NzCardModule,
     NzIconModule,
-    NzPopoverModule
+    NzPopoverModule,
   ],
   declarations: [
     HomeComponent,
