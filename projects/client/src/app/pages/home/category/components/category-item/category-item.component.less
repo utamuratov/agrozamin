@@ -24,19 +24,19 @@
     }
 
     &__img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 225px;
-        height: 225px;
-        border-radius: 8px 8px 0 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 225px;
+      height: 225px;
+      border-radius: 8px 8px 0 0;
 
-        img {
-            border-radius: 8px 8px 0 0;
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
+      img {
+        border-radius: 8px 8px 0 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
     }
 
     &__bottom {
@@ -91,89 +91,89 @@
     }
 
     &__img {
-        position: absolute;
-        top: 0;
-        left: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      border-radius: 8px 0 0 8px;
+
+      img {
+        border-radius: 8px 0 0 8px;
         height: 100%;
         width: 100%;
-        border-radius: 8px 0 0 8px;
-
-        img {
-            border-radius: 8px 0 0 8px;
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
+        object-fit: cover;
+      }
     }
 
     &__right {
-        padding: 24px 24px 24px 20px;
-        height: 100%;
+      padding: 24px 24px 24px 20px;
+      height: 100%;
 
-        &__title {
-            font-size: 18px;
-            font-family: Agrofont-Medium;
-            color: #1A1A1A;
-            line-height: 23px;
-            margin-bottom: 12px;
-        }
+      &__title {
+        font-size: 18px;
+        font-family: Agrofont-Medium;
+        color: #1a1a1a;
+        line-height: 23px;
+        margin-bottom: 12px;
+      }
 
-        &__text {
+      &__text {
+        font-size: 14px;
+        font-family: Agrofont-Regular;
+        color: #1a1a1a;
+        line-height: 18px;
+        height: 72px;
+      }
+
+      &__info {
+        width: 402px;
+      }
+
+      .location {
+        a {
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+          font-family: Agrofont-Regular;
+
+          span {
+            margin-left: 6px;
             font-size: 14px;
             font-family: Agrofont-Regular;
-            color: #1A1A1A;
-            line-height: 18px;
-            height: 72px;
+          }
         }
 
-        &__info {
-            width: 402px;
+        p {
+          margin-bottom: 0;
+          display: flex;
+          align-items: center;
+          span {
+            margin-left: 4px;
+          }
         }
+      }
 
-        .location {
-            a {
-                display: flex;
-                align-items: center;
-                font-size: 14px;
-                font-family: Agrofont-Regular;
+      &__subtitle {
+        font-size: 20px;
+        color: #22a33f;
+        line-height: 25px;
+        margin: 0;
+        font-family: Agrofont-Bold;
+      }
 
-                span {
-                    margin-left: 6px;
-                    font-size: 14px;
-                    font-family: Agrofont-Regular;
-                }
-            }
-
-            p {
-                margin-bottom: 0;
-                display: flex;
-                align-items: center;
-                span {
-                    margin-left: 4px;
-                }
-            }
-        }
-
-        &__subtitle {
-            font-size: 20px;
-            color: #22A33F;
-            line-height: 25px;
-            margin: 0;
-            font-family: Agrofont-Bold;
-        }
-
-        &__underprice {
-            font-size: 12px;
-            color: #86898C;
-            font-family: Agrofont-Regular;
-        }
+      &__underprice {
+        font-size: 12px;
+        color: #86898c;
+        font-family: Agrofont-Regular;
+      }
     }
 
     &__derection {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
   }
 }

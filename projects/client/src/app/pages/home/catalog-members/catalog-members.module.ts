@@ -19,6 +19,8 @@ import { CatalogPartnerPostsComponent } from './components/catalog-members-partn
 import { CatalogPartnerCompanyComponent } from './components/catalog-members-partner/components/catalog-partner-company/catalog-partner-company.component';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 
 
@@ -35,6 +37,8 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
         NzCheckboxModule,
         NzRateModule,
         NzCarouselModule,
+        NzTypographyModule,
+        NzPaginationModule
     ],
     declarations: [
         CatalogMembersComponent,
