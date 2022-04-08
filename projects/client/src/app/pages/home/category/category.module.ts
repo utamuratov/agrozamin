@@ -33,6 +33,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { SimilarItemsComponent } from './components/similar-items/similar-items.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
     NzRateModule,
     NzTabsModule,
     NzDividerModule,
-    NzSkeletonModule
+    NzSkeletonModule,
+    NzPaginationModule
   ],
   declarations: [
     CategoryComponent,
