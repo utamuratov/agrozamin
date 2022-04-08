@@ -5,7 +5,7 @@ const routes: Routes = [
   { 
     path: '', component: HomeComponent
    },
-   {path: 'category', loadChildren: () => import('./category/catalog.module').then(m => m.CatalogModule)},
+   {path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)},
    {path: 'catalog-members', loadChildren: () => import('./catalog-members/catalog-members.module').then(m => m.CatalogMembersModule)},
 ];
 
