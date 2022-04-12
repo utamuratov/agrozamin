@@ -127,33 +127,30 @@ export class TranslationComponent implements OnInit {
   makeColumnsForGrid() {
     this.language$.subscribe((languages) => {
       this.columns = [
-        {
+        new Column({
           field: 'key',
-          header: 'key',
           sortable: true,
-          sortByLocalCompare: true,
           width: '200px',
           nzLeft: true,
-          nzAlignHeader: 'center',
-        },
+        }),
       ];
       languages.forEach((language) => {
-        this.columns.push({
-          field: 'text.' + language.code,
-          header: language.name,
-          sortable: true,
-          sortByLocalCompare: true,
-          nzAlignHeader: 'center',
-        });
+        this.columns.push(
+          new Column({
+            field: 'text.' + language.code,
+            header: language.name,
+            sortable: true,
+          })
+        );
       });
-      this.columns.push({
-        field: 'projects',
-        header: 'projects',
-        width: '200px',
-        nzAlignHeader: 'center',
-        nzRight: true,
-        hasTemplate: true,
-      });
+      this.columns.push(
+        new Column({
+          field: 'projects',
+          width: '200px',
+          nzRight: true,
+          hasTemplate: true,
+        })
+      );
     });
   }
 

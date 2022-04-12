@@ -8,39 +8,48 @@
   [nzScroll]="(data.length | makeNzScroll | async)!"
 >
   <thead>
-    <tr>
+    <tr *ngFor="let row of theadRows; let isFirst = first">
       <th
-        [nzAlign]="column.nzAlignHeader ?? null"
-        [nzLeft]="!!column.nzLeft"
-        [nzRight]="!!column.nzRight"
-        [nzWidth]="column.width ?? null"
+        [colspan]="column.colspan"
+        [rowspan]="column.rowspan"
+        [nzAlign]="column.nzAlignHeader"
+        [nzLeft]="column.nzLeft"
+        [nzRight]="column.nzRight"
+        [nzWidth]="column.width"
         [nzShowSort]="column.sortable"
         [nzSortFn]="column.field | azSort: column.sortByLocalCompare"
-        *ngFor="let column of columns"
+        *ngFor="let column of row"
       >
         {{ column.header | translate }}
       </th>
-      <th nzRight nzWidth="120px"></th>
+      <th
+        nzRight
+        nzWidth="120px"
+        *ngIf="isFirst"
+        [rowspan]="theadRows.length"
+      ></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of table.data">
-      <td
-        [nzAlign]="column.nzAlignBody ?? null"
-        [nzLeft]="!!column.nzLeft"
-        [nzRight]="!!column.nzRight"
-        *ngFor="let column of columns"
-      >
-        <ng-container
-          *ngIf="column.hasTemplate; else justData"
-          [ngTemplateOutlet]="columnTemplate"
-          [ngTemplateOutletContext]="{ $implicit: column, data: this.data }"
+      <ng-container *ngFor="let column of columns">
+        <td
+          *ngIf="!column.isHeader"
+          [nzAlign]="column.nzAlignBody"
+          [nzLeft]="column.nzLeft"
+          [nzRight]="column.nzRight"
         >
-        </ng-container>
-        <ng-template #justData>
-          {{ column.field | getDeepValue: data }}
-        </ng-template>
-      </td>
+          <ng-container
+            *ngIf="column.hasTemplate; else justData"
+            [ngTemplateOutlet]="columnTemplate"
+            [ngTemplateOutletContext]="{ $implicit: column, data: this.data }"
+          >
+          </ng-container>
+          <ng-template #justData>
+            {{ column.field | getDeepValue: data }}
+          </ng-template>
+        </td>
+      </ng-container>
 
       <td nzRight nzAlign="center">
         <nz-button-group>

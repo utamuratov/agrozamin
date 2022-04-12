@@ -15,11 +15,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
-
 @NgModule({
-  declarations: [
-    DashboardComponent, BreadcrumbComponent
-  ],
+  declarations: [DashboardComponent, BreadcrumbComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -30,7 +27,6 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     LanguageModule,
     TranslateModule,
 
-    
     NzAvatarModule,
     NzLayoutModule,
     IconsProviderModule,
@@ -38,8 +34,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     NzBreadCrumbModule,
     NzButtonModule,
     NzGridModule,
-    NzToolTipModule
-
-  ]
+    NzToolTipModule,
+  ],
 })
-export class DashboardModule { }
+export class DashboardModule {}

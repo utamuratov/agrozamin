@@ -5,4 +5,5 @@ export interface CategoryResponse extends Id {
   name: NzSafeAny;
   icon: string;
   subCategories: CategoryResponse[];
+  parentIds?: number[];
 }

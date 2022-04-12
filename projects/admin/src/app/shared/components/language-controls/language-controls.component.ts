@@ -5,6 +5,7 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
 import { Observable, takeUntil } from 'rxjs';
 
+type controlInputType = 'textarea' | 'input';
 @Component({
   selector: 'az-language-controls',
   templateUrl: './language-controls.component.html',
@@ -17,14 +18,35 @@ export class LanguageControlsComponent implements OnInit {
   @Input()
   form!: FormGroup;
 
+  /**
+   *
+   */
   @Input()
   formGroupName!: string;
 
+  /**
+   *
+   */
   @Input()
   rows = 3;
 
+  /**
+   *
+   */
   @Input()
   translations: NzSafeAny;
+
+  /**
+   *
+   */
+  @Input()
+  inline = false;
+
+  /**
+   *
+   */
+  @Input()
+  inputType: controlInputType = 'textarea';
 
   /**
    *
@@ -37,6 +59,9 @@ export class LanguageControlsComponent implements OnInit {
    */
   constructor(private $destroy: NgDestroy) {}
 
+  /**
+   *
+   */
   ngOnInit(): void {
     this.addLanguageControls();
   }

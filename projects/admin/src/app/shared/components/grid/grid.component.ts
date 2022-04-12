@@ -45,27 +45,45 @@ export class GridComponent implements OnInit {
   @Input()
   columnTemplate!: TemplateRef<NzSafeAny>;
 
-  constructor() {}
+  /**
+   *
+   */
+  theadRows: Array<Column[]> = [];
 
-  ngOnInit() {}
+  /**
+   *
+   */
+  ngOnInit(): void {
+    this.makeTheadRows();
+  }
 
+  /**
+   *
+   */
+  private makeTheadRows() {
+    for (let rowIndex = 1; rowIndex <= 2; rowIndex++) {
+      const columnsByRow = this.columns.filter(
+        (column) => column.row === rowIndex
+      );
+      if (columnsByRow.length > 0) {
+        this.theadRows.push(columnsByRow);
+      }
+    }
+  }
+
+  /**
+   *
+   * @param id
+   */
   delete(id: number) {
     this.deleted.emit(id);
   }
 
+  /**
+   *
+   * @param data
+   */
   addEdit(data: NzSafeAny) {
     this.addEdited.emit(data);
-  }
-
-  makeValue(field: string, data: any) {
-    const splitted = field.split('.');
-    if (splitted.length === 0) {
-      return '';
-    }
-    let value = data[splitted[0]];
-    for (let index = 1; index < splitted.length; index++) {
-      value = value[splitted[index]];
-    }
-    return value;
   }
 }

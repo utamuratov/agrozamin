@@ -48,9 +48,15 @@
           </li>
         </ul>
       </li>
-      <li routerLink="category" nz-menu-item nzMatchRouter>
-        <i nz-icon nzType="profile" nzTheme="outline"></i>
-        <span>{{ "category" | translate }}</span>
+      <li nz-submenu nzOpen [nzTitle]="'category' | translate" nzIcon="profile">
+        <ul>
+          <li routerLink="category/list" nz-menu-item nzMatchRouter>
+            <span>{{ "list" | translate }}</span>
+          </li>
+          <li routerLink="category/filter" nz-menu-item nzMatchRouter>
+            <span>{{ "filters" | translate }}</span>
+          </li>
+        </ul>
       </li>
 
       <li routerLink="user" nz-menu-item nzMatchRouter>

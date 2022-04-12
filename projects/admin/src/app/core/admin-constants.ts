@@ -14,4 +14,17 @@ export class AdminConstants {
   };
 
   public static readonly ROUTER_ADMIN = 'admin';
+
+  public static readonly LOCALIZATION_FROM_RU = 'От';
+  public static readonly LOCALIZATION_FROM_UZ_LATN = 'Dan';
+  public static readonly LOCALIZATION_FROM_UZ_CYRL = 'Дан';
+  public static readonly LOCALIZATION_TO_RU = 'До';
+  public static readonly LOCALIZATION_TO_UZ_LATN = 'Gacha';
+  public static readonly LOCALIZATION_TO_UZ_CYRL = 'Гача';
+  public static readonly LOCALIZATION_MIN_RU = 'Мин.';
+  public static readonly LOCALIZATION_MIN_UZ_LATN = 'Min';
+  public static readonly LOCALIZATION_MIN_UZ_CYRL = 'Мин';
+  public static readonly LOCALIZATION_MAX_RU = 'Макс';
+  public static readonly LOCALIZATION_MAX_UZ_LATN = 'Maks';
+  public static readonly LOCALIZATION_MAX_UZ_CYRL = 'Макс';
 }
