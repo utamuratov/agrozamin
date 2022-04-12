@@ -74,12 +74,6 @@ export class AddEditTranslationComponent {
   /**
    *
    */
-  @Select(LanguageState.languages)
-  language$!: Observable<Language[]>;
-
-  /**
-   *
-   */
   transferingProjects: TransferItem[] = [];
 
   /**
@@ -137,21 +131,7 @@ export class AddEditTranslationComponent {
   private initForm(model?: Translation) {
     this.form = this.fb.group({
       key: [model?.key, Validators.required],
-    });
-    this.addLanguageControls(model);
-  }
-
-  /**
-   *
-   */
-  private addLanguageControls(model?: Translation) {
-    this.language$.subscribe((languages) => {
-      languages.forEach((language) => {
-        this.form.addControl(
-          language.code,
-          new FormControl(model?.text[language.code], Validators.required)
-        );
-      });
+      text: this.fb.group({}),
     });
   }
 
@@ -224,15 +204,8 @@ export class AddEditTranslationComponent {
         .map((w) => w['key']),
       key: this.form.value['key'],
       type: this.translationType,
-      text: {},
+      text: this.form.value['text'],
     };
-
-    this.language$.subscribe((languages) =>
-      languages.forEach((w) => {
-        request.text[w.code] = this.form.value[w.code];
-      })
-    );
-
     return request;
   }
 

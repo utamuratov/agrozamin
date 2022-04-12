@@ -1,0 +1,153 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="(editingData?.id ? 'edit' : 'add') | translate"
+  (nzOnCancel)="close()"
+  class="custom"
+  modal
+>
+  <div *nzModalContent>
+    <div>
+      <form [formGroup]="form" nz-form nzLayout="vertical">
+        <nz-collapse nzAccordion>
+          <!-- GENERAL -->
+          <nz-collapse-panel
+            [nzHeader]="'general' | translate"
+            [nzActive]="true"
+          >
+            <!-- PARENTS -->
+            <nz-form-item>
+              <nz-form-label nzFor="accessAction">{{
+                "parentCategories" | translate
+              }}</nz-form-label>
+              <nz-form-control [nzErrorTip]="errorActions">
+                <nz-select
+                  id="accessAction"
+                  formControlName="parentIds"
+                  nzMode="multiple"
+                  [nzCustomTemplate]="multipleTemplate"
+                >
+                  <nz-option
+                    nzCustomContent
+                    *ngFor="let option of parentCategories"
+                    [nzLabel]="option.name['ru']"
+                    [nzValue]="option.id"
+                  >
+                    {{ option.name["ru"] }}
+                  </nz-option>
+                </nz-select>
+                <ng-template #multipleTemplate let-selected>
+                  <div class="ant-select-selection-item-content">
+                    {{ selected.nzLabel }}
+                  </div>
+                </ng-template>
+              </nz-form-control>
+              <ng-template #errorActions let-control>
+                <error [control]="control"></error>
+              </ng-template>
+            </nz-form-item>
+
+            <!-- NAME -->
+            <h3>{{ "name" | translate }}</h3>
+            <az-language-controls
+              [form]="form"
+              [translations]="editingData?.name"
+              [inputType]="'input'"
+              formGroupName="name"
+            ></az-language-controls>
+          </nz-collapse-panel>
+
+          <!-- FILTERS -->
+          <nz-collapse-panel
+            [nzHeader]="'filters' | translate"
+            [nzActive]="false"
+          >
+            <div class="overflow-auto max-height" formArrayName="filters">
+              <div
+                *ngFor="let filter of filters.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <!-- FILTER -->
+                <nz-form-item class="mb-1">
+                  <nz-form-control [nzErrorTip]="errorActions">
+                    <nz-select
+                      id="accessAction"
+                      formControlName="filterId"
+                      [nzPlaceHolder]="'filters' | translate"
+                    >
+                      <nz-option
+                        *ngFor="let option of parentCategories"
+                        [nzLabel]="option.name['ru']"
+                        [nzValue]="option.id"
+                      >
+                        {{ option.name["ru"] }}
+                      </nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                  <ng-template #errorActions let-control>
+                    <error [control]="control"></error>
+                  </ng-template>
+                </nz-form-item>
+
+                <!-- PARAMETERS -->
+                <nz-form-item class="mb-1">
+                  <nz-form-control [nzErrorTip]="errorActions">
+                    <nz-select
+                      id="accessAction"
+                      formControlName="values"
+                      nzMode="multiple"
+                      [nzCustomTemplate]="multipleTemplate"
+                      [nzPlaceHolder]="'parameters' | translate"
+                    >
+                      <nz-option
+                        nzCustomContent
+                        *ngFor="let option of parentCategories"
+                        [nzLabel]="option.name['ru']"
+                        [nzValue]="option.id"
+                      >
+                        {{ option.name["ru"] }}
+                      </nz-option>
+                    </nz-select>
+                    <ng-template #multipleTemplate let-selected>
+                      <div class="ant-select-selection-item-content">
+                        {{ selected.nzLabel }}
+                      </div>
+                    </ng-template>
+                  </nz-form-control>
+                  <ng-template #errorActions let-control>
+                    <error [control]="control"></error>
+                  </ng-template>
+                </nz-form-item>
+
+                <nz-divider class="m-0 mb-1"></nz-divider>
+              </div>
+
+              <div
+                nz-col
+                nzXs="24"
+                nzSm="24"
+                nzMd="24"
+                nzLg="24"
+                nzXl="24"
+                nzXXl="24"
+              >
+                <button
+                  nz-button
+                  nzBlock
+                  class="legal__add-card"
+                  (click)="addFilter()"
+                >
+                  <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                </button>
+              </div>
+            </div>
+          </nz-collapse-panel>
+        </nz-collapse>
+      </form>
+    </div>
+  </div>
+  <div *nzModalFooter>
+    <button (click)="submit()" nz-button nzType="primary">
+      {{ "save" | translate }}
+    </button>
+  </div>
+</nz-modal>

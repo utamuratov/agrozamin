@@ -1,24 +1,30 @@
 import {
-  ChangeDetectionStrategy,
   Component,
+  ChangeDetectionStrategy,
   EventEmitter,
-  Input,
   Output,
+  Input,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { markAllAsDirty, NgDestroy } from 'ngx-az-core';
 import { takeUntil, tap } from 'rxjs';
-import { AccessActionService } from '../access-action.service';
-import { AccessAction } from '../models/access-action.interface';
-import { AccessActionResponse } from '../models/access-action.response';
+import { CategoryRequest } from '../../../models/category.request';
+import { CategoryResponse } from '../../../models/category.response';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
-  selector: 'az-add-edit-access-action',
-  templateUrl: './add-edit-access-action.component.html',
-  styleUrls: ['./add-edit-access-action.component.less'],
+  selector: 'az-add-edit-category',
+  templateUrl: './add-edit-category.component.html',
+  styleUrls: ['./add-edit-category.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddEditAccessActionComponent {
+export class AddEditCategoryComponent {
+  /**
+   *
+   */
+  @Input()
+  parentCategories!: CategoryResponse[];
+
   /**
    *
    */
@@ -34,13 +40,13 @@ export class AddEditAccessActionComponent {
   /**
    *
    */
-  private _editingData?: AccessActionResponse;
+  private _editingData?: CategoryResponse;
   @Input()
-  public set editingData(v: AccessActionResponse | undefined) {
+  public set editingData(v: CategoryResponse | undefined) {
     this._editingData = v;
     this.init();
   }
-  public get editingData(): AccessActionResponse | undefined {
+  public get editingData(): CategoryResponse | undefined {
     return this._editingData;
   }
 
@@ -58,12 +64,12 @@ export class AddEditAccessActionComponent {
   /**
    *
    * @param fb
-   * @param $accessAction
+   * @param $category
    */
   constructor(
     private fb: FormBuilder,
     private $destroy: NgDestroy,
-    private $accessAction: AccessActionService
+    private $category: CategoryService
   ) {}
 
   /**
@@ -77,11 +83,36 @@ export class AddEditAccessActionComponent {
    *
    * @param model
    */
-  initForm(model?: AccessActionResponse) {
+  initForm(model?: CategoryResponse) {
     this.form = this.fb.group({
-      key: [model?.key, Validators.required],
-      description: this.fb.group({}),
+      parentIds: [model?.parentIds],
+      name: this.fb.group({}),
+      filters: this.fb.array([
+        this.fb.group({
+          filterId: [null, Validators.required],
+          values: [null, Validators.required],
+        }),
+      ]),
     });
+  }
+
+  /**
+   *
+   */
+  get filters() {
+    return this.form.get('filters') as FormArray;
+  }
+
+  /**
+   *
+   */
+  addFilter() {
+    this.filters.push(
+      this.fb.group({
+        filterId: [null, Validators.required],
+        values: [null, Validators.required],
+      })
+    );
   }
 
   /**
@@ -104,8 +135,8 @@ export class AddEditAccessActionComponent {
   /**
    *
    */
-  private add(request: AccessAction) {
-    this.$accessAction
+  private add(request: CategoryRequest) {
+    this.$category
       .add(request)
       .pipe(
         takeUntil(this.$destroy),
@@ -125,8 +156,8 @@ export class AddEditAccessActionComponent {
    * @param id
    * @param request
    */
-  private edit(id: number, request: AccessAction) {
-    this.$accessAction
+  private edit(id: number, request: CategoryRequest) {
+    this.$category
       .edit(id, request)
       .pipe(
         takeUntil(this.$destroy),

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { Constants, LanguageGuard } from 'ngx-az-core';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
+import { AuthGuard } from './core/gurad/auth.guard';
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
           import('./modules/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
-        canActivate: [LanguageGuard],
+        canActivate: [LanguageGuard, AuthGuard],
       },
       {
         path: ':language/sign-in',

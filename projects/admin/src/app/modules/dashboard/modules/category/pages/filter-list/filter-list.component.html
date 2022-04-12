@@ -1,7 +1,7 @@
 <!-- HEADER -->
 <az-header-with-divider-advanced
   [config]="{
-    title: TranslationType[translationType] | translate,
+    title: 'filters' | translate,
     searchInputAdvancedConfig: searchInputConfig
   }"
   (clickedAddEditButton)="addEdit()"
@@ -13,22 +13,23 @@
   [data]="searchInputConfig.filteredData"
   [columns]="columns"
   [columnTemplate]="template"
-  (addEdited)="addEdit($event)"
   (deleted)="delete($event)"
+  (addEdited)="addEdit($event)"
 >
   <ng-template #template let-column let-data="data">
-    <ng-container *ngIf="column.field === 'projects'"
-      ><span *ngFor="let project of data.projects" nz-typography
-        ><code>{{ project.name }}</code></span
-      ></ng-container
-    >
+    <ng-container *ngIf="column.field === 'type_for_filter'">{{
+      InputTypeForFilter[data.type_for_filter]
+    }}</ng-container>
+
+    <ng-container *ngIf="column.field === 'type_for_creator'">{{
+      InputTypeForCreator[data.type_for_creator]
+    }}</ng-container>
   </ng-template>
 </az-grid>
 
-<!-- MODAL -->
-<az-add-edit-translation
+<!-- ADD EDIT MODAL -->
+<az-add-edit-filter
   [(isVisible)]="isVisible"
   [editingData]="editingData"
-  [projects]="projects"
-  (modified)="modifiedTranslation()"
-></az-add-edit-translation>
+  (modified)="loadData()"
+></az-add-edit-filter>

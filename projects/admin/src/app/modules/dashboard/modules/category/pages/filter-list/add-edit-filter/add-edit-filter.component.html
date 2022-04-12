@@ -1,0 +1,256 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="(editingData?.id ? 'edit' : 'add') | translate"
+  (nzOnCancel)="close()"
+  class="custom"
+  [nzWidth]="'750px'"
+  modal
+>
+  <div *nzModalContent>
+    <div>
+      <form [formGroup]="form" nz-form nzLayout="vertical">
+        <div nz-row>
+          <div nz-col nzSpan="12" class="pr-1">
+            <!-- NAME -->
+            <az-language-controls
+              [form]="form"
+              [translations]="editingData?.name"
+              [inputType]="'input'"
+              formGroupName="name"
+            ></az-language-controls>
+          </div>
+
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label nzFor="fieldName">{{
+                "fieldName" | translate
+              }}</nz-form-label>
+              <nz-form-control [nzErrorTip]="errorLogin">
+                <input
+                  id="fieldName"
+                  nz-input
+                  type="text"
+                  formControlName="field_name"
+                />
+              </nz-form-control>
+              <ng-template #errorLogin let-control>
+                <error [control]="control"></error>
+              </ng-template>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-label nzFor="inputTypes">{{
+                "inputTypes" | translate
+              }}</nz-form-label>
+              <nz-form-control [nzErrorTip]="errorActions">
+                <nz-select
+                  id="inputTypes"
+                  formControlName="type_for_creator"
+                  (ngModelChange)="changeInputTypeForCreator($event)"
+                >
+                  <nz-option
+                    *ngFor="let option of inputTypesForCreator"
+                    [nzLabel]="option.key"
+                    [nzValue]="option.value"
+                  >
+                  </nz-option>
+                </nz-select>
+              </nz-form-control>
+              <ng-template #errorActions let-control>
+                <error [control]="control"></error>
+              </ng-template>
+            </nz-form-item>
+
+            <ng-container
+              *ngIf="form.get('type_for_creator')?.value != undefined"
+            >
+              <nz-form-label nzFor="fieldName"
+                >Filterda ko'rinadigan holati</nz-form-label
+              >
+              <div [ngSwitch]="form.get('type_for_creator')?.value">
+                <nz-radio-group formControlName="type_for_filter">
+                  <div *ngSwitchCase="InputTypeForCreator.InputNumber">
+                    <label nz-radio [nzValue]="InputTypeForFilter.Slider"
+                      >Slayder</label
+                    >
+                    <label
+                      nz-radio
+                      [nzValue]="InputTypeForFilter.SliderWithInput"
+                      >Input</label
+                    >
+                  </div>
+                  <div *ngSwitchCase="InputTypeForCreator.DatePicker">
+                    <label
+                      nz-radio
+                      nzDisabled
+                      [nzValue]="InputTypeForFilter.DateRangePicker"
+                      >Date range picker</label
+                    >
+                  </div>
+                  <div *ngSwitchCase="InputTypeForCreator.DateYearPicker">
+                    <label
+                      nz-radio
+                      nzDisabled
+                      [nzValue]="InputTypeForFilter.DateYearRangePicker"
+                      >Year range picker</label
+                    >
+                  </div>
+                  <div *ngSwitchDefault>
+                    <label
+                      nz-radio
+                      nzDisabled
+                      [nzValue]="InputTypeForFilter.Checkbox"
+                      >Checkbox</label
+                    >
+                  </div>
+                </nz-radio-group>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div
+          *ngIf="
+            form.get('type_for_creator')?.value ===
+              InputTypeForCreator.Checkbox ||
+            form.get('type_for_creator')?.value === InputTypeForCreator.Radio ||
+            form.get('type_for_creator')?.value === InputTypeForCreator.Select
+          "
+        >
+          <nz-divider></nz-divider>
+          <div class="d-flex">
+            <h3 class="flex-grow-1">{{ "parameters" | translate }}</h3>
+
+            <button (click)="uploadFile.click()" nz-button nzType="default">
+              <span>
+                <i nz-icon nzType="upload" nzTheme="outline"></i>
+              </span>
+            </button>
+            <input
+              hidden
+              #uploadFile
+              type="file"
+              (change)="onFileChange($event)"
+              multiple="false"
+            />
+          </div>
+
+          <!-- SELECT | RADIO | CHECKBOX -->
+          <nz-table
+            #table
+            [nzData]="parametersCheckBoxes"
+            [nzFrontPagination]="false"
+            nzSize="small"
+            nzBordered
+          >
+            <thead>
+              <tr>
+                <th nzAlign="center" [nzWidth]="'100px'">
+                  {{ "selected" | translate }}
+                </th>
+                <th *ngFor="let language of language$ | async">
+                  {{ language.name }}
+                </th>
+                <th [nzWidth]="'120px'"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of table.data">
+                <ng-container
+                  *ngIf="!editCache[data.id].edit; else editTemplate"
+                >
+                  <td nzAlign="center">
+                    <input
+                      disabled
+                      nz-checkbox
+                      [(ngModel)]="editCache[data.id].data.default_value"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="checkbox"
+                    />
+                  </td>
+                  <td *ngFor="let language of language$ | async">
+                    {{ data.label[language.code] }}
+                  </td>
+                  <td nzRight nzAlign="center">
+                    <nz-button-group>
+                      <button
+                        (click)="delete(data.id)"
+                        nz-button
+                        nzType="default"
+                      >
+                        <span>
+                          <i nz-icon nzType="delete" nzTheme="twotone"></i>
+                        </span>
+                      </button>
+                      <button
+                        (click)="startEdit(data.id)"
+                        nz-button
+                        nzType="default"
+                      >
+                        <span>
+                          <i nz-icon nzType="edit" nzTheme="twotone"></i>
+                        </span>
+                      </button>
+                    </nz-button-group>
+                  </td>
+                </ng-container>
+                <ng-template #editTemplate>
+                  <td nzAlign="center">
+                    <input
+                      nz-checkbox
+                      [(ngModel)]="editCache[data.id].data.default_value"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="checkbox"
+                    />
+                  </td>
+                  <td *ngFor="let language of language$ | async">
+                    <input
+                      type="text"
+                      nz-input
+                      [ngModelOptions]="{ standalone: true }"
+                      [(ngModel)]="editCache[data.id].data.label[language.code]"
+                    />
+                  </td>
+                  <td nzRight nzAlign="center">
+                    <nz-button-group>
+                      <button
+                        (click)="saveEdit(data.id)"
+                        nz-button
+                        nzType="default"
+                      >
+                        <span>
+                          <i nz-icon nzType="save" nzTheme="twotone"></i>
+                        </span>
+                      </button>
+                      <button
+                        (click)="startEdit(data.id)"
+                        nz-button
+                        nzType="default"
+                        nz-popconfirm
+                        nzPopconfirmTitle="Sure to cancel?"
+                        (nzOnConfirm)="cancelEdit(data.id)"
+                      >
+                        <span>
+                          <i
+                            nz-icon
+                            nzType="close-square"
+                            nzTheme="twotone"
+                          ></i>
+                        </span>
+                      </button>
+                    </nz-button-group>
+                  </td>
+                </ng-template>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *nzModalFooter>
+    <button (click)="submit()" nz-button nzType="primary">
+      {{ "save" | translate }}
+    </button>
+  </div>
+</nz-modal>

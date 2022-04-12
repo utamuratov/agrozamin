@@ -26,6 +26,11 @@ export interface SearchInputAdvancedConfig<T = NzSafeAny> {
    *
    */
   searchText: string;
+
+  /**
+   *
+   */
+  isLoadingData?: boolean;
 }
 
 @Component({
@@ -73,10 +78,10 @@ export class SearchInputAdvancedComponent {
       this.config.keys.find((key) => {
         if (typeof item[key] === 'object') {
           return Object.keys(item[key]).find((subKey) =>
-            this.isIncludes(item[key][subKey], searchText)
+            this.isIncludes(item[key][subKey].toString(), searchText)
           );
         }
-        return this.isIncludes(item[key], searchText);
+        return this.isIncludes(item[key].toString(), searchText);
       })
     );
   }
