@@ -9,7 +9,7 @@
 
         <div nz-col nzSpan="24" class="nav__top">
           <div nz-row nzAlign="middle">
-            <div nz-col nzSpan="12">
+            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="12">
               <ul class="nav__menu" nz-row>
                 <li nz-col class="nav__menu-item"><a>О проекте</a></li>
                 <li nz-col class="nav__menu-item"><a>Помощь</a></li>
@@ -22,7 +22,7 @@
                 <li nz-col class="nav__menu-item"><a>Онлайн консультант</a></li>
               </ul>
             </div>
-            <div nz-col nzSpan="9">
+            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="9">
               <div nz-row nzAlign="middle" [nzGutter]="[24, 0]" nzJustify="end">
                 <div nz-col class="nav__currency text-end">
                   <i class="red" nz-icon nzType="fall" nzTheme="outline"></i>
@@ -38,7 +38,7 @@
                 </div>
               </div>
             </div>
-            <div nz-col nzSpan="3" class="ml-a">
+            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="3" class="ml-a">
               <div nz-row>
                 <div nz-col nzSpan="24" class="text-end">
                   <span nz-typography class="select-desc">Язык:</span>
@@ -60,11 +60,11 @@
         </div>
 
         <div nz-col nzSpan="24" class="nav__middle">
-          <div nz-row nzAlign="middle" nzJustify="end">
-            <div nz-col nzSpan="12">
+          <div nz-row nzAlign="middle">
+            <div nz-col  nzXs="22" nzSm="14" nzMd="12" nzLg="8" nzXl="12">
               <img src="./assets/images/agrozamin/logo.svg" alt="logo" />
             </div>
-            <div nz-col [nzSpan]="isAuth ? 7 : 9">
+            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="11" [nzXl]="isAuth ? 7 : 9">
               <div nz-row [nzGutter]="[24, 0]" nzJustify="end">
                 <div nz-col class="nav__contacts">
                   <a href="tel:998781500088"
@@ -84,7 +84,7 @@
                 </div>
               </div>
             </div>
-            <div nz-col [nzSpan]="isAuth ? 5 : 3">
+            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" [nzXl]="isAuth ? 5 : 3">
               <div nz-row [nzGutter]="[8, 0]" nzJustify="end">
                 <div nz-col *ngIf="isAuth">
                   <button nz-button nzType="default" nzSize="large">
@@ -118,6 +118,29 @@
                   </button>
                 </div>
               </div>
+            </div>
+            <div nz-col nzXs="0" nzSm="8" nzMd="10" nzLg="4" nzXl="0">
+              <div nz-row>
+                <div nz-col nzSpan="24" class="text-end">
+                  <span nz-typography class="select-desc">Язык:</span>
+                  <nz-select
+                    ngModel="1"
+                    nzBorderless
+                    class="nav__select"
+                    style="padding-right: 0"
+                  >
+                    <nz-option nzValue="1" nzLabel="Русский"></nz-option>
+                    <nz-option nzValue="2" nzLabel="Узбекча"></nz-option>
+                    <nz-option nzValue="3" nzLabel="O'zbekcha"></nz-option>
+                    <nz-option nzValue="4" nzLabel="English"></nz-option>
+                  </nz-select>
+                </div>
+              </div>
+            </div>
+            <div nz-col nzXs="2" nzSm="2" nzMd="2" nzLg="1" nzXl="0" class="text-end">
+              <button nz-button nzType="default" nzSize="large">
+                <i><img src="./assets/images/agrozamin/header-burger.svg" alt="burger"></i>
+              </button>
             </div>
           </div>
         </div>
