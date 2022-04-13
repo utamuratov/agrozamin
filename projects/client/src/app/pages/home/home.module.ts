@@ -31,6 +31,7 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { FilterPipe } from '../../components/header/pipes/filter.pipe';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { ServiceComponent } from './components/servis/service.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     AgrozaminAppComponent,
     HeaderComponent,
     FooterComponent,
-    FilterPipe    
+    FilterPipe,
+    ServiceComponent    
   ],
 })
 export class HomeModule {}
