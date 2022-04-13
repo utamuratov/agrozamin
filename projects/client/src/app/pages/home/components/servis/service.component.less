@@ -1,0 +1,95 @@
+.service {
+  background: #ecf8ee;
+  height: 591px;
+  margin-bottom: 70px;
+
+  .title {
+    margin: 0;
+    padding-top: 70px;
+    width: 252px;
+    font-size: 32px;
+    font-family: Agrofont-Bold;
+  }
+
+  [nz-carousel-content] {
+    height: 361px;
+    background: #ecf8ee;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  &__carousel {
+    height: 361px;
+    margin-top: 50px;
+    position: relative;
+
+    &-btn {
+      position: absolute;
+      top: 50%;
+      z-index: 100;
+      color: #cfd3d8;
+
+      &:hover {
+        color: #22a33f;
+        border: 1px solid #22a33f;
+      }
+
+      &:active {
+        background: #1e8f37;
+        color: #fff;
+      }
+
+      &:focus {
+        color: #22a33f;
+      }
+    }
+
+    .prev {
+      left: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    .next {
+      right: 0;
+      transform: translate(50%, -50%);
+    }
+  }
+
+  &__card {
+    margin: 0;
+    height: 361px;
+    width: 410px;
+    border-radius: 12px;
+    background: #fff;
+  }
+  .card__content {
+    width: 350px;
+    margin-left: 30px;
+
+    img {
+      margin-top: 30px;
+      margin-bottom: 0;
+    }
+
+    h4 {
+      font-size: 18px;
+      font-family: Agrofont-Bold;
+      color: #000;
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      font-size: 16px;
+      padding-top: 12px;
+      color: #000;
+      font-family: Agrofont-Regular;
+      line-height: 150%;
+      width: 350px;
+    }
+    button {
+      margin-top: 24px;
+      width: 221px;
+      height: 44px;
+    }
+  }
+}

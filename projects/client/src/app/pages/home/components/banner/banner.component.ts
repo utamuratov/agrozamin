@@ -5,11 +5,7 @@ export interface BannerCorusel {
   title: string;
   description: string;
   id?: number;
-}
-
-export interface BannerCard {
-  img: string;
-  title: string
+  button: string
 }
 
 @Component({
@@ -18,31 +14,37 @@ export interface BannerCard {
   styleUrls: ['./banner.component.less'],
 })
 export class BannerComponent implements OnInit {
+  
+  effect = 'scrollx';
+  
   bannerCarousel: BannerCorusel[] = [
     {
       id: 1,
-      img: '../../../../../assets/images/agrozamin/big_slider.jpg',
-      title: 'Электронная платформа участников агро рынка',
-      description: 'Использование площадки — это экономия вашего времени, оптимизация затрат и повышение эффективности.',
+      img: '../../../../../assets/images/agrozamin/banner_slider1.jpg',
+      title: 'O’zimizniki – ваш надёжный партнер',
+      description: `Онлайн-платформа, объединяющая современные решения для фермеров: 
+      продажа и покупка товаров, модернизация вашего бизнеса. Использование
+      площадки — это экономия вашего времени, оптимизация затрат.`,
+      button: 'Подать объявление'
     },
     {
       id: 2,
-      img: 'https://www.indorama-agro.com/img/banner01.jpg',
-      title: 'Электронная платформа участников агро рынка',
-      description: 'Использование площадки — это экономия вашего времени, оптимизация затрат и повышение эффективности.',
+      img: '../../../../../assets/images/agrozamin/banner_slider2.jpg',
+      title: 'AgroBusiness – продажи на новом уровне',
+      description: `Лишь многие известные личности, которые представляют собой яркий пример континентально-европейского
+       типа политической культуры, будут указаны как претенденты на роль ключевых факторов.`,
+       button: 'Начать продавать'
     },
     {
       id: 3,
-      img: 'https://i2.wp.com/www.teamdhaksha.com/wp-content/uploads/2019/07/Agri-New.jpg',
-      title: 'Электронная платформа участников агро рынка',
-      description: 'Использование площадки — это экономия вашего времени, оптимизация затрат и повышение эффективности.',
+      img: '../../../../../assets/images/agrozamin/banner_slider3.jpg',
+      title: 'AgroConsult – онлайн консультант',
+      description: `Но сделанные на базе интернет-аналитики выводы, вне зависимости от их уровня, должны быть смешаны 
+      с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус.`,
+      button: 'Получить консультацию'
     },
   ];
 
-  bannerCards: BannerCard[] = [
-    {img: '../../../../../assets/images/agrozamin/banner-card-2.jpg', title: 'AgroZamin Объявления'},
-    {img: '../../../../../assets/images/agrozamin/banner-card-3.jpg', title: 'Форум агрономов, дачников и садоводов'},
-  ]
 
   constructor() {}
 

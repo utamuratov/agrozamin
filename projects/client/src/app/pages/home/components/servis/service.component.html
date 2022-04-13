@@ -1,0 +1,55 @@
+<div class="service">
+  <div class="container">
+    <h3 class="title">Наши сервисы</h3>
+    <div class="service__carousel">
+      <button
+        nz-button
+        nzType="default"
+        nzSize="large"
+        nzShape="circle"
+        (click)="pre(carousel)"
+        class="prev service__carousel-btn"
+      >
+        <i nz-icon nzType="left" nzTheme="outline"> </i>
+      </button>
+
+      <nz-carousel #carousel [nzEffect]="effect" >
+        <div nz-carousel-content *ngFor="let servises of service">
+          <div nz-row [nzGutter]="[30, 0]">
+            <div nz-col *ngFor="let item of servises">
+              <div class="service__card">
+                <div nz-row class="card__content">
+                  <div nz-col nzSpan="24">
+                    <div>
+                      <img [src]="item.logo" alt="" />
+                    </div>
+                    <nz-divider></nz-divider>
+                  </div>
+                  <div nz-col nzSpan="24">
+                    <h4>{{ item.title }}</h4>
+                    <p>{{ item.description }}</p>
+
+                    <button nz-button nzType="default">
+                      {{ item.button }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nz-carousel>
+
+      <button
+        nz-button
+        nzType="default"
+        nzSize="large"
+        nzShape="circle"
+        (click)="next(carousel)"
+        class="next service__carousel-btn"
+      >
+        <i nz-icon nzType="right" nzTheme="outline"></i>
+      </button>
+    </div>
+  </div>
+</div>

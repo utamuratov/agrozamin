@@ -1,24 +1,27 @@
 <div class="container">
-  <div nz-row [nzGutter]="[30, 0]" class="banner">
-    <div nz-col nzSpan="16" class="carousel">
-      <nz-carousel [nzEffect]="'fade'" nzAutoPlay>
-        <div nz-carousel-content *ngFor="let slide of bannerCarousel" [style.background-image] = "'url(' + slide.img + ')'">
-          <div class="banner__info-block">
-            <h3 class="banner__title font-agro-bold" nz-typography>{{ slide.title }}</h3>
-            <p nz-typography class="banner__description">{{slide.description}}</p>
+  <div nz-row  class="banner">
+
+    <div nz-col nzSpan="24">
+      <nz-carousel [nzEffect]="'fade'">
+
+        
+        <div nz-carousel-content *ngFor="let slide of bannerCarousel">
+          <div nz-row >
+            <div nz-col nzSpan="24">
+              <div>
+                <img [src]="slide.img" alt="">
+              </div>
+            </div>
+            <div nz-col class="banner__text"  nzSpan="12">
+              <h3 >{{slide.title}}</h3>
+            
+            <p>{{slide.description}}</p>
+              <button nz-button nzType="primary"> {{slide.button}} </button>
+            </div>
           </div>
-          <button nz-button nzType="default" nzSize="large" class="banner__btn transparent-btn">Узнать подробнее</button>
         </div>
       </nz-carousel>
     </div>
-    <div nz-col nzSpan="8">
-      <div nz-row [nzGutter]="[0, 30]">
-        <div nz-col nzSpan="24" *ngFor="let card of bannerCards" >
-          <div class="banner__card" [style.background-image] = "'url(' + card.img + ')'">
-            <h4 nz-typography class="font-agro-bold">{{card.title}}</h4>
-          </div>          
-        </div>
-      </div>
-    </div>
+
   </div>
-</div>
+</div> 
