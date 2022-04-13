@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   placement: NzDrawerPlacement = 'left';
   categoryChilds: any = [];
   touched = false;
-  serachInputDrawer = true;
+  serachInputDrawer = false;
   inputValue = 2;
   searchForm!: FormGroup;
   searchDropDown = false;
@@ -23,12 +23,12 @@ export class HeaderComponent implements OnInit {
   search = ''
 
 
-  visibleServicesPopover = true;
+  visibleServicesPopover = false;
 
   
 
   cityFilter!: FormGroup;
-  isAuth = false;
+  isAuth = true;
   regionsChild: any = [];
 
   regionsValue: any = []
