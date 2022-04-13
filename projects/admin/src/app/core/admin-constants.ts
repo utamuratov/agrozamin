@@ -27,4 +27,8 @@ export class AdminConstants {
   public static readonly LOCALIZATION_MAX_RU = 'Макс';
   public static readonly LOCALIZATION_MAX_UZ_LATN = 'Maks';
   public static readonly LOCALIZATION_MAX_UZ_CYRL = 'Макс';
+
+  public static readonly WIDTH_COLUMN_ID = '100px';
+  public static readonly WIDTH_COLUMN_KEY = '200px';
+  public static readonly WIDTH_COLUMN_ACTIONS = '130px';
 }

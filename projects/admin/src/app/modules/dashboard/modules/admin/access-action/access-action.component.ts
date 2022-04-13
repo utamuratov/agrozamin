@@ -4,11 +4,12 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
-import { SearchInputAdvancedConfig } from 'projects/admin/src/app/shared/components/search-input/search-input-advanced/search-input-advanced.component';
-import { Observable, takeUntil } from 'rxjs';
+import { Language, NgDestroy } from 'ngx-az-core';
+import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
+import { BaseComponent } from 'projects/admin/src/app/shared/components/base/base.component';
+import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
 import { AccessActionService } from './access-action.service';
+import { AccessAction } from './models/access-action.interface';
 import { AccessActionResponse } from './models/access-action.response';
 
 @Component({
@@ -16,33 +17,10 @@ import { AccessActionResponse } from './models/access-action.response';
   styleUrls: ['./access-action.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccessActionComponent implements OnInit {
-  /**
-   *
-   */
-  isVisible!: boolean;
-
-  /**
-   *
-   */
-  editingData?: AccessActionResponse;
-
-  /**
-   *
-   */
-  searchInputConfig: SearchInputAdvancedConfig<AccessActionResponse> = {
-    data: [],
-    filteredData: [],
-    keys: ['key', 'description'],
-    searchText: '',
-  };
-
-  /**
-   *
-   */
-  @Select(LanguageState.languages)
-  language$!: Observable<Language[]>;
-
+export class AccessActionComponent
+  extends BaseComponent<AccessActionResponse, AccessAction>
+  implements OnInit
+{
   /**
    *
    * @param $accessAction
@@ -50,62 +28,74 @@ export class AccessActionComponent implements OnInit {
    * @param cd
    */
   constructor(
-    private $accessAction: AccessActionService,
-    private $destroy: NgDestroy,
-    private cd: ChangeDetectorRef
-  ) {}
-
-  /**
-   *
-   */
-  ngOnInit(): void {
-    this.loadData();
+    protected $accessAction: AccessActionService,
+    protected override $destroy: NgDestroy,
+    protected override cd: ChangeDetectorRef
+  ) {
+    super($accessAction, $destroy, cd);
+    this.searchInputConfig.keys = ['key', 'description'];
   }
 
   /**
    *
    */
-  loadData() {
-    this.$accessAction
-      .getAll()
-      .pipe(takeUntil(this.$destroy))
-      .subscribe((result) => {
-        if (result.success) {
-          this.searchInputConfig = {
-            ...this.searchInputConfig,
-            data: result.data,
-          };
-          this.cd.markForCheck();
-        }
-      });
+  override ngOnInit(): void {
+    super.ngOnInit();
   }
 
   /**
    *
-   * @param modal
-   * @param editingData
    */
-  addEdit(editingData?: AccessActionResponse) {
-    this.editingData = editingData;
-    this.isVisible = true;
+  override makeColumnsForGrid() {
+    this.language$.subscribe((languages) => {
+      this.columns = [
+        new Column({
+          field: 'id',
+          sortable: true,
+          sortByLocalCompare: false,
+          nzLeft: true,
+          rowspan: 2,
+          row: 1,
+        }),
+        new Column({
+          field: 'key',
+          sortable: true,
+          nzLeft: true,
+          rowspan: 2,
+          row: 1,
+        }),
+        new Column({
+          field: 'description',
+          colspan: languages.length,
+          isHeader: true,
+          row: 1,
+        }),
+        ...languages.map(
+          (language) =>
+            new Column({
+              field: 'description.' + language.code,
+              header: language.name,
+              sortable: true,
+              nzAlignBody: 'left',
+              row: 2,
+            })
+        ),
+      ];
+
+      this.makeWidthConfig(languages);
+    });
   }
 
   /**
    *
-   * @param id
+   * @param languages
    */
-  delete(id: number) {
-    this.$accessAction
-      .delete(id)
-      .pipe(takeUntil(this.$destroy))
-      .subscribe((response) => {
-        if (response.success) {
-          this.loadData();
-        }
-      });
-  }
-
-  close() {
-    this.isVisible = false;
+  private makeWidthConfig(languages: Language[]) {
+    this.nzWidthConfig = [
+      AdminConstants.WIDTH_COLUMN_ID,
+      AdminConstants.WIDTH_COLUMN_KEY,
+      ...languages.map(() => ''),
+      AdminConstants.WIDTH_COLUMN_ACTIONS,
+    ];
   }
 }

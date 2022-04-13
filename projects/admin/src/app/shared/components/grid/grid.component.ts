@@ -25,6 +25,12 @@ export class GridComponent {
   /**
    *
    */
+  @Input()
+  nzWidthConfig!: string[];
+
+  /**
+   *
+   */
   private _columns: Column[] = [];
   public get columns(): Column[] {
     return this._columns;

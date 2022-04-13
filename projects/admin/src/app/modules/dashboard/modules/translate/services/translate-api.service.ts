@@ -25,6 +25,6 @@ export class TranslateApiService extends CrudService<
     translationType: TranslationType
   ): Observable<BaseResponse<Translation[]>> {
     const params = new HttpParams().append('type', translationType);
-    return this.$baseService.get<Translation[]>(this.url, params);
+    return this.getAll(params);
   }
 }

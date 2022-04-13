@@ -6,6 +6,7 @@
   nzSize="small"
   nzBordered
   [nzScroll]="(data.length | makeNzScroll | async)!"
+  [nzWidthConfig]="nzWidthConfig"
 >
   <thead>
     <tr *ngFor="let row of theadRows; let isFirst = first">
@@ -15,19 +16,13 @@
         [nzAlign]="column.nzAlignHeader"
         [nzLeft]="column.nzLeft"
         [nzRight]="column.nzRight"
-        [nzWidth]="column.width"
         [nzShowSort]="column.sortable"
         [nzSortFn]="column.field | azSort: column.sortByLocalCompare"
         *ngFor="let column of row"
       >
         {{ column.header | translate }}
       </th>
-      <th
-        nzRight
-        nzWidth="120px"
-        *ngIf="isFirst"
-        [rowspan]="theadRows.length"
-      ></th>
+      <th nzRight *ngIf="isFirst" [rowspan]="theadRows.length"></th>
     </tr>
   </thead>
   <tbody>

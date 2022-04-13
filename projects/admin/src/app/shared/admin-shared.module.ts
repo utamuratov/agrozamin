@@ -20,6 +20,7 @@ import { TitleTotalPipe } from './pipes/title-total.pipe';
 import { GridComponent } from './components/grid/grid.component';
 import { GetDeepValuePipe } from './pipes/getDeepValue.pipe';
 import { LanguageControlsComponent } from './components/language-controls/language-controls.component';
+import { BaseComponent } from './components/base/base.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LanguageControlsComponent } from './components/language-controls/langua
     TransferComponent,
     GridComponent,
     LanguageControlsComponent,
+    BaseComponent,
   ],
   imports: [
     /**
@@ -98,6 +100,7 @@ import { LanguageControlsComponent } from './components/language-controls/langua
     TransferComponent,
     GridComponent,
     LanguageControlsComponent,
+    BaseComponent,
   ],
 })
 export class AdminSharedModule {}

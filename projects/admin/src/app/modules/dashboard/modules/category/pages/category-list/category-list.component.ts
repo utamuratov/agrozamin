@@ -82,7 +82,6 @@ export class CategoryListComponent implements OnInit {
           field: 'id',
           sortable: true,
           sortByLocalCompare: false,
-          width: '70px',
           nzLeft: true,
         }),
       ];

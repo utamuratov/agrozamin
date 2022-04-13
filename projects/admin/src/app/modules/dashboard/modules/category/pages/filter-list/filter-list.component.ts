@@ -6,13 +6,16 @@ import {
 } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
+import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import {
   InputTypeForCreator,
   InputTypeForFilter,
 } from 'projects/admin/src/app/core/enums/input-type.enum';
+import { BaseComponent } from 'projects/admin/src/app/shared/components/base/base.component';
 import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
 import { SearchInputAdvancedConfig } from 'projects/admin/src/app/shared/components/search-input/search-input-advanced/search-input-advanced.component';
 import { Observable, takeUntil } from 'rxjs';
+import { FilterRequest } from '../../models/filter.request';
 import { FilterResponse } from '../../models/filter.response';
 import { FilterService } from '../../services/filter.service';
 
@@ -22,38 +25,10 @@ import { FilterService } from '../../services/filter.service';
   styleUrls: ['./filter-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterListComponent implements OnInit {
-  /**
-   *
-   */
-  searchInputConfig: SearchInputAdvancedConfig<FilterResponse> = {
-    data: [],
-    filteredData: [],
-    keys: ['id', 'name'],
-    searchText: '',
-  };
-
-  /**
-   *
-   */
-  @Select(LanguageState.languages)
-  language$!: Observable<Language[]>;
-
-  /**
-   *
-   */
-  editingData?: FilterResponse;
-
-  /**
-   *
-   */
-  isVisible!: boolean;
-
-  /**
-   *
-   */
-  columns: Column[] = [];
-
+export class FilterListComponent
+  extends BaseComponent<FilterResponse, FilterRequest>
+  implements OnInit
+{
   /**
    *
    */
@@ -65,50 +40,32 @@ export class FilterListComponent implements OnInit {
   InputTypeForFilter = InputTypeForFilter;
 
   constructor(
-    private $filter: FilterService,
-    private $destroy: NgDestroy,
-    private cd: ChangeDetectorRef
-  ) {}
+    protected $filter: FilterService,
+    protected override $destroy: NgDestroy,
+    protected override cd: ChangeDetectorRef
+  ) {
+    super($filter, $destroy, cd);
+    this.searchInputConfig.keys = ['id', 'name'];
+  }
 
   /**
    *
    */
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.makeColumnsForGrid();
-    this.loadData();
+    super.ngOnInit();
   }
 
   /**
    *
    */
-  loadData() {
-    this.searchInputConfig.isLoadingData = true;
-    this.$filter
-      .getAll()
-      .pipe(takeUntil(this.$destroy))
-      .subscribe((result) => {
-        if (result.success) {
-          this.searchInputConfig.isLoadingData = false;
-          this.searchInputConfig = {
-            ...this.searchInputConfig,
-            data: result.data,
-          };
-          this.cd.markForCheck();
-        }
-      });
-  }
-
-  /**
-   *
-   */
-  makeColumnsForGrid() {
+  override makeColumnsForGrid() {
     this.language$.subscribe((languages) => {
       this.columns = [
         new Column({
           field: 'id',
           sortable: true,
           sortByLocalCompare: false,
-          width: '70px',
           nzLeft: true,
           rowspan: 2,
           row: 1,
@@ -147,28 +104,22 @@ export class FilterListComponent implements OnInit {
           row: 2,
         }),
       ];
+
+      this.makeWidthConfig(languages);
     });
   }
 
   /**
    *
+   * @param languages
    */
-  delete(id: number) {
-    this.$filter
-      .delete(id)
-      .pipe(takeUntil(this.$destroy))
-      .subscribe((response) => {
-        if (response.success) {
-          this.loadData();
-        }
-      });
-  }
-
-  /**
-   *
-   */
-  addEdit(editingData?: FilterResponse) {
-    this.editingData = editingData;
-    this.isVisible = true;
+  private makeWidthConfig(languages: Language[]) {
+    this.nzWidthConfig = [
+      AdminConstants.WIDTH_COLUMN_ID,
+      ...languages.map(() => ''),
+      '200px',
+      '200px',
+      AdminConstants.WIDTH_COLUMN_ACTIONS,
+    ];
   }
 }

@@ -26,11 +26,6 @@ export interface SearchInputAdvancedConfig<T = NzSafeAny> {
    *
    */
   searchText: string;
-
-  /**
-   *
-   */
-  isLoadingData?: boolean;
 }
 
 @Component({

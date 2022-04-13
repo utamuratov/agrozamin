@@ -25,8 +25,8 @@ export class CrudService<TResponse = NzSafeAny, TBody = NzSafeAny> {
    *
    * @returns
    */
-  getAll(): Observable<BaseResponse<TResponse[]>> {
-    return this.$baseService.get<TResponse[]>(this.url);
+  getAll(params?: HttpParams): Observable<BaseResponse<TResponse[]>> {
+    return this.$baseService.get<TResponse[]>(this.url, params);
   }
 
   /**

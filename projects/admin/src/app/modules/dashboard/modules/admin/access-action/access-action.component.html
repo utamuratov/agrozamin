@@ -7,7 +7,25 @@
   (clickedAddEditButton)="addEdit()"
 ></az-header-with-divider-advanced>
 
-<nz-table
+<!-- BODY -->
+<az-grid
+  [data]="searchInputConfig.filteredData"
+  [columns]="columns"
+  (deleted)="delete($event)"
+  (addEdited)="addEdit($event)"
+  [nzWidthConfig]="nzWidthConfig"
+>
+</az-grid>
+
+<!-- ADD-EDIT MODAL -->
+<az-add-edit-access-action
+  [(isVisible)]="isVisible"
+  [editingData]="editingData"
+  (modified)="loadData()"
+></az-add-edit-access-action>
+
+<!-- TODO: REMOVE EVERYTHING WORKS REALLY -->
+<!-- <nz-table
   #table
   [nzData]="searchInputConfig.filteredData"
   nzShowPagination
@@ -76,10 +94,4 @@
       </td>
     </tr>
   </tbody>
-</nz-table>
-
-<az-add-edit-access-action
-  [(isVisible)]="isVisible"
-  [editingData]="editingData"
-  (modified)="loadData()"
-></az-add-edit-access-action>
+</nz-table> -->
