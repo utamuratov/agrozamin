@@ -1,9 +1,18 @@
 export interface IColumn {
+  /**
+   *
+   */
   field: string;
+
+  /**
+   * Header of column
+   */
   header?: string;
+
   sortable?: boolean;
   sortByLocalCompare?: boolean;
   width?: string | null;
+
   /**
    * Attached to left
    */
@@ -18,15 +27,35 @@ export interface IColumn {
    *
    */
   nzAlignHeader?: 'left' | 'right' | 'center';
-  nzAlignBody?: 'left' | 'right' | 'center';
 
   /**
    *
    */
+  nzAlignBody?: 'left' | 'right' | 'center';
+
+  /**
+   * Indicates has temaplate for td of tbody
+   */
   hasTemplate?: boolean;
+
+  /**
+   *
+   */
   rowspan?: number | null;
+
+  /**
+   *
+   */
   colspan?: number | null;
+
+  /**
+   * Defines extra column for thead(It does not used tbody)
+   */
   isHeader?: boolean;
+
+  /**
+   * Index of row of thead. It starts from 1
+   */
   row?: number;
 }
 

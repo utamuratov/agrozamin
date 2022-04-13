@@ -1,8 +1,8 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   TemplateRef,
 } from '@angular/core';
@@ -13,8 +13,9 @@ import { Column } from './models/column.interface';
   selector: 'az-grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GridComponent implements OnInit {
+export class GridComponent {
   /**
    *
    */
@@ -24,8 +25,15 @@ export class GridComponent implements OnInit {
   /**
    *
    */
+  private _columns: Column[] = [];
+  public get columns(): Column[] {
+    return this._columns;
+  }
   @Input()
-  columns: Column[] = [];
+  public set columns(v: Column[]) {
+    this._columns = v;
+    this.theadRows = this.getTheadRows([]);
+  }
 
   /**
    *
@@ -53,22 +61,17 @@ export class GridComponent implements OnInit {
   /**
    *
    */
-  ngOnInit(): void {
-    this.makeTheadRows();
-  }
-
-  /**
-   *
-   */
-  private makeTheadRows() {
+  private getTheadRows(theadRows: Array<Column[]>) {
     for (let rowIndex = 1; rowIndex <= 2; rowIndex++) {
       const columnsByRow = this.columns.filter(
         (column) => column.row === rowIndex
       );
       if (columnsByRow.length > 0) {
-        this.theadRows.push(columnsByRow);
+        theadRows.push(columnsByRow);
       }
     }
+
+    return theadRows;
   }
 
   /**

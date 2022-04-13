@@ -136,13 +136,13 @@ export class FilterListComponent implements OnInit {
         ),
         new Column({
           field: 'type_for_creator',
-          header: 'type_for_creator',
+          header: 'forCreating',
           hasTemplate: true,
           row: 2,
         }),
         new Column({
           field: 'type_for_filter',
-          header: 'type_for_filter',
+          header: 'forSearching',
           hasTemplate: true,
           row: 2,
         }),

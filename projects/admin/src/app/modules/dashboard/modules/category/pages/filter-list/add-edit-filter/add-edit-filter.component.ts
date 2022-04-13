@@ -91,7 +91,10 @@ export class AddEditFilterComponent {
   @Select(LanguageState.languages)
   language$!: Observable<Language[]>;
 
-  parametersMinMax: Parameter[] = [
+  /**
+   *
+   */
+  readonly parametersMinMax: Parameter[] = [
     {
       label: {
         ru: AdminConstants.LOCALIZATION_MIN_RU,
@@ -108,7 +111,10 @@ export class AddEditFilterComponent {
     },
   ];
 
-  parametersFromTo: Parameter[] = [
+  /**
+   *
+   */
+  readonly parametersFromTo: Parameter[] = [
     {
       label: {
         ru: AdminConstants.LOCALIZATION_FROM_RU,
@@ -132,9 +138,15 @@ export class AddEditFilterComponent {
       data: Parameter;
     };
   } = {};
-  inputTypesForCreator: KeyValue<string, number>[] = [];
-  inputTypesForFilter: KeyValue<string, number>[] = [];
 
+  /**
+   *
+   */
+  inputTypesForCreator: KeyValue<string, number>[] = [];
+
+  /**
+   *
+   */
   dataExcel!: Array<Array<string>>;
 
   /**
@@ -151,11 +163,13 @@ export class AddEditFilterComponent {
     this.inputTypesForCreator = this.makeInputTypes(
       Object.keys(InputTypeForCreator)
     );
-    this.inputTypesForFilter = this.makeInputTypes(
-      Object.keys(InputTypeForFilter)
-    );
   }
 
+  /**
+   *
+   * @param inputTypeKeys
+   * @returns
+   */
   private makeInputTypes(inputTypeKeys: string[]) {
     const inputTypes: KeyValue<string, number>[] = [];
     for (let index = 0; index < inputTypeKeys.length / 2; index++) {
@@ -189,49 +203,8 @@ export class AddEditFilterComponent {
       field_name: [model?.field_name, Validators.required],
       type_for_creator: [model?.type_for_creator, Validators.required],
       type_for_filter: [model?.type_for_filter, Validators.required],
-      // parameters: this.fb.array([
-      //   this.fb.group({
-      //     label: this.getLanguageControls(),
-      //   }),
-      // ]),
     });
   }
-
-  /**
-   *
-   * @param model
-   */
-  private getLanguageControls(translations?: { [key: string]: string }) {
-    const fg = this.fb.group({});
-    this.language$.pipe(takeUntil(this.$destroy)).subscribe((languages) => {
-      languages.forEach((language) => {
-        fg?.addControl(
-          language.code,
-          new FormControl(translations?.[language.code], Validators.required)
-        );
-      });
-    });
-
-    return fg;
-  }
-
-  // /**
-  //  *
-  //  */
-  // get parameters() {
-  //   return this.form.get('parameters') as FormArray;
-  // }
-
-  // /**
-  //  *
-  //  */
-  // addParameter() {
-  //   this.parameters.push(
-  //     this.fb.group({
-  //       label: this.getLanguageControls(),
-  //     })
-  //   );
-  // }
 
   /**
    *
@@ -242,8 +215,22 @@ export class AddEditFilterComponent {
       markAllAsDirty(this.form);
       return;
     }
+    const request = this.getRequest();
+
+    if (this.editingData?.id) {
+      this.edit(this.editingData.id, request);
+      return;
+    }
+    this.add(request);
+  }
+
+  /**
+   *
+   * @returns
+   */
+  private getRequest() {
     const request = this.form.getRawValue();
-    console.log(request);
+
     switch (this.form.get('type_for_filter')?.value) {
       case InputTypeForFilter.DateRangePicker:
       case InputTypeForFilter.DateYearRangePicker:
@@ -260,12 +247,7 @@ export class AddEditFilterComponent {
         request.parameters = [];
         break;
     }
-
-    if (this.editingData?.id) {
-      this.edit(this.editingData.id, request);
-      return;
-    }
-    this.add(request);
+    return request;
   }
 
   /**
@@ -315,10 +297,18 @@ export class AddEditFilterComponent {
     this.isVisibleChange.emit(false);
   }
 
+  /**
+   *
+   * @param id
+   */
   startEdit(id: number): void {
     this.editCache[id].edit = true;
   }
 
+  /**
+   *
+   * @param id
+   */
   cancelEdit(id: number): void {
     const index = this.parametersCheckBoxes.findIndex((item) => item.id === id);
     this.editCache[id] = {
@@ -327,12 +317,19 @@ export class AddEditFilterComponent {
     };
   }
 
+  /**
+   *
+   * @param id
+   */
   saveEdit(id: number): void {
     const index = this.parametersCheckBoxes.findIndex((item) => item.id === id);
     Object.assign(this.parametersCheckBoxes[index], this.editCache[id].data);
     this.editCache[id].edit = false;
   }
 
+  /**
+   *
+   */
   updateEditCache(): void {
     this.parametersCheckBoxes.forEach((item) => {
       this.editCache[item.id] = {
@@ -342,10 +339,20 @@ export class AddEditFilterComponent {
     });
   }
 
+  /**
+   *
+   * @param id
+   */
   delete(id: number) {
-    // TODO
+    this.parametersCheckBoxes = this.parametersCheckBoxes.filter(
+      (parameter) => parameter.id !== id
+    );
   }
 
+  /**
+   *
+   * @param type_for_creator
+   */
   changeInputTypeForCreator(type_for_creator: number) {
     switch (type_for_creator) {
       case InputTypeForCreator.InputNumber:
@@ -375,6 +382,10 @@ export class AddEditFilterComponent {
     this.cd.markForCheck();
   }
 
+  /**
+   *
+   * @param evt
+   */
   onFileChange(evt: any) {
     /* wire up file reader */
     const target: DataTransfer = <DataTransfer>evt.target;
