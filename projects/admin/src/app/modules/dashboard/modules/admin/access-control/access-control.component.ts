@@ -4,11 +4,10 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
-import { SearchInputAdvancedConfig } from 'projects/admin/src/app/shared/components/search-input/search-input-advanced/search-input-advanced.component';
-import { Observable, takeUntil } from 'rxjs';
+import { NgDestroy } from 'ngx-az-core';
+import { BaseComponent } from 'projects/admin/src/app/shared/components/base/base.component';
 import { AccessControlService } from './access-control.service';
+import { AccessControl } from './models/access-control.interface';
 import { AccessControlResponse } from './models/access-control.response';
 
 @Component({
@@ -17,68 +16,34 @@ import { AccessControlResponse } from './models/access-control.response';
   styleUrls: ['./access-control.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccessControlComponent implements OnInit {
+export class AccessControlComponent
+  extends BaseComponent<
+    AccessControlResponse,
+    AccessControl,
+    AccessControlResponse<number>
+  >
+  implements OnInit
+{
   /**
    *
-   */
-  isVisible!: boolean;
-
-  /**
-   *
-   */
-  editingData?: AccessControlResponse<number>;
-
-  /**
-   *
-   */
-  searchInputConfig: SearchInputAdvancedConfig<AccessControlResponse> = {
-    data: [],
-    filteredData: [],
-    keys: ['key', 'description'],
-    searchText: '',
-  };
-
-  /**
-   *
-   */
-  @Select(LanguageState.languages)
-  language$!: Observable<Language[]>;
-
-  /**
-   *
-   * @param $accessControl
+   * @param $data
    * @param destroy$
    * @param cd
    */
   constructor(
-    private $accessControl: AccessControlService,
-    private $destroy: NgDestroy,
-    private cd: ChangeDetectorRef
-  ) {}
-
-  /**
-   *
-   */
-  ngOnInit(): void {
-    this.loadData();
+    protected override $data: AccessControlService,
+    protected override $destroy: NgDestroy,
+    protected override cd: ChangeDetectorRef
+  ) {
+    super($data, $destroy, cd);
+    this.searchInputConfig.keys = ['key', 'description'];
   }
 
   /**
    *
    */
-  loadData() {
-    this.$accessControl
-      .getAll()
-      .pipe(takeUntil(this.$destroy))
-      .subscribe((result) => {
-        if (result.success) {
-          this.searchInputConfig = {
-            ...this.searchInputConfig,
-            data: result.data,
-          };
-          this.cd.markForCheck();
-        }
-      });
+  override ngOnInit(): void {
+    super.ngOnInit();
   }
 
   /**
@@ -86,34 +51,14 @@ export class AccessControlComponent implements OnInit {
    * @param modal
    * @param editingData
    */
-  addEdit(editingData?: AccessControlResponse) {
+  override addEdit(editingData?: AccessControlResponse) {
     if (editingData) {
-      this.editingData = {
+      super.addEdit({
         ...editingData,
         actions: editingData?.actions.map((w) => w.id) ?? [],
-      };
-    } else {
-      this.editingData = editingData;
-    }
-    this.isVisible = true;
-  }
-
-  /**
-   *
-   * @param id
-   */
-  delete(id: number) {
-    this.$accessControl
-      .delete(id)
-      .pipe(takeUntil(this.$destroy))
-      .subscribe((response) => {
-        if (response.success) {
-          this.loadData();
-        }
       });
-  }
-
-  close() {
-    this.isVisible = false;
+      return;
+    }
+    super.addEdit(editingData);
   }
 }

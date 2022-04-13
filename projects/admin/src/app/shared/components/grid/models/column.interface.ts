@@ -66,7 +66,7 @@ export class Column implements IColumn {
   sortByLocalCompare: boolean;
   nzAlignHeader: 'left' | 'right' | 'center';
   nzAlignBody: 'left' | 'right' | 'center';
-  width: string | null;
+  // width: string | null;
   nzLeft: boolean;
   nzRight: boolean;
   hasTemplate?: boolean | undefined;
@@ -85,7 +85,7 @@ export class Column implements IColumn {
     this.sortByLocalCompare = column.sortByLocalCompare ?? true;
     this.nzAlignHeader = column.nzAlignHeader ?? 'center';
     this.nzAlignBody = column.nzAlignBody ?? 'center';
-    this.width = column.width ?? null;
+    // this.width = column.width ?? null;
     this.nzLeft = column.nzLeft ?? false;
     this.nzRight = column.nzRight ?? false;
     this.hasTemplate = column.hasTemplate;
