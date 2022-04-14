@@ -6,7 +6,6 @@ import { BaseComponent } from 'projects/admin/src/app/shared/components/base/bas
 import { AccessActionResponse } from '../access-action/models/access-action.response';
 import { AccessControlResponse } from '../access-control/models/access-control.response';
 import { AddEditRole } from './models/add-edit-role.interface';
-import { ControlAction } from './models/control-action.interface';
 import { RoleResponse } from './models/role.response';
 import { RoleService } from './role.service';
 
@@ -36,7 +35,6 @@ export class RoleComponent
   /**
    *
    */
-  controlAction!: ControlAction[];
   controlActionAsTree!: NzTreeNodeOptions[];
 
   /**
@@ -67,7 +65,6 @@ export class RoleComponent
   loadControlAction() {
     this.$role.getControlAction().subscribe((result) => {
       if (result.success) {
-        this.controlAction = result.data;
         this.controlActionAsTree = result.data.map((control) => {
           return {
             title: `${control.description}`,

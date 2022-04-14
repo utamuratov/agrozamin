@@ -1,6 +1,6 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { Generic } from 'projects/admin/src/app/shared/models/generic.type';
 
 export interface AccessAction {
   key: string;
-  description: NzSafeAny; // DYNAMIC: { "ru": "", "uz_cyrl": "", "uz_latn": "" }
+  description: Generic; // DYNAMIC: { "ru": "", "uz_cyrl": "", "uz_latn": "" }
 }

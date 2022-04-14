@@ -143,13 +143,6 @@ export class TranslationComponent
 
   /**
    *
-   */
-  modifiedTranslation() {
-    this.loadData();
-  }
-
-  /**
-   *
    * @returns
    */
   private getProjects(): Observable<BaseResponse<Project[]>> {

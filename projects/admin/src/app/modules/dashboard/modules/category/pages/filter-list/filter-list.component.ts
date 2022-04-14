@@ -52,7 +52,6 @@ export class FilterListComponent
    *
    */
   override ngOnInit(): void {
-    this.makeColumnsForGrid();
     super.ngOnInit();
   }
 

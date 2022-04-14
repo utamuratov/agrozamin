@@ -1,7 +1,12 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { Generic } from 'projects/admin/src/app/shared/models/generic.type';
 
 export interface CategoryRequest {
-  name: NzSafeAny;
+  name: Generic;
   icon: File;
-  categoryId?: number;
+  status: boolean;
+  filters: {
+    id: number;
+    parameters: number[];
+  }[];
+  parent_categories: number[];
 }

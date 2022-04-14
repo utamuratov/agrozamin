@@ -191,6 +191,7 @@ export class AddEditFilterComponent {
       this.changeInputTypeForCreator(this.editingData?.type_for_creator);
     }
     this.updateEditCache();
+    this.parametersCheckBoxes = [];
   }
 
   /**

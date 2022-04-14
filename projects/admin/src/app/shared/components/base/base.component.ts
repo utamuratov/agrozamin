@@ -81,7 +81,8 @@ export class BaseComponent<TResponse, TBody, TEditingData = TResponse>
             ...this.searchInputConfig,
             data: result.data,
           };
-          this, this.makeColumnsForGrid();
+
+          this.makeColumnsForGrid();
           this.cd.markForCheck();
         }
       });
@@ -117,6 +118,13 @@ export class BaseComponent<TResponse, TBody, TEditingData = TResponse>
    */
   close() {
     this.isVisible = false;
+  }
+
+  /**
+   *
+   */
+  modified() {
+    this.loadData();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
