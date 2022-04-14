@@ -20,7 +20,7 @@ export class BannerComponent implements OnInit {
   bannerCarousel: BannerCorusel[] = [
     {
       id: 1,
-      img: '../../../../../assets/images/agrozamin/banner_slider1.jpg',
+      img: '../../../../../assets/images/agrozamin/banner-bg-1.jpg',
       title: 'O’zimizniki – ваш надёжный партнер',
       description: `Онлайн-платформа, объединяющая современные решения для фермеров: 
       продажа и покупка товаров, модернизация вашего бизнеса. Использование
