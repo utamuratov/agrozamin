@@ -21,6 +21,7 @@ import { GridComponent } from './components/grid/grid.component';
 import { GetDeepValuePipe } from './pipes/getDeepValue.pipe';
 import { LanguageControlsComponent } from './components/language-controls/language-controls.component';
 import { BaseComponent } from './components/base/base.component';
+import { BaseAddEditComponent } from './components/base-add-edit/base-add-edit.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { BaseComponent } from './components/base/base.component';
     GridComponent,
     LanguageControlsComponent,
     BaseComponent,
+    BaseAddEditComponent,
   ],
   imports: [
     /**
@@ -101,6 +103,7 @@ import { BaseComponent } from './components/base/base.component';
     GridComponent,
     LanguageControlsComponent,
     BaseComponent,
+    BaseAddEditComponent,
   ],
 })
 export class AdminSharedModule {}

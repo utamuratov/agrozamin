@@ -1,20 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { Select } from '@ngxs/store';
+import { Component, Input } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
-import {
-  Language,
-  LanguageState,
-  markAllAsDirty,
-  NgDestroy,
-} from 'ngx-az-core';
+import { NgDestroy } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
-import { map, Observable, takeUntil } from 'rxjs';
+import { BaseAddEditComponent } from 'projects/admin/src/app/shared/components/base-add-edit/base-add-edit.component';
 import { AddEditRole } from '../models/add-edit-role.interface';
 import { RoleService } from '../role.service';
 
@@ -23,19 +12,10 @@ import { RoleService } from '../role.service';
   templateUrl: './add-edit-role.component.html',
   styleUrls: ['./add-edit-role.component.less'],
 })
-export class AddEditRoleComponent {
-  /**
-   *
-   */
-  @Input()
-  public isVisible!: boolean;
-
-  /**
-   *
-   */
-  @Output()
-  isVisibleChange = new EventEmitter<boolean>();
-
+export class AddEditRoleComponent extends BaseAddEditComponent<
+  AddEditRole<string>,
+  AddEditRole<number>
+> {
   /**
    *
    */
@@ -50,51 +30,22 @@ export class AddEditRoleComponent {
 
   /**
    *
-   */
-  private _editingData?: AddEditRole<string>;
-  @Input()
-  public set editingData(v: AddEditRole<string> | undefined) {
-    this._editingData = v;
-    this.init();
-  }
-  public get editingData(): AddEditRole<string> | undefined {
-    return this._editingData;
-  }
-
-  /**
-   *
-   */
-  @Output()
-  modified = new EventEmitter();
-
-  /**
-   *
-   */
-  form!: FormGroup;
-
-  /**
-   *
    * @param fb
    * @param $accessAction
    */
   constructor(
-    private fb: FormBuilder,
-    private $destroy: NgDestroy,
-    private $role: RoleService
-  ) {}
-
-  /**
-   *
-   */
-  private init() {
-    this.initForm(this.editingData);
+    protected override fb: FormBuilder,
+    protected override $destroy: NgDestroy,
+    protected override $data: RoleService
+  ) {
+    super(fb, $data, $destroy);
   }
 
   /**
    *
    * @param model
    */
-  initForm(model?: AddEditRole<string>) {
+  override initForm(model?: AddEditRole<string>) {
     this.form = this.fb.group({
       key: [model?.key, Validators.required],
       description: this.fb.group({}),
@@ -106,23 +57,13 @@ export class AddEditRoleComponent {
    *
    * @returns
    */
-  submit() {
-    if (this.form.invalid) {
-      markAllAsDirty(this.form);
-      return;
-    }
-
+  override getRequest() {
     const formRawValue: AddEditRole<string> = this.form.getRawValue();
     const request: AddEditRole<number> = {
       ...formRawValue,
       access: this.getControlActionIds(formRawValue.access),
     };
-
-    if (this.editingData?.id) {
-      this.edit(this.editingData.id, request);
-      return;
-    }
-    this.add(request);
+    return request;
   }
 
   /**
@@ -147,53 +88,5 @@ export class AddEditRoleComponent {
       }
     });
     return ids;
-  }
-
-  /**
-   *
-   */
-  private add(request: AddEditRole) {
-    this.$role
-      .add(request)
-      .pipe(
-        takeUntil(this.$destroy),
-        map((result) => {
-          if (result.success) {
-            this.modified.emit();
-            this.close();
-          }
-
-          return false;
-        })
-      )
-      .subscribe();
-  }
-
-  /**
-   *
-   * @param id
-   * @param request
-   */
-  private edit(id: number, request: AddEditRole) {
-    return this.$role
-      .edit(id, request)
-      .pipe(
-        map((result) => {
-          if (result.success) {
-            this.modified.emit();
-            this.close();
-          }
-
-          return false;
-        })
-      )
-      .subscribe();
-  }
-
-  /**
-   *
-   */
-  close(): void {
-    this.isVisibleChange.emit(false);
   }
 }

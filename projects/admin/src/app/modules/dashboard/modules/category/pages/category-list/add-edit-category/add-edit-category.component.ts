@@ -6,15 +6,14 @@ import {
   Input,
   ChangeDetectorRef,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { NzTreeNode, NzTreeNodeOptions } from 'ng-zorro-antd/tree';
+import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 import { markAllAsDirty, NgDestroy } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { takeUntil, tap } from 'rxjs';
 import { CategoryEditingData } from '../../../models/category-editing-data';
 import { CategoryRequest } from '../../../models/category.request';
-import { CategoryResponse } from '../../../models/category.response';
 import { CategoryService } from '../../../services/category.service';
 
 @Component({
