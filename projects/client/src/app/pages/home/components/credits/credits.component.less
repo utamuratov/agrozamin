@@ -1,34 +1,222 @@
-.card{
-    width: 630px;
-    height: 250px;
-}
-.cardTitle{
-    margin-top: 80px;
-    margin-bottom: 50px; 
-    width: 583px; 
-    height: 40px; 
-    font-size: 32px; 
-    line-height: 125%; 
-    color: #1A1A1A;
-}
-.creditCard{
-    position: absolute;
-    width: 260px;  
-    height: 90px; 
-    font-size: 24px; 
-    line-height: 150%; 
-    left: 30px;
-    top: 30px;
+// .credit {
+//   &__cardTitle {
+//     font-size: 32px;
+//     line-height: 40px;
+//     color: #1a1a1a;
+//   }
 
-    h3{
-        font-family: Agrofont-Bold; color: #22A33F;
+//   &__card {
+//     height: 250px;
+//     position: relative;
+
+//     @media (max-width: 1200px) {
+//       height: 298px;
+//     }
+//     @media (max-width: 992px) {
+//       height: 250px;
+//     }
+//     @media (max-width: 768px) {
+//       height: 469px;
+//     }
+//     @media (max-width: 576px) {
+//       height: 469px;
+//     }
+//     @media (max-width: 480px) {
+//       height: 388px;
+//     }
+
+//     &__img {
+//         width: 100%;
+//         height: 100%;
+//         position: absolute;
+//         top: 0;
+//         right: 0;
+
+//         img {
+//             width: 100%;
+//             height: 100%;
+//             object-fit: cover;
+//         }
+//     }
+
+//     &__text {
+//       position: absolute;
+//       height: 90px;
+//       font-size: 24px;
+//       line-height: 150%;
+//       left: 30px;
+//       top: 30px;
+//       h3 {
+//         font-family: Agrofont-Bold;
+//         color: #22a33f;
+//       }
+//     }
+//   }
+// }
+
+// // .card{
+// //     width: 630px;
+// //     height: 250px;
+// // }
+// // .cardTitle{
+// //     margin-top: 80px;
+// //     margin-bottom: 50px;
+// //     width: 583px;
+// //     height: 40px;
+// //     font-size: 32px;
+// //     line-height: 125%;
+// //     color: #1A1A1A;
+// // }
+// // .creditCard{
+// //     position: absolute;
+// //     width: 260px;
+// //     height: 90px;
+// //     font-size: 24px;
+// //     line-height: 150%;
+// //     left: 30px;
+// //     top: 30px;
+
+// //     h3{
+// //         font-family: Agrofont-Bold; color: #22A33F;
+// //     }
+// // }
+// // .cardBtn{
+// //     width: 125px;
+// //     height: 44px;
+// //     position: absolute;
+// //     // top: 176px;
+// //     bottom: 40px;
+// //     left: 30px;
+// // }
+
+.credits {
+  padding-bottom: 70px;
+  &__card {
+    padding: 20px;
+    position: relative;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    @media (max-width: 1200px) {
+        height: 186px;
+      }
+      @media (max-width: 992px) {
+        height: 160px;
+      }
+      @media (max-width: 768px) {
+        height: 176px;
+      }
+      @media (max-width: 576px) {
+        height: 176px;
+      }
+      @media (max-width: 480px) {
+        height: 120px;
+      }
+
+    &__img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
-}
-.cardBtn{
-    width: 125px; 
-    height: 44px; 
-    position: absolute;
-    // top: 176px;
-    bottom: 40px;
-    left: 30px;
+
+    &__info {
+        position: relative;
+        z-index: 100;
+        height: 100%;
+
+        &__title {
+            font-size: 24px;
+            line-height: 30px;
+            color: #22A33F;
+
+            @media (max-width: 1200px) {
+                font-size: 20px;
+                line-height: 25px;
+              }
+              @media (max-width: 992px) {
+                font-size: 16px;
+                line-height: 20px;
+              }
+              @media (max-width: 768px) {
+                font-size: 18px;
+                line-height: 23px;
+              }
+              @media (max-width: 576px) {
+                font-size: 18px;
+                line-height: 23px;
+              }
+              @media (max-width: 480px) {
+                font-size: 16px;
+                line-height: 20px;
+              }
+
+        }
+
+        &__btn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 125px;
+            height: 44px;
+
+              @media (max-width: 768px) {
+                width: 115px;
+                font-size: 14px;
+                height: 40px;
+              }
+              @media (max-width: 576px) {
+                width: 115px;
+                height: 40px;
+                font-size: 14px;
+
+              }
+              @media (max-width: 480px) {
+                width: 115px;
+                height: 40px;
+                font-size: 14px;
+              }
+
+            button{
+                width: 100%;
+                height: 100%;
+                background: #22A33F;
+                color: #fff;
+                font-size: 16px;
+                border-radius: 8px;
+                border: none;
+                box-shadow: #d7e2d9;
+
+                @media (max-width: 768px) {
+                    width: 115px;
+                    font-size: 14px;
+                    height: 40px;
+                  }
+                  @media (max-width: 576px) {
+                    width: 115px;
+                    height: 40px;
+                    font-size: 14px;
+    
+                  }
+                  @media (max-width: 480px) {
+                    width: 115px;
+                    height: 40px;
+                    font-size: 14px;
+                  }
+            }
+            button:active{
+                background: #1E8F37;
+                pointer-events: none;
+            }
+        }
+    }
+  }
 }
