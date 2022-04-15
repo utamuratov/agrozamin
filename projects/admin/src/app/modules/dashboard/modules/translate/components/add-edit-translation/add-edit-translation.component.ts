@@ -1,16 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Select } from '@ngxs/store';
 import { TransferItem } from 'ng-zorro-antd/transfer';
-import { Language, LanguageState, markAllAsDirty } from 'ngx-az-core';
+import { NgDestroy } from 'ngx-az-core';
 import { TranslationType } from 'projects/admin/src/app/core/enums/translation-type.enum';
-import { map, Observable } from 'rxjs';
+import { BaseAddEditComponent } from 'projects/admin/src/app/shared/components/base-add-edit/base-add-edit.component';
 import { AddTranslationRequest } from '../../models/add-translation.request';
 import { Project } from '../../models/project.interface';
 import { Translation } from '../../models/translation.interface';
@@ -21,7 +15,10 @@ import { TranslateApiService } from '../../services/translate-api.service';
   templateUrl: './add-edit-translation.component.html',
   styleUrls: ['./add-edit-translation.component.less'],
 })
-export class AddEditTranslationComponent {
+export class AddEditTranslationComponent extends BaseAddEditComponent<
+  Translation,
+  AddTranslationRequest
+> {
   /**
    *
    */
@@ -34,42 +31,6 @@ export class AddEditTranslationComponent {
     this._projects = v;
     this.transferingProjects = this.makeTransferingProjects(this.projects);
   }
-
-  /**
-   *
-   */
-  private _editingData?: Translation;
-  public get editingData(): Translation | undefined {
-    return this._editingData;
-  }
-  @Input()
-  public set editingData(v: Translation | undefined) {
-    this._editingData = v;
-    this.init();
-  }
-
-  /**
-   *
-   */
-  @Input()
-  public isVisible!: boolean;
-
-  /**
-   *
-   */
-  @Output()
-  isVisibleChange = new EventEmitter<boolean>();
-
-  /**
-   *
-   */
-  @Output()
-  modified = new EventEmitter();
-
-  /**
-   *
-   */
-  form!: FormGroup;
 
   /**
    *
@@ -89,9 +50,11 @@ export class AddEditTranslationComponent {
    */
   constructor(
     private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private $translate: TranslateApiService
+    protected override fb: FormBuilder,
+    protected override $data: TranslateApiService,
+    protected override $destroy: NgDestroy
   ) {
+    super(fb, $data, $destroy);
     this.isVisible = false;
     this.translationType =
       TranslationType[
@@ -102,8 +65,8 @@ export class AddEditTranslationComponent {
   /**
    *
    */
-  init() {
-    this.initForm(this.editingData);
+  override init() {
+    super.init();
     this.transferingProjects = this.makeTransferingProjects(this.projects);
   }
 
@@ -128,7 +91,7 @@ export class AddEditTranslationComponent {
   /**
    *
    */
-  private initForm(model?: Translation) {
+  override initForm(model?: Translation) {
     this.form = this.fb.group({
       key: [model?.key, Validators.required],
       text: this.fb.group({}),
@@ -138,66 +101,7 @@ export class AddEditTranslationComponent {
   /**
    *
    */
-  submit() {
-    if (this.form.invalid) {
-      markAllAsDirty(this.form);
-      return;
-    }
-    const request = this.getTranslationRequest();
-    if (this.editingData?.id) {
-      this.editTranslation(this.editingData.id, request);
-      return;
-    }
-    this.addTranslation(request);
-  }
-
-  /**
-   *
-   * @param request
-   */
-  private addTranslation(request: AddTranslationRequest) {
-    this.$translate
-      .add(request)
-      .pipe(
-        map((result) => {
-          if (result.success) {
-            this.modified.emit();
-            this.close();
-            this.init();
-          }
-
-          return false;
-        })
-      )
-      .subscribe();
-  }
-
-  /**
-   *
-   * @param id
-   * @param request
-   */
-  private editTranslation(id: number, request: AddTranslationRequest) {
-    return this.$translate
-      .edit(id, request)
-      .pipe(
-        map((result) => {
-          if (result.success) {
-            this.modified.emit();
-            this.close();
-            this.init();
-          }
-
-          return false;
-        })
-      )
-      .subscribe();
-  }
-
-  /**
-   *
-   */
-  private getTranslationRequest(): AddTranslationRequest {
+  override getRequest(): AddTranslationRequest {
     const request: AddTranslationRequest = {
       project: this.transferingProjects
         .filter((w) => w.direction === 'right')
@@ -209,10 +113,8 @@ export class AddEditTranslationComponent {
     return request;
   }
 
-  /**
-   *
-   */
-  close(): void {
-    this.isVisibleChange.emit(false);
+  protected override doAfterSuccess(): void {
+    super.doAfterSuccess();
+    this.transferingProjects = this.makeTransferingProjects(this.projects);
   }
 }

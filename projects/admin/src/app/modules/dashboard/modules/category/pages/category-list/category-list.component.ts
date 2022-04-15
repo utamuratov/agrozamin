@@ -1,7 +1,10 @@
+import { HttpParams } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 import { Language, NgDestroy } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
+import { Project } from 'projects/admin/src/app/core/enums/Project.enum';
 import { BaseComponent } from 'projects/admin/src/app/shared/components/base/base.component';
 import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
 import { map, Observable } from 'rxjs';
@@ -32,13 +35,22 @@ export class CategoryListComponent
    */
   filtersAsTree!: NzTreeNodeOptions[];
 
+  /**
+   *
+   */
+  projectId!: number;
+
   constructor(
     protected $category: CategoryService,
     protected override $destroy: NgDestroy,
-    protected override cd: ChangeDetectorRef
+    protected override cd: ChangeDetectorRef,
+    private route: ActivatedRoute
   ) {
     super($category, $destroy, cd);
     this.searchInputConfig.keys = ['id', 'name'];
+    const path = route.snapshot.url[0].path;
+    this.projectId = Project[path as keyof typeof Project];
+    this.params = new HttpParams().append('project_id', this.projectId);
   }
 
   /**
@@ -105,7 +117,7 @@ export class CategoryListComponent
    * @returns
    */
   getAllCategoriesAndFilters(): Observable<CategoriesFilters> {
-    return this.$category.getAllCategoriesAndFilters().pipe(
+    return this.$category.getAllCategoriesAndFilters(this.projectId).pipe(
       map((result) => {
         if (result.success) {
           return result.data;
@@ -137,6 +149,16 @@ export class CategoryListComponent
               sortable: true,
             })
         ),
+        new Column({
+          field: 'parent',
+          header: 'parentCategories',
+          hasTemplate: true,
+        }),
+        new Column({
+          field: 'filter',
+          header: 'filters',
+          hasTemplate: true,
+        }),
       ];
       this.makeWidthConfig(languages);
     });
@@ -151,6 +173,8 @@ export class CategoryListComponent
       AdminConstants.WIDTH_COLUMN_ID,
       '100px',
       ...languages.map(() => ''),
+      '200px',
+      '200px',
       AdminConstants.WIDTH_COLUMN_ACTIONS,
     ];
   }

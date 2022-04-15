@@ -1,21 +1,12 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { Constants, markAllAsDirty, NgDestroy } from 'ngx-az-core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Constants, NgDestroy } from 'ngx-az-core';
+import { BaseAddEditComponent } from 'projects/admin/src/app/shared/components/base-add-edit/base-add-edit.component';
 import { IdKeyDescription } from 'projects/admin/src/app/shared/models/id-key-description.interface';
-import { Observable, takeUntil, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AdminUsersService } from '../admin-users.service';
 import { AdminUserBody } from '../models/admin-user.body';
+import { AdminUserResponse } from '../models/admin-user.response';
 
 @Component({
   selector: 'az-add-edit-user',
@@ -23,13 +14,11 @@ import { AdminUserBody } from '../models/admin-user.body';
   styleUrls: ['./add-edit-user.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddEditUserComponent {
-  /**
-   *
-   */
-  @Input()
-  public isVisible!: boolean;
-
+export class AddEditUserComponent extends BaseAddEditComponent<
+  AdminUserResponse,
+  AdminUserBody,
+  AdminUserBody
+> {
   /**
    *
    */
@@ -39,57 +28,22 @@ export class AddEditUserComponent {
   /**
    *
    */
-  @Output()
-  isVisibleChange = new EventEmitter<boolean>();
-
-  /**
-   *
-   */
-  private _editingData?: AdminUserBody;
-  @Input()
-  public set editingData(v: AdminUserBody | undefined) {
-    this._editingData = v;
-    this.init();
-  }
-  public get editingData(): AdminUserBody | undefined {
-    return this._editingData;
-  }
-
-  /**
-   *
-   */
-  @Output()
-  modified = new EventEmitter();
-
-  /**
-   *
-   */
-  form!: FormGroup;
-
-  /**
-   *
-   */
   @Input()
   role$!: Observable<IdKeyDescription[]>;
 
   constructor(
-    private fb: FormBuilder,
-    private $adminUser: AdminUsersService,
-    private $destroy: NgDestroy
-  ) {}
-
-  /**
-   *
-   */
-  private init() {
-    this.initForm(this.editingData);
+    protected override fb: FormBuilder,
+    protected override $data: AdminUsersService,
+    protected override $destroy: NgDestroy
+  ) {
+    super(fb, $data, $destroy);
   }
 
   /**
    *
    * @param model
    */
-  initForm(model?: AdminUserBody) {
+  override initForm(model?: AdminUserBody) {
     this.form = this.fb.group({
       login: [model?.login, Validators.required],
       phone: [
@@ -113,69 +67,9 @@ export class AddEditUserComponent {
    *
    * @returns
    */
-  submit() {
-    if (this.form.invalid) {
-      markAllAsDirty(this.form);
-      return;
-    }
+  override getRequest() {
     const request = this.form.getRawValue();
     request.phone = Constants.PREFIX_PHONENUMBER + request.phone;
-    if (this.editingData?.id) {
-      this.edit(this.editingData.id, request);
-      return;
-    }
-    this.add(request);
-  }
-
-  /**
-   *
-   */
-  private add(request: AdminUserBody) {
-    this.$adminUser
-      .add(request)
-      .pipe(
-        takeUntil(this.$destroy),
-        tap((result) => {
-          if (result.success) {
-            this.closeAndInitForm();
-          }
-        })
-      )
-      .subscribe();
-  }
-
-  /**
-   *
-   * @param id
-   * @param request
-   */
-  private edit(id: number, request: AdminUserBody) {
-    this.$adminUser
-      .edit(id, request)
-      .pipe(
-        takeUntil(this.$destroy),
-        tap((result) => {
-          if (result.success) {
-            this.closeAndInitForm();
-          }
-        })
-      )
-      .subscribe();
-  }
-
-  /**
-   *
-   */
-  private closeAndInitForm() {
-    this.modified.emit();
-    this.close();
-    this.initForm();
-  }
-
-  /**
-   *
-   */
-  close() {
-    this.isVisibleChange.emit(false);
+    return request;
   }
 }

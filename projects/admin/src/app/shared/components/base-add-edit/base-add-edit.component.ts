@@ -61,7 +61,7 @@ export class BaseAddEditComponent<TResponse, TBody, TEditingData = TResponse> {
   /**
    *
    */
-  private init() {
+  protected init() {
     this.initForm(this.editingData);
   }
 
@@ -135,7 +135,7 @@ export class BaseAddEditComponent<TResponse, TBody, TEditingData = TResponse> {
   /**
    *
    */
-  private doAfterSuccess() {
+  protected doAfterSuccess() {
     this.modified.emit();
     this.close();
     this.initForm();

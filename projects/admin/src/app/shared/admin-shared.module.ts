@@ -22,6 +22,7 @@ import { GetDeepValuePipe } from './pipes/getDeepValue.pipe';
 import { LanguageControlsComponent } from './components/language-controls/language-controls.component';
 import { BaseComponent } from './components/base/base.component';
 import { BaseAddEditComponent } from './components/base-add-edit/base-add-edit.component';
+import { NoImagePipe } from './pipes/noImage.pipe';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { BaseAddEditComponent } from './components/base-add-edit/base-add-edit.c
     LanguageControlsComponent,
     BaseComponent,
     BaseAddEditComponent,
+    NoImagePipe,
   ],
   imports: [
     /**
@@ -104,6 +106,7 @@ import { BaseAddEditComponent } from './components/base-add-edit/base-add-edit.c
     LanguageControlsComponent,
     BaseComponent,
     BaseAddEditComponent,
+    NoImagePipe,
   ],
 })
 export class AdminSharedModule {}

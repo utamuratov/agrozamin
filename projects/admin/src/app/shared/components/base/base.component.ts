@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
@@ -51,6 +52,11 @@ export class BaseComponent<TResponse, TBody, TEditingData = TResponse>
 
   /**
    *
+   */
+  params?: HttpParams;
+
+  /**
+   *
    * @param $data
    * @param $destroy
    * @param cd
@@ -73,7 +79,7 @@ export class BaseComponent<TResponse, TBody, TEditingData = TResponse>
    */
   loadData() {
     this.$data
-      .getAll()
+      .getAll(this.params)
       .pipe(takeUntil(this.$destroy))
       .subscribe((result) => {
         if (result.success) {
