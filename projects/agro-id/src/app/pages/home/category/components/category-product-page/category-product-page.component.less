@@ -1,0 +1,257 @@
+.product {
+  &__img {
+    position: relative;
+
+    [nz-carousel-content] {
+      height: 354px;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      height: 354px;
+    }
+
+    &__left {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      z-index: 2000;
+      transform: translate(0, -50%);
+    }
+
+    &__right {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      z-index: 2000;
+      transform: translate(0, -50%);
+    }
+
+    &__btn {
+      background: rgba(26, 26, 26, 0.5);
+      border: none;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    &__list {
+      img {
+        width: 100%;
+        height: 64px;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+
+        &.active {
+          outline: 2px solid #ffaa46;
+        }
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    &__cat-info {
+      margin-bottom: 0;
+      font-size: 14px;
+      font-family: Agrofont-Regular;
+      color: #1a1a1a;
+
+      span {
+        color: #86898c;
+      }
+    }
+
+    &__title {
+      font-size: 32px;
+      font-family: Agrofont-Bold;
+      color: #1a1a1a;
+      line-height: 40px;
+      margin-bottom: 0;
+    }
+
+    &__price {
+      font-size: 32px;
+      color: #22a33f;
+      font-family: Agrofont-Bold;
+    }
+
+    &__subprice {
+      font-size: 14px;
+      font-family: Agrofont-Regular;
+      color: #86898c;
+    }
+
+    &__contacts {
+      &__btn {
+        display: flex;
+        align-items: center;
+        span {
+          margin-left: 8px;
+        }
+      }
+
+      .address {
+        &-link {
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+          font-family: Agrofont-Regular;
+          line-height: 16px;
+          color: #22a33f;
+          span {
+            margin-left: 8px;
+          }
+        }
+
+        &-text {
+          margin-bottom: 0;
+          span {
+            margin-left: 8px;
+          }
+        }
+      }
+
+      .rate {
+        display: flex;
+        align-items: center;
+
+        span {
+          font-size: 14px;
+          color: #86898c;
+          font-family: Agrofont-Regular;
+          margin-left: 8px;
+        }
+      }
+      .links {
+        font-size: 16px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+
+        span {
+          margin-left: 4px;
+        }
+        svg {
+          path {
+            transition: 0.3s;
+            fill: #22a33f;
+          }
+        }
+
+        &:hover {
+          svg {
+            path {
+              fill: #ffaa46;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__map {
+    background: #f8f9fc;
+    padding: 20px;
+    border-radius: 12px;
+    &__manufactory {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-family: Agrofont-Regular;
+      color: #1a1a1a;
+
+      &-country {
+        color: #86898c;
+        margin: 0 6px;
+      }
+    }
+
+    .map {
+      border-radius: 4px;
+    }
+  }
+
+  .description {
+    &__title {
+      font-size: 24px;
+      margin-bottom: 24px;
+      line-height: 30px;
+    }
+
+    &__text {
+      font-size: 16px;
+      font-family: Agrofont-Regular;
+      line-height: 24px;
+    }
+
+    .list-items {
+      padding: 0; /* Убираем отступы */
+    }
+    .list-items li {
+      align-items: baseline; /* Выравниваем текст */
+      display: flex; /* Включаем флексы */
+      margin-bottom: 0.5em; /* Отступ снизу */
+      font-size: 16px;
+      color: #1a1a1a;
+    }
+    .list-items li::before {
+      content: ""; /* Выводим линию */
+      border-bottom: 1px dashed #ccc; /* Параметры линии */
+      flex-grow: 1; /* Линия занимает всё доступное пространство */
+      order: 2; /* Выводим вторым */
+      margin: 0 5px; /* Расстояние от текста */
+    }
+    .list-items .value {
+      order: 3; /* Выводим третьим */
+    }
+
+    .avatar {
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+
+    .commend {
+      padding-bottom: 20px;
+      border-bottom: 1px solid #cfd3d8;
+      &__user {
+        font-size: 20px;
+        font-family: Agrofont-Medium;
+        margin-bottom: 0;
+        color: #1a1a1a;
+      }
+
+      &__date {
+        font-size: 12px;
+        font-family: Agrofont-Regular;
+        color: #86898c;
+      }
+
+      p {
+        margin-bottom: 0;
+      }
+
+      &__input-block {
+        padding: 30px;
+        border: 1px solid #CFD3D8;
+        border-radius: 12px;
+        h4 {
+          margin-bottom: 0;
+          font-size: 16px;
+          font-family: Agrofont-Medium;
+        }
+      }
+    }
+  }
+}

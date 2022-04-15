@@ -1,0 +1,54 @@
+.sort {
+  &__variable {
+    padding: 10px 0;
+    font-size: 16px;
+    font-family: Agrofont-Regular;
+  }
+
+  &__link {
+    padding: 10px 12px;
+    font-size: 16px;
+    font-family: Agrofont-Regular;
+
+    img {
+      margin-left: 4px;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #cfd3d8;
+    transition: 0.3s;
+    cursor: pointer;
+
+    svg {
+      rect {
+        transition: 0.3s;
+      }
+    }
+
+    &:hover {
+      svg {
+        rect {
+          stroke: #22a33f;
+        }
+      }
+
+      border: 1px solid #22a33f;
+    }
+
+    &.active {
+      background: #22a33f;
+      border: 1px solid #22a33f;
+      svg {
+        rect {
+          stroke: #fff;
+        }
+      }
+    }
+  }
+}

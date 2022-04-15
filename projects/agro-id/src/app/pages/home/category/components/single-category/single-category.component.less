@@ -1,0 +1,48 @@
+.single-category {
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+
+    &__link {
+        background: #F1F2F5;
+        padding: 12px;
+        display: block;
+        border-radius: 8px;
+        img {
+            width: 30px;
+            height: 30px;
+            margin: 0 20px;
+        }
+
+        span {
+            color: #1A1A1A;
+            font-family: Agrofont-Medium;
+            font-size: 14px;
+            line-height: 18px;
+        }        
+    }
+
+    &__sublink {
+        display: flex;
+        justify-content: space-between;
+        color: #1A1A1A;
+        font-family: Agrofont-Medium;
+        font-size: 14px;
+        line-height: 18px;
+        padding: 3px 0;
+        transition: none !important;
+
+        &.active {
+            color: #22A33F;
+        }
+
+        span {
+            color: #86898C;
+            font-family: Agrofont-Regular;
+        }
+
+        &:hover {
+            color: #22A33F !important;
+        }
+    }
+}
