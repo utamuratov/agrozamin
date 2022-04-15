@@ -1,12 +1,14 @@
 .banner {
+  margin-bottom: 70px;
   height: 400px;
   @media (max-width: 1200px) {
     height: 298px;
+    margin-bottom: 20px;
   }
   @media (max-width: 992px) {
     height: 250px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     height: 469px;
   }
   @media (max-width: 576px) {
@@ -24,10 +26,10 @@
     @media (max-width: 1200px) {
       height: 298px;
     }
-    @media (max-width: 992px) {
+    @media (max-width: 991px) {
       height: 250px;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       height: 469px;
     }
     @media (max-width: 576px) {
@@ -100,7 +102,7 @@
         height: 275px;
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: 767px) {
         width: 210px;
         height: 210px;
       }
@@ -138,7 +140,17 @@
           line-height: 30px;
         }
 
+        @media (max-width: 767px) {
+          font-size: 30px;
+          line-height: 50px;
+        }
+
         @media (max-width: 576px) {
+          font-size: 24px;
+          line-height: 30px;
+        }
+
+        @media (max-width: 480px) {
           font-size: 20px;
           line-height: 25px;
         }
@@ -159,11 +171,43 @@
           font-size: 12px;
           line-height: 18px;
         }
+
+        @media (max-width: 767px) {
+          font-size: 14px;
+          line-height: 21px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 12px;
+          line-height: 18px;
+        }
       }
 
       &__img {
-        width: 100%;
-        height: 100%;
+        width: 630px;
+        height: 400px;
+        margin-left: auto;
+        
+        @media (max-width: 1200px) {
+          width: 470px;
+          height: 298px;
+        }
+
+        @media (max-width: 992px) {
+          width: 350px;
+          height: 224px;
+        }
+
+        @media (max-width: 767px) {
+          width: 420px;
+          // padding-left: 20px;
+          height: 269px;
+        }
+
+        @media (max-width: 576px) {
+          width: 300px;
+          height: 192px;
+        }
 
         img {
           width: 100%;
@@ -185,6 +229,17 @@
         @media (max-width: 992px) {
           bottom: 20px;
           left: 20px;
+        }
+
+        button {
+          font-size: 16px;
+          line-height: 20px;
+          font-family: Agrofont-Regular;
+
+          @media (max-width: 767px) {
+            font-size: 14px;
+            line-height: 18px;
+          }
         }
       }
     }

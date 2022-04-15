@@ -1,24 +1,24 @@
-<div class="container">
+<div class="container" (window:resize)="onResize()">
   <div class="banner">
-    <nz-carousel [nzEffect]="'scrollx'">
-      <div nz-carousel-content *ngFor="let index of bannerCarousel">
+    <nz-carousel [nzEffect]="'fade'" [nzDots]="dots" nzAutoPlay>
+      <div nz-carousel-content *ngFor="let slide of bannerCarousel">
         <div class="banner__content">
           <div class="banner__content__img">
             <img
-              src="../../../../../assets/images/agrozamin/banner-bg-1.jpg"
+              [src]="slide.imgBg"
               alt="background"
             />
           </div>
 
           <div class="banner__content__pattern">
             <img
-              src="../../../../../assets/images/agrozamin/circles-banner-pattern.png"
+              [src]="slide.patternBg"
               alt="pattern"
             />
           </div>
 
           <div nz-row class="banner__content__info">
-            <div nz-col nzXs="24" nzSm="24" nzMd="11" nzLg="12" nzXl="12">
+            <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
               <div
                 nz-row
                 [nzGutter]="[
@@ -29,29 +29,30 @@
                 <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
                   <div class="banner__content__descriptions">
                     <h3 nz-typography class="banner__content__info__title">
-                      O’zimizniki – ваш надёжный партнер
+                      {{slide.title}}
                     </h3>
                     <p nz-typography class="banner__content__info__text">
-                      Онлайн-платформа, объединяющая современные решения для
-                      фермеров: продажа и покупка товаров, модернизация вашего
-                      бизнеса. Использование площадки — это экономия вашего
-                      времени, оптимизация затрат.
+                      {{slide.description}}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div nz-col nzXs="24" nzSm="24" nzMd="13" nzLg="12" nzXl="12">
-              <div class="banner__content__info__img">
-                <img
-                  src="../../../../../assets/images/agrozamin/banner-1.png"
-                  alt=""
-                />
+            <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+              <div nz-row nzAlign="bottom" style="height: 100%;" nzJustify="end">
+                <div nz-col>
+                  <div class="banner__content__info__img">
+                    <img
+                      [src]="slide.slideImg"
+                      alt="slider image"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
             <div class="banner__content__info__btn">
               <button nz-button nzSize="large" nzType="primary">
-                Подать объявление
+                {{slide.button}}
               </button>
             </div>
           </div>
