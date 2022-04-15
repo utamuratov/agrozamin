@@ -1,32 +1,61 @@
-.agrozaminApp{
-    background: url('../../../../../assets/images/agrozamin/appBackground.jpg');
+
+.agrozamin-app {
+  background: radial-gradient(
+    100% 328.77% at 100% 50%,
+    #00cd69 0%,
+    #377be1 100%
+  );
+
+  .carousel {
     height: 584px;
-}
-.agrozaminAppRow{
-    padding-top: 70px;
-    color: #fff;
-   
-}
-
-.agrozaminAppTitle{
-    font-size: 32px;
-    line-height: 125%
-}
-.agrozaminAppText{
-    padding-top: 32px;
-}
-.text{
-    font-size: 18px;
-    width: 277px;
-    p{
-        margin-bottom: 0;
+    [nz-carousel-content] {
+      height: 584px;
+      overflow: hidden;
+      color: #fff;
     }
-}
-.appLogo{
-    top: 18px;
-}
 
-.appMobileImg{
-//    bottom: 50px;
-   margin-left: 10px;
+    &__content {
+      padding: 70px 0;
+
+      &__img {
+        width: 630px;
+        height: 514px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &__title{
+        h3{
+          color: #fff;
+          font-size: 32px;
+          line-height: 40px;
+        }
+      }
+
+      &__info{
+
+      }
+
+      &__applogo{
+
+        &__logo{
+          margin: 0;
+          width: 150px; 
+          height: 50px;
+          background: #fff;
+          border-radius: 8px; 
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            border-radius: 8px; 
+          }
+        }
+      }
+    }
+  }
 }
