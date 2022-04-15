@@ -1,4 +1,4 @@
-.service {
+/* .service {
   background: #ecf8ee;
   height: 591px;
   margin-bottom: 70px;
@@ -90,6 +90,228 @@
       margin-top: 24px;
       width: 221px;
       height: 44px;
+    }
+  }
+}
+ */
+
+.services {
+  padding: 70px 0;
+  background: #ecf8ee;
+
+  @media (max-width: 1200px) {
+    padding: 40px 0;
+  }
+
+  @media (max-width: 576px) {
+    padding: 30px 0;
+  }
+
+  &__title {
+    font-size: 32px;
+    line-height: 40px;
+    color: #000000;
+    margin-bottom: 0;
+
+    @media (max-width: 1200px) {
+      font-size: 25px;
+      line-height: 31px;
+    }
+
+    @media (max-width: 992px) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+      line-height: 23px;
+    }
+  }
+
+  &__carousel {
+    height: 358px;
+    [nz-carousel-content] {
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+
+  &__scroll {
+    display: flex;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* ползунок скроллбара */
+    &::-webkit-scrollbar-thumb {
+      display: none;
+    }
+
+    .services__card {
+      width: 360px;
+      flex: none;
+      margin-right: 20px;
+      padding: 20px;
+
+      @media (max-width: 768px) {
+        width: 320px;
+      }
+      @media (max-width: 480px) {
+        width: 270px;
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      &__logo {
+        width: 198px;
+        border: none;
+        padding-bottom: 20px;
+
+        @media (max-width: 768px) {
+          width: 165px;
+        }
+
+        @media (max-width: 480px) {
+          width: 138px;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .border-bottom {
+        border-bottom: 1px solid #e3e8ed;
+      }
+
+      &__title {
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      &__text {
+        font-size: 14px;
+        line-height: 21px;
+
+        @media (max-width: 768px) {
+          font-size: 12px;
+          line-height: 18px;
+        }
+
+        @media (max-width: 576px) {
+          font-size: 14px;
+          line-height: 21px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 12px;
+          line-height: 18px;
+        }
+      }
+
+      &__btn {
+        @media (max-width: 768px) {
+          font-size: 14px;
+          line-height: 18px;
+        }
+      }
+    }
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    .position {
+      position: relative;
+      z-index: 100;
+    }
+    &__logo {
+      padding-bottom: 30px;
+      border-bottom: 1px solid #e3e8ed;
+    }
+
+    &__title {
+      font-size: 18px;
+      font-family: Agrofont-Bold;
+      line-height: 27px;
+      margin-bottom: 12px;
+    }
+
+    &__text {
+      font-size: 16px;
+      line-height: 24px;
+      font-family: Agrofont-Regular;
+      margin-bottom: 0;
+    }
+
+    .blur_block {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      top: 50%;
+      left: 0;
+      transform: translate(-50%, -50%);
+      // background: #EBF2FC;
+      filter: blur(90px);
+      z-index: 0;
+    }
+
+    &__btn {
+      background: transparent;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+
+  .carousel {
+    position: relative;
+
+    &__btn {
+      position: absolute;
+      top: 50%;
+      z-index: 300;
+      width: 50px;
+      height: 50px;
+      color: #cfd3d8;
+      transition: 0.3s;
+      box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        color: #29c34c;
+      }
+
+      &:active {
+        color: #1e8f37;
+      }
+
+      &:focus {
+        color: #29c34c;
+      }
+
+      &.left {
+        left: 0;
+        transform: translate(-50%, -50%);
+      }
+
+      &.right {
+        right: 0;
+        transform: translate(50%, -50%);
+      }
     }
   }
 }
