@@ -50,11 +50,22 @@
       </li>
       <li nz-submenu nzOpen [nzTitle]="'category' | translate" nzIcon="profile">
         <ul>
-          <li routerLink="category/list" nz-menu-item nzMatchRouter>
-            <span>{{ "list" | translate }}</span>
-          </li>
           <li routerLink="category/filter" nz-menu-item nzMatchRouter>
             <span>{{ "filters" | translate }}</span>
+          </li>
+          <li
+            routerLink="category/{{ Project[Project.uzimizniki] }}"
+            nz-menu-item
+            nzMatchRouter
+          >
+            <span>{{ "uzimizniki" | translate }}</span>
+          </li>
+          <li
+            routerLink="category/{{ Project[Project.consultant] }}"
+            nz-menu-item
+            nzMatchRouter
+          >
+            <span>{{ "consultant" | translate }}</span>
           </li>
         </ul>
       </li>

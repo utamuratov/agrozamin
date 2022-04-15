@@ -1,13 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { markAllAsDirty, NgDestroy } from 'ngx-az-core';
-import { takeUntil, tap } from 'rxjs';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { NgDestroy } from 'ngx-az-core';
+import { BaseAddEditComponent } from 'projects/admin/src/app/shared/components/base-add-edit/base-add-edit.component';
 import { AccessActionService } from '../access-action.service';
 import { AccessAction } from '../models/access-action.interface';
 import { AccessActionResponse } from '../models/access-action.response';
@@ -18,133 +12,31 @@ import { AccessActionResponse } from '../models/access-action.response';
   styleUrls: ['./add-edit-access-action.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddEditAccessActionComponent {
-  /**
-   *
-   */
-  @Input()
-  public isVisible!: boolean;
-
-  /**
-   *
-   */
-  @Output()
-  isVisibleChange = new EventEmitter<boolean>();
-
-  /**
-   *
-   */
-  private _editingData?: AccessActionResponse;
-  @Input()
-  public set editingData(v: AccessActionResponse | undefined) {
-    this._editingData = v;
-    this.init();
-  }
-  public get editingData(): AccessActionResponse | undefined {
-    return this._editingData;
-  }
-
-  /**
-   *
-   */
-  @Output()
-  modified = new EventEmitter();
-
-  /**
-   *
-   */
-  form!: FormGroup;
-
+export class AddEditAccessActionComponent extends BaseAddEditComponent<
+  AccessActionResponse,
+  AccessAction
+> {
   /**
    *
    * @param fb
    * @param $accessAction
    */
   constructor(
-    private fb: FormBuilder,
-    private $destroy: NgDestroy,
-    private $accessAction: AccessActionService
-  ) {}
-
-  /**
-   *
-   */
-  private init() {
-    this.initForm(this.editingData);
+    protected override fb: FormBuilder,
+    protected override $destroy: NgDestroy,
+    protected $accessAction: AccessActionService
+  ) {
+    super(fb, $accessAction, $destroy);
   }
 
   /**
    *
    * @param model
    */
-  initForm(model?: AccessActionResponse) {
+  override initForm(model?: AccessActionResponse) {
     this.form = this.fb.group({
       key: [model?.key, Validators.required],
       description: this.fb.group({}),
     });
-  }
-
-  /**
-   *
-   * @returns
-   */
-  submit() {
-    if (this.form.invalid) {
-      markAllAsDirty(this.form);
-      return;
-    }
-    const request = this.form.getRawValue();
-    if (this.editingData?.id) {
-      this.edit(this.editingData.id, request);
-      return;
-    }
-    this.add(request);
-  }
-
-  /**
-   *
-   */
-  private add(request: AccessAction) {
-    this.$accessAction
-      .add(request)
-      .pipe(
-        takeUntil(this.$destroy),
-        tap((result) => {
-          if (result.success) {
-            this.modified.emit();
-            this.close();
-            this.initForm();
-          }
-        })
-      )
-      .subscribe();
-  }
-
-  /**
-   *
-   * @param id
-   * @param request
-   */
-  private edit(id: number, request: AccessAction) {
-    this.$accessAction
-      .edit(id, request)
-      .pipe(
-        takeUntil(this.$destroy),
-        tap((result) => {
-          if (result.success) {
-            this.modified.emit();
-            this.close();
-            this.initForm();
-          }
-        })
-      )
-      .subscribe();
-  }
-
-  /**
-   *
-   */
-  close(): void {
-    this.isVisibleChange.emit(false);
   }
 }

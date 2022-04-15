@@ -26,7 +26,7 @@ export class GridComponent {
    *
    */
   @Input()
-  nzWidthConfig!: string[];
+  nzWidthConfig: string[] = [];
 
   /**
    *

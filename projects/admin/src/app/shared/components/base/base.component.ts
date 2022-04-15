@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
@@ -51,6 +52,11 @@ export class BaseComponent<TResponse, TBody, TEditingData = TResponse>
 
   /**
    *
+   */
+  params?: HttpParams;
+
+  /**
+   *
    * @param $data
    * @param $destroy
    * @param cd
@@ -73,7 +79,7 @@ export class BaseComponent<TResponse, TBody, TEditingData = TResponse>
    */
   loadData() {
     this.$data
-      .getAll()
+      .getAll(this.params)
       .pipe(takeUntil(this.$destroy))
       .subscribe((result) => {
         if (result.success) {
@@ -81,7 +87,8 @@ export class BaseComponent<TResponse, TBody, TEditingData = TResponse>
             ...this.searchInputConfig,
             data: result.data,
           };
-          this, this.makeColumnsForGrid();
+
+          this.makeColumnsForGrid();
           this.cd.markForCheck();
         }
       });
@@ -117,6 +124,13 @@ export class BaseComponent<TResponse, TBody, TEditingData = TResponse>
    */
   close() {
     this.isVisible = false;
+  }
+
+  /**
+   *
+   */
+  modified() {
+    this.loadData();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function

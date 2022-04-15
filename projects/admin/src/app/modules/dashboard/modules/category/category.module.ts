@@ -15,6 +15,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
     NzSliderModule,
     NzInputNumberModule,
     NzRadioModule,
+    NzTreeSelectModule,
   ],
 })
 export class CategoryModule {}

@@ -13,7 +13,6 @@
   [data]="searchInputConfig.filteredData"
   [columns]="columns"
   [columnTemplate]="template"
-  [nzWidthConfig]="nzWidthConfig"
   (addEdited)="addEdit($event)"
   (deleted)="delete($event)"
 >
@@ -31,5 +30,5 @@
   [(isVisible)]="isVisible"
   [editingData]="editingData"
   [projects]="projects"
-  (modified)="modifiedTranslation()"
+  (modified)="modified()"
 ></az-add-edit-translation>

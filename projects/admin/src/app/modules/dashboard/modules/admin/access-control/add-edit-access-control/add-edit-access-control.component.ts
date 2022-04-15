@@ -1,13 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { markAllAsDirty, NgDestroy } from 'ngx-az-core';
-import { map, Observable, takeUntil, tap } from 'rxjs';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { NgDestroy } from 'ngx-az-core';
+import { BaseAddEditComponent } from 'projects/admin/src/app/shared/components/base-add-edit/base-add-edit.component';
+import { map, Observable, takeUntil } from 'rxjs';
 import { AccessControlService } from '../access-control.service';
 import { AccessControlAction } from '../models/access-control-action.interface';
 import { AccessControl } from '../models/access-control.interface';
@@ -19,38 +14,11 @@ import { AccessControlResponse } from '../models/access-control.response';
   styleUrls: ['./add-edit-access-control.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddEditAccessControlComponent {
-  /**
-   *
-   */
-  @Input()
-  public isVisible!: boolean;
-
-  /**
-   *
-   */
-  @Output()
-  isVisibleChange = new EventEmitter<boolean>();
-
-  /**
-   *
-   */
-  private _editingData?: AccessControlResponse<number>;
-  @Input()
-  public set editingData(v: AccessControlResponse<number> | undefined) {
-    this._editingData = v;
-    this.init();
-  }
-  public get editingData(): AccessControlResponse<number> | undefined {
-    return this._editingData;
-  }
-
-  /**
-   *
-   */
-  @Output()
-  modified = new EventEmitter();
-
+export class AddEditAccessControlComponent extends BaseAddEditComponent<
+  AccessControlResponse,
+  AccessControl,
+  AccessControlResponse<number>
+> {
   /**
    *
    */
@@ -58,34 +26,23 @@ export class AddEditAccessControlComponent {
 
   /**
    *
-   */
-  form!: FormGroup;
-
-  /**
-   *
    * @param fb
    * @param $accessControl
    */
   constructor(
-    private fb: FormBuilder,
-    private $destroy: NgDestroy,
-    private $accessControl: AccessControlService
+    protected override fb: FormBuilder,
+    protected override $destroy: NgDestroy,
+    protected override $data: AccessControlService
   ) {
+    super(fb, $data, $destroy);
     this.loadAccessAction();
-  }
-
-  /**
-   *
-   */
-  private init() {
-    this.initForm(this.editingData);
   }
 
   /**
    *
    * @param model
    */
-  initForm(model?: AccessControlResponse<number>) {
+  override initForm(model?: AccessControlResponse<number>) {
     this.form = this.fb.group({
       key: [model?.key, Validators.required],
       url: [model?.url],
@@ -98,78 +55,9 @@ export class AddEditAccessControlComponent {
    *
    */
   loadAccessAction() {
-    this.accessAction$ = this.$accessControl
+    this.accessAction$ = this.$data
       .getActions()
       .pipe(takeUntil(this.$destroy))
       .pipe(map((w) => w.data));
-  }
-
-  /**
-   *
-   * @returns
-   */
-  submit() {
-    if (this.form.invalid) {
-      markAllAsDirty(this.form);
-      return;
-    }
-    const request = this.form.getRawValue();
-    if (this.editingData?.id) {
-      this.edit(this.editingData.id, request);
-      return;
-    }
-    this.add(request);
-  }
-
-  /**
-   *
-   */
-  private add(request: AccessControl) {
-    this.$accessControl
-      .add(request)
-      .pipe(
-        takeUntil(this.$destroy),
-        tap((result) => {
-          if (result.success) {
-            this.closeAndInitForm();
-          }
-        })
-      )
-      .subscribe();
-  }
-
-  /**
-   *
-   */
-  private closeAndInitForm() {
-    this.modified.emit();
-    this.close();
-    this.initForm();
-  }
-
-  /**
-   *
-   * @param id
-   * @param request
-   */
-  private edit(id: number, request: AccessControl) {
-    this.$accessControl
-      .edit(id, request)
-      .pipe(
-        takeUntil(this.$destroy),
-        tap((result) => {
-          if (result.success) {
-            this.closeAndInitForm();
-          }
-        })
-      )
-      .subscribe();
-  }
-
-  /**
-   *
-   */
-  close(): void {
-    this.isVisibleChange.emit(false);
   }
 }

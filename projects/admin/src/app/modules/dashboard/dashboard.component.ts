@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Project } from '../../core/enums/Project.enum';
 import { TranslationType } from '../../core/enums/translation-type.enum';
 
 @Component({
@@ -15,4 +16,9 @@ export class DashboardComponent {
    *
    */
   TranslationType = TranslationType;
+
+  /**
+   *
+   */
+  Project = Project;
 }

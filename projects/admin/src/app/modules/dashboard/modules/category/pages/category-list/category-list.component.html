@@ -12,14 +12,36 @@
 <az-grid
   [data]="searchInputConfig.filteredData"
   [columns]="columns"
+  [columnTemplate]="columnTemplate"
+  [nzWidthConfig]="nzWidthConfig"
   (deleted)="delete($event)"
   (addEdited)="addEdit($event)"
-></az-grid>
+>
+  <ng-template #columnTemplate let-column let-data="data">
+    <ng-container [ngSwitch]="column.field">
+      <ng-container *ngSwitchCase="'icon'">
+        <img [src]="data.icon | noImage" width="100%" />
+      </ng-container>
+      <ng-container *ngSwitchCase="'parent'">
+        <span *ngFor="let category of data.parent" nz-typography
+          ><code>{{ category.name }}</code></span
+        >
+      </ng-container>
+      <ng-container *ngSwitchCase="'filter'">
+        <span *ngFor="let filter of data.filter" nz-typography
+          ><code>{{ filter.name }}</code></span
+        >
+      </ng-container>
+    </ng-container>
+  </ng-template>
+</az-grid>
 
 <!-- ADD EDIT MODAL -->
 <az-add-edit-category
   [(isVisible)]="isVisible"
   [editingData]="editingData"
-  [parentCategories]="searchInputConfig.filteredData"
-  (modified)="loadData()"
+  [categories]="categoriesAsTree"
+  [filters]="filtersAsTree"
+  [projectId]="projectId"
+  (modified)="modified()"
 ></az-add-edit-category>

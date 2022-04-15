@@ -1,18 +1,19 @@
 import {
   Component,
   ChangeDetectionStrategy,
+  EventEmitter,
+  Output,
   Input,
   ChangeDetectorRef,
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
-import { NgDestroy } from 'ngx-az-core';
+import { markAllAsDirty, NgDestroy } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
-import { BaseAddEditComponent } from 'projects/admin/src/app/shared/components/base-add-edit/base-add-edit.component';
+import { takeUntil, tap } from 'rxjs';
 import { CategoryEditingData } from '../../../models/category-editing-data';
 import { CategoryRequest } from '../../../models/category.request';
-import { CategoryResponse } from '../../../models/category.response';
 import { CategoryService } from '../../../services/category.service';
 
 @Component({
@@ -21,11 +22,32 @@ import { CategoryService } from '../../../services/category.service';
   styleUrls: ['./add-edit-category.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddEditCategoryComponent extends BaseAddEditComponent<
-  CategoryResponse,
-  CategoryRequest,
-  CategoryEditingData
-> {
+export class AddEditCategoryComponent {
+  /**
+   *
+   */
+  @Input()
+  public isVisible!: boolean;
+
+  /**
+   *
+   */
+  @Output()
+  isVisibleChange = new EventEmitter<boolean>();
+
+  /**
+   *
+   */
+  private _editingData?: CategoryEditingData;
+  @Input()
+  public set editingData(v: CategoryEditingData | undefined) {
+    this._editingData = v;
+    this.init();
+  }
+  public get editingData(): CategoryEditingData | undefined {
+    return this._editingData;
+  }
+
   /**
    *
    */
@@ -50,14 +72,16 @@ export class AddEditCategoryComponent extends BaseAddEditComponent<
     this._filters = v;
   }
 
-  private _projectId!: number;
-  public get projectId(): number {
-    return this._projectId;
-  }
-  @Input()
-  public set projectId(v: number) {
-    this._projectId = v;
-  }
+  /**
+   *
+   */
+  @Output()
+  modified = new EventEmitter();
+
+  /**
+   *
+   */
+  form!: FormGroup;
 
   /**
    *
@@ -75,19 +99,24 @@ export class AddEditCategoryComponent extends BaseAddEditComponent<
    * @param $category
    */
   constructor(
-    protected override fb: FormBuilder,
-    protected override $destroy: NgDestroy,
-    protected override $data: CategoryService,
+    private fb: FormBuilder,
+    private $destroy: NgDestroy,
+    private $category: CategoryService,
     private cd: ChangeDetectorRef
-  ) {
-    super(fb, $data, $destroy);
+  ) {}
+
+  /**
+   *
+   */
+  private init() {
+    this.initForm(this.editingData);
   }
 
   /**
    *
    * @param model
    */
-  override initForm(model?: CategoryEditingData) {
+  initForm(model?: CategoryEditingData) {
     this.form = this.fb.group({
       parent_categories: [model?.parent_categories ?? []],
       name: this.fb.group({}),
@@ -99,11 +128,27 @@ export class AddEditCategoryComponent extends BaseAddEditComponent<
    *
    * @returns
    */
-  override getRequest() {
+  submit() {
+    if (this.form.invalid) {
+      markAllAsDirty(this.form);
+      return;
+    }
+    const request = this.getRequest();
+    if (this.editingData?.id) {
+      this.edit(this.editingData.id, request);
+      return;
+    }
+    this.add(request);
+  }
+
+  /**
+   *
+   * @returns
+   */
+  private getRequest() {
     const request = this.form.getRawValue();
     request.filters = this.getSelectedFilters(request.filters);
     request.icon = this.icon;
-    request.project_id = this.projectId;
     return request;
   }
 
@@ -146,6 +191,46 @@ export class AddEditCategoryComponent extends BaseAddEditComponent<
 
   /**
    *
+   */
+  private add(request: CategoryRequest) {
+    this.$category
+      .add(request)
+      .pipe(
+        takeUntil(this.$destroy),
+        tap((result) => {
+          if (result.success) {
+            this.modified.emit();
+            this.close();
+            this.initForm();
+          }
+        })
+      )
+      .subscribe();
+  }
+
+  /**
+   *
+   * @param id
+   * @param request
+   */
+  private edit(id: number, request: CategoryRequest) {
+    this.$category
+      .edit(id, request)
+      .pipe(
+        takeUntil(this.$destroy),
+        tap((result) => {
+          if (result.success) {
+            this.modified.emit();
+            this.close();
+            this.initForm();
+          }
+        })
+      )
+      .subscribe();
+  }
+
+  /**
+   *
    * @param e
    */
   handleFileInput(e: NzSafeAny) {
@@ -164,7 +249,7 @@ export class AddEditCategoryComponent extends BaseAddEditComponent<
   /**
    *
    */
-  override close(): void {
+  close(): void {
     this.iconSrc = '';
     this.icon = null;
     this.isVisibleChange.emit(false);

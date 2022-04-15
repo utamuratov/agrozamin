@@ -1,39 +1,14 @@
 <!-- HEADER -->
 <az-header-with-divider-advanced
   [config]="{
-    title: 'controls' | translate,
+    title: 'roles' | translate,
     searchInputAdvancedConfig: searchInputConfig
   }"
   (clickedAddEditButton)="addEdit()"
 ></az-header-with-divider-advanced>
 
-<az-grid
-  [data]="searchInputConfig.filteredData"
-  [columns]="columns"
-  [columnTemplate]="columnTemplate"
-  [nzWidthConfig]="nzWidthConfig"
-  (deleted)="delete($event)"
-  (addEdited)="addEdit($event)"
->
-  <ng-template #columnTemplate let-column let-data="data">
-    <ng-container [ngSwitch]="column.field">
-      <ng-container *ngSwitchCase="'actions'">
-        <span *ngFor="let action of data.actions" nz-typography
-          ><code>{{ action.key }}</code></span
-        >
-      </ng-container>
-    </ng-container>
-  </ng-template>
-</az-grid>
-
-<az-add-edit-access-control
-  [(isVisible)]="isVisible"
-  [editingData]="editingData"
-  (modified)="modified()"
-></az-add-edit-access-control>
-
-<!-- TODO: REMOVE -->
-<!-- <nz-table
+<!-- BODY -->
+<nz-table
   #table
   [nzData]="searchInputConfig.filteredData"
   nzShowPagination
@@ -45,16 +20,16 @@
   <thead>
     <tr>
       <th
-        nzWidth="100px"
         rowspan="2"
+        width="100px"
         nzAlign="center"
         [nzSortFn]="'id' | azSort: false"
       >
         {{ "id" | translate }}
       </th>
       <th
-        nzWidth="200px"
         rowspan="2"
+        width="200px"
         nzAlign="center"
         [nzSortFn]="'key' | azSort"
       >
@@ -63,13 +38,10 @@
       <th [colspan]="(language$ | async)!.length" nzAlign="center">
         {{ "description" | translate }}
       </th>
-      <th rowspan="2" nzAlign="center">
-        {{ "url" | translate }}
+      <th nzAlign="center" [width]="'300px'" rowspan="2">
+        {{ "controls" | translate }}
       </th>
-      <th rowspan="2" nzAlign="center">
-        {{ "actions" | translate }}
-      </th>
-      <th nzRight rowspan="2"></th>
+      <th nzRight rowspan="2" width="120px"></th>
     </tr>
     <tr>
       <th
@@ -93,12 +65,14 @@
         {{ data.description[language.code] }}
       </td>
       <td nzAlign="center">
-        {{ data.url }}
-      </td>
-      <td nzAlign="center">
-        <span *ngFor="let action of data.actions" nz-typography
-          ><code>{{ action.key }}</code></span
+        <div
+          *ngFor="let control of data.access_controls"
+          nz-typography
+          class="mb-0"
+          [nz-tooltip]="control.access_actions | controlActionToString"
         >
+          <code>{{ control.description }}</code>
+        </div>
       </td>
       <td nzRight nzAlign="center">
         <nz-button-group>
@@ -116,4 +90,11 @@
       </td>
     </tr>
   </tbody>
-</nz-table> -->
+</nz-table>
+
+<az-add-edit-role
+  [(isVisible)]="isVisible"
+  [editingData]="editingData"
+  [controlAction]="controlActionAsTree"
+  (modified)="modified()"
+></az-add-edit-role>

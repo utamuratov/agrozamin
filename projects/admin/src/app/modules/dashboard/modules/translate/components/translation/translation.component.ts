@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -61,10 +62,11 @@ export class TranslationComponent
     protected override cd: ChangeDetectorRef
   ) {
     super($translate, destroy$, cd);
+    this.searchInputConfig.keys = ['key', 'text'];
     const path = route.snapshot.url[0].path;
     this.translationType =
       TranslationType[path as keyof typeof TranslationType];
-    this.searchInputConfig.keys = ['key', 'text'];
+    this.params = new HttpParams().append('type', this.translationType);
   }
 
   /**
@@ -75,25 +77,6 @@ export class TranslationComponent
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         super.ngOnInit();
-      });
-  }
-
-  /**
-   *
-   */
-  override loadData() {
-    this.$translate
-      .getTranslations(this.translationType)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((result) => {
-        if (result.success) {
-          this.searchInputConfig = {
-            ...this.searchInputConfig,
-            data: result.data,
-          };
-          this.makeColumnsForGrid();
-          this.cd.markForCheck();
-        }
       });
   }
 
@@ -139,13 +122,6 @@ export class TranslationComponent
       WIDTH_COLUMN_PROJECTS,
       AdminConstants.WIDTH_COLUMN_ACTIONS,
     ];
-  }
-
-  /**
-   *
-   */
-  modifiedTranslation() {
-    this.loadData();
   }
 
   /**
