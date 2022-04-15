@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 import { Language, NgDestroy } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
-import { Project } from 'projects/admin/src/app/core/enums/Project.enum';
+import { Project } from 'projects/admin/src/app/core/enums/project.enum';
 import { BaseComponent } from 'projects/admin/src/app/shared/components/base/base.component';
 import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
 import { map, Observable } from 'rxjs';

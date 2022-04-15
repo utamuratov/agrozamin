@@ -22,20 +22,14 @@ export class AddEditTranslationComponent extends BaseAddEditComponent<
   /**
    *
    */
-  private _projects: Project[] = [];
-  public get projects(): Project[] {
+  private _projects: TransferItem[] = [];
+  public get projects(): TransferItem[] {
     return this._projects;
   }
   @Input()
-  public set projects(v: Project[]) {
+  public set projects(v: TransferItem[]) {
     this._projects = v;
-    this.transferingProjects = this.makeTransferingProjects(this.projects);
   }
-
-  /**
-   *
-   */
-  transferingProjects: TransferItem[] = [];
 
   /**
    *
@@ -60,14 +54,6 @@ export class AddEditTranslationComponent extends BaseAddEditComponent<
       TranslationType[
         route.snapshot.url[0].path as keyof typeof TranslationType
       ];
-  }
-
-  /**
-   *
-   */
-  override init() {
-    super.init();
-    this.transferingProjects = this.makeTransferingProjects(this.projects);
   }
 
   /**
@@ -103,7 +89,7 @@ export class AddEditTranslationComponent extends BaseAddEditComponent<
    */
   override getRequest(): AddTranslationRequest {
     const request: AddTranslationRequest = {
-      project: this.transferingProjects
+      project: this.projects
         .filter((w) => w.direction === 'right')
         .map((w) => w['key']),
       key: this.form.value['key'],
@@ -111,10 +97,5 @@ export class AddEditTranslationComponent extends BaseAddEditComponent<
       text: this.form.value['text'],
     };
     return request;
-  }
-
-  protected override doAfterSuccess(): void {
-    super.doAfterSuccess();
-    this.transferingProjects = this.makeTransferingProjects(this.projects);
   }
 }

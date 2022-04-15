@@ -114,7 +114,7 @@ export class BaseComponent<TResponse, TBody, TEditingData = TResponse>
       .pipe(takeUntil(this.$destroy))
       .subscribe((response) => {
         if (response.success) {
-          this.loadData();
+          this.modified();
         }
       });
   }

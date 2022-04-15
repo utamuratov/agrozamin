@@ -19,11 +19,15 @@
       nzMode="inline"
       [nzInlineCollapsed]="isCollapsed"
     >
+      <li routerLink="home" nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="dashboard"></i>
+        <span>{{ "dashboard" | translate }}</span>
+      </li>
       <li
         nz-submenu
         nzOpen
         [nzTitle]="'translate' | translate"
-        nzIcon="dashboard"
+        nzIcon="unordered-list"
       >
         <ul>
           <li

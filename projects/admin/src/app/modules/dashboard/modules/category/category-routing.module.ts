@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Project } from 'projects/admin/src/app/core/enums/Project.enum';
+import { Project } from 'projects/admin/src/app/core/enums/project.enum';
 import { CategoryComponent } from './components/category/category.component';
 import { CategoryListComponent } from './pages/category-list/category-list.component';
 import { FilterListComponent } from './pages/filter-list/filter-list.component';

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Project } from '../../core/enums/Project.enum';
+import { Project } from '../../core/enums/project.enum';
 import { TranslationType } from '../../core/enums/translation-type.enum';
 
 @Component({

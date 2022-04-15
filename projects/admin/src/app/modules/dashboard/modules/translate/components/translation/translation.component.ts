@@ -6,6 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TransferItem } from 'ng-zorro-antd/transfer';
 import { BaseResponse, Language, NgDestroy } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { TranslationType } from 'projects/admin/src/app/core/enums/translation-type.enum';
@@ -32,6 +33,11 @@ export class TranslationComponent
    *
    */
   projects: Project[] = [];
+
+  /**
+   *
+   */
+  transferingProjects: TransferItem[] = [];
 
   /**
    *
@@ -113,6 +119,16 @@ export class TranslationComponent
 
   /**
    *
+   * @param modal
+   * @param editingData
+   */
+  override addEdit(editingData?: Translation) {
+    super.addEdit(editingData);
+    this.transferingProjects = this.makeTransferingProjects(this.projects);
+  }
+
+  /**
+   *
    * @param languages
    */
   private makeWidthConfig(languages: Language[]) {
@@ -133,8 +149,29 @@ export class TranslationComponent
       tap((result) => {
         if (result.success) {
           this.projects = result.data;
+          this.transferingProjects = this.makeTransferingProjects(
+            this.projects
+          );
         }
       })
     );
+  }
+
+  /**
+   *
+   */
+  makeTransferingProjects(projects: Project[] | undefined): TransferItem[] {
+    const transferingProjects: TransferItem[] = [];
+    projects?.forEach((project) => {
+      transferingProjects.push({
+        key: project.id,
+        title: project.name,
+        direction: this.editingData?.projects.find((w) => w.id === project.id)
+          ? 'right'
+          : 'left',
+      });
+    });
+
+    return transferingProjects;
   }
 }
