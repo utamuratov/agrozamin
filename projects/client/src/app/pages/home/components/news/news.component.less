@@ -1,4 +1,5 @@
 .news {
+  padding: 70px 0;
   &__card {
     &-img.first {
       img {
@@ -13,13 +14,47 @@
   &__header-title {
     font-size: 32px;
     line-height: 40px;
-    color: #1A1A1A;
+    color: #000000;
+    margin-bottom: 0;
+
+    @media (max-width: 1200px) {
+      font-size: 25px;
+      line-height: 31px;
+    }
+
+    @media (max-width: 992px) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+      line-height: 23px;
+    }
   }
 
   &__tag {
     border-radius: 4px;
     border: none;
     font-size: 12px;
+  }
+
+  &__link {
+    font-size: 16px;
+    line-height: 16px;
+
+    @media (max-width: 992px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 16px;
+    }
   }
 
   &__stats {
@@ -32,12 +67,35 @@
   &__title {
     font-size: 20px;
     line-height: 25px;
+
+    @media (max-width: 1200px) {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    @media (max-width: 992px) {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    @media (max-width: 576px) {
+      font-size: 16px;
+      line-height: 20px;
+    }
   }
 
   &__description {
     font-size: 14px;
     line-height: 18px;
     margin-bottom: 0;
+
+    @media (max-width: 992px) {
+      font-size: 12px;
+      line-height: 15px;
+    }
+    @media (max-width: 576px) {
+      font-size: 14px;
+      line-height: 18px;
+    }
   }
 }
 
@@ -46,43 +104,93 @@
     width: 130px;
     border-radius: 25px !important;
   }
-  
+
   &__date {
-      font-size: 14px;
-      line-height: 18px;
-      font-family: Agrofont-Medium;
-      color: #000;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: Agrofont-Medium;
+    color: #000;
   }
-  
+
   &__day {
-      font-size: 48px;
-      line-height: 48px;
-      font-family: Agrofont-Medium;
-      color: #000;
+    font-size: 48px;
+    line-height: 48px;
+    font-family: Agrofont-Medium;
+    color: #000;
   }
 
   &__night {
-      font-size: 36px;
-      line-height: 36px;
-      font-family: Agrofont-Medium;
-      color: #999999;
+    font-size: 36px;
+    line-height: 36px;
+    font-family: Agrofont-Medium;
+    color: #999999;
   }
 
   &__info {
-      font-size: 12px;
-      line-height: 12px;
-      color: #999999;
+    font-size: 12px;
+    line-height: 12px;
+    color: #999999;
   }
 
   &__part {
-      font-size: 14px;
-      line-height: 18px;
-      font-family: Agrofont-Medium;
-      color: #000;
-      text-align: center;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: Agrofont-Medium;
+    color: #000;
+    text-align: center;
 
-      &.cels {
-          margin-top: 10px;
-      }
+    &.cels {
+      margin-top: 10px;
+    }
   }
 }
+
+/* .news {
+  padding: 50px 0;
+
+  &__title {
+    font-size: 32px;
+    line-height: 40px;
+    color: #000000;
+    margin-bottom: 0;
+
+    @media (max-width: 1200px) {
+      font-size: 25px;
+      line-height: 31px;
+    }
+
+    @media (max-width: 992px) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+      line-height: 23px;
+    }
+  }
+
+  &__link {
+    font-size: 16px;
+    line-height: 16px;
+
+    @media (max-width: 992px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 16px;
+    }
+  }
+
+  &__card {
+    &__info {
+
+    }
+  }
+} */
