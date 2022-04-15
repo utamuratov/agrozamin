@@ -1,0 +1,28 @@
+<div class="category">
+  <div class="container">
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <div nz-row nzJustify="space-between">
+          <div nz-col>
+            <h3 nz-typography class="category__header-title">Категории товаров</h3>
+          </div>
+          <div nz-col>
+            <a routerLink="category" nz-button nzType="link" class="category__header-link"
+              >Все товары<i nz-icon nzType="right" nzTheme="outline"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div nz-col nzSpan="24">
+        <div nz-row [nzGutter]="[30, 30]">
+          <div nz-col *ngFor="let card of categoryCard" nzSpan="6" >
+            <div class="category__card">
+              <img [src]="card.img" alt="tractor">
+              <p nz-typography>{{card.text}}</p>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
