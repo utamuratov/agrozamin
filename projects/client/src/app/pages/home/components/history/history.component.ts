@@ -36,6 +36,27 @@ export class HistoryComponent implements OnInit {
   effect = 'scrollx';
   constructor() { }
 
+  historyScroll = [
+    '../../../../../assets/images/agrozamin/history-card-1.jpg',
+    '../../../../../assets/images/agrozamin/history-card-2.jpg',
+    '../../../../../assets/images/agrozamin/history-card-3.jpg',
+    '../../../../../assets/images/agrozamin/history-card-1.jpg',
+    '../../../../../assets/images/agrozamin/history-card-2.jpg',
+    '../../../../../assets/images/agrozamin/history-card-3.jpg',
+    '../../../../../assets/images/agrozamin/history-card-1.jpg',
+    '../../../../../assets/images/agrozamin/history-card-2.jpg',
+    '../../../../../assets/images/agrozamin/history-card-3.jpg',
+    '../../../../../assets/images/agrozamin/history-card-1.jpg',
+    '../../../../../assets/images/agrozamin/history-card-2.jpg',
+    '../../../../../assets/images/agrozamin/history-card-3.jpg',
+    '../../../../../assets/images/agrozamin/history-card-1.jpg',
+    '../../../../../assets/images/agrozamin/history-card-2.jpg',
+    '../../../../../assets/images/agrozamin/history-card-3.jpg',
+    '../../../../../assets/images/agrozamin/history-card-1.jpg',
+    '../../../../../assets/images/agrozamin/history-card-2.jpg',
+    '../../../../../assets/images/agrozamin/history-card-3.jpg',
+  ]
+
   ngOnInit() {
   }
 

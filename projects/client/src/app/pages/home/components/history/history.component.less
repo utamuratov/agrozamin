@@ -1,11 +1,32 @@
 .history {
-  margin-bottom: 70px;
+  background: #fff4e8;
+  padding: 70px 0;
 
   &-title {
     font-size: 32px;
     line-height: 40px;
-    color: #1a1a1a;
-    margin-bottom: 50px;
+    color: #000000;
+    margin-bottom: 0;
+
+    @media (max-width: 1200px) {
+      font-size: 25px;
+      line-height: 31px;
+    }
+
+    @media (max-width: 992px) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+      line-height: 23px;
+    }
   }
 
   [nz-carousel-content] {
@@ -57,6 +78,36 @@
     .next {
       right: 0;
       transform: translate(50%, -50%);
+    }
+  }
+
+  &__scroll {
+    display: flex;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* ползунок скроллбара */
+    &::-webkit-scrollbar-thumb {
+      display: none;
+    }
+
+    &__card {
+      width: 190px;
+      height: 338px;
+      flex: none;
+      margin-right: 20px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @media (max-width: 768px) {
+        width: 163px;
+        height: 290px;
+      }
     }
   }
 }
