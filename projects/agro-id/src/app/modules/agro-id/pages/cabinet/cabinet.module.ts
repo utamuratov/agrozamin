@@ -24,7 +24,6 @@ import { SocialLinksComponent } from './components/social-links/social-links.com
 import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsSharedModule } from 'ngx-az-core';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import { AddAvatarComponent } from './components/add-avatar/add-avatar.component';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
@@ -68,7 +67,6 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     BusinessCardModalComponent,
     SocialLinksComponent,
     HeaderComponent,
-    AddAvatarComponent,
   ],
 })
 export class CabinetModule {}

@@ -15,6 +15,9 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { AddAvatarComponent } from './components/add-avatar/add-avatar.component';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,12 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
     UserPasswordModalComponent,
     SuccessChangesComponent,
     ConfirmModalComponent,
+    AddAvatarComponent,
   ],
   imports: [
     PersonalRoutingModule,
+
+    FormsModule,
 
     /**
      * CUSTOM SHARED MODULES
@@ -44,6 +50,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
     NzDividerModule,
     NzIconModule,
     NzTypographyModule,
+    NzSliderModule,
   ],
 })
 export class PersonalModule {}
