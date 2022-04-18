@@ -363,6 +363,117 @@
           }
         }
       }
+    },
+    "advertisement": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/advertisement",
+      "sourceRoot": "projects/advertisement/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/advertisement",
+            "index": "projects/advertisement/src/index.html",
+            "main": "projects/advertisement/src/main.ts",
+            "polyfills": "projects/advertisement/src/polyfills.ts",
+            "tsConfig": "projects/advertisement/tsconfig.app.json",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              "projects/advertisement/src/favicon.ico",
+              "projects/advertisement/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "projects/advertisement/src/styles.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/advertisement/src/environments/environment.ts",
+                  "with": "projects/advertisement/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "options": {
+            "port": 4203
+          },
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "advertisement:build:production"
+            },
+            "development": {
+              "browserTarget": "advertisement:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "advertisement:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/advertisement/src/test.ts",
+            "polyfills": "projects/advertisement/src/polyfills.ts",
+            "tsConfig": "projects/advertisement/tsconfig.spec.json",
+            "karmaConfig": "projects/advertisement/karma.conf.js",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              "projects/advertisement/src/favicon.ico",
+              "projects/advertisement/src/assets"
+            ],
+            "styles": [
+              "projects/advertisement/src/styles.less"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "agro-zamin"
