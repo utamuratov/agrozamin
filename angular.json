@@ -268,7 +268,7 @@
       },
       "root": "projects/agro-zamin",
       "sourceRoot": "projects/agro-zamin/src",
-      "prefix": "app",
+      "prefix": "az",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -376,7 +376,7 @@
       },
       "root": "projects/advertisement",
       "sourceRoot": "projects/advertisement/src",
-      "prefix": "app",
+      "prefix": "az",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

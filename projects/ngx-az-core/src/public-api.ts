@@ -13,6 +13,7 @@ export * from './lib/shared/forms-shared/reactive-forms-shared.module';
 export * from './lib/shared/language/language.component';
 export * from './lib/shared/forms-shared/components/error/error.component';
 export * from './lib/shared/forms-shared/components/error-from-server/error-from-server.component';
+export * from './lib/shared/forms-shared/components/error-as-alert/error-as-alert.component';
 
 // DIRECTIVES
 export * from './lib/shared/forms-shared/directives/only-letter.directive';

@@ -42,6 +42,7 @@
                       nzType="primary"
                       nzShape="circle"
                       class="avatar-add-photo"
+                      (click)="showModal('avatar')"
                     >
                       <i nz-icon nzType="camera" nzTheme="outline"></i>
                     </button>
@@ -112,6 +113,7 @@
                           nzSize="large"
                           class="font-agro-medium"
                           style="border-color: #3c4bdc; font-size: 12px"
+                          (click)="showModal('avatar')"
                         >
                           Добавить фотографию
                         </button>
@@ -523,9 +525,8 @@
   [inputValues]="userInfo"
 ></user-name-modal>
 <az-user-email-modal
-  [emailValue]="userInfo"
-  (handleVisible)="handleUserEmailVisible($event)"
-  [isVisible]="userEmailModalVisible"
+  [email]="userInfo.email"
+  [(isVisible)]="userEmailModalVisible"
 ></az-user-email-modal>
 <az-user-phone-modal
   [phoneValue]="userInfo"

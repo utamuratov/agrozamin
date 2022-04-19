@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Values } from '../personal/personal.component';
+import { markAllAsDirty } from 'ngx-az-core';
+import { map, Observable, startWith } from 'rxjs';
+import { ChangeEmailRequest } from '../../models/change-email.request';
+import { PersonalService } from '../../services/personal.service';
 
 @Component({
   selector: 'az-user-email-modal',
@@ -8,36 +11,78 @@ import { Values } from '../personal/personal.component';
   styleUrls: ['./user-email-modal.component.less'],
 })
 export class UserEmailModalComponent implements OnInit {
-  @Input() emailValue!: Values;
+  /**
+   *
+   */
   @Input() isVisible = false;
-  @Output() handleVisible = new EventEmitter<boolean>();
-  isConfirmLoading = false;
-  validateForm!: FormGroup;
-  isSuccess = false;
-  constructor(private fb: FormBuilder) {}
+
+  /**
+   *
+   */
+  @Output()
+  isVisibleChange = new EventEmitter<boolean>();
+
+  /**
+   *
+   */
+  @Input() email!: string | null;
+
+  /**
+   *
+   */
+  isWaitingResponse$?: Observable<boolean>;
+
+  /**
+   *
+   */
+  form!: FormGroup;
+
+  constructor(private fb: FormBuilder, private $data: PersonalService) {}
 
   ngOnInit() {
-    this.validateForm = this.fb.group({
-      email: [this.emailValue.email, [Validators.required]],
+    this.initForm();
+  }
+
+  /**
+   *
+   */
+  private initForm() {
+    this.form = this.fb.group({
+      email: [this.email, [Validators.required]],
+      password: ['', Validators.required],
     });
   }
 
-  handleOk(): void {
-    this.isConfirmLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isConfirmLoading = false;
-      this.isSuccess = true;
-      this.handleVisible.emit(false);
-    }, 1000);
+  /**
+   *
+   */
+  submit() {
+    if (this.form.invalid) {
+      markAllAsDirty(this.form);
+      return;
+    }
+
+    const request = this.form.getRawValue();
+    this.changeEmail(request);
   }
 
-  handleCancel(): void {
-    this.isVisible = false;
-    this.handleVisible.emit(false);
+  /**
+   *
+   */
+  private changeEmail(request: ChangeEmailRequest) {
+    this.isWaitingResponse$ = this.$data.changeEmail(request).pipe(
+      map((result) => {
+        if (result.success) {
+          this.close();
+        }
+
+        return false;
+      }),
+      startWith(true)
+    );
   }
 
-  handleSuccess($event: boolean): void {
-    this.isSuccess = $event;
+  close() {
+    this.isVisibleChange.emit(false);
   }
 }

@@ -18,6 +18,8 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { AddAvatarComponent } from './components/add-avatar/add-avatar.component';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { FormsModule } from '@angular/forms';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { PasswordShowHideModule } from '../../../../shared/password-eye/password-show-hide.module';
 
 @NgModule({
   declarations: [
@@ -35,12 +37,14 @@ import { FormsModule } from '@angular/forms';
     PersonalRoutingModule,
 
     FormsModule,
+    ImageCropperModule,
 
     /**
      * CUSTOM SHARED MODULES
      */
     ReactiveFormsSharedModule,
     NzFormsSharedModule,
+    PasswordShowHideModule,
 
     /**
      * NG ZORRO MODULES

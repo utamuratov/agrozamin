@@ -53,10 +53,6 @@ export class PersonalComponent implements OnInit {
     this.userNameModalVisible = $event;
   }
 
-  handleUserEmailVisible($event: boolean): void {
-    this.userEmailModalVisible = $event;
-  }
-
   handleUserPhoneVisible($event: boolean): void {
     this.userPhoneModalVisible = $event;
   }

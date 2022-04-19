@@ -22,8 +22,8 @@ export class ErrorHelper {
     if (!navigator.onLine) {
       return [
         {
-          field: 'offline',
-          message: [{ key: 'offline', text: 'You are offline' }],
+          field: Constants.OFFLINE,
+          message: [{ key: Constants.OFFLINE, text: 'You are offline' }],
         },
       ];
     }

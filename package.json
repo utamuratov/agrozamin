@@ -24,6 +24,7 @@
     "@ngxs/store": "^3.7.3",
     "ng-zorro-antd": "^13.0.1",
     "ngx-cookie-service": "^13.1.2",
+    "ngx-image-cropper": "^6.1.0",
     "ngx-mask": "^13.1.1",
     "ngx-ui-loader": "^11.0.0",
     "rxjs": "~7.5.0",

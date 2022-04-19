@@ -25,6 +25,8 @@
         <!-- ERRORS FROM SERVER -->
         <error-from-server></error-from-server>
 
+        <error-as-alert></error-as-alert>
+
         <!-- LOGIN INPUT FIELD -->
         <nz-form-item>
           <nz-form-label class="font-agro-medium" nzFor="login"
@@ -92,6 +94,7 @@
             nz-button
             nzShape="round"
             nzBlock
+            type="submit"
             [nzType]="'primary'"
             [nzLoading]="isWaitingResponse$|async"
           >

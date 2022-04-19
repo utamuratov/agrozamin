@@ -66,6 +66,7 @@ export class Constants {
   public static readonly PREFIX_PHONENUMBER = '998';
   public static readonly ERROR_MESSAGE_FROM_SERVER = 'errorMessageFromServer';
   public static readonly SERVER_ERROR = 'serverError';
+  public static readonly OFFLINE = 'offline';
 
   /**
    * ROUTE PATHS
