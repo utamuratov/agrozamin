@@ -32,6 +32,7 @@ import { ServiceComponent } from './components/servis/service.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FilterPipe } from './components/header/pipes/filter.pipe';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import { FilterPipe } from './components/header/pipes/filter.pipe';
     NzCardModule,
     NzIconModule,
     NzPopoverModule,
+    NzDropDownModule
   ],
   declarations: [
     HomeComponent,

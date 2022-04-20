@@ -70,6 +70,19 @@ h6 {
   font-family: Agrofont-BExpanded;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Agrofont-BExpanded;
+}
+
+li {
+  list-style: none;
+}
+
 .transparent-btn {
   background: rgba(255, 255, 255, 0.5);
   color: rgba(26, 26, 26, 0.5);
@@ -102,6 +115,10 @@ ul {
   margin-left: auto;
 }
 
+.mb-0 {
+  margin-bottom: 0;
+}
+
 .text-end {
   text-align: end;
 }
@@ -125,5 +142,9 @@ ul {
 }
 
 .nav-margin {
-  margin-top: 162px;
+  margin-top: 178px;
+
+  @media (max-width: 1199px) {
+    margin-top: 134px;
+  }
 }
