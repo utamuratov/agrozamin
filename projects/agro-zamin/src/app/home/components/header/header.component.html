@@ -98,20 +98,16 @@
                 </div>
               </div>
             </div>
-            <div
-              nz-col
-              nzXs="0"
-              nzSm="0"
-              nzMd="0"
-              nzLg="0"
-              [nzXl]="isAuth ? 5 : 3"
-            >
+
+            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" [nzXl]="isAuth ? 5 : 3">
+
               <div nz-row [nzGutter]="[8, 0]" nzJustify="end">
                 <div nz-col *ngIf="isAuth">
                   <button nz-button nzType="default" nzSize="large">
                     <i nz-icon nzType="heart" nzTheme="outline"></i>
                   </button>
                 </div>
+
                 <div nz-col>
                   <button
                     nz-button
@@ -132,6 +128,7 @@
                     /></i>
                   </button>
                 </div>
+                
                 <div nz-col>
                   <button
                     nz-button
@@ -145,6 +142,7 @@
                 </div>
               </div>
             </div>
+
             <div nz-col nzXs="0" nzSm="8" nzMd="10" nzLg="4" nzXl="0">
               <div nz-row>
                 <div nz-col nzSpan="24" class="text-end">
