@@ -13,60 +13,64 @@ export class PartnersComponent implements OnInit {
   partners = [
     [
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo1.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo1.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo2.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo2.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo3.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo3.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo4.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo4.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo5.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo5.svg",
       }
     ],
     [
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo1.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo1.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo2.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo2.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo3.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo3.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo4.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo4.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo5.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo5.svg",
       }
     ],
     [
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo1.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo1.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo2.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo2.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo3.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo3.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo4.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo4.svg",
       },
       {
-        img1:"../../../../../assets/images/agrozamin/partners-logo5.svg",
+        logo:"../../../../../assets/images/agrozamin/partners-logo5.svg",
       }
     ]
   ]
 
+  carouselScroll = this.partners.flat()
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.carouselScroll);
+    
   }
 
   pre(e: NzCarouselComponent){

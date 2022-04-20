@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
 
@@ -19,19 +19,20 @@ export class HeaderComponent implements OnInit {
   inputValue = 2;
   searchForm!: FormGroup;
   searchDropDown = false;
-  searchCityDropDown = false
-  search = ''
-
+  searchCityDropDown = false;
+  search = '';
+  /* AZ-DRAWER */
+  azVisible = false;
+  azDrawerWidthValue!: string;
+  /* ************************** */
 
   visibleServicesPopover = false;
-
-  
 
   cityFilter!: FormGroup;
   isAuth = true;
   regionsChild: any = [];
 
-  regionsValue: any = []
+  regionsValue: any = [];
 
   categories = [
     {
@@ -835,13 +836,24 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
+  /* services */
+  services = [
+    {logo: '../../../../assets/images/agrozamin/service-logo-ozimizniki.svg', name: 'O’zimizniki'},
+    {logo: '../../../../assets/images/agrozamin/service-logo-agrobusiness.svg', name: 'AgroBusiness'},
+    {logo: '../../../../assets/images/agrozamin/service-logo-agroconsult.svg', name: 'AgroConsult'},
+    {logo: '../../../../assets/images/agrozamin/service-logo-fermerlarmaktabi.svg', name: 'Fermerlar Maktabi'},
+    {logo: '../../../../assets/images/agrozamin/service-logo-agrolab.svg', name: 'Agrolab'},
+  ]
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       searchInput: [null],
       cityInput: [null],
-    });    
+    });
+
+    this.azDrawerWidthValue = this.azDrawerWidth();
   }
 
   submit() {
@@ -865,6 +877,14 @@ export class HeaderComponent implements OnInit {
     this.isOpened = false;
   }
 
+  openAz(): void {
+    this.azVisible = true;
+  }
+
+  closeAz(): void {
+    this.azVisible = false;
+  }
+
   openSubmenu(id: any) {
     this.isOpened = true;
     this.activeLink = id;
@@ -882,21 +902,21 @@ export class HeaderComponent implements OnInit {
   }
 
   getCities(id: any) {
-    this.regionsChild = this.regions.filter(e => e.id === id)[0].cities
+    this.regionsChild = this.regions.filter((e) => e.id === id)[0].cities;
   }
 
   openSearchDrop() {
-    if(this.searchCityDropDown) {
-      this.searchCityDropDown = false
+    if (this.searchCityDropDown) {
+      this.searchCityDropDown = false;
     }
-    this.searchDropDown = true
+    this.searchDropDown = true;
   }
 
   openFilterDrop() {
-    if(this.searchDropDown) {
-      this.searchDropDown = false
+    if (this.searchDropDown) {
+      this.searchDropDown = false;
     }
-    this.searchCityDropDown = true
+    this.searchCityDropDown = true;
   }
 
   calcDrawerWidth(): string {
@@ -912,5 +932,19 @@ export class HeaderComponent implements OnInit {
       ``;
       return `${clientWidth}px`;
     }
+  }
+
+  azDrawerWidth(): string {
+    if (window.innerWidth > 992) {
+      return '470px';
+    } else if (window.innerWidth > 480 && window.innerWidth < 992) {
+      return '374px';
+    } else {
+      return '100%';
+    }
+  }
+
+  @HostListener('window:resize') onResize() {
+    this.azDrawerWidthValue = this.azDrawerWidth();
   }
 }

@@ -1,4 +1,4 @@
-
+/* 
 .agrozamin-app {
   background: radial-gradient(
     100% 328.77% at 100% 50%,
@@ -222,6 +222,179 @@
             border-radius: 8px; 
           }
         }
+      }
+    }
+  }
+}
+ */
+
+.az-app {
+  background: radial-gradient(
+    100% 328.77% at 100% 50%,
+    #00cd69 0%,
+    #377be1 100%
+  );
+
+  &__carousel {
+    height: 560px;
+
+    @media (max-width: 1200px) {
+      height: 410px;
+    }
+    @media (max-width: 992px) {
+      height: 360px;
+    }
+
+    @media (max-width: 768px) {
+      height: 430px;
+    }
+
+    @media (max-width: 576px) {
+      height: 700px;
+    }
+
+    [nz-carousel-content] {
+      overflow: hidden;
+      padding: 50px 0 0px;
+    }
+
+    &__title {
+      font-size: 32px;
+      line-height: 40px;
+      color: #fff;
+      margin-bottom: 0;
+
+      @media (max-width: 1200px) {
+        font-size: 25px;
+        line-height: 31px;
+      }
+
+      @media (max-width: 992px) {
+        font-size: 20px;
+        line-height: 25px;
+      }
+
+      @media (max-width: 576px) {
+        font-size: 22px;
+        line-height: 28px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 18px;
+        line-height: 23px;
+      }
+    }
+
+    &__img {
+      width: 50px;
+      height: 50px;
+
+      @media (max-width: 1200px) {
+        width: 40px;
+        height: 40px;
+      }
+
+      @media (max-width: 992px) {
+        width: 30px;
+        height: 30px;
+      }
+
+      @media (max-width: 576px) {
+        width: 40px;
+        height: 40px;
+      }
+
+      @media (max-width: 480px) {
+        width: 30px;
+        height: 30px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__text {
+      font-size: 18px;
+      line-height: 23px;
+      color: #fff;
+      margin-bottom: 0;
+      font-family: Agrofont-Medium;
+
+      @media (max-width: 1200px) {
+        font-size: 14px;
+        line-height: 18px;
+      }
+      @media (max-width: 992px) {
+        font-size: 12px;
+        line-height: 15px;
+      }
+
+      @media (max-width: 576px) {
+        font-size: 14px;
+        line-height: 14px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+
+    &__right-img {
+      width: 558px;
+      height: 514px;
+      margin: auto;
+
+      @media (max-width: 1200px) {
+        width: 470px;
+        height: 384px;
+      }
+      @media (max-width: 992px) {
+        width: 364px;
+        height: 315px;
+      }
+
+      @media (max-width: 768px) {
+        width: 280px;
+        height: 380px;
+      }
+
+      @media (max-width: 576px) {
+        width: 440px;
+      }
+
+      @media (max-width: 480px) {
+        width: 320px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__store {
+      width: 150px;
+      height: 50px;
+
+      @media (max-width: 992px) {
+        width: 120px;
+        height: 40px;
+      }
+
+      @media (max-width: 576px) {
+        width: 100px;
+        height: 40px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   }
