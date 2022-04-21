@@ -6,6 +6,8 @@ import { environment } from './environments/environment';
 
 import { SettingsHelper } from 'ngx-az-core';
 
+import 'hammerjs';
+
 if (environment.production) {
   enableProdMode();
 }

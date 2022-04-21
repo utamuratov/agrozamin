@@ -1,5 +1,6 @@
 import { AgroIdComponent } from './components/agro-id/agro-id.component';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../../core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
     path: 'cabinet',
     loadChildren: () =>
       import('./pages/cabinet/cabinet.module').then((m) => m.CabinetModule),
+    canActivate: [AuthGuard],
   },
 ];
 

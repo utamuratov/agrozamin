@@ -13,7 +13,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { Constants, ValidationHelper } from 'ngx-az-core';
+import { Constants, markAllAsDirty, ValidationHelper } from 'ngx-az-core';
 import { SignUpStep } from 'projects/agro-id/src/app/core/enums/sign-up-step.enum';
 import { AuthService } from 'projects/agro-id/src/app/core/services/auth/auth.service';
 import { SignUpRequest } from 'projects/agro-id/src/app/shared/models/auth/sign-up.request';
@@ -50,6 +50,11 @@ export class SignUpComponent implements OnInit {
   /**
    *
    */
+  readonly ERROR_MESSAGE_FROM_SERVER = Constants.ERROR_MESSAGE_FROM_SERVER;
+
+  /**
+   *
+   */
   constructor(private fb: FormBuilder, private $auth: AuthService) {}
 
   /**
@@ -69,7 +74,7 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this.checkValidations();
+    markAllAsDirty(this.form);
   }
 
   /**
@@ -105,7 +110,7 @@ export class SignUpComponent implements OnInit {
             return null;
           }
 
-          return { [Constants.ERROR_MESSAGE_FROM_SERVER]: result.error[0] };
+          return { [this.ERROR_MESSAGE_FROM_SERVER]: result.error[0] };
         })
       );
     };
@@ -127,7 +132,7 @@ export class SignUpComponent implements OnInit {
               return null;
             }
 
-            return { [Constants.ERROR_MESSAGE_FROM_SERVER]: result.error[0] };
+            return { [this.ERROR_MESSAGE_FROM_SERVER]: result.error[0] };
           })
         );
     };
@@ -141,20 +146,5 @@ export class SignUpComponent implements OnInit {
     const model: SignUpRequest = this.form.getRawValue();
     model.phone = `${Constants.PREFIX_PHONENUMBER}${model.phone}`;
     return model;
-  }
-
-  /**
-   *
-   */
-  private checkValidations() {
-    Object.values(this.form.controls).forEach((control) => {
-      if (
-        control.invalid &&
-        !control.hasError(Constants.ERROR_MESSAGE_FROM_SERVER)
-      ) {
-        control.markAsDirty();
-        control.updateValueAndValidity({ onlySelf: true });
-      }
-    });
   }
 }

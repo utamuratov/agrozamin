@@ -1,6 +1,6 @@
 <div nz-row>
   <div nz-col nzSpan="20" nzOffset="2" class="personal">
-    <h2 class="cabinet-title" nz-typography>Профиль</h2>
+    <h2 class="cabinet-title" nz-typography>{{ "profile" | translate }}</h2>
     <div nz-row class="personal__block">
       <div nz-col nzSpan="22" nzOffset="1">
         <div nz-row [nzGutter]="[5, 20]">
@@ -22,10 +22,20 @@
               >
                 <div nz-row>
                   <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
-                    <nz-avatar [nzSize]="140" nzIcon="user"></nz-avatar>
+                    <ng-container *ngIf="profile?.photo; else avatar">
+                      <img [src]="profile.photo" width="140px" />
+                    </ng-container>
+                    <ng-template #avatar>
+                      <nz-avatar [nzSize]="140" nzIcon="user"></nz-avatar>
+                    </ng-template>
                   </div>
                   <div nz-col nzXs="0" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
-                    <nz-avatar [nzSize]="100" nzIcon="user"></nz-avatar>
+                    <ng-container *ngIf="profile?.photo; else avatar">
+                      <img [src]="profile.photo" width="100px" />
+                    </ng-container>
+                    <ng-template #avatar>
+                      <nz-avatar [nzSize]="100" nzIcon="user"></nz-avatar>
+                    </ng-template>
                   </div>
                   <div
                     nz-col
@@ -36,13 +46,18 @@
                     nzXl="0"
                     style="text-align: center"
                   >
-                    <nz-avatar [nzSize]="110" nzIcon="user"></nz-avatar>
+                    <ng-container *ngIf="profile?.photo; else avatar">
+                      <img [src]="profile.photo" width="110px" />
+                    </ng-container>
+                    <ng-template #avatar>
+                      <nz-avatar [nzSize]="110" nzIcon="user"></nz-avatar>
+                    </ng-template>
                     <button
                       nz-button
                       nzType="primary"
                       nzShape="circle"
                       class="avatar-add-photo"
-                      (click)="showModal('avatar')"
+                      (click)="addEditAvatar()"
                     >
                       <i nz-icon nzType="camera" nzTheme="outline"></i>
                     </button>
@@ -69,11 +84,10 @@
                     nzXXl="12"
                   >
                     <p class="avatar-desc">
-                      Персонализируйте свою учетную запись с помощью фотографии.
+                      {{ "photoTitleOne" | translate }}
                     </p>
                     <p class="avatar-desc">
-                      Фотография профиля будет отображаться в приложениях и
-                      устройствах, использующих вашу учетную запись AgroID.
+                      {{ "photoTitleTwo" | translate }}
                     </p>
                     <div nz-row>
                       <div
@@ -91,9 +105,9 @@
                           nzShape="round"
                           class="font-agro-medium"
                           style="border-color: #3c4bdc"
-                          (click)="showModal('avatar')"
+                          (click)="addEditAvatar()"
                         >
-                          Добавить фотографию
+                          {{ "addPhoto" | translate }}
                         </button>
                       </div>
                       <div
@@ -113,9 +127,9 @@
                           nzSize="large"
                           class="font-agro-medium"
                           style="border-color: #3c4bdc; font-size: 12px"
-                          (click)="showModal('avatar')"
+                          (click)="addEditAvatar()"
                         >
-                          Добавить фотографию
+                          {{ "addPhoto" | translate }}
                         </button>
                       </div>
                     </div>
@@ -133,11 +147,14 @@
                 nzSm="24"
                 nzMd="8"
                 nzLg="6"
-                nzXl="4"
-                nzXXl="4"
+                nzXl="5"
+                nzXXl="5"
               >
-                <span nz-typography nzType="secondary" class="font-agro-medium"
-                  >Полное имя</span
+                <span
+                  nz-typography
+                  nzType="secondary"
+                  class="font-agro-medium"
+                  >{{ "fullName" | translate }}</span
                 >
               </div>
               <div
@@ -146,10 +163,10 @@
                 nzSm="12"
                 nzMd="8"
                 nzLg="6"
-                nzXl="12"
-                nzXXl="12"
+                nzXl="11"
+                nzXXl="11"
               >
-                <span nz-typography>Мун Тимур</span>
+                <span nz-typography>{{ profile | fullName }}</span>
               </div>
               <div
                 nz-col
@@ -171,12 +188,8 @@
                     nzXXl="24"
                     class="text-end"
                   >
-                    <button
-                      nz-button
-                      nzType="link"
-                      (click)="showModal('username')"
-                    >
-                      Изменить имя
+                    <button nz-button nzType="link" (click)="editFullname()">
+                      {{ "changeName" | translate }}
                     </button>
                   </div>
                   <div
@@ -189,11 +202,7 @@
                     nzXXl="0"
                     class="text-end"
                   >
-                    <button
-                      nz-button
-                      nzType="link"
-                      (click)="showModal('username')"
-                    >
+                    <button nz-button nzType="link" (click)="editFullname()">
                       <i nz-icon nzType="edit" nzTheme="outline"></i>
                     </button>
                   </div>
@@ -204,7 +213,7 @@
           </div>
           <div nz-col nzSpan="24">
             <h3 nz-typography class="font-agro-medium">
-              Сведения об учетной записи
+              {{ "accountInformation" | translate }}
             </h3>
             <nz-divider class="divider-margin"></nz-divider>
             <div nz-row nzAlign="middle">
@@ -214,11 +223,14 @@
                 nzSm="24"
                 nzMd="8"
                 nzLg="6"
-                nzXl="4"
-                nzXXl="4"
+                nzXl="5"
+                nzXXl="5"
               >
-                <span nz-typography nzType="secondary" class="font-agro-medium"
-                  >Адрес электронной почты</span
+                <span
+                  nz-typography
+                  nzType="secondary"
+                  class="font-agro-medium"
+                  >{{ "emailAddress" | translate }}</span
                 >
               </div>
               <div
@@ -227,10 +239,12 @@
                 nzSm="12"
                 nzMd="8"
                 nzLg="6"
-                nzXl="12"
-                nzXXl="12"
+                nzXl="11"
+                nzXXl="11"
               >
-                <span nz-typography>shisudesign@outlook.com</span>
+                <span nz-typography>{{
+                  profile?.email ?? ("no" | translate)
+                }}</span>
               </div>
               <div
                 nz-col
@@ -252,13 +266,12 @@
                     nzXXl="24"
                     class="text-end"
                   >
-                    <button
-                      nz-button
-                      nzType="link"
-                      (click)="showModal('email')"
-                    >
-                      {{ userInfo.email ? "Изменить" : "Добавить" }} адрес
-                      электронной почты
+                    <button nz-button nzType="link" (click)="addEditEmail()">
+                      {{
+                        profile?.email
+                          ? ("changeEmailAddress" | translate)
+                          : ("addEmailAddress" | translate)
+                      }}
                     </button>
                   </div>
                   <div
@@ -271,11 +284,7 @@
                     nzXXl="0"
                     class="text-end"
                   >
-                    <button
-                      nz-button
-                      nzType="link"
-                      (click)="showModal('email')"
-                    >
+                    <button nz-button nzType="link" (click)="addEditEmail()">
                       <i nz-icon nzType="edit" nzTheme="outline"></i>
                     </button>
                   </div>
@@ -290,12 +299,12 @@
                 nzSm="24"
                 nzMd="8"
                 nzLg="6"
-                nzXl="4"
-                nzXXl="4"
+                nzXl="5"
+                nzXXl="5"
               >
                 <span nz-typography nzType="secondary" class="font-agro-medium"
-                  >Номер телефона</span
-                >
+                  >{{ "phoneNumber" | translate }}
+                </span>
               </div>
               <div
                 nz-col
@@ -303,10 +312,16 @@
                 nzSm="12"
                 nzMd="8"
                 nzLg="6"
-                nzXl="12"
-                nzXXl="12"
+                nzXl="11"
+                nzXXl="11"
               >
-                <span nz-typography>Нет</span>
+                <span nz-typography>
+                  {{
+                    profile?.phone
+                      ? "+" + (profile.phone | mask: "000 00 000 00 00")
+                      : ("no" | translate)
+                  }}</span
+                >
               </div>
               <div
                 nz-col
@@ -328,12 +343,12 @@
                     nzXXl="24"
                     class="text-end"
                   >
-                    <button
-                      nz-button
-                      nzType="link"
-                      (click)="showModal('phone')"
-                    >
-                      Добавить номер телефона
+                    <button nz-button nzType="link" (click)="addEditPhone()">
+                      {{
+                        profile?.phone
+                          ? ("editPhonenumber" | translate)
+                          : ("addPhonenumber" | translate)
+                      }}
                     </button>
                   </div>
                   <div
@@ -346,11 +361,7 @@
                     nzXXl="0"
                     class="text-end"
                   >
-                    <button
-                      nz-button
-                      nzType="link"
-                      (click)="showModal('phone')"
-                    >
+                    <button nz-button nzType="link" (click)="addEditPhone()">
                       <i nz-icon nzType="edit" nzTheme="outline"></i>
                     </button>
                   </div>
@@ -360,7 +371,7 @@
             <nz-divider class="divider-margin"></nz-divider>
           </div>
           <div nz-col nzSpan="24">
-            <h3 nz-typography>Данные авторизации</h3>
+            <h3 nz-typography>{{ "authorizationData" | translate }}</h3>
             <nz-divider class="divider-margin"></nz-divider>
             <div nz-row nzAlign="middle">
               <div
@@ -369,11 +380,14 @@
                 nzSm="24"
                 nzMd="8"
                 nzLg="6"
-                nzXl="4"
-                nzXXl="4"
+                nzXl="5"
+                nzXXl="5"
               >
-                <span nz-typography nzType="secondary" class="font-agro-medium"
-                  >Логин</span
+                <span
+                  nz-typography
+                  nzType="secondary"
+                  class="font-agro-medium"
+                  >{{ "login" | translate }}</span
                 >
               </div>
               <div
@@ -382,10 +396,10 @@
                 nzSm="12"
                 nzMd="8"
                 nzLg="6"
-                nzXl="12"
-                nzXXl="12"
+                nzXl="11"
+                nzXXl="11"
               >
-                <span nz-typography>shisudesign</span>
+                <span nz-typography>{{ profile?.login }}</span>
               </div>
               <div
                 nz-col
@@ -407,12 +421,8 @@
                     nzXXl="24"
                     class="text-end"
                   >
-                    <button
-                      nz-button
-                      nzType="link"
-                      (click)="showModal('login')"
-                    >
-                      Изменить логин
+                    <button nz-button nzType="link" (click)="addEditLogin()">
+                      {{ "changeLogin" | translate }}
                     </button>
                   </div>
                   <div
@@ -425,11 +435,7 @@
                     nzXXl="0"
                     class="text-end"
                   >
-                    <button
-                      nz-button
-                      nzType="link"
-                      (click)="showModal('login')"
-                    >
+                    <button nz-button nzType="link" (click)="addEditLogin()">
                       <i nz-icon nzType="edit" nzTheme="outline"></i>
                     </button>
                   </div>
@@ -444,11 +450,14 @@
                 nzSm="24"
                 nzMd="8"
                 nzLg="6"
-                nzXl="4"
-                nzXXl="4"
+                nzXl="5"
+                nzXXl="5"
               >
-                <span nz-typography nzType="secondary" class="font-agro-medium"
-                  >Пароль</span
+                <span
+                  nz-typography
+                  nzType="secondary"
+                  class="font-agro-medium"
+                  >{{ "password" | translate }}</span
                 >
               </div>
               <div
@@ -457,8 +466,8 @@
                 nzSm="12"
                 nzMd="8"
                 nzLg="6"
-                nzXl="12"
-                nzXXl="12"
+                nzXl="11"
+                nzXXl="11"
               >
                 <span nz-typography>************</span>
               </div>
@@ -482,12 +491,8 @@
                     nzXXl="24"
                     class="text-end"
                   >
-                    <button
-                      nz-button
-                      nzType="link"
-                      (click)="showModal('password')"
-                    >
-                      Изменить пароль
+                    <button nz-button nzType="link" (click)="editPassword()">
+                      {{ "changePassword" | translate }}
                     </button>
                   </div>
                   <div
@@ -500,11 +505,7 @@
                     nzXXl="0"
                     class="text-end"
                   >
-                    <button
-                      nz-button
-                      nzType="link"
-                      (click)="showModal('password')"
-                    >
+                    <button nz-button nzType="link" (click)="editPassword()">
                       <i nz-icon nzType="edit" nzTheme="outline"></i>
                     </button>
                   </div>
@@ -519,33 +520,37 @@
   </div>
 </div>
 
-<user-name-modal
-  [isVisible]="userNameModalVisible"
-  (handleClose)="handleUserNameVisible($event)"
-  [inputValues]="userInfo"
-></user-name-modal>
 <az-user-email-modal
-  [email]="userInfo.email"
-  [(isVisible)]="userEmailModalVisible"
+  *ngIf="profile"
+  [(control)]="profile.email"
+  [(isVisible)]="isVisibleModalEmail"
 ></az-user-email-modal>
-<az-user-phone-modal
-  [phoneValue]="userInfo"
-  [isVisible]="userPhoneModalVisible"
-  (handleVisible)="handleUserPhoneVisible($event)"
-></az-user-phone-modal>
-<az-user-login-modal
-  [isVisible]="userLoginModalVisible"
-  (handleVisible)="handleUserLoginVisible($event)"
-  [loginValue]="userInfo"
-></az-user-login-modal>
-<az-user-password-modal
-  [isVisible]="userPasswordModalVisible"
-  (handleClose)="handleUserPasswordVisible($event)"
-></az-user-password-modal>
-<az-success-changes></az-success-changes>
 
-<!-- TODO -->
+<az-user-phone-modal
+  *ngIf="profile"
+  [(control)]="profile.phone"
+  [(isVisible)]="isVisibleModalPhone"
+></az-user-phone-modal>
+
+<az-user-login-modal
+  *ngIf="profile"
+  [(isVisible)]="isVisibleModalLogin"
+  [(control)]="profile.login"
+></az-user-login-modal>
+
+<az-user-password-modal
+  *ngIf="profile"
+  [(isVisible)]="isVisibleModalPassword"
+></az-user-password-modal>
+
+<user-name-modal
+  *ngIf="profile"
+  [(isVisible)]="isVisibleModalFullname"
+  [(control)]="profile"
+></user-name-modal>
+
 <az-add-avatar
-  [isVisible]="userAvatarModalVisible"
-  (handleClose)="handleUserAvatarVisible($event)"
+  *ngIf="profile"
+  [(isVisible)]="isVisibleModalAvatar"
+  [(avatar)]="profile.photo"
 ></az-add-avatar>

@@ -12,8 +12,16 @@ export class ConfirmationModalComponent {
   /**
    *
    */
+  private _isVisible = false;
+  public get isVisible(): boolean {
+    return this._isVisible;
+  }
   @Input()
-  public isVisible!: boolean;
+  public set isVisible(v: boolean) {
+    this._isVisible = v;
+    this.isWaitingResponse$ = undefined;
+    this.isWaitingActivationCodeResponse$ = undefined;
+  }
 
   /**
    *
@@ -48,6 +56,24 @@ export class ConfirmationModalComponent {
   /**
    *
    */
+  @Input()
+  password!: string;
+
+  /**
+   *
+   */
+  @Input()
+  urlForSend = 'cabinet/phone-activation';
+
+  /**
+   *
+   */
+  @Input()
+  urlForResend = 'cabinet/resend-secure-code';
+
+  /**
+   *
+   */
   isWaitingResponse$?: Observable<boolean>;
 
   /**
@@ -64,9 +90,9 @@ export class ConfirmationModalComponent {
    *
    * @param activationCode
    */
-  sendActivationCodeToPhone(activationCode: string) {
+  sendActivationCode(activationCode: string) {
     this.isWaitingResponse$ = this.$baseService
-      .post('cabinet/phone-activation', {
+      .post(this.urlForSend, {
         phone: this.phone,
         secure_code: activationCode,
       })
@@ -88,7 +114,7 @@ export class ConfirmationModalComponent {
    */
   resendActivationCode(confirmationForm: ConfirmationFormComponent) {
     this.isWaitingActivationCodeResponse$ = this.$baseService
-      .post('cabinet/resend-secure-code', { phone: this.phone })
+      .post(this.urlForResend, { phone: this.phone, password: this.password })
       .pipe(
         map((result) => {
           if (result.success) {

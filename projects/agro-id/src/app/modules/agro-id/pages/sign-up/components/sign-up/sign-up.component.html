@@ -80,12 +80,10 @@
         </nz-form-control>
         <ng-template #errorLogin let-control>
           <error [control]="control"></error>
-          <!-- ERRORS FROM SERVER -->
-          <ng-container *ngIf="control.hasError('errorMessageFromServer')">
-            <error-from-server
-              [error]="control.getError('errorMessageFromServer')"
-            ></error-from-server>
-          </ng-container>
+          <error-from-server
+            [byMessage]="true"
+            [error]="control.getError(ERROR_MESSAGE_FROM_SERVER)"
+          ></error-from-server>
         </ng-template>
       </nz-form-item>
 
@@ -110,12 +108,10 @@
         </nz-form-control>
         <ng-template let-control #errorPhone>
           <error [control]="control"></error>
-          <!-- ERRORS FROM SERVER -->
-          <ng-container *ngIf="control.hasError('errorMessageFromServer')">
-            <error-from-server
-              [error]="control.getError('errorMessageFromServer')"
-            ></error-from-server>
-          </ng-container>
+          <error-from-server
+            [byMessage]="true"
+            [error]="control.getError(ERROR_MESSAGE_FROM_SERVER)"
+          ></error-from-server>
         </ng-template>
       </nz-form-item>
 

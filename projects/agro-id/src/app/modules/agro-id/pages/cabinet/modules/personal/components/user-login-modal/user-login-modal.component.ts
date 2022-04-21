@@ -1,43 +1,67 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Values } from '../personal/personal.component';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { NgDestroy, ValidationHelper } from 'ngx-az-core';
+import { ChangeLoginRequest } from '../../models/change-login.request';
+import { PersonalService } from '../../services/personal.service';
+import { BasePersonalModalComponent } from '../base-personal-modal/base-personal-modal.component';
 
 @Component({
   selector: 'az-user-login-modal',
   templateUrl: './user-login-modal.component.html',
   styleUrls: ['./user-login-modal.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserLoginModalComponent implements OnInit {
-  @Input() loginValue!: Values;
-  @Input() isVisible = false;
-  @Output() handleVisible = new EventEmitter<boolean>();
-  isConfirmLoading = false;
-  isSuccess = false;
-  validateForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+export class UserLoginModalComponent
+  extends BasePersonalModalComponent<string, ChangeLoginRequest>
+  implements OnInit
+{
+  /**
+   *
+   * @param fb
+   * @param $data
+   */
+  constructor(
+    protected override fb: FormBuilder,
+    protected override $data: PersonalService,
+    protected override $destroy: NgDestroy
+  ) {
+    super(fb, $data, $destroy);
+  }
 
-  ngOnInit() {
-    this.validateForm = this.fb.group({
-      login: [this.loginValue.login, [Validators.required]],
+  /**
+   *
+   */
+  override ngOnInit() {
+    super.ngOnInit();
+  }
+
+  /**
+   *
+   */
+  protected override initForm(control: string | null | undefined) {
+    this.form = this.fb.group({
+      login: [
+        control,
+        [Validators.required, ValidationHelper.notChanged(control)],
+      ],
+      password: ['', Validators.required],
     });
   }
 
-  handleOk(): void {
-    this.isConfirmLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isSuccess = true;
-      this.isConfirmLoading = false;
-      this.handleVisible.emit(false);
-    }, 1000);
+  /**
+   *
+   */
+  override doAfterSuccess() {
+    this.close();
+    this.doControlChangedSuccessfully('login');
   }
 
-  handleCancel(): void {
-    this.isVisible = false;
-    this.handleVisible.emit(false);
-  }
-
-  handleSuccess($event: boolean): void {
-    this.isSuccess = $event;
+  /**
+   *
+   * @param request
+   * @returns
+   */
+  protected override changeControl(request: ChangeLoginRequest) {
+    return this.$data.changeLogin(request);
   }
 }

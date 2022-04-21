@@ -1,43 +1,77 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Values } from '../personal/personal.component';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ValidationHelper } from 'ngx-az-core';
+import { Constants, NgDestroy } from 'ngx-az-core';
+import { ChangePhoneRequest } from '../../models/change-phone.request';
+import { PersonalService } from '../../services/personal.service';
+import { BasePersonalModalComponent } from '../base-personal-modal/base-personal-modal.component';
 
 @Component({
   selector: 'az-user-phone-modal',
   templateUrl: './user-phone-modal.component.html',
   styleUrls: ['./user-phone-modal.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserPhoneModalComponent implements OnInit {
-  @Input() phoneValue!: Values;
-  @Input() isVisible = false;
-  @Output() handleVisible = new EventEmitter<boolean>();
-  isConfirmLoading = false;
-  isSuccess = false;
-  validateForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+export class UserPhoneModalComponent
+  extends BasePersonalModalComponent<number, ChangePhoneRequest>
+  implements OnInit
+{
+  /**
+   *
+   */
+  readonly PREFIX_PHONENUMBER = Constants.PREFIX_PHONENUMBER;
 
-  ngOnInit() {
-    this.validateForm = this.fb.group({
-      phone: [this.phoneValue.phone, [Validators.required]],
+  /**
+   *
+   * @param fb
+   * @param $data
+   */
+  constructor(
+    protected override fb: FormBuilder,
+    protected override $data: PersonalService,
+    protected override $destroy: NgDestroy
+  ) {
+    super(fb, $data, $destroy);
+  }
+
+  /**
+   *
+   */
+  protected override initForm(control: number | null | undefined) {
+    const phone = control ? control % 1000000000 : null;
+    this.form = this.fb.group({
+      phone: [phone, [Validators.required, ValidationHelper.notChanged(phone)]],
+      password: ['', Validators.required],
     });
   }
 
-  handleOk(): void {
-    this.isConfirmLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isSuccess = true;
-      this.isConfirmLoading = false;
-      this.handleVisible.emit(false);
-    }, 1000);
+  /**
+   *
+   * @returns
+   */
+  protected override getRequest() {
+    const request = this.form.getRawValue();
+    request.phone = this.PREFIX_PHONENUMBER + request.phone;
+    return request;
   }
 
-  handleCancel(): void {
-    this.isVisible = false;
-    this.handleVisible.emit(false);
+  /**
+   *
+   * @param request
+   * @returns
+   */
+  protected override changeControl(request: ChangePhoneRequest) {
+    return this.$data.changePhone(request);
   }
 
-  handleSuccess($event: boolean): void {
-    this.isSuccess = $event;
+  /**
+   *
+   * @param controlKey
+   * @returns
+   */
+  protected override getControlValue(controlKey: string): number | null {
+    return Number(
+      this.PREFIX_PHONENUMBER + this.form.controls[controlKey].value
+    );
   }
 }

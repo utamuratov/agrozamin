@@ -1,71 +1,129 @@
-import { Component, OnInit } from '@angular/core';
-
-export interface Values {
-  firstName: string;
-  lastName: string;
-  email: string | null;
-  phone: string | null;
-  login: string;
-}
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
+import { NgDestroy } from 'ngx-az-core';
+import { takeUntil } from 'rxjs';
+import { Profile } from '../../models/profile.interface';
+import { PersonalService } from '../../services/personal.service';
 
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html',
   styleUrls: ['./personal.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonalComponent implements OnInit {
-  userNameModalVisible = false;
-  userEmailModalVisible = false;
-  userPhoneModalVisible = false;
-  userLoginModalVisible = false;
-  userPasswordModalVisible = false;
-  userAvatarModalVisible = false;
+  /**
+   *
+   */
+  profile!: Profile;
 
-  userInfo: Values = {
-    firstName: 'Тимур',
-    lastName: 'Мун',
-    email: 'shisudesign@outlook.com',
-    phone: null,
-    login: 'shisudesign',
-  };
+  /**
+   *
+   */
+  isVisibleModalEmail = false;
 
-  constructor() {}
+  /**
+   *
+   */
+  isVisibleModalPhone = false;
 
-  ngOnInit(): void {}
+  /**
+   *
+   */
+  isVisibleModalLogin = false;
 
-  showModal(type: string): void {
-    if (type === 'username') {
-      this.userNameModalVisible = true;
-    } else if (type === 'email') {
-      this.userEmailModalVisible = true;
-    } else if (type === 'phone') {
-      this.userPhoneModalVisible = true;
-    } else if (type === 'login') {
-      this.userLoginModalVisible = true;
-    } else if (type === 'password') {
-      this.userPasswordModalVisible = true;
-    } else if (type === 'avatar') {
-      this.userAvatarModalVisible = true;
-    }
+  /**
+   *
+   */
+  isVisibleModalPassword = false;
+
+  /**
+   *
+   */
+  isVisibleModalFullname = false;
+
+  /**
+   *
+   */
+  isVisibleModalAvatar = false;
+
+  /**
+   *
+   * @param $data
+   * @param $destroy
+   * @param cd
+   */
+  constructor(
+    private $data: PersonalService,
+    private $destroy: NgDestroy,
+    private cd: ChangeDetectorRef
+  ) {}
+
+  /**
+   *
+   */
+  ngOnInit(): void {
+    this.getProfile();
   }
 
-  handleUserNameVisible($event: boolean): void {
-    this.userNameModalVisible = $event;
+  /**
+   *
+   */
+  getProfile() {
+    this.$data
+      .getProfile()
+      .pipe(takeUntil(this.$destroy))
+      .subscribe((result) => {
+        if (result.success) {
+          this.profile = result.data;
+        }
+        this.cd.markForCheck();
+      });
   }
 
-  handleUserPhoneVisible($event: boolean): void {
-    this.userPhoneModalVisible = $event;
+  /**
+   *
+   */
+  addEditEmail() {
+    this.isVisibleModalEmail = true;
   }
 
-  handleUserLoginVisible($event: boolean): void {
-    this.userLoginModalVisible = $event;
+  /**
+   *
+   */
+  addEditPhone() {
+    this.isVisibleModalPhone = true;
   }
 
-  handleUserPasswordVisible($event: boolean): void {
-    this.userPasswordModalVisible = $event;
+  /**
+   *
+   */
+  addEditLogin() {
+    this.isVisibleModalLogin = true;
   }
 
-  handleUserAvatarVisible($event: boolean): void {
-    this.userAvatarModalVisible = $event;
+  /**
+   *
+   */
+  editPassword() {
+    this.isVisibleModalPassword = true;
+  }
+
+  /**
+   *
+   */
+  editFullname() {
+    this.isVisibleModalFullname = true;
+  }
+
+  /**
+   *
+   */
+  addEditAvatar() {
+    this.isVisibleModalAvatar = true;
   }
 }

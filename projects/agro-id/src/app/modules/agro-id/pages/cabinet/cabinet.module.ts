@@ -22,7 +22,7 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ReactiveFormsSharedModule } from 'ngx-az-core';
+import { LanguageModule, ReactiveFormsSharedModule } from 'ngx-az-core';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
@@ -36,6 +36,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
      */
     ReactiveFormsSharedModule,
     TriangleModule,
+    LanguageModule,
 
     /**
      * NG-ZORRO-MODULES

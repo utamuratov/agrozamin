@@ -9,7 +9,11 @@ import { UserLoginModalComponent } from './components/user-login-modal/user-logi
 import { UserNameModalComponent } from './components/user-name-modal/user-name-modal.component';
 import { UserPasswordModalComponent } from './components/user-password-modal/user-password-modal.component';
 import { UserPhoneModalComponent } from './components/user-phone-modal/user-phone-modal.component';
-import { NzFormsSharedModule, ReactiveFormsSharedModule } from 'ngx-az-core';
+import {
+  FullNameModule,
+  NzFormsSharedModule,
+  ReactiveFormsSharedModule,
+} from 'ngx-az-core';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -20,6 +24,10 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { FormsModule } from '@angular/forms';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PasswordShowHideModule } from '../../../../shared/password-eye/password-show-hide.module';
+import { SuccessModalModule } from '../../shared/modals/success-modal/success-modal.module';
+import { ConfirmationModalModule } from '../../shared/modals/confirmation-modal/confirmation-modal.module';
+import { NgxMaskModule } from 'ngx-mask';
+import { BasePersonalModalComponent } from './components/base-personal-modal/base-personal-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +40,14 @@ import { PasswordShowHideModule } from '../../../../shared/password-eye/password
     SuccessChangesComponent,
     ConfirmModalComponent,
     AddAvatarComponent,
+    BasePersonalModalComponent,
   ],
   imports: [
     PersonalRoutingModule,
 
     FormsModule,
     ImageCropperModule,
+    NgxMaskModule,
 
     /**
      * CUSTOM SHARED MODULES
@@ -45,6 +55,9 @@ import { PasswordShowHideModule } from '../../../../shared/password-eye/password
     ReactiveFormsSharedModule,
     NzFormsSharedModule,
     PasswordShowHideModule,
+    SuccessModalModule,
+    ConfirmationModalModule,
+    FullNameModule,
 
     /**
      * NG ZORRO MODULES

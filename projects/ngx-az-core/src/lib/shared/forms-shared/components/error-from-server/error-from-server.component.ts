@@ -16,6 +16,13 @@ export class ErrorFromServerComponent implements OnDestroy {
   error?: ErrorItem;
 
   /**
+   * true => shows errors from observable $error
+   * false => shows errors from @Input error
+   */
+  @Input()
+  byMessage = false;
+
+  /**
    *
    */
   $error = errorMessageFromServer.asObservable();

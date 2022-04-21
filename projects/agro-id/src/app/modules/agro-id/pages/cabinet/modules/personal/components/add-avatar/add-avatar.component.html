@@ -3,7 +3,7 @@
   nzTitle="{{ null }}"
   [nzContent]="modalContent"
   [nzFooter]="modalFooter"
-  (nzOnCancel)="handleCancel()"
+  (nzOnCancel)="close()"
 >
   <ng-template #modalContent>
     <div nz-row [nzGutter]="[0, 10]">
@@ -33,54 +33,61 @@
             nzXl="24"
             nzXXl="24"
           >
-            <image-cropper
-              *ngIf="imageChangedEvent"
-              [imageChangedEvent]="imageChangedEvent"
-              [maintainAspectRatio]="true"
-              [aspectRatio]="1 / 1"
-              [transform]="{ scale: zoom, rotate: rotate }"
-              format="png"
-              (imageCropped)="imageCropped($event)"
-              (imageLoaded)="imageLoaded($event)"
-              (cropperReady)="cropperReady()"
-              (loadImageFailed)="loadImageFailed()"
-            ></image-cropper>
-
-            <!-- <img [src]="croppedImage" /> -->
-            <nz-avatar
-              *ngIf="!imageChangedEvent"
-              [nzShape]="'square'"
-              [nzSize]="300"
-              [nzIcon]="'user'"
-            ></nz-avatar>
+            <div
+              class="d-flex align-items-center justify-content-center"
+              style="height: 300px; overflow-y: auto"
+            >
+              <ng-container *ngIf="avatar; else cropper">
+                <img [src]="avatar" style="max-width: 100%; max-height: 100%" />
+              </ng-container>
+              <ng-template #cropper>
+                <image-cropper
+                  *ngIf="imageChangedEvent"
+                  [roundCropper]="true"
+                  [imageChangedEvent]="imageChangedEvent"
+                  [maintainAspectRatio]="true"
+                  [aspectRatio]="1 / 1"
+                  [transform]="{ scale: zoom, rotate: rotate }"
+                  (imageCropped)="imageCropped($event)"
+                  (imageLoaded)="imageLoaded($event)"
+                  (cropperReady)="cropperReady()"
+                  (loadImageFailed)="loadImageFailed()"
+                ></image-cropper>
+                <!-- <img [src]="croppedImage" /> -->
+                <nz-avatar
+                  *ngIf="!imageChangedEvent"
+                  [nzShape]="'square'"
+                  [nzSize]="300"
+                  [nzIcon]="'user'"
+                ></nz-avatar>
+              </ng-template>
+            </div>
           </div>
           <div nz-col nzXs="24" nzSm="0" nzMd="0" nzLg="0" nzXl="0" nzXXl="0">
-            <image-cropper
-              *ngIf="imageChangedEvent"
-              [imageChangedEvent]="imageChangedEvent"
-              [maintainAspectRatio]="true"
-              [aspectRatio]="1 / 1"
-              format="png"
-              (imageCropped)="imageCropped($event)"
-              (imageLoaded)="imageLoaded($event)"
-              (cropperReady)="cropperReady()"
-              (loadImageFailed)="loadImageFailed()"
-            ></image-cropper>
-            <nz-avatar
-              *ngIf="!imageChangedEvent"
-              [nzShape]="'square'"
-              [nzSize]="180"
-              [nzIcon]="'user'"
-            ></nz-avatar>
+            <ng-container *ngIf="avatar; else cropper">
+              <img [src]="avatar" width="100%" />
+            </ng-container>
+            <ng-template #cropper>
+              <image-cropper
+                *ngIf="imageChangedEvent"
+                [roundCropper]="true"
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1 / 1"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded($event)"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+              ></image-cropper>
+              <nz-avatar
+                *ngIf="!imageChangedEvent"
+                [nzShape]="'square'"
+                [nzSize]="180"
+                [nzIcon]="'user'"
+              ></nz-avatar>
+            </ng-template>
           </div>
         </div>
-      </div>
-      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-        <p nz-typography>
-          Отредактируйте свою фотографию, переместив круг или изменив его
-          размер. Можно использовать мышь или клавиши со стрелками, а также
-          клавиши "плюс" и "минус" на клавиатуре.
-        </p>
       </div>
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
         <div nz-row [nzGutter]="[10, 10]">
@@ -107,9 +114,10 @@
                 nzXXl="20"
               >
                 <nz-slider
+                  [nzMin]="MIN_ZOOM"
+                  [nzMax]="MAX_ZOOM"
                   [(ngModel)]="zoom"
                   [nzDisabled]="disabled"
-                  [nzMax]="10"
                 ></nz-slider>
               </div>
               <div
@@ -150,8 +158,8 @@
                 <nz-slider
                   [(ngModel)]="rotate"
                   [nzDisabled]="disabled"
-                  [nzMin]="-5"
-                  [nzMax]="5"
+                  [nzMin]="MIN_ROTATE"
+                  [nzMax]="MAX_ROTATE"
                 ></nz-slider>
               </div>
               <div
@@ -181,12 +189,20 @@
         </button>
       </div>
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
-        <button nz-button nzType="link" nzDanger class="font-agro-medium">
+        <button
+          nz-button
+          nzType="link"
+          nzDanger
+          class="font-agro-medium"
+          (click)="delete()"
+        >
           <i nz-icon nzType="delete" nzTheme="outline"></i>
           Удалить фотографию
         </button>
       </div>
     </div>
+
+    <error-as-alert></error-as-alert>
   </ng-template>
 
   <ng-template #modalFooter>
@@ -196,22 +212,24 @@
           nzBlock
           nz-button
           nzType="default"
-          (click)="handleCancel()"
+          (click)="close()"
           nzShape="round"
         >
-          Далее
+          {{ "go" | translate }}
         </button>
       </div>
       <div nz-col nzSpan="12">
         <button
-          nzBlock
           nz-button
-          nzType="primary"
-          (click)="handleOk()"
-          [nzLoading]="isConfirmLoading"
+          nzBlock
           nzShape="round"
+          nzType="primary"
+          type="submit"
+          (click)="submit()"
+          [nzLoading]="isWaitingResponse$ | async"
+          [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }"
         >
-          Сохранить
+          {{ "save" | translate }}
         </button>
       </div>
     </div>

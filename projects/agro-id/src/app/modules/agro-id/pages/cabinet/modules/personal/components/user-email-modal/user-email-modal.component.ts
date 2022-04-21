@@ -1,88 +1,60 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { markAllAsDirty } from 'ngx-az-core';
-import { map, Observable, startWith } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ValidationHelper } from 'ngx-az-core';
+import { NgDestroy } from 'ngx-az-core';
 import { ChangeEmailRequest } from '../../models/change-email.request';
 import { PersonalService } from '../../services/personal.service';
+import { BasePersonalModalComponent } from '../base-personal-modal/base-personal-modal.component';
 
 @Component({
   selector: 'az-user-email-modal',
   templateUrl: './user-email-modal.component.html',
   styleUrls: ['./user-email-modal.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserEmailModalComponent implements OnInit {
+export class UserEmailModalComponent
+  extends BasePersonalModalComponent<string, ChangeEmailRequest>
+  implements OnInit
+{
   /**
    *
+   * @param fb
+   * @param $data
    */
-  @Input() isVisible = false;
-
-  /**
-   *
-   */
-  @Output()
-  isVisibleChange = new EventEmitter<boolean>();
-
-  /**
-   *
-   */
-  @Input() email!: string | null;
-
-  /**
-   *
-   */
-  isWaitingResponse$?: Observable<boolean>;
-
-  /**
-   *
-   */
-  form!: FormGroup;
-
-  constructor(private fb: FormBuilder, private $data: PersonalService) {}
-
-  ngOnInit() {
-    this.initForm();
+  constructor(
+    protected override fb: FormBuilder,
+    protected override $data: PersonalService,
+    protected override $destroy: NgDestroy
+  ) {
+    super(fb, $data, $destroy);
   }
 
   /**
    *
    */
-  private initForm() {
+  override ngOnInit() {
+    super.ngOnInit();
+  }
+
+  /**
+   *
+   */
+  protected override initForm(control: string | null | undefined) {
     this.form = this.fb.group({
-      email: [this.email, [Validators.required]],
+      email: [
+        control,
+        [Validators.required, ValidationHelper.notChanged(control)],
+      ],
       password: ['', Validators.required],
     });
   }
 
   /**
    *
+   * @param request
+   * @returns
    */
-  submit() {
-    if (this.form.invalid) {
-      markAllAsDirty(this.form);
-      return;
-    }
-
-    const request = this.form.getRawValue();
-    this.changeEmail(request);
-  }
-
-  /**
-   *
-   */
-  private changeEmail(request: ChangeEmailRequest) {
-    this.isWaitingResponse$ = this.$data.changeEmail(request).pipe(
-      map((result) => {
-        if (result.success) {
-          this.close();
-        }
-
-        return false;
-      }),
-      startWith(true)
-    );
-  }
-
-  close() {
-    this.isVisibleChange.emit(false);
+  protected override changeControl(request: ChangeEmailRequest) {
+    return this.$data.changeEmail(request);
   }
 }

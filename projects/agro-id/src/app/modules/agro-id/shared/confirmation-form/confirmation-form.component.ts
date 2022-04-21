@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   interval,
@@ -30,11 +23,6 @@ export class ConfirmationFormComponent implements OnInit {
    */
   @Input()
   phone?: string;
-
-  /**
-   *
-   */
-  @Output()
 
   /**
    *

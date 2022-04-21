@@ -1,47 +1,50 @@
 <!-- USER NAME -->
-<nz-modal
-  [(nzVisible)]="isVisible"
-  (nzOnCancel)="handleCancel()"
->
-  <form nz-form nzLayout="vertical" [formGroup]="validateForm">
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="close()">
+  <form nz-form nzLayout="vertical" [formGroup]="form">
     <div *nzModalTitle>
-      <h4 nz-typography>Изменить имя</h4>
+      <h4 nz-typography>{{ "changeName" | translate }}</h4>
     </div>
     <ng-container *nzModalContent>
       <nz-form-item>
         <nz-form-label [nzSpan]="24" nzFor="firstName"
-          ><span class="font-agro-medium">Имя</span></nz-form-label
+          ><span class="font-agro-medium">{{
+            "firstName" | translate
+          }}</span></nz-form-label
         >
-        <nz-form-control
-          [nzSpan]="24"
-          nzErrorTip="Поле обязательно для заполнения"
-        >
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="error">
           <input
             nz-input
             type="text"
             id="firstName"
-            formControlName="firstName"
+            formControlName="f_name"
             nzSize="large"
           />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSpan]="24" nzFor="lastName"
-          ><span class="font-agro-medium">Фамилия</span></nz-form-label
+          ><span class="font-agro-medium">{{
+            "lastName" | translate
+          }}</span></nz-form-label
         >
-        <nz-form-control
-          [nzSpan]="24"
-          nzErrorTip="Поле обязательно для заполнения"
-        >
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="error">
           <input
             nz-input
             type="text"
             id="lastName"
-            formControlName="lastName"
+            formControlName="l_name"
             nzSize="large"
           />
         </nz-form-control>
       </nz-form-item>
+
+      <ng-template #error let-control>
+        <error [control]="control"></error>
+        <error-from-server
+          [byMessage]="true"
+          [error]="control.getError(ERROR_MESSAGE_FROM_SERVER)"
+        ></error-from-server>
+      </ng-template>
     </ng-container>
     <div *nzModalFooter nz-row nzGutter="10">
       <div nz-col nzSpan="12">
@@ -51,22 +54,22 @@
           nz-button
           nzType="default"
           nzShape="round"
-          (click)="handleCancel()"
+          (click)="close()"
         >
-          Отмена
+          {{ "cancel" | translate }}
         </button>
       </div>
       <div nz-col nzSpan="12">
         <button
-          class="font-agro-medium"
-          nzBlock
           nz-button
-          nzType="primary"
+          nzBlock
           nzShape="round"
-          (click)="submitForm()"
-          [nzLoading]="isConfirmLoading"
+          nzType="primary"
+          (click)="submit()"
+          [nzLoading]="isWaitingResponse$ | async"
+          [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }"
         >
-          Сохранить
+          {{ "save" | translate }}
         </button>
       </div>
     </div>

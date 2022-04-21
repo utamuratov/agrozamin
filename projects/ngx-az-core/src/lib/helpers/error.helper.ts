@@ -1,8 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { ErrorHandler } from '@angular/core';
 import { Router } from '@angular/router';
 import { Constants } from '../config/constants';
-import { HttpResponseStatusCode } from '../config/http-response-code';
 import { ErrorItem } from '../models/error-item.interface';
 import { InjectorHelper } from './injector.helper';
 
@@ -45,7 +44,7 @@ export class ErrorHelper {
       return;
     }
     const router = InjectorHelper.injector.get(Router);
-    if (error.status === HttpResponseStatusCode.UNAUTHENTICATED) {
+    if (error.status === HttpStatusCode.Unauthorized) {
       // router.navigate(['/auth/signin']);
       return;
     }

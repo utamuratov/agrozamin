@@ -29,7 +29,7 @@ export class AccessControlComponent
   /**
    *
    * @param $data
-   * @param destroy$
+   * @param $destroy
    * @param cd
    */
   constructor(
