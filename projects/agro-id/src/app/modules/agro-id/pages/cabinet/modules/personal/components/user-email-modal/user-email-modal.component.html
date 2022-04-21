@@ -3,27 +3,70 @@
   [nzTitle]="modalTitle"
   [nzContent]="modalContent"
   [nzFooter]="modalFooter"
-  (nzOnCancel)="handleCancel()"
+  (nzOnCancel)="close()"
 >
   <ng-template #modalTitle
     ><h4 nz-typography>
-      {{ emailValue.email ? "Изменить" : "Добавить" }} Email
+      {{
+        control
+          ? ("changeEmailAddress" | translate)
+          : ("addEmailAddress" | translate)
+      }}
     </h4></ng-template
   >
 
   <ng-template #modalContent>
-    <form nz-form [formGroup]="validateForm">
+    <form nz-form nzLayout="vertical" [formGroup]="form" (submit)="submit()">
+      <error-as-alert></error-as-alert>
+
+      <!-- EMAIL -->
       <p>
-        Введите ваш новый электронный адрес На него будет отправлен код
-        подтверждения
+        {{ "changeEmailAddressBody" | translate }}
       </p>
-      <input
-        nz-input
-        nzSize="large"
-        formControlName="email"
-        placeholder="Введите ваш Email"
-      />
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="error">
+          <input
+            id="email"
+            nz-input
+            type="email"
+            nzSize="large"
+            formControlName="email"
+            [placeholder]="'Введите ваш Email'"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- PASSWORD -->
+      <nz-form-item>
+        <nz-form-label class="text-start" nzFor="password" nzRequired>{{
+          "password" | translate
+        }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="error">
+          <nz-input-group nzPrefixIcon="lock" [nzSuffix]="eye" nzSize="large">
+            <input
+              #password
+              id="password"
+              type="password"
+              nz-input
+              formControlName="password"
+            />
+            <ng-template #eye>
+              <az-password-show-hide
+                [password]="password"
+              ></az-password-show-hide>
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
     </form>
+
+    <ng-template #error let-control>
+      <error [control]="control"></error>
+      <error-from-server
+        [byMessage]="true"
+        [error]="control.getError(ERROR_MESSAGE_FROM_SERVER)"
+      ></error-from-server>
+    </ng-template>
   </ng-template>
 
   <ng-template #modalFooter>
@@ -32,19 +75,28 @@
       nzBlock
       nzShape="round"
       nzType="primary"
-      (click)="handleOk()"
-      [nzLoading]="isConfirmLoading"
+      (click)="submit()"
+      [nzLoading]="isWaitingResponse$ | async"
+      [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }"
     >
-      Далее
+      {{ "go" | translate }}
     </button>
   </ng-template>
 </nz-modal>
 
-<az-success-changes
-  [config]="{
-    type: 'Изменение Email',
-    description: 'Ваш Email успешно изменен!',
-    isVisible: isSuccess
-  }"
-  (handleSuccess)="handleSuccess($event)"
-></az-success-changes>
+<az-success-modal
+  [(isVisible)]="isVisibleSuccessModal"
+  [title]="'changingEmail' | translate"
+  [bodyOne]="'congratulations' | translate"
+  [bodyTwo]="'successfullyChangedEmail' | translate"
+></az-success-modal>
+
+<az-confirmation-modal
+  [(isVisible)]="isVisibleConfirmationModal"
+  [title]="'inputCodeFromSMS' | translate"
+  [email]="form.controls['email'].value"
+  [password]="form.controls['password'].value"
+  [urlForSend]="'cabinet/change-email-step-2'"
+  [urlForResend]="'cabinet/change-email-step-2'"
+  (activationCodeSucceed)="doControlChangedSuccessfully('email')"
+></az-confirmation-modal>

@@ -1,5 +1,6 @@
 import { FormGroup } from '@angular/forms';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { Constants } from '../config/constants';
 
 /**
  * Gets domain of the url
@@ -17,14 +18,19 @@ export function markAllAsDirty(form: FormGroup) {
     if (control.invalid) {
       if (control instanceof FormGroup) {
         Object.values(control.controls).forEach((subControl) => {
-          if (subControl.invalid) {
+          if (
+            subControl.invalid &&
+            !control.hasError(Constants.ERROR_MESSAGE_FROM_SERVER)
+          ) {
             subControl.markAsDirty();
             subControl.updateValueAndValidity({ onlySelf: true });
           }
         });
       } else {
-        control.markAsDirty();
-        control.updateValueAndValidity({ onlySelf: true });
+        if (!control.hasError(Constants.ERROR_MESSAGE_FROM_SERVER)) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
       }
     }
   });

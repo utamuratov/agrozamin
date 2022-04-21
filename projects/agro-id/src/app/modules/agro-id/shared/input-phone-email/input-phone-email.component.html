@@ -33,12 +33,10 @@
 
         <ng-template let-control #error>
           <error [control]="control"></error>
-          <!-- ERRORS FROM SERVER -->
-          <ng-container *ngIf="control.hasError('errorMessageFromServer')">
-            <error-from-server
-              [error]="control.getError('errorMessageFromServer')"
-            ></error-from-server>
-          </ng-container>
+          <error-from-server
+            [byMessage]="true"
+            [error]="control.getError('errorMessageFromServer')"
+          ></error-from-server>
         </ng-template>
       </nz-form-control>
     </ng-container>
@@ -67,12 +65,10 @@
 
         <ng-template let-control #error>
           <error [control]="control"></error>
-          <!-- ERRORS FROM SERVER -->
-          <ng-container *ngIf="control.hasError('errorMessageFromServer')">
-            <error-from-server
-              [error]="control.getError('errorMessageFromServer')"
-            ></error-from-server>
-          </ng-container>
+          <error-from-server
+            [byMessage]="true"
+            [error]="control.getError('errorMessageFromServer')"
+          ></error-from-server>
         </ng-template>
       </nz-form-control>
     </ng-template>

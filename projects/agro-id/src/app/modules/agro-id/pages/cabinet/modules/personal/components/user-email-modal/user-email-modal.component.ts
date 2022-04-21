@@ -1,43 +1,60 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Values } from '../personal/personal.component';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ValidationHelper } from 'ngx-az-core';
+import { NgDestroy } from 'ngx-az-core';
+import { ChangeEmailRequest } from '../../models/change-email.request';
+import { PersonalService } from '../../services/personal.service';
+import { BasePersonalModalComponent } from '../base-personal-modal/base-personal-modal.component';
 
 @Component({
   selector: 'az-user-email-modal',
   templateUrl: './user-email-modal.component.html',
   styleUrls: ['./user-email-modal.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserEmailModalComponent implements OnInit {
-  @Input() emailValue!: Values;
-  @Input() isVisible = false;
-  @Output() handleVisible = new EventEmitter<boolean>();
-  isConfirmLoading = false;
-  validateForm!: FormGroup;
-  isSuccess = false;
-  constructor(private fb: FormBuilder) {}
+export class UserEmailModalComponent
+  extends BasePersonalModalComponent<string, ChangeEmailRequest>
+  implements OnInit
+{
+  /**
+   *
+   * @param fb
+   * @param $data
+   */
+  constructor(
+    protected override fb: FormBuilder,
+    protected override $data: PersonalService,
+    protected override $destroy: NgDestroy
+  ) {
+    super(fb, $data, $destroy);
+  }
 
-  ngOnInit() {
-    this.validateForm = this.fb.group({
-      email: [this.emailValue.email, [Validators.required]],
+  /**
+   *
+   */
+  override ngOnInit() {
+    super.ngOnInit();
+  }
+
+  /**
+   *
+   */
+  protected override initForm(control: string | null | undefined) {
+    this.form = this.fb.group({
+      email: [
+        control,
+        [Validators.required, ValidationHelper.notChanged(control)],
+      ],
+      password: ['', Validators.required],
     });
   }
 
-  handleOk(): void {
-    this.isConfirmLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isConfirmLoading = false;
-      this.isSuccess = true;
-      this.handleVisible.emit(false);
-    }, 1000);
-  }
-
-  handleCancel(): void {
-    this.isVisible = false;
-    this.handleVisible.emit(false);
-  }
-
-  handleSuccess($event: boolean): void {
-    this.isSuccess = $event;
+  /**
+   *
+   * @param request
+   * @returns
+   */
+  protected override changeControl(request: ChangeEmailRequest) {
+    return this.$data.changeEmail(request);
   }
 }

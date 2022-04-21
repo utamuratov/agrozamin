@@ -6,6 +6,7 @@
 export * from './lib/ngx-az-core.module';
 export * from './lib/shared/language/language.module';
 export * from './lib/shared/shared.module';
+export * from './lib/shared/full-name/full-name.module';
 export * from './lib/shared/forms-shared/nz-forms-shared.module';
 export * from './lib/shared/forms-shared/reactive-forms-shared.module';
 
@@ -13,14 +14,17 @@ export * from './lib/shared/forms-shared/reactive-forms-shared.module';
 export * from './lib/shared/language/language.component';
 export * from './lib/shared/forms-shared/components/error/error.component';
 export * from './lib/shared/forms-shared/components/error-from-server/error-from-server.component';
+export * from './lib/shared/forms-shared/components/error-as-alert/error-as-alert.component';
 
 // DIRECTIVES
 export * from './lib/shared/forms-shared/directives/only-letter.directive';
 
+// PIPES
+export * from './lib/shared/full-name/fullName.pipe';
+
 // CONFIG
 export * from './lib/config/constants';
 export * from './lib/config/di-tokens';
-export * from './lib/config/http-response-code';
 
 // HELPERS
 export * from './lib/helpers/injector.helper';

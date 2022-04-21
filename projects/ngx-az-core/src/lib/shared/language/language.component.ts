@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Language } from '../../models/language.interface';
 import { CurrentLanguage } from '../store/language/language.action';
@@ -16,9 +16,14 @@ export class LanguageComponent implements OnInit {
   /**
    *
    */
-  language$: Observable<Language[]> = this.$store.select(
-    LanguageState.languages
-  );
+  @Input()
+  template?: 'dropdown';
+
+  /**
+   *
+   */
+  @Select(LanguageState.languages)
+  language$!: Observable<Language[]>;
 
   /**
    *

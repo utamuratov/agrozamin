@@ -1,0 +1,16 @@
+<div *ngIf="$error | async as error">
+  <nz-alert
+    nzType="error"
+    [nzMessage]="error.field + '.' + error.message[0].key | translate"
+    nzShowIcon
+  >
+  </nz-alert>
+</div>
+
+<nz-alert
+  *ngIf="$userOffline | async as error"
+  nzType="warning"
+  [nzMessage]="error.field + '.' + error.message[0].key | translate"
+  nzShowIcon
+>
+</nz-alert>

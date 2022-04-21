@@ -3,24 +3,58 @@
   [nzTitle]="modalTitle"
   [nzContent]="modalContent"
   [nzFooter]="modalFooter"
-  (nzOnCancel)="handleCancel()"
+  (nzOnCancel)="close()"
 >
   <ng-template #modalTitle
-    ><h4 nz-typography>Изменение логина</h4></ng-template
+    ><h4 nz-typography>{{ "changingLogin" | translate }}</h4></ng-template
   >
 
   <ng-template #modalContent>
-    <form nz-form [formGroup]="validateForm">
-      <p>
-        Напишите свой логин с помощью латинских букв
-      </p>
-      <input
-        nz-input
-        nzSize="large"
-        formControlName="login"
-        placeholder="Логин"
-      />
+    <form nz-form [formGroup]="form" nzLayout="vertical">
+      <p>{{ "inputLoginWithLatinAlphabet" | translate }}</p>
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="error">
+          <input
+            id="login"
+            nz-input
+            type="text"
+            nzSize="large"
+            formControlName="login"
+            [placeholder]="'login' | translate"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- PASSWORD -->
+      <nz-form-item>
+        <nz-form-label class="text-start" nzFor="password" nzRequired>{{
+          "password" | translate
+        }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="error">
+          <nz-input-group nzPrefixIcon="lock" [nzSuffix]="eye" nzSize="large">
+            <input
+              #password
+              id="password"
+              type="password"
+              nz-input
+              formControlName="password"
+            />
+            <ng-template #eye>
+              <az-password-show-hide
+                [password]="password"
+              ></az-password-show-hide>
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
     </form>
+    <ng-template #error let-control>
+      <error [control]="control"></error>
+      <error-from-server
+        [byMessage]="true"
+        [error]="control.getError(ERROR_MESSAGE_FROM_SERVER)"
+      ></error-from-server>
+    </ng-template>
   </ng-template>
 
   <ng-template #modalFooter>
@@ -29,11 +63,18 @@
       nzBlock
       nzShape="round"
       nzType="primary"
-      (click)="handleOk()"
-      [nzLoading]="isConfirmLoading"
+      (click)="submit()"
+      [nzLoading]="isWaitingResponse$ | async"
+      [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }"
     >
-      Далее
+      {{ "go" | translate }}
     </button>
   </ng-template>
 </nz-modal>
-<az-success-changes #modalLogin [config]="{type: 'Изменение логина', description: ' Ваш логин успешно изменен!', isVisible: isSuccess}" (handleSuccess)="handleSuccess($event)"></az-success-changes>
+
+<az-success-modal
+  [(isVisible)]="isVisibleSuccessModal"
+  [title]="'changingLogin' | translate"
+  [bodyOne]="'congratulations' | translate"
+  [bodyTwo]="'successfullyChangedLogin' | translate"
+></az-success-modal>

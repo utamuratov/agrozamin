@@ -11,6 +11,16 @@ export class PasswordAndConfirmationPassword {
   /**
    *
    */
+  confirmationPassword = Constants.CONFIRMATION_PASSWORD;
+
+  /**
+   *
+   */
+  password = Constants.PASSWORD;
+
+  /**
+   *
+   */
   constructor(protected $ngDestroy: NgDestroy) {}
 
   /**
@@ -27,14 +37,14 @@ export class PasswordAndConfirmationPassword {
    */
   private addConfirmationPasswordControl() {
     this.form.addControl(
-      Constants.CONFIRMATION_PASSWORD,
+      this.confirmationPassword,
       new FormControl(
         null,
         [Validators.required],
         [
           ValidationHelper.mustMatchPAsswordAsyncValidator(
             this.form,
-            Constants.PASSWORD
+            this.password
           ),
         ]
       )
@@ -46,7 +56,7 @@ export class PasswordAndConfirmationPassword {
    */
   private addPasswordControl() {
     this.form.addControl(
-      Constants.PASSWORD,
+      this.password,
       new FormControl(null, [
         Validators.required,
         Validators.minLength(Constants.PASSWORD_MIN_LENGTH),
@@ -59,13 +69,11 @@ export class PasswordAndConfirmationPassword {
    */
   private onPasswordValueChanges() {
     this.form
-      .get(Constants.PASSWORD)
+      .get(this.password)
       ?.valueChanges.pipe(takeUntil(this.$ngDestroy))
       .subscribe(() => {
-        this.form.controls[Constants.CONFIRMATION_PASSWORD].markAsDirty();
-        this.form.controls[
-          Constants.CONFIRMATION_PASSWORD
-        ].updateValueAndValidity({
+        this.form.controls[this.confirmationPassword].markAsDirty();
+        this.form.controls[this.confirmationPassword].updateValueAndValidity({
           onlySelf: true,
         });
       });

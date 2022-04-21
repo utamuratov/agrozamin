@@ -64,10 +64,10 @@ export class TranslationComponent
     private route: ActivatedRoute,
     private $translate: TranslateApiService,
     private $project: ProjectService,
-    protected destroy$: NgDestroy,
+    protected override $destroy: NgDestroy,
     protected override cd: ChangeDetectorRef
   ) {
-    super($translate, destroy$, cd);
+    super($translate, $destroy, cd);
     this.searchInputConfig.keys = ['key', 'text'];
     const path = route.snapshot.url[0].path;
     this.translationType =
@@ -80,7 +80,7 @@ export class TranslationComponent
    */
   override ngOnInit(): void {
     this.getProjects()
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.$destroy))
       .subscribe(() => {
         super.ngOnInit();
       });
