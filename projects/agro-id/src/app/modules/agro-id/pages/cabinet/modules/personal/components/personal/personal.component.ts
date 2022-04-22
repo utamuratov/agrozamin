@@ -1,13 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
-import { NgDestroy } from 'ngx-az-core';
-import { takeUntil } from 'rxjs';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Profile } from '../../models/profile.interface';
-import { PersonalService } from '../../services/personal.service';
 
 @Component({
   selector: 'app-personal',
@@ -15,7 +8,7 @@ import { PersonalService } from '../../services/personal.service';
   styleUrls: ['./personal.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PersonalComponent implements OnInit {
+export class PersonalComponent {
   /**
    *
    */
@@ -53,36 +46,10 @@ export class PersonalComponent implements OnInit {
 
   /**
    *
-   * @param $data
-   * @param $destroy
-   * @param cd
+   * @param route
    */
-  constructor(
-    private $data: PersonalService,
-    private $destroy: NgDestroy,
-    private cd: ChangeDetectorRef
-  ) {}
-
-  /**
-   *
-   */
-  ngOnInit(): void {
-    this.getProfile();
-  }
-
-  /**
-   *
-   */
-  getProfile() {
-    this.$data
-      .getProfile()
-      .pipe(takeUntil(this.$destroy))
-      .subscribe((result) => {
-        if (result.success) {
-          this.profile = result.data;
-        }
-        this.cd.markForCheck();
-      });
+  constructor(private route: ActivatedRoute) {
+    this.profile = this.route.snapshot.data['profile'];
   }
 
   /**

@@ -14,8 +14,19 @@ export class ErrorHelper {
    * @param error Http Error
    */
   static getServerErrors(error: HttpErrorResponse): ErrorItem[] {
-    if (error.error.errors && error.error.errors?.[0].field) {
-      return error.error.errors;
+    if (error.error.errors) {
+      if (error.error.errors?.[0].field) {
+        return error.error.errors;
+      }
+
+      return [
+        {
+          field: 'unknown',
+          message: [
+            { key: 'unknown', text: JSON.stringify(error.error.errors) },
+          ],
+        },
+      ];
     }
 
     if (!navigator.onLine) {
@@ -39,13 +50,13 @@ export class ErrorHelper {
    *  Catches http errors and responds by status
    * @param error Http error response
    */
-  static catchErrors(error: HttpErrorResponse): void {
+  static catchErrors(error: HttpErrorResponse, urlSignIn: string): void {
     if (!error) {
       return;
     }
     const router = InjectorHelper.injector.get(Router);
     if (error.status === HttpStatusCode.Unauthorized) {
-      // router.navigate(['/auth/signin']);
+      router.navigate([urlSignIn]);
       return;
     }
   }
