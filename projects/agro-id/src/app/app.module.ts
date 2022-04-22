@@ -25,7 +25,7 @@ import { MyHammerConfig } from './core/configs/my-hammer.config';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
 import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
-
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 registerLocaleData(ru);
 
@@ -51,12 +51,13 @@ registerLocaleData(ru);
      * NPM MODULES
      */
     NgxMaskModule.forRoot(),
-    // HammerModule,
+    HammerModule, // ngx-image-cropper needs
 
     /* NG-ZORRO-MODULES */
     NzButtonModule,
     NzSelectModule,
     NzBreadCrumbModule,
+    NzSpinModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU },

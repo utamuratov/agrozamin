@@ -94,13 +94,13 @@
 <az-success-modal
   [(isVisible)]="isVisibleSuccessModal"
   [title]="'Добавление визитки'"
-  [bodyOne]="'Поздравляем!'"
+  [bodyOne]="'congratulations' | translate"
   [bodyTwo]="'Визитка успешно добавлена!'"
 ></az-success-modal>
 
 <az-confirmation-modal
   [(isVisible)]="isVisibleConfirmationModal"
-  [title]="'Введите код из смс'"
+  [title]="'inputCodeFromSMS' | translate"
   [phone]="phoneNumberForSendingActivationCode"
   (activationCodeSucceed)="loadData()"
 ></az-confirmation-modal>

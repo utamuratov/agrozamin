@@ -24,7 +24,7 @@ export class AccessActionComponent
   /**
    *
    * @param $accessAction
-   * @param destroy$
+   * @param $destroy
    * @param cd
    */
   constructor(

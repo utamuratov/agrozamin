@@ -1,63 +1,79 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Values } from '../personal/personal.component';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { NgDestroy } from 'ngx-az-core';
+import { ChangeUsernameRequest } from '../../models/change-username.request';
+import { Profile } from '../../models/profile.interface';
+import { PersonalService } from '../../services/personal.service';
+import { BasePersonalModalComponent } from '../base-personal-modal/base-personal-modal.component';
 
 @Component({
   selector: 'user-name-modal',
   templateUrl: './user-name-modal.component.html',
   styleUrls: ['./user-name-modal.component.less'],
 })
-export class UserNameModalComponent implements OnInit {
-  @Input()
-  isVisible = false;
+export class UserNameModalComponent
+  extends BasePersonalModalComponent<Profile, ChangeUsernameRequest>
+  implements OnInit
+{
+  /**
+   *
+   * @param fb
+   * @param $data
+   */
+  constructor(
+    protected override fb: FormBuilder,
+    protected override $data: PersonalService,
+    protected override $destroy: NgDestroy
+  ) {
+    super(fb, $data, $destroy);
+  }
 
-  @Input()
-  inputValues!: Values;
+  /**
+   *
+   */
+  override ngOnInit() {
+    super.ngOnInit();
+  }
 
-  @Output() handleClose = new EventEmitter<boolean>();
-  validateForm!: FormGroup;
-  isConfirmLoading = false;
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit() {
-    this.validateForm = this.fb.group({
-      firstName: [this.inputValues.firstName, [Validators.required]],
-      lastName: [this.inputValues.lastName, [Validators.required]],
+  /**
+   *
+   */
+  protected override initForm(
+    control: ChangeUsernameRequest | null | undefined
+  ) {
+    this.form = this.fb.group({
+      f_name: [control?.f_name, Validators.required],
+      l_name: [control?.l_name, Validators.required],
     });
   }
 
-  submitForm() {
-    if (this.validateForm.valid) {
-      this.isConfirmLoading = true;
-
-      setTimeout(() => {
-        console.log('submit', this.validateForm.value);
-        this.isVisible = false;
-        this.close();
-        this.isConfirmLoading = false;
-      }, 1000);
-    } else {
-      Object.values(this.validateForm.controls).forEach((control) => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
-  }
-
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
-  }
-
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.isVisible = false;
+  /**
+   *
+   */
+  override doAfterSuccess() {
     this.close();
+    this.doControlChangedSuccessfully();
   }
 
-  close() {
-    this.handleClose.emit(false);
+  /**
+   *
+   * @param controlKey
+   * @returns
+   */
+  protected override getControlValue(): Profile | null {
+    return {
+      ...(this.control as Profile),
+      f_name: this.form.get('f_name')?.value,
+      l_name: this.form.get('l_name')?.value,
+    };
+  }
+
+  /**
+   *
+   * @param request
+   * @returns
+   */
+  protected override changeControl(request: ChangeUsernameRequest) {
+    return this.$data.changeUserFullname(request);
   }
 }

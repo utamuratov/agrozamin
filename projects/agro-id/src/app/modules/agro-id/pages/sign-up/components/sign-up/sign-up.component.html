@@ -21,6 +21,8 @@
       [formGroup]="form"
       (ngSubmit)="continue()"
     >
+      <error-as-alert></error-as-alert>
+
       <div nz-row nzGutter="16">
         <!-- FIRSTNAME -->
         <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
@@ -78,12 +80,10 @@
         </nz-form-control>
         <ng-template #errorLogin let-control>
           <error [control]="control"></error>
-          <!-- ERRORS FROM SERVER -->
-          <ng-container *ngIf="control.hasError('errorMessageFromServer')">
-            <error-from-server
-              [error]="control.getError('errorMessageFromServer')"
-            ></error-from-server>
-          </ng-container>
+          <error-from-server
+            [byMessage]="true"
+            [error]="control.getError(ERROR_MESSAGE_FROM_SERVER)"
+          ></error-from-server>
         </ng-template>
       </nz-form-item>
 
@@ -108,12 +108,10 @@
         </nz-form-control>
         <ng-template let-control #errorPhone>
           <error [control]="control"></error>
-          <!-- ERRORS FROM SERVER -->
-          <ng-container *ngIf="control.hasError('errorMessageFromServer')">
-            <error-from-server
-              [error]="control.getError('errorMessageFromServer')"
-            ></error-from-server>
-          </ng-container>
+          <error-from-server
+            [byMessage]="true"
+            [error]="control.getError(ERROR_MESSAGE_FROM_SERVER)"
+          ></error-from-server>
         </ng-template>
       </nz-form-item>
 

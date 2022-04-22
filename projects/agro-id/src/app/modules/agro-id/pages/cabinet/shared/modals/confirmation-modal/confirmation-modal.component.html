@@ -66,9 +66,7 @@
         class="mt-1"
         [disabled]="!confirmationForm.form.valid"
         [nzLoading]="isWaitingResponse$ | async"
-        (click)="
-          sendActivationCodeToPhone(confirmationForm.getActivationCode())
-        "
+        (click)="sendActivationCode(confirmationForm.getActivationCode())"
       >
         {{ "confirm" | translate }}
       </button>

@@ -1,5 +1,5 @@
+import { HttpStatusCode } from '@angular/common/http';
 import { isDevMode } from '@angular/core';
-import { HttpResponseStatusCode } from '../config/http-response-code';
 import { SettingsHelperModel } from '../models/settings-helper.model';
 
 /**
@@ -24,7 +24,7 @@ export class SettingsHelper {
       xhr.open('GET', URL, true);
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === HttpResponseStatusCode.OK) {
+          if (xhr.status === HttpStatusCode.Ok) {
             this.settings = JSON.parse(xhr.responseText);
             resolve();
           } else {

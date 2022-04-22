@@ -35,6 +35,11 @@
   <div *ngIf="control.hasError('mustMatch')">
     {{ "musmatchPassword" | translate }}
   </div>
+
+  <!-- CONFIRMATION PASSWORD -->
+  <div *ngIf="control.hasError('notChanged')">
+    {{ "notChanged" | translate }}
+  </div>
 </ng-container>
 
 <ng-template #messageTemplate>

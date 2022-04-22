@@ -1,10 +1,42 @@
-<ng-container *ngFor="let language of language$ | async">
-  <button
-    nz-button
-    (click)="onChangeLanguage(language)"
-    [nzType]="currentLanguageCode === language.code ? 'text' : 'link'"
-  >
-    {{ language.short_name }}
-  </button>
-  <nz-divider nzType="vertical" class="m-0"></nz-divider>
-</ng-container>
+<div [ngSwitch]="template">
+  <ng-container *ngSwitchCase="'dropdown'">
+    <div nz-col nzXs="5" nzSm="3" nzMd="3" nzLg="2" nzXl="2" nzXXl="1">
+      <a
+        nz-button
+        nzShape="circle"
+        nzTrigger="click"
+        nz-dropdown
+        [nzDropdownMenu]="menu"
+      >
+        {{
+          (currentLanguageCode | currentLanguage: (language$ | async))
+            ?.short_name
+        }}
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="header__lang-btns">
+          <button
+            *ngFor="let language of language$ | async"
+            (click)="onChangeLanguage(language)"
+            nzShape="circle"
+            nz-button
+          >
+            {{ language.short_name }}
+          </button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </ng-container>
+  <div *ngSwitchDefault>
+    <ng-container *ngFor="let language of language$ | async">
+      <button
+        nz-button
+        (click)="onChangeLanguage(language)"
+        [nzType]="currentLanguageCode === language.code ? 'text' : 'link'"
+      >
+        {{ language.short_name }}
+      </button>
+      <nz-divider nzType="vertical" class="m-0"></nz-divider>
+    </ng-container>
+  </div>
+</div>

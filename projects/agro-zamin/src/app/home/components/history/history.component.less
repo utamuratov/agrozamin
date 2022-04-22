@@ -1,3 +1,117 @@
+@import "~swiper/less";
+@import "~swiper/less/effect-coverflow";
+@import "~swiper/less/pagination";
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.575);
+  backdrop-filter: blur(12px);
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 410px;
+  height: 730px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiperBtn {
+  position: fixed;
+  z-index: 7777;
+  top: 30px;
+  right: 30px;
+}
+
+.swipe-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  // background: rgba(0, 0, 0, 0.5);
+  // color: rgba(255, 255, 255, 0.5);
+  background: #000;
+  color: #fff;
+}
+
+.next-swipe {
+  position: fixed;
+  top: 50%;
+  right: 32%;
+  transform: translate(-50%, -50%);
+  z-index: 77777;
+}
+.prev-swipe {
+  position: fixed;
+  top: 50%;
+  left: 34%;
+  transform: translate(-50%, -50%);
+  z-index: 7777;
+}
+
+.swiper-card {
+  position: relative;
+  height: 100%;
+
+  &-progress {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 370px;
+
+    .progress {
+      display: block;
+      height: 4px;
+
+      background: #fff;
+      border-radius: 20px;
+    }
+
+    .line {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+    }
+  }
+
+  &-image {
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.history__swiper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6666;
+  height: 100%;
+}
+
+.swiper-block {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 5555;
+}
+
 .history {
   background: #fff4e8;
   padding: 70px 0;
@@ -40,8 +154,18 @@
   .carousel {
     height: 338px;
 
-    &__img {
+    &__block__img {
+      width: 190px;
+      height: 338px;
       border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
 

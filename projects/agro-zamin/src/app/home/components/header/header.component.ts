@@ -9,6 +9,8 @@ import { NzPlacementType } from 'ng-zorro-antd/dropdown';
   styleUrls: ['./header.component.less'],
 })
 export class HeaderComponent implements OnInit {
+  lang = '1'
+
   isOpened = false;
   activeLink!: number;
   visible = false;
@@ -976,5 +978,9 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:resize') onResize() {
     this.azDrawerWidthValue = this.azDrawerWidth();
+  }
+
+  setLang(num: string) {
+    this.lang = num
   }
 }

@@ -1,75 +1,96 @@
-import { Component, OnInit } from '@angular/core';
-
-export interface Values {
-  firstName: string;
-  lastName: string;
-  email: string | null;
-  phone: string | null;
-  login: string;
-}
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Profile } from '../../models/profile.interface';
 
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html',
   styleUrls: ['./personal.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PersonalComponent implements OnInit {
-  userNameModalVisible = false;
-  userEmailModalVisible = false;
-  userPhoneModalVisible = false;
-  userLoginModalVisible = false;
-  userPasswordModalVisible = false;
-  userAvatarModalVisible = false;
+export class PersonalComponent {
+  /**
+   *
+   */
+  profile!: Profile;
 
-  userInfo: Values = {
-    firstName: 'Тимур',
-    lastName: 'Мун',
-    email: 'shisudesign@outlook.com',
-    phone: null,
-    login: 'shisudesign',
-  };
+  /**
+   *
+   */
+  isVisibleModalEmail = false;
 
-  constructor() {}
+  /**
+   *
+   */
+  isVisibleModalPhone = false;
 
-  ngOnInit(): void {}
+  /**
+   *
+   */
+  isVisibleModalLogin = false;
 
-  showModal(type: string): void {
-    if (type === 'username') {
-      this.userNameModalVisible = true;
-    } else if (type === 'email') {
-      this.userEmailModalVisible = true;
-    } else if (type === 'phone') {
-      this.userPhoneModalVisible = true;
-    } else if (type === 'login') {
-      this.userLoginModalVisible = true;
-    } else if (type === 'password') {
-      this.userPasswordModalVisible = true;
-    } else if (type === 'avatar') {
-      this.userAvatarModalVisible = true;
-    }
+  /**
+   *
+   */
+  isVisibleModalPassword = false;
+
+  /**
+   *
+   */
+  isVisibleModalFullname = false;
+
+  /**
+   *
+   */
+  isVisibleModalAvatar = false;
+
+  /**
+   *
+   * @param route
+   */
+  constructor(private route: ActivatedRoute) {
+    this.profile = this.route.snapshot.data['profile'];
   }
 
-  handleUserNameVisible($event: boolean): void {
-    this.userNameModalVisible = $event;
+  /**
+   *
+   */
+  addEditEmail() {
+    this.isVisibleModalEmail = true;
   }
 
-  handleUserEmailVisible($event: boolean): void {
-    this.userEmailModalVisible = $event;
+  /**
+   *
+   */
+  addEditPhone() {
+    this.isVisibleModalPhone = true;
   }
 
-  handleUserPhoneVisible($event: boolean): void {
-    this.userPhoneModalVisible = $event;
+  /**
+   *
+   */
+  addEditLogin() {
+    this.isVisibleModalLogin = true;
   }
 
-  handleUserLoginVisible($event: boolean): void {
-    this.userLoginModalVisible = $event;
+  /**
+   *
+   */
+  editPassword() {
+    this.isVisibleModalPassword = true;
   }
 
-  handleUserPasswordVisible($event: boolean): void {
-    this.userPasswordModalVisible = $event;
+  /**
+   *
+   */
+  editFullname() {
+    this.isVisibleModalFullname = true;
   }
 
-  handleUserAvatarVisible($event: boolean): void {
-    this.userAvatarModalVisible = $event;
+  /**
+   *
+   */
+  addEditAvatar() {
+    this.isVisibleModalAvatar = true;
   }
 }
