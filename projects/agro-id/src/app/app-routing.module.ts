@@ -6,6 +6,7 @@ import { Constants, LanguageGuard, SEOResolver } from 'ngx-az-core';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
 import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { AgroZaminRoutingSharedModule } from 'projects/agro-zamin/src/app/app.module';
 
 const routes: Routes = [
   {
@@ -29,8 +30,15 @@ const routes: Routes = [
         children: [
           {
             path: '',
+            redirectTo: 'agro-zamin',
+            pathMatch: 'full',
+          },
+          {
+            path: 'agro-zamin',
             loadChildren: () =>
-              import('./pages/home/home.module').then((m) => m.HomeModule),
+              import('../../../agro-zamin/src/app/app.module').then(
+                (m) => m.AgroZaminRoutingSharedModule
+              ),
             canActivate: [AuthGuard],
             resolve: [SEOResolver],
             data: {
@@ -40,35 +48,35 @@ const routes: Routes = [
               },
             },
           },
-          {
-            path: 'market',
-            loadChildren: () =>
-              import('./modules/market/market.module').then(
-                (m) => m.MarketModule
-              ),
-            data: {
-              bc: 'market.breadcrumb',
-              meta: {
-                title: 'monitorTitle',
-                description: 'monitorDescription',
-              },
-            },
-          },
-          {
-            path: 'online-consultant',
-            loadChildren: () =>
-              import(
-                './modules/online-consultant/online-consultant.module'
-              ).then((m) => m.OnlineConsultantModule),
-            data: {
-              bc: 'onlineConsultant.breadcrumb',
-              meta: {
-                title: 'monitorTitle',
-                description: 'monitorDescription',
-              },
-            },
-            resolve: [SEOResolver],
-          },
+          // {
+          //   path: 'market',
+          //   loadChildren: () =>
+          //     import('./modules/market/market.module').then(
+          //       (m) => m.MarketModule
+          //     ),
+          //   data: {
+          //     bc: 'market.breadcrumb',
+          //     meta: {
+          //       title: 'monitorTitle',
+          //       description: 'monitorDescription',
+          //     },
+          //   },
+          // },
+          // {
+          //   path: 'online-consultant',
+          //   loadChildren: () =>
+          //     import(
+          //       './modules/online-consultant/online-consultant.module'
+          //     ).then((m) => m.OnlineConsultantModule),
+          //   data: {
+          //     bc: 'onlineConsultant.breadcrumb',
+          //     meta: {
+          //       title: 'monitorTitle',
+          //       description: 'monitorDescription',
+          //     },
+          //   },
+          //   resolve: [SEOResolver],
+          // },
         ],
       },
       {
@@ -98,7 +106,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    AgroZaminRoutingSharedModule.forRoot(),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

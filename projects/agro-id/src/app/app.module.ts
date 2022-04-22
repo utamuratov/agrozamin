@@ -1,4 +1,3 @@
-import { HomeComponent } from './pages/home/home.component';
 import { Injector, NgModule } from '@angular/core';
 
 import { HammerModule } from '@angular/platform-browser';
@@ -17,7 +16,6 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 import { LayoutComponent } from './components/layout/layout.component';
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { CookieService } from 'ngx-cookie-service';
 import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
@@ -26,6 +24,7 @@ import { RootLayoutComponent } from './components/root-layout/root-layout.compon
 import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { AgroZaminRoutingSharedModule } from 'projects/agro-zamin/src/app/app.module';
 
 registerLocaleData(ru);
 
@@ -35,12 +34,13 @@ registerLocaleData(ru);
     RootLayoutComponent,
 
     LayoutComponent,
-    BreadcrumbComponent,
     InternalServerErrorComponent,
     NotFoundPageComponent,
   ],
   imports: [
     AppRoutingModule,
+
+    AgroZaminRoutingSharedModule.forRoot(),
 
     /**
      * CUSTOM MODULES
