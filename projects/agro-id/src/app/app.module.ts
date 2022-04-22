@@ -1,4 +1,3 @@
-import { HomeComponent } from './pages/home/home.component';
 import { Injector, NgModule } from '@angular/core';
 
 import { HammerModule } from '@angular/platform-browser';
@@ -17,7 +16,6 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 import { LayoutComponent } from './components/layout/layout.component';
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { CookieService } from 'ngx-cookie-service';
 import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
@@ -35,7 +33,6 @@ registerLocaleData(ru);
     RootLayoutComponent,
 
     LayoutComponent,
-    BreadcrumbComponent,
     InternalServerErrorComponent,
     NotFoundPageComponent,
   ],

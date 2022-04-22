@@ -27,48 +27,48 @@ const routes: Routes = [
         component: LayoutComponent,
         canActivate: [LanguageGuard],
         children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('./pages/home/home.module').then((m) => m.HomeModule),
-            canActivate: [AuthGuard],
-            resolve: [SEOResolver],
-            data: {
-              meta: {
-                title: 'home.title',
-                description: 'home.description',
-              },
-            },
-          },
-          {
-            path: 'market',
-            loadChildren: () =>
-              import('./modules/market/market.module').then(
-                (m) => m.MarketModule
-              ),
-            data: {
-              bc: 'market.breadcrumb',
-              meta: {
-                title: 'monitorTitle',
-                description: 'monitorDescription',
-              },
-            },
-          },
-          {
-            path: 'online-consultant',
-            loadChildren: () =>
-              import(
-                './modules/online-consultant/online-consultant.module'
-              ).then((m) => m.OnlineConsultantModule),
-            data: {
-              bc: 'onlineConsultant.breadcrumb',
-              meta: {
-                title: 'monitorTitle',
-                description: 'monitorDescription',
-              },
-            },
-            resolve: [SEOResolver],
-          },
+          // {
+          //   path: '',
+          //   loadChildren: () =>
+          //     import('./pages/home/home.module').then((m) => m.HomeModule),
+          //   canActivate: [AuthGuard],
+          //   resolve: [SEOResolver],
+          //   data: {
+          //     meta: {
+          //       title: 'home.title',
+          //       description: 'home.description',
+          //     },
+          //   },
+          // },
+          // {
+          //   path: 'market',
+          //   loadChildren: () =>
+          //     import('./modules/market/market.module').then(
+          //       (m) => m.MarketModule
+          //     ),
+          //   data: {
+          //     bc: 'market.breadcrumb',
+          //     meta: {
+          //       title: 'monitorTitle',
+          //       description: 'monitorDescription',
+          //     },
+          //   },
+          // },
+          // {
+          //   path: 'online-consultant',
+          //   loadChildren: () =>
+          //     import(
+          //       './modules/online-consultant/online-consultant.module'
+          //     ).then((m) => m.OnlineConsultantModule),
+          //   data: {
+          //     bc: 'onlineConsultant.breadcrumb',
+          //     meta: {
+          //       title: 'monitorTitle',
+          //       description: 'monitorDescription',
+          //     },
+          //   },
+          //   resolve: [SEOResolver],
+          // },
         ],
       },
       {
