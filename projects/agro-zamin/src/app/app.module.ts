@@ -23,21 +23,22 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FooterComponent } from './home/components/footer/footer.component';
-import { AppRoutes } from './app.routing';
 
 registerLocaleData(ru);
 
 const providers = [{ provide: NZ_I18N, useValue: ru_RU }];
 
 @NgModule({
-  declarations: [AppComponent, RootLayoutComponent, LayoutComponent,
+  declarations: [
+    AppComponent,
+    RootLayoutComponent,
+    LayoutComponent,
     HeaderComponent,
     FooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AppRoutes,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -56,8 +57,7 @@ const providers = [{ provide: NZ_I18N, useValue: ru_RU }];
     NzDrawerModule,
     NzDividerModule,
     NzButtonModule,
-    NzIconModule
-
+    NzIconModule,
   ],
   providers: providers,
   bootstrap: [AppComponent],

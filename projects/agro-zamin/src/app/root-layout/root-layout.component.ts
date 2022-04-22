@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: '<router-outlet></router-outlet>'
+  template: `
+    <az-header></az-header>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+    <az-footer></az-footer>
+  `,
 })
-export class RootLayoutComponent {
-}
+export class RootLayoutComponent {}

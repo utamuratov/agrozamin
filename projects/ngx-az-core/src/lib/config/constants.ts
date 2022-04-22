@@ -73,4 +73,5 @@ export class Constants {
    */
   public static readonly AGROZAMIN_PREFIX_ROUTE_PATH = 'az';
   public static readonly AGROID_ROUTE_PATH = 'agro-id';
+  public static readonly AGRO_ZAMIN_ROUTE_PATH = 'agro-zamin';
 }

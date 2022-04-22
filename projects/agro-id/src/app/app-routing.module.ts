@@ -30,11 +30,11 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            redirectTo: 'agro-zamin',
+            redirectTo: Constants.AGRO_ZAMIN_ROUTE_PATH,
             pathMatch: 'full',
           },
           {
-            path: 'agro-zamin',
+            path: Constants.AGRO_ZAMIN_ROUTE_PATH,
             loadChildren: () =>
               import('../../../agro-zamin/src/app/app.module').then(
                 (m) => m.AgroZaminRoutingSharedModule
@@ -48,35 +48,6 @@ const routes: Routes = [
               },
             },
           },
-          // {
-          //   path: 'market',
-          //   loadChildren: () =>
-          //     import('./modules/market/market.module').then(
-          //       (m) => m.MarketModule
-          //     ),
-          //   data: {
-          //     bc: 'market.breadcrumb',
-          //     meta: {
-          //       title: 'monitorTitle',
-          //       description: 'monitorDescription',
-          //     },
-          //   },
-          // },
-          // {
-          //   path: 'online-consultant',
-          //   loadChildren: () =>
-          //     import(
-          //       './modules/online-consultant/online-consultant.module'
-          //     ).then((m) => m.OnlineConsultantModule),
-          //   data: {
-          //     bc: 'onlineConsultant.breadcrumb',
-          //     meta: {
-          //       title: 'monitorTitle',
-          //       description: 'monitorDescription',
-          //     },
-          //   },
-          //   resolve: [SEOResolver],
-          // },
         ],
       },
       {
