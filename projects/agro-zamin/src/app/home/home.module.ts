@@ -29,10 +29,10 @@ import { NzCascaderModule } from 'ng-zorro-antd/cascader';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { ServiceComponent } from './components/servis/service.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { FilterPipe } from './components/header/pipes/filter.pipe';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzBackTopModule } from 'ng-zorro-antd/back-top';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
@@ -57,7 +57,9 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
     NzCardModule,
     NzIconModule,
     NzPopoverModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzBackTopModule,
+    SwiperModule
   ],
   declarations: [
     HomeComponent,
@@ -71,8 +73,8 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
     CatalogMembersComponent,
     PartnersComponent,
     AgrozaminAppComponent,
-    HeaderComponent,
-    FooterComponent,
+    
+    
     FilterPipe,
     ServiceComponent,
   ],
