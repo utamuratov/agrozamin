@@ -24,6 +24,7 @@ import { RootLayoutComponent } from './components/root-layout/root-layout.compon
 import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { AgroZaminRoutingSharedModule } from 'projects/agro-zamin/src/app/app.module';
 
 registerLocaleData(ru);
 
@@ -38,6 +39,8 @@ registerLocaleData(ru);
   ],
   imports: [
     AppRoutingModule,
+
+    AgroZaminRoutingSharedModule.forRoot(),
 
     /**
      * CUSTOM MODULES

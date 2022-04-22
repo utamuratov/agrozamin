@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injector, ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,21 +10,43 @@ import ru from '@angular/common/locales/ru';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RootLayoutComponent } from './root-layout/root-layout.component';
+import { LayoutComponent } from './layout/layout.component';
+import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
 
 registerLocaleData(ru);
 
+const providers = [{ provide: NZ_I18N, useValue: ru_RU }];
+
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, RootLayoutComponent, LayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
+    /**
+     * CUSTOM MODULES
+     */
+    NgxAzCoreModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: ru_RU }],
-  bootstrap: [AppComponent]
+  providers: providers,
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector) {
+    InjectorHelper.injector = this.injector;
+  }
+}
+
+@NgModule({})
+export class AgroZaminRoutingSharedModule {
+  static forRoot(): ModuleWithProviders<AppModule> {
+    return {
+      ngModule: AppModule,
+      providers: providers,
+    };
+  }
+}

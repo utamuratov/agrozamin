@@ -6,6 +6,7 @@ import { Constants, LanguageGuard, SEOResolver } from 'ngx-az-core';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
 import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { AgroZaminRoutingSharedModule } from 'projects/agro-zamin/src/app/app.module';
 
 const routes: Routes = [
   {
@@ -27,19 +28,26 @@ const routes: Routes = [
         component: LayoutComponent,
         canActivate: [LanguageGuard],
         children: [
-          // {
-          //   path: '',
-          //   loadChildren: () =>
-          //     import('./pages/home/home.module').then((m) => m.HomeModule),
-          //   canActivate: [AuthGuard],
-          //   resolve: [SEOResolver],
-          //   data: {
-          //     meta: {
-          //       title: 'home.title',
-          //       description: 'home.description',
-          //     },
-          //   },
-          // },
+          {
+            path: '',
+            redirectTo: 'agro-zamin',
+            pathMatch: 'full',
+          },
+          {
+            path: 'agro-zamin',
+            loadChildren: () =>
+              import('../../../agro-zamin/src/app/app.module').then(
+                (m) => m.AgroZaminRoutingSharedModule
+              ),
+            canActivate: [AuthGuard],
+            resolve: [SEOResolver],
+            data: {
+              meta: {
+                title: 'home.title',
+                description: 'home.description',
+              },
+            },
+          },
           // {
           //   path: 'market',
           //   loadChildren: () =>
@@ -98,7 +106,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    AgroZaminRoutingSharedModule.forRoot(),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
