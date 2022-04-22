@@ -50,15 +50,49 @@
                 <div nz-col nzSpan="24" class="text-end">
                   <span nz-typography class="select-desc">Язык:</span>
                   <nz-select
-                    ngModel="1"
+                    [(ngModel)]="lang"
                     nzBorderless
                     class="nav__select"
                     style="padding-right: 0"
+                    [nzDropdownMatchSelectWidth]="false"
+                    [nzOptionHeightPx]="35"
                   >
-                    <nz-option nzValue="1" nzLabel="Русский"></nz-option>
-                    <nz-option nzValue="2" nzLabel="Узбекча"></nz-option>
-                    <nz-option nzValue="3" nzLabel="O'zbekcha"></nz-option>
-                    <nz-option nzValue="4" nzLabel="English"></nz-option>
+                    <nz-option nzCustomContent nzValue="2" nzLabel="Ўзбекча">
+                      <div class="nav__select__option">
+                        <img
+                          src="../../../../assets/images/agrozamin/uzbekistan-flag.png"
+                          alt=""
+                        />
+                        <span style=" margin-left: 8px;">Ўзбекча</span>
+                      </div>
+                    </nz-option>
+                    <nz-option nzCustomContent nzValue="3" nzLabel="O'zbekcha">
+                      <div class="nav__select__option">
+                        <img
+                          src="../../../../assets/images/agrozamin/uzbekistan-flag.png"
+                          alt=""
+                        />
+                        <span style=" margin-left: 8px;">O'zbekcha</span>
+                      </div>
+                    </nz-option>
+                    <nz-option nzCustomContent nzValue="1" nzLabel="Русский">
+                      <div class="nav__select__option">
+                        <img
+                          src="../../../../assets/images/agrozamin/russia-flag.png"
+                          alt=""
+                        />
+                        <span style=" margin-left: 8px;">Русский</span>
+                      </div>
+                    </nz-option>
+                    <nz-option nzCustomContent nzValue="4" nzLabel="English">
+                      <div class="nav__select__option">
+                        <img
+                          src="../../../../assets/images/agrozamin/english-uk-flag.png"
+                          alt=""
+                        />
+                        <span style=" margin-left: 8px;">English</span>
+                      </div>
+                    </nz-option>
                   </nz-select>
                 </div>
               </div>
@@ -99,8 +133,14 @@
               </div>
             </div>
 
-            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" [nzXl]="isAuth ? 5 : 3">
-
+            <div
+              nz-col
+              nzXs="0"
+              nzSm="0"
+              nzMd="0"
+              nzLg="0"
+              [nzXl]="isAuth ? 5 : 3"
+            >
               <div nz-row [nzGutter]="[8, 0]" nzJustify="end">
                 <div nz-col *ngIf="isAuth">
                   <button nz-button nzType="default" nzSize="large">
@@ -112,14 +152,11 @@
                   <button
                     nz-button
                     nzType="default"
-                    nzSize="large"
-                    nz-button
+                    nzSize="large"                 
                     nz-popover
-                    [(nzPopoverVisible)]="visibleServicesPopover"
-                    (nzPopoverVisibleChange)="change($event)"
-                    nzPopoverTrigger="click"
-                    [nzPopoverContent]="servicesPopover"
-                    nzPopoverPlacement="leftBottom"
+                    nzPopoverTrigger="click"         
+                    [nzPopoverContent]="contentTemplate"
+                    nzPopoverPlacement="bottomRight"
                   >
                     <i
                       ><img
@@ -128,7 +165,7 @@
                     /></i>
                   </button>
                 </div>
-                
+
                 <div nz-col>
                   <button
                     nz-button
@@ -148,15 +185,49 @@
                 <div nz-col nzSpan="24" class="text-end">
                   <span nz-typography class="select-desc">Язык:</span>
                   <nz-select
-                    ngModel="1"
+                    [(ngModel)]="lang"
                     nzBorderless
                     class="nav__select"
                     style="padding-right: 0"
+                    [nzDropdownMatchSelectWidth]="false"
+                    [nzOptionHeightPx]="35"
                   >
-                    <nz-option nzValue="1" nzLabel="Русский"></nz-option>
-                    <nz-option nzValue="2" nzLabel="Узбекча"></nz-option>
-                    <nz-option nzValue="3" nzLabel="O'zbekcha"></nz-option>
-                    <nz-option nzValue="4" nzLabel="English"></nz-option>
+                    <nz-option nzCustomContent nzValue="2" nzLabel="Ўзбекча">
+                      <div class="nav__select__option">
+                        <img
+                          src="../../../../assets/images/agrozamin/uzbekistan-flag.png"
+                          alt=""
+                        />
+                        <span style=" margin-left: 8px;">Ўзбекча</span>
+                      </div>
+                    </nz-option>
+                    <nz-option nzCustomContent nzValue="3" nzLabel="O'zbekcha">
+                      <div class="nav__select__option">
+                        <img
+                          src="../../../../assets/images/agrozamin/uzbekistan-flag.png"
+                          alt=""
+                        />
+                        <span style=" margin-left: 8px;">O'zbekcha</span>
+                      </div>
+                    </nz-option>
+                    <nz-option nzCustomContent nzValue="1" nzLabel="Русский">
+                      <div class="nav__select__option">
+                        <img
+                          src="../../../../assets/images/agrozamin/russia-flag.png"
+                          alt=""
+                        />
+                        <span style=" margin-left: 8px;">Русский</span>
+                      </div>
+                    </nz-option>
+                    <nz-option nzCustomContent nzValue="4" nzLabel="English">
+                      <div class="nav__select__option">
+                        <img
+                          src="../../../../assets/images/agrozamin/english-uk-flag.png"
+                          alt=""
+                        />
+                        <span style=" margin-left: 8px;">English</span>
+                      </div>
+                    </nz-option>
                   </nz-select>
                 </div>
               </div>
@@ -456,10 +527,8 @@
   </ng-container>
 </nz-drawer>
  -->
-<!-- SERVICES POPUP -->
-<ng-template #servicesPopover>
-  <a (click)="clickMe()">Close</a>
-</ng-template>
+               
+
 
 <nz-drawer
   [nzClosable]="false"
@@ -491,39 +560,72 @@
                   nzSize="large"
                   (click)="closeAz()"
                 >
-                <i nz-icon nzType="close" nzTheme="outline"></i>
+                  <i nz-icon nzType="close" nzTheme="outline"></i>
                 </button>
               </div>
             </div>
           </div>
         </div>
+
+        <div nz-col nzXs="24" nzSm="0">
+          <div class="az-drawer__language">
+            <p nz-typography class="az-drawer__language__title">
+              Язык
+            </p>
+
+            <div nz-row [nzGutter]="[20, 20]">
+              <div nz-col  nzSpan="12">
+                <button nzBlock nz-button nzType="default" [disabled]="'2' === lang" (click)="setLang('2')">
+                  Ўзбекча
+                </button>
+              </div>
+              <div nz-col nzSpan="12">
+                <button nzBlock nz-button nzType="default" [disabled]="'3' === lang" (click)="setLang('3')">
+                  O'zbekcha
+                </button>
+              </div>
+              <div nz-col nzSpan="12">
+                <button nzBlock nz-button nzType="default" [disabled]="'1' === lang" (click)="setLang('1')">
+                  Русский
+                </button>
+              </div>
+              <div nz-col nzSpan="12">
+                <button nzBlock nz-button nzType="default" [disabled]="'4' === lang" (click)="setLang('4')">
+                  English
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div nz-col nzSpan="24">
           <div class="az-drawer_padding">
-            <p nz-typography class="az-drawer__title">Другие площадки экосистемы</p>
+            <p nz-typography class="az-drawer__title">
+              Другие площадки экосистемы
+            </p>
 
-          <div nz-row [nzGutter]="[0, 20]">
-
-            <div nz-col *ngFor="let service of services" nzSpan="24">
-              <div nz-row nzAlign="middle" [nzGutter]="[16, 0]">
-                <div nz-col>
-                  <div class="az-drawer__service-image">
-                    <img [src]="service.logo" alt="service logo">
+            <div nz-row [nzGutter]="[0, 20]">
+              <div nz-col *ngFor="let service of services" nzSpan="24">
+                <div nz-row nzAlign="middle" [nzGutter]="[16, 0]">
+                  <div nz-col>
+                    <div class="az-drawer__service-image">
+                      <img [src]="service.logo" alt="service logo" />
+                    </div>
                   </div>
-                </div>
-                <div nz-col>
-                  <h6 nz-typography class="az-drawer__service-name">{{service.name}}</h6>
+                  <div nz-col>
+                    <h6 nz-typography class="az-drawer__service-name">
+                      {{ service.name }}
+                    </h6>
+                  </div>
                 </div>
               </div>
             </div>
-
           </div>
-          </div>
-
         </div>
         <nz-divider class="divider"></nz-divider>
         <div nz-col nzSpan="24">
           <div class="az-drawer_padding">
-            <ul nz-row>
+            <ul nz-row [nzGutter]="[0, 20]">
               <li nz-col nzSpan="24">
                 <a nz-button nzType="link" class="az-drawer__link">
                   <i nz-icon nzType="info-circle" nzTheme="outline"></i>
@@ -548,10 +650,9 @@
         <nz-divider class="divider"></nz-divider>
         <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0">
           <div class="az-drawer_padding bot">
-            <div nz-row [nzGutter]="[0, 24]">
+            <div nz-row [nzGutter]="[0, 30]">
               <div nz-col nzSpan="24">
-                <a href="tel:998781500088"
-                class="az-drawer__contacts"
+                <a href="tel:998781500088" class="az-drawer__contacts"
                   ><img
                     src="../../../assets/images/agrozamin/phone-icon.svg"
                     alt="icon"
@@ -559,7 +660,7 @@
                 >
               </div>
               <div nz-col nzSpan="24">
-                <a  class="az-drawer__contacts"
+                <a class="az-drawer__contacts"
                   ><img
                     src="./assets/images/agrozamin/chat-icon.svg"
                     alt="icon"
@@ -573,3 +674,38 @@
     </div>
   </ng-container>
 </nz-drawer>
+
+
+<!-- SERVICES POPUP -->
+
+<ng-template #contentTemplate>
+  <div class="agrozaminEkoSystem">
+    <div  nz-row class="agrozaminEkoSystem__container">
+      <div class="agrozaminEkoSystem__container__head" nz-col nzSpan="19">
+        <h3 >Экосистема Agrozamin</h3>
+        <p>Технологии для развития сельского хозяйства в едином цифровом  пространстве</p>
+        <h6>Другие площадки экосистемы</h6>
+      </div>
+      <div class="agrozaminEkoSystem__container__body" *ngFor="let index of agrozaminEkoSystem; let isLast = last" nz-col nzSpan="24">
+        <div nz-row [nzGutter]="[20,0]" nzAlign="middle">
+          <div nz-col nzSpan="6" class="agrozaminEkoSystem__container__body__img">
+            <div>
+              <img [src]="index.img" alt="">
+            </div>
+          </div>
+          <div nz-col nzSpan="18" >
+            <div class="agrozaminEkoSystem__container__body__text" nz-row [nzGutter]="[0,8]">
+              <div nz-col nzSpan="24">
+                <h3>{{index.title}}</h3>
+              </div>
+              <div nz-col nzSpan="24">
+                <p>{{index.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nz-divider *ngIf="!isLast"></nz-divider>
+      </div>
+    </div>
+  </div>
+</ng-template>

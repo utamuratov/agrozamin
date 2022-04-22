@@ -26,4 +26,9 @@ export class HomeComponent {
   //     console.log(w);
   //   });
   // }
+
+
+  notify(): void {
+    console.log('notify');
+  }
 }

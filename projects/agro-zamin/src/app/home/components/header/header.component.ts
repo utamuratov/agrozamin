@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
+import { NzPlacementType } from 'ng-zorro-antd/dropdown';
 
 @Component({
   selector: 'az-header',
@@ -8,6 +9,8 @@ import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
   styleUrls: ['./header.component.less'],
 })
 export class HeaderComponent implements OnInit {
+  lang = '1'
+
   isOpened = false;
   activeLink!: number;
   visible = false;
@@ -33,6 +36,35 @@ export class HeaderComponent implements OnInit {
   regionsChild: any = [];
 
   regionsValue: any = [];
+
+  agrozaminEkoSystem = [
+    {
+      img: `../../../../assets/images/agrozamin/O'zimizniki-logo.png`,
+      title: 'O’zimizniki',
+      description: 'Онлайн платформа для размещения объявлений. Продажа и покупка товаров'
+    },
+    {
+      img: '../../../../assets/images/agrozamin/AgroBussiness-logo.png',
+      title: 'AgroBusiness',
+      description: 'Маркетплейс по продаже и покупке товаров в больших количествах'
+    },
+    {
+      img: '../../../../assets/images/agrozamin/AgroConsult-logo.png',
+      title: 'AgroConsult',
+      description: 'Интенсивные курсы от Агробанка по защите растений, проводят международные специалисты в этой области.'
+    },
+    {
+      img: '../../../../assets/images/agrozamin/FermerlarMaktabi-logo.png',
+      title: 'Fermerlar Maktabi',
+      description: 'Проект по обучению молодых людей использованию новейших инновационных технологий в с/х производстве.'
+    },
+    {
+      img: '../../../../assets/images/agrozamin/Agrolab-logo.png',
+      title: 'Agrolab',
+      description: 'Интенсивные курсы от Агробанка по защите растений, проводят международные специалисты в этой области.'
+    }
+  ]
+
 
   categories = [
     {
@@ -946,5 +978,9 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:resize') onResize() {
     this.azDrawerWidthValue = this.azDrawerWidth();
+  }
+
+  setLang(num: string) {
+    this.lang = num
   }
 }
