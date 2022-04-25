@@ -1,0 +1,110 @@
+.sign-up {
+  height: 100vh;
+
+  &__left_bg {
+    background: url("../../../../../../agro-id/src/assets/images/agro-id-images/4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right center;
+    height: 100%;
+    position: relative;
+
+    .shadow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to top left,
+        rgba(255, 255, 255, 0.027),
+        rgba(0, 0, 0, 0.753)
+      );
+    }
+  }
+
+  .logo {
+    color: #fff;
+    font-size: 48px;
+    font-weight: 700;
+    margin-top: 5vh;
+  }
+
+  &__description {
+    margin-top: 10vh;
+  }
+
+  &__title {
+    font-weight: 700;
+    color: #fff;
+  }
+
+  &__text {
+    color: #fff;
+    margin-bottom: 3.5vh;
+  }
+}
+
+.large-title {
+  font-size: 64px;
+  line-height: 96px;
+}
+
+.medium-title {
+  font-size: 50px;
+  line-height: 72px;
+}
+
+.small-title {
+  font-size: 38px;
+  line-height: 48px;
+}
+
+.large-text {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.medium-text {
+  font-size: 19px;
+  line-height: 26px;
+}
+
+.small-text {
+  font-size: 19px;
+  line-height: 26px;
+}
+
+.triangle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 240px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 1605px) {
+    width: 200px;
+  }
+  @media (max-width: 760px) {
+    width: 140px;
+  }
+  @media (max-width: 576px) {
+    width: 190px;
+  }
+}
+
+.back {
+  background-image: url(../../../../../../agro-id/src/assets/images/agro-id-images/greyBg.jpg);
+  background-size: 300px 300px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  opacity: 0.08;
+
+  .imageback {
+    z-index: 100000;
+  }
+}
