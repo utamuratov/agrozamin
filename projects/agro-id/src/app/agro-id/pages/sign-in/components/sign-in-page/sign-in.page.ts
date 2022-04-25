@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'projects/agro-id/src/app/core/services/auth/auth.service';
 import { map, Observable, startWith } from 'rxjs';
 import { Constants, markAllAsDirty, SignInRequest } from 'ngx-az-core';
@@ -27,7 +27,8 @@ export class SignInPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private $auth: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   /**
@@ -79,7 +80,9 @@ export class SignInPage implements OnInit {
     this.isWaitingResponse$ = this.$auth.signIn(model).pipe(
       map((result) => {
         if (result.success) {
-          this.router.navigate(['/']);
+          this.router.navigate(['../', Constants.AGRO_ZAMIN_ROUTE_PATH], {
+            relativeTo: this.route,
+          });
         }
 
         return false;

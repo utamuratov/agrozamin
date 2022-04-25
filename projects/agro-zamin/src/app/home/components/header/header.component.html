@@ -63,7 +63,7 @@
                           src="../../../../assets/images/agrozamin/uzbekistan-flag.png"
                           alt=""
                         />
-                        <span style=" margin-left: 8px;">Ўзбекча</span>
+                        <span style="margin-left: 8px">Ўзбекча</span>
                       </div>
                     </nz-option>
                     <nz-option nzCustomContent nzValue="3" nzLabel="O'zbekcha">
@@ -72,7 +72,7 @@
                           src="../../../../assets/images/agrozamin/uzbekistan-flag.png"
                           alt=""
                         />
-                        <span style=" margin-left: 8px;">O'zbekcha</span>
+                        <span style="margin-left: 8px">O'zbekcha</span>
                       </div>
                     </nz-option>
                     <nz-option nzCustomContent nzValue="1" nzLabel="Русский">
@@ -81,7 +81,7 @@
                           src="../../../../assets/images/agrozamin/russia-flag.png"
                           alt=""
                         />
-                        <span style=" margin-left: 8px;">Русский</span>
+                        <span style="margin-left: 8px">Русский</span>
                       </div>
                     </nz-option>
                     <nz-option nzCustomContent nzValue="4" nzLabel="English">
@@ -90,7 +90,7 @@
                           src="../../../../assets/images/agrozamin/english-uk-flag.png"
                           alt=""
                         />
-                        <span style=" margin-left: 8px;">English</span>
+                        <span style="margin-left: 8px">English</span>
                       </div>
                     </nz-option>
                   </nz-select>
@@ -152,9 +152,9 @@
                   <button
                     nz-button
                     nzType="default"
-                    nzSize="large"                 
+                    nzSize="large"
                     nz-popover
-                    nzPopoverTrigger="click"         
+                    nzPopoverTrigger="click"
                     [nzPopoverContent]="contentTemplate"
                     nzPopoverPlacement="bottomRight"
                   >
@@ -198,7 +198,7 @@
                           src="../../../../assets/images/agrozamin/uzbekistan-flag.png"
                           alt=""
                         />
-                        <span style=" margin-left: 8px;">Ўзбекча</span>
+                        <span style="margin-left: 8px">Ўзбекча</span>
                       </div>
                     </nz-option>
                     <nz-option nzCustomContent nzValue="3" nzLabel="O'zbekcha">
@@ -207,7 +207,7 @@
                           src="../../../../assets/images/agrozamin/uzbekistan-flag.png"
                           alt=""
                         />
-                        <span style=" margin-left: 8px;">O'zbekcha</span>
+                        <span style="margin-left: 8px">O'zbekcha</span>
                       </div>
                     </nz-option>
                     <nz-option nzCustomContent nzValue="1" nzLabel="Русский">
@@ -216,7 +216,7 @@
                           src="../../../../assets/images/agrozamin/russia-flag.png"
                           alt=""
                         />
-                        <span style=" margin-left: 8px;">Русский</span>
+                        <span style="margin-left: 8px">Русский</span>
                       </div>
                     </nz-option>
                     <nz-option nzCustomContent nzValue="4" nzLabel="English">
@@ -225,7 +225,7 @@
                           src="../../../../assets/images/agrozamin/english-uk-flag.png"
                           alt=""
                         />
-                        <span style=" margin-left: 8px;">English</span>
+                        <span style="margin-left: 8px">English</span>
                       </div>
                     </nz-option>
                   </nz-select>
@@ -527,8 +527,6 @@
   </ng-container>
 </nz-drawer>
  -->
-               
-
 
 <nz-drawer
   [nzClosable]="false"
@@ -569,28 +567,50 @@
 
         <div nz-col nzXs="24" nzSm="0">
           <div class="az-drawer__language">
-            <p nz-typography class="az-drawer__language__title">
-              Язык
-            </p>
+            <p nz-typography class="az-drawer__language__title">Язык</p>
 
             <div nz-row [nzGutter]="[20, 20]">
-              <div nz-col  nzSpan="12">
-                <button nzBlock nz-button nzType="default" [disabled]="'2' === lang" (click)="setLang('2')">
+              <div nz-col nzSpan="12">
+                <button
+                  nzBlock
+                  nz-button
+                  nzType="default"
+                  [disabled]="'2' === lang"
+                  (click)="setLang('2')"
+                >
                   Ўзбекча
                 </button>
               </div>
               <div nz-col nzSpan="12">
-                <button nzBlock nz-button nzType="default" [disabled]="'3' === lang" (click)="setLang('3')">
+                <button
+                  nzBlock
+                  nz-button
+                  nzType="default"
+                  [disabled]="'3' === lang"
+                  (click)="setLang('3')"
+                >
                   O'zbekcha
                 </button>
               </div>
               <div nz-col nzSpan="12">
-                <button nzBlock nz-button nzType="default" [disabled]="'1' === lang" (click)="setLang('1')">
+                <button
+                  nzBlock
+                  nz-button
+                  nzType="default"
+                  [disabled]="'1' === lang"
+                  (click)="setLang('1')"
+                >
                   Русский
                 </button>
               </div>
               <div nz-col nzSpan="12">
-                <button nzBlock nz-button nzType="default" [disabled]="'4' === lang" (click)="setLang('4')">
+                <button
+                  nzBlock
+                  nz-button
+                  nzType="default"
+                  [disabled]="'4' === lang"
+                  (click)="setLang('4')"
+                >
                   English
                 </button>
               </div>
@@ -675,31 +695,46 @@
   </ng-container>
 </nz-drawer>
 
-
 <!-- SERVICES POPUP -->
 
 <ng-template #contentTemplate>
   <div class="agrozaminEkoSystem">
-    <div  nz-row class="agrozaminEkoSystem__container">
+    <div nz-row class="agrozaminEkoSystem__container">
       <div class="agrozaminEkoSystem__container__head" nz-col nzSpan="19">
-        <h3 >Экосистема Agrozamin</h3>
-        <p>Технологии для развития сельского хозяйства в едином цифровом  пространстве</p>
+        <h3>Экосистема Agrozamin</h3>
+        <p>
+          Технологии для развития сельского хозяйства в едином цифровом
+          пространстве
+        </p>
         <h6>Другие площадки экосистемы</h6>
       </div>
-      <div class="agrozaminEkoSystem__container__body" *ngFor="let index of agrozaminEkoSystem; let isLast = last" nz-col nzSpan="24">
-        <div nz-row [nzGutter]="[20,0]" nzAlign="middle">
-          <div nz-col nzSpan="6" class="agrozaminEkoSystem__container__body__img">
+      <div
+        class="agrozaminEkoSystem__container__body"
+        *ngFor="let index of agrozaminEkoSystem; let isLast = last"
+        nz-col
+        nzSpan="24"
+      >
+        <div nz-row [nzGutter]="[20, 0]" nzAlign="middle">
+          <div
+            nz-col
+            nzSpan="6"
+            class="agrozaminEkoSystem__container__body__img"
+          >
             <div>
-              <img [src]="index.img" alt="">
+              <img [src]="index.img" alt="" />
             </div>
           </div>
-          <div nz-col nzSpan="18" >
-            <div class="agrozaminEkoSystem__container__body__text" nz-row [nzGutter]="[0,8]">
+          <div nz-col nzSpan="18">
+            <div
+              class="agrozaminEkoSystem__container__body__text"
+              nz-row
+              [nzGutter]="[0, 8]"
+            >
               <div nz-col nzSpan="24">
-                <h3>{{index.title}}</h3>
+                <h3>{{ index.title }}</h3>
               </div>
               <div nz-col nzSpan="24">
-                <p>{{index.description}}</p>
+                <p>{{ index.description }}</p>
               </div>
             </div>
           </div>

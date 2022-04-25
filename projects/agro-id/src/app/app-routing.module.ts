@@ -50,11 +50,11 @@ const routes: Routes = [
     path: 'internal-server-error',
     component: InternalServerErrorComponent,
   },
-  {
-    path: '**',
-    pathMatch: 'full',
-    redirectTo: `${Constants.AGROZAMIN_PREFIX_ROUTE_PATH}/${Constants.DEFAULT_LANGUAGE_CODE}/404`,
-  },
+  // {
+  //   path: '**',
+  //   pathMatch: 'full',
+  //   redirectTo: `${Constants.AGROZAMIN_PREFIX_ROUTE_PATH}/${Constants.DEFAULT_LANGUAGE_CODE}/404`,
+  // },
 ];
 
 @NgModule({
