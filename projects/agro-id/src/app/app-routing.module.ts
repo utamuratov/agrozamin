@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
-import { AuthGuard } from './core/guards/auth.guard';
-import { Constants, LanguageGuard, SEOResolver } from 'ngx-az-core';
+import { Constants, LanguageGuard } from 'ngx-az-core';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
 import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
-import { AgroZaminRoutingSharedModule } from 'projects/agro-zamin/src/app/app.module';
 
 const routes: Routes = [
   {
@@ -30,33 +28,16 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            redirectTo: Constants.AGRO_ZAMIN_ROUTE_PATH,
+            redirectTo: Constants.AGROID_ROUTE_PATH,
             pathMatch: 'full',
           },
           {
-            path: Constants.AGRO_ZAMIN_ROUTE_PATH,
+            path: Constants.AGROID_ROUTE_PATH,
             loadChildren: () =>
-              import('../../../agro-zamin/src/app/app.module').then(
-                (m) => m.AgroZaminRoutingSharedModule
-              ),
-            canActivate: [AuthGuard],
-            resolve: [SEOResolver],
-            data: {
-              meta: {
-                title: 'home.title',
-                description: 'home.description',
-              },
-            },
+              import('./agro-id/agro-id.module').then((m) => m.AgroIdModule),
+            canActivate: [LanguageGuard],
           },
         ],
-      },
-      {
-        path: `:language/${Constants.AGROID_ROUTE_PATH}`,
-        loadChildren: () =>
-          import('./modules/agro-id/agro-id.module').then(
-            (m) => m.AgroIdModule
-          ),
-        canActivate: [LanguageGuard],
       },
       {
         path: ':language/404',
@@ -77,10 +58,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-    AgroZaminRoutingSharedModule.forRoot(),
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

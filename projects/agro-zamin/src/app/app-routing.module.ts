@@ -25,19 +25,16 @@ const routes: Routes = [
         canActivate: [LanguageGuard],
         children: [
           {
-            path: Constants.AGRO_ZAMIN_ROUTE_PATH,
-            loadChildren: () =>
-              import('./home/home.module').then((m) => m.HomeModule),
-          },
-          {
             path: '',
             redirectTo: Constants.AGRO_ZAMIN_ROUTE_PATH,
             pathMatch: 'full',
           },
           {
-            path: 'about',
+            path: Constants.AGRO_ZAMIN_ROUTE_PATH,
             loadChildren: () =>
-              import('./about/about.module').then((m) => m.AboutModule),
+              import('./agro-zamin/agro-zamin.module').then(
+                (m) => m.AgroZaminModule
+              ),
           },
         ],
       },

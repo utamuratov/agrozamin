@@ -1,4 +1,4 @@
-import { Injector, NgModule } from '@angular/core';
+import { Injector, ModuleWithProviders, NgModule } from '@angular/core';
 
 import { HammerModule } from '@angular/platform-browser';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
@@ -24,9 +24,17 @@ import { RootLayoutComponent } from './components/root-layout/root-layout.compon
 import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { AgroZaminRoutingSharedModule } from 'projects/agro-zamin/src/app/app.module';
 
 registerLocaleData(ru);
+
+const providers = [
+  { provide: NZ_I18N, useValue: ru_RU },
+  CookieService,
+  // {
+  //   provide: HAMMER_GESTURE_CONFIG,
+  //   useClass: MyHammerConfig,
+  // },
+];
 
 @NgModule({
   declarations: [
@@ -39,8 +47,6 @@ registerLocaleData(ru);
   ],
   imports: [
     AppRoutingModule,
-
-    AgroZaminRoutingSharedModule.forRoot(),
 
     /**
      * CUSTOM MODULES
@@ -59,18 +65,21 @@ registerLocaleData(ru);
     NzBreadCrumbModule,
     NzSpinModule,
   ],
-  providers: [
-    { provide: NZ_I18N, useValue: ru_RU },
-    CookieService,
-    // {
-    //   provide: HAMMER_GESTURE_CONFIG,
-    //   useClass: MyHammerConfig,
-    // },
-  ],
+  providers: providers,
   bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(private injector: Injector) {
     InjectorHelper.injector = this.injector;
+  }
+}
+
+@NgModule({})
+export class AgroIdRoutingSharedModule {
+  static forRoot(): ModuleWithProviders<AppModule> {
+    return {
+      ngModule: AppModule,
+      providers: providers,
+    };
   }
 }
