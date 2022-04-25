@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   template: `
     <az-header></az-header>
-    <div>
+    <div class="nav-margin">
       <router-outlet></router-outlet>
     </div>
     <az-footer></az-footer>
