@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
-import { BannerComponent } from './components/banner/banner.component';
+import { AboutComponent } from './about.component';
 
 const routes: Routes = [
-  { path: '', component: BannerComponent },
+  { path: '', component: AboutComponent },
 ];
 
 export const AboutRoutes = RouterModule.forChild(routes);
