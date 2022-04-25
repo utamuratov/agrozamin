@@ -1,0 +1,28 @@
+
+<div class="container">
+  <div class="activity-field">
+    <div nz-row [nzGutter]="[0, 50]">
+      <div nz-col nzSpan="24">
+        <h3 nz-typography class="activity-field__title">Профильные направления</h3>
+      </div>
+      <div nz-col nzSpan="24">
+        <div nz-row [nzGutter]="[30, 30]">
+
+          <div nz-col nzXs="8" nzSm="8" nzMd="8" nzLg="8" nzXl="8" *ngFor="let card of activityField">
+            <div class="activity-field__card">
+              <div nz-row [nzGutter]="[30, 0]" nzAlign="middle">
+                <div nz-col nzSpan="6">
+                  <div class="activity-field__img"><img [src]="card.img" alt="img"></div>
+                </div>
+                <div nz-col nzSpan="18">
+                  <span nz-typography class="activity-field__text">{{card.text}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

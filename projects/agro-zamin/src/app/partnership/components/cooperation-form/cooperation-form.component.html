@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="cooperation-form">
+    <div nz-row [nzGutter]="[0, 50]">
+      <div nz-col nzSpan="24">
+        <h3 nz-typography class="cooperation-form__title">Формы сотрудничества</h3>
+      </div>
+
+      <div nz-col nzSpan="24">
+        <div nz-row [nzGutter]="[30, 30]">
+          <div nz-col nzXs="8" nzSm="8" nzMd="8" nzLg="8" nzXl="8" *ngFor="let card of cardInfo">
+            <div class="cooperation-form__card">
+              <div nz-row>
+                <div nz-col nzSpan="4">
+                  <div class="cooperation-form__card__img">
+                    <img src="../../../../assets/images/agrozamin/mark.svg" alt="mark image">
+                  </div>
+                </div>
+                <div nz-col nzSpan="20">
+                  <p nz-typography class="cooperation-form__text">
+                    {{card.text}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
