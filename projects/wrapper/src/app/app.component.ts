@@ -20,7 +20,7 @@ export class AppComponent {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationStart))
       .subscribe((w) => {
-        const projectName = (w as any)?.url.split('/')?.[3];
+        const projectName = (w as any)?.url.split('/')?.[1];
         if (projectName) {
           if (this.previousProjectName !== projectName) {
             this.previousProjectName = projectName;

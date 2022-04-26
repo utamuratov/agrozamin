@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Constants, LanguageGuard } from 'ngx-az-core';
+import { prefixPath } from '../core/utilits/agro-zamin.utilit';
+import { environment } from '../environments/environment';
 import { LayoutComponent } from './agro-zamin/components/layout/layout.component';
 import { RootLayoutComponent } from './agro-zamin/components/root-layout/root-layout.component';
 
@@ -8,10 +10,10 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: Constants.AGROZAMIN_PREFIX_ROUTE_PATH,
+    redirectTo: prefixPath,
   },
   {
-    path: Constants.AGROZAMIN_PREFIX_ROUTE_PATH,
+    path: prefixPath,
     component: RootLayoutComponent,
     children: [
       {
@@ -21,22 +23,26 @@ const routes: Routes = [
       },
       {
         path: ':language',
-        component: LayoutComponent,
+        // component: LayoutComponent,
+        loadChildren: () =>
+          import('./agro-zamin/agro-zamin.module').then(
+            (m) => m.AgroZaminModule
+          ),
         canActivate: [LanguageGuard],
-        children: [
-          {
-            path: '',
-            redirectTo: Constants.AGRO_ZAMIN_ROUTE_PATH,
-            pathMatch: 'full',
-          },
-          {
-            path: Constants.AGRO_ZAMIN_ROUTE_PATH,
-            loadChildren: () =>
-              import('./agro-zamin/agro-zamin.module').then(
-                (m) => m.AgroZaminModule
-              ),
-          },
-        ],
+        // children: [
+        //   {
+        //     path: '',
+        //     redirectTo: Constants.AGRO_ZAMIN_ROUTE_PATH,
+        //     pathMatch: 'full',
+        //   },
+        //   {
+        //     path: Constants.AGRO_ZAMIN_ROUTE_PATH,
+        //     loadChildren: () =>
+        //       import('./agro-zamin/agro-zamin.module').then(
+        //         (m) => m.AgroZaminModule
+        //       ),
+        //   },
+        // ],
       },
     ],
   },

@@ -11,6 +11,15 @@ import { RootLayoutComponent } from './root-layout/root-layout.component';
  * RouterModule.forRoot(routes) does not work as expected.
  * So We need it really?
  */
+// const routes: Routes = [
+//   {
+//     path: Constants.AGRO_ZAMIN_ROUTE_PATH,
+//     loadChildren: () =>
+//       import('../../../agro-zamin/src/app/app.module').then(
+//         (m) => m.AgroZaminRoutingSharedModule
+//       ),
+//   },
+// ];
 
 // const routes: Routes = [
 //   {
