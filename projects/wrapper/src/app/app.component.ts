@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { Constants } from 'ngx-az-core';
 import { filter } from 'rxjs';
 
 @Component({
@@ -20,12 +21,14 @@ export class AppComponent {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationStart))
       .subscribe((w) => {
-        const projectName = (w as any)?.url.split('/')?.[3];
-        if (projectName) {
-          if (this.previousProjectName !== projectName) {
-            this.previousProjectName = projectName;
-            this.loadCss(`${projectName}.css`, 'project');
-          }
+        let projectName = (w as any)?.url.split('/')?.[1];
+        if (!projectName) {
+          projectName = Constants.AGRO_ZAMIN_ROUTE_PATH;
+        }
+
+        if (this.previousProjectName !== projectName) {
+          this.previousProjectName = projectName;
+          this.loadCss(`${projectName}.css`, 'project');
         }
       });
   }

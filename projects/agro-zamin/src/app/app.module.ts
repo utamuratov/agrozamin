@@ -8,7 +8,6 @@ import { ru_RU } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutComponent } from './agro-zamin/components/layout/layout.component';
 import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
 import { SwiperModule } from 'swiper/angular';
 import { RootLayoutComponent } from './agro-zamin/components/root-layout/root-layout.component';
@@ -18,7 +17,7 @@ registerLocaleData(ru);
 const providers = [{ provide: NZ_I18N, useValue: ru_RU }];
 
 @NgModule({
-  declarations: [AppComponent, RootLayoutComponent, LayoutComponent],
+  declarations: [AppComponent, RootLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

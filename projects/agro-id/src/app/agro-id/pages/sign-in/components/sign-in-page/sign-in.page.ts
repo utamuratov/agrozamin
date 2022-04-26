@@ -1,9 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'projects/agro-id/src/app/core/services/auth/auth.service';
 import { map, Observable, startWith } from 'rxjs';
 import { Constants, markAllAsDirty, SignInRequest } from 'ngx-az-core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   templateUrl: './sign-in.page.html',
@@ -28,7 +34,8 @@ export class SignInPage implements OnInit {
     private fb: FormBuilder,
     private $auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   /**
@@ -80,9 +87,12 @@ export class SignInPage implements OnInit {
     this.isWaitingResponse$ = this.$auth.signIn(model).pipe(
       map((result) => {
         if (result.success) {
-          this.router.navigate(['../', Constants.AGRO_ZAMIN_ROUTE_PATH], {
-            relativeTo: this.route,
-          });
+          this.document.location.pathname = `/${Constants.AGRO_ZAMIN_ROUTE_PATH}`;
+
+          // TODO: REMOVE EVERYTHING WORKS REALLY
+          // this.router.navigate(['/', Constants.AGRO_ZAMIN_ROUTE_PATH], {
+          //   relativeTo: this.route,
+          // });
         }
 
         return false;
