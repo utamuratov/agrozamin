@@ -1,0 +1,40 @@
+<div class="purpose">
+  <div class="container">
+    <div nz-row [nzGutter]="[0, 40]">
+      <div nz-col nzSpan="24">
+        <h3 nz-typography class="purpose__title">Цели сотрудничества</h3>
+      </div>
+      <div nz-col nzSpan="24">
+        <div nz-row [nzGutter]="[30, 0]">
+          <div
+            nz-col
+            nzXs="8"
+            nzSm="8"
+            nzMd="8"
+            nzLg="8"
+            nzXl="8"
+            *ngFor="let card of cardDescription"
+          >
+            <div class="purpose__card">
+              <div nz-row [nzGutter]="[20, 0]">
+                <div nz-col nzSpan="4">
+                  <div class="purpose__card__icon">
+                    <img
+                      src="./assets/images/agrozamin/flag.png"
+                      alt="flag image"
+                    />
+                  </div>
+                </div>
+                <div nz-col nzSpan="20">
+                  <p nz-typography class="purpose__card__text">
+                    {{ card.text }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

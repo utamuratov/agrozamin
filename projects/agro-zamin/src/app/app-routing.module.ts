@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Constants, LanguageGuard } from 'ngx-az-core';
-import { LayoutComponent } from './layout/layout.component';
-import { RootLayoutComponent } from './root-layout/root-layout.component';
+import { LayoutComponent } from './agro-zamin/components/layout/layout.component';
+import { RootLayoutComponent } from './agro-zamin/components/root-layout/root-layout.component';
 
 const routes: Routes = [
   {
@@ -35,21 +35,6 @@ const routes: Routes = [
               import('./agro-zamin/agro-zamin.module').then(
                 (m) => m.AgroZaminModule
               ),
-          },
-          {
-            path: 'about',
-            loadChildren: () =>
-              import('./about/about.module').then((m) => m.AboutModule),
-          },
-          {
-            path: 'faq',
-            loadChildren: () =>
-              import('./faq/faq.module').then((m) => m.FaqModule),
-          },
-          {
-            path: 'partnership',
-            loadChildren: () =>
-              import('./partnership/partnership.module').then((m) => m.PartnershipModule),
           },
         ],
       },

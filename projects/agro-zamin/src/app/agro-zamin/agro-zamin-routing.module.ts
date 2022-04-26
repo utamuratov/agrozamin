@@ -11,7 +11,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('../home/home.module').then((m) => m.HomeModule),
+          import('./modules/home/home.module').then((m) => m.HomeModule),
         resolve: [SEOResolver],
         data: {
           meta: {
@@ -23,7 +23,19 @@ const routes: Routes = [
       {
         path: 'about',
         loadChildren: () =>
-          import('../about/about.module').then((m) => m.AboutModule),
+          import('./modules/about/about.module').then((m) => m.AboutModule),
+      },
+      {
+        path: 'faq',
+        loadChildren: () =>
+          import('./modules/faq/faq.module').then((m) => m.FaqModule),
+      },
+      {
+        path: 'partnership',
+        loadChildren: () =>
+          import('./modules/partnership/partnership.module').then(
+            (m) => m.PartnershipModule
+          ),
       },
     ],
   },
