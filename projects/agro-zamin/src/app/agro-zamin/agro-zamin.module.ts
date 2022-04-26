@@ -3,15 +3,43 @@ import { CommonModule } from '@angular/common';
 
 import { AgroZaminRoutingModule } from './agro-zamin-routing.module';
 import { AgroZaminComponent } from './agro-zamin.component';
-
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { SharedModule } from 'ngx-az-core';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { FilterPipe } from './components/header/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
-    AgroZaminComponent
+    AgroZaminComponent,
+    HeaderComponent,
+    FooterComponent,
+    FilterPipe,
   ],
   imports: [
-    CommonModule,
-    AgroZaminRoutingModule
-  ]
+    AgroZaminRoutingModule,
+
+    SharedModule,
+
+    FormsModule,
+    ReactiveFormsModule,
+
+    NzGridModule,
+    NzSelectModule,
+    NzPopoverModule,
+    NzDrawerModule,
+    NzDividerModule,
+    NzButtonModule,
+    NzIconModule,
+    NzLayoutModule,
+  ],
 })
-export class AgroZaminModule { }
+export class AgroZaminModule {}
