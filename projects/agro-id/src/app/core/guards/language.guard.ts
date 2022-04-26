@@ -3,7 +3,6 @@ import {
   CanActivate,
   UrlTree,
   Router,
-  ActivatedRoute,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
@@ -61,10 +60,7 @@ export class LanguageGuard implements CanActivate {
             this.setDefaultLanguage(defaultLanguageCode);
             this.setCurrentLanguage(defaultLanguageCode);
 
-            this.router.navigate([
-              Constants.AGROZAMIN_PREFIX_ROUTE_PATH,
-              defaultLanguageCode,
-            ]);
+            this.router.navigate(['/']);
           } else {
             if (result.error[0]?.field === Constants.SERVER_ERROR) {
               this.router.navigate(['internal-server-error']);

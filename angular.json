@@ -514,7 +514,7 @@
               "projects/wrapper/src/styles.less",
               {
                 "input": "projects/agro-zamin/src/styles.less",
-                "bundleName": "agro-zamin",
+                "bundleName": "main",
                 "inject": false
               },
               {

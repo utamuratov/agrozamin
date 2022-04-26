@@ -72,6 +72,9 @@ export class Constants {
    * ROUTE PATHS
    */
   public static readonly AGROZAMIN_PREFIX_ROUTE_PATH = 'az';
+  // * These variables are name of services(projects).
+  // * And they depend on applications name on the iis,
+  // * bundle names of option styles of project 'wrapper'(angular.json)
   public static readonly AGROID_ROUTE_PATH = 'agro-id';
-  public static readonly AGRO_ZAMIN_ROUTE_PATH = 'agro-zamin';
+  public static readonly AGRO_ZAMIN_ROUTE_PATH = 'main';
 }

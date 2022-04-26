@@ -25,7 +25,6 @@ export class AuthGuard implements CanActivate {
       this.router.navigate([
         prefixPath,
         this.$store.selectSnapshot(LanguageState.currentLanguage),
-        Constants.AGROID_ROUTE_PATH,
       ]);
       return false;
     }
