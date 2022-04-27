@@ -117,7 +117,7 @@
               nzSm="0"
               nzMd="0"
               nzLg="11"
-              [nzXl]="!isAuth ? 8 : 11"
+              [nzXl]="isUserAuthenticated ? 8 : 11"
             >
               <div nz-row [nzGutter]="[24, 0]" nzJustify="end">
                 <div nz-col class="nav__contacts">
@@ -145,7 +145,7 @@
               nzSm="0"
               nzMd="0"
               nzLg="0"
-              [nzXl]="!isAuth ? 7 : 4"
+              [nzXl]="isUserAuthenticated ? 7 : 4"
             >
               <div nz-row [nzGutter]="[8, 0]" nzJustify="end">
                 <div nz-col>
@@ -166,46 +166,42 @@
                   </button>
                 </div>
 
-                <div nz-col *ngIf="isAuth">
+                <div nz-col *ngIf="!isUserAuthenticated">
                   <button
                     nz-button
                     nzType="default"
                     nzSize="large"
-                    (click)="isAuth = !isAuth"
+                    (click)="navigate()"
                   >
                     <i nz-icon nzType="user" nzTheme="outline"></i>
                     Войти
                   </button>
                 </div>
 
-                <div nz-col *ngIf="!isAuth">
-                  <nz-button-group>
+                <div nz-col *ngIf="isUserAuthenticated">
+                  <nz-button-group (click)="navigate()">
                     <button
                       nz-button
                       nzType="default"
                       nzSize="large"
-                      (click)="isAuth = !isAuth"
                       class="ava-btn"
                       *ngIf="profileImage"
                     >
-                    <img [src]="'../../../../assets/images/agrozamin/ava.jpg'" alt="ava-btn">
+                      <img
+                        [src]="'./assets/images/agrozamin/ava.jpg'"
+                        alt="ava-btn"
+                      />
                     </button>
                     <button
                       nz-button
                       nzType="default"
                       nzSize="large"
-                      (click)="isAuth = !isAuth"
                       class="ava-btn"
                       *ngIf="!profileImage"
                     >
-                    <i nz-icon nzType="user" nzTheme="outline"></i>
+                      <i nz-icon nzType="user" nzTheme="outline"></i>
                     </button>
-                    <button
-                      nz-button
-                      nzType="default"
-                      nzSize="large"
-                      (click)="isAuth = !isAuth"
-                    >
+                    <button nz-button nzType="default" nzSize="large">
                       Джаллолиддин Мангуберды
                     </button>
                   </nz-button-group>
@@ -578,10 +574,10 @@
                   nz-button
                   nzType="default"
                   nzSize="large"
-                  (click)="isAuth = !isAuth"
+                  (click)="navigate()"
                 >
                   <i nz-icon nzType="user" nzTheme="outline"></i>
-                  {{ isAuth ? "Профиль" : "Войти" }}
+                  {{ isUserAuthenticated ? "Профиль" : "Войти" }}
                 </button>
               </div>
               <div nz-col>

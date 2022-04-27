@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Constants, LanguageState } from 'ngx-az-core';
+import { LanguageState } from 'ngx-az-core';
 import { Store } from '@ngxs/store';
 import { prefixPath } from '../utilits/agro-id.utilit';
 
