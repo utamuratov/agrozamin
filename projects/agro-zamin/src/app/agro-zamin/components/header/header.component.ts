@@ -1,7 +1,17 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import {
+  Component,
+  HostListener,
+  Inject,
+  isDevMode,
+  OnInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Store } from '@ngxs/store';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
 import { NzPlacementType } from 'ng-zorro-antd/dropdown';
+import { Constants, LanguageState } from 'ngx-az-core';
 
 @Component({
   selector: 'az-header',
@@ -9,6 +19,11 @@ import { NzPlacementType } from 'ng-zorro-antd/dropdown';
   styleUrls: ['./header.component.less'],
 })
 export class HeaderComponent implements OnInit {
+  /**
+   *
+   */
+  AGRO_ID_ROUTE = Constants.AGROID_ROUTE_PATH;
+
   lang = '1';
 
   isOpened = false;
@@ -28,12 +43,12 @@ export class HeaderComponent implements OnInit {
   azVisible = false;
   azDrawerWidthValue!: string;
   /* ************************** */
-  profileImage = true
+  profileImage = true;
 
   visibleServicesPopover = false;
 
   cityFilter!: FormGroup;
-  isAuth = true;
+  isUserAuthenticated = true;
   regionsChild: any = [];
 
   regionsValue: any = [];
@@ -897,9 +912,16 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private $jwtHelper: JwtHelperService,
+    private $store: Store,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
   ngOnInit(): void {
+    this.isUserAuthenticated = !this.$jwtHelper.isTokenExpired();
+
     this.searchForm = this.fb.group({
       searchInput: [null],
       cityInput: [null],
@@ -1002,5 +1024,32 @@ export class HeaderComponent implements OnInit {
 
   setLang(num: string) {
     this.lang = num;
+  }
+
+  /**
+   *
+   */
+  navigate() {
+    if (this.isUserAuthenticated) {
+      // NAVIGATE TO CABINET
+
+      if (isDevMode()) {
+        // result: /agro-id/ru/cabinet
+        this.document.location.pathname = `/${
+          Constants.AGROID_ROUTE_PATH
+        }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
+
+        return;
+      }
+
+      // result: /agro-id/az/ru/cabinet
+      this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}/${
+        Constants.AGROZAMIN_PREFIX_ROUTE_PATH
+      }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
+      return;
+    }
+
+    // NAVIGATE TO SIGN-IN SCREEN
+    this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}`;
   }
 }
