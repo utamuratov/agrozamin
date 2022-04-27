@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
   azVisible = false;
   azDrawerWidthValue!: string;
   /* ************************** */
+  profileImage = true
 
   visibleServicesPopover = false;
 
