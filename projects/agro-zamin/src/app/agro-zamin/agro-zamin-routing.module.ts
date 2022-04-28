@@ -15,8 +15,8 @@ const routes: Routes = [
         resolve: [SEOResolver],
         data: {
           meta: {
-            title: 'home.title',
-            description: 'home.description',
+            title: 'agrozamin.home.title',
+            description: 'agrozamin.home.description',
           },
         },
       },
@@ -24,11 +24,25 @@ const routes: Routes = [
         path: 'about',
         loadChildren: () =>
           import('./modules/about/about.module').then((m) => m.AboutModule),
+        resolve: [SEOResolver],
+        data: {
+          meta: {
+            title: 'aboutTheProject',
+            description: 'about.description',
+          },
+        },
       },
       {
         path: 'faq',
         loadChildren: () =>
           import('./modules/faq/faq.module').then((m) => m.FaqModule),
+        resolve: [SEOResolver],
+        data: {
+          meta: {
+            title: 'help',
+            description: 'faq.description',
+          },
+        },
       },
       {
         path: 'partnership',
@@ -36,6 +50,13 @@ const routes: Routes = [
           import('./modules/partnership/partnership.module').then(
             (m) => m.PartnershipModule
           ),
+        resolve: [SEOResolver],
+        data: {
+          meta: {
+            title: 'partnership',
+            description: 'partnership.description',
+          },
+        },
       },
     ],
   },

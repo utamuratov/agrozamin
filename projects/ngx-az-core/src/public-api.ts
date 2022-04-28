@@ -75,3 +75,6 @@ export * from './lib/shared/store/language/language.state';
 export * from './lib/shared/store/language/language.action';
 export * from './lib/shared/store/auth/auth.state';
 export * from './lib/shared/store/auth/auth.action';
+
+// ENUMS
+export * from './lib/enums/project.enum';

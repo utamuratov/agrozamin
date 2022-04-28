@@ -10,8 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngxs/store';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
-import { NzPlacementType } from 'ng-zorro-antd/dropdown';
-import { Constants, LanguageState } from 'ngx-az-core';
+import { Constants, LanguageState, Project, ProjectLabel } from 'ngx-az-core';
 
 @Component({
   selector: 'az-header',
@@ -55,34 +54,29 @@ export class HeaderComponent implements OnInit {
 
   agrozaminEkoSystem = [
     {
-      img: `../../../../assets/images/agrozamin/O'zimizniki-logo.png`,
-      title: 'O’zimizniki',
-      description:
-        'Онлайн платформа для размещения объявлений. Продажа и покупка товаров',
+      img: `./assets/images/agrozamin/O'zimizniki-logo.png`,
+      title: ProjectLabel[Project.advertisement],
+      description: 'ecosystemAgrozamin.advertisement.description',
     },
     {
       img: './assets/images/agrozamin/AgroBussiness-logo.png',
-      title: 'AgroBusiness',
-      description:
-        'Маркетплейс по продаже и покупке товаров в больших количествах',
+      title: ProjectLabel[Project.agroBusiness],
+      description: 'ecosystemAgrozamin.agroBusiness.description',
     },
     {
       img: './assets/images/agrozamin/AgroConsult-logo.png',
-      title: 'AgroConsult',
-      description:
-        'Интенсивные курсы от Агробанка по защите растений, проводят международные специалисты в этой области.',
+      title: ProjectLabel[Project.agroConsult],
+      description: 'ecosystemAgrozamin.agroConsult.description',
     },
     {
       img: './assets/images/agrozamin/FermerlarMaktabi-logo.png',
-      title: 'Fermerlar Maktabi',
-      description:
-        'Проект по обучению молодых людей использованию новейших инновационных технологий в с/х производстве.',
+      title: ProjectLabel[Project.farmersSchool],
+      description: 'ecosystemAgrozamin.farmersSchool.description',
     },
     {
       img: './assets/images/agrozamin/Agrolab-logo.png',
-      title: 'Agrolab',
-      description:
-        'Интенсивные курсы от Агробанка по защите растений, проводят международные специалисты в этой области.',
+      title: ProjectLabel[Project.agroLab],
+      description: 'ecosystemAgrozamin.agroLab.description',
     },
   ];
 

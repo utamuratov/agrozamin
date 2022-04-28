@@ -39,10 +39,10 @@ export class LanguageHelper {
     const previousLanguageCode = this.currentLanguageCode;
     this.currentLanguageCode = selectedLanguageCode;
     this.$store.dispatch(new CurrentLanguage(this.currentLanguageCode));
+    this.setCurrentLanguage(this.currentLanguageCode);
     this.router.navigateByUrl(
       this.router.url.replace(previousLanguageCode, this.currentLanguageCode)
     );
-    this.setCurrentLanguage(this.currentLanguageCode);
   }
 
   /**

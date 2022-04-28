@@ -1,7 +1,3 @@
-<!-- <button nz-button nzType="primary" routerLink="agro-id">Agro Id</button>
-<button nz-button nzType="primary" routerLink="market">Market</button>
-<button nz-button nzType="primary" routerLink="online-consultant">Online consultant</button> -->
-
 <div class="header" (window:resize)="onResize()">
   <nav class="nav">
     <div class="container">
@@ -11,18 +7,22 @@
             <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="12">
               <ul class="nav__menu" nz-row>
                 <li nz-col class="nav__menu-item">
-                  <a [routerLink]="'about'">О проекте</a>
+                  <a [routerLink]="'about'">{{
+                    "aboutTheProject" | translate
+                  }}</a>
                 </li>
                 <li nz-col class="nav__menu-item">
-                  <a [routerLink]="'faq'">Помощь</a>
+                  <a [routerLink]="'faq'">{{ "help" | translate }}</a>
                 </li>
                 <li nz-col class="nav__menu-item">
                   <span class="link-divider"></span>
                 </li>
                 <li nz-col class="nav__menu-item">
-                  <a>Банковские продукты</a>
+                  <a>{{ "bankProducts" | translate }}</a>
                 </li>
-                <li nz-col class="nav__menu-item"><a>Онлайн консультант</a></li>
+                <li nz-col class="nav__menu-item">
+                  <a>{{ "onlineConsultant" | translate }}</a>
+                </li>
               </ul>
             </div>
             <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="9">
@@ -53,7 +53,7 @@
               <div nz-row>
                 <div nz-col nzSpan="24" class="text-end">
                   <az-language
-                    [title]="'Язык'"
+                    [title]="'language' | translate"
                     [template]="'dropdown'"
                   ></az-language>
                 </div>
@@ -91,7 +91,9 @@
                     ><img
                       src="./assets/images/agrozamin/chat-icon.svg"
                       alt="icon"
-                    /><span nz-typography>On-line чат</span></a
+                    /><span nz-typography>{{
+                      "onlineChat" | translate
+                    }}</span></a
                   >
                 </div>
               </div>
@@ -132,7 +134,7 @@
                     (click)="navigate()"
                   >
                     <i nz-icon nzType="user" nzTheme="outline"></i>
-                    Войти
+                    {{ "toComeIn" | translate }}
                   </button>
                 </div>
 
@@ -171,7 +173,7 @@
               <div nz-row>
                 <div nz-col nzSpan="24" class="text-end">
                   <az-language
-                    [title]="'Язык'"
+                    [title]="'language' | translate"
                     [template]="'dropdown'"
                   ></az-language>
                 </div>
@@ -493,7 +495,9 @@
                   (click)="navigate()"
                 >
                   <i nz-icon nzType="user" nzTheme="outline"></i>
-                  {{ isUserAuthenticated ? "Профиль" : "Войти" }}
+                  {{
+                    (isUserAuthenticated ? "profile" : "toComeIn") | translate
+                  }}
                 </button>
               </div>
               <div nz-col>
@@ -512,14 +516,17 @@
 
         <div nz-col nzXs="24" nzSm="0">
           <div class="az-drawer__language">
-            <az-language [title]="'Язык'" [template]="'button'"></az-language>
+            <az-language
+              [title]="'language' | translate"
+              [template]="'button'"
+            ></az-language>
           </div>
         </div>
 
         <div nz-col nzSpan="24">
           <div class="az-drawer_padding">
             <p nz-typography class="az-drawer__title">
-              Другие площадки экосистемы
+              {{ "otherEcosystemSites" | translate }}
             </p>
 
             <div nz-row [nzGutter]="[0, 20]">
@@ -547,19 +554,19 @@
               <li nz-col nzSpan="24">
                 <a nz-button nzType="link" class="az-drawer__link">
                   <i nz-icon nzType="info-circle" nzTheme="outline"></i>
-                  <span>О проекте</span>
+                  <span>{{ "aboutTheProject" | translate }}</span>
                 </a>
               </li>
               <li nz-col nzSpan="24">
                 <a nz-button nzType="link" class="az-drawer__link">
                   <i nz-icon nzType="question-circle" nzTheme="outline"></i>
-                  <span>Помощь</span>
+                  <span>{{ "help" | translate }}</span>
                 </a>
               </li>
               <li nz-col nzSpan="24">
                 <a nz-button nzType="link" class="az-drawer__link">
                   <i nz-icon nzType="bank" nzTheme="outline"></i>
-                  <span>Банковские продукты</span>
+                  <span>{{ "bankProducts" | translate }}</span>
                 </a>
               </li>
             </ul>
@@ -582,7 +589,7 @@
                   ><img
                     src="./assets/images/agrozamin/chat-icon.svg"
                     alt="icon"
-                  /><span nz-typography>On-line чат</span></a
+                  /><span nz-typography>{{ "onlineChat" | translate }}</span></a
                 >
               </div>
             </div>
@@ -599,12 +606,11 @@
   <div class="agrozaminEkoSystem">
     <div nz-row class="agrozaminEkoSystem__container">
       <div class="agrozaminEkoSystem__container__head" nz-col nzSpan="19">
-        <h3>Экосистема Agrozamin</h3>
+        <h3>{{ "ecosystemAgrozamin" | translate }}</h3>
         <p>
-          Технологии для развития сельского хозяйства в едином цифровом
-          пространстве
+          {{ "ecosystemAgrozamin.description" | translate }}
         </p>
-        <h6>Другие площадки экосистемы</h6>
+        <h6>{{ "otherEcosystemSites" | translate }}</h6>
       </div>
       <div nz-col nzSpan="24">
         <div nz-row class="az-wrapper">
@@ -634,7 +640,7 @@
                     <h3>{{ index.title }}</h3>
                   </div>
                   <div nz-col nzSpan="24">
-                    <p>{{ index.description }}</p>
+                    <p>{{ index.description | translate }}</p>
                   </div>
                 </div>
               </div>
