@@ -8,7 +8,6 @@
       class="nav__select"
       style="padding-right: 0"
       [nzDropdownMatchSelectWidth]="false"
-      [nzOptionHeightPx]="35"
     >
       <nz-option
         *ngFor="let language of language$ | async"
@@ -17,7 +16,7 @@
         nzCustomContent
       >
         <div class="nav__select__option">
-          <span style="margin-left: 8px">{{ language.name }}</span>
+          <span>{{ language.name }}</span>
         </div>
       </nz-option>
     </nz-select>

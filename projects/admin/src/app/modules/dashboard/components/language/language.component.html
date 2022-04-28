@@ -1,0 +1,10 @@
+<ng-container *ngFor="let language of language$ | async">
+  <button
+    nz-button
+    (click)="onChangeLanguage(language.code)"
+    [nzType]="currentLanguageCode === language.code ? 'text' : 'link'"
+  >
+    {{ language.short_name }}
+  </button>
+  <nz-divider nzType="vertical" class="m-0"></nz-divider>
+</ng-container>

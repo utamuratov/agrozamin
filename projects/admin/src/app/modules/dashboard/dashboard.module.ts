@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { LanguageModule } from 'ngx-az-core';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -14,9 +13,11 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { LanguageComponent } from './components/language/language.component';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 @NgModule({
-  declarations: [DashboardComponent, BreadcrumbComponent],
+  declarations: [DashboardComponent, BreadcrumbComponent, LanguageComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -24,7 +25,6 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     /**
      * NGX-AZ-CORE
      */
-    LanguageModule,
     TranslateModule,
 
     NzAvatarModule,
@@ -35,6 +35,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     NzButtonModule,
     NzGridModule,
     NzToolTipModule,
+    NzDividerModule,
   ],
 })
 export class DashboardModule {}

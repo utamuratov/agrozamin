@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
-import { LanguageHelper } from 'projects/ngx-az-core/src/public-api';
+import { LanguageHelper } from 'ngx-az-core';
 
 @Component({
   selector: 'az-language',

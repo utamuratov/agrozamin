@@ -4,14 +4,12 @@
 
 // MODULES
 export * from './lib/ngx-az-core.module';
-export * from './lib/shared/language/language.module';
 export * from './lib/shared/shared.module';
 export * from './lib/shared/full-name/full-name.module';
 export * from './lib/shared/forms-shared/nz-forms-shared.module';
 export * from './lib/shared/forms-shared/reactive-forms-shared.module';
 
 // COMPONENTS
-export * from './lib/shared/language/language.component';
 export * from './lib/shared/forms-shared/components/error/error.component';
 export * from './lib/shared/forms-shared/components/error-from-server/error-from-server.component';
 export * from './lib/shared/forms-shared/components/error-as-alert/error-as-alert.component';
