@@ -1,0 +1,66 @@
+.info {
+  padding: 30px;
+  border-radius: 12px;
+  background: #fff;
+
+  &__subtitle {
+    font-size: 14px;
+    line-height: 18px;
+    color: #000;
+    font-family: Agrofont-Regular;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  &__category {
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 16px;
+    height: 232px;
+
+    &__list {
+      height: 200px;
+      overflow-y: auto;
+      /* width */
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: #f6f7fa;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: #cfd3d8;
+      }
+    }
+  }
+}
+
+
+.type {
+    padding: 30px;
+    border-radius: 12px;
+    background: #fff;
+    margin: 20px 0;
+
+    &__label {
+        font-size: 14px;
+        line-height: 24px;
+        color: #000;
+        font-family: Agrofont-Regular;
+        margin-right: 30px;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+}
+
+.media {
+    padding: 30px;
+    border-radius: 12px;
+    background: #fff;
+}

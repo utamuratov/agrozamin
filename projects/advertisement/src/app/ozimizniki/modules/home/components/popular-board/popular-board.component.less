@@ -1,0 +1,83 @@
+.popular {
+  padding: 70px 0;
+  background: #f0faf5;
+
+  .item {
+    position: relative;
+    border-radius: 8px;
+
+    &:hover {
+      box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+      outline: 2px solid #377be1;
+    }
+
+    &__top {
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
+
+      &__img {
+        width: 242px;
+        height: 242px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &__info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding-top: 16px;
+        padding-right: 16px;
+        padding-left: 16px;
+      }
+    }
+
+    &__bottom {
+      padding: 20px;
+      background: #fff;
+      border-radius: 0 0 8px 8px;
+
+      &__title {
+        font-size: 14px;
+        line-height: 18px;
+        font-family: Agrofont-Medium;
+        color: #000;
+        margin-bottom: 0;
+      }
+
+      &__price {
+        font-size: 16px;
+        line-height: 20px;
+        font-family: Agrofont-Bold;
+        color: #1b59b7;
+
+        &-mod {
+          font-size: 12px;
+          line-height: 15px;
+          font-family: Agrofont-Regular;
+          color: #86898c;
+        }
+      }
+
+      &__text {
+        font-size: 12px;
+        line-height: 15px;
+        color: #86898c;
+        font-family: Agrofont-Regular;
+        margin-bottom: 0;
+      }
+    }
+
+    &__icon {
+      color: rgba(255, 255, 255, 0.75);
+    }
+  }
+}
