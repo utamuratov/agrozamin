@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './components/layout/layout.component';
 import { Constants, LanguageGuard } from 'ngx-az-core';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
 import { InternalServerErrorComponent } from './components/internal-server-error/internal-server-error.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { prefixPath } from './core/utilits/agro-id.utilit';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: Constants.AGROZAMIN_PREFIX_ROUTE_PATH,
+    redirectTo: prefixPath,
   },
   {
-    path: Constants.AGROZAMIN_PREFIX_ROUTE_PATH,
+    path: prefixPath,
     component: RootLayoutComponent,
     children: [
       {
@@ -23,21 +23,9 @@ const routes: Routes = [
       },
       {
         path: ':language',
-        component: LayoutComponent,
         canActivate: [LanguageGuard],
-        children: [
-          {
-            path: '',
-            redirectTo: Constants.AGROID_ROUTE_PATH,
-            pathMatch: 'full',
-          },
-          {
-            path: Constants.AGROID_ROUTE_PATH,
-            loadChildren: () =>
-              import('./agro-id/agro-id.module').then((m) => m.AgroIdModule),
-            canActivate: [LanguageGuard],
-          },
-        ],
+        loadChildren: () =>
+          import('./agro-id/agro-id.module').then((m) => m.AgroIdModule),
       },
       {
         path: ':language/404',
@@ -50,11 +38,11 @@ const routes: Routes = [
     path: 'internal-server-error',
     component: InternalServerErrorComponent,
   },
-  // {
-  //   path: '**',
-  //   pathMatch: 'full',
-  //   redirectTo: `${Constants.AGROZAMIN_PREFIX_ROUTE_PATH}/${Constants.DEFAULT_LANGUAGE_CODE}/404`,
-  // },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: `${prefixPath}/${Constants.DEFAULT_LANGUAGE_CODE}/404`,
+  },
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Constants, LanguageState } from 'ngx-az-core';
 import { Store } from '@ngxs/store';
+import { prefixPath } from '../utilits/agro-id.utilit';
 
 @Injectable({
   providedIn: 'root',
@@ -22,9 +23,8 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     if (this.$jwtHelper.isTokenExpired()) {
       this.router.navigate([
-        Constants.AGROZAMIN_PREFIX_ROUTE_PATH,
+        prefixPath,
         this.$store.selectSnapshot(LanguageState.currentLanguage),
-        Constants.AGROID_ROUTE_PATH,
       ]);
       return false;
     }

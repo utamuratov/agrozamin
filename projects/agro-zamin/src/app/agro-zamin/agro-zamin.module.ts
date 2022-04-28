@@ -16,6 +16,10 @@ import { SharedModule } from 'ngx-az-core';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FilterPipe } from './components/header/pipes/filter.pipe';
+import { NzBackTopModule } from 'ng-zorro-antd/back-top';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,10 @@ import { FilterPipe } from './components/header/pipes/filter.pipe';
     NzButtonModule,
     NzIconModule,
     NzLayoutModule,
+    NzBackTopModule,
+    NzModalModule,
+    NzFormModule,
+    NzInputModule
   ],
 })
 export class AgroZaminModule {}
