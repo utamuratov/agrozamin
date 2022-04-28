@@ -21,6 +21,7 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { CatalogPartnerInfo1Component } from './components/catalog-members-partner/components/catalog-partner-info1/catalog-partner-info1.component';
 
 
 
@@ -51,6 +52,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
         CatalogPartnerInfoComponent,
         CatalogPartnerPostsComponent,
         CatalogPartnerCompanyComponent,
+        CatalogPartnerInfo1Component,
     ]
 })
 
