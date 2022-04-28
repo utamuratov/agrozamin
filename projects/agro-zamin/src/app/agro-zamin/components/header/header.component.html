@@ -7,18 +7,22 @@
             <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="12">
               <ul class="nav__menu" nz-row>
                 <li nz-col class="nav__menu-item">
-                  <a [routerLink]="'about'">О проекте</a>
+                  <a [routerLink]="'about'">{{
+                    "aboutTheProject" | translate
+                  }}</a>
                 </li>
                 <li nz-col class="nav__menu-item">
-                  <a [routerLink]="'faq'">Помощь</a>
+                  <a [routerLink]="'faq'">{{ "help" | translate }}</a>
                 </li>
                 <li nz-col class="nav__menu-item">
                   <span class="link-divider"></span>
                 </li>
                 <li nz-col class="nav__menu-item">
-                  <a>Банковские продукты</a>
+                  <a>{{ "bankProducts" | translate }}</a>
                 </li>
-                <li nz-col class="nav__menu-item"><a>Онлайн консультант</a></li>
+                <li nz-col class="nav__menu-item">
+                  <a>{{ "onlineConsultant" | translate }}</a>
+                </li>
               </ul>
             </div>
             <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="9">
@@ -48,52 +52,10 @@
             >
               <div nz-row>
                 <div nz-col nzSpan="24" class="text-end">
-                  <span nz-typography class="select-desc">Язык:</span>
-                  <nz-select
-                    [(ngModel)]="lang"
-                    nzBorderless
-                    class="nav__select"
-                    style="padding-right: 0"
-                    [nzDropdownMatchSelectWidth]="false"
-                    [nzOptionHeightPx]="35"
-                  >
-                    <nz-option nzCustomContent nzValue="2" nzLabel="Ўзбекча">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Ўзбекча</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="3" nzLabel="O'zbekcha">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">O'zbekcha</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="1" nzLabel="Русский">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/russia-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Русский</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="4" nzLabel="English">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/english-uk-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">English</span>
-                      </div>
-                    </nz-option>
-                  </nz-select>
+                  <az-language
+                    [title]="'language' | translate"
+                    [template]="'dropdown'"
+                  ></az-language>
                 </div>
               </div>
             </div>
@@ -129,7 +91,9 @@
                     ><img
                       src="./assets/images/agrozamin/chat-icon.svg"
                       alt="icon"
-                    /><span nz-typography>On-line чат</span></a
+                    /><span nz-typography>{{
+                      "onlineChat" | translate
+                    }}</span></a
                   >
                 </div>
               </div>
@@ -170,7 +134,7 @@
                     (click)="navigate()"
                   >
                     <i nz-icon nzType="user" nzTheme="outline"></i>
-                    Войти
+                    {{ "toComeIn" | translate }}
                   </button>
                 </div>
 
@@ -208,52 +172,10 @@
             <div nz-col nzXs="0" nzSm="8" nzMd="10" nzLg="4" nzXl="0">
               <div nz-row>
                 <div nz-col nzSpan="24" class="text-end">
-                  <span nz-typography class="select-desc">Язык:</span>
-                  <nz-select
-                    [(ngModel)]="lang"
-                    nzBorderless
-                    class="nav__select"
-                    style="padding-right: 0"
-                    [nzDropdownMatchSelectWidth]="false"
-                    [nzOptionHeightPx]="35"
-                  >
-                    <nz-option nzCustomContent nzValue="2" nzLabel="Ўзбекча">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Ўзбекча</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="3" nzLabel="O'zbekcha">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">O'zbekcha</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="1" nzLabel="Русский">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/russia-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Русский</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="4" nzLabel="English">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/english-uk-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">English</span>
-                      </div>
-                    </nz-option>
-                  </nz-select>
+                  <az-language
+                    [title]="'language' | translate"
+                    [template]="'dropdown'"
+                  ></az-language>
                 </div>
               </div>
             </div>
@@ -286,7 +208,6 @@
   </nav>
 </div>
 
-<!-- DRAWER -->
 
 <nz-drawer
   [nzClosable]="false"
@@ -308,7 +229,9 @@
                   (click)="navigate()"
                 >
                   <i nz-icon nzType="user" nzTheme="outline"></i>
-                  {{ isUserAuthenticated ? "Профиль" : "Войти" }}
+                  {{
+                    (isUserAuthenticated ? "profile" : "toComeIn") | translate
+                  }}
                 </button>
               </div>
               <div nz-col>
@@ -327,65 +250,21 @@
 
         <div nz-col nzXs="24" nzSm="0">
           <div class="az-drawer__language">
-            <p nz-typography class="az-drawer__language__title">Язык</p>
-
-            <div nz-row [nzGutter]="[20, 20]">
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'2' === lang"
-                  (click)="setLang('2')"
-                >
-                  Ўзбекча
-                </button>
-              </div>
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'3' === lang"
-                  (click)="setLang('3')"
-                >
-                  O'zbekcha
-                </button>
-              </div>
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'1' === lang"
-                  (click)="setLang('1')"
-                >
-                  Русский
-                </button>
-              </div>
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'4' === lang"
-                  (click)="setLang('4')"
-                >
-                  English
-                </button>
-              </div>
-            </div>
+            <az-language
+              [title]="'language' | translate"
+              [template]="'button'"
+            ></az-language>
           </div>
         </div>
 
         <div nz-col nzSpan="24">
           <div class="az-drawer_padding">
             <p nz-typography class="az-drawer__title">
-              Другие площадки экосистемы
+              {{ "otherEcosystemSites" | translate }}
             </p>
 
             <div nz-row [nzGutter]="[0, 20]">
-              <div nz-col *ngFor="let service of services" nzSpan="24">
+              <div nz-col *ngFor="let service of SERVICES" nzSpan="24">
                 <div nz-row nzAlign="middle" [nzGutter]="[16, 0]">
                   <div nz-col>
                     <div class="az-drawer__service-image">
@@ -409,19 +288,19 @@
               <li nz-col nzSpan="24">
                 <a nz-button nzType="link" class="az-drawer__link">
                   <i nz-icon nzType="info-circle" nzTheme="outline"></i>
-                  <span>О проекте</span>
+                  <span>{{ "aboutTheProject" | translate }}</span>
                 </a>
               </li>
               <li nz-col nzSpan="24">
                 <a nz-button nzType="link" class="az-drawer__link">
                   <i nz-icon nzType="question-circle" nzTheme="outline"></i>
-                  <span>Помощь</span>
+                  <span>{{ "help" | translate }}</span>
                 </a>
               </li>
               <li nz-col nzSpan="24">
                 <a nz-button nzType="link" class="az-drawer__link">
                   <i nz-icon nzType="bank" nzTheme="outline"></i>
-                  <span>Банковские продукты</span>
+                  <span>{{ "bankProducts" | translate }}</span>
                 </a>
               </li>
             </ul>
@@ -444,7 +323,7 @@
                   ><img
                     src="./assets/images/agrozamin/chat-icon.svg"
                     alt="icon"
-                  /><span nz-typography>On-line чат</span></a
+                  /><span nz-typography>{{ "onlineChat" | translate }}</span></a
                 >
               </div>
             </div>
@@ -461,18 +340,17 @@
   <div class="agrozaminEkoSystem">
     <div nz-row class="agrozaminEkoSystem__container">
       <div class="agrozaminEkoSystem__container__head" nz-col nzSpan="19">
-        <h3>Экосистема Agrozamin</h3>
+        <h3>{{ "ecosystemAgrozamin" | translate }}</h3>
         <p>
-          Технологии для развития сельского хозяйства в едином цифровом
-          пространстве
+          {{ "ecosystemAgrozamin.description" | translate }}
         </p>
-        <h6>Другие площадки экосистемы</h6>
+        <h6>{{ "otherEcosystemSites" | translate }}</h6>
       </div>
       <div nz-col nzSpan="24">
         <div nz-row class="az-wrapper">
           <div
             class="agrozaminEkoSystem__container__body"
-            *ngFor="let index of agrozaminEkoSystem; let isLast = last"
+            *ngFor="let index of AGROZAMIN_ECO_SYSTEMS; let isLast = last"
             nz-col
             nzSpan="24"
           >
@@ -496,7 +374,7 @@
                     <h3>{{ index.title }}</h3>
                   </div>
                   <div nz-col nzSpan="24">
-                    <p>{{ index.description }}</p>
+                    <p>{{ index.description | translate }}</p>
                   </div>
                 </div>
               </div>

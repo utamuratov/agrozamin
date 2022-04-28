@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Language } from '../../models/language.interface';
+import { Language } from 'ngx-az-core';
 
 @Pipe({
   name: 'currentLanguage',
