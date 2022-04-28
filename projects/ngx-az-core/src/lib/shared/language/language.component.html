@@ -1,5 +1,5 @@
 <div [ngSwitch]="template">
-  <ng-container *ngSwitchCase="'dropdown'">
+  <ng-container *ngSwitchCase="'dropdownWithCircle'">
     <div nz-col nzXs="5" nzSm="3" nzMd="3" nzLg="2" nzXl="2" nzXXl="1">
       <a
         nz-button
@@ -25,6 +25,45 @@
           </button>
         </div>
       </nz-dropdown-menu>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'dropdownSimple'">
+    <span nz-typography class="select-desc">{{ title }}:</span>
+    <nz-select
+      [ngModel]="currentLanguageCode"
+      nzBorderless
+      class="nav__select"
+      style="padding-right: 0"
+      [nzDropdownMatchSelectWidth]="false"
+      [nzOptionHeightPx]="35"
+    >
+      <nz-option
+        *ngFor="let language of language$ | async"
+        [nzValue]="language.code"
+        [nzLabel]="language.name"
+        nzCustomContent
+      >
+        <div class="nav__select__option" (click)="onChangeLanguage(language)">
+          <span style="margin-left: 8px">{{ language.name }}</span>
+        </div>
+      </nz-option>
+    </nz-select>
+  </ng-container>
+  <ng-container *ngSwitchCase="'button'">
+    <p nz-typography class="az-drawer__language__title">{{ title }}</p>
+
+    <div nz-row [nzGutter]="[20, 20]">
+      <div nz-col nzSpan="12" *ngFor="let language of language$ | async">
+        <button
+          nzBlock
+          nz-button
+          nzType="default"
+          [disabled]="language.code === currentLanguageCode"
+          (click)="onChangeLanguage(language)"
+        >
+          {{ language.name }}
+        </button>
+      </div>
     </div>
   </ng-container>
   <div *ngSwitchDefault>

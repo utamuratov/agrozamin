@@ -7,6 +7,8 @@ import { Language } from '../../models/language.interface';
 import { CurrentLanguage } from '../store/language/language.action';
 import { LanguageState } from '../store/language/language.state';
 
+type languageTemplate = 'dropdownWithCircle' | 'dropdownSimple' | 'button';
+
 @Component({
   selector: 'language',
   templateUrl: './language.component.html',
@@ -17,7 +19,13 @@ export class LanguageComponent implements OnInit {
    *
    */
   @Input()
-  template?: 'dropdown';
+  template?: languageTemplate;
+
+  /**
+   *
+   */
+  @Input()
+  title?: string;
 
   /**
    *
@@ -52,9 +60,9 @@ export class LanguageComponent implements OnInit {
   /**
    *
    */
-  onChangeLanguage(language: Language) {
+  onChangeLanguage(selectedLanguage: Language) {
     const previousLanguageCode = this.currentLanguageCode;
-    this.currentLanguageCode = language.code;
+    this.currentLanguageCode = selectedLanguage.code;
     this.$store.dispatch(new CurrentLanguage(this.currentLanguageCode));
     this.router.navigateByUrl(
       this.router.url.replace(previousLanguageCode, this.currentLanguageCode)

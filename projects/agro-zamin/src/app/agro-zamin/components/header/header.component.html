@@ -52,52 +52,10 @@
             >
               <div nz-row>
                 <div nz-col nzSpan="24" class="text-end">
-                  <span nz-typography class="select-desc">Язык:</span>
-                  <nz-select
-                    [(ngModel)]="lang"
-                    nzBorderless
-                    class="nav__select"
-                    style="padding-right: 0"
-                    [nzDropdownMatchSelectWidth]="false"
-                    [nzOptionHeightPx]="35"
-                  >
-                    <nz-option nzCustomContent nzValue="2" nzLabel="Ўзбекча">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Ўзбекча</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="3" nzLabel="O'zbekcha">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">O'zbekcha</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="1" nzLabel="Русский">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/russia-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Русский</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="4" nzLabel="English">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/english-uk-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">English</span>
-                      </div>
-                    </nz-option>
-                  </nz-select>
+                  <language
+                    [title]="'Язык'"
+                    [template]="'dropdownSimple'"
+                  ></language>
                 </div>
               </div>
             </div>
@@ -212,52 +170,10 @@
             <div nz-col nzXs="0" nzSm="8" nzMd="10" nzLg="4" nzXl="0">
               <div nz-row>
                 <div nz-col nzSpan="24" class="text-end">
-                  <span nz-typography class="select-desc">Язык:</span>
-                  <nz-select
-                    [(ngModel)]="lang"
-                    nzBorderless
-                    class="nav__select"
-                    style="padding-right: 0"
-                    [nzDropdownMatchSelectWidth]="false"
-                    [nzOptionHeightPx]="35"
-                  >
-                    <nz-option nzCustomContent nzValue="2" nzLabel="Ўзбекча">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Ўзбекча</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="3" nzLabel="O'zbekcha">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">O'zbekcha</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="1" nzLabel="Русский">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/russia-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Русский</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="4" nzLabel="English">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/english-uk-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">English</span>
-                      </div>
-                    </nz-option>
-                  </nz-select>
+                  <language
+                    [title]="'Язык'"
+                    [template]="'dropdownSimple'"
+                  ></language>
                 </div>
               </div>
             </div>
@@ -596,54 +512,7 @@
 
         <div nz-col nzXs="24" nzSm="0">
           <div class="az-drawer__language">
-            <p nz-typography class="az-drawer__language__title">Язык</p>
-
-            <div nz-row [nzGutter]="[20, 20]">
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'2' === lang"
-                  (click)="setLang('2')"
-                >
-                  Ўзбекча
-                </button>
-              </div>
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'3' === lang"
-                  (click)="setLang('3')"
-                >
-                  O'zbekcha
-                </button>
-              </div>
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'1' === lang"
-                  (click)="setLang('1')"
-                >
-                  Русский
-                </button>
-              </div>
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'4' === lang"
-                  (click)="setLang('4')"
-                >
-                  English
-                </button>
-              </div>
-            </div>
+            <language [title]="'Язык'" [template]="'button'"></language>
           </div>
         </div>
 

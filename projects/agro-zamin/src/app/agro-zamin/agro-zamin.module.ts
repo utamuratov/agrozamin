@@ -12,7 +12,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { SharedModule } from 'ngx-az-core';
+import { LanguageModule, SharedModule } from 'ngx-az-core';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FilterPipe } from './components/header/pipes/filter.pipe';
@@ -36,6 +36,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     FormsModule,
     ReactiveFormsModule,
 
+    LanguageModule,
+
     NzGridModule,
     NzSelectModule,
     NzPopoverModule,
@@ -47,7 +49,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzBackTopModule,
     NzModalModule,
     NzFormModule,
-    NzInputModule
+    NzInputModule,
   ],
 })
 export class AgroZaminModule {}
