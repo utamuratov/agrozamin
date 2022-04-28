@@ -7,3 +7,233 @@
 
 // @primary-color: #1890ff;
 /* You can add global styles to this file, and also import other style files */
+
+// Custom Theming for NG-ZORRO
+// For more information: https://ng.ant.design/docs/customize-theme/en
+@import "../../../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+@import "../../../dist/ngx-az-core/styles/az-global.less";
+
+@primary-color: #3c4bdc;
+@form-item-margin-bottom: 10px;
+@btn-height-base: 42px;
+
+@font-face {
+  font-family: Agrofont-BExpanded;
+  src: url(./assets/fonts/ALSAgrofont-BoldExpanded.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Agrofont-Black;
+  src: url(./assets/fonts/ALSAgrofont-Black.ttf);
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: Agrofont-Bold;
+  src: url(./assets/fonts/ALSAgrofont-Bold.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Agrofont-Medium;
+  src: url(./assets/fonts/ALSAgrofont-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Agrofont-Regular;
+  src: url(./assets/fonts/ALSAgrofont-Regular.ttf);
+  font-weight: 400;
+}
+
+@primary-color: #377be1;
+@primary-color-hover: #4d94ff;
+@primary-color-active: #1b59b7;
+@btn-disable-color: #fff;
+@btn-disable-bg: #cfd3d8;
+@border-radius-base: 8px;
+@btn-border-radius-base: 8px;
+@btn-default-color: #86898c;
+@link-color: #377be1;
+@link-hover-color: #00cd69 !important;
+@link-active-color: #1B59B7!important;
+@checkbox-border-radius: 4px;
+
+.container {
+  max-width: 1320px;
+  width: 100%;
+  margin: auto;
+  padding: 0 15px;
+}
+li {
+  list-style: none;
+}
+
+//#region HEADER
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Agrofont-BExpanded;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Agrofont-BExpanded;
+}
+
+li {
+  list-style: none;
+}
+
+.transparent-btn {
+  background: rgba(255, 255, 255, 0.5);
+  color: rgba(26, 26, 26, 0.5);
+  border: none;
+
+  &:hover {
+    background: rgba(255, 255, 255);
+    border: none;
+    color: #22a33f;
+  }
+
+  &:active {
+    background: #1e8f37;
+    color: #fff;
+  }
+}
+
+.block-title {
+  font-size: 32px;
+  line-height: 40px;
+  color: #1a1a1a;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.ml-a {
+  margin-left: auto;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.text-end {
+  text-align: end;
+}
+
+/* drawer */
+.ant-drawer-header {
+  border-bottom: none;
+  border-radius: 0;
+}
+
+.ant-drawer-body {
+  background: #f1f2f5;
+  padding: 0;
+}
+
+.container {
+  max-width: 1320px;
+  width: 100%;
+  margin: auto;
+  padding: 0 15px;
+}
+
+.nav-margin {
+  margin-top: 200px;
+
+  @media (max-width: 1199px) {
+    margin-top: 134px;
+  }
+}
+
+.secondary {
+  background: #00cd69;
+  border: 1px solid #00cd69;
+
+  &:hover {
+    background: #00e576;
+    border: 1px solid #00e576;
+  }
+
+  &:active {
+    background: #00994e;
+    border: 1px solid #00994e;
+  }
+
+  &:focus {
+    background: #00cd69;
+    border: 1px solid #00cd69;
+  }
+}
+
+.title {
+  font-size: 32px;
+  line-height: 40px;
+  color: #000000;
+  margin-bottom: 0;
+
+  @media (max-width: 1200px) {
+    font-size: 25px;
+    line-height: 31px;
+  }
+
+  @media (max-width: 992px) {
+    font-size: 20px;
+    line-height: 25px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+    line-height: 23px;
+  }
+}
+
+.link {
+  font-size: 16px;
+  line-height: 16px;
+
+  @media (max-width: 992px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
+}
+
+.tag {
+  padding: 5px 8px;
+  font-size: 10px;
+  line-height: 10px;
+  font-family: Agrofont-Regular;
+  color: #F91155;
+  background: #FCE6EC;
+  border-radius: 4px;
+} 
+
+.add-title {
+  font-size: 18px;
+  line-height: 23px;
+  font-family: Agrofont-Medium;
+  color: #000000;
+  margin-bottom: 0;
+}

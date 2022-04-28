@@ -1,0 +1,134 @@
+.credits {
+  padding: 70px 0;
+
+  @media (max-width: 1200px) {
+    padding: 40px 0;
+  }
+
+  @media (max-width: 576px) {
+    padding: 30px 0;
+  }
+
+  &__title {
+    font-size: 32px;
+    line-height: 40px;
+    color: #000000;
+    margin-bottom: 0;
+
+    @media (max-width: 1200px) {
+      font-size: 25px;
+      line-height: 31px;
+    }
+
+    @media (max-width: 992px) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+      line-height: 23px;
+    }
+  }
+
+  &__card {
+    padding: 20px;
+    position: relative;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    @media (max-width: 1200px) {
+      height: 186px;
+    }
+    @media (max-width: 992px) {
+      height: 160px;
+    }
+    @media (max-width: 768px) {
+      height: 176px;
+    }
+    @media (max-width: 576px) {
+      height: 176px;
+    }
+    @media (max-width: 480px) {
+      height: 120px;
+    }
+
+    &__img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__info {
+      position: relative;
+      z-index: 100;
+      height: 100%;
+
+      &__title {
+        font-size: 24px;
+        line-height: 30px;
+        color: #22a33f;
+
+        @media (max-width: 1200px) {
+          font-size: 20px;
+          line-height: 25px;
+        }
+        @media (max-width: 992px) {
+          font-size: 16px;
+          line-height: 20px;
+        }
+        @media (max-width: 768px) {
+          font-size: 18px;
+          line-height: 23px;
+        }
+        @media (max-width: 576px) {
+          font-size: 18px;
+          line-height: 23px;
+        }
+        @media (max-width: 480px) {
+          font-size: 16px;
+          line-height: 20px;
+        }
+      }
+
+      &__btn {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        button {
+          background: #22a33f;
+          color: #fff;
+          font-size: 16px;
+          border-radius: 8px;
+          border: none;
+          box-shadow: #d7e2d9;
+          padding: 12px 20px;
+          font-family: Agrofont-Regular;
+
+          @media (max-width: 768px) {
+            font-size: 14px;
+          }
+        }
+        button:active {
+          background: #1e8f37;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}

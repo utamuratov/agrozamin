@@ -77,4 +77,5 @@ export class Constants {
   // * bundle names of option styles of project 'wrapper'(angular.json)
   public static readonly AGROID_ROUTE_PATH = 'agro-id';
   public static readonly AGRO_ZAMIN_ROUTE_PATH = 'main';
+  static readonly ADVERTISEMENT_ROUTE_PATH = "ozimizniki";
 }
