@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { AgroZaminRoutingModule } from './agro-zamin-routing.module';
 import { AgroZaminComponent } from './agro-zamin.component';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -20,6 +18,7 @@ import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { LanguageComponent } from './components/language/language.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +26,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     HeaderComponent,
     FooterComponent,
     FilterPipe,
+    LanguageComponent,
   ],
   imports: [
     AgroZaminRoutingModule,

@@ -26,6 +26,8 @@ import { LanguageModule, ReactiveFormsSharedModule } from 'ngx-az-core';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { LanguageComponent } from './components/language/language.component';
+import { CurrentLanguagePipe } from './components/language/currentLanguage.pipe';
 
 @NgModule({
   imports: [
@@ -68,6 +70,8 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     BusinessCardModalComponent,
     SocialLinksComponent,
     HeaderComponent,
+    LanguageComponent,
+    CurrentLanguagePipe,
   ],
 })
 export class CabinetModule {}

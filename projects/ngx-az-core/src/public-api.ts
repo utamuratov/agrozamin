@@ -35,6 +35,7 @@ export * from './lib/helpers/jwt-options.factory';
 export * from './lib/helpers/settings.helper';
 export * from './lib/helpers/validation.helper';
 export * from './lib/helpers/sign-in.helper';
+export * from './lib/helpers/language.helper';
 
 // INTERCEPTORS
 export * from './lib/interceptors/handle.error.interceptor';
