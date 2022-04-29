@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OzimiznikiComponent } from './ozimizniki.component';
-import { SharedModule } from 'ngx-az-core';
+import { BackTopModule, CallbackModule, SharedModule } from 'ngx-az-core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OzimiznikiRoutes } from './ozimizniki.routing';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -27,6 +27,9 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     OzimiznikiRoutes,
+
+    CallbackModule,
+    BackTopModule,
 
     NzGridModule,
     NzSelectModule,

@@ -1,124 +1,37 @@
-:host ::ng-deep .ant-back-top {
-  right: 200px;
-  bottom: 85px;
-
-  @media (max-width: 1440px) {
-    right: 100px;
-    bottom: 180px;
-  }
-
-  @media (max-width: 1200px) {
-    right: 100px;
-  }
-}
-
-.back-to-top {
-  border-radius: 50%;
-  font-size: 14px;
-  line-height: 16px;
-  color: #b7bbbf;
-  font-family: Agrofont-Regular;
-  height: 80px;
-  width: 80px;
-  border: none;
-  background: #fff;
-  cursor: pointer;
-  transition: 0.3s;
-
-  span {
-    display: block;
-    margin-top: 4px;
-    transition: 0.3s;
-  }
-
-  svg {
-    path {
-      transition: 0.3s;
-    }
-  }
-
-  &:hover {
-    background: #22a33f;
+:host ::ng-deep {
+  .callback {
     svg {
       path {
-        stroke: #fff;
+        fill: #22a33f !important;
       }
     }
 
-    span {
-      color: #fff;
-    }
-  }
-}
+    &:hover {
+      background: #22a33f !important;
 
-.callback {
-  position: fixed;
-  right: 60px;
-  bottom: 45px;
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  border: none;
-  background: #ffffff;
-  cursor: pointer;
-  transition: 0.3s;
-  z-index: 9999;
-
-  @media (max-width: 576px) {
-    width: 60px;
-    height: 60px;
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    span {
-      font-size: 12px;
+      svg {
+        path {
+          fill: #fff !important;
+        }
+      }
     }
   }
 
-  svg {
-    path {
-      transition: 0.3s;
-    }
-  }
-
-  span {
-    display: block;
-    margin: auto;
-    color: #b7bbbf;
-    transition: 0.3s;
-  }
-
-  &:hover {
-    background: #22a33f;
-
+  .back-to-top {
     svg {
       path {
-        fill: #fff;
+        stroke: #22a33f !important;
       }
     }
 
-    span {
-      color: #fff;
+    &:hover {
+      background: #22a33f !important;
+
+      svg {
+        path {
+          stroke: #fff !important;
+        }
+      }
     }
   }
-}
-
-.wrapper {
-  position: relative;
-}
-
-.modal {
-    &__title {
-        font-size: 20px;
-        line-height: 25px;
-    }
-
-    &__text {
-        font-size: 14px;
-        line-height: 18px;
-        margin-bottom: 0;
-    }
 }
