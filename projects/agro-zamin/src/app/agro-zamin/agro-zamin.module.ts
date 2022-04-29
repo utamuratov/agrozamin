@@ -10,7 +10,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { SharedModule } from 'ngx-az-core';
+import { BackTopModule, CallbackModule, SharedModule } from 'ngx-az-core';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FilterPipe } from './components/header/pipes/filter.pipe';
@@ -35,6 +35,9 @@ import { LanguageComponent } from './components/language/language.component';
 
     FormsModule,
     ReactiveFormsModule,
+
+    CallbackModule,
+    BackTopModule,
 
     NzGridModule,
     NzSelectModule,

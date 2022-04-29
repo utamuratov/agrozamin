@@ -12,7 +12,7 @@ export const innerHeight$ = new BehaviorSubject<number>(window.innerHeight);
 })
 export class AppComponent {
   constructor(private store: Store) {
-    store.dispatch(new Languages());
+    this.store.dispatch(new Languages());
   }
 
   /**
