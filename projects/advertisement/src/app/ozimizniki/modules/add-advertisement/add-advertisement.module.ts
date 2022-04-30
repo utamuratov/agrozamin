@@ -8,6 +8,11 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+
 
 @NgModule({
   imports: [
@@ -19,7 +24,11 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
     NzGridModule,
     NzFormModule,
     NzInputModule,
-    NzRadioModule
+    NzRadioModule,
+    NzIconModule,
+    NzUploadModule,
+    NzCheckboxModule,
+    NzSelectModule
   ],
   declarations: [AddAdvertisementComponent, InfoComponent]
 })
