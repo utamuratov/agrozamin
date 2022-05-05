@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Constants } from 'ngx-az-core';
 import { AgroIdRoutingSharedModule } from 'projects/agro-id/src/app/app.module';
+import { AdvertisementRoutingSharedModule } from '../../../advertisement/src/app/app.module';
 import { AgroZaminRoutingSharedModule } from '../../../agro-zamin/src/app/app.module';
 
 /**
@@ -14,6 +15,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('../../../agro-zamin/src/app/app.module').then(
         (m) => m.AgroZaminRoutingSharedModule
+      ),
+  },
+  {
+    path: Constants.ADVERTISEMENT_ROUTE_PATH,
+    loadChildren: () =>
+      import('../../../advertisement/src/app/app.module').then(
+        (m) => m.AdvertisementRoutingSharedModule
       ),
   },
   {
@@ -32,6 +40,9 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     AgroZaminRoutingSharedModule.forRoot(),
+    AdvertisementRoutingSharedModule.forRoot(),
+
+    // IMPORT AT THE END. THIS MODULE INCLUDES WILDCARD(**)
     AgroIdRoutingSharedModule.forRoot(),
   ],
   exports: [RouterModule],

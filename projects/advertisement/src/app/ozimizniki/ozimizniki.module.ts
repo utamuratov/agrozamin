@@ -17,8 +17,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { HeaderComponent } from './components/header/header.component';
-import { FilterPipe } from 'projects/agro-zamin/src/app/agro-zamin/components/header/pipes/filter.pipe';
 import { FooterComponent } from './components/footer/footer.component';
+import { FilterPipe } from './components/header/pipes/filter.pipe';
 
 @NgModule({
   imports: [
