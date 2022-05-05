@@ -13,7 +13,6 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { BackTopModule, CallbackModule, SharedModule } from 'ngx-az-core';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FilterPipe } from './components/header/pipes/filter.pipe';
 import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -25,7 +24,6 @@ import { LanguageComponent } from './components/language/language.component';
     AgroZaminComponent,
     HeaderComponent,
     FooterComponent,
-    FilterPipe,
     LanguageComponent,
   ],
   imports: [

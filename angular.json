@@ -518,6 +518,11 @@
                 "inject": false
               },
               {
+                "input": "projects/advertisement/src/styles.less",
+                "bundleName": "advertisement",
+                "inject": false
+              },
+              {
                 "input": "projects/agro-id/src/styles.less",
                 "bundleName": "agro-id",
                 "inject": false
