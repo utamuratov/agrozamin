@@ -1,12 +1,42 @@
-<div>
-  <div>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque earum
-      recusandae cupiditate velit magnam sunt, reprehenderit cum obcaecati et
-      doloribus quasi nesciunt possimus unde, nobis ut fugiat temporibus a
-      assumenda!
-    </p>
+<div class="container">
+  <div nz-row [nzGutter]="[30, 0]" style="margin-top: 300px; margin-bottom: 100px;">
+    <div nz-col nzSpan="6">
+      <div class="wrapper">
+       
+        <ul nz-menu nzMode="inline">
+          <li nz-submenu nzTitle="Navigation Three" nzIcon="setting">
+            <ul>
+              <li nz-menu-item>Option 11</li>
+              <li nz-menu-item>Option 12</li>
+              <li nz-menu-item>Option 13</li>
+            </ul>
+          </li>
+        </ul>
+        <ul nz-menu nzMode="inline">
+          <li nz-submenu nzTitle="Navigation Three" nzIcon="setting">
+            <ul>
+              <li nz-menu-item>Option 11</li>
+              <li nz-menu-item>Option 12</li>
+              <li nz-menu-item>Option 13</li>
+            </ul>
+          </li>
+        </ul>
+        <ul nz-menu nzMode="inline">
+          <li nz-submenu nzTitle="Navigation Three" nzIcon="setting">
+            <ul>
+              <li nz-menu-item>Option 11</li>
+              <li nz-menu-item>Option 12</li>
+              <li nz-menu-item>Option 13</li>
+            </ul>
+          </li>
+        </ul>
+
+
+      </div>
+    </div>
+
+    <div nz-col nzSpan="18">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  
-  <div><router-outlet></router-outlet></div>
 </div>

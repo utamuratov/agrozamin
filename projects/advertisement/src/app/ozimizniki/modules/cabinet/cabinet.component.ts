@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabinetComponent implements OnInit {
 
+  isCollapsed = false;
+
+  toggleCollapsed(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
   constructor() { }
 
   ngOnInit() {
