@@ -1,6 +1,6 @@
-import { Project, ProjectLabel } from 'ngx-az-core';
+import { Project, ProjectLabel } from '../enums/project.enum';
 
-export class HeaderData {
+export class Data {
   static readonly AGROZAMIN_ECO_SYSTEMS = [
     {
       img: `./assets/images/agrozamin/O'zimizniki-logo.png`,

@@ -3,6 +3,7 @@ import { OzimiznikiComponent } from './ozimizniki.component';
 import {
   BackTopModule,
   CallbackModule,
+  EcoSystemModule,
   NzFormsSharedModule,
   ReactiveFormsSharedModule,
 } from 'ngx-az-core';
@@ -10,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { OzimiznikiRoutes } from './ozimizniki.routing';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -30,10 +30,10 @@ import { LanguageComponent } from './components/language/language.component';
     ReactiveFormsSharedModule,
     CallbackModule,
     BackTopModule,
+    EcoSystemModule,
 
     NzGridModule,
     NzSelectModule,
-    NzPopoverModule,
     NzDrawerModule,
     NzDividerModule,
     NzIconModule,
