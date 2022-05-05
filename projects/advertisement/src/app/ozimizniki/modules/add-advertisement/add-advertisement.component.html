@@ -1,3 +1,67 @@
 <div class="add-adv">
-  <az-info></az-info>
+  <div class="container">
+    <div nz-row [nzGutter]="[0, 40]">
+      <div nz-col nzSpan="24">
+        <h3 class="title">Создать объявление</h3>
+      </div>
+      <div nz-col nzSpan="24">
+        <form
+          nz-form
+          [formGroup]="advSettings"
+          (ngSubmit)="submitForm()"
+          nzLayout="vertical"
+        >
+          <!-- Информация -->
+          <az-info></az-info>
+
+          <!-- Тип объявления -->
+          <az-advertisement-type></az-advertisement-type>
+
+          <!-- Добавить фото и видео -->
+          <az-media></az-media>
+
+          <!-- Цена -->
+          <az-price></az-price>
+
+          <!-- Описание товара -->
+          <az-description></az-description>
+
+          <!-- Характеристики -->
+          <az-characteristics></az-characteristics>
+
+          <!-- Местоположение -->
+          <az-location></az-location>
+
+          <!-- Контактная информация -->
+          <az-contact-data></az-contact-data>
+
+          <div>
+            <label nz-checkbox [(ngModel)]="oferta"
+              >Публикуя данное объявление вы соглашаетесь с пользовательским
+              соглашением.
+            </label>
+          </div>
+
+          <div nz-row [nzGutter]="[16, 0]" class="mt-1">
+            <div nz-col>
+              <button
+                nz-button
+                nzType="primary"
+                nzSize="large"
+                class="secondary"
+                routerLink="add-edit-advertisement"
+              >
+                <span>Опубликовать объявление</span>
+              </button>
+            </div>
+            <div nz-col>
+              <button nz-button nzType="primary" nzSize="large">
+                <span class="nav__bottom-btn-text">Очистить</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

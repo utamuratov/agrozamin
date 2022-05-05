@@ -12,7 +12,14 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-
+import { AdvertisementTypeComponent } from './components/advertisement-type/advertisement-type.component';
+import { MediaComponent } from './components/media/media.component';
+import { PriceComponent } from './components/price/price.component';
+import { DescriptionComponent } from './components/description/description.component';
+import { CharacteristicsComponent } from './components/characteristics/characteristics.component';
+import { LocationComponent } from './components/location/location.component';
+import { ContactDataComponent } from './components/contact-data/contact-data.component';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @NgModule({
   imports: [
@@ -20,7 +27,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     AddAdvertisementRoutes,
     FormsModule,
     ReactiveFormsModule,
-    
+
     NzGridModule,
     NzFormModule,
     NzInputModule,
@@ -28,8 +35,20 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzIconModule,
     NzUploadModule,
     NzCheckboxModule,
-    NzSelectModule
+    NzSelectModule,
+
+    NzButtonModule,
   ],
-  declarations: [AddAdvertisementComponent, InfoComponent]
+  declarations: [
+    AddAdvertisementComponent,
+    InfoComponent,
+    AdvertisementTypeComponent,
+    MediaComponent,
+    PriceComponent,
+    DescriptionComponent,
+    CharacteristicsComponent,
+    LocationComponent,
+    ContactDataComponent,
+  ],
 })
-export class AddAdvertisementModule { }
+export class AddAdvertisementModule {}

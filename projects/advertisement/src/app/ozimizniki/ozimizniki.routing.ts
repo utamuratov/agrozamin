@@ -14,21 +14,26 @@ const routes: Routes = [
       {
         path: 'categories',
         loadChildren: () =>
-          import('./modules/category/category.module').then((m) => m.CategoryModule),
+          import('./modules/category/category.module').then(
+            (m) => m.CategoryModule
+          ),
       },
       {
-        path: 'add-advert',
+        path: 'add-edit-advertisement',
         loadChildren: () =>
-          import('./modules/add-advertisement/add-advertisement.module').then((m) => m.AddAdvertisementModule),
+          import('./modules/add-advertisement/add-advertisement.module').then(
+            (m) => m.AddAdvertisementModule
+          ),
       },
       {
         path: 'cabinet',
         loadChildren: () =>
-          import('./modules/cabinet/cabinet.module').then((m) => m.CabinetModule),
+          import('./modules/cabinet/cabinet.module').then(
+            (m) => m.CabinetModule
+          ),
       },
     ],
   },
 ];
-
 
 export const OzimiznikiRoutes = RouterModule.forChild(routes);
