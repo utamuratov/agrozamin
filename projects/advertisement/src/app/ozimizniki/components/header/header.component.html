@@ -21,7 +21,7 @@
                 <li nz-col class="nav__menu-item"><a>Онлайн консультант</a></li>
               </ul>
             </div>
-            
+
             <div
               nz-col
               nzXs="0"
@@ -32,59 +32,17 @@
               class="ml-a"
             >
               <div nz-row nzJustify="end" [nzGutter]="[24, 0]">
-                <div nz-col >
+                <div nz-col>
                   <nz-select ngModel="1" nzBorderless>
                     <nz-option nzValue="1" nzLabel="Ташкент"></nz-option>
                     <nz-option nzValue="2" nzLabel="Самарканд"></nz-option>
                   </nz-select>
                 </div>
                 <div nz-col class="text-end">
-                  <span nz-typography class="select-desc">Язык:</span>
-                  <nz-select
-                    [(ngModel)]="lang"
-                    nzBorderless
-                    class="nav__select"
-                    style="padding-right: 0"
-                    [nzDropdownMatchSelectWidth]="false"
-                    [nzOptionHeightPx]="35"
-                  >
-                    <nz-option nzCustomContent nzValue="2" nzLabel="Ўзбекча">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Ўзбекча</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="3" nzLabel="O'zbekcha">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">O'zbekcha</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="1" nzLabel="Русский">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/russian-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Русский</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="4" nzLabel="English">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/english-uk-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">English</span>
-                      </div>
-                    </nz-option>
-                  </nz-select>
+                  <az-language
+                    [title]="'language' | translate"
+                    [template]="'dropdown'"
+                  ></az-language>
                 </div>
               </div>
             </div>
@@ -117,10 +75,10 @@
                 </div>
                 <div nz-col class="nav__contacts">
                   <a
-                    ><img
-                      src="./assets/images/chat-icon.svg"
-                      alt="icon"
-                    /><span nz-typography>On-line чат</span></a
+                    ><img src="./assets/images/chat-icon.svg" alt="icon" /><span
+                      nz-typography
+                      >On-line чат</span
+                    ></a
                   >
                 </div>
               </div>
@@ -146,9 +104,7 @@
                     nzPopoverPlacement="bottomRight"
                   >
                     <i
-                      ><img
-                        src="./assets/images/services-icon.svg"
-                        alt="icon"
+                      ><img src="./assets/images/services-icon.svg" alt="icon"
                     /></i>
                   </button>
                 </div>
@@ -161,7 +117,7 @@
 
                 <div nz-col *ngIf="isUserAuthenticated">
                   <button nz-button nzType="default" nzSize="large">
-                   <i nz-icon nzType="bell" nzTheme="outline"></i>
+                    <i nz-icon nzType="bell" nzTheme="outline"></i>
                   </button>
                 </div>
 
@@ -211,52 +167,10 @@
             <div nz-col nzXs="0" nzSm="8" nzMd="10" nzLg="4" nzXl="0">
               <div nz-row>
                 <div nz-col nzSpan="24" class="text-end">
-                  <span nz-typography class="select-desc">Язык:</span>
-                  <nz-select
-                    [(ngModel)]="lang"
-                    nzBorderless
-                    class="nav__select"
-                    style="padding-right: 0"
-                    [nzDropdownMatchSelectWidth]="false"
-                    [nzOptionHeightPx]="35"
-                  >
-                    <nz-option nzCustomContent nzValue="2" nzLabel="Ўзбекча">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Ўзбекча</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="3" nzLabel="O'zbekcha">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/uzbekistan-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">O'zbekcha</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="1" nzLabel="Русский">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/russia-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">Русский</span>
-                      </div>
-                    </nz-option>
-                    <nz-option nzCustomContent nzValue="4" nzLabel="English">
-                      <div class="nav__select__option">
-                        <img
-                          src="./assets/images/agrozamin/english-uk-flag.png"
-                          alt=""
-                        />
-                        <span style="margin-left: 8px">English</span>
-                      </div>
-                    </nz-option>
-                  </nz-select>
+                  <az-language
+                    [title]="'language' | translate"
+                    [template]="'dropdown'"
+                  ></az-language>
                 </div>
               </div>
             </div>
@@ -276,9 +190,7 @@
                 (click)="openAz()"
               >
                 <i
-                  ><img
-                    src="./assets/images/agrozamin/header-burger.svg"
-                    alt="burger"
+                  ><img src="./assets/images/header-burger.svg" alt="burger"
                 /></i>
               </button>
             </div>
@@ -291,81 +203,88 @@
       <div nz-row class="nav__bottom" [nzGutter]="[16, 0]">
         <div nz-col>
           <button nz-button nzType="primary" nzSize="large" (click)="open()">
-            <i
-              ><img
-                src="./assets/images/catalog.svg"
-                alt="icon"
-            /></i>
+            <i><img src="./assets/images/catalog.svg" alt="icon" /></i>
             <span class="nav__bottom-btn-text">Каталог</span>
           </button>
         </div>
         <div nz-col nzFlex="auto">
-            <form nz-form [formGroup]="searchForm" (ngSubmit)="submit()">
-                <nz-input-group
+          <form nz-form [formGroup]="searchForm" (ngSubmit)="submit()">
+            <nz-input-group
+              nzSize="large"
+              nzCompact
+              nzSearch
+              [nzAddOnAfter]="suffixIconButton"
+            >
+              <input
+                type="text"
+                nz-input
                 nzSize="large"
-                nzCompact
-                nzSearch
-                [nzAddOnAfter]="suffixIconButton"
+                style="width: 70%"
+                placeholder="Найти среди 273 000 обьявлений"
+                formControlName="searchInput"
+                (click)="openSearchDrop()"
+              />
+              <nz-input-group
+                style="width: 30%"
+                nzSize="large"
+                [nzSuffix]="arrowIcon"
+                [nzPrefix]="locationIcon"
               >
                 <input
                   type="text"
                   nz-input
                   nzSize="large"
-                  style="width: 70%"
-                  placeholder="Найти среди 273 000 обьявлений"
-                  formControlName="searchInput"
-                  (click)="openSearchDrop()"
+                  placeholder="Весь Узбекистан"
+                  (click)="touched = true"
+                  formControlName="cityInput"
+                  (click)="openFilterDrop()"
                 />
-                <nz-input-group
-                  style="width: 30%"
-                  nzSize="large"
-                  [nzSuffix]="arrowIcon"
-                  [nzPrefix]="locationIcon"
-                >
-                  <input
-                    type="text"
-                    nz-input
-                    nzSize="large"
-                    placeholder="Весь Узбекистан"
-                    (click)="touched = true"
-                    formControlName="cityInput"
-                    (click)="openFilterDrop()"
-                  />
-                </nz-input-group>
               </nz-input-group>
-    
-              <ng-template #locationIcon
-                ><i
-                  nz-icon
-                  nzType="environment"
-                  nzTheme="outline"
-                  [ngStyle]="{ color: touched ? '#1A1A1A' : '#999999' }"
-                ></i
-              ></ng-template>
-    
-              <ng-template #arrowIcon>
-                <i
-                  nz-icon
-                  nzType="down"
-                  nzTheme="outline"
-                  [ngStyle]="{ color: touched ? '#1A1A1A' : '#999999' }"
-                ></i>
-              </ng-template>
-    
-              <ng-template #suffixIconButton>
-                <button nz-button nzType="primary" nzSearch nzSize="large" (click)="searchDropDown = false; searchCityDropDown = false">
-                  <i nz-icon nzType="search"></i>
-                </button>
-              </ng-template>
-    
-              <ng-template #arrowTemplate>
-                <i nz-icon nzType="down" nzTheme="outline"></i>
-              </ng-template>
-            </form>
-          
+            </nz-input-group>
+
+            <ng-template #locationIcon
+              ><i
+                nz-icon
+                nzType="environment"
+                nzTheme="outline"
+                [ngStyle]="{ color: touched ? '#1A1A1A' : '#999999' }"
+              ></i
+            ></ng-template>
+
+            <ng-template #arrowIcon>
+              <i
+                nz-icon
+                nzType="down"
+                nzTheme="outline"
+                [ngStyle]="{ color: touched ? '#1A1A1A' : '#999999' }"
+              ></i>
+            </ng-template>
+
+            <ng-template #suffixIconButton>
+              <button
+                nz-button
+                nzType="primary"
+                nzSearch
+                nzSize="large"
+                (click)="searchDropDown = false; searchCityDropDown = false"
+              >
+                <i nz-icon nzType="search"></i>
+              </button>
+            </ng-template>
+
+            <ng-template #arrowTemplate>
+              <i nz-icon nzType="down" nzTheme="outline"></i>
+            </ng-template>
+          </form>
         </div>
         <div nz-col>
-          <button nz-button nzType="primary" nzSize="large" class="secondary" routerLink="add-advert">
+          <button
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            class="secondary"
+            routerLink="add-advert"
+          >
             <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
             <span>Подать объявление</span>
           </button>
@@ -374,76 +293,94 @@
     </div>
   </nav>
 
-   <div class="header__search-dropdown" *ngIf="searchDropDown">
-      <div class="drop-top">
-        <div class="container">
-            <div class="header__dropdown">
-              <div nz-row [nzGutter]="[0, 30]">
-  
-                  <div nz-col nzSpan="24" *ngFor="let param of searchParamas">
-                      <div nz-row [nzGutter]="[30, 0]">
-                          <div nz-col nzSpan="3">
-                              <p nz-typography class="text-end search__type">{{param.type}}</p>
-                          </div>
-                          <div nz-col nzSpan="21">
-                              <div nz-row>
-                                  <div nz-col nzSpan="24" *ngFor="let value of param.values">
-                                      <a class="search__values">{{value.name}}</a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>                
+  <div class="header__search-dropdown" *ngIf="searchDropDown">
+    <div class="drop-top">
+      <div class="container">
+        <div class="header__dropdown">
+          <div nz-row [nzGutter]="[0, 30]">
+            <div nz-col nzSpan="24" *ngFor="let param of searchParamas">
+              <div nz-row [nzGutter]="[30, 0]">
+                <div nz-col nzSpan="3">
+                  <p nz-typography class="text-end search__type">
+                    {{ param.type }}
+                  </p>
+                </div>
+                <div nz-col nzSpan="21">
+                  <div nz-row>
+                    <div nz-col nzSpan="24" *ngFor="let value of param.values">
+                      <a class="search__values">{{ value.name }}</a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
-      <div class="backdrop"></div>
+    </div>
+    <div class="backdrop"></div>
   </div>
 
-
   <div class="header__search-dropdown" *ngIf="searchCityDropDown">
-      <div class="drop-top">
-        <div class="container">
-            <div class="header__dropdown">
-              <div nz-row [nzGutter]="[0, 30]">
-                  <div nz-col nzSpan="12">
-                      <input nz-input type="text" placeholder="Поиск по названию" nzSize="large" [(ngModel)]="search">                        
-                  </div>            
-                  <div nz-col nzSpan="24">
-                    <div nz-row [nzGutter]="[30, 0]">
-
-                      <div nz-col nzSpan="6" class="regions_border">
-                          <div nz-row [nzGutter]="[0, 16]">
-                                <div nz-col nzSpan="24" *ngFor="let region of regions | filter: search">
-                                  <a class="region" (mouseenter)="getCities(region.id)">{{region.name}}</a>
-                                </div>
-                            </div>
-                      </div>
-
-                      <div nz-col nzSpan="18" *ngIf="search.length < 1">
-                        <div nz-row [nzGutter]="[0, 16]">
-                          <div nz-col nzSpan="8" *ngFor="let city of regionsChild | filter: search">
-                            <a class="city">{{city.name}}</a>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div nz-col nzSpan="18" *ngIf="search.length > 0">
-                        <div nz-row [nzGutter]="[0, 16]">
-                          <div nz-col nzSpan="8" *ngFor="let city of regionsChild | filter: search">
-                            <a class="city">{{city.name}}</a>
-                          </div>
-                        </div>
-                      </div>
-                      
+    <div class="drop-top">
+      <div class="container">
+        <div class="header__dropdown">
+          <div nz-row [nzGutter]="[0, 30]">
+            <div nz-col nzSpan="12">
+              <input
+                nz-input
+                type="text"
+                placeholder="Поиск по названию"
+                nzSize="large"
+                [(ngModel)]="search"
+              />
+            </div>
+            <div nz-col nzSpan="24">
+              <div nz-row [nzGutter]="[30, 0]">
+                <div nz-col nzSpan="6" class="regions_border">
+                  <div nz-row [nzGutter]="[0, 16]">
+                    <div
+                      nz-col
+                      nzSpan="24"
+                      *ngFor="let region of regions | filter: search"
+                    >
+                      <a class="region" (mouseenter)="getCities(region.id)">{{
+                        region.name
+                      }}</a>
                     </div>
-                  </div>            
+                  </div>
+                </div>
+
+                <div nz-col nzSpan="18" *ngIf="search.length < 1">
+                  <div nz-row [nzGutter]="[0, 16]">
+                    <div
+                      nz-col
+                      nzSpan="8"
+                      *ngFor="let city of regionsChild | filter: search"
+                    >
+                      <a class="city">{{ city.name }}</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div nz-col nzSpan="18" *ngIf="search.length > 0">
+                  <div nz-row [nzGutter]="[0, 16]">
+                    <div
+                      nz-col
+                      nzSpan="8"
+                      *ngFor="let city of regionsChild | filter: search"
+                    >
+                      <a class="city">{{ city.name }}</a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
-      <div class="backdrop"></div>
+    </div>
+    <div class="backdrop"></div>
   </div>
 </div>
 
@@ -512,24 +449,18 @@
                 <div nz-col nzSpan="24">
                   <div class="adv">
                     <a
-                      ><img
-                        src="./assets/images/drawer-adv-1.jpg"
-                        alt="adv"
+                      ><img src="./assets/images/drawer-adv-1.jpg" alt="adv"
                     /></a>
                   </div>
                 </div>
                 <div nz-col nzSpan="24">
                   <div class="adv">
                     <a
-                      ><img
-                        src="./assets/images/drawer-adv-2.jpg"
-                        alt="adv"
+                      ><img src="./assets/images/drawer-adv-2.jpg" alt="adv"
                     /></a>
                   </div>
                 </div>
               </div>
-              
-              
             </div>
           </div>
         </div>
@@ -594,54 +525,10 @@
 
         <div nz-col nzXs="24" nzSm="0">
           <div class="az-drawer__language">
-            <p nz-typography class="az-drawer__language__title">Язык</p>
-
-            <div nz-row [nzGutter]="[20, 20]">
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'2' === lang"
-                  (click)="setLang('2')"
-                >
-                  Ўзбекча
-                </button>
-              </div>
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'3' === lang"
-                  (click)="setLang('3')"
-                >
-                  O'zbekcha
-                </button>
-              </div>
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'1' === lang"
-                  (click)="setLang('1')"
-                >
-                  Русский
-                </button>
-              </div>
-              <div nz-col nzSpan="12">
-                <button
-                  nzBlock
-                  nz-button
-                  nzType="default"
-                  [disabled]="'4' === lang"
-                  (click)="setLang('4')"
-                >
-                  English
-                </button>
-              </div>
-            </div>
+            <az-language
+              [title]="'language' | translate"
+              [template]="'button'"
+            ></az-language>
           </div>
         </div>
 
