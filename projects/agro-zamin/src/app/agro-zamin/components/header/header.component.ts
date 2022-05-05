@@ -8,8 +8,7 @@ import {
 } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngxs/store';
-import { Constants, LanguageState } from 'ngx-az-core';
-import { HeaderData } from './header.data';
+import { Constants, Data, LanguageState } from 'ngx-az-core';
 
 @Component({
   selector: 'az-header',
@@ -20,12 +19,7 @@ export class HeaderComponent implements OnInit {
   /**
    *
    */
-  readonly AGROZAMIN_ECO_SYSTEMS = HeaderData.AGROZAMIN_ECO_SYSTEMS;
-
-  /**
-   *
-   */
-  readonly SERVICES = HeaderData.SERVICES;
+  readonly SERVICES = Data.SERVICES;
 
   /**
    *

@@ -11,7 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngxs/store';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
 import { NzPlacementType } from 'ng-zorro-antd/dropdown';
-import { Constants, LanguageState } from 'ngx-az-core';
+import { Constants, Data, LanguageState } from 'ngx-az-core';
 
 @Component({
   selector: 'az-header',
@@ -52,39 +52,6 @@ export class HeaderComponent implements OnInit {
   regionsChild: any = [];
 
   regionsValue: any = [];
-
-  agrozaminEkoSystem = [
-    {
-      img: `./assets/images/service-logo-ozimizniki.svg`,
-      title: 'O’zimizniki',
-      description:
-        'Онлайн платформа для размещения объявлений. Продажа и покупка товаров',
-    },
-    {
-      img: './assets/images/service-logo-agrobusiness.svg',
-      title: 'AgroBusiness',
-      description:
-        'Маркетплейс по продаже и покупке товаров в больших количествах',
-    },
-    {
-      img: './assets/images/service-logo-agroconsult.svg',
-      title: 'AgroConsult',
-      description:
-        'Интенсивные курсы от Агробанка по защите растений, проводят международные специалисты в этой области.',
-    },
-    {
-      img: './assets/images/service-logo-fermerlarmaktabi.svg',
-      title: 'Fermerlar Maktabi',
-      description:
-        'Проект по обучению молодых людей использованию новейших инновационных технологий в с/х производстве.',
-    },
-    {
-      img: './assets/images/service-logo-agrolab.svg',
-      title: 'Agrolab',
-      description:
-        'Интенсивные курсы от Агробанка по защите растений, проводят международные специалисты в этой области.',
-    },
-  ];
 
   categories = [
     {
@@ -846,29 +813,10 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
-  /* services */
-  services = [
-    {
-      logo: './assets/images/service-logo-ozimizniki.svg',
-      name: 'O’zimizniki',
-    },
-    {
-      logo: './assets/images/service-logo-agrobusiness.svg',
-      name: 'AgroBusiness',
-    },
-    {
-      logo: './assets/images/service-logo-agroconsult.svg',
-      name: 'AgroConsult',
-    },
-    {
-      logo: './assets/images/service-logo-fermerlarmaktabi.svg',
-      name: 'Fermerlar Maktabi',
-    },
-    {
-      logo: './assets/images/service-logo-agrolab.svg',
-      name: 'Agrolab',
-    },
-  ];
+  /**
+   *
+   */
+  readonly SERVICES = Data.SERVICES;
 
   constructor(
     private fb: FormBuilder,

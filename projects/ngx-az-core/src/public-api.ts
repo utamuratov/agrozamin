@@ -10,6 +10,7 @@ export * from './lib/shared/forms-shared/nz-forms-shared.module';
 export * from './lib/shared/forms-shared/reactive-forms-shared.module';
 export * from './lib/shared/callback/callback.module';
 export * from './lib/shared/back-top/back-top.module';
+export * from './lib/shared/eco-system/eco-system.module';
 
 // COMPONENTS
 export * from './lib/shared/forms-shared/components/error/error.component';
@@ -17,6 +18,7 @@ export * from './lib/shared/forms-shared/components/error-from-server/error-from
 export * from './lib/shared/forms-shared/components/error-as-alert/error-as-alert.component';
 export * from './lib/shared/callback/callback.component';
 export * from './lib/shared/back-top/back-top.component';
+export * from './lib/shared/eco-system/eco-system.component';
 
 // DIRECTIVES
 export * from './lib/shared/forms-shared/directives/only-letter.directive';
@@ -27,6 +29,7 @@ export * from './lib/shared/full-name/fullName.pipe';
 // CONFIG
 export * from './lib/config/constants';
 export * from './lib/config/di-tokens';
+export * from './lib/config/_data';
 
 // HELPERS
 export * from './lib/helpers/injector.helper';

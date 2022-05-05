@@ -1,0 +1,17 @@
+<div class="inline-card type">
+  <div nz-row [nzGutter]="[0, 30]">
+    <div nz-col nzSpan="24">
+      <h3 class="add-title">Тип объявления</h3>
+    </div>
+    <div nz-col nzSpan="24">
+      <nz-radio-group [(ngModel)]="radioValue" nzName="radiogroup">
+        <label nz-radio nzValue="1" class="type__label">Куплю</label>
+        <label nz-radio nzValue="2" class="type__label">Продам</label>
+        <label nz-radio nzValue="3" class="type__label">Сдам в аренду</label>
+        <label nz-radio nzValue="4" class="type__label">Возьму в аренду</label>
+        <label nz-radio nzValue="5" class="type__label">Предлагаю услуги</label>
+        <label nz-radio nzValue="6" class="type__label">Ищу услуги</label>
+      </nz-radio-group>
+    </div>
+  </div>
+</div>
