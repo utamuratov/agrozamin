@@ -3,27 +3,27 @@ import { Project, ProjectLabel } from '../enums/project.enum';
 export class Data {
   static readonly AGROZAMIN_ECO_SYSTEMS = [
     {
-      img: `./assets/images/agrozamin/O'zimizniki-logo.png`,
+      img: `./assets/images/services/O'zimizniki-logo.png`,
       title: ProjectLabel[Project.advertisement],
       description: 'ecosystemAgrozamin.advertisement.description',
     },
     {
-      img: './assets/images/agrozamin/AgroBussiness-logo.png',
+      img: './assets/images/services/AgroBussiness-logo.png',
       title: ProjectLabel[Project.agroBusiness],
       description: 'ecosystemAgrozamin.agroBusiness.description',
     },
     {
-      img: './assets/images/agrozamin/AgroConsult-logo.png',
+      img: './assets/images/services/AgroConsult-logo.png',
       title: ProjectLabel[Project.agroConsult],
       description: 'ecosystemAgrozamin.agroConsult.description',
     },
     {
-      img: './assets/images/agrozamin/FermerlarMaktabi-logo.png',
+      img: './assets/images/services/FermerlarMaktabi-logo.png',
       title: ProjectLabel[Project.farmersSchool],
       description: 'ecosystemAgrozamin.farmersSchool.description',
     },
     {
-      img: './assets/images/agrozamin/Agrolab-logo.png',
+      img: './assets/images/services/Agrolab-logo.png',
       title: ProjectLabel[Project.agroLab],
       description: 'ecosystemAgrozamin.agroLab.description',
     },

@@ -10,36 +10,39 @@ import ru from '@angular/common/locales/ru';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
 import { RootLayoutComponent } from './ozimizniki/components/root-layout/root-layout.component';
+import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
 
 registerLocaleData(ru);
 const providers = [{ provide: NZ_I18N, useValue: ru_RU }];
 
+const mapConfig: YaConfig = {
+  apikey: 'a54566ed-23f8-4e22-b3ea-0eaf50216fb5',
+  lang: 'ru_RU',
+};
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    RootLayoutComponent
-  ],
+  declarations: [AppComponent, RootLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-  
+
     /**
      * CUSTOM MODULES
      */
-     NgxAzCoreModule,
+    NgxAzCoreModule,
 
-    BrowserAnimationsModule
+    AngularYandexMapsModule.forRoot(mapConfig),
+
+    BrowserAnimationsModule,
   ],
   providers: providers,
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-
-export class AppModule { 
+export class AppModule {
   constructor(private injector: Injector) {
     InjectorHelper.injector = this.injector;
   }
 }
-
 
 @NgModule({})
 export class AdvertisementRoutingSharedModule {
