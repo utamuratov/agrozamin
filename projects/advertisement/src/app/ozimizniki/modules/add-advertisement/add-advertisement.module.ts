@@ -20,6 +20,7 @@ import { CharacteristicsComponent } from './components/characteristics/character
 import { LocationComponent } from './components/location/location.component';
 import { ContactDataComponent } from './components/contact-data/contact-data.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { AngularYandexMapsModule } from 'angular8-yandex-maps';
 
 @NgModule({
   imports: [
@@ -27,6 +28,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     AddAdvertisementRoutes,
     FormsModule,
     ReactiveFormsModule,
+
+    AngularYandexMapsModule,
 
     NzGridModule,
     NzFormModule,

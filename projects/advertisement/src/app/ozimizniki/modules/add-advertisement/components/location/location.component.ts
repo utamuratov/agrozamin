@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
+import { YaGeocoderService } from 'angular8-yandex-maps';
 
 @Component({
   selector: 'az-location',
@@ -7,9 +13,43 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LocationComponent implements OnInit {
+  /**
+   *
+   */
+  coordinates!: GeolocationCoordinates;
+
   selectedValue = null;
 
-  constructor() {}
+  constructor(
+    private cd: ChangeDetectorRef,
+    private yaGeocoderService: YaGeocoderService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getLocation();
+  }
+
+  getLocation() {
+    navigator.geolocation.getCurrentPosition((location) => {
+      this.coordinates = location.coords;
+      this.yaGeocoderService
+        .geocode([location.coords.latitude, location.coords.longitude])
+        .subscribe((res: any) => {
+          const nearest = res.geoObjects.get(0);
+          console.log('getLocalities', nearest.getLocalities());
+          console.log(
+            'getAdministrativeAreas',
+            nearest.getAdministrativeAreas()
+          );
+          console.log('getCountry', nearest.getCountry());
+          console.log('getCountryCode', nearest.getCountryCode());
+          console.log('getThoroughfare', nearest.getThoroughfare());
+          console.log('getPremise', nearest.getPremise());
+          console.log('getPremiseNumber', nearest.getPremiseNumber());
+
+          console.log('getAddressLine', nearest.getAddressLine());
+        });
+      this.cd.markForCheck();
+    });
+  }
 }
