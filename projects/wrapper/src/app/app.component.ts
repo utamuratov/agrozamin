@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { Constants } from 'ngx-az-core';
+import { Store } from '@ngxs/store';
+import { Constants, Languages } from 'ngx-az-core';
 import { filter } from 'rxjs';
 
 @Component({
@@ -17,7 +18,8 @@ export class AppComponent {
   /**
    *
    */
-  constructor(private router: Router) {
+  constructor(private router: Router, private store: Store) {
+    this.store.dispatch(new Languages());
     this.router.events
       .pipe(filter((event) => event instanceof NavigationStart))
       .subscribe((w) => {

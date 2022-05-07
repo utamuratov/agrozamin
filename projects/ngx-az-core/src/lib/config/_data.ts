@@ -32,19 +32,19 @@ export class Data {
   /* services */
   static readonly SERVICES = [
     {
-      logo: './assets/images/agrozamin/service-logo-ozimizniki.svg',
+      logo: './assets/images/service-logo-ozimizniki.svg',
       name: ProjectLabel[Project.advertisement],
     },
     {
-      logo: './assets/images/agrozamin/service-logo-agrobusiness.svg',
+      logo: './assets/images/service-logo-agrobusiness.svg',
       name: ProjectLabel[Project.agroBusiness],
     },
     {
-      logo: './assets/images/agrozamin/service-logo-agroconsult.svg',
+      logo: './assets/images/service-logo-agroconsult.svg',
       name: ProjectLabel[Project.agroConsult],
     },
     {
-      logo: './assets/images/agrozamin/service-logo-fermerlarmaktabi.svg',
+      logo: './assets/images/service-logo-fermerlarmaktabi.svg',
       name: ProjectLabel[Project.farmersSchool],
     },
     {

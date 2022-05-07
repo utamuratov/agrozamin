@@ -13,6 +13,7 @@ import {
   BackTopModule,
   CallbackModule,
   EcoSystemModule,
+  GeneralFooterModule,
   SharedModule,
 } from 'ngx-az-core';
 import { HeaderComponent } from './components/header/header.component';
@@ -36,6 +37,7 @@ import { LanguageComponent } from './components/language/language.component';
     CallbackModule,
     BackTopModule,
     EcoSystemModule,
+    GeneralFooterModule,
 
     NzGridModule,
     NzSelectModule,
