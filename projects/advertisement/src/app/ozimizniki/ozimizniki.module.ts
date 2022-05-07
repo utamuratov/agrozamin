@@ -4,6 +4,7 @@ import {
   BackTopModule,
   CallbackModule,
   EcoSystemModule,
+  GeneralFooterModule,
   NzFormsSharedModule,
   ReactiveFormsSharedModule,
 } from 'ngx-az-core';
@@ -31,6 +32,7 @@ import { LanguageComponent } from './components/language/language.component';
     CallbackModule,
     BackTopModule,
     EcoSystemModule,
+    GeneralFooterModule,
 
     NzGridModule,
     NzSelectModule,

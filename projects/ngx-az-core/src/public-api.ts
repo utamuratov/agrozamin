@@ -11,6 +11,12 @@ export * from './lib/shared/forms-shared/reactive-forms-shared.module';
 export * from './lib/shared/callback/callback.module';
 export * from './lib/shared/back-top/back-top.module';
 export * from './lib/shared/eco-system/eco-system.module';
+export * from './lib/shared/general-footer/general-footer.module';
+export * from './lib/shared/carousel-footer/carousel-footer.module';
+export * from './lib/shared/partner/partner.module';
+export * from './lib/shared/banner/banner.module';
+export * from './lib/shared/credits/credits.module';
+export * from './lib/shared/news/news.module';
 
 // COMPONENTS
 export * from './lib/shared/forms-shared/components/error/error.component';
@@ -19,6 +25,12 @@ export * from './lib/shared/forms-shared/components/error-as-alert/error-as-aler
 export * from './lib/shared/callback/callback.component';
 export * from './lib/shared/back-top/back-top.component';
 export * from './lib/shared/eco-system/eco-system.component';
+export * from './lib/shared/general-footer/general-footer.component';
+export * from './lib/shared/carousel-footer/carousel-footer.component';
+export * from './lib/shared/partner/partner.component';
+export * from './lib/shared/banner/banner.component';
+export * from './lib/shared/credits/credits.component';
+export * from './lib/shared/news/news.component';
 
 // DIRECTIVES
 export * from './lib/shared/forms-shared/directives/only-letter.directive';

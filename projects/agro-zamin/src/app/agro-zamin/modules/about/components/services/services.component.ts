@@ -1,12 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { BannerCorusel } from '../../../home/components/banner/banner.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+export interface BannerCorusel {
+  imgBg: string;
+  title: string;
+  description: string;
+  id?: number;
+  button: string;
+  patternBg: string;
+  slideImg: string;
+}
 
 @Component({
   selector: 'az-services',
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ServicesComponent implements OnInit {
+export class ServicesComponent {
   bannerCarousel: BannerCorusel[] = [
     {
       id: 1,
@@ -38,8 +48,4 @@ export class ServicesComponent implements OnInit {
       slideImg: './assets/images/agrozamin/banner-3.png',
     },
   ];
-
-  constructor() {}
-
-  ngOnInit() {}
 }

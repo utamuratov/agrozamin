@@ -5,73 +5,54 @@ import { HomeRoutes } from './home.routing';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AllComponentsComponent } from './components/all-components/all-components.component';
-import { BannerComponent } from './components/banner/banner.component';
-import { NewsComponent } from './components/news/news.component';
 import { CategoryComponent } from './components/category/category.component';
-import { HistoryComponent } from './components/history/history.component';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
-import { CreditsComponent } from './components/credits/credits.component';
 import { CatalogMembersComponent } from './components/catalog-members/catalog-members.component';
-import { PartnersComponent } from './components/partners/partners.component';
-import { AgrozaminAppComponent } from './components/agrozamin-app/agrozamin-app.component';
-/* NG-ZORRO */
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzCascaderModule } from 'ng-zorro-antd/cascader';
-import { NzDrawerModule } from 'ng-zorro-antd/drawer';
-import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { ServiceComponent } from './components/servis/service.component';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { SwiperModule } from 'swiper/angular';
+import { CarouselFooterModule, PartnerModule } from 'ngx-az-core';
+import { CreditsModule } from 'projects/ngx-az-core/src/lib/shared/credits/credits.module';
+import { BannerModule } from 'projects/ngx-az-core/src/lib/shared/banner/banner.module';
+import { NewsModule } from 'projects/ngx-az-core/src/lib/shared/news/news.module';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   imports: [
     CommonModule,
     HomeRoutes,
-    NzButtonModule,
     FormsModule,
     ReactiveFormsModule,
+
+    /**
+     * NGX-AZ-CORE
+     */
+    CarouselFooterModule,
+    PartnerModule,
+    CreditsModule,
+    BannerModule,
+    NewsModule,
+
     /* NG-Zorro */
+    NzButtonModule,
     NzGridModule,
     NzTypographyModule,
     NzCarouselModule,
-    NzIconModule,
-    NzCardModule,
     NzTagModule,
-    NzSelectModule,
-    NzDividerModule,
-    NzMenuModule,
-    NzInputModule,
-    NzCascaderModule,
-    NzDrawerModule,
-    NzCardModule,
     NzIconModule,
-    NzPopoverModule,
-    NzDropDownModule,
-    NzBackTopModule,
     SwiperModule,
   ],
   declarations: [
     HomeComponent,
-    AllComponentsComponent,
-    BannerComponent,
-    NewsComponent,
-    CategoryComponent,
     HistoryComponent,
+    AllComponentsComponent,
+    CategoryComponent,
     AdvertisementComponent,
-    CreditsComponent,
     CatalogMembersComponent,
-    PartnersComponent,
-    AgrozaminAppComponent,
     ServiceComponent,
   ],
 })

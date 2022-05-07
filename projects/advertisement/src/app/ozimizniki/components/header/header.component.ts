@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngxs/store';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
-import { NzPlacementType } from 'ng-zorro-antd/dropdown';
 import { Constants, Data, LanguageState } from 'ngx-az-core';
 
 @Component({

@@ -33,11 +33,7 @@
             <div nz-row [nzGutter]="[30, 0]">
               <div nz-col *ngFor="let info of card.cards; let idx = index">
                 <div class="carousel__block__img" (click)="viewHistory(idx)">
-                  <img
-                  class="carousel__img"
-                  [src]="info"
-                  alt="history"
-                />
+                  <img class="carousel__img" [src]="info" alt="history" />
                 </div>
               </div>
             </div>
@@ -68,45 +64,72 @@
 
 <div class="history__swiper" *ngIf="historyVisible">
   <swiper
-  [effect]="'coverflow'"
-  [grabCursor]="false"
-  [centeredSlides]="true"
-  [slidesPerView]="'auto'"
-  [coverflowEffect]="{
-    rotate: 0,
-    stretch: 0,
-    depth: 300,
-    modifier: 1,
-    slideShadows: true
-  }"
-  [pagination]="false"  
-  class="swiper-block"
-  [allowTouchMove]="true"
-  #swiper
-
-  (slideChange)="onSlideChange(swiper)"
-
->
-  <ng-template swiperSlide *ngFor="let story of storys; let idx = index" swiperSlide let-data>
-    <div class="swiper-card">
-      <div class="swiper-card-progress" *ngIf="data.isActive">
-        <div nz-row>
-          <div nz-col nzSpan="24">
-            <div class="line">
-              <span class="progress" [ngStyle]="{'width': progressValue + '%'}"></span>
+    [effect]="'coverflow'"
+    [grabCursor]="false"
+    [centeredSlides]="true"
+    [slidesPerView]="'auto'"
+    [coverflowEffect]="{
+      rotate: 0,
+      stretch: 0,
+      depth: 300,
+      modifier: 1,
+      slideShadows: true
+    }"
+    [pagination]="false"
+    class="swiper-block"
+    [allowTouchMove]="true"
+    #swiper
+    (slideChange)="onSlideChange(swiper)"
+  >
+    <ng-template
+      swiperSlide
+      *ngFor="let story of storys; let idx = index"
+      swiperSlide
+      let-data
+    >
+      <div class="swiper-card">
+        <div class="swiper-card-progress" *ngIf="data.isActive">
+          <div nz-row>
+            <div nz-col nzSpan="24">
+              <div class="line">
+                <span
+                  class="progress"
+                  [ngStyle]="{ width: progressValue + '%' }"
+                ></span>
+              </div>
             </div>
           </div>
         </div>
+        <div class="swiper-card-image">
+          <img [src]="story.img" />
+        </div>
       </div>
-      <div class="swiper-card-image">
-        <img [src]="story.img" />
-      </div>      
-    </div>
-  </ng-template>
-</swiper>
+    </ng-template>
+  </swiper>
 
-<button (click)="slideNext()" *ngIf="!isLastSlide" class="next-swipe swipe-btn" ><i nz-icon nzType="right" nzTheme="outline"></i></button>
-<button (click)="slidePrev()" *ngIf="!isFirstSlide" class="prev-swipe swipe-btn"><i nz-icon nzType="left" nzTheme="outline"></i></button>
+  <button
+    (click)="slideNext()"
+    *ngIf="!isLastSlide"
+    class="next-swipe swipe-btn"
+  >
+    <i nz-icon nzType="right" nzTheme="outline"></i>
+  </button>
+  <button
+    (click)="slidePrev()"
+    *ngIf="!isFirstSlide"
+    class="prev-swipe swipe-btn"
+  >
+    <i nz-icon nzType="left" nzTheme="outline"></i>
+  </button>
 
-<button class="swiperBtn" nz-button nzType="default" nzGhost nzShape="circle" (click)="historyVisible = false"><i nz-icon nzType="close" nzTheme="outline"></i></button>
+  <button
+    class="swiperBtn"
+    nz-button
+    nzType="default"
+    nzGhost
+    nzShape="circle"
+    (click)="historyVisible = false"
+  >
+    <i nz-icon nzType="close" nzTheme="outline"></i>
+  </button>
 </div>
