@@ -7,13 +7,15 @@ import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { Project } from 'projects/admin/src/app/core/enums/project.enum';
 import { BaseComponent } from 'projects/admin/src/app/shared/components/base/base.component';
 import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
-import { map, Observable } from 'rxjs';
+import { map, Observable, takeUntil } from 'rxjs';
+import { AdvertiementTypeResponse } from '../../models/advertisement-type.response';
 import { CategoriesFilters } from '../../models/categories-filters.interface';
 import { CategoryEditingData } from '../../models/category-editing-data';
 import { CategoryWithChild } from '../../models/category-with-child.interface';
 import { CategoryRequest } from '../../models/category.request';
 import { CategoryResponse } from '../../models/category.response';
 import { Filter } from '../../models/filter.model';
+import { AdvertisementTypeService } from '../../services/advertisement-type.service';
 import { CategoryService } from '../../services/category.service';
 
 @Component({
@@ -38,13 +40,19 @@ export class CategoryListComponent
   /**
    *
    */
+  advertisementTypes!: AdvertiementTypeResponse[];
+
+  /**
+   *
+   */
   projectId!: number;
 
   constructor(
     protected $category: CategoryService,
     protected override $destroy: NgDestroy,
     protected override cd: ChangeDetectorRef,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private $advertisementType: AdvertisementTypeService
   ) {
     super($category, $destroy, cd);
     this.searchInputConfig.keys = ['id', 'name'];
@@ -60,6 +68,7 @@ export class CategoryListComponent
     this.getAllCategoriesAndFilters().subscribe((result) => {
       this.categoriesAsTree = this.getCategoriesAsTree(result.categories);
       this.filtersAsTree = this.getFiltersAsTree(result.filters);
+      this.getAdvertiesmentTypes();
       super.ngOnInit();
     });
   }
@@ -131,6 +140,20 @@ export class CategoryListComponent
   /**
    *
    */
+  getAdvertiesmentTypes() {
+    this.$advertisementType
+      .getAll()
+      .pipe(takeUntil(this.$destroy))
+      .subscribe((result) => {
+        if (result.success) {
+          this.advertisementTypes = result.data;
+        }
+      });
+  }
+
+  /**
+   *
+   */
   override makeColumnsForGrid() {
     this.language$.subscribe((languages) => {
       this.columns = [
@@ -157,6 +180,11 @@ export class CategoryListComponent
         new Column({
           field: 'filter',
           header: 'filters',
+          hasTemplate: true,
+        }),
+        new Column({
+          field: 'announcement_type',
+          header: 'advertisementType',
           hasTemplate: true,
         }),
       ];
@@ -197,6 +225,9 @@ export class CategoryListComponent
       this.editingData = {
         id: editingData.id,
         name: editingData.name,
+        announcement_types: editingData.announcement_type.map(
+          (w) => w.announcement_type_id
+        ),
         filters,
         parent_categories: editingData.parent.map((w) => w.id + ''),
       };

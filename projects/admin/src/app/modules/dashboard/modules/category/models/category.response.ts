@@ -9,4 +9,9 @@ export interface CategoryResponse extends Id {
     id: number;
     parameters: { id: number }[];
   }[];
+  announcement_type: {
+    announcement_type_id: number;
+    category_id: number;
+    name: string;
+  }[];
 }

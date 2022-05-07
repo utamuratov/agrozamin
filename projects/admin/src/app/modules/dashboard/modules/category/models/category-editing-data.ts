@@ -7,4 +7,5 @@ export interface CategoryEditingData extends Id {
   status?: boolean;
   filters: string[];
   parent_categories: string[];
+  announcement_types: number[];
 }

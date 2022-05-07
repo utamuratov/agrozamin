@@ -10,4 +10,5 @@ export interface CategoryRequest {
     parameters: number[];
   }[];
   parent_categories: number[];
+  announcement_types: number[];
 }

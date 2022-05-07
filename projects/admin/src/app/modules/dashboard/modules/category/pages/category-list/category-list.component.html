@@ -32,6 +32,13 @@
           ><code>{{ filter.name }}</code></span
         >
       </ng-container>
+      <ng-container *ngSwitchCase="'announcement_type'">
+        <span
+          *ngFor="let advertisementType of data.announcement_type"
+          nz-typography
+          ><code>{{ advertisementType.name }}</code></span
+        >
+      </ng-container>
     </ng-container>
   </ng-template>
 </az-grid>
@@ -42,6 +49,7 @@
   [editingData]="editingData"
   [categories]="categoriesAsTree"
   [filters]="filtersAsTree"
+  [advertisementTypes]="advertisementTypes"
   [projectId]="projectId"
   (modified)="modified()"
 ></az-add-edit-category>

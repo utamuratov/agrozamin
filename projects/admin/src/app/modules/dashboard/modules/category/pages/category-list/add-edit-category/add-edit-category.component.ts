@@ -10,6 +10,7 @@ import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 import { NgDestroy } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { BaseAddEditComponent } from 'projects/admin/src/app/shared/components/base-add-edit/base-add-edit.component';
+import { AdvertiementTypeResponse } from '../../../models/advertisement-type.response';
 import { CategoryEditingData } from '../../../models/category-editing-data';
 import { CategoryRequest } from '../../../models/category.request';
 import { CategoryResponse } from '../../../models/category.response';
@@ -36,6 +37,18 @@ export class AddEditCategoryComponent extends BaseAddEditComponent<
   @Input()
   public set categories(v: NzTreeNodeOptions[]) {
     this._categories = v;
+  }
+
+  /**
+   *
+   */
+  private _advertisementTypes: AdvertiementTypeResponse[] = [];
+  public get advertisementTypes(): AdvertiementTypeResponse[] {
+    return this._advertisementTypes;
+  }
+  @Input()
+  public set advertisementTypes(v: AdvertiementTypeResponse[]) {
+    this._advertisementTypes = v;
   }
 
   /**
@@ -92,6 +105,7 @@ export class AddEditCategoryComponent extends BaseAddEditComponent<
       parent_categories: [model?.parent_categories ?? []],
       name: this.fb.group({}),
       filters: [model?.filters, Validators.required],
+      announcement_types: [model?.announcement_types, Validators.required],
     });
   }
 
