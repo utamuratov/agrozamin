@@ -3,9 +3,7 @@ import { BaseResponse, BaseService } from 'ngx-az-core';
 import { Observable } from 'rxjs';
 import { Project } from '../models/project.interface';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ProjectService {
   constructor(private $baseService: BaseService) {}
 

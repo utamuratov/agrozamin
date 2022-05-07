@@ -16,6 +16,8 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
+import { CategoryService } from './services/category.service';
+import { FilterService } from './services/filter.service';
 
 @NgModule({
   declarations: [
@@ -46,5 +48,6 @@ import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
     NzRadioModule,
     NzTreeSelectModule,
   ],
+  providers: [CategoryService, FilterService],
 })
 export class CategoryModule {}
