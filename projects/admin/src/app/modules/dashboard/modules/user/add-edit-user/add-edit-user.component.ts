@@ -4,7 +4,7 @@ import { Constants, NgDestroy } from 'ngx-az-core';
 import { BaseAddEditComponent } from 'projects/admin/src/app/shared/components/base-add-edit/base-add-edit.component';
 import { IdKeyDescription } from 'projects/admin/src/app/shared/models/id-key-description.interface';
 import { Observable } from 'rxjs';
-import { AdminUsersService } from '../admin-users.service';
+import { AdminUsersService } from '../services/admin-users.service';
 import { AdminUserBody } from '../models/admin-user.body';
 import { AdminUserResponse } from '../models/admin-user.response';
 

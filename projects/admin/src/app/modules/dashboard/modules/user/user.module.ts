@@ -10,6 +10,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { AdminUsersService } from './services/admin-users.service';
 
 @NgModule({
   declarations: [UserComponent, AddEditUserComponent],
@@ -31,5 +32,6 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
     NzSwitchModule,
     NzTagModule,
   ],
+  providers: [AdminUsersService],
 })
 export class UserModule {}

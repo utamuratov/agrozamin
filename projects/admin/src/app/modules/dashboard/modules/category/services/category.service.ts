@@ -7,9 +7,7 @@ import { CategoriesFilters } from '../models/categories-filters.interface';
 import { CategoryRequest } from '../models/category.request';
 import { CategoryResponse } from '../models/category.response';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CategoryService extends CrudService<
   CategoryResponse,
   CategoryRequest

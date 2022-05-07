@@ -8,6 +8,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { TranslationComponent } from './components/translation/translation.component';
 import { AddEditTranslationComponent } from './components/add-edit-translation/add-edit-translation.component';
 import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
+import { ProjectService } from './services/project.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,6 @@ import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.mo
     NzTypographyModule,
     NzToolTipModule,
   ],
-  providers: [TranslateApiService],
+  providers: [TranslateApiService, ProjectService],
 })
 export class TranslateModule {}

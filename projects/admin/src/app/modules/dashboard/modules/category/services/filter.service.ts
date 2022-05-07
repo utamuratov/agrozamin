@@ -4,9 +4,7 @@ import { CrudService } from 'projects/admin/src/app/core/services/crud.service';
 import { FilterRequest } from '../models/filter.request';
 import { FilterResponse } from '../models/filter.response';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class FilterService extends CrudService<FilterResponse, FilterRequest> {
   /**
    *

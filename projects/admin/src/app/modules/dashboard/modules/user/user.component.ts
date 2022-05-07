@@ -13,7 +13,7 @@ import { IdKeyDescription } from 'projects/admin/src/app/shared/models/id-key-de
 import { Observable, map, takeUntil } from 'rxjs';
 import { GridModel } from '../translate/models/grid-model';
 import { GridQuery } from '../translate/models/grid-query.interface';
-import { AdminUsersService } from './admin-users.service';
+import { AdminUsersService } from './services/admin-users.service';
 import { AdminUserBody } from './models/admin-user.body';
 import { AdminUserGridData } from './models/admin-user.grid.data';
 import { AdminUserResponse } from './models/admin-user.response';
