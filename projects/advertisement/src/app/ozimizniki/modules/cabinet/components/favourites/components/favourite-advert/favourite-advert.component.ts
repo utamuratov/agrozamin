@@ -1,16 +1,15 @@
-import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'az-advertisement',
-  templateUrl: './advertisement.component.html',
-  styleUrls: ['./advertisement.component.less']
+  selector: 'az-favourite-advert',
+  templateUrl: './favourite-advert.component.html',
+  styleUrls: ['./favourite-advert.component.less']
 })
-export class AdvertisementComponent implements OnInit {
+export class FavouriteAdvertComponent implements OnInit {
 
   adverticement = [
     {
-      img: '/assets/images/kombayn.jpg',
+      img: '/assets/images/kombayn1.jpg',
       imgText: 'Сельхозтехника',
       title: 'Кормоуборочный комбайн RSM F 2650',
       desc: `RSM F 2650 - высокопроизводительный кормоуборочный комбайн,
@@ -64,8 +63,7 @@ export class AdvertisementComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
-
 
 }
