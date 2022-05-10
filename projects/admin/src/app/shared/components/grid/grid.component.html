@@ -5,7 +5,9 @@
   nzShowSizeChanger
   nzSize="small"
   nzBordered
-  [nzScroll]="(data.length | makeNzScroll | async)!"
+  [nzScroll]="
+    (data.length | makeNzScroll: subtrahend:undefined:showScrollbar | async)!
+  "
   [nzWidthConfig]="nzWidthConfig"
 >
   <thead>

@@ -12,6 +12,7 @@
 <az-grid
   [data]="searchInputConfig.filteredData"
   [columns]="columns"
+  [showScrollbar]="true"
   [columnTemplate]="columnTemplate"
   [nzWidthConfig]="nzWidthConfig"
   (deleted)="delete($event)"

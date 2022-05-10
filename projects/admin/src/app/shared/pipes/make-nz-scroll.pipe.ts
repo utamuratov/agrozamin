@@ -2,14 +2,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { innerHeight$ } from '../../components/app/app.component';
 
+export const SUBTRAHEND = 350;
 @Pipe({
   name: 'makeNzScroll',
 })
 export class MakeNzScrollPipe implements PipeTransform {
   transform(
     total: number,
-    subtrahend = 350,
-    x?: number
+    subtrahend = SUBTRAHEND,
+    x?: number,
+    showScrollbar = false
   ): Observable<{
     x?: string | null;
     y?: string | null;
@@ -19,7 +21,10 @@ export class MakeNzScrollPipe implements PipeTransform {
         const xy: {
           x?: string | null;
           y?: string | null;
-        } = total > 10 ? { y: innerHeight - subtrahend + 'px' } : {};
+        } =
+          total > 10 || showScrollbar
+            ? { y: innerHeight - subtrahend + 'px' }
+            : {};
         if (x !== undefined) {
           xy.x = x + 'px';
         }
