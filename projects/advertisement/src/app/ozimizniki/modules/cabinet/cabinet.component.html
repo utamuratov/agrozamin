@@ -1,42 +1,44 @@
-<div class="container">
-  <div nz-row [nzGutter]="[30, 0]" style="margin-top: 300px; margin-bottom: 100px;">
-    <div nz-col nzSpan="6">
-      <div class="wrapper">
-       
-        <ul nz-menu nzMode="inline">
-          <li nz-submenu nzTitle="Navigation Three" nzIcon="setting">
-            <ul>
-              <li nz-menu-item>Option 11</li>
-              <li nz-menu-item>Option 12</li>
-              <li nz-menu-item>Option 13</li>
-            </ul>
-          </li>
-        </ul>
-        <ul nz-menu nzMode="inline">
-          <li nz-submenu nzTitle="Navigation Three" nzIcon="setting">
-            <ul>
-              <li nz-menu-item>Option 11</li>
-              <li nz-menu-item>Option 12</li>
-              <li nz-menu-item>Option 13</li>
-            </ul>
-          </li>
-        </ul>
-        <ul nz-menu nzMode="inline">
-          <li nz-submenu nzTitle="Navigation Three" nzIcon="setting">
-            <ul>
-              <li nz-menu-item>Option 11</li>
-              <li nz-menu-item>Option 12</li>
-              <li nz-menu-item>Option 13</li>
-            </ul>
-          </li>
-        </ul>
+<div class="advertisement">
+  <div class="container">
+    <div nz-row [nzGutter]="[30, 0]" >
+      <div nz-col nzSpan="6">
+        <div  class="wrapper">
+          
+          <ul  nz-menu nzMode="inline">
+            <li nz-submenu nzTitle="Объявления" nzIcon="message">
+              <ul>
+                <li routerLink="advert" nz-menu-item>Активные</li>
+                <li nz-menu-item>Ожидающие</li>
+                <li nz-menu-item>Архивные</li>
+                <li nz-menu-item>Отклоненные</li>
+              </ul>
+            </li>
+            <li nz-submenu nzTitle="Сообщения" nzIcon="message">
+              <ul>
+                <li routerLink="messages/messages1" nz-menu-item>Непрочитанные</li>
+                <li routerLink="messages/messages2" nz-menu-item>Исходящие</li>
+                <li nz-menu-item>Входящие</li>
+                <li nz-menu-item>Сохранённые </li>
+                <li nz-menu-item>Архивные</li>
+              </ul>
+            </li>
+            <li nz-submenu nzTitle="Избранное" nzIcon="message">
+              <ul >
+                <li nz-menu-item routerLink="favourites/favourite-advert">Объявления</li>
+                <li nz-menu-item routerLink="favourites/sellers">Продавцы</li>
+                <li nz-menu-item routerLink="favourites/filter-options">Параметры фильтров</li>
+              </ul>
+            </li>
+  
+            <li nz-submenu nzTitle="Чат с поддержкой" routerLink="support" nzIcon="setting"></li>
+          </ul>
 
-
+       </div>
       </div>
-    </div>
-
-    <div nz-col nzSpan="18">
-      <router-outlet></router-outlet>
+  
+      <div nz-col nzSpan="18">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>

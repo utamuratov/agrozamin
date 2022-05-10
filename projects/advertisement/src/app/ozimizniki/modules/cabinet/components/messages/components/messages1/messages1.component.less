@@ -1,0 +1,81 @@
+.messages {
+  width: 960px;
+  height: 700px;
+  background: #fff;
+  border-radius: 12px;
+  &__left {
+    border-right: 1px solid #cfd3d8;
+    height: 700px;
+
+    &__content {
+      padding: 20px;
+      &__input {
+        padding-bottom: 20px;
+        input {
+          height: 40px;
+        }
+        button {
+          height: 40px;
+        }
+      }
+      &__user{
+        cursor: pointer;
+        &:active{
+            background: #F2F6FC;
+          }
+        border-radius: 8px;
+        p{
+          margin: 0;
+          font-size: 14px;
+          line-height: 18px;
+        }
+        span{
+          font-size: 12px;
+          line-height: 15px;
+          color: #86898C;
+        }
+      }
+    }
+  }
+
+  &__body{
+    &__content{
+      padding-top: 16px;
+      padding-right: 16px;
+
+      &__top{     
+        i{
+          padding-left: 10px;
+        }
+      }
+
+      &__middle{
+        margin-top: 24px;
+        height: 548px;
+        border: 1px solid #CFD3D8;
+        border-radius: 0px 8px 8px 0px;
+        border-left: none;
+      }
+
+      &__footer{
+       
+        padding-top: 12px;
+        .ant-input-affix-wrapper {
+            padding: 0;
+            border: none;
+        }
+        .ant-input-affix-wrapper:hover{
+            border: none;
+        }
+        button{
+            background: none; 
+            border: none; 
+            padding: 0;
+            margin-left: 10px; 
+            padding-right: 0;
+        }
+    }
+
+    }
+  }
+}
