@@ -15,19 +15,19 @@ export class CreditsComponent {
   credits: Credits[] = [
     {
       title: 'Кредит на покупку агротехники, 23% годовых',
-      img: './assets/images/agrozamin/creditBanner2.jpg',
+      img: './assets/images/creditBanner2.jpg',
     },
     {
       title: 'Кредит на защиту растений',
-      img: './assets/images/agrozamin/creditBanner1.jpg',
+      img: './assets/images/creditBanner1.jpg',
     },
     {
       title: 'Кредит на защиту растений',
-      img: './assets/images/agrozamin/creditBanner1.jpg',
+      img: './assets/images/creditBanner1.jpg',
     },
     {
       title: 'Кредит на покупку агротехники, 23% годовых',
-      img: './assets/images/agrozamin/creditBanner2.jpg',
+      img: './assets/images/creditBanner2.jpg',
     },
   ];
 }

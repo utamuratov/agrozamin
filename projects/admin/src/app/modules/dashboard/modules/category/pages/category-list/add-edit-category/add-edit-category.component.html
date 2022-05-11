@@ -54,6 +54,31 @@
           </ng-template>
         </nz-form-item>
 
+        <nz-form-item>
+          <nz-form-label nzFor="announcement_types">{{
+            "advertisementType" | translate
+          }}</nz-form-label>
+          <nz-form-control [nzErrorTip]="announcement_types">
+            <nz-select
+              id="announcement_types"
+              formControlName="announcement_types"
+              nzMode="multiple"
+            >
+              <nz-option
+                nzCustomContent
+                *ngFor="let option of advertisementTypes"
+                [nzLabel]="option.name"
+                [nzValue]="option.id"
+              >
+                {{ option.name }}
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+          <ng-template #announcement_types let-control>
+            <error [control]="control"></error>
+          </ng-template>
+        </nz-form-item>
+
         <!-- NAME -->
         <h3>{{ "name" | translate }}</h3>
         <az-language-controls

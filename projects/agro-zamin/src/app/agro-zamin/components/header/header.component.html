@@ -34,7 +34,7 @@
                 <div nz-col class="nav__weather">
                   <img
                     width="20"
-                    src="./assets/images/agrozamin/sun-svg.svg"
+                    src="./assets/images/sun-svg.svg"
                     alt="weather-icon"
                   />
                   <span nz-typography>27 °C</span>
@@ -66,7 +66,7 @@
           <div nz-row nzAlign="middle">
             <div nz-col nzXs="22" nzSm="14" nzMd="12" nzLg="8" nzXl="9">
               <a [routerLink]="'./'">
-                <img src="./assets/images/agrozamin/logo.svg" alt="logo" />
+                <img src="./assets/images/logo.svg" alt="logo" />
               </a>
             </div>
             <div
@@ -81,19 +81,17 @@
                 <div nz-col class="nav__contacts">
                   <a href="tel:998781500088"
                     ><img
-                      src="./assets/images/agrozamin/phone-icon.svg"
+                      src="./assets/images/phone-icon.svg"
                       alt="icon"
                     /><span nz-typography>(78) 150–00–88</span></a
                   >
                 </div>
                 <div nz-col class="nav__contacts">
                   <a
-                    ><img
-                      src="./assets/images/agrozamin/chat-icon.svg"
-                      alt="icon"
-                    /><span nz-typography>{{
-                      "onlineChat" | translate
-                    }}</span></a
+                    ><img src="./assets/images/chat-icon.svg" alt="icon" /><span
+                      nz-typography
+                      >{{ "onlineChat" | translate }}</span
+                    ></a
                   >
                 </div>
               </div>
@@ -110,7 +108,7 @@
               <div nz-row [nzGutter]="[8, 0]" nzJustify="end">
                 <div nz-col>
                   <az-eco-system
-                    [iconSrc]="'./assets/images/agrozamin/services-icon.svg'"
+                    [iconSrc]="'./assets/images/services-icon.svg'"
                   ></az-eco-system>
                 </div>
 
@@ -135,10 +133,7 @@
                       class="ava-btn"
                       *ngIf="profileImage"
                     >
-                      <img
-                        [src]="'./assets/images/agrozamin/ava.jpg'"
-                        alt="ava-btn"
-                      />
+                      <img [src]="'./assets/images/ava.jpg'" alt="ava-btn" />
                     </button>
                     <button
                       nz-button
@@ -180,9 +175,7 @@
                 (click)="openAz()"
               >
                 <i
-                  ><img
-                    src="./assets/images/agrozamin/header-burger.svg"
-                    alt="burger"
+                  ><img src="./assets/images/header-burger.svg" alt="burger"
                 /></i>
               </button>
             </div>
@@ -296,18 +289,18 @@
             <div nz-row [nzGutter]="[0, 30]">
               <div nz-col nzSpan="24">
                 <a href="tel:998781500088" class="az-drawer__contacts"
-                  ><img
-                    src="./assets/images/agrozamin/phone-icon.svg"
-                    alt="icon"
-                  /><span nz-typography>(78) 150–00–88</span></a
+                  ><img src="./assets/images/phone-icon.svg" alt="icon" /><span
+                    nz-typography
+                    >(78) 150–00–88</span
+                  ></a
                 >
               </div>
               <div nz-col nzSpan="24">
                 <a class="az-drawer__contacts"
-                  ><img
-                    src="./assets/images/agrozamin/chat-icon.svg"
-                    alt="icon"
-                  /><span nz-typography>{{ "onlineChat" | translate }}</span></a
+                  ><img src="./assets/images/chat-icon.svg" alt="icon" /><span
+                    nz-typography
+                    >{{ "onlineChat" | translate }}</span
+                  ></a
                 >
               </div>
             </div>

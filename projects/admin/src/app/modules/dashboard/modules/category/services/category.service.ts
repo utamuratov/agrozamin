@@ -53,6 +53,10 @@ export class CategoryService extends CrudService<
     }
     formData.append('project_id', model.project_id.toString());
     formData.append('name', JSON.stringify(model.name));
+    formData.append(
+      'announcement_types',
+      JSON.stringify(model.announcement_types)
+    );
     formData.append('filters', JSON.stringify(model.filters));
     formData.append(
       'parent_categories',

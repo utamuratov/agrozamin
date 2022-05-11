@@ -7,6 +7,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { SUBTRAHEND } from '../../pipes/make-nz-scroll.pipe';
 import { Column } from './models/column.interface';
 
 @Component({
@@ -27,6 +28,17 @@ export class GridComponent {
    */
   @Input()
   nzWidthConfig: string[] = [];
+
+  /**
+   *
+   */
+  @Input()
+  showScrollbar = false;
+
+  /**
+   *
+   */
+  readonly subtrahend = SUBTRAHEND;
 
   /**
    *

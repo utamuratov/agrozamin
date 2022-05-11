@@ -18,6 +18,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { CategoryService } from './services/category.service';
 import { FilterService } from './services/filter.service';
+import { AdvertisementTypeService } from './services/advertisement-type.service';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,6 @@ import { FilterService } from './services/filter.service';
     NzRadioModule,
     NzTreeSelectModule,
   ],
-  providers: [CategoryService, FilterService],
+  providers: [CategoryService, FilterService, AdvertisementTypeService],
 })
 export class CategoryModule {}

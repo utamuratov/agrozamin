@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { Observable, Observer } from 'rxjs';
+import { Category } from '../../dto/category.interface';
+import { AddAdvertisementService } from '../../services/add-advertisement.service';
+
+interface CustomTree {
+  selectedId: number;
+  data: Category[];
+}
 
 @Component({
   selector: 'az-info',
@@ -10,7 +13,40 @@ import { Observable, Observer } from 'rxjs';
   styleUrls: ['./info.component.less'],
 })
 export class InfoComponent implements OnInit {
-  constructor() {}
+  /**
+   *
+   */
+  categories!: Category[];
 
-  ngOnInit() {}
+  /**
+   *
+   */
+  customTree: CustomTree[] = [];
+
+  constructor(private $addAdvertisement: AddAdvertisementService) {}
+
+  ngOnInit() {
+    this.getReferences();
+  }
+
+  /**
+   *
+   */
+  getReferences() {
+    this.$addAdvertisement.getReferencesForCreate().subscribe((result) => {
+      if (result.success) {
+        this.categories = result.data.categories;
+        this.customTree.push({ selectedId: -1, data: this.categories });
+      }
+    });
+  }
+
+  chooseCategory(category: Category, tree: CustomTree) {
+    tree.selectedId = category.id;
+    if (category.child_categories.length === 0) {
+      return;
+    }
+
+    this.customTree.push({ selectedId: -1, data: category.child_categories });
+  }
 }
