@@ -21,6 +21,7 @@ import { LocationComponent } from './components/location/location.component';
 import { ContactDataComponent } from './components/contact-data/contact-data.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AngularYandexMapsModule } from 'angular8-yandex-maps';
+import { AddAdvertisementService } from './services/add-advertisement.service';
 
 @NgModule({
   imports: [
@@ -53,5 +54,6 @@ import { AngularYandexMapsModule } from 'angular8-yandex-maps';
     LocationComponent,
     ContactDataComponent,
   ],
+  providers: [AddAdvertisementService],
 })
 export class AddAdvertisementModule {}

@@ -76,7 +76,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "port": 4201
+            "port": 4201,
+            "browserTarget": "admin:build",
+            "proxyConfig": "projects/admin/src/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -186,7 +188,9 @@
         },
         "serve": {
           "options": {
-            "port": 4202
+            "port": 4202,
+            "browserTarget": "agro-id:build",
+            "proxyConfig": "projects/agro-id/src/proxy.conf.json"
           },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
@@ -439,7 +443,9 @@
         },
         "serve": {
           "options": {
-            "port": 4203
+            "port": 4203,
+            "browserTarget": "advertisement:build",
+            "proxyConfig": "projects/advertisement/src/proxy.conf.json"
           },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {

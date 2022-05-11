@@ -1,6 +1,6 @@
 {
-    "/api/v1/*": {
-        "target": "https://192.168.1.118",
+    "/v1/*": {
+        "target": "https://announcement.loc",
         "secure": false,
         "changeOrigin": true
     }

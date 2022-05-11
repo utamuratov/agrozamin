@@ -20,7 +20,7 @@ export class ServiceComponent implements OnInit {
   services: Service[][] = [
     [
       {
-        logo: `./assets/images/agrozamin/ozimozniki-logo.svg`,
+        logo: `./assets/images/ozimozniki-logo.svg`,
         title: 'Объявления',
         description: `Продажа и покупка товаров, модернизация вашего бизнеса. Использование
         площадки — это экономия вашего времени, оптимизация затрат и повышение эффективности.`,
@@ -28,7 +28,7 @@ export class ServiceComponent implements OnInit {
         color: '#EBF2FC',
       },
       {
-        logo: `./assets/images/agrozamin/agroconsult-logo.svg`,
+        logo: `./assets/images/agroconsult-logo.svg`,
         title: 'Онлайн консультант',
         description: `Для современного мира начало повседневной работы по формированию позиции
          требует анализа экономической целесообразности принимаемых решений.`,
@@ -36,7 +36,7 @@ export class ServiceComponent implements OnInit {
         color: '#FEECED',
       },
       {
-        logo: `./assets/images/agrozamin/logo-business.svg`,
+        logo: `./assets/images/logo-business.svg`,
         title: 'Маркетплейс для бизнеса',
         description: `Для современного мира экономическая повестка сегодняшнего дня не оставляет
          шанса для инновационных методов управления процессами.`,
@@ -46,7 +46,7 @@ export class ServiceComponent implements OnInit {
     ],
     [
       {
-        logo: `./assets/images/agrozamin/ozimozniki-logo.svg`,
+        logo: `./assets/images/ozimozniki-logo.svg`,
         title: 'Объявления',
         description: `Продажа и покупка товаров, модернизация вашего бизнеса. Использование
         площадки — это экономия вашего времени, оптимизация затрат и повышение эффективности.`,
@@ -54,7 +54,7 @@ export class ServiceComponent implements OnInit {
         color: '#EBF2FC',
       },
       {
-        logo: `./assets/images/agrozamin/agroconsult-logo.svg`,
+        logo: `./assets/images/agroconsult-logo.svg`,
         title: 'Онлайн консультант',
         description: `Для современного мира начало повседневной работы по формированию позиции
          требует анализа экономической целесообразности принимаемых решений.`,
@@ -62,7 +62,7 @@ export class ServiceComponent implements OnInit {
         color: '#FEECED',
       },
       {
-        logo: `./assets/images/agrozamin/logo-business.svg`,
+        logo: `./assets/images/logo-business.svg`,
         title: 'Маркетплейс для бизнеса',
         description: `Для современного мира экономическая повестка сегодняшнего дня не оставляет
          шанса для инновационных методов управления процессами.`,
@@ -72,7 +72,7 @@ export class ServiceComponent implements OnInit {
     ],
     [
       {
-        logo: `./assets/images/agrozamin/ozimozniki-logo.svg`,
+        logo: `./assets/images/ozimozniki-logo.svg`,
         title: 'Объявления',
         description: `Продажа и покупка товаров, модернизация вашего бизнеса. Использование
         площадки — это экономия вашего времени, оптимизация затрат и повышение эффективности.`,
@@ -80,7 +80,7 @@ export class ServiceComponent implements OnInit {
         color: '#EBF2FC',
       },
       {
-        logo: `./assets/images/agrozamin/agroconsult-logo.svg`,
+        logo: `./assets/images/agroconsult-logo.svg`,
         title: 'Онлайн консультант',
         description: `Для современного мира начало повседневной работы по формированию позиции
          требует анализа экономической целесообразности принимаемых решений.`,
@@ -88,7 +88,7 @@ export class ServiceComponent implements OnInit {
         color: '#FEECED',
       },
       {
-        logo: `./assets/images/agrozamin/logo-business.svg`,
+        logo: `./assets/images/logo-business.svg`,
         title: 'Маркетплейс для бизнеса',
         description: `Для современного мира экономическая повестка сегодняшнего дня не оставляет
          шанса для инновационных методов управления процессами.`,
@@ -100,7 +100,7 @@ export class ServiceComponent implements OnInit {
 
   serviceScroll = [
     {
-      logo: `./assets/images/agrozamin/ozimozniki-logo.svg`,
+      logo: `./assets/images/ozimozniki-logo.svg`,
       title: 'Объявления',
       description: `Продажа и покупка товаров, модернизация вашего бизнеса. Использование
       площадки — это экономия вашего времени, оптимизация затрат и повышение эффективности.`,
@@ -108,7 +108,7 @@ export class ServiceComponent implements OnInit {
       color: '#EBF2FC',
     },
     {
-      logo: `./assets/images/agrozamin/agroconsult-logo.svg`,
+      logo: `./assets/images/agroconsult-logo.svg`,
       title: 'Онлайн консультант',
       description: `Для современного мира начало повседневной работы по формированию позиции
        требует анализа экономической целесообразности принимаемых решений.`,
@@ -116,7 +116,7 @@ export class ServiceComponent implements OnInit {
       color: '#FEECED',
     },
     {
-      logo: `./assets/images/agrozamin/logo-business.svg`,
+      logo: `./assets/images/logo-business.svg`,
       title: 'Маркетплейс для бизнеса',
       description: `Для современного мира экономическая повестка сегодняшнего дня не оставляет
        шанса для инновационных методов управления процессами.`,
@@ -124,7 +124,7 @@ export class ServiceComponent implements OnInit {
       color: '#F7EFFE',
     },
     {
-      logo: `./assets/images/agrozamin/agroconsult-logo.svg`,
+      logo: `./assets/images/agroconsult-logo.svg`,
       title: 'Онлайн консультант',
       description: `Для современного мира начало повседневной работы по формированию позиции
        требует анализа экономической целесообразности принимаемых решений.`,
@@ -132,7 +132,7 @@ export class ServiceComponent implements OnInit {
       color: '#FEECED',
     },
     {
-      logo: `./assets/images/agrozamin/ozimozniki-logo.svg`,
+      logo: `./assets/images/ozimozniki-logo.svg`,
       title: 'Объявления',
       description: `Продажа и покупка товаров, модернизация вашего бизнеса. Использование
       площадки — это экономия вашего времени, оптимизация затрат и повышение эффективности.`,
@@ -151,6 +151,4 @@ export class ServiceComponent implements OnInit {
   next(e: NzCarouselComponent) {
     e.next();
   }
-
-  
 }

@@ -23,47 +23,26 @@
     <div nz-col nzSpan="24">
       <span class="add-subtitle">Категория</span>
       <div nz-row [nzGutter]="[30, 0]">
-        <div nz-col nzSpan="8">
+        <!-- <div nz-col nzSpan="8">
           <div class="info__category level-1">
             <ul class="info__category__list">
-              <li nzSpan="24">Сельхозтехника</li>
-              <li nzSpan="24">Сельхозтехника</li>
-              <li nzSpan="24">Сельхозтехника</li>
-              <li nzSpan="24">Сельхозтехника</li>
-              <li nzSpan="24">Сельхозтехника</li>
-              <li nzSpan="24">Сельхозтехника</li>
-              <li nzSpan="24">Сельхозтехника</li>
-              <li nzSpan="24">Сельхозтехника</li>
-              <li nzSpan="24">Сельхозтехника</li>
-              <li nzSpan="24">Сельхозтехника</li>
-              <li nzSpan="24">Сельхозтехника</li>
+              <li nzSpan="24" (click)="" *ngFor="let category of categories">
+                {{ category.name }}
+              </li>
             </ul>
           </div>
-        </div>
-        <div nz-col nzSpan="8">
-          <div class="info__category level-2">
+        </div> -->
+        <div nz-col nzSpan="8" *ngFor="let tree of customTree">
+          <div class="info__category">
             <ul class="info__category__list">
-              <li nzSpan="24">Техника</li>
-              <li nzSpan="24">Техника для растениеводства</li>
-              <li nzSpan="24">Техника для животноводства</li>
-            </ul>
-          </div>
-        </div>
-        <div nz-col nzSpan="8">
-          <div class="info__category level-3">
-            <ul class="info__category__list">
-              <li nzSpan="24">Трактор</li>
-              <li nzSpan="24">Минитехника</li>
-              <li nzSpan="24">Транспортные средства для с/х</li>
-              <li nzSpan="24">Погрузчики</li>
-              <li nzSpan="24">Полуприцепы и прицепы</li>
-              <li nzSpan="24">Сельхозтехника для хранения зерна</li>
-              <li nzSpan="24">Погрузчики</li>
-              <li nzSpan="24">Погрузчики</li>
-              <li nzSpan="24">Погрузчики</li>
-              <li nzSpan="24">Погрузчики</li>
-              <li nzSpan="24">Погрузчики</li>
-              <li nzSpan="24">Погрузчики</li>
+              <li
+                nzSpan="24"
+                (click)="chooseCategory(category, tree)"
+                [ngClass]="{ active: category.id === tree.selectedId }"
+                *ngFor="let category of tree.data"
+              >
+                {{ category.name }}
+              </li>
             </ul>
           </div>
         </div>

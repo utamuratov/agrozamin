@@ -8,6 +8,14 @@
     &__list {
       height: 200px;
       overflow-y: auto;
+
+      li {
+        cursor: pointer;
+        &.active {
+          color: #377be1;
+        }
+      }
+
       /* width */
       &::-webkit-scrollbar {
         width: 4px;
