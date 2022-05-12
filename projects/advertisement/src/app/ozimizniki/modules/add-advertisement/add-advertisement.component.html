@@ -12,7 +12,7 @@
           nzLayout="vertical"
         >
           <!-- Информация -->
-          <az-info></az-info>
+          <az-info (categoryIdChange)="changeCategoryId($event)"></az-info>
 
           <!-- Тип объявления -->
           <az-advertisement-type></az-advertisement-type>
@@ -27,7 +27,7 @@
           <az-description></az-description>
 
           <!-- Характеристики -->
-          <az-characteristics></az-characteristics>
+          <az-characteristics [categoryId]="categoryId"></az-characteristics>
 
           <!-- Местоположение -->
           <az-location></az-location>

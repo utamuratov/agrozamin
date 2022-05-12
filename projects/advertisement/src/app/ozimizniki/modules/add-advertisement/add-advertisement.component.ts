@@ -7,6 +7,11 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./add-advertisement.component.less'],
 })
 export class AddAdvertisementComponent implements OnInit {
+  /**
+   *
+   */
+  categoryId!: number;
+
   advSettings!: FormGroup;
   oferta = false;
 
@@ -15,4 +20,11 @@ export class AddAdvertisementComponent implements OnInit {
   ngOnInit() {}
 
   submitForm() {}
+
+  /**
+   *
+   */
+  changeCategoryId(categoryId: number) {
+    this.categoryId = categoryId;
+  }
 }

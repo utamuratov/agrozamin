@@ -20,6 +20,7 @@ import { CharacteristicsComponent } from './components/characteristics/character
 import { LocationComponent } from './components/location/location.component';
 import { ContactDataComponent } from './components/contact-data/contact-data.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { AngularYandexMapsModule } from 'angular8-yandex-maps';
 import { AddAdvertisementService } from './services/add-advertisement.service';
 
@@ -40,6 +41,7 @@ import { AddAdvertisementService } from './services/add-advertisement.service';
     NzUploadModule,
     NzCheckboxModule,
     NzSelectModule,
+    NzDatePickerModule,
 
     NzButtonModule,
   ],

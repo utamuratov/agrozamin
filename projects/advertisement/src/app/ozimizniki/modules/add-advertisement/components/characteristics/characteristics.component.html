@@ -1,191 +1,82 @@
-<div class="inline-card characteristic">
+<div class="inline-card characteristic" *ngIf="categoryId">
   <div nz-row [nzGutter]="[0, 30]">
     <div nz-col nzSpan="24">
       <h3 class="add-title">Характеристики</h3>
     </div>
-    <!-- Country -->
-    <div nz-col nzSpan="24">
+
+    <div nz-col nzSpan="24" *ngFor="let filter of filters">
       <div nz-row [nzGutter]="[0, 40]">
         <div nz-col nzSpan="24">
           <div nz-row>
             <div nz-col nzSpan="6">
-              <h4 class="characteristic__title">Страна производства</h4>
+              <h4 class="characteristic__title">{{ filter.name }}</h4>
             </div>
             <div nz-col nzSpan="18">
-              <nz-select
-                nzShowSearch
-                nzAllowClear
-                nzPlaceHolder="Укажите страну"
-                [(ngModel)]="selectedValue"
-                nzSize="large"
-                class="characteristic__country"
-              >
-                <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
-                <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
-                <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
-              </nz-select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Year -->
-    <div nz-col nzSpan="24">
-      <div nz-row [nzGutter]="[0, 40]">
-        <div nz-col nzSpan="24">
-          <div nz-row>
-            <div nz-col nzSpan="6">
-              <h4 class="characteristic__title">Год выпуска</h4>
-            </div>
-            <div nz-col nzSpan="18">
-              <nz-form-item>
-                <nz-form-control [nzSpan]="6">
-                  <input
-                    nz-input
-                    type="text"
+              <ng-container [ngSwitch]="filter.type_for_creator">
+                <!-- INPUT -->
+                <ng-container *ngSwitchCase="InputTypeForCreator.InputNumber">
+                  <nz-form-item>
+                    <nz-form-control [nzSpan]="6">
+                      <input nz-input type="text" nzSize="large" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </ng-container>
+
+                <!-- CHECKBOX -->
+                <ng-container *ngSwitchCase="InputTypeForCreator.Checkbox">
+                  <nz-checkbox-group
+                    [(ngModel)]="checkOptionsOne"
+                    (ngModelChange)="log(checkOptionsOne)"
+                  ></nz-checkbox-group>
+                </ng-container>
+
+                <!-- SELECT -->
+                <ng-container *ngSwitchCase="InputTypeForCreator.Select">
+                  <nz-select
+                    nzShowSearch
+                    nzAllowClear
+                    nzPlaceHolder="Укажите страну"
+                    [(ngModel)]="selectedValue"
                     nzSize="large"
-                    placeholder="Например: 2001"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Power -->
-    <div nz-col nzSpan="24">
-      <div nz-row [nzGutter]="[0, 40]">
-        <div nz-col nzSpan="24">
-          <div nz-row>
-            <div nz-col nzSpan="6">
-              <h4 class="characteristic__title">Объём двигателя (литр)</h4>
-            </div>
-            <div nz-col nzSpan="18">
-              <nz-form-item>
-                <nz-form-control [nzSpan]="6">
-                  <input
-                    nz-input
-                    type="text"
+                    class="characteristic__country"
+                  >
+                    <nz-option
+                      [nzValue]="parameter.filter_parameter_id"
+                      [nzLabel]="parameter.label"
+                      *ngFor="let parameter of filter.parameters"
+                    ></nz-option>
+                  </nz-select>
+                </ng-container>
+
+                <!-- DATE PICKER -->
+                <ng-container *ngSwitchCase="InputTypeForCreator.DatePicker">
+                  <!-- <nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker> -->
+                  <nz-date-picker nzSize="large"></nz-date-picker>
+                </ng-container>
+
+                <!-- DATE YEAR PICKER -->
+                <ng-container
+                  *ngSwitchCase="InputTypeForCreator.DateYearPicker"
+                >
+                  <nz-date-picker nzMode="year" nzSize="large"></nz-date-picker>
+                </ng-container>
+
+                <!-- RADIO -->
+                <ng-container *ngSwitchCase="InputTypeForCreator.Radio">
+                  <nz-radio-group
+                    [(ngModel)]="radioValue1"
+                    nzButtonStyle="solid"
                     nzSize="large"
-                    placeholder="Например, 2.8 или 3"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Fuel -->
-    <div nz-col nzSpan="24">
-      <div nz-row [nzGutter]="[0, 40]">
-        <div nz-col nzSpan="24">
-          <div nz-row>
-            <div nz-col nzSpan="6">
-              <h4 class="characteristic__title">Тип топлива</h4>
-            </div>
-            <div nz-col nzSpan="18">
-              <nz-radio-group
-                [(ngModel)]="radioValue1"
-                nzButtonStyle="solid"
-                nzSize="large"
-              >
-                <label nz-radio-button nzValue="A">Бензин</label>
-                <label nz-radio-button nzValue="B">Газ-бензин</label>
-                <label nz-radio-button nzValue="C">Дизель</label>
-                <label nz-radio-button nzValue="D">Электричество</label>
-                <label nz-radio-button nzValue="E">Гибрид</label>
-                <label nz-radio-button nzValue="F">Газ</label>
-              </nz-radio-group>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- KP -->
-    <div nz-col nzSpan="24">
-      <div nz-row [nzGutter]="[0, 40]">
-        <div nz-col nzSpan="24">
-          <div nz-row>
-            <div nz-col nzSpan="6">
-              <h4 class="characteristic__title">Тип топлива</h4>
-            </div>
-            <div nz-col nzSpan="18">
-              <nz-radio-group
-                [(ngModel)]="radioValue2"
-                nzButtonStyle="solid"
-                nzSize="large"
-              >
-                <label nz-radio-button nzValue="A">Механика</label>
-                <label nz-radio-button nzValue="B">Автомат</label>
-                <label nz-radio-button nzValue="C">Типтроник</label>
-                <label nz-radio-button nzValue="D">Вариатор</label>
-                <label nz-radio-button nzValue="E">Робот</label>
-              </nz-radio-group>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Distance -->
-    <div nz-col nzSpan="24">
-      <div nz-row [nzGutter]="[0, 40]">
-        <div nz-col nzSpan="24">
-          <div nz-row>
-            <div nz-col nzSpan="6">
-              <h4 class="characteristic__title">Пробег (км)</h4>
-            </div>
-            <div nz-col nzSpan="18">
-              <nz-form-item>
-                <nz-form-control [nzSpan]="6">
-                  <input nz-input type="text" nzSize="large" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- color -->
-    <div nz-col nzSpan="24">
-      <div nz-row [nzGutter]="[0, 40]">
-        <div nz-col nzSpan="24">
-          <div nz-row>
-            <div nz-col nzSpan="6">
-              <h4 class="characteristic__title">Цвет</h4>
-            </div>
-            <div nz-col nzSpan="18">
-              <nz-select
-                nzShowSearch
-                nzAllowClear
-                nzPlaceHolder="Выберите цвет"
-                [(ngModel)]="selectedValue"
-                nzSize="large"
-                class="characteristic__country"
-              >
-                <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
-                <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
-                <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
-              </nz-select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Outside -->
-    <div nz-col nzSpan="24">
-      <div nz-row [nzGutter]="[0, 40]">
-        <div nz-col nzSpan="24">
-          <div nz-row>
-            <div nz-col nzSpan="6">
-              <h4 class="characteristic__title">Снаружи</h4>
-            </div>
-            <div nz-col nzSpan="18">
-              <nz-checkbox-group
-                [(ngModel)]="checkOptionsOne"
-                (ngModelChange)="log(checkOptionsOne)"
-              ></nz-checkbox-group>
+                  >
+                    <label
+                      nz-radio-button
+                      [nzValue]="parameter.filter_parameter_id"
+                      *ngFor="let parameter of filter.parameters"
+                      >{{ parameter.label }}</label
+                    >
+                  </nz-radio-group>
+                </ng-container>
+              </ng-container>
             </div>
           </div>
         </div>
