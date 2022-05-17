@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class FilterOptionsComponent implements OnInit {
 
   checked = true;
+  checked1 = true;
 
   constructor() { }
 

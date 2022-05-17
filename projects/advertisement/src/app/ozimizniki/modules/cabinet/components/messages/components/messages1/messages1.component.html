@@ -12,7 +12,7 @@
           </ng-template>
         </div>
 
-        <div nz-col nzSpan="24" class="messages__left__content__user" *ngFor="let user of users">
+        <div routerLink="messages/messages2" nz-col nzSpan="24" class="messages__left__content__user" *ngFor="let user of users">
           <div nz-row style="padding: 12px;" > 
 
             <div nz-col nzSpan="4">
@@ -38,16 +38,19 @@
       </div>
     </div>
 
-
-
     <div nz-col nzSpan="16" class="messages__body">
       <div nz-row class="messages__body__content">
         <div nz-col nzSpan="24" class="messages__body__content__top">
           <div nz-row>
             <div nz-col nzSpan="22"></div>
             <div nz-col> 
-              <i nz-icon>
-                  <img src="../../../../../../../../assets/images/top-button.png" alt="">
+              <i nz-icon
+              nz-popover              
+              [nzPopoverContent]="contentTemplate"
+              nzPopoverPlacement="bottomRight"
+              nzPopoverTrigger="click"
+              >
+                  <img src="/assets/images/top-button.png" alt="">
               </i>
             </div>
           </div>
@@ -60,7 +63,7 @@
         <div nz-col nzSpan="24" class="messages__body__content__footer">
           <div>
             
-            <nz-input-group nzSize="large" [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
+              <nz-input-group nzSize="large" [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
                 <input  type="text" nz-input placeholder="Написать сообщение" />
               </nz-input-group>
               <ng-template #prefixTemplateUser><i  nz-button  style="padding-left: 10px;"> <img src="/assets/images/attach.png" alt=""></i></ng-template>
@@ -77,3 +80,58 @@
     </div>
   </div>
 </div>
+
+<ng-template #contentTemplate>
+  <div class="popover">
+   <div nz-row [nzGutter]="[0,5]">
+     <div nz-col  nzSpan="24" class="popover__content">
+      <div class="popover__content__item">
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <img src="../../../../../../../../assets/images/archive.png" alt="">
+          </div>
+          <div nz-col nzSpan="20">
+            <p>Архивировать</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nz-col  nzSpan="24" class="popover__content">
+      <div class="popover__content__item">
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <img src="../../../../../../../../assets/images/bookmark.png" alt="">
+          </div>
+          <div nz-col nzSpan="20">
+            <p>Сохранить</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nz-col  nzSpan="24" class="popover__content">
+      <div class="popover__content__item">
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <img src="../../../../../../../../assets/images/block.png" alt="">
+          </div>
+          <div nz-col nzSpan="20">
+            <p>Заблокировать</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nz-col  nzSpan="24" class="popover__content">
+      <div class="popover__content__item">
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <img src="../../../../../../../../assets/images/unlock.png" alt="">
+          </div>
+          <div nz-col nzSpan="20">
+            <p>Разблокировать</p>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+  </div>
+</ng-template>

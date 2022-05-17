@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'az-favourite-advert',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favourite-advert.component.less']
 })
 export class FavouriteAdvertComponent implements OnInit {
+
+  isActive = false
 
   adverticement = [
     {
@@ -61,9 +63,20 @@ export class FavouriteAdvertComponent implements OnInit {
     }
   ]
 
+  @Output() handleGridOrList = new EventEmitter<boolean>()
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  isGrid() {
+    this.isActive = false;
+    this.handleGridOrList.emit(false)
+  }
+  
+  isList() {
+    this.isActive = true;
+    this.handleGridOrList.emit(true)
   }
 
 }

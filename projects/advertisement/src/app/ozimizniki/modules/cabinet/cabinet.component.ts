@@ -9,6 +9,12 @@ export class CabinetComponent implements OnInit {
 
   isCollapsed = false;
 
+  icon = '/assets/images/menu-help.png'
+
+  change(value: boolean): void {
+    console.log(value);
+  }
+
   toggleCollapsed(): void {
     this.isCollapsed = !this.isCollapsed;
   }
