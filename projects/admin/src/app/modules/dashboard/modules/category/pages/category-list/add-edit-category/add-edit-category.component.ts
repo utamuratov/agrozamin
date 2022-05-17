@@ -10,11 +10,13 @@ import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 import { NgDestroy } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { BaseAddEditComponent } from 'projects/admin/src/app/shared/components/base-add-edit/base-add-edit.component';
+import { forkJoin, of, tap } from 'rxjs';
 import { AdvertiementTypeResponse } from '../../../models/advertisement-type.response';
 import { CategoryEditingData } from '../../../models/category-editing-data';
 import { CategoryRequest } from '../../../models/category.request';
 import { CategoryResponse } from '../../../models/category.response';
 import { CategoryService } from '../../../services/category.service';
+import { CategoryListComponent } from '../category-list.component';
 
 @Component({
   selector: 'az-add-edit-category',
@@ -107,6 +109,8 @@ export class AddEditCategoryComponent extends BaseAddEditComponent<
       filters: [model?.filters, Validators.required],
       announcement_types: [model?.announcement_types, Validators.required],
     });
+
+    this.onChangedParentCategories();
   }
 
   /**
@@ -173,6 +177,56 @@ export class AddEditCategoryComponent extends BaseAddEditComponent<
 
       reader.readAsDataURL(this.icon);
     }
+  }
+
+  /**
+   *
+   */
+  onChangedParentCategories() {
+    this.form
+      .get('parent_categories')
+      ?.valueChanges.subscribe((selectedValue: string[]) => {
+        if (selectedValue.length > 0) {
+          const selectedFilters: string[] = [];
+          this.filtersByCategoryIds(selectedValue, selectedFilters).subscribe(
+            () => {
+              this.form.get('filters')?.setValue(selectedFilters);
+            }
+          );
+        } else {
+          this.form.get('filters')?.setValue([]);
+        }
+      });
+  }
+
+  /**
+   *
+   * @param selectedValue
+   * @param selectedFilters
+   * @returns
+   */
+  private filtersByCategoryIds(
+    selectedValue: string[],
+    selectedFilters: string[]
+  ) {
+    return forkJoin(
+      selectedValue.map((categoryId) => {
+        return this.$data.filtersByCategory(+categoryId).pipe(
+          tap((result) => {
+            if (result.success) {
+              result.data.forEach((filter) => {
+                filter.parameters.forEach((parameter) => {
+                  const value = `${filter.id}${AdminConstants.SPLITTER_FOR_TREE}${parameter.id}`;
+                  if (!selectedFilters.find((w) => w === value)) {
+                    selectedFilters.push(value);
+                  }
+                });
+              });
+            }
+          })
+        );
+      })
+    );
   }
 
   /**

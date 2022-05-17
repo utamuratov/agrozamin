@@ -7,15 +7,14 @@ import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { Project } from 'projects/admin/src/app/core/enums/project.enum';
 import { BaseComponent } from 'projects/admin/src/app/shared/components/base/base.component';
 import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
-import { map, Observable, takeUntil } from 'rxjs';
-import { AdvertiementTypeResponse } from '../../models/advertisement-type.response';
+import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
+import { map, Observable } from 'rxjs';
 import { CategoriesFilters } from '../../models/categories-filters.interface';
 import { CategoryEditingData } from '../../models/category-editing-data';
 import { CategoryWithChild } from '../../models/category-with-child.interface';
 import { CategoryRequest } from '../../models/category.request';
 import { CategoryResponse } from '../../models/category.response';
 import { Filter } from '../../models/filter.model';
-import { AdvertisementTypeService } from '../../services/advertisement-type.service';
 import { CategoryService } from '../../services/category.service';
 
 @Component({
@@ -40,7 +39,7 @@ export class CategoryListComponent
   /**
    *
    */
-  advertisementTypes!: AdvertiementTypeResponse[];
+  advertisementTypes!: IdName[];
 
   /**
    *
@@ -51,8 +50,7 @@ export class CategoryListComponent
     protected $category: CategoryService,
     protected override $destroy: NgDestroy,
     protected override cd: ChangeDetectorRef,
-    private route: ActivatedRoute,
-    private $advertisementType: AdvertisementTypeService
+    private route: ActivatedRoute
   ) {
     super($category, $destroy, cd);
     this.searchInputConfig.keys = ['id', 'name'];
@@ -67,8 +65,10 @@ export class CategoryListComponent
   override ngOnInit(): void {
     this.getAllCategoriesAndFilters().subscribe((result) => {
       this.categoriesAsTree = this.getCategoriesAsTree(result.categories);
-      this.filtersAsTree = this.getFiltersAsTree(result.filters);
-      this.getAdvertiesmentTypes();
+      this.filtersAsTree = CategoryListComponent.getFiltersAsTree(
+        result.filters
+      );
+      this.advertisementTypes = result.announcements;
       super.ngOnInit();
     });
   }
@@ -78,7 +78,7 @@ export class CategoryListComponent
    * @param filters
    * @returns
    */
-  private getFiltersAsTree(filters: Filter[]) {
+  public static getFiltersAsTree(filters: Filter[]) {
     return filters.map((filter) => {
       return {
         title: `${filter.name}`,
@@ -117,6 +117,7 @@ export class CategoryListComponent
         isLeaf: !category.child?.length,
         value: category.id,
         children: this.getCategoriesAsTree(category.child),
+        filters: category.child,
       };
     });
   }
@@ -132,23 +133,9 @@ export class CategoryListComponent
           return result.data;
         }
 
-        return { categories: [], filters: [] };
+        return { categories: [], filters: [], announcements: [] };
       })
     );
-  }
-
-  /**
-   *
-   */
-  getAdvertiesmentTypes() {
-    this.$advertisementType
-      .getAll()
-      .pipe(takeUntil(this.$destroy))
-      .subscribe((result) => {
-        if (result.success) {
-          this.advertisementTypes = result.data;
-        }
-      });
   }
 
   /**

@@ -15,7 +15,9 @@
           <az-info (categoryIdChange)="changeCategoryId($event)"></az-info>
 
           <!-- Тип объявления -->
-          <az-advertisement-type></az-advertisement-type>
+          <az-advertisement-type
+            [categoryId]="categoryId"
+          ></az-advertisement-type>
 
           <!-- Добавить фото и видео -->
           <az-media></az-media>

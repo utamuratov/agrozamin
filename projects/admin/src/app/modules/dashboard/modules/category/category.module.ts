@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryComponent } from './components/category/category.component';
-import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
+import { DashboardSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
@@ -34,7 +34,7 @@ import { AdvertisementTypeService } from './services/advertisement-type.service'
     /**
      * CUSTOM MODULES
      */
-    AdminSharedModule,
+    DashboardSharedModule,
 
     /**
      * NG ZORRO MODULES

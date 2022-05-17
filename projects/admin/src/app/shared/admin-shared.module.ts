@@ -109,4 +109,4 @@ import { NoImagePipe } from './pipes/noImage.pipe';
     NoImagePipe,
   ],
 })
-export class AdminSharedModule {}
+export class DashboardSharedModule {}

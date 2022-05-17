@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { TranslationComponent } from './components/translation/translation.component';
 import { AddEditTranslationComponent } from './components/add-edit-translation/add-edit-translation.component';
-import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
+import { DashboardSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
 import { ProjectService } from './services/project.service';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { ProjectService } from './services/project.service';
     /**
      * CUSTOM MODULES
      */
-    AdminSharedModule,
+    DashboardSharedModule,
 
     /**
      * NG ZORRO MODULES

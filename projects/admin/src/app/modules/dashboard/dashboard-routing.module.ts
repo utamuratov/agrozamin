@@ -38,6 +38,18 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/admin/admin.module').then((m) => m.AdminModule),
       },
+      {
+        path: 'region',
+        loadChildren: () =>
+          import('./modules/region/region.module').then((m) => m.RegionModule),
+      },
+      {
+        path: 'district',
+        loadChildren: () =>
+          import('./modules/district/district.module').then(
+            (m) => m.DistrictModule
+          ),
+      },
     ],
   },
 ];

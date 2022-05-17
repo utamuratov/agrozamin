@@ -12,7 +12,7 @@ import { AccessControlComponent } from './access-control/access-control.componen
 import { AddEditAccessActionComponent } from './access-action/add-edit-access-action/add-edit-access-action.component';
 import { AddEditRoleComponent } from './role/add-edit-role/add-edit-role.component';
 import { AddEditAccessControlComponent } from './access-control/add-edit-access-control/add-edit-access-control.component';
-import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
+import { DashboardSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { ControlActionToStringPipe } from './role/pipes/control-action-to-string.pipe';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
@@ -37,7 +37,7 @@ import { NgxMaskModule } from 'ngx-mask';
     /**
      * CUSTOM MODULES
      */
-    AdminSharedModule,
+    DashboardSharedModule,
 
     /**
      * NG ZORRO MODULES

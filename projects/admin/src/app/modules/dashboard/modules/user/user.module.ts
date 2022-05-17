@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
-import { AdminSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
+import { DashboardSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
@@ -19,7 +19,7 @@ import { AdminUsersService } from './services/admin-users.service';
 
     NgxMaskModule,
 
-    AdminSharedModule,
+    DashboardSharedModule,
 
     /**
      * NG ZORRO MODULES
