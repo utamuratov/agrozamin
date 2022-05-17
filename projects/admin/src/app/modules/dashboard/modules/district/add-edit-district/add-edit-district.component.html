@@ -1,0 +1,44 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="(editingData?.id ? 'edit' : 'add') | translate"
+  (nzOnCancel)="close()"
+  modal
+>
+  <div *nzModalContent>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <div class="overflow-auto max-height">
+        <nz-form-item>
+          <nz-form-label nzFor="region_id">{{
+            "region" | translate
+          }}</nz-form-label>
+          <nz-form-control [nzErrorTip]="errorKey">
+            <nz-select id="region_id" formControlName="region_id">
+              <nz-option
+                *ngFor="let region of region$ | async"
+                [nzLabel]="region.name"
+                [nzValue]="region.id"
+              >
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+          <ng-template #errorKey let-control>
+            <error [control]="control"></error>
+          </ng-template>
+        </nz-form-item>
+
+        <h3>{{ "name" | translate }}</h3>
+
+        <az-language-controls
+          [form]="form"
+          [translations]="editingData?.name"
+          formGroupName="name"
+        ></az-language-controls>
+      </div>
+    </form>
+  </div>
+  <div *nzModalFooter>
+    <button (click)="submit()" nz-button nzType="primary">
+      {{ "save" | translate }}
+    </button>
+  </div>
+</nz-modal>

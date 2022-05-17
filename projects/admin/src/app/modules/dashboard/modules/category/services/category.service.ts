@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { CategoriesFilters } from '../models/categories-filters.interface';
 import { CategoryRequest } from '../models/category.request';
 import { CategoryResponse } from '../models/category.response';
+import { Filter } from '../models/filter.model';
 
 @Injectable()
 export class CategoryService extends CrudService<
@@ -31,6 +32,20 @@ export class CategoryService extends CrudService<
     );
   }
 
+  /**
+   *
+   * @param categoryId
+   * @returns
+   */
+  filtersByCategory(categoryId: number) {
+    return this.$baseService.get<Filter[]>(`${this.url}/filter/${categoryId}`);
+  }
+
+  /**
+   *
+   * @param model
+   * @returns
+   */
   override add(
     model: CategoryRequest
   ): Observable<BaseResponse<CategoryResponse>> {
@@ -38,6 +53,12 @@ export class CategoryService extends CrudService<
     return this.$baseService.post<CategoryResponse>(this.url, formData);
   }
 
+  /**
+   *
+   * @param id
+   * @param model
+   * @returns
+   */
   override edit(
     id: number,
     model: CategoryRequest

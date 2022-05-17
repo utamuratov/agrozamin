@@ -78,7 +78,7 @@
         <i nz-icon nzType="user"></i>
         <span>{{ "agroId" | translate }}</span>
       </li>
-      <!-- saca -->
+      <!-- ADMIN -->
       <li nz-submenu nzOpen [nzTitle]="'admin' | translate" nzIcon="form">
         <ul>
           <li routerLink="./admin/users" nz-menu-item nzMatchRouter>
@@ -94,6 +94,18 @@
             <span>{{ "controls" | translate }}</span>
           </li>
         </ul>
+      </li>
+
+      <!-- REGION -->
+      <li routerLink="region" nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="info-circle"></i>
+        <span>{{ "regions" | translate }}</span>
+      </li>
+
+      <!-- DISTRICT -->
+      <li routerLink="district" nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="info-circle"></i>
+        <span>{{ "district" | translate }}</span>
       </li>
     </ul>
   </nz-sider>
