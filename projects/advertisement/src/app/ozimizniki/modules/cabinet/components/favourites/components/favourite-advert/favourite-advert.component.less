@@ -26,7 +26,13 @@
           padding-top: 16px;
           padding-right: 16px;
           padding-left: 16px;
+
+          &__icon{
+            
+            
+          }
         }
+        
       }
 
 
@@ -62,6 +68,7 @@
     }
 
     &__rightContent{
+        padding-left: 15px;
         padding-top: 24px;
         h4{
             padding-top: 5px;
@@ -98,3 +105,76 @@
     }
    
 }
+
+:host ::ng-deep .anticon svg path:first-child{
+  fill: #fff !important;
+}
+
+:host ::ng-deep .anticon svg path:nth-child(2){
+  fill: #00CD69 !important;
+}
+
+.sort {
+    // width: 965px;
+    padding: 18px;
+    height: 80px;
+    background: #fff;
+    border-radius: 12px;
+
+    &__left{
+        padding-top: 10px;
+    }  
+
+    &__variable {
+      padding: 10px 0;
+      font-size: 16px;
+      font-family: Agrofont-Regular;
+    }
+  
+    &__link {
+      padding: 10px 12px;
+      font-size: 16px;
+      font-family: Agrofont-Regular;
+  
+      img {
+        margin-left: 4px;
+      }
+    }
+  
+    &__btn {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #cfd3d8;
+      transition: 0.3s;
+      cursor: pointer;
+  
+      svg {
+        rect {
+          transition: 0.3s;
+        }
+      }
+  
+      &:hover {
+        svg {
+          rect {
+            stroke: #377BE1;
+          }
+        }
+  
+        border: 1px solid #377BE1;
+      }
+  
+      &.active {
+        background: #377BE1;
+        border: 1px solid #22a33f;
+        svg {
+          rect {
+            stroke: #fff;
+          }
+        }
+      }
+    }
+  } 

@@ -1,5 +1,5 @@
-import { style } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+// import { style } from '@angular/animations';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'az-advertisement',
@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./advertisement.component.less']
 })
 export class AdvertisementComponent implements OnInit {
+
+
+  isActive = false
 
   adverticement = [
     {
@@ -62,10 +65,21 @@ export class AdvertisementComponent implements OnInit {
     }
   ]
 
+  @Output() handleGridOrList = new EventEmitter<boolean>()
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  isGrid() {
+    this.isActive = false;
+    this.handleGridOrList.emit(false)
+  }
+  
+  isList() {
+    this.isActive = true;
+    this.handleGridOrList.emit(true)
+  }
 
 }
