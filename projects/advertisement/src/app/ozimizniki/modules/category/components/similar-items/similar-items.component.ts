@@ -20,7 +20,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Ташкентская область, город Ташкент',
           city: 'Ташкент',
           text: 'RSM F 2650 - высокопроизводительный кормоуборочный комбайн, способный убирать все виды силосуемых кормовых культур, обеспечивая максимальное качество конечного продукта. Данная машина пригодна для полей ...',
-          img: './assets/images/agrozamin/similar-card-1.jpg',
+          img: './assets/images/similar-card-1.jpg',
           category: 'Сельхозтехника',
         },
         {
@@ -32,7 +32,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Бухарская область, город Бухара',
           city: 'Бухара',
           text: 'По времени созревания разновидности сорта Пионер могут быть скороспелыми, созревающими за 80-90 дней; ранними, созревающими за 100-115 дней; средними, срок их созревания длится до 125 дней. Раннеспелые сорта ...',
-          img: './assets/images/agrozamin/similar-card-2.jpg',
+          img: './assets/images/similar-card-2.jpg',
           category: 'Семена',
         },
         {
@@ -44,7 +44,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Самаркандская область, город Шахрисабз',
           city: 'Шахрисабз',
           text: 'Когенерационные установки представляют собой технологическое оборудование, используемое для совместного производства электро- и тепловой энергии. Процесс когенерации осуществляется посредством',
-          img: './assets/images/agrozamin/similar-card-3.jpg',
+          img: './assets/images/similar-card-3.jpg',
           category: 'Фермерское оборудование',
         },
         {
@@ -56,7 +56,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Ташкентская область, город Ташкент',
           city: 'Ташкент',
           text: 'Зерно сои МЕЗЕНКА',
-          img: './assets/images/agrozamin/similar-card-4.jpg',
+          img: './assets/images/similar-card-4.jpg',
           category: 'Зерно',
         },
         {
@@ -68,7 +68,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Ташкентская область, город Ташкент',
           city: 'Ташкент',
           text: 'Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.',
-          img: './assets/images/agrozamin/similar-card-5.jpg',
+          img: './assets/images/similar-card-5.jpg',
           category: 'С/х животные',
         },
       ],
@@ -84,7 +84,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Ташкентская область, город Ташкент',
           city: 'Ташкент',
           text: 'RSM F 2650 - высокопроизводительный кормоуборочный комбайн, способный убирать все виды силосуемых кормовых культур, обеспечивая максимальное качество конечного продукта. Данная машина пригодна для полей ...',
-          img: './assets/images/agrozamin/similar-card-3.jpg',
+          img: './assets/images/similar-card-3.jpg',
           category: 'Сельхозтехника',
         },
         {
@@ -96,7 +96,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Бухарская область, город Бухара',
           city: 'Бухара',
           text: 'По времени созревания разновидности сорта Пионер могут быть скороспелыми, созревающими за 80-90 дней; ранними, созревающими за 100-115 дней; средними, срок их созревания длится до 125 дней. Раннеспелые сорта ...',
-          img: './assets/images/agrozamin/similar-card-5.jpg',
+          img: './assets/images/similar-card-5.jpg',
           category: 'Семена',
         },
         {
@@ -108,7 +108,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Самаркандская область, город Шахрисабз',
           city: 'Шахрисабз',
           text: 'Когенерационные установки представляют собой технологическое оборудование, используемое для совместного производства электро- и тепловой энергии. Процесс когенерации осуществляется посредством',
-          img: './assets/images/agrozamin/similar-card-1.jpg',
+          img: './assets/images/similar-card-1.jpg',
           category: 'Фермерское оборудование',
         },
         {
@@ -120,7 +120,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Ташкентская область, город Ташкент',
           city: 'Ташкент',
           text: 'Зерно сои МЕЗЕНКА',
-          img: './assets/images/agrozamin/similar-card-5.jpg',
+          img: './assets/images/similar-card-5.jpg',
           category: 'Зерно',
         },
         {
@@ -132,7 +132,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Ташкентская область, город Ташкент',
           city: 'Ташкент',
           text: 'Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.',
-          img: './assets/images/agrozamin/similar-card-4.jpg',
+          img: './assets/images/similar-card-4.jpg',
           category: 'С/х животные',
         },
       ],
@@ -148,7 +148,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Ташкентская область, город Ташкент',
           city: 'Ташкент',
           text: 'RSM F 2650 - высокопроизводительный кормоуборочный комбайн, способный убирать все виды силосуемых кормовых культур, обеспечивая максимальное качество конечного продукта. Данная машина пригодна для полей ...',
-          img: './assets/images/agrozamin/similar-card-2.jpg',
+          img: './assets/images/similar-card-2.jpg',
           category: 'Сельхозтехника',
         },
         {
@@ -160,7 +160,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Бухарская область, город Бухара',
           city: 'Бухара',
           text: 'По времени созревания разновидности сорта Пионер могут быть скороспелыми, созревающими за 80-90 дней; ранними, созревающими за 100-115 дней; средними, срок их созревания длится до 125 дней. Раннеспелые сорта ...',
-          img: './assets/images/agrozamin/similar-card-4.jpg',
+          img: './assets/images/similar-card-4.jpg',
           category: 'Семена',
         },
         {
@@ -172,7 +172,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Самаркандская область, город Шахрисабз',
           city: 'Шахрисабз',
           text: 'Когенерационные установки представляют собой технологическое оборудование, используемое для совместного производства электро- и тепловой энергии. Процесс когенерации осуществляется посредством',
-          img: './assets/images/agrozamin/similar-card-5.jpg',
+          img: './assets/images/similar-card-5.jpg',
           category: 'Фермерское оборудование',
         },
         {
@@ -184,7 +184,7 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Ташкентская область, город Ташкент',
           city: 'Ташкент',
           text: 'Зерно сои МЕЗЕНКА',
-          img: './assets/images/agrozamin/similar-card-1.jpg',
+          img: './assets/images/similar-card-1.jpg',
           category: 'Зерно',
         },
         {
@@ -196,13 +196,13 @@ export class SimilarItemsComponent implements OnInit {
           address: 'Ташкентская область, город Ташкент',
           city: 'Ташкент',
           text: 'Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.',
-          img: './assets/images/agrozamin/similar-card-3.jpg',
+          img: './assets/images/similar-card-3.jpg',
           category: 'С/х животные',
         },
       ],
     },
   ];
-  defaultImage = './assets/images/agrozamin/default-img-card.jpg';
+  defaultImage = './assets/images/default-img-card.jpg';
   constructor() {}
 
   ngOnInit() {}
