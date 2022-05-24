@@ -52,6 +52,29 @@ export class HeaderComponent implements OnInit {
 
   regionsValue: any = [];
 
+  userMenu = [
+    {
+      logo: '/assets/images/menu-Vector.png',
+      title: 'Объявления'
+    },
+    {
+      logo: '/assets/images/menu-message.png',
+      title: 'Сообщения'
+    },
+    {
+      logo: '/assets/images/menu-heart.png',
+      title: 'Избранное'
+    },
+    {
+      logo: '/assets/images/menu-settings.png',
+      title: 'Настройки'
+    },
+    {
+      logo: '/assets/images/menu-logout.png',
+      title: 'Выйти'
+    },
+  ]
+
   categories = [
     {
       icon: './assets/images/tractor.svg',

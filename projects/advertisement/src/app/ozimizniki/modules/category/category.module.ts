@@ -74,7 +74,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
     SubcategoryComponent,
     CategoryProductPageComponent,
     SimilarItemsComponent,
-    SkeletonComponent
+    SkeletonComponent,
   ],
 })
 export class CategoryModule {}

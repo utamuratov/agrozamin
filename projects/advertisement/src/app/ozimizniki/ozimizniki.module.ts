@@ -21,6 +21,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FilterPipe } from './components/header/pipes/filter.pipe';
 import { LanguageComponent } from './components/language/language.component';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+// import { CatalogMembersComponent } from './modules/catalog-members/catalog-members.component';
+
+
 
 @NgModule({
   imports: [
@@ -40,14 +44,17 @@ import { LanguageComponent } from './components/language/language.component';
     NzDividerModule,
     NzIconModule,
     NzLayoutModule,
-    NzModalModule,
+    NzModalModule,  
+    NzPopoverModule  
   ],
   declarations: [
     OzimiznikiComponent,
+    // CatalogMembersComponent,
     HeaderComponent,
     FilterPipe,
     FooterComponent,
     LanguageComponent,
+   
   ],
 })
 export class OzimiznikiModule {}
