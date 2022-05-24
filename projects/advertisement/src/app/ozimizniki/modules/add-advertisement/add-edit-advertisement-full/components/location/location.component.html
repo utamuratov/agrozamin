@@ -2,7 +2,7 @@
   <div class="inline-card">
     <div nz-row [nzGutter]="[0, 30]">
       <div nz-col nzSpan="24">
-        <h3 class="add-title">Местоположение</h3>
+        <h3 class="add-title">{{ "location" | translate }}</h3>
       </div>
       <div nz-col nzSpan="24">
         <div nz-row [nzGutter]="[30, 0]">
@@ -10,14 +10,13 @@
             <div nz-row [nzGutter]="[0, 24]">
               <div nz-col nzSpan="24">
                 <nz-form-item>
-                  <nz-form-label [nzSpan]="24" nzFor="price"
-                    >Регион / Город</nz-form-label
-                  >
+                  <nz-form-label [nzSpan]="24" nzFor="price">{{
+                    "region" | translate
+                  }}</nz-form-label>
                   <nz-form-control [nzSpan]="24">
                     <nz-select
                       nzShowSearch
                       nzAllowClear
-                      nzPlaceHolder="Ташкентская область"
                       formControlName="region_id"
                       [(ngModel)]="regionId"
                       (ngModelChange)="getDistrictsByRegionId($event)"
@@ -34,14 +33,13 @@
               </div>
               <div nz-col nzSpan="24">
                 <nz-form-item>
-                  <nz-form-label [nzSpan]="24" nzFor="price"
-                    >Район</nz-form-label
-                  >
+                  <nz-form-label [nzSpan]="24" nzFor="price">{{
+                    "district" | translate
+                  }}</nz-form-label>
                   <nz-form-control [nzSpan]="24">
                     <nz-select
                       nzShowSearch
                       nzAllowClear
-                      nzPlaceHolder="Чиланзарский район"
                       nzSize="large"
                       formControlName="district_id"
                     >
@@ -56,13 +54,13 @@
               </div>
               <div nz-col nzSpan="24">
                 <nz-form-item>
-                  <nz-form-label [nzSpan]="24" nzFor="price"
-                    >Адрес точки самовывоза (необязательно)</nz-form-label
-                  >
+                  <nz-form-label [nzSpan]="24" nzFor="price">{{
+                    "certainAdress" | translate
+                  }}</nz-form-label>
                   <nz-form-control [nzSpan]="24">
                     <input
                       nz-input
-                      placeholder="Введите точный адрес"
+                      placeholder="{{ 'inputCertainAddress' | translate }}"
                       nzSize="large"
                       formControlName="address"
                     />

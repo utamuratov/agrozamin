@@ -2,7 +2,7 @@
   <div class="inline-card">
     <div nz-row [nzGutter]="[0, 30]">
       <div nz-col nzSpan="24">
-        <h3 class="add-title">Описание товара</h3>
+        <h3 class="add-title">{{ "advertisementDescription" | translate }}</h3>
       </div>
       <div nz-col nzSpan="24">
         <nz-form-item>
@@ -11,7 +11,7 @@
               rows="5"
               formControlName="description"
               nz-input
-              placeholder="Текст описания"
+              placeholder="{{ 'descriptionText' | translate }}"
             ></textarea>
           </nz-form-control>
         </nz-form-item>

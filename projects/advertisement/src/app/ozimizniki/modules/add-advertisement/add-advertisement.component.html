@@ -2,77 +2,10 @@
   <div class="container">
     <div nz-row [nzGutter]="[0, 40]">
       <div nz-col nzSpan="24">
-        <h3 class="title">Создать объявление</h3>
+        <h3 class="title">{{ "creatingAdvertisement" | translate }}</h3>
       </div>
       <div nz-col nzSpan="24">
-        <form
-          nz-form
-          [formGroup]="form"
-          (ngSubmit)="submitForm()"
-          nzLayout="vertical"
-        >
-          <!-- Информация -->
-          <az-info
-            [form]="form"
-            (categoryIdChange)="changeCategoryId($event)"
-          ></az-info>
-
-          <!-- Тип объявления -->
-          <az-advertisement-type
-            [form]="form"
-            [categoryId]="categoryId"
-          ></az-advertisement-type>
-
-          <!-- Добавить фото и видео -->
-          <az-media [form]="form"></az-media>
-
-          <!-- Цена -->
-          <az-price [form]="form"></az-price>
-
-          <!-- Описание товара -->
-          <az-description [form]="form"></az-description>
-
-          <!-- Характеристики -->
-          <az-characteristics
-            [categoryId]="categoryId"
-            [form]="form"
-          ></az-characteristics>
-
-          <!-- Местоположение -->
-          <az-location [form]="form"></az-location>
-
-          <!-- Контактная информация -->
-          <az-contact-data [form]="form"></az-contact-data>
-
-          <div>
-            <label
-              nz-checkbox
-              [(ngModel)]="isAgreeOferta"
-              [ngModelOptions]="{ standalone: true }"
-              >Публикуя данное объявление вы соглашаетесь с пользовательским
-              соглашением.
-            </label>
-          </div>
-
-          <div nz-row [nzGutter]="[16, 0]" class="mt-1">
-            <div nz-col>
-              <button
-                nz-button
-                nzType="primary"
-                nzSize="large"
-                class="secondary"
-                [disabled]="!isAgreeOferta"
-              >
-                <span>Опубликовать объявление</span>
-              </button>
-            </div>
-            <div nz-col>
-              <button nz-button nzType="primary" nzSize="large">
-                <span class="nav__bottom-btn-text">Очистить</span>
-              </button>
-            </div>
-          </div>
-        </form>
+        <az-add-edit-advertisement-full></az-add-edit-advertisement-full>
       </div>
     </div>
   </div>

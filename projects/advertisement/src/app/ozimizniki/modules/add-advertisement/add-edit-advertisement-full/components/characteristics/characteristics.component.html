@@ -1,7 +1,7 @@
 <div class="inline-card characteristic" *ngIf="categoryId">
   <div nz-row [nzGutter]="[0, 30]">
     <div nz-col nzSpan="24">
-      <h3 class="add-title">Характеристики</h3>
+      <h3 class="add-title">{{ "characteristics" | translate }}</h3>
     </div>
 
     <div nz-col nzSpan="24" *ngFor="let filter of filters">
@@ -59,7 +59,6 @@
 
                 <!-- DATE PICKER -->
                 <ng-container *ngSwitchCase="InputTypeForCreator.DatePicker">
-                  <!-- <nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker> -->
                   <nz-date-picker
                     nzSize="large"
                     [(ngModel)]="filter.value"

@@ -72,15 +72,10 @@
         <td>{{ data.price }}</td>
 
         <!-- STATUS -->
-        <td nzAlign="center">{{ data.status }}</td>
+        <td nzAlign="center">{{ STATUS[data.status] }}</td>
 
         <td nzRight nzAlign="center">
           <nz-button-group>
-            <button (click)="delete(data.id)" nz-button nzType="default">
-              <span>
-                <i nz-icon nzType="delete" nzTheme="twotone"></i>
-              </span>
-            </button>
             <button (click)="addEdit(data)" nz-button nzType="default">
               <span>
                 <i nz-icon nzType="check-circle" nzTheme="twotone"></i>

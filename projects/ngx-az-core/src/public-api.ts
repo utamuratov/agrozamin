@@ -97,3 +97,4 @@ export * from './lib/shared/store/auth/auth.action';
 
 // ENUMS
 export * from './lib/enums/project.enum';
+export * from './lib/enums/advertisement-status.enum';

@@ -5,7 +5,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { BaseResponse, NgDestroy } from 'ngx-az-core';
+import { AdvertisementStatus, BaseResponse, NgDestroy } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { Observable } from 'rxjs';
 import { GridModel } from '../../translate/models/grid-model';
@@ -29,6 +29,11 @@ export class AdvertisementListComponent implements OnInit {
    *
    */
   pageSize = AdminConstants.PAGINATION_PAGE_SIZE;
+
+  /**
+   *
+   */
+  STATUS = AdvertisementStatus;
 
   /**
    *
