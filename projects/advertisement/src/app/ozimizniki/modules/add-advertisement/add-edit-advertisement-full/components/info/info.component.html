@@ -2,19 +2,19 @@
   <div class="inline-card info">
     <div nz-row [nzGutter]="[0, 24]">
       <div nz-col nzSpan="24">
-        <h4 class="add-title">Информация</h4>
+        <h4 class="add-title">{{ "info" | translate }}</h4>
       </div>
       <div nz-col nzSpan="24">
         <nz-form-item>
-          <nz-form-label [nzSpan]="6" nzFor="name"
-            >Название товара</nz-form-label
-          >
+          <nz-form-label [nzSpan]="6" nzFor="name">{{
+            "advertisementName" | translate
+          }}</nz-form-label>
           <nz-form-control [nzSpan]="24">
             <input
               nz-input
               type="text"
               id="name"
-              placeholder="Введите название товара"
+              [placeholder]="'inputAdvertisementName' | translate"
               nzSize="large"
               formControlName="name"
             />
@@ -22,7 +22,7 @@
         </nz-form-item>
       </div>
       <div nz-col nzSpan="24">
-        <span class="add-subtitle">Категория</span>
+        <span class="add-subtitle">{{ "category" | translate }}</span>
         <div nz-row [nzGutter]="[30, 0]">
           <div nz-col nzSpan="8" *ngFor="let tree of customTree">
             <div class="info__category">

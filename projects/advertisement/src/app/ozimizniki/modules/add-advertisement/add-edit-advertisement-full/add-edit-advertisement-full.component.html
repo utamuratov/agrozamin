@@ -1,0 +1,64 @@
+<form nz-form [formGroup]="form" (ngSubmit)="submitForm()" nzLayout="vertical">
+  <!-- Информация -->
+  <az-info
+    [form]="form"
+    (categoryIdChange)="changeCategoryId($event)"
+  ></az-info>
+
+  <!-- Тип объявления -->
+  <az-advertisement-type
+    [form]="form"
+    [categoryId]="categoryId"
+  ></az-advertisement-type>
+
+  <!-- Добавить фото и видео -->
+  <az-media [form]="form"></az-media>
+
+  <!-- Цена -->
+  <az-price [form]="form"></az-price>
+
+  <!-- Описание товара -->
+  <az-description [form]="form"></az-description>
+
+  <!-- Характеристики -->
+  <az-characteristics
+    [categoryId]="categoryId"
+    [form]="form"
+  ></az-characteristics>
+
+  <!-- Местоположение -->
+  <az-location [form]="form"></az-location>
+
+  <ng-container *ngIf="!isForModerator">
+    <!-- Контактная информация -->
+    <az-contact-data [form]="form"></az-contact-data>
+
+    <div>
+      <label
+        nz-checkbox
+        [(ngModel)]="isAgreeOferta"
+        [ngModelOptions]="{ standalone: true }"
+        >{{ "userAgreement" | translate }}
+      </label>
+    </div>
+
+    <div nz-row [nzGutter]="[16, 0]" class="mt-1">
+      <div nz-col>
+        <button
+          nz-button
+          nzType="primary"
+          nzSize="large"
+          class="secondary"
+          [disabled]="!isAgreeOferta"
+        >
+          <span>{{ "postAdvertisement" | translate }}</span>
+        </button>
+      </div>
+      <div nz-col>
+        <button nz-button nzType="primary" nzSize="large">
+          <span class="nav__bottom-btn-text">{{ "clear" | translate }}</span>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</form>

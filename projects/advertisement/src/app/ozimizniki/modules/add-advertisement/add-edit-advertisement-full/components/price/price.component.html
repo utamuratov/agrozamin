@@ -2,15 +2,15 @@
   <div class="inline-card">
     <div nz-row [nzGutter]="[0, 30]">
       <div nz-col nzSpan="24">
-        <h3 class="add-title">Цена</h3>
+        <h3 class="add-title">{{ "price" | translate }}</h3>
       </div>
       <div nz-col nzSpan="24">
         <div nz-row>
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <nz-form-label [nzSpan]="24" nzFor="price"
-                >Цена (сум)</nz-form-label
-              >
+              <nz-form-label [nzSpan]="24" nzFor="price">{{
+                "priceUZS" | translate
+              }}</nz-form-label>
               <nz-form-control [nzSpan]="16">
                 <input
                   nz-input
@@ -29,20 +29,24 @@
                   [(ngModel)]="hasNotPrice"
                   (ngModelChange)="onChangeHasNotPrice($event)"
                   [ngModelOptions]="{ standalone: true }"
-                  >Цена по запросу</label
+                  >{{ "priceOnRequest" | translate }}</label
                 >
               </nz-form-control>
             </nz-form-item>
           </div>
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <nz-form-label [nzSpan]="24" nzFor="price"
-                >Торг есть</nz-form-label
-              >
+              <nz-form-label [nzSpan]="24" nzFor="price">{{
+                "agreementPrice" | translate
+              }}</nz-form-label>
               <nz-form-control [nzSpan]="24">
                 <nz-radio-group formControlName="deal">
-                  <label nz-radio [nzValue]="false">Нет</label>
-                  <label nz-radio [nzValue]="true">Да</label>
+                  <label nz-radio [nzValue]="false">{{
+                    "no" | translate
+                  }}</label>
+                  <label nz-radio [nzValue]="true">{{
+                    "yes" | translate
+                  }}</label>
                 </nz-radio-group>
               </nz-form-control>
             </nz-form-item>

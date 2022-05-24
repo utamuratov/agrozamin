@@ -2,14 +2,16 @@
   <div class="inline-card media">
     <div nz-row [nzGutter]="[0, 30]">
       <div nz-col nzSpan="24">
-        <h3 class="add-title">Добавить видео и фото</h3>
+        <h3 class="add-title">{{ "addingVideoAndPhoto" | translate }}</h3>
       </div>
       <div nz-col nzSpan="24">
         <div nz-row [nzGutter]="[0, 24]">
           <div nz-col nzSpan="24">
             <div class="media__video">
               <div nz-col nzSpan="12">
-                <span class="add-subtitle">Добавить видео</span>
+                <span class="add-subtitle">{{
+                  "addingVideo" | translate
+                }}</span>
                 <youtube-player
                   *ngIf="videoId"
                   [videoId]="videoId"
@@ -22,7 +24,7 @@
                       nz-input
                       type="text"
                       id="videoUrl"
-                      placeholder="Вставить ссылку"
+                      placeholder="{{ 'addUrl' | translate }}"
                       formControlName="video_url"
                       (input)="inputVideChange($event)"
                     />
@@ -31,6 +33,7 @@
                     <i nz-icon nzType="youtube" class="youtube"></i>
                   </ng-template>
                 </nz-form-control>
+                <!-- TODO: REMOVE -->
                 <!-- <div
                 class="media__video__upload"
                 (click)="isVisibleVideoModal = true"
@@ -43,7 +46,7 @@
           </div>
           <div nz-col nzSpan="24">
             <div class="media__image">
-              <span class="add-subtitle">Добавить фото</span>
+              <span class="add-subtitle">{{ "addPhoto" | translate }}</span>
               <div class="media__image__upload">
                 <div nz-row [nzGutter]="[8, 0]">
                   <div nz-col *ngFor="let image of imagesSrc; let i = index">
@@ -88,7 +91,9 @@
                               ></i>
                             </div>
                             <div nz-col nzSpan="24">
-                              <div class="ant-upload-text">Загрузить</div>
+                              <div class="ant-upload-text">
+                                {{ "upload" | translate }}
+                              </div>
                             </div>
                           </div>
                         </ng-container>

@@ -2,16 +2,16 @@
   <div class="inline-card">
     <div nz-row [nzGutter]="[0, 30]">
       <div nz-col nzSpan="24">
-        <h3 class="add-title">Контактная информация</h3>
+        <h3 class="add-title">{{ "contactData" | translate }}</h3>
       </div>
       <div nz-col nzSpan="24">
         <nz-radio-group formControlName="use_agroid_contact">
-          <label nz-radio [nzValue]="true"
-            >Использовать контактные данные с AgroID</label
-          >
-          <label nz-radio [nzValue]="false"
-            >Указать другие контактные данные</label
-          >
+          <label nz-radio [nzValue]="true">{{
+            "useAgroIdData" | translate
+          }}</label>
+          <label nz-radio [nzValue]="false">{{
+            "useAnotherContactData" | translate
+          }}</label>
         </nz-radio-group>
 
         <div
@@ -23,14 +23,16 @@
         >
           <div nz-col nzSpan="8">
             <nz-form-item>
-              <nz-form-label nzFor="full_name">Имя</nz-form-label>
+              <nz-form-label nzFor="full_name">{{
+                "firstName" | translate
+              }}</nz-form-label>
               <nz-form-control>
                 <input
                   nz-input
                   type="text"
                   id="full_name"
                   nzSize="large"
-                  placeholder="Введите ваше имя"
+                  placeholder="{{ 'inputYourName' | translate }}"
                   formControlName="full_name"
                 />
               </nz-form-control>
@@ -38,7 +40,9 @@
           </div>
           <div nz-col nzSpan="8">
             <nz-form-item>
-              <nz-form-label nzFor="phone">Номер телефона</nz-form-label>
+              <nz-form-label nzFor="phone">{{
+                "phoneNumber" | translate
+              }}</nz-form-label>
               <nz-form-control>
                 <input
                   nz-input
