@@ -9,7 +9,12 @@
         <div nz-col nzSpan="24">
           <div nz-row>
             <div nz-col nzSpan="6">
-              <h4 class="characteristic__title">{{ filter.name }}</h4>
+              <h4
+                class="characteristic__title required"
+                [ngClass]="{ invalid: filter.invalid }"
+              >
+                {{ filter.name }}
+              </h4>
             </div>
             <div nz-col nzSpan="18">
               <ng-container [ngSwitch]="filter.type_for_creator">
@@ -17,7 +22,12 @@
                 <ng-container *ngSwitchCase="InputTypeForCreator.InputNumber">
                   <nz-form-item>
                     <nz-form-control [nzSpan]="6">
-                      <input nz-input type="text" nzSize="large" />
+                      <input
+                        nz-input
+                        type="text"
+                        nzSize="large"
+                        [(ngModel)]="filter.value"
+                      />
                     </nz-form-control>
                   </nz-form-item>
                 </ng-container>
@@ -25,8 +35,7 @@
                 <!-- CHECKBOX -->
                 <ng-container *ngSwitchCase="InputTypeForCreator.Checkbox">
                   <nz-checkbox-group
-                    [(ngModel)]="checkOptionsOne"
-                    (ngModelChange)="log(checkOptionsOne)"
+                    [(ngModel)]="filter.value"
                   ></nz-checkbox-group>
                 </ng-container>
 
@@ -36,9 +45,9 @@
                     nzShowSearch
                     nzAllowClear
                     nzPlaceHolder="Укажите страну"
-                    [(ngModel)]="selectedValue"
                     nzSize="large"
                     class="characteristic__country"
+                    [(ngModel)]="filter.value"
                   >
                     <nz-option
                       [nzValue]="parameter.filter_parameter_id"
@@ -51,22 +60,29 @@
                 <!-- DATE PICKER -->
                 <ng-container *ngSwitchCase="InputTypeForCreator.DatePicker">
                   <!-- <nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker> -->
-                  <nz-date-picker nzSize="large"></nz-date-picker>
+                  <nz-date-picker
+                    nzSize="large"
+                    [(ngModel)]="filter.value"
+                  ></nz-date-picker>
                 </ng-container>
 
                 <!-- DATE YEAR PICKER -->
                 <ng-container
                   *ngSwitchCase="InputTypeForCreator.DateYearPicker"
                 >
-                  <nz-date-picker nzMode="year" nzSize="large"></nz-date-picker>
+                  <nz-date-picker
+                    nzMode="year"
+                    nzSize="large"
+                    [(ngModel)]="filter.value"
+                  ></nz-date-picker>
                 </ng-container>
 
                 <!-- RADIO -->
                 <ng-container *ngSwitchCase="InputTypeForCreator.Radio">
                   <nz-radio-group
-                    [(ngModel)]="radioValue1"
                     nzButtonStyle="solid"
                     nzSize="large"
+                    [(ngModel)]="filter.value"
                   >
                     <label
                       nz-radio-button

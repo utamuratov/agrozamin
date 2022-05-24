@@ -1,47 +1,59 @@
-<div class="inline-card">
-  <div nz-row [nzGutter]="[0, 30]">
-    <div nz-col nzSpan="24">
-      <h3 class="add-title">Контактная информация</h3>
-    </div>
-    <div nz-col nzSpan="24">
-      <nz-radio-group [(ngModel)]="radioValue">
-        <label nz-radio nzValue="A"
-          >Использовать контактные данные с AgroID</label
-        >
-        <label nz-radio nzValue="B">Указать другие контактные данные</label>
-      </nz-radio-group>
+<form [formGroup]="form">
+  <div class="inline-card">
+    <div nz-row [nzGutter]="[0, 30]">
+      <div nz-col nzSpan="24">
+        <h3 class="add-title">Контактная информация</h3>
+      </div>
+      <div nz-col nzSpan="24">
+        <nz-radio-group formControlName="use_agroid_contact">
+          <label nz-radio [nzValue]="true"
+            >Использовать контактные данные с AgroID</label
+          >
+          <label nz-radio [nzValue]="false"
+            >Указать другие контактные данные</label
+          >
+        </nz-radio-group>
 
-      <div nz-row [nzGutter]="[30, 0]" class="mt-2">
-        <div nz-col nzSpan="8">
-          <nz-form-item>
-            <nz-form-label nzFor="name">Имя</nz-form-label>
-            <nz-form-control>
-              <input
-                nz-input
-                type="text"
-                id="name"
-                nzSize="large"
-                placeholder="Введите ваше имя"
-                formControlName="name"
-              />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="8">
-          <nz-form-item>
-            <nz-form-label nzFor="phone">Номер телефона</nz-form-label>
-            <nz-form-control>
-              <input
-                nz-input
-                type="text"
-                id="phone"
-                nzSize="large"
-                formControlName="phone"
-              />
-            </nz-form-control>
-          </nz-form-item>
+        <div
+          nz-row
+          [nzGutter]="[30, 0]"
+          class="mt-2"
+          *ngIf="!form.controls['use_agroid_contact'].value"
+          formGroupName="contact"
+        >
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="full_name">Имя</nz-form-label>
+              <nz-form-control>
+                <input
+                  nz-input
+                  type="text"
+                  id="full_name"
+                  nzSize="large"
+                  placeholder="Введите ваше имя"
+                  formControlName="full_name"
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="phone">Номер телефона</nz-form-label>
+              <nz-form-control>
+                <input
+                  nz-input
+                  type="text"
+                  id="phone"
+                  nzSize="large"
+                  formControlName="phone"
+                  mask="00 000 00 00"
+                  prefix="+998 "
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</form>

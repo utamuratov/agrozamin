@@ -1,70 +1,118 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Input,
+} from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { Observable, Observer } from 'rxjs';
+import { NzImage, NzImageService } from 'ng-zorro-antd/image';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { FormGroup } from '@angular/forms';
+import { setValue } from '@ngxs/store';
 
 @Component({
   selector: 'az-media',
   templateUrl: './media.component.html',
   styleUrls: ['./media.component.less'],
-  providers: [NzMessageService],
+  providers: [NzMessageService, NzImageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MediaComponent implements OnInit {
-  loading = false;
-  avatarUrl!: string;
-  constructor(private msg: NzMessageService) {}
+  /**
+   *
+   */
+  @Input()
+  form!: FormGroup;
 
-  ngOnInit(): void {}
+  /**
+   *
+   */
+  images: Array<File | null> = [];
 
-  handleChange(info: { file: NzUploadFile }): void {
-    switch (info.file.status) {
-      case 'uploading':
-        this.loading = true;
-        break;
-      case 'done':
-        // Get this url from response in real world.
-        this.getBase64(info.file!.originFileObj!, (img: string) => {
-          this.loading = false;
-          this.avatarUrl = img;
-        });
-        break;
-      case 'error':
-        this.msg.error('Network error');
-        this.loading = false;
-        break;
+  /**
+   *
+   */
+  imagesSrc: Array<NzImage> = [];
+
+  /**
+   *
+   */
+  videoId!: string;
+
+  /**
+   *
+   * @param msg
+   * @param nzImageService
+   * @param cd
+   */
+  constructor(
+    private msg: NzMessageService,
+    private nzImageService: NzImageService,
+    private cd: ChangeDetectorRef
+  ) {}
+
+  ngOnInit() {
+    this.appendYoutubeFrame();
+  }
+
+  /**
+   *
+   */
+  private appendYoutubeFrame() {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.body.appendChild(tag);
+  }
+
+  /**
+   *
+   * @param image
+   */
+  viewImage(image: NzImage) {
+    this.nzImageService.preview([image], { nzZoom: 1.5, nzRotate: 0 });
+  }
+
+  /**
+   *
+   * @param index
+   */
+  deleteImage(index: number) {
+    this.images.splice(index, 1);
+    this.imagesSrc.splice(index, 1);
+  }
+
+  /**
+   *
+   * @param e
+   */
+  handleImagesInput(e: NzSafeAny) {
+    const image = e.target?.files?.item(0);
+
+    if (image) {
+      this.images.push(image);
+      this.form.controls['files'].setValue(this.images);
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagesSrc.push({ src: reader.result as string });
+        this.cd.markForCheck();
+      };
+
+      reader.readAsDataURL(image);
     }
   }
 
-  beforeUpload = (
-    file: NzUploadFile,
-    _fileList: NzUploadFile[]
-  ): Observable<boolean> =>
-    new Observable((observer: Observer<boolean>) => {
-      const isJpgOrPng =
-        file.type === 'image/jpeg' || file.type === 'image/png';
-      if (!isJpgOrPng) {
-        this.msg.error('You can only upload JPG file!');
-        observer.complete();
-        return;
-      }
-      const isLt2M = file.size! / 1024 / 1024 < 2;
-      if (!isLt2M) {
-        this.msg.error('Image must smaller than 2MB!');
-        observer.complete();
-        return;
-      }
-      observer.next(isJpgOrPng && isLt2M);
-      observer.complete();
-    });
-
-  clickBtn(str: string) {
-    console.log(str);
-  }
-
-  private getBase64(img: File, callback: (img: string) => void): void {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result!.toString()));
-    reader.readAsDataURL(img);
+  /**
+   *
+   */
+  inputVideChange(e: NzSafeAny) {
+    const url: string = e.target.value;
+    if (url) {
+      // SPLITTING VIDEOID FROM YOUTUBE VIDEO URL
+      this.videoId = url.split('?v=')?.[1];
+    }
   }
 }

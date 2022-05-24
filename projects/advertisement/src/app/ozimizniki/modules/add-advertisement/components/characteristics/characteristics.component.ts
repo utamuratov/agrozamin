@@ -1,10 +1,10 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Input,
   ChangeDetectorRef,
 } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { InputTypeForCreator } from 'projects/admin/src/app/core/enums/input-type.enum';
 import { Filter } from '../../dto/filter.interface';
 import { AddAdvertisementService } from '../../services/add-advertisement.service';
@@ -32,6 +32,12 @@ export class CharacteristicsComponent {
   /**
    *
    */
+  @Input()
+  form!: FormGroup;
+
+  /**
+   *
+   */
   filters: Filter[] = [];
 
   /**
@@ -39,17 +45,11 @@ export class CharacteristicsComponent {
    */
   InputTypeForCreator = InputTypeForCreator;
 
-  selectedValue = null;
-  radioValue1 = 'A';
-  radioValue2 = 'A';
-
-  checkOptionsOne = [
-    { label: 'Люк', value: 'Люк', checked: true },
-    { label: 'Обвес', value: 'Обвес' },
-    { label: 'Лебёдка', value: 'Лебёдка' },
-    { label: 'Ветровики', value: 'Ветровики' },
-    { label: 'Фаркоп', value: 'Фаркоп' },
-  ];
+  /**
+   *
+   * @param $addAdvertisement
+   * @param cd
+   */
   constructor(
     private $addAdvertisement: AddAdvertisementService,
     private cd: ChangeDetectorRef
@@ -62,7 +62,6 @@ export class CharacteristicsComponent {
   getFiltersByCategoryId(categoryId?: number) {
     if (categoryId === undefined) {
       this.filters = [];
-      this.checkOptionsOne = [];
       this.cd.markForCheck();
       return;
     }
@@ -76,7 +75,7 @@ export class CharacteristicsComponent {
             (w) => w.type_for_creator === InputTypeForCreator.Checkbox
           );
           if (filter) {
-            this.checkOptionsOne = filter.parameters.map((t) => {
+            filter.value = filter.parameters.map((t) => {
               return {
                 label: t.label,
                 value: t.filter_parameter_id.toString(),
@@ -88,7 +87,13 @@ export class CharacteristicsComponent {
       });
   }
 
-  log(value: object[]): void {
-    console.log(value);
+  /**
+   *
+   */
+  checkValid() {
+    this.filters.forEach((filter) => {
+      filter.value ? (filter.invalid = false) : (filter.invalid = true);
+    });
+    this.cd.markForCheck();
   }
 }

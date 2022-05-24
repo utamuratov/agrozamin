@@ -1,0 +1,94 @@
+<ng-container *ngIf="data">
+  <!-- HEADER -->
+  <az-header-with-divider-basic
+    [title]="('advertisements' | translate) + (data.total | titleTotal)"
+    (clickedAddEditButton)="addEdit()"
+  >
+  </az-header-with-divider-basic>
+
+  <!-- BODY -->
+  <nz-table
+    #groupingTable
+    [nzData]="data.data"
+    [nzFrontPagination]="false"
+    [nzTotal]="data.total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="data.current_page"
+    (nzQueryParams)="onQueryParamsChange($event)"
+    nzShowSizeChanger
+    nzBordered
+    nzSize="small"
+    [nzScroll]="(data.total | makeNzScroll: 400:1320 | async)!"
+  >
+    <thead>
+      <tr class="tr__th--border-bottom-0">
+        <th
+          [nzWidth]="'70px'"
+          nzAlign="center"
+          nzColumnKey="id"
+          [nzSortFn]="true"
+          nzLeft
+        >
+          {{ "id" | translate }}
+        </th>
+        <th
+          [nzWidth]="'150px'"
+          nzAlign="center"
+          nzColumnKey="name"
+          [nzSortFn]="true"
+          nzLeft
+        >
+          {{ "name" | translate }}
+        </th>
+        <th
+          [nzWidth]="'200px'"
+          nzAlign="center"
+          nzColumnKey="price"
+          [nzSortFn]="true"
+        >
+          {{ "price" | translate }}
+        </th>
+        <th
+          [nzWidth]="'200px'"
+          nzAlign="center"
+          nzColumnKey="status"
+          [nzSortFn]="true"
+        >
+          {{ "status" | translate }}
+        </th>
+
+        <th [nzWidth]="'140px'" nzAlign="center" nzRight></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of groupingTable.data">
+        <!-- ID -->
+        <td nzAlign="center" nzLeft>{{ data.id }}</td>
+
+        <!-- NAME -->
+        <td nzLeft>{{ data.name }}</td>
+
+        <!-- PRICE -->
+        <td>{{ data.price }}</td>
+
+        <!-- STATUS -->
+        <td nzAlign="center">{{ data.status }}</td>
+
+        <td nzRight nzAlign="center">
+          <nz-button-group>
+            <button (click)="delete(data.id)" nz-button nzType="default">
+              <span>
+                <i nz-icon nzType="delete" nzTheme="twotone"></i>
+              </span>
+            </button>
+            <button (click)="addEdit(data)" nz-button nzType="default">
+              <span>
+                <i nz-icon nzType="check-circle" nzTheme="twotone"></i>
+              </span>
+            </button>
+          </nz-button-group>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</ng-container>

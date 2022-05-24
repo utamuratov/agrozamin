@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'az-price',
@@ -7,9 +13,31 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriceComponent implements OnInit {
-  priceCheckbox = false;
+  /**
+   *
+   */
+  @Input()
+  form!: FormGroup;
+
+  /**
+   *
+   */
+  hasNotPrice = false;
+
   radioValueTrade = 'no';
-  constructor() {}
 
   ngOnInit(): void {}
+
+  /**
+   *
+   * @param hasNotPrice
+   */
+  onChangeHasNotPrice(hasNotPrice: boolean) {
+    const priceControl = this.form.controls['price'];
+    if (hasNotPrice) {
+      priceControl.disable({ onlySelf: true });
+    } else {
+      priceControl.enable({ onlySelf: true });
+    }
+  }
 }

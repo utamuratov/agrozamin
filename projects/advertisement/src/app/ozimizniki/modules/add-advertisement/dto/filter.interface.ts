@@ -1,3 +1,4 @@
+import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
 import { InputTypeForCreator } from 'projects/admin/src/app/core/enums/input-type.enum';
 
 export interface Filter {
@@ -10,4 +11,8 @@ export interface Filter {
     filter_parameter_id: number;
     label: string;
   }[];
+
+  // for model
+  value: number | NzCheckBoxOptionInterface[] | Date | string;
+  invalid: boolean;
 }

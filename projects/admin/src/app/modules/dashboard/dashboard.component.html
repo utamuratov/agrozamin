@@ -19,13 +19,15 @@
       nzMode="inline"
       [nzInlineCollapsed]="isCollapsed"
     >
+      <!-- DASHBOARD -->
       <li routerLink="home" nz-menu-item nzMatchRouter>
         <i nz-icon nzType="dashboard"></i>
         <span>{{ "dashboard" | translate }}</span>
       </li>
+
+      <!-- TRANSLATES -->
       <li
         nz-submenu
-        nzOpen
         [nzTitle]="'translate' | translate"
         nzIcon="unordered-list"
       >
@@ -52,7 +54,9 @@
           </li>
         </ul>
       </li>
-      <li nz-submenu nzOpen [nzTitle]="'category' | translate" nzIcon="profile">
+
+      <!-- CATEGORY -->
+      <li nz-submenu [nzTitle]="'category' | translate" nzIcon="profile">
         <ul>
           <li routerLink="category/filter" nz-menu-item nzMatchRouter>
             <span>{{ "filters" | translate }}</span>
@@ -74,12 +78,14 @@
         </ul>
       </li>
 
+      <!-- AGRO ID -->
       <li routerLink="user" nz-menu-item nzMatchRouter>
         <i nz-icon nzType="user"></i>
         <span>{{ "agroId" | translate }}</span>
       </li>
+
       <!-- ADMIN -->
-      <li nz-submenu nzOpen [nzTitle]="'admin' | translate" nzIcon="form">
+      <li nz-submenu [nzTitle]="'admin' | translate" nzIcon="form">
         <ul>
           <li routerLink="./admin/users" nz-menu-item nzMatchRouter>
             <span>{{ "users" | translate }}</span>
@@ -93,19 +99,30 @@
           <li routerLink="./admin/access-control" nz-menu-item nzMatchRouter>
             <span>{{ "controls" | translate }}</span>
           </li>
+          <!-- REGION -->
+          <li routerLink="region" nz-menu-item nzMatchRouter>
+            <span>{{ "regions" | translate }}</span>
+          </li>
+
+          <!-- DISTRICT -->
+          <li routerLink="district" nz-menu-item nzMatchRouter>
+            <span>{{ "district" | translate }}</span>
+          </li>
         </ul>
       </li>
 
-      <!-- REGION -->
-      <li routerLink="region" nz-menu-item nzMatchRouter>
-        <i nz-icon nzType="info-circle"></i>
-        <span>{{ "regions" | translate }}</span>
-      </li>
-
-      <!-- DISTRICT -->
-      <li routerLink="district" nz-menu-item nzMatchRouter>
-        <i nz-icon nzType="info-circle"></i>
-        <span>{{ "district" | translate }}</span>
+      <!-- UZIMIZNIKI -->
+      <li nz-submenu [nzTitle]="'uzimizniki' | translate" nzIcon="read">
+        <ul>
+          <!-- ADVERTISEMENT TYPE -->
+          <li routerLink="advertisement-type" nz-menu-item nzMatchRouter>
+            <span>{{ "advertisementTypes" | translate }}</span>
+          </li>
+          <!-- ADVERTISEMENTS -->
+          <li routerLink="advertisement" nz-menu-item nzMatchRouter>
+            <span>{{ "advertisements" | translate }}</span>
+          </li>
+        </ul>
       </li>
     </ul>
   </nz-sider>

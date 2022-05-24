@@ -4,6 +4,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { CategoryType } from '../../dto/category-type.interface';
 import { AddAdvertisementService } from '../../services/add-advertisement.service';
 
@@ -31,6 +32,12 @@ export class AdvertisementTypeComponent {
    *
    */
   categoryTypes: CategoryType[] = [];
+
+  /**
+   *
+   */
+  @Input()
+  form!: FormGroup;
 
   radioValue = '1';
 

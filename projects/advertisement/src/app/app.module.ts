@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
 import { RootLayoutComponent } from './ozimizniki/components/root-layout/root-layout.component';
 import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
+import { NgxMaskModule } from 'ngx-mask';
 
 registerLocaleData(ru);
 const providers = [{ provide: NZ_I18N, useValue: ru_RU }];
@@ -31,7 +32,11 @@ const mapConfig: YaConfig = {
      */
     NgxAzCoreModule,
 
+    /**
+     * NPM MODULES
+     */
     AngularYandexMapsModule.forRoot(mapConfig),
+    NgxMaskModule.forRoot(),
 
     BrowserAnimationsModule,
   ],

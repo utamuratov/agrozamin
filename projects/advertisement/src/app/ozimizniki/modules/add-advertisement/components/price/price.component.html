@@ -1,47 +1,54 @@
-<div class="inline-card">
-  <div nz-row [nzGutter]="[0, 30]">
-    <div nz-col nzSpan="24">
-      <h3 class="add-title">Цена</h3>
-    </div>
-    <div nz-col nzSpan="24">
-      <div nz-row>
-        <div nz-col nzSpan="12">
-          <nz-form-item>
-            <nz-form-label [nzSpan]="24" nzFor="price"
-              >Цена (сум)</nz-form-label
-            >
-            <nz-form-control [nzSpan]="16">
-              <input
-                nz-input
-                type="text"
-                id="price"
-                nzSize="large"
-                placeholder="Введите цену"
-                formControlName="price"
-                [disabled]="priceCheckbox"
-              />
-            </nz-form-control>
-          </nz-form-item>
-          <nz-form-item>
-            <nz-form-control [nzSpan]="24">
-              <label nz-checkbox [(ngModel)]="priceCheckbox"
-                >Цена по запросу</label
+<form [formGroup]="form">
+  <div class="inline-card">
+    <div nz-row [nzGutter]="[0, 30]">
+      <div nz-col nzSpan="24">
+        <h3 class="add-title">Цена</h3>
+      </div>
+      <div nz-col nzSpan="24">
+        <div nz-row>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label [nzSpan]="24" nzFor="price"
+                >Цена (сум)</nz-form-label
               >
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="12">
-          <nz-form-item>
-            <nz-form-label [nzSpan]="24" nzFor="price">Торг есть</nz-form-label>
-            <nz-form-control [nzSpan]="24">
-              <nz-radio-group [(ngModel)]="radioValueTrade">
-                <label nz-radio nzValue="no">Нет</label>
-                <label nz-radio nzValue="yes">Да</label>
-              </nz-radio-group>
-            </nz-form-control>
-          </nz-form-item>
+              <nz-form-control [nzSpan]="16">
+                <input
+                  nz-input
+                  type="number"
+                  id="price"
+                  nzSize="large"
+                  placeholder="Введите цену"
+                  formControlName="price"
+                />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control [nzSpan]="24">
+                <label
+                  nz-checkbox
+                  [(ngModel)]="hasNotPrice"
+                  (ngModelChange)="onChangeHasNotPrice($event)"
+                  [ngModelOptions]="{ standalone: true }"
+                  >Цена по запросу</label
+                >
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label [nzSpan]="24" nzFor="price"
+                >Торг есть</nz-form-label
+              >
+              <nz-form-control [nzSpan]="24">
+                <nz-radio-group formControlName="deal">
+                  <label nz-radio [nzValue]="false">Нет</label>
+                  <label nz-radio [nzValue]="true">Да</label>
+                </nz-radio-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</form>

@@ -23,6 +23,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { AngularYandexMapsModule } from 'angular8-yandex-maps';
 import { AddAdvertisementService } from './services/add-advertisement.service';
+import { NgxMaskModule } from 'ngx-mask';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   imports: [
@@ -32,6 +34,8 @@ import { AddAdvertisementService } from './services/add-advertisement.service';
     ReactiveFormsModule,
 
     AngularYandexMapsModule,
+    NgxMaskModule,
+    YouTubePlayerModule,
 
     NzGridModule,
     NzFormModule,

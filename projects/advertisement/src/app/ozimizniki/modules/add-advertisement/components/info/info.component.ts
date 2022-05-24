@@ -1,4 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { from } from 'rxjs';
 import { Category } from '../../dto/category.interface';
 import { AddAdvertisementService } from '../../services/add-advertisement.service';
 
@@ -16,6 +18,12 @@ export class InfoComponent implements OnInit {
   /**
    *
    */
+  @Input()
+  form!: FormGroup;
+
+  /**
+   *
+   */
   @Output()
   categoryIdChange = new EventEmitter<number>();
 
@@ -29,8 +37,15 @@ export class InfoComponent implements OnInit {
    */
   customTree: CustomTree[] = [];
 
+  /**
+   *
+   * @param $addAdvertisement
+   */
   constructor(private $addAdvertisement: AddAdvertisementService) {}
 
+  /**
+   *
+   */
   ngOnInit() {
     this.getReferences();
   }
@@ -47,6 +62,12 @@ export class InfoComponent implements OnInit {
     });
   }
 
+  /**
+   *
+   * @param category
+   * @param tree
+   * @returns
+   */
   chooseCategory(category: Category, tree: CustomTree) {
     if (tree.selectedId > 0) {
       const a = [];
@@ -62,10 +83,12 @@ export class InfoComponent implements OnInit {
     tree.selectedId = category.id;
     if (category.child_categories.length === 0) {
       this.categoryIdChange.emit(category.id);
+      this.form.controls['category_id'].setValue(category.id);
       return;
     }
 
     this.categoryIdChange.emit(undefined);
+    this.form.controls['category_id'].setValue(undefined);
     this.customTree.push({ selectedId: -1, data: category.child_categories });
   }
 }

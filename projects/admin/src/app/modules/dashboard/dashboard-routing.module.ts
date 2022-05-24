@@ -50,6 +50,20 @@ const routes: Routes = [
             (m) => m.DistrictModule
           ),
       },
+      {
+        path: 'advertisement-type',
+        loadChildren: () =>
+          import('./modules/advertisement-type/advertisement-type.module').then(
+            (m) => m.AdvertisementTypeModule
+          ),
+      },
+      {
+        path: 'advertisement',
+        loadChildren: () =>
+          import('./modules/advertisement/advertisement.module').then(
+            (m) => m.AdvertisementModule
+          ),
+      },
     ],
   },
 ];

@@ -7,38 +7,48 @@
       <div nz-col nzSpan="24">
         <form
           nz-form
-          [formGroup]="advSettings"
+          [formGroup]="form"
           (ngSubmit)="submitForm()"
           nzLayout="vertical"
         >
           <!-- Информация -->
-          <az-info (categoryIdChange)="changeCategoryId($event)"></az-info>
+          <az-info
+            [form]="form"
+            (categoryIdChange)="changeCategoryId($event)"
+          ></az-info>
 
           <!-- Тип объявления -->
           <az-advertisement-type
+            [form]="form"
             [categoryId]="categoryId"
           ></az-advertisement-type>
 
           <!-- Добавить фото и видео -->
-          <az-media></az-media>
+          <az-media [form]="form"></az-media>
 
           <!-- Цена -->
-          <az-price></az-price>
+          <az-price [form]="form"></az-price>
 
           <!-- Описание товара -->
-          <az-description></az-description>
+          <az-description [form]="form"></az-description>
 
           <!-- Характеристики -->
-          <az-characteristics [categoryId]="categoryId"></az-characteristics>
+          <az-characteristics
+            [categoryId]="categoryId"
+            [form]="form"
+          ></az-characteristics>
 
           <!-- Местоположение -->
-          <az-location></az-location>
+          <az-location [form]="form"></az-location>
 
           <!-- Контактная информация -->
-          <az-contact-data></az-contact-data>
+          <az-contact-data [form]="form"></az-contact-data>
 
           <div>
-            <label nz-checkbox [(ngModel)]="oferta"
+            <label
+              nz-checkbox
+              [(ngModel)]="isAgreeOferta"
+              [ngModelOptions]="{ standalone: true }"
               >Публикуя данное объявление вы соглашаетесь с пользовательским
               соглашением.
             </label>
@@ -51,7 +61,7 @@
                 nzType="primary"
                 nzSize="large"
                 class="secondary"
-                routerLink="add-edit-advertisement"
+                [disabled]="!isAgreeOferta"
               >
                 <span>Опубликовать объявление</span>
               </button>

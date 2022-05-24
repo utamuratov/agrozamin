@@ -1,18 +1,20 @@
 <div class="inline-card type" *ngIf="categoryId && categoryTypes.length > 0">
-  <div nz-row [nzGutter]="[0, 30]">
-    <div nz-col nzSpan="24">
-      <h3 class="add-title">Тип объявления</h3>
+  <form [formGroup]="form">
+    <div nz-row [nzGutter]="[0, 30]">
+      <div nz-col nzSpan="24">
+        <h3 class="add-title">Тип объявления</h3>
+      </div>
+      <div nz-col nzSpan="24">
+        <nz-radio-group formControlName="type_id" nzName="radiogroup">
+          <label
+            nz-radio
+            [nzValue]="categoryType.id"
+            class="type__label"
+            *ngFor="let categoryType of categoryTypes"
+            >{{ categoryType.name }}</label
+          >
+        </nz-radio-group>
+      </div>
     </div>
-    <div nz-col nzSpan="24">
-      <nz-radio-group [(ngModel)]="radioValue" nzName="radiogroup">
-        <label
-          nz-radio
-          [nzValue]="categoryType.id"
-          class="type__label"
-          *ngFor="let categoryType of categoryTypes"
-          >{{ categoryType.name }}</label
-        >
-      </nz-radio-group>
-    </div>
-  </div>
+  </form>
 </div>
