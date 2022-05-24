@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { CatalogMembersPartnerComponent } from './modules/catalog-members-partner/catalog-members-partner.component';
 import { OzimiznikiComponent } from './ozimizniki.component';
 
 const routes: Routes = [
@@ -17,6 +18,13 @@ const routes: Routes = [
           import('./modules/category/category.module').then(
             (m) => m.CategoryModule
           ),
+      },
+      {
+        path: 'members',
+        loadChildren: () =>
+          import(
+            './modules/catalog-members-partner/catalog-members-partner.module'
+          ).then((m) => m.CatalogMembersPartnerModule),
       },
       {
         path: 'add-edit-advertisement',

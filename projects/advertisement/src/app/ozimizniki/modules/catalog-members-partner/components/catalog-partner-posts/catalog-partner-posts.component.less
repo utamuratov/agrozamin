@@ -1,0 +1,325 @@
+.posts {
+  padding: 70px;
+  background: #f8f9fc;
+  margin-top: 60px;
+
+  &__name {
+      font-size: 24px;
+  }
+
+  .single-category {
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+
+    &__link {
+      padding: 12px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      img {
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
+      }
+
+      span {
+        color: #1a1a1a;
+        font-family: Agrofont-Medium;
+        font-size: 14px;
+        line-height: 18px;
+      }
+
+      &.active {
+        background: #f1f2f5;
+      }
+    }
+
+    &__sublink {
+      display: flex;
+      justify-content: space-between;
+      color: #1a1a1a;
+      font-family: Agrofont-Medium;
+      font-size: 14px;
+      line-height: 18px;
+      padding: 3px 0;
+      transition: none !important;
+
+      &.active {
+        color: #22a33f;
+      }
+
+      span {
+        color: #86898c;
+        font-family: Agrofont-Regular;
+      }
+
+      &:hover {
+        color: #22a33f !important;
+      }
+    }
+  }
+
+  .sort {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+
+
+    &__variable {
+      padding: 10px 0;
+      font-size: 16px;
+      font-family: Agrofont-Regular;
+    }
+
+    &__link {
+      padding: 10px 12px;
+      font-size: 16px;
+      font-family: Agrofont-Regular;
+
+      img {
+        margin-left: 4px;
+      }
+    }
+
+    &__btn {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #cfd3d8;
+      transition: 0.3s;
+      cursor: pointer;
+
+      svg {
+        rect {
+          transition: 0.3s;
+        }
+      }
+
+      &:hover {
+        svg {
+          rect {
+            stroke: #22a33f;
+          }
+        }
+
+        border: 1px solid #22a33f;
+      }
+
+      &.active {
+        background: #22a33f;
+        border: 1px solid #22a33f;
+        svg {
+          rect {
+            stroke: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 8px;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 0px 30px rgba(26, 26, 26, 0.1);
+    }
+
+    &:active {
+      outline: 1.5px solid #22a33f;
+    }
+
+    &__grid {
+      &__top {
+        height: 225px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        border-radius: 8px 8px 0 0;
+        padding: 16px;
+        position: relative;
+      }
+
+      &__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 225px;
+        height: 225px;
+        border-radius: 8px 8px 0 0;
+
+        img {
+          border-radius: 8px 8px 0 0;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &__bottom {
+        padding: 20px;
+
+        &__title {
+          margin-bottom: 0;
+          font-size: 14px;
+          font-family: Agrofont-Medium;
+          color: #1a1a1a;
+          line-height: 17px;
+        }
+
+        &__subtitle {
+          font-size: 16px;
+          font-family: Agrofont-Bold;
+          color: #22a33f;
+          line-height: 20px;
+          margin: 8px 0 16px 0;
+
+          span {
+            font-size: 12px;
+            font-family: Agrofont-Regular;
+            color: #86898c;
+            line-height: 15px;
+            margin-left: 4px;
+          }
+        }
+
+        &__undertitle {
+          font-size: 12px;
+          font-family: Agrofont-Regular;
+          color: #86898c;
+          margin-bottom: 0;
+        }
+      }
+
+      .title_height {
+        height: 36px;
+      }
+    }
+
+    &__list {
+      &__left {
+        height: 260px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        padding: 16px;
+        border-radius: 8px 0 0 8px;
+        overflow: hidden;
+      }
+
+      &__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 8px 0 0 8px;
+
+        img {
+          border-radius: 8px 0 0 8px;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &__right {
+        padding: 24px 24px 24px 20px;
+        height: 100%;
+
+        &__title {
+          font-size: 18px;
+          font-family: Agrofont-Medium;
+          color: #1a1a1a;
+          line-height: 23px;
+          margin-bottom: 12px;
+        }
+
+        &__text {
+          font-size: 14px;
+          font-family: Agrofont-Regular;
+          color: #1a1a1a;
+          line-height: 18px;
+          height: 72px;
+        }
+
+        &__info {
+          width: 402px;
+        }
+
+        .location {
+          a {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-family: Agrofont-Regular;
+
+            span {
+              margin-left: 6px;
+              font-size: 14px;
+              font-family: Agrofont-Regular;
+            }
+          }
+
+          p {
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            span {
+              margin-left: 4px;
+            }
+          }
+        }
+
+        &__subtitle {
+          font-size: 20px;
+          color: #22a33f;
+          line-height: 25px;
+          margin: 0;
+          font-family: Agrofont-Bold;
+        }
+
+        &__underprice {
+          font-size: 12px;
+          color: #86898c;
+          font-family: Agrofont-Regular;
+        }
+      }
+
+      &__derection {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .tag {
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    line-height: 10px;
+    font-family: Agrofont-Regular;
+    color: #2f54eb;
+    background: #e5eafd;
+    transition: 0.5s;
+
+    &:hover {
+      color: #e5eafd !important;
+      background: #2f54eb !important;
+    }
+  }
+}
+:host ::ng-deep .anticon svg path:first-child{
+  fill: #B7BBBF !important;
+}
+
+:host ::ng-deep .anticon svg path:nth-child(2){
+  fill: #fff !important;
+}

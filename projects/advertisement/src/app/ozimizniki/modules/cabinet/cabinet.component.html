@@ -1,7 +1,7 @@
 <div class="advertisement">
   <div class="container">
-    <div nz-row [nzGutter]="[30, 0]">
-      <div nz-col nzSpan="6">
+    <div nz-row [nzGutter]="[{ xl: 30, lg:20, sm: 20, xs: 20 }, 0]">
+      <div nz-col nzXs="0" nzSm="0" nzMd="6" nzLg="6" nzXl="6">
         <div class="wrapper">
           <ul
             nz-menu
@@ -9,7 +9,7 @@
             [nzMode]="'inline'"
             [nzInlineCollapsed]="isCollapsed"
           >
-            <li nz-submenu>
+            <li nz-submenu >
               <span title
                 ><i
                   ><img
@@ -17,10 +17,11 @@
                     src="/assets/images/menu-Vector.png"
                     alt="" /></i
                 ><span class="nav-text">Объявления</span
-                ><span style="padding-left: 115px">12</span></span
+                ><span style="padding-left: 115px">12</span>
+                </span
               >
               <ul>
-                <li routerLink="advert" nz-menu-item>Активные</li>
+                <li routerLink="advert" nzSelected nz-menu-item>Активные</li>
                 <li nz-menu-item>Ожидающие</li>
                 <li nz-menu-item>Архивные</li>
                 <li nz-menu-item>Отклоненные</li>
@@ -69,7 +70,7 @@
             </li>
             <li
               nz-menu-item
-              nzSelected
+              
               style="padding-top: 5px; padding-bottom: 10px"
               routerLink="support"
             >
@@ -87,7 +88,7 @@
         </div>
       </div>
 
-      <div nz-col nzSpan="18">
+      <div nz-col nzXs="24" nzSm="24" nzMd="18" nzLg="18" nzXl="18">
         <router-outlet></router-outlet>
       </div>
     </div>
