@@ -63,6 +63,7 @@
 
     &__rightContent{
         padding-top: 24px;
+        padding-left: 20px;
          &__text{
             padding-top: 4px;
             font-size: 14px;
@@ -84,3 +85,76 @@
     }
    
 }
+
+.sort {
+    // width: 965px;
+    padding: 18px;
+    height: 80px;
+    background: #fff;
+    border-radius: 12px;
+
+    &__left{
+        padding-top: 10px;
+    }  
+
+    &__variable {
+      padding: 10px 0;
+      font-size: 16px;
+      font-family: Agrofont-Regular;
+    }
+  
+    &__link {
+      padding: 10px 12px;
+      font-size: 16px;
+      font-family: Agrofont-Regular;
+  
+      img {
+        margin-left: 4px;
+      }
+    }
+  
+    &__btn {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #cfd3d8;
+      transition: 0.3s;
+      cursor: pointer;
+  
+      svg {
+        rect {
+          transition: 0.3s;
+        }
+      }
+  
+      &:hover {
+        svg {
+          rect {
+            stroke: #377BE1;
+          }
+        }
+  
+        border: 1px solid #377BE1;
+      }
+  
+      &.active {
+        background: #377BE1;
+        border: 1px solid #22a33f;
+        svg {
+          rect {
+            stroke: #fff;
+          }
+        }
+      }
+    }
+  } 
+
+  :host ::ng-deep .anticon svg path:first-child{
+    fill: #B7BBBF !important;
+  }
+  
+  :host ::ng-deep .anticon svg path:nth-child(2){
+    fill: #fff !important;
+  }

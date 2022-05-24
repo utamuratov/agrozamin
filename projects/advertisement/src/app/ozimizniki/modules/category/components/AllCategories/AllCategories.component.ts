@@ -8,34 +8,34 @@ import { Component, OnInit } from '@angular/core';
 export class AllCategoriesComponent implements OnInit {
   categories = [
     {
-      icon: './assets/images/agrozamin/tractor.svg',
+      icon: './assets/images/tractor.svg',
       name: 'Сельхозтехника',
       id: 1,
       categories: [
         {
           name: 'Техника',
           categories: [
-            { name: 'Тракторы', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
               name: 'Минитехника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Транспортные средства для с/х',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Погрузчики', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Погрузчики', icon: 'assets/images/tractor.svg' },
             {
               name: 'Полуприцепы и прицепы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Сельхозтехника для хранения зерна',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Электронные системы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
@@ -44,37 +44,37 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Почвообрабатывающая техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Посевные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Картофельная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Техника для внесения удобрений',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерноочистительные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерносушилки',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Опрыскиватели',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Жатки', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Жатки', icon: 'assets/images/tractor.svg' },
           ],
         },
         {
@@ -82,53 +82,53 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Кормоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормозаготовительная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Оборудование для производства комбикормов',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормораздатчики и смесители',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
       ],
     },
     {
-      icon: './assets/images/agrozamin/seeds.svg',
+      icon: './assets/images/seeds.svg',
       name: 'Семена',
       id: 2,
       categories: [
         {
           name: 'Семена',
           categories: [
-            { name: 'Тракторы', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
               name: 'Минитехника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Транспортные средства для с/х',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Погрузчики', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Погрузчики', icon: 'assets/images/tractor.svg' },
             {
               name: 'Полуприцепы и прицепы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Сельхозтехника для хранения зерна',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Электронные системы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
@@ -137,37 +137,37 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Почвообрабатывающая техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Посевные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Картофельная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Техника для внесения удобрений',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерноочистительные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерносушилки',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Опрыскиватели',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Жатки', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Жатки', icon: 'assets/images/tractor.svg' },
           ],
         },
         {
@@ -175,53 +175,53 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Кормоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормозаготовительная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Оборудование для производства комбикормов',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормораздатчики и смесители',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
       ],
     },
     {
-      icon: './assets/images/agrozamin/fert.svg',
+      icon: './assets/images/fert.svg',
       name: 'Удобрения',
       id: 3,
       categories: [
         {
           name: 'Удобрения',
           categories: [
-            { name: 'Тракторы', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
               name: 'Минитехника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Транспортные средства для с/х',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Погрузчики', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Погрузчики', icon: 'assets/images/tractor.svg' },
             {
               name: 'Полуприцепы и прицепы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Сельхозтехника для хранения зерна',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Электронные системы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
@@ -230,37 +230,37 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Почвообрабатывающая техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Посевные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Картофельная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Техника для внесения удобрений',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерноочистительные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерносушилки',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Опрыскиватели',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Жатки', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Жатки', icon: 'assets/images/tractor.svg' },
           ],
         },
         {
@@ -268,53 +268,53 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Кормоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормозаготовительная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Оборудование для производства комбикормов',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормораздатчики и смесители',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
       ],
     },
     {
-      icon: './assets/images/agrozamin/chemy.svg',
+      icon: './assets/images/chemy.svg',
       name: 'Агрохимия',
       id: 4,
       categories: [
         {
           name: 'Агрохимия',
           categories: [
-            { name: 'Тракторы', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
               name: 'Минитехника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Транспортные средства для с/х',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Погрузчики', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Погрузчики', icon: 'assets/images/tractor.svg' },
             {
               name: 'Полуприцепы и прицепы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Сельхозтехника для хранения зерна',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Электронные системы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
@@ -323,37 +323,37 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Почвообрабатывающая техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Посевные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Картофельная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Техника для внесения удобрений',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерноочистительные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерносушилки',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Опрыскиватели',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Жатки', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Жатки', icon: 'assets/images/tractor.svg' },
           ],
         },
         {
@@ -361,53 +361,53 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Кормоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормозаготовительная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Оборудование для производства комбикормов',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормораздатчики и смесители',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
       ],
     },
     {
-      icon: './assets/images/agrozamin/cow.svg',
+      icon: './assets/images/cow.svg',
       name: 'Сельскохозяйственные животные',
       id: 5,
       categories: [
         {
           name: 'Сельскохозяйственные животные',
           categories: [
-            { name: 'Тракторы', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
               name: 'Минитехника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Транспортные средства для с/х',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Погрузчики', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Погрузчики', icon: 'assets/images/tractor.svg' },
             {
               name: 'Полуприцепы и прицепы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Сельхозтехника для хранения зерна',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Электронные системы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
@@ -416,37 +416,37 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Почвообрабатывающая техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Посевные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Картофельная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Техника для внесения удобрений',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерноочистительные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерносушилки',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Опрыскиватели',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Жатки', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Жатки', icon: 'assets/images/tractor.svg' },
           ],
         },
         {
@@ -454,53 +454,53 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Кормоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормозаготовительная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Оборудование для производства комбикормов',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормораздатчики и смесители',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
       ],
     },
     {
-      icon: './assets/images/agrozamin/corn.svg',
+      icon: './assets/images/corn.svg',
       name: 'Зерно',
       id: 6,
       categories: [
         {
           name: 'Зерно',
           categories: [
-            { name: 'Тракторы', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
               name: 'Минитехника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Транспортные средства для с/х',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Погрузчики', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Погрузчики', icon: 'assets/images/tractor.svg' },
             {
               name: 'Полуприцепы и прицепы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Сельхозтехника для хранения зерна',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Электронные системы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
@@ -509,37 +509,37 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Почвообрабатывающая техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Посевные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Картофельная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Техника для внесения удобрений',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерноочистительные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерносушилки',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Опрыскиватели',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Жатки', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Жатки', icon: 'assets/images/tractor.svg' },
           ],
         },
         {
@@ -547,53 +547,53 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Кормоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормозаготовительная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Оборудование для производства комбикормов',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормораздатчики и смесители',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
       ],
     },
     {
-      icon: './assets/images/agrozamin/garden.svg',
+      icon: './assets/images/garden.svg',
       name: 'Сад и огород',
       id: 7,
       categories: [
         {
           name: 'Сад и огород',
           categories: [
-            { name: 'Тракторы', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
               name: 'Минитехника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Транспортные средства для с/х',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Погрузчики', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Погрузчики', icon: 'assets/images/tractor.svg' },
             {
               name: 'Полуприцепы и прицепы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Сельхозтехника для хранения зерна',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Электронные системы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
@@ -602,37 +602,37 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Почвообрабатывающая техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Посевные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Картофельная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Техника для внесения удобрений',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерноочистительные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерносушилки',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Опрыскиватели',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Жатки', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Жатки', icon: 'assets/images/tractor.svg' },
           ],
         },
         {
@@ -640,53 +640,53 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Кормоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормозаготовительная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Оборудование для производства комбикормов',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормораздатчики и смесители',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
       ],
     },
     {
-      icon: './assets/images/agrozamin/transport.svg',
+      icon: './assets/images/transport.svg',
       name: 'Спецтехника',
       id: 8,
       categories: [
         {
           name: 'Спецтехника',
           categories: [
-            { name: 'Тракторы', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
               name: 'Минитехника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Транспортные средства для с/х',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Погрузчики', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Погрузчики', icon: 'assets/images/tractor.svg' },
             {
               name: 'Полуприцепы и прицепы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Сельхозтехника для хранения зерна',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Электронные системы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
@@ -695,37 +695,37 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Почвообрабатывающая техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Посевные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Картофельная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Техника для внесения удобрений',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерноочистительные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерносушилки',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Опрыскиватели',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Жатки', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Жатки', icon: 'assets/images/tractor.svg' },
           ],
         },
         {
@@ -733,53 +733,53 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Кормоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормозаготовительная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Оборудование для производства комбикормов',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормораздатчики и смесители',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
       ],
     },
     {
-      icon: './assets/images/agrozamin/shield.svg',
+      icon: './assets/images/shield.svg',
       name: 'Средства защиты растений',
       id: 9,
       categories: [
         {
           name: 'Средства защиты растений',
           categories: [
-            { name: 'Тракторы', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
               name: 'Минитехника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Транспортные средства для с/х',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Погрузчики', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Погрузчики', icon: 'assets/images/tractor.svg' },
             {
               name: 'Полуприцепы и прицепы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Сельхозтехника для хранения зерна',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Электронные системы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
@@ -788,37 +788,37 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Почвообрабатывающая техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Посевные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Картофельная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Техника для внесения удобрений',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерноочистительные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерносушилки',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Опрыскиватели',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Жатки', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Жатки', icon: 'assets/images/tractor.svg' },
           ],
         },
         {
@@ -826,53 +826,53 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Кормоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормозаготовительная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Оборудование для производства комбикормов',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормораздатчики и смесители',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
       ],
     },
     {
-      icon: './assets/images/agrozamin/tech.svg',
+      icon: './assets/images/tech.svg',
       name: 'Фермерское оборудование',
       id: 12,
       categories: [
         {
           name: 'Фермерское оборудование',
           categories: [
-            { name: 'Тракторы', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
               name: 'Минитехника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Транспортные средства для с/х',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Погрузчики', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Погрузчики', icon: 'assets/images/tractor.svg' },
             {
               name: 'Полуприцепы и прицепы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Сельхозтехника для хранения зерна',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Электронные системы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
@@ -881,37 +881,37 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Почвообрабатывающая техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Посевные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Картофельная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Техника для внесения удобрений',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерноочистительные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерносушилки',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Опрыскиватели',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Жатки', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Жатки', icon: 'assets/images/tractor.svg' },
           ],
         },
         {
@@ -919,53 +919,53 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Кормоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормозаготовительная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Оборудование для производства комбикормов',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормораздатчики и смесители',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
       ],
     },
     {
-      icon: './assets/images/agrozamin/rubber.svg',
+      icon: './assets/images/rubber.svg',
       name: 'Резинотехнические изделия',
       id: 13,
       categories: [
         {
           name: 'Резинотехнические изделия',
           categories: [
-            { name: 'Тракторы', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
               name: 'Минитехника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Транспортные средства для с/х',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Погрузчики', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Погрузчики', icon: 'assets/images/tractor.svg' },
             {
               name: 'Полуприцепы и прицепы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Сельхозтехника для хранения зерна',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Электронные системы',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
@@ -974,37 +974,37 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Почвообрабатывающая техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Посевные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Картофельная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Техника для внесения удобрений',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерноочистительные машины',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Зерносушилки',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Опрыскиватели',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
-            { name: 'Жатки', icon: 'assets/images/agrozamin/tractor.svg' },
+            { name: 'Жатки', icon: 'assets/images/tractor.svg' },
           ],
         },
         {
@@ -1012,26 +1012,26 @@ export class AllCategoriesComponent implements OnInit {
           categories: [
             {
               name: 'Кормоуборочные комбайны',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормозаготовительная техника',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Оборудование для производства комбикормов',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
             {
               name: 'Кормораздатчики и смесители',
-              icon: 'assets/images/agrozamin/tractor.svg',
+              icon: 'assets/images/tractor.svg',
             },
           ],
         },
       ],
     },
     {
-      icon: './assets/images/agrozamin/other.svg',
+      icon: './assets/images/other.svg',
       name: 'Все товары',
       id: 14,
       categories: [],

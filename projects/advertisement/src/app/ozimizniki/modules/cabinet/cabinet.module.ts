@@ -13,11 +13,13 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { SupportChatComponent } from './components/support-chat/support-chat.component';
 import { SellersComponent } from './components/favourites/components/sellers/sellers.component';
 import { FilterOptionsComponent } from './components/favourites/components/filter-options/filter-options.component';
 import { FavouriteAdvertComponent } from './components/favourites/components/favourite-advert/favourite-advert.component';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { Messages1Component } from './components/messages/components/messages1/messages1.component';
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
 
@@ -34,7 +36,9 @@ import { Messages2Component } from './components/messages/components/messages2/m
     NzToolTipModule,
     NzInputModule,
     NzDropDownModule,
-    NzCheckboxModule
+    NzCheckboxModule,
+    NzPopoverModule,
+    NzDividerModule
   ],
   declarations: [
     CabinetComponent,

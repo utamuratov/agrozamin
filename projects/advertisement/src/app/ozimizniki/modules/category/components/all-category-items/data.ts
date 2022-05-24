@@ -8,7 +8,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'RSM F 2650 - высокопроизводительный кормоуборочный комбайн, способный убирать все виды силосуемых кормовых культур, обеспечивая максимальное качество конечного продукта. Данная машина пригодна для полей ...',
-    img: './assets/images/agrozamin/product-card-1.jpg',
+    img: './assets/images/product-card-1.jpg',
     category: 'Сельхозтехника',
   },
   {
@@ -20,7 +20,7 @@ export const products = [
     address: 'Бухарская область, город Бухара',
     city: 'Бухара',
     text: 'По времени созревания разновидности сорта Пионер могут быть скороспелыми, созревающими за 80-90 дней; ранними, созревающими за 100-115 дней; средними, срок их созревания длится до 125 дней. Раннеспелые сорта ...',
-    img: './assets/images/agrozamin/product-card-2.jpg',
+    img: './assets/images/product-card-2.jpg',
     category: 'Семена',
   },
   {
@@ -44,7 +44,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Зерно сои МЕЗЕНКА',
-    img: './assets/images/agrozamin/product-card-4.jpg',
+    img: './assets/images/product-card-4.jpg',
     category: 'Зерно',
   },
   {
@@ -56,7 +56,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.',
-    img: './assets/images/agrozamin/product-card-5.jpg',
+    img: './assets/images/product-card-5.jpg',
     category: 'С/х животные',
   },
   {
@@ -68,7 +68,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Шланг ПВХ – прочная и практичная альтернатива резиновым изделиям. Используемый в его составе поливинилхлорид представляет собой эластичный полимер, способный выдерживать интенсивные ',
-    img: './assets/images/agrozamin/product-card-6.jpg',
+    img: './assets/images/product-card-6.jpg',
     category: 'Резинотехнические изделия',
   },
   {
@@ -80,7 +80,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Кукуруза на зерно',
-    img: './assets/images/agrozamin/product-card-7.jpg',
+    img: './assets/images/product-card-7.jpg',
     category: 'Зерно',
   },
   {
@@ -92,7 +92,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'RSM F 2650 - высокопроизводительный кормоуборочный комбайн, способный убирать все виды силосуемых кормовых культур, обеспечивая максимальное качество конечного продукта. Данная машина пригодна для полей ...',
-    img: './assets/images/agrozamin/product-card-8.jpg',
+    img: './assets/images/product-card-8.jpg',
     category: 'С/х животные',
   },
   {
@@ -104,7 +104,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Зерно сои МЕЗЕНКА',
-    img: './assets/images/agrozamin/product-card-4.jpg',
+    img: './assets/images/product-card-4.jpg',
     category: 'Зерно',
   },
   {
@@ -116,7 +116,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.',
-    img: './assets/images/agrozamin/product-card-5.jpg',
+    img: './assets/images/product-card-5.jpg',
     category: 'С/х животные',
   },
   {
@@ -128,7 +128,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'RSM F 2650 - высокопроизводительный кормоуборочный комбайн, способный убирать все виды силосуемых кормовых культур, обеспечивая максимальное качество конечного продукта. Данная машина пригодна для полей ...',
-    img: './assets/images/agrozamin/product-card-1.jpg',
+    img: './assets/images/product-card-1.jpg',
     category: 'Сельхозтехника',
   },
   {
@@ -140,7 +140,7 @@ export const products = [
     address: 'Бухарская область, город Бухара',
     city: 'Бухара',
     text: 'По времени созревания разновидности сорта Пионер могут быть скороспелыми, созревающими за 80-90 дней; ранними, созревающими за 100-115 дней; средними, срок их созревания длится до 125 дней. Раннеспелые сорта ...',
-    img: './assets/images/agrozamin/product-card-2.jpg',
+    img: './assets/images/product-card-2.jpg',
     category: 'Семена',
   },
   {
@@ -152,7 +152,7 @@ export const products = [
     address: 'Самаркандская область, город Шахрисабз',
     city: 'Шахрисабз',
     text: 'Когенерационные установки представляют собой технологическое оборудование, используемое для совместного производства электро- и тепловой энергии. Процесс когенерации осуществляется посредством',
-    img: './assets/images/agrozamin/product-card-3.jpg',
+    img: './assets/images/product-card-3.jpg',
     category: 'Фермерское оборудование',
   },
   {
@@ -164,7 +164,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Зерно сои МЕЗЕНКА',
-    img: './assets/images/agrozamin/product-card-4.jpg',
+    img: './assets/images/product-card-4.jpg',
     category: 'Зерно',
   },
   {
@@ -176,7 +176,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.',
-    img: './assets/images/agrozamin/product-card-5.jpg',
+    img: './assets/images/product-card-5.jpg',
     category: 'С/х животные',
   },
   {
@@ -188,7 +188,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Шланг ПВХ – прочная и практичная альтернатива резиновым изделиям. Используемый в его составе поливинилхлорид представляет собой эластичный полимер, способный выдерживать интенсивные ',
-    img: './assets/images/agrozamin/product-card-6.jpg',
+    img: './assets/images/product-card-6.jpg',
     category: 'Резинотехнические изделия',
   },
   {
@@ -200,7 +200,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Кукуруза на зерно',
-    img: './assets/images/agrozamin/product-card-7.jpg',
+    img: './assets/images/product-card-7.jpg',
     category: 'Зерно',
   },
   {
@@ -212,7 +212,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'RSM F 2650 - высокопроизводительный кормоуборочный комбайн, способный убирать все виды силосуемых кормовых культур, обеспечивая максимальное качество конечного продукта. Данная машина пригодна для полей ...',
-    img: './assets/images/agrozamin/product-card-8.jpg',
+    img: './assets/images/product-card-8.jpg',
     category: 'С/х животные',
   },
   {
@@ -224,7 +224,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Зерно сои МЕЗЕНКА',
-    img: './assets/images/agrozamin/product-card-4.jpg',
+    img: './assets/images/product-card-4.jpg',
     category: 'Зерно',
   },
   {
@@ -236,7 +236,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.',
-    img: './assets/images/agrozamin/product-card-5.jpg',
+    img: './assets/images/product-card-5.jpg',
     category: 'С/х животные',
   },
   {
@@ -248,7 +248,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'RSM F 2650 - высокопроизводительный кормоуборочный комбайн, способный убирать все виды силосуемых кормовых культур, обеспечивая максимальное качество конечного продукта. Данная машина пригодна для полей ...',
-    img: './assets/images/agrozamin/product-card-1.jpg',
+    img: './assets/images/product-card-1.jpg',
     category: 'Сельхозтехника',
   },
   {
@@ -260,7 +260,7 @@ export const products = [
     address: 'Бухарская область, город Бухара',
     city: 'Бухара',
     text: 'По времени созревания разновидности сорта Пионер могут быть скороспелыми, созревающими за 80-90 дней; ранними, созревающими за 100-115 дней; средними, срок их созревания длится до 125 дней. Раннеспелые сорта ...',
-    img: './assets/images/agrozamin/product-card-2.jpg',
+    img: './assets/images/product-card-2.jpg',
     category: 'Семена',
   },
   {
@@ -272,7 +272,7 @@ export const products = [
     address: 'Самаркандская область, город Шахрисабз',
     city: 'Шахрисабз',
     text: 'Когенерационные установки представляют собой технологическое оборудование, используемое для совместного производства электро- и тепловой энергии. Процесс когенерации осуществляется посредством',
-    img: './assets/images/agrozamin/product-card-3.jpg',
+    img: './assets/images/product-card-3.jpg',
     category: 'Фермерское оборудование',
   },
   {
@@ -284,7 +284,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Зерно сои МЕЗЕНКА',
-    img: './assets/images/agrozamin/product-card-4.jpg',
+    img: './assets/images/product-card-4.jpg',
     category: 'Зерно',
   },
   {
@@ -296,7 +296,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.',
-    img: './assets/images/agrozamin/product-card-5.jpg',
+    img: './assets/images/product-card-5.jpg',
     category: 'С/х животные',
   },
   {
@@ -308,7 +308,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Шланг ПВХ – прочная и практичная альтернатива резиновым изделиям. Используемый в его составе поливинилхлорид представляет собой эластичный полимер, способный выдерживать интенсивные ',
-    img: './assets/images/agrozamin/product-card-6.jpg',
+    img: './assets/images/product-card-6.jpg',
     category: 'Резинотехнические изделия',
   },
   {
@@ -320,7 +320,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Кукуруза на зерно',
-    img: './assets/images/agrozamin/product-card-7.jpg',
+    img: './assets/images/product-card-7.jpg',
     category: 'Зерно',
   },
   {
@@ -332,7 +332,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'RSM F 2650 - высокопроизводительный кормоуборочный комбайн, способный убирать все виды силосуемых кормовых культур, обеспечивая максимальное качество конечного продукта. Данная машина пригодна для полей ...',
-    img: './assets/images/agrozamin/product-card-8.jpg',
+    img: './assets/images/product-card-8.jpg',
     category: 'С/х животные',
   },
   {
@@ -344,7 +344,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Зерно сои МЕЗЕНКА',
-    img: './assets/images/agrozamin/product-card-4.jpg',
+    img: './assets/images/product-card-4.jpg',
     category: 'Зерно',
   },
   {
@@ -356,7 +356,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.',
-    img: './assets/images/agrozamin/product-card-5.jpg',
+    img: './assets/images/product-card-5.jpg',
     category: 'С/х животные',
   },
   {
@@ -368,7 +368,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'RSM F 2650 - высокопроизводительный кормоуборочный комбайн, способный убирать все виды силосуемых кормовых культур, обеспечивая максимальное качество конечного продукта. Данная машина пригодна для полей ...',
-    img: './assets/images/agrozamin/product-card-1.jpg',
+    img: './assets/images/product-card-1.jpg',
     category: 'Сельхозтехника',
   },
   {
@@ -380,7 +380,7 @@ export const products = [
     address: 'Бухарская область, город Бухара',
     city: 'Бухара',
     text: 'По времени созревания разновидности сорта Пионер могут быть скороспелыми, созревающими за 80-90 дней; ранними, созревающими за 100-115 дней; средними, срок их созревания длится до 125 дней. Раннеспелые сорта ...',
-    img: './assets/images/agrozamin/product-card-2.jpg',
+    img: './assets/images/product-card-2.jpg',
     category: 'Семена',
   },
   {
@@ -392,7 +392,7 @@ export const products = [
     address: 'Самаркандская область, город Шахрисабз',
     city: 'Шахрисабз',
     text: 'Когенерационные установки представляют собой технологическое оборудование, используемое для совместного производства электро- и тепловой энергии. Процесс когенерации осуществляется посредством',
-    img: './assets/images/agrozamin/product-card-3.jpg',
+    img: './assets/images/product-card-3.jpg',
     category: 'Фермерское оборудование',
   },
   {
@@ -404,7 +404,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Зерно сои МЕЗЕНКА',
-    img: './assets/images/agrozamin/product-card-4.jpg',
+    img: './assets/images/product-card-4.jpg',
     category: 'Зерно',
   },
   {
@@ -416,7 +416,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.',
-    img: './assets/images/agrozamin/product-card-5.jpg',
+    img: './assets/images/product-card-5.jpg',
     category: 'С/х животные',
   },
   {
@@ -428,7 +428,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Шланг ПВХ – прочная и практичная альтернатива резиновым изделиям. Используемый в его составе поливинилхлорид представляет собой эластичный полимер, способный выдерживать интенсивные ',
-    img: './assets/images/agrozamin/product-card-6.jpg',
+    img: './assets/images/product-card-6.jpg',
     category: 'Резинотехнические изделия',
   },
   {
@@ -440,7 +440,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Кукуруза на зерно',
-    img: './assets/images/agrozamin/product-card-7.jpg',
+    img: './assets/images/product-card-7.jpg',
     category: 'Зерно',
   },
   {
@@ -452,7 +452,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'RSM F 2650 - высокопроизводительный кормоуборочный комбайн, способный убирать все виды силосуемых кормовых культур, обеспечивая максимальное качество конечного продукта. Данная машина пригодна для полей ...',
-    img: './assets/images/agrozamin/product-card-8.jpg',
+    img: './assets/images/product-card-8.jpg',
     category: 'С/х животные',
   },
   {
@@ -464,7 +464,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Зерно сои МЕЗЕНКА',
-    img: './assets/images/agrozamin/product-card-4.jpg',
+    img: './assets/images/product-card-4.jpg',
     category: 'Зерно',
   },
   {
@@ -476,7 +476,7 @@ export const products = [
     address: 'Ташкентская область, город Ташкент',
     city: 'Ташкент',
     text: 'Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.',
-    img: './assets/images/agrozamin/product-card-5.jpg',
+    img: './assets/images/product-card-5.jpg',
     category: 'С/х животные',
   },
 ];
