@@ -30,6 +30,12 @@ export class MediaComponent implements OnInit {
   /**
    *
    */
+  @Input()
+  uploadedFiles?: NzImage[];
+
+  /**
+   *
+   */
   images: Array<File | null> = [];
 
   /**
@@ -56,6 +62,8 @@ export class MediaComponent implements OnInit {
 
   ngOnInit() {
     this.appendYoutubeFrame();
+    const videoUrl = this.form.value['video_url'];
+    this.splitYoutubeVideoIdFromUrl(videoUrl);
   }
 
   /**
@@ -110,6 +118,14 @@ export class MediaComponent implements OnInit {
    */
   inputVideChange(e: NzSafeAny) {
     const url: string = e.target.value;
+    this.splitYoutubeVideoIdFromUrl(url);
+  }
+
+  /**
+   *
+   * @param url
+   */
+  private splitYoutubeVideoIdFromUrl(url?: string | null) {
     if (url) {
       // SPLITTING VIDEOID FROM YOUTUBE VIDEO URL
       this.videoId = url.split('?v=')?.[1];

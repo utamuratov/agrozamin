@@ -16,7 +16,6 @@ import { LocationComponent } from './components/location/location.component';
 import { ContactDataComponent } from './components/contact-data/contact-data.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { AngularYandexMapsModule } from 'angular8-yandex-maps';
-import { AddAdvertisementService } from './services/add-advertisement.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { NzFormsSharedModule, ReactiveFormsSharedModule } from 'ngx-az-core';
@@ -61,6 +60,5 @@ import { AddEditAdvertisementFullComponent } from './add-edit-advertisement-full
     AddEditAdvertisementFullComponent,
   ],
   exports: [AddEditAdvertisementFullComponent],
-  providers: [AddAdvertisementService],
 })
 export class AddEditAdvertisementFullModule {}

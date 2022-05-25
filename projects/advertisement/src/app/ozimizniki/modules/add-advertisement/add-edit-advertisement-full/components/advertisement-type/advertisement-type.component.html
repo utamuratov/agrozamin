@@ -8,7 +8,7 @@
         <nz-radio-group formControlName="type_id" nzName="radiogroup">
           <label
             nz-radio
-            [nzValue]="categoryType.id"
+            [nzValue]="categoryType.announcement_type_id"
             class="type__label"
             *ngFor="let categoryType of categoryTypes"
             >{{ categoryType.name }}</label

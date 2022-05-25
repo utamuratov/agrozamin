@@ -8,6 +8,8 @@
   <!-- Информация -->
   <az-info
     [form]="form"
+    [categories]="data?.categories"
+    [currentCategory]="currentCategory"
     (categoryIdChange)="changeCategoryId($event)"
   ></az-info>
 
@@ -18,7 +20,7 @@
   ></az-advertisement-type>
 
   <!-- Добавить фото и видео -->
-  <az-media [form]="form"></az-media>
+  <az-media [form]="form" [uploadedFiles]="uploadedFiles"></az-media>
 
   <!-- Цена -->
   <az-price [form]="form"></az-price>

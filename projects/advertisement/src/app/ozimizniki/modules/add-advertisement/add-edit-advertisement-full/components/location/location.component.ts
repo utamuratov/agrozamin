@@ -10,6 +10,7 @@ import { YaGeocoderService } from 'angular8-yandex-maps';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
 import { District } from '../../dto/district.interface';
+import { Location } from '../../dto/location.interface';
 import { Region } from '../../dto/region.interface';
 import { DistrictService } from '../../services/district.service';
 import { RegionService } from '../../services/region.service';
@@ -31,7 +32,7 @@ export class LocationComponent implements OnInit {
   /**
    *
    */
-  coordinates!: GeolocationCoordinates;
+  coordinates!: NzSafeAny;
 
   /**
    *
@@ -85,11 +86,19 @@ export class LocationComponent implements OnInit {
    */
   getLocation() {
     navigator.geolocation.getCurrentPosition((location) => {
-      this.coordinates = location.coords;
-      this.form.controls['location'].setValue({
-        ln: this.coordinates.longitude,
-        lt: this.coordinates.latitude,
-      });
+      this.coordinates = { ...location.coords };
+      const locationForEditing: Location | null | undefined =
+        this.form.value['location'];
+      if (locationForEditing) {
+        this.coordinates.longitude = locationForEditing.ln;
+        this.coordinates.latitude = locationForEditing.lt;
+      } else {
+        this.form.controls['location'].setValue({
+          ln: this.coordinates.longitude,
+          lt: this.coordinates.latitude,
+        });
+      }
+
       this.getFullAddressFromCoordinates(location);
       this.cd.markForCheck();
     });
@@ -121,9 +130,10 @@ export class LocationComponent implements OnInit {
    */
   yadragend(e: NzSafeAny) {
     const coordinates = e.target.geometry.getBounds()[0];
+
     this.form.controls['location'].setValue({
-      ln: coordinates.longitude,
-      lt: coordinates.latitude,
+      lt: coordinates[0],
+      ln: coordinates[1],
     });
   }
 }

@@ -23,6 +23,9 @@
       </div>
       <div nz-col nzSpan="24">
         <span class="add-subtitle">{{ "category" | translate }}</span>
+        <div class="mb-1" *ngIf="currentCategory">
+          <span class="tag">{{ currentCategory.name }}</span>
+        </div>
         <div nz-row [nzGutter]="[30, 0]">
           <div nz-col nzSpan="8" *ngFor="let tree of customTree">
             <div class="info__category">

@@ -8,14 +8,15 @@ import {
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
+import { NzImage } from 'ng-zorro-antd/image';
 import { Constants, markAllAsDirty } from 'ngx-az-core';
 import { InputTypeForCreator } from 'projects/admin/src/app/core/enums/input-type.enum';
-import { map } from 'rxjs';
+import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
 import { CharacteristicsComponent } from './components/characteristics/characteristics.component';
-import {
-  Characteristics,
-  AdvertisementRequest,
-} from './dto/advertisement.request';
+import { AdvertisementEditResponse } from './dto/advertisement-edit.response';
+import { AdvertisementRequest } from './dto/advertisement.request';
+import { AdvertisementResponse } from './dto/advertisement.response';
+import { Characteristics } from './dto/characteristics.interface';
 import { AddAdvertisementService } from './services/add-advertisement.service';
 @Component({
   selector: 'az-add-edit-advertisement-full',
@@ -34,12 +35,22 @@ export class AddEditAdvertisementFullComponent implements OnInit {
    *
    */
   @Input()
-  id?: number;
+  data?: AdvertisementEditResponse;
+
+  /**
+   *
+   */
+  uploadedFiles?: NzImage[];
 
   /**
    *
    */
   categoryId!: number;
+
+  /**
+   *
+   */
+  currentCategory?: IdName;
 
   /**
    *
@@ -67,11 +78,13 @@ export class AddEditAdvertisementFullComponent implements OnInit {
    *
    */
   ngOnInit() {
-    if (this.id) {
-      this.getAdvertisementById(this.id).subscribe((result) => {
-        this.initializeForm(result.announcement);
+    if (this.data?.announcement) {
+      this.initializeForm(this.data.announcement);
+      this.uploadedFiles = this.data.announcement.files.map((file) => {
+        return { src: file.file };
       });
-
+      this.currentCategory = this.data.announcement.category;
+      this.changeCategoryId(this.data.announcement.category_id);
       return;
     }
 
@@ -80,27 +93,17 @@ export class AddEditAdvertisementFullComponent implements OnInit {
 
   /**
    *
-   * @param id
    */
-  getAdvertisementById(id: number) {
-    return this.$advertisement
-      .getAdvertisementForEditById(id)
-      .pipe(map((result) => result.data));
-  }
-
-  /**
-   *
-   */
-  initializeForm(model?: AdvertisementRequest) {
+  initializeForm(model?: AdvertisementResponse) {
     this.form = this.fb.group({
       name: [model?.name, Validators.required],
-      files: [null, Validators.required], // !
+      files: [null],
       price: [model?.price],
       deal: [model?.deal ?? false],
       category_id: [model?.category_id, Validators.required],
       type_id: [model?.type_id, Validators.required],
       description: [model?.description, Validators.required],
-      characteristics: [null, Validators.required], // !
+      characteristics: [model?.characteristics],
       region_id: [model?.region_id, Validators.required],
       district_id: [model?.district_id, Validators.required],
       address: [model?.address],
@@ -108,7 +111,7 @@ export class AddEditAdvertisementFullComponent implements OnInit {
         model?.use_agroid_contact ?? true,
         Validators.required,
       ],
-      location: [null], // !
+      location: [model?.location],
       video_url: [model?.video_url],
     });
 
@@ -138,9 +141,13 @@ export class AddEditAdvertisementFullComponent implements OnInit {
       return;
     }
 
-    this.$advertisement.add(request).subscribe((result) => {
-      console.log(result);
-    });
+    // EDIT
+    if (this.data) {
+      this.$advertisement.edit(this.data.announcement.id, request).subscribe();
+      return;
+    }
+    // ADD
+    this.$advertisement.add(request).subscribe();
   }
 
   /**

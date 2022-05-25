@@ -52,29 +52,6 @@ export class HeaderComponent implements OnInit {
 
   regionsValue: any = [];
 
-  userMenu = [
-    {
-      logo: '/assets/images/menu-Vector.png',
-      title: 'Объявления'
-    },
-    {
-      logo: '/assets/images/menu-message.png',
-      title: 'Сообщения'
-    },
-    {
-      logo: '/assets/images/menu-heart.png',
-      title: 'Избранное'
-    },
-    {
-      logo: '/assets/images/menu-settings.png',
-      title: 'Настройки'
-    },
-    {
-      logo: '/assets/images/menu-logout.png',
-      title: 'Выйти'
-    },
-  ]
-
   categories = [
     {
       icon: './assets/images/tractor.svg',
@@ -955,29 +932,33 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   *
+   * TODO: REMOVE
    */
   navigate() {
-    if (this.isUserAuthenticated) {
-      // NAVIGATE TO CABINET
+    // if (this.isUserAuthenticated) {
+    //   // NAVIGATE TO CABINET
+    //   if (isDevMode()) {
+    //     // result: /agro-id/ru/cabinet
+    //     this.document.location.pathname = `/${
+    //       Constants.AGROID_ROUTE_PATH
+    //     }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
+    //     return;
+    //   }
+    //   // result: /agro-id/az/ru/cabinet
+    //   this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}/${
+    //     Constants.AGROZAMIN_PREFIX_ROUTE_PATH
+    //   }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
+    //   return;
+    // }
+  }
 
-      if (isDevMode()) {
-        // result: /agro-id/ru/cabinet
-        this.document.location.pathname = `/${
-          Constants.AGROID_ROUTE_PATH
-        }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
-
-        return;
-      }
-
-      // result: /agro-id/az/ru/cabinet
-      this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}/${
-        Constants.AGROZAMIN_PREFIX_ROUTE_PATH
-      }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
-      return;
-    }
-
-    // NAVIGATE TO SIGN-IN SCREEN
+  // NAVIGATE TO SIGN-IN SCREEN
+  navigateToSignIn() {
     this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}`;
+  }
+
+  logout() {
+    // TODO: DO LOGOUT
+    this.navigateToSignIn();
   }
 }

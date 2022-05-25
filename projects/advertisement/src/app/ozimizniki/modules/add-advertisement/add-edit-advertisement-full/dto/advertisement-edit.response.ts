@@ -1,7 +1,7 @@
-import { AdvertisementRequest } from './advertisement.request';
+import { AdvertisementResponse } from './advertisement.response';
 import { Category } from './category.interface';
 
 export interface AdvertisementEditResponse {
-  announcement: AdvertisementRequest;
+  announcement: AdvertisementResponse;
   categories: Category[];
 }
