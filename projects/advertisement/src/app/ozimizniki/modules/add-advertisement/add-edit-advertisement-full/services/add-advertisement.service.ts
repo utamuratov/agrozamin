@@ -7,7 +7,7 @@ import { CategoryType } from '../dto/category-type.interface';
 import { Filter } from '../dto/filter.interface';
 import { ReferencesForCreate } from '../dto/references-for-create.interface';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AddAdvertisementService {
   /**
    *
@@ -66,6 +66,16 @@ export class AddAdvertisementService {
   add(model: AdvertisementRequest): Observable<BaseResponse<any>> {
     const formData = this.convertModelIntoFormData(model);
     return this.$baseService.post<any>('cabinet/announcement', formData);
+  }
+
+  /**
+   *
+   * @param model
+   * @returns
+   */
+  edit(id: number, model: AdvertisementRequest): Observable<BaseResponse<any>> {
+    const formData = this.convertModelIntoFormData(model);
+    return this.$baseService.put<any>('cabinet/announcement/' + id, formData);
   }
 
   /**

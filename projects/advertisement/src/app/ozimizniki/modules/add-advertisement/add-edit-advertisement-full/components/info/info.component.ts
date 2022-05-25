@@ -8,6 +8,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
 import { from } from 'rxjs';
 import { Category } from '../../dto/category.interface';
 import { AddAdvertisementService } from '../../services/add-advertisement.service';
@@ -33,13 +34,20 @@ export class InfoComponent implements OnInit {
   /**
    *
    */
+  @Input()
+  currentCategory?: IdName;
+
+  /**
+   *
+   */
   @Output()
   categoryIdChange = new EventEmitter<number>();
 
   /**
    *
    */
-  categories!: Category[];
+  @Input()
+  categories?: Category[];
 
   /**
    *
@@ -59,6 +67,10 @@ export class InfoComponent implements OnInit {
    *
    */
   ngOnInit() {
+    if (this.categories) {
+      this.initCustomTree(this.categories);
+      return;
+    }
     this.getReferences();
   }
 
@@ -69,10 +81,18 @@ export class InfoComponent implements OnInit {
     this.$addAdvertisement.getReferencesForCreate().subscribe((result) => {
       if (result.success) {
         this.categories = result.data.categories;
-        this.customTree.push({ selectedId: -1, data: this.categories });
+        this.initCustomTree(this.categories);
         this.cd.markForCheck();
       }
     });
+  }
+
+  /**
+   *
+   */
+  private initCustomTree(categories: Category[]) {
+    this.customTree = [];
+    this.customTree.push({ selectedId: -1, data: categories });
   }
 
   /**

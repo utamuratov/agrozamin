@@ -22,15 +22,7 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: `advertisement/${AdvertisementStatus.STATUS_CONFIRMED}`,
-        component: AdvertisementComponent,
-      },
-      {
-        path: `advertisement/${AdvertisementStatus.STATUS_NEW}`,
-        component: AdvertisementComponent,
-      },
-      {
-        path: `advertisement/${AdvertisementStatus.STATUS_REJECTED}`,
+        path: `advertisement/:status`,
         component: AdvertisementComponent,
       },
       {

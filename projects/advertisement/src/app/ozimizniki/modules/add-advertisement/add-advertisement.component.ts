@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AdvertisementEditResponse } from './add-edit-advertisement-full/dto/advertisement-edit.response';
 
 @Component({
   selector: 'az-add-advertisement',
@@ -10,12 +11,12 @@ export class AddAdvertisementComponent {
   /**
    *
    */
-  id?: number;
+  data?: AdvertisementEditResponse;
 
   /**
    *
    */
   constructor(private route: ActivatedRoute) {
-    this.id = this.route.snapshot.params['id'];
+    this.data = this.route.snapshot.data['advertisment'];
   }
 }

@@ -53,7 +53,7 @@ export class AdvertisementTypeComponent {
       return;
     }
 
-    return this.$advertisement
+    this.$advertisement
       .getCategoryTypesByCategoryId(categoryId)
       .subscribe((result) => {
         if (result.success) {
