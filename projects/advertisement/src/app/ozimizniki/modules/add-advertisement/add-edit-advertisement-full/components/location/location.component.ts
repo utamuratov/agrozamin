@@ -59,6 +59,7 @@ export class LocationComponent implements OnInit {
    *
    */
   ngOnInit(): void {
+    this.regionId = this.form.value['region_id'];
     this.getRegions();
     this.getLocation();
   }

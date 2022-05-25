@@ -27,7 +27,7 @@ const routes: Routes = [
           ).then((m) => m.CatalogMembersPartnerModule),
       },
       {
-        path: 'add-edit-advertisement',
+        path: 'advertisement',
         loadChildren: () =>
           import('./modules/add-advertisement/add-advertisement.module').then(
             (m) => m.AddAdvertisementModule
