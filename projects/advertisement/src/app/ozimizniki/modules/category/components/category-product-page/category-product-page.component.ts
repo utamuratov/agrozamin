@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
 
+
 @Component({
   selector: 'az-category-product-page',
   templateUrl: './category-product-page.component.html',
   styleUrls: ['./category-product-page.component.less'],
 })
+
+
+
+
 export class CategoryProductPageComponent implements OnInit {
+ 
   imgList = [
     {
       id: 1,
@@ -34,9 +40,11 @@ export class CategoryProductPageComponent implements OnInit {
         'https://www.truck1-ua.com/img/auto/XXL/7663/7663_3590727621494.jpg',
     },
   ];
+
   activeSlide = 0;
   mapVisible = false
   textAreaCommend!: string;
+
 
   constructor() {}
 
@@ -62,4 +70,6 @@ export class CategoryProductPageComponent implements OnInit {
       this.activeSlide = event;
     }
   }
+
+
 }

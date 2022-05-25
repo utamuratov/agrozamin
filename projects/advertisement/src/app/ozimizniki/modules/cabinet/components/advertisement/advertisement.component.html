@@ -42,10 +42,10 @@
 
     </div>
   
-  <div *ngFor="let advert of adverticement" nz-col nzSpan="24">
+  <div *ngFor="let advert of adverticement" nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
     <div class="advert-cards" nz-row>
       
-      <div nz-col nzSpan="6">
+      <div nz-col nzXs="6" nzSm="6" nzMd="8" nzLg="6" nzXl="6">
 
         <div class="advert-cards__top">
           <div class="advert-cards__top__img">
@@ -65,7 +65,7 @@
 
       </div>
 
-      <div nz-col nzSpan="12" class="advert-cards__content">
+      <div nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" nzXl="12" class="advert-cards__content">
         <div nz-row>
           <div nz-col nzSpan="24">
             <div nz-row>
@@ -74,7 +74,7 @@
               </div>
               <div
                 nz-col
-                nzSpan="24"
+                nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24"
                 class="advert-cards__content__description"
               >
                 <p>
@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <div nz-col nzSpan="6" class="advert-cards__rightContent">
+      <div nz-col nzXs="6" nzSm="6" nzMd="6" nzLg="6" nzXl="6" class="advert-cards__rightContent">
         <div nz-row>
           <div nz-col nzSpan="24">
             <div nz-row [nzGutter]="[0, 12]">
@@ -97,7 +97,7 @@
                 <div nz-row [nzGutter]="[8, 0]">
                   <div nz-col>
                     <img
-                      src="../../../../../../assets/images/o'zimizniki-Vector (2).png"
+                      src="./assets/images/o'zimizniki-Vector (2).png"
                       alt=""
                     />
                   </div>
@@ -110,7 +110,7 @@
                 <div nz-row [nzGutter]="[8, 0]">
                   <div nz-col>
                     <img
-                      src="../../../../../../assets/images/o'zimizniki-Vector1.png"
+                      src="./assets/images/o'zimizniki-Vector1.png"
                       alt=""
                     />
                   </div>
@@ -123,7 +123,7 @@
                 <div nz-row [nzGutter]="[8, 0]">
                   <div nz-col>
                     <img
-                      src="../../../../../../assets/images/o'zimizniki-phone.png"
+                      src="./assets/images/o'zimizniki-phone.png"
                       alt=""
                     />
                   </div>
@@ -140,7 +140,7 @@
               <div nz-col>
                 <button>
                   <img
-                    src="../../../../../../assets/images/o'zimizniki-Vector (2).png"
+                    src="./assets/images/o'zimizniki-Vector (2).png"
                     alt=""
                   />
                 </button>
@@ -148,7 +148,7 @@
               <div nz-col>
                 <button>
                   <img
-                    src="../../../../../../assets/images/o'zimizniki-edit.png"
+                    src="./assets/images/o'zimizniki-edit.png"
                     alt=""
                   />
                 </button>
@@ -156,7 +156,7 @@
               <div nz-col>
                 <button>
                   <img
-                    src="../../../../../../assets/images/o'zimizniki-download.png"
+                    src="./assets/images/o'zimizniki-download.png"
                     alt=""
                   />
                 </button>
@@ -165,6 +165,8 @@
           </div>
         </div>
       </div>
+
+
     </div>
   </div>
 </div>
