@@ -10,6 +10,7 @@ export interface AdvertisementRequest {
   description: string;
   characteristics: Characteristics[];
   district_id: number;
+  region_id: number;
   contact: {
     phone: number;
     full_name: string;

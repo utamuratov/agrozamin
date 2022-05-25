@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseResponse, BaseService } from 'ngx-az-core';
 import { Observable } from 'rxjs';
+import { AdvertisementEditResponse } from '../dto/advertisement-edit.response';
 import { AdvertisementRequest } from '../dto/advertisement.request';
 import { CategoryType } from '../dto/category-type.interface';
 import { Filter } from '../dto/filter.interface';
@@ -8,23 +9,52 @@ import { ReferencesForCreate } from '../dto/references-for-create.interface';
 
 @Injectable()
 export class AddAdvertisementService {
+  /**
+   *
+   * @param $baseService
+   */
   constructor(private $baseService: BaseService) {}
 
+  /**
+   *
+   * @returns
+   */
   getReferencesForCreate() {
     return this.$baseService.get<ReferencesForCreate>(
       'cabinet/announcement/create'
     );
   }
 
+  /**
+   *
+   * @param categoryId
+   * @returns
+   */
   getFiltersByCategoryId(categoryId: number) {
     return this.$baseService.get<Filter[]>(
       `cabinet/announcement/category-filter/${categoryId}`
     );
   }
 
+  /**
+   *
+   * @param categoryId
+   * @returns
+   */
   getCategoryTypesByCategoryId(categoryId: number) {
     return this.$baseService.get<CategoryType[]>(
       `cabinet/announcement/category-type/${categoryId}`
+    );
+  }
+
+  /**
+   *
+   * @param id
+   * @returns
+   */
+  getAdvertisementForEditById(id: number) {
+    return this.$baseService.get<AdvertisementEditResponse>(
+      `cabinet/announcement/${id}/edit`
     );
   }
 

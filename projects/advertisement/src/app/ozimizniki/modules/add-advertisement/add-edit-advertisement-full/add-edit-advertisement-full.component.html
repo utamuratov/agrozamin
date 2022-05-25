@@ -1,4 +1,10 @@
-<form nz-form [formGroup]="form" (ngSubmit)="submitForm()" nzLayout="vertical">
+<form
+  nz-form
+  [formGroup]="form"
+  *ngIf="form"
+  (ngSubmit)="submitForm()"
+  nzLayout="vertical"
+>
   <!-- Информация -->
   <az-info
     [form]="form"

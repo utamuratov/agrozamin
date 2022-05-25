@@ -4,11 +4,13 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   Input,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
 import { Constants, markAllAsDirty } from 'ngx-az-core';
 import { InputTypeForCreator } from 'projects/admin/src/app/core/enums/input-type.enum';
+import { map } from 'rxjs';
 import { CharacteristicsComponent } from './components/characteristics/characteristics.component';
 import {
   Characteristics,
@@ -27,6 +29,12 @@ export class AddEditAdvertisementFullComponent implements OnInit {
    */
   @Input()
   isForModerator = false;
+
+  /**
+   *
+   */
+  @Input()
+  id?: number;
 
   /**
    *
@@ -51,33 +59,60 @@ export class AddEditAdvertisementFullComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private $advertisement: AddAdvertisementService
+    private $advertisement: AddAdvertisementService,
+    private cd: ChangeDetectorRef
   ) {}
 
+  /**
+   *
+   */
   ngOnInit() {
+    if (this.id) {
+      this.getAdvertisementById(this.id).subscribe((result) => {
+        this.initializeForm(result.announcement);
+      });
+
+      return;
+    }
+
     this.initializeForm();
   }
 
   /**
    *
+   * @param id
    */
-  initializeForm() {
+  getAdvertisementById(id: number) {
+    return this.$advertisement
+      .getAdvertisementForEditById(id)
+      .pipe(map((result) => result.data));
+  }
+
+  /**
+   *
+   */
+  initializeForm(model?: AdvertisementRequest) {
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      files: [null, Validators.required],
-      price: [null],
-      deal: [false],
-      category_id: [null, Validators.required],
-      type_id: [null, Validators.required],
-      description: ['', Validators.required],
-      characteristics: [null, Validators.required],
-      region_id: [null, Validators.required],
-      district_id: [null, Validators.required],
-      address: [''],
-      use_agroid_contact: [true, Validators.required],
-      location: [null],
-      video_url: [null],
+      name: [model?.name, Validators.required],
+      files: [null, Validators.required], // !
+      price: [model?.price],
+      deal: [model?.deal ?? false],
+      category_id: [model?.category_id, Validators.required],
+      type_id: [model?.type_id, Validators.required],
+      description: [model?.description, Validators.required],
+      characteristics: [null, Validators.required], // !
+      region_id: [model?.region_id, Validators.required],
+      district_id: [model?.district_id, Validators.required],
+      address: [model?.address],
+      use_agroid_contact: [
+        model?.use_agroid_contact ?? true,
+        Validators.required,
+      ],
+      location: [null], // !
+      video_url: [model?.video_url],
     });
+
+    this.cd.markForCheck();
   }
 
   /**
