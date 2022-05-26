@@ -22,13 +22,17 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { Messages1Component } from './components/messages/components/messages1/messages1.component';
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
+import { CurrencyModule } from '../../../shared/currency/currency.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    CabinetRoutes, 
-    FormsModule, 
+    CabinetRoutes,
+    FormsModule,
     ReactiveFormsModule,
+
+    CurrencyModule,
+
     NzGridModule,
     NzMenuModule,
     NzButtonModule,
@@ -38,7 +42,7 @@ import { Messages2Component } from './components/messages/components/messages2/m
     NzDropDownModule,
     NzCheckboxModule,
     NzPopoverModule,
-    NzDividerModule
+    NzDividerModule,
   ],
   declarations: [
     CabinetComponent,
