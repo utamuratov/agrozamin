@@ -24,8 +24,6 @@ import { LanguageComponent } from './components/language/language.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 // import { CatalogMembersComponent } from './modules/catalog-members/catalog-members.component';
 
-
-
 @NgModule({
   imports: [
     OzimiznikiRoutes,
@@ -45,8 +43,8 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     NzDividerModule,
     NzIconModule,
     NzLayoutModule,
-    NzModalModule,  
-    NzPopoverModule  
+    NzModalModule,
+    NzPopoverModule,
   ],
   declarations: [
     OzimiznikiComponent,
@@ -55,7 +53,6 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     FilterPipe,
     FooterComponent,
     LanguageComponent,
-   
   ],
 })
 export class OzimiznikiModule {}
