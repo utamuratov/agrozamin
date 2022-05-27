@@ -72,7 +72,9 @@
             <div class="advert-cards__top__info">
               <div nz-row nzAlign="middle" nzJustify="space-between">
                 <div nz-col>
-                  <div class="tag">{{ advert.category.name }}</div>
+                  <div class="tag {{ advert.category_id | classByCategoryId }}">
+                    {{ advert.category.name }}
+                  </div>
                 </div>
                 <div nz-col>
                   <button nz-button nzType="text" class="advert-cards__icon">
@@ -228,6 +230,14 @@
 
             <div nz-col nzSpan="24" class="advert-cards__rightContent__bottom">
               <div nz-row [nzGutter]="[10, 0]">
+                <div
+                  nz-col
+                  *ngIf="advert.status === AdvertisementStatus.STATUS_REJECTED"
+                >
+                  <button>
+                    <img src="./assets/images/info.svg" alt="" />
+                  </button>
+                </div>
                 <div nz-col>
                   <button>
                     <img
@@ -243,9 +253,31 @@
                     <img src="./assets/images/o'zimizniki-edit.png" alt="" />
                   </button>
                 </div>
-                <div nz-col>
+                <div
+                  nz-col
+                  *ngIf="advert.status === AdvertisementStatus.STATUS_CONFIRMED"
+                >
                   <button>
                     <img src="./assets/images/archive-dark.png" alt="" />
+                  </button>
+                </div>
+                <div
+                  nz-col
+                  *ngIf="advert.status === AdvertisementStatus.STATUS_ARCHIVED"
+                >
+                  <button>
+                    <img src="./assets/images/on.svg" alt="" />
+                  </button>
+                </div>
+                <div
+                  nz-col
+                  *ngIf="
+                    advert.status === AdvertisementStatus.STATUS_ARCHIVED ||
+                    advert.status === AdvertisementStatus.STATUS_REJECTED
+                  "
+                >
+                  <button>
+                    <img src="./assets/images/trash.svg" alt="" />
                   </button>
                 </div>
               </div>
