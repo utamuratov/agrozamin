@@ -6,13 +6,12 @@ import {
   Input,
 } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { Observable, Observer } from 'rxjs';
 import { NzImage, NzImageService } from 'ng-zorro-antd/image';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { FormGroup } from '@angular/forms';
-import { setValue } from '@ngxs/store';
+import { Id } from 'projects/admin/src/app/shared/models/id.interface';
 
+export interface NzImageCustom extends NzImage, Id {}
 @Component({
   selector: 'az-media',
   templateUrl: './media.component.html',
@@ -31,7 +30,7 @@ export class MediaComponent implements OnInit {
    *
    */
   @Input()
-  uploadedFiles?: NzImage[];
+  uploadedFiles?: NzImageCustom[];
 
   /**
    *
@@ -47,6 +46,11 @@ export class MediaComponent implements OnInit {
    *
    */
   videoId!: string;
+
+  /**
+   *
+   */
+  deletedUploadedFileIds: number[] = [];
 
   /**
    *
@@ -87,7 +91,16 @@ export class MediaComponent implements OnInit {
    *
    * @param index
    */
-  deleteImage(index: number) {
+  deleteImage(index: number, image?: NzImageCustom) {
+    // REMOVE FROM UPLOADED FILES
+    if (image) {
+      this.deletedUploadedFileIds.push(image.id);
+      this.form.controls['deleted_files'].setValue(this.deletedUploadedFileIds);
+      this.uploadedFiles?.splice(index, 1);
+      return;
+    }
+
+    // REMOVE FROM NOT UPLOADED FILES
     this.images.splice(index, 1);
     this.imagesSrc.splice(index, 1);
   }

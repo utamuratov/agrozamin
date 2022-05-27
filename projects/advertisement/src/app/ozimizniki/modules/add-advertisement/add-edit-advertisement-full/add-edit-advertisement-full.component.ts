@@ -7,12 +7,14 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
 import { NzImage } from 'ng-zorro-antd/image';
-import { Constants, markAllAsDirty } from 'ngx-az-core';
+import { AdvertisementStatus, Constants, markAllAsDirty } from 'ngx-az-core';
 import { InputTypeForCreator } from 'projects/admin/src/app/core/enums/input-type.enum';
 import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
 import { CharacteristicsComponent } from './components/characteristics/characteristics.component';
+import { NzImageCustom } from './components/media/media.component';
 import { AdvertisementEditResponse } from './dto/advertisement-edit.response';
 import { AdvertisementRequest } from './dto/advertisement.request';
 import { AdvertisementResponse } from './dto/advertisement.response';
@@ -40,7 +42,7 @@ export class AddEditAdvertisementFullComponent implements OnInit {
   /**
    *
    */
-  uploadedFiles?: NzImage[];
+  uploadedFiles?: NzImageCustom[];
 
   /**
    *
@@ -71,7 +73,9 @@ export class AddEditAdvertisementFullComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private $advertisement: AddAdvertisementService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   /**
@@ -81,7 +85,7 @@ export class AddEditAdvertisementFullComponent implements OnInit {
     if (this.data?.announcement) {
       this.initializeForm(this.data.announcement);
       this.uploadedFiles = this.data.announcement.files.map((file) => {
-        return { src: file.file };
+        return { id: file.id, src: file.file };
       });
       this.currentCategory = this.data.announcement.category;
       this.changeCategoryId(this.data.announcement.category_id);
@@ -113,6 +117,7 @@ export class AddEditAdvertisementFullComponent implements OnInit {
       ],
       location: [model?.location],
       video_url: [model?.video_url],
+      deleted_files: [null],
     });
 
     this.cd.markForCheck();
@@ -143,11 +148,37 @@ export class AddEditAdvertisementFullComponent implements OnInit {
 
     // EDIT
     if (this.data) {
-      this.$advertisement.edit(this.data.announcement.id, request).subscribe();
+      this.$advertisement
+        .edit(this.data.announcement.id, request)
+        .subscribe((result) => {
+          if (result) {
+            this.router.navigate(
+              [
+                '../../../',
+                'cabinet',
+                'advertisement',
+                AdvertisementStatus.STATUS_NEW,
+              ],
+              { relativeTo: this.route }
+            );
+          }
+        });
       return;
     }
     // ADD
-    this.$advertisement.add(request).subscribe();
+    this.$advertisement.add(request).subscribe((result) => {
+      if (result) {
+        this.router.navigate(
+          [
+            '../../',
+            'cabinet',
+            'advertisement',
+            AdvertisementStatus.STATUS_NEW,
+          ],
+          { relativeTo: this.route }
+        );
+      }
+    });
   }
 
   /**
