@@ -7,6 +7,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngxs/store';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
@@ -815,12 +816,19 @@ export class HeaderComponent implements OnInit {
   /**
    *
    */
+  isVisibleProfilePopup = false;
+
+  /**
+   *
+   */
   readonly SERVICES = Data.SERVICES;
 
   constructor(
     private fb: FormBuilder,
     private $jwtHelper: JwtHelperService,
     private $store: Store,
+    private router: Router,
+    private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
@@ -957,6 +965,14 @@ export class HeaderComponent implements OnInit {
     this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}`;
   }
 
+  navigateTo(urls: string[]) {
+    this.isVisibleProfilePopup = false;
+    this.router.navigate(urls, { relativeTo: this.route });
+  }
+
+  /**
+   *
+   */
   logout() {
     // TODO: DO LOGOUT
     this.navigateToSignIn();

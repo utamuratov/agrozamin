@@ -23,6 +23,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { Messages1Component } from './components/messages/components/messages1/messages1.component';
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
 import { CurrencyModule } from '../../../shared/currency/currency.module';
+import { ClassByCategoryIdPipe } from './components/advertisement/pipes/suffixByCategoryId.pipe';
 
 @NgModule({
   imports: [
@@ -55,6 +56,8 @@ import { CurrencyModule } from '../../../shared/currency/currency.module';
     FavouriteAdvertComponent,
     Messages1Component,
     Messages2Component,
+
+    ClassByCategoryIdPipe,
   ],
 })
 export class CabinetModule {}

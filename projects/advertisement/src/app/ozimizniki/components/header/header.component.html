@@ -129,6 +129,7 @@
                   <nz-button-group
                     nz-popover
                     [nzPopoverContent]="contentTemplate"
+                    [(nzPopoverVisible)]="isVisibleProfilePopup"
                     nzPopoverTrigger="click"
                     nzPopoverPlacement="bottomRight"
                   >
@@ -635,7 +636,7 @@
     <div nz-col nzSpan="24" class="userPopower__bottom">
       <div nz-row>
         <div nz-col nzSpan="24" class="userPopower__bottom__content">
-          <div nz-row [routerLink]="'cabinet'">
+          <div nz-row (click)="navigateTo(['cabinet'])">
             <div nz-col nzSpan="4">
               <div class="userPopower__bottom__img">
                 <img [src]="'/assets/images/menu-Vector.png'" alt="" />
@@ -649,7 +650,7 @@
       </div>
       <div nz-row>
         <div nz-col nzSpan="24" class="userPopower__bottom__content">
-          <div nz-row [routerLink]="['cabinet', 'messages']">
+          <div nz-row (click)="navigateTo(['cabinet', 'messages'])">
             <div nz-col nzSpan="4">
               <div class="userPopower__bottom__img">
                 <img src="/assets/images/menu-message.png" alt="" />
@@ -663,7 +664,7 @@
       </div>
       <div nz-row>
         <div nz-col nzSpan="24" class="userPopower__bottom__content">
-          <div nz-row [routerLink]="['cabinet', 'favourites']">
+          <div nz-row (click)="navigateTo(['cabinet', 'favourites'])">
             <div nz-col nzSpan="4">
               <div class="userPopower__bottom__img">
                 <img src="/assets/images/menu-heart.png" alt="" />
@@ -677,7 +678,7 @@
       </div>
       <div nz-row>
         <div nz-col nzSpan="24" class="userPopower__bottom__content">
-          <div nz-row [routerLink]="['cabinet', 'support']">
+          <div nz-row (click)="navigateTo(['cabinet', 'support'])">
             <div nz-col nzSpan="4">
               <div class="userPopower__bottom__img">
                 <img src="/assets/images/menu-settings.png" alt="" />
