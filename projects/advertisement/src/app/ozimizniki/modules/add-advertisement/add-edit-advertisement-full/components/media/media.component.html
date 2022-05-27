@@ -67,7 +67,11 @@
                             <div nz-col class="btn" (click)="viewImage(image)">
                               <i nz-icon nzType="eye" nzTheme="outline"></i>
                             </div>
-                            <div nz-col class="btn" (click)="deleteImage(i)">
+                            <div
+                              nz-col
+                              class="btn"
+                              (click)="deleteImage(i, image)"
+                            >
                               <i nz-icon nzType="delete" nzTheme="outline"></i>
                             </div>
                           </div>

@@ -104,6 +104,7 @@ export class AddAdvertisementService {
     formData.append('use_agroid_contact', model.use_agroid_contact.toString());
     formData.append('location', JSON.stringify(model.location));
     formData.append('video_url', model.video_url);
+    formData.append('deleted_files', JSON.stringify(model.deleted_files));
 
     return formData;
   }

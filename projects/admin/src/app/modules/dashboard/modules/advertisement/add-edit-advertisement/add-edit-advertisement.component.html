@@ -3,10 +3,27 @@
     <div nz-col nzSpan="24">
       <h2>{{ "creatingAdvertisement" | translate }}</h2>
     </div>
-    <div nz-col nzSpan="24">
+    <div nz-col nzSpan="24" *ngIf="data">
       <az-add-edit-advertisement-full
+        [data]="data"
         [isForModerator]="true"
       ></az-add-edit-advertisement-full>
+
+      <div *ngIf="id">
+        <button nz-button nzSize="large" nzType="primary" (click)="approve(id)">
+          <i nz-icon nzType="check"></i> Approve
+        </button>
+        <button
+          class="ml-1"
+          nz-button
+          nzSize="large"
+          nzType="primary"
+          nzDanger
+          (click)="reject(id)"
+        >
+          <i nz-icon nzType="close"></i> Reject
+        </button>
+      </div>
     </div>
   </div>
 </div>
