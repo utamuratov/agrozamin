@@ -37,22 +37,22 @@ export class LocationComponent implements OnInit {
   /**
    *
    */
+  @Input()
   region$!: Observable<Region[]>;
 
   /**
    *
    */
+  @Input()
   district$!: Observable<District[]>;
 
   /**
    *
+   * @param cd
+   * @param yaGeocoderService
    */
-  regionId!: number;
-
   constructor(
     private cd: ChangeDetectorRef,
-    private $region: RegionService,
-    private $district: DistrictService,
     private yaGeocoderService: YaGeocoderService
   ) {}
 
@@ -60,25 +60,7 @@ export class LocationComponent implements OnInit {
    *
    */
   ngOnInit(): void {
-    this.regionId = this.form.value['region_id'];
-    this.getRegions();
     this.getLocation();
-  }
-
-  /**
-   *
-   */
-  getRegions() {
-    this.region$ = this.$region.getRegions();
-  }
-
-  /**
-   *
-   */
-  getDistrictsByRegionId(regionId: number) {
-    if (regionId) {
-      this.district$ = this.$district.getDistrictsByRegionId(regionId);
-    }
   }
 
   /**

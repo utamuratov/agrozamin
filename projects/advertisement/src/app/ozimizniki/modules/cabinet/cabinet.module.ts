@@ -24,6 +24,7 @@ import { Messages1Component } from './components/messages/components/messages1/m
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
 import { CurrencyModule } from '../../../shared/currency/currency.module';
 import { ClassByCategoryIdPipe } from './components/advertisement/pipes/suffixByCategoryId.pipe';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @NgModule({
   imports: [
@@ -44,6 +45,8 @@ import { ClassByCategoryIdPipe } from './components/advertisement/pipes/suffixBy
     NzCheckboxModule,
     NzPopoverModule,
     NzDividerModule,
+
+    NzSelectModule,
   ],
   declarations: [
     CabinetComponent,

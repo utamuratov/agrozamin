@@ -5,7 +5,8 @@ import { AdvertisementListComponent } from './advertisement-list/advertisement-l
 import { DashboardSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
 import { AdvertisementService } from './services/advertisement.service';
 import { AddEditAdvertisementComponent } from './add-edit-advertisement/add-edit-advertisement.component';
-import { AddEditAdvertisementFullModule } from 'projects/advertisement/src/app/ozimizniki/modules/add-advertisement/add-edit-advertisement-full/add-edit-advertisement-full.module';
+import { AddEditAdvertisementSharedModule } from 'projects/advertisement/src/app/ozimizniki/modules/add-advertisement/add-edit-advertisement-full/add-edit-advertisement-full.module';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { AddEditAdvertisementFullModule } from 'projects/advertisement/src/app/o
     AdvertisementRoutingModule,
     DashboardSharedModule,
 
-    AddEditAdvertisementFullModule,
+    AddEditAdvertisementSharedModule,
+
+    NzAutocompleteModule,
   ],
   providers: [AdvertisementService],
 })

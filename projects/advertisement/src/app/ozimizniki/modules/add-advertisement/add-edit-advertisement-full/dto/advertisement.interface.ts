@@ -21,4 +21,5 @@ export interface Advertisement<TFile = File> {
   location: Location;
   video_url: string;
   deleted_files: number[];
+  created_for_user: number;
 }

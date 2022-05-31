@@ -41,7 +41,7 @@ export class InfoComponent implements OnInit {
    *
    */
   @Output()
-  categoryIdChange = new EventEmitter<number>();
+  categoryIdChange = new EventEmitter<number | undefined>();
 
   /**
    *
