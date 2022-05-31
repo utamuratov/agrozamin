@@ -5,9 +5,26 @@
         <h3 class="title">{{ "creatingAdvertisement" | translate }}</h3>
       </div>
       <div nz-col nzSpan="24">
-        <az-add-edit-advertisement-full
-          [data]="data"
-        ></az-add-edit-advertisement-full>
+        <form
+          nz-form
+          [formGroup]="form"
+          *ngIf="form"
+          (ngSubmit)="submitForm()"
+          nzLayout="vertical"
+        >
+          <az-add-edit-advertisement-controls
+            [data]="data"
+            [form]="form"
+            [region$]="region$"
+            [district$]="district$"
+            [categoryType$]="categoryType$"
+            [filters]="filters"
+            [uploadedFiles]="uploadedFiles"
+            [categoryId]="categoryId"
+            [currentCategory]="currentCategory"
+            (changeCategoryId)="changeCategoryId($event)"
+          ></az-add-edit-advertisement-controls>
+        </form>
       </div>
     </div>
   </div>

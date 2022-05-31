@@ -1,0 +1,68 @@
+<!-- Информация -->
+<az-info
+  [form]="form"
+  [categories]="data?.categories"
+  [currentCategory]="currentCategory"
+  (categoryIdChange)="changeCategoryId.emit($event)"
+></az-info>
+
+<!-- Тип объявления -->
+<az-advertisement-type
+  *ngIf="categoryId"
+  [form]="form"
+  [categoryType$]="categoryType$"
+></az-advertisement-type>
+
+<!-- Добавить фото и видео -->
+<az-media [form]="form" [uploadedFiles]="uploadedFiles"></az-media>
+
+<!-- Цена -->
+<az-price [form]="form"></az-price>
+
+<!-- Описание товара -->
+<az-description [form]="form"></az-description>
+
+<!-- Характеристики -->
+<az-characteristics
+  *ngIf="categoryId && filters.length > 0"
+  [filters]="filters"
+  [form]="form"
+></az-characteristics>
+
+<!-- Местоположение -->
+<az-location
+  [form]="form"
+  [region$]="region$"
+  [district$]="district$"
+></az-location>
+
+<!-- Контактная информация -->
+<az-contact-data [hidden]="isHiddenContactdata" [form]="form"></az-contact-data>
+
+<div [hidden]="isHiddenUserAgreement">
+  <label
+    nz-checkbox
+    [(ngModel)]="isAgreeUserAgreement"
+    [ngModelOptions]="{ standalone: true }"
+    >{{ "userAgreement" | translate }}
+  </label>
+</div>
+
+<div [hidden]="isHiddenUserAgreement" nz-row [nzGutter]="[16, 0]" class="mt-1">
+  <div nz-col>
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      class="secondary"
+      [disabled]="!isAgreeUserAgreement"
+    >
+      <span>{{ "postAdvertisement" | translate }}</span>
+    </button>
+  </div>
+  <div nz-col>
+    <button nz-button nzType="primary" nzSize="large">
+      <span class="nav__bottom-btn-text">{{ "clear" | translate }}</span>
+    </button>
+  </div>
+</div>

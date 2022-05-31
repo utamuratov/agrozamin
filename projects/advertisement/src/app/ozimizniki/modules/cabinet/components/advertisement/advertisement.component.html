@@ -22,30 +22,37 @@
         <div nz-col class="sort__right">
           <div nz-row [nzGutter]="[20, 0]">
             <div nz-col>
-              <button
+              <nz-select
+                nzShowSearch
+                nzAllowClear
+                nzPlaceHolder="Все категории"
                 nzSize="large"
-                nzTrigger="click"
-                nzPlacement="bottomCenter"
-                nz-button
-                nz-dropdown
-                [nzDropdownMenu]="menu4"
+                [(ngModel)]="categoryId"
+                (ngModelChange)="loadInitData()"
               >
-                Все категории
-                <i nz-icon nzType="down"></i>
-              </button>
+                <nz-option
+                  [nzValue]="category.id"
+                  [nzLabel]="category.name"
+                  *ngFor="let category of categories"
+                ></nz-option>
+              </nz-select>
             </div>
             <div nz-col>
-              <button
+              <nz-select
+                nzShowSearch
+                nzAllowClear
+                nzPlaceHolder="Все типы объявлений"
                 nzSize="large"
-                nzTrigger="click"
-                nzPlacement="bottomCenter"
-                nz-button
-                nz-dropdown
-                [nzDropdownMenu]="menu4"
+                [(ngModel)]="advertisementTypeId"
+                (ngModelChange)="loadInitData()"
+                [nzDropdownMatchSelectWidth]="false"
               >
-                Все типы объявлений
-                <i nz-icon nzType="down"></i>
-              </button>
+                <nz-option
+                  [nzValue]="advertisementType.id"
+                  [nzLabel]="advertisementType.name"
+                  *ngFor="let advertisementType of advertisementTypes"
+                ></nz-option>
+              </nz-select>
             </div>
           </div>
         </div>
@@ -288,11 +295,3 @@
     </div>
   </ng-container>
 </div>
-
-<nz-dropdown-menu #menu4="nzDropdownMenu">
-  <ul nz-menu>
-    <li nz-menu-item>menu4 1st menu item</li>
-    <li nz-menu-item>menu4 2nd menu item</li>
-    <li nz-menu-item>menu4 3rd menu item</li>
-  </ul>
-</nz-dropdown-menu>

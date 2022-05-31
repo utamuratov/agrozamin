@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdvertisementStatus } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { GridModel } from 'projects/admin/src/app/modules/dashboard/modules/translate/models/grid-model';
 import { GridQuery } from 'projects/admin/src/app/modules/dashboard/modules/translate/models/grid-query.interface';
+import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
 import { Advertisement } from './dto/advertisment.interface';
 import { AdvertisementService } from './services/advertisment.service';
 
@@ -13,7 +14,7 @@ import { AdvertisementService } from './services/advertisment.service';
   styleUrls: ['./advertisement.component.less'],
   providers: [AdvertisementService],
 })
-export class AdvertisementComponent implements OnInit {
+export class AdvertisementComponent {
   /**
    *
    */
@@ -32,19 +33,45 @@ export class AdvertisementComponent implements OnInit {
   /**
    *
    */
+  categoryId!: number;
+
+  /**
+   *
+   */
+  advertisementTypeId!: number;
+
+  /**
+   *
+   */
   AdvertisementStatus = AdvertisementStatus;
 
+  /**
+   *
+   */
+  categories: IdName[] = [];
+
+  /**
+   *
+   */
+  advertisementTypes: IdName[] = [];
+
+  /**
+   *
+   * @param $advertisment
+   * @param route
+   */
   constructor(
     private $advertisment: AdvertisementService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef
   ) {
-    route.params.subscribe((params) => {
+    this.getFilterData();
+
+    this.route.params.subscribe((params) => {
       this.status = params['status'];
       this.loadInitData();
     });
   }
-
-  ngOnInit() {}
 
   /**
    *
@@ -65,17 +92,35 @@ export class AdvertisementComponent implements OnInit {
           ...result.data,
           data: result.data.data,
         };
-        // this.cd.markForCheck();
+        this.cd.markForCheck();
       }
     });
   }
 
+  /**
+   *
+   */
+  getFilterData() {
+    this.$advertisment.getFilterData().subscribe((result) => {
+      if (result.success) {
+        this.categories = result.data.categories;
+        this.advertisementTypes = result.data.announcement_types;
+      }
+    });
+  }
+
+  /**
+   *
+   * @returns
+   */
   private getQueryFilter() {
     return [
       { key: 'status', value: [String(this.status || '')] },
-      // { key: 'moderator', value: [String(this.filterModerator || '')] },
-      // { key: 'search_by', value: [this.searchBy] },
-      // { key: 'search_text', value: [this.searchText] },
+      { key: 'category_id', value: [String(this.categoryId || '')] },
+      {
+        key: 'type_id',
+        value: [String(this.advertisementTypeId || '')],
+      },
     ];
   }
 }

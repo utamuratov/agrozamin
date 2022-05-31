@@ -4,13 +4,65 @@
       <h2>{{ "creatingAdvertisement" | translate }}</h2>
     </div>
     <div nz-col nzSpan="24" *ngIf="data">
-      <az-add-edit-advertisement-full
-        [data]="data"
-        [isForModerator]="true"
-      ></az-add-edit-advertisement-full>
+      <form
+        nz-form
+        [formGroup]="form"
+        *ngIf="form"
+        (ngSubmit)="submitForm()"
+        nzLayout="vertical"
+      >
+        <div class="inline-card">
+          <div nz-row [nzGutter]="[0, 30]">
+            <div nz-col nzSpan="24">
+              <h3 class="add-title">
+                {{ "ownerOfAdvertisement" | translate }}
+              </h3>
+            </div>
+            <input
+              placeholder="try to type login, firstname, lastname or phonenumber"
+              nz-input
+              nzSize="large"
+              [(ngModel)]="userSearchText"
+              (ngModelChange)="getUsersBySearchText($event)"
+              [nzAutocomplete]="auto"
+              [ngModelOptions]="{ standalone: true }"
+              class="mb-1"
+            />
+            <nz-autocomplete #auto>
+              <nz-auto-option
+                *ngFor="let user of users"
+                [nzLabel]="user.username"
+                [nzValue]="user"
+                (click)="changeSelectedUser(user)"
+                >{{ user.username }}</nz-auto-option
+              >
+            </nz-autocomplete>
+          </div>
+        </div>
+
+        <az-add-edit-advertisement-controls
+          [data]="data"
+          [isHiddenUserAgreement]="true"
+          [isHiddenContactdata]="true"
+          [form]="form"
+          [region$]="region$"
+          [district$]="district$"
+          [categoryType$]="categoryType$"
+          [filters]="filters"
+          [uploadedFiles]="uploadedFiles"
+          [categoryId]="categoryId"
+          [currentCategory]="currentCategory"
+          (changeCategoryId)="changeCategoryId($event)"
+        ></az-add-edit-advertisement-controls>
+      </form>
 
       <div *ngIf="id">
-        <button nz-button nzSize="large" nzType="primary" (click)="approve(id)">
+        <button
+          nz-button
+          nzSize="large"
+          nzType="primary"
+          (click)="submitAndApprove()"
+        >
           <i nz-icon nzType="check"></i> Approve
         </button>
         <button

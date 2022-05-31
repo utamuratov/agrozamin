@@ -4,8 +4,12 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdvertisementEditResponse } from '../dto/advertisement-edit.response';
+import { NgDestroy } from 'ngx-az-core';
+import { AddEditAdvertisementFullLogicComponent } from 'projects/advertisement/src/app/ozimizniki/modules/add-advertisement/add-edit-advertisement-full/add-edit-advertisement-full-logic.component';
+import { UserListItem } from '../dto/user-list-item.interface';
+import { AddEditAdvertismentService } from '../services/add-edit-advertisment.service';
 import { AdvertisementService } from '../services/advertisement.service';
 
 @Component({
@@ -14,7 +18,10 @@ import { AdvertisementService } from '../services/advertisement.service';
   styleUrls: ['./add-edit-advertisement.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddEditAdvertisementComponent implements OnInit {
+export class AddEditAdvertisementComponent
+  extends AddEditAdvertisementFullLogicComponent
+  implements OnInit
+{
   /**
    *
    */
@@ -23,19 +30,56 @@ export class AddEditAdvertisementComponent implements OnInit {
   /**
    *
    */
-  data!: AdvertisementEditResponse;
+  userSearchText!: string;
+
+  /**
+   *
+   */
+  users: UserListItem[] = [];
 
   constructor(
-    private $advertisement: AdvertisementService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private cd: ChangeDetectorRef
+    protected $addEditadvertisement: AddEditAdvertismentService,
+    protected override fb: FormBuilder,
+    protected override cd: ChangeDetectorRef,
+    protected override router: Router,
+    protected override route: ActivatedRoute,
+    protected override $destroy: NgDestroy,
+    private $adv: AdvertisementService
   ) {
+    super($addEditadvertisement, fb, cd, router, route, $destroy);
     this.id = this.route.snapshot.params['id'];
   }
 
-  ngOnInit(): void {
+  /**
+   *
+   */
+  override ngOnInit(): void {
     if (this.id) this.getById(this.id);
+  }
+
+  /**
+   *
+   * @param searchText
+   * @returns
+   */
+  getUsersBySearchText(searchText: string | object) {
+    if (typeof searchText == 'object') {
+      return;
+    }
+
+    if (searchText.length < 2) {
+      this.users = [];
+      this.cd.markForCheck();
+      return;
+    }
+
+    this.$addEditadvertisement
+      .getUsersBySearchText(searchText)
+      .subscribe((result) => {
+        this.users = result.data;
+
+        this.cd.markForCheck();
+      });
   }
 
   /**
@@ -46,6 +90,7 @@ export class AddEditAdvertisementComponent implements OnInit {
     this.$advertisement.getAdvertisementForEditById(id).subscribe((result) => {
       if (result.success) {
         this.data = result.data;
+        super.ngOnInit();
 
         this.cd.markForCheck();
       }
@@ -54,10 +99,17 @@ export class AddEditAdvertisementComponent implements OnInit {
 
   /**
    *
+   */
+  submitAndApprove() {
+    this.submitForm();
+  }
+
+  /**
+   *
    * @param id
    */
   approve(id: number) {
-    this.$advertisement.approve(id).subscribe((result) => {
+    this.$adv.approve(id).subscribe((result) => {
       if (result) {
         this.navigateToList();
       }
@@ -66,14 +118,31 @@ export class AddEditAdvertisementComponent implements OnInit {
 
   /**
    *
+   */
+  override doAfterRequestFinished() {
+    if (this.id) {
+      this.approve(this.id);
+    }
+  }
+
+  /**
+   *
    * @param id
    */
   reject(id: number) {
-    this.$advertisement.reject(id).subscribe((result) => {
+    this.$adv.reject(id).subscribe((result) => {
       if (result) {
         this.navigateToList();
       }
     });
+  }
+
+  /**
+   *
+   * @param user
+   */
+  changeSelectedUser(user: UserListItem) {
+    this.form.get('created_for_user')?.setValue(user.id);
   }
 
   /**
