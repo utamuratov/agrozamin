@@ -1,7 +1,7 @@
 import { Characteristics } from './characteristics.interface';
 import { Location } from './location.interface';
 
-export interface Advertisement<TFile = File> {
+export interface Advertisement<TFile = File, TUserType = number> {
   name: string;
   files: TFile[];
   price: number;
@@ -21,5 +21,5 @@ export interface Advertisement<TFile = File> {
   location: Location;
   video_url: string;
   deleted_files: number[];
-  created_for_user: number;
+  created_for_user: TUserType;
 }

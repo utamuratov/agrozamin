@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
 import { GridModel } from '../../translate/models/grid-model';
 import { GridQuery } from '../../translate/models/grid-query.interface';
 import { AdvertisementGetAll } from '../dto/advertisement-get-all.interface';
-import { AdvertisementResponse } from '../dto/advertisement.response';
 import { AdvertisementService } from '../services/advertisement.service';
 
 @Component({
@@ -117,7 +116,11 @@ export class AdvertisementListComponent implements OnInit {
     // EDIT
     if (model) {
       this.router.navigate(['edit', model.id], { relativeTo: this.route });
+      return;
     }
+
+    // ADD
+    this.router.navigate(['add'], { relativeTo: this.route });
   }
 
   delete(id: number) {

@@ -37,7 +37,11 @@
 ></az-location>
 
 <!-- Контактная информация -->
-<az-contact-data [hidden]="isHiddenContactdata" [form]="form"></az-contact-data>
+<az-contact-data
+  [hidden]="isHiddenContactdata"
+  [form]="form"
+  [contact]="data?.announcement?.contact"
+></az-contact-data>
 
 <div [hidden]="isHiddenUserAgreement">
   <label

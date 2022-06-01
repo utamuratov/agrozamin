@@ -5,4 +5,5 @@ import { FileResponse } from './file.response';
 export interface AdvertisementResponse extends Advertisement<FileResponse> {
   category: IdName;
   id: number;
+  created_by: { id: number; username: string };
 }

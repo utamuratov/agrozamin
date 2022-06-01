@@ -1,9 +1,15 @@
 <div class="container height overflow-auto">
   <div nz-row>
     <div nz-col nzSpan="24">
-      <h2>{{ "creatingAdvertisement" | translate }}</h2>
+      <h2>
+        {{
+          isAddMode
+            ? ("creatingAdvertisement" | translate)
+            : "editingAdvertisment"
+        }}
+      </h2>
     </div>
-    <div nz-col nzSpan="24" *ngIf="data">
+    <div nz-col nzSpan="24" *ngIf="data || isAddMode">
       <form
         nz-form
         [formGroup]="form"
@@ -43,7 +49,7 @@
         <az-add-edit-advertisement-controls
           [data]="data"
           [isHiddenUserAgreement]="true"
-          [isHiddenContactdata]="true"
+          [isHiddenContactdata]="!!data"
           [form]="form"
           [region$]="region$"
           [district$]="district$"
@@ -56,7 +62,7 @@
         ></az-add-edit-advertisement-controls>
       </form>
 
-      <div *ngIf="id">
+      <div *ngIf="!isAddMode; else edit">
         <button
           nz-button
           nzSize="large"
@@ -71,11 +77,21 @@
           nzSize="large"
           nzType="primary"
           nzDanger
-          (click)="reject(id)"
+          (click)="reject(id!)"
         >
           <i nz-icon nzType="close"></i> Reject
         </button>
       </div>
+      <ng-template #edit>
+        <button
+          nz-button
+          nzSize="large"
+          nzType="primary"
+          (click)="submitAndApprove()"
+        >
+          <i nz-icon nzType="plus"></i> {{ "add" | translate }}
+        </button>
+      </ng-template>
     </div>
   </div>
 </div>

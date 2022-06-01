@@ -8,6 +8,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgDestroy } from 'ngx-az-core';
 import { AddEditAdvertisementFullLogicComponent } from 'projects/advertisement/src/app/ozimizniki/modules/add-advertisement/add-edit-advertisement-full/add-edit-advertisement-full-logic.component';
+import { AdvertisementResponse } from 'projects/advertisement/src/app/ozimizniki/modules/add-advertisement/add-edit-advertisement-full/dto/advertisement.response';
 import { UserListItem } from '../dto/user-list-item.interface';
 import { AddEditAdvertismentService } from '../services/add-edit-advertisment.service';
 import { AdvertisementService } from '../services/advertisement.service';
@@ -30,6 +31,11 @@ export class AddEditAdvertisementComponent
   /**
    *
    */
+  isAddMode!: boolean;
+
+  /**
+   *
+   */
   userSearchText!: string;
 
   /**
@@ -48,13 +54,34 @@ export class AddEditAdvertisementComponent
   ) {
     super($addEditadvertisement, fb, cd, router, route, $destroy);
     this.id = this.route.snapshot.params['id'];
+    this.isAddMode = !this.id;
   }
 
   /**
    *
    */
   override ngOnInit(): void {
-    if (this.id) this.getById(this.id);
+    if (this.id) {
+      this.getById(this.id);
+      return;
+    }
+
+    super.ngOnInit();
+  }
+  /**
+   *
+   * @param id
+   */
+  private getById(id: number) {
+    this.$advertisement.getAdvertisementForEditById(id).subscribe((result) => {
+      if (result.success) {
+        this.data = result.data;
+        this.setUserSearchtext(this.data.announcement);
+        super.ngOnInit();
+
+        this.cd.markForCheck();
+      }
+    });
   }
 
   /**
@@ -84,17 +111,15 @@ export class AddEditAdvertisementComponent
 
   /**
    *
-   * @param id
+   * @returns
    */
-  getById(id: number) {
-    this.$advertisement.getAdvertisementForEditById(id).subscribe((result) => {
-      if (result.success) {
-        this.data = result.data;
-        super.ngOnInit();
+  private setUserSearchtext(advertisement: AdvertisementResponse) {
+    if (advertisement.created_for_user) {
+      this.userSearchText = advertisement.created_for_user.username;
+      return;
+    }
 
-        this.cd.markForCheck();
-      }
-    });
+    this.userSearchText = advertisement.created_by.username;
   }
 
   /**

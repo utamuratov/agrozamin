@@ -67,23 +67,31 @@ export class LocationComponent implements OnInit {
    *
    */
   getLocation() {
-    navigator.geolocation.getCurrentPosition((location) => {
-      this.coordinates = { ...location.coords };
-      const locationForEditing: Location | null | undefined =
-        this.form.value['location'];
-      if (locationForEditing) {
-        this.coordinates.longitude = locationForEditing.ln;
-        this.coordinates.latitude = locationForEditing.lt;
-      } else {
-        this.form.controls['location'].setValue({
-          ln: this.coordinates.longitude,
-          lt: this.coordinates.latitude,
-        });
-      }
+    navigator.geolocation.getCurrentPosition(
+      (location) => {
+        this.coordinates = {
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        };
+        const locationForEditing: Location | null | undefined =
+          this.form.value['location'];
+        if (locationForEditing) {
+          this.coordinates.longitude = locationForEditing.ln;
+          this.coordinates.latitude = locationForEditing.lt;
+        } else {
+          this.form.controls['location'].setValue({
+            ln: this.coordinates.longitude,
+            lt: this.coordinates.latitude,
+          });
+        }
 
-      this.getFullAddressFromCoordinates(location);
-      this.cd.markForCheck();
-    });
+        this.getFullAddressFromCoordinates(location);
+        this.cd.markForCheck();
+      },
+      (e) => {
+        alert(JSON.stringify(e));
+      }
+    );
   }
 
   /**
