@@ -1,3 +1,3 @@
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
+import { IdName } from 'ngx-az-core';
 
 export type AdvertiementTypeResponse = IdName;

@@ -1,7 +1,7 @@
 import { BaseModel } from './base-model';
-import { Id } from '../../../../../shared/models/id.interface';
 import { Project } from './project.interface';
 import { Generic } from 'projects/admin/src/app/shared/models/generic.type';
+import { Id } from 'ngx-az-core';
 
 export interface Translation extends Id, BaseModel {
   projects: Project[];

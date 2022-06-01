@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
+import { IdName } from '../../../../models/id-name.interface';
 import { Observable } from 'rxjs';
 import { AdvertisementEditResponse } from '../../dto/advertisement-edit.response';
 import { CategoryType } from '../../dto/category-type.interface';

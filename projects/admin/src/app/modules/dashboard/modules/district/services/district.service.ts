@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BaseResponse, BaseService } from 'ngx-az-core';
+import { BaseResponse, BaseService, IdName } from 'ngx-az-core';
 import { CrudService } from 'projects/admin/src/app/core/services/crud.service';
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
 import { Observable } from 'rxjs';
 import { DistrictRequet } from '../dto/district.request';
 import { DistrictResponse } from '../dto/district.response';

@@ -9,7 +9,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzImage, NzImageService } from 'ng-zorro-antd/image';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { FormGroup } from '@angular/forms';
-import { Id } from 'projects/admin/src/app/shared/models/id.interface';
+import { Id } from '../../../../models/id.interface';
 
 export interface NzImageCustom extends NzImage, Id {}
 @Component({

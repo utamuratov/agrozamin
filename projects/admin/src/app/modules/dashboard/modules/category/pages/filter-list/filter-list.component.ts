@@ -4,17 +4,16 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { Language, LanguageState, NgDestroy } from 'ngx-az-core';
-import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import {
   InputTypeForCreator,
   InputTypeForFilter,
-} from 'projects/admin/src/app/core/enums/input-type.enum';
+  Language,
+  NgDestroy,
+} from 'ngx-az-core';
+import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
+
 import { BaseComponent } from 'projects/admin/src/app/shared/components/base/base.component';
 import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
-import { SearchInputAdvancedConfig } from 'projects/admin/src/app/shared/components/search-input/search-input-advanced/search-input-advanced.component';
-import { Observable, takeUntil } from 'rxjs';
 import { FilterRequest } from '../../models/filter.request';
 import { FilterResponse } from '../../models/filter.response';
 import { FilterService } from '../../services/filter.service';

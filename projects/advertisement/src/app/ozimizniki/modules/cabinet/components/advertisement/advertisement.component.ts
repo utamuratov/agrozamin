@@ -1,10 +1,9 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AdvertisementStatus } from 'ngx-az-core';
+import { AdvertisementStatus, IdName } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { GridModel } from 'projects/admin/src/app/modules/dashboard/modules/translate/models/grid-model';
 import { GridQuery } from 'projects/admin/src/app/modules/dashboard/modules/translate/models/grid-query.interface';
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
 import { Advertisement } from './dto/advertisment.interface';
 import { AdvertisementService } from './services/advertisment.service';
 

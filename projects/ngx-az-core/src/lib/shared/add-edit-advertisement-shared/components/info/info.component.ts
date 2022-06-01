@@ -8,8 +8,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
-import { from } from 'rxjs';
+import { IdName } from '../../../../models/id-name.interface';
 import { Category } from '../../dto/category.interface';
 import { AddAdvertisementService } from '../../services/add-advertisement.service';
 

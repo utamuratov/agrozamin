@@ -1,4 +1,4 @@
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
+import { IdName } from 'ngx-az-core';
 
 export interface CategoryWithChild extends IdName {
   icon: string;

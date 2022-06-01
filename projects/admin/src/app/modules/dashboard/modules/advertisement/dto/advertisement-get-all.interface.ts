@@ -1,5 +1,5 @@
 import { AdvertisementStatus } from 'ngx-az-core';
-import { Id } from 'projects/admin/src/app/shared/models/id.interface';
+import { Id } from 'ngx-az-core';
 
 export interface AdvertisementGetAll extends Id {
   name: string;
