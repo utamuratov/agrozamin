@@ -12,15 +12,12 @@ import { Observable } from 'rxjs';
 import { District } from '../../dto/district.interface';
 import { Location } from '../../dto/location.interface';
 import { Region } from '../../dto/region.interface';
-import { DistrictService } from '../../services/district.service';
-import { RegionService } from '../../services/region.service';
 
 @Component({
   selector: 'az-location',
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [RegionService, DistrictService],
 })
 export class LocationComponent implements OnInit {
   /**

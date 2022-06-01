@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import {
+  AddAdvertisementService,
+  AdvertisementEditResponse,
+} from 'ngx-az-core';
 import { Observable, map } from 'rxjs';
-import { AdvertisementEditResponse } from '../dto/advertisement-edit.response';
-import { AddAdvertisementService } from './add-advertisement.service';
 
 @Injectable({ providedIn: 'root' })
 export class AdvertisementEditResolver

@@ -8,15 +8,14 @@ import {
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
-import {
-  AdvertisementStatus,
-  Constants,
-  markAllAsDirty,
-  NgDestroy,
-} from 'ngx-az-core';
-import { InputTypeForCreator } from 'projects/admin/src/app/core/enums/input-type.enum';
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
-import { map, Observable, of, takeUntil, tap } from 'rxjs';
+
+import { map, Observable, of, takeUntil } from 'rxjs';
+import { Constants } from '../../config/constants';
+import { AdvertisementStatus } from '../../enums/advertisement-status.enum';
+import { InputTypeForCreator } from '../../enums/input-type.enum';
+import { IdName } from '../../models/id-name.interface';
+import { NgDestroy } from '../../services/ng-destroy.service';
+import { markAllAsDirty } from '../../utilits/utilits';
 import { CharacteristicsComponent } from './components/characteristics/characteristics.component';
 import { NzImageCustom } from './components/media/media.component';
 import { AdvertisementEditResponse } from './dto/advertisement-edit.response';

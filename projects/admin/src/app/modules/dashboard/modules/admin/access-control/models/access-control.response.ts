@@ -1,4 +1,4 @@
-import { Id } from '../../../../../../shared/models/id.interface';
+import { Id } from 'ngx-az-core';
 import { AccessControlAction } from './access-control-action.interface';
 import { AccessControl } from './access-control.interface';
 

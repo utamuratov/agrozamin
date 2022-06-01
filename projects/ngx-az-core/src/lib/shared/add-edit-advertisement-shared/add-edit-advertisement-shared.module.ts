@@ -18,9 +18,10 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { AngularYandexMapsModule } from 'angular8-yandex-maps';
 import { NgxMaskModule } from 'ngx-mask';
 import { YouTubePlayerModule } from '@angular/youtube-player';
-import { NzFormsSharedModule, ReactiveFormsSharedModule } from 'ngx-az-core';
 import { AddEditAdvertisementControlsComponent } from './components/add-edit-advertisement-controls/add-edit-advertisement-controls.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { ReactiveFormsSharedModule } from '../forms-shared/reactive-forms-shared.module';
+import { NzFormsSharedModule } from '../forms-shared/nz-forms-shared.module';
 
 @NgModule({
   imports: [

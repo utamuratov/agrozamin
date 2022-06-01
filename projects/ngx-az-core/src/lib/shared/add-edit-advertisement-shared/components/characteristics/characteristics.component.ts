@@ -5,7 +5,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { InputTypeForCreator } from 'projects/admin/src/app/core/enums/input-type.enum';
+import { InputTypeForCreator } from 'projects/ngx-az-core/src/lib/enums/input-type.enum';
 import { Filter } from '../../dto/filter.interface';
 
 @Component({

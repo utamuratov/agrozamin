@@ -1,4 +1,4 @@
-import { Id } from 'projects/admin/src/app/shared/models/id.interface';
+import { Id } from 'ngx-az-core';
 
 export interface UserListItem extends Id {
   login: string;

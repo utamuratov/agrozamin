@@ -1,4 +1,4 @@
-import { Id } from 'projects/admin/src/app/shared/models/id.interface';
+import { Id } from 'ngx-az-core';
 import { AccessAction } from './access-action.interface';
 
 export interface AccessControl extends Id {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BaseResponse, BaseService } from 'ngx-az-core';
 import { map, Observable } from 'rxjs';
+import { BaseResponse } from '../../../models/base-response.interface';
+import { BaseService } from '../../../services/base.service';
 import { AdvertisementEditResponse } from '../dto/advertisement-edit.response';
 import { AdvertisementRequest } from '../dto/advertisement.request';
 import { CategoryType } from '../dto/category-type.interface';

@@ -1,5 +1,5 @@
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { Id } from 'projects/admin/src/app/shared/models/id.interface';
+import { Id } from 'ngx-az-core';
 
 export interface CategoryEditingData extends Id {
   name: NzSafeAny;

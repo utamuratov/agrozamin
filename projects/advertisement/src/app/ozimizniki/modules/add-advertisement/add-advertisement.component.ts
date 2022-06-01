@@ -1,9 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgDestroy } from 'ngx-az-core';
-import { AddEditAdvertisementFullLogicComponent } from './add-edit-advertisement-full/add-edit-advertisement-full-logic.component';
-import { AddAdvertisementService } from './add-edit-advertisement-full/services/add-advertisement.service';
+import {
+  AddAdvertisementService,
+  AddEditAdvertisementFullLogicComponent,
+  NgDestroy,
+} from 'ngx-az-core';
 
 @Component({
   selector: 'az-add-advertisement',

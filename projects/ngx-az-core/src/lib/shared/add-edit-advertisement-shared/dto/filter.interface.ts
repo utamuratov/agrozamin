@@ -1,5 +1,5 @@
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
-import { InputTypeForCreator } from 'projects/admin/src/app/core/enums/input-type.enum';
+import { InputTypeForCreator } from '../../../enums/input-type.enum';
 
 export interface Filter {
   filter_id: number;
