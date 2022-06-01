@@ -49,6 +49,38 @@
               <span class="add-subtitle">{{ "addPhoto" | translate }}</span>
               <div class="media__image__upload">
                 <div nz-row [nzGutter]="[8, 0]">
+                  <!-- UPLOADED FILES -->
+                  <div
+                    nz-col
+                    *ngFor="let image of uploadedFiles; let i = index"
+                  >
+                    <div class="media__image__card">
+                      <img [src]="image.src" alt="uploaded image" />
+                      <div class="media__image__card__position">
+                        <div class="media__image__card__layer">
+                          <div
+                            nz-row
+                            nzJustify="center"
+                            nzAlign="middle"
+                            [nzGutter]="[8, 0]"
+                          >
+                            <div nz-col class="btn" (click)="viewImage(image)">
+                              <i nz-icon nzType="eye" nzTheme="outline"></i>
+                            </div>
+                            <div
+                              nz-col
+                              class="btn"
+                              (click)="deleteImage(i, image)"
+                            >
+                              <i nz-icon nzType="delete" nzTheme="outline"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- NOT UPLOADED YET -->
                   <div nz-col *ngFor="let image of imagesSrc; let i = index">
                     <div class="media__image__card">
                       <img [src]="image.src" alt="uploaded image" />

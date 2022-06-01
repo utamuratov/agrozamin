@@ -21,6 +21,12 @@ export class ContactDataComponent implements OnInit {
 
   /**
    *
+   */
+  @Input()
+  contact?: { phone: number; full_name: string };
+
+  /**
+   *
    * @param fb
    */
   constructor(private fb: FormBuilder) {}
@@ -29,25 +35,37 @@ export class ContactDataComponent implements OnInit {
    *
    */
   ngOnInit(): void {
-    this.addRemoveContactControl();
+    this.addOrRemoveContact(this.form.controls['use_agroid_contact'].value);
+    this.onValueChangeUseAgroIdContact();
   }
 
   /**
    *
    */
-  private addRemoveContactControl() {
+  private onValueChangeUseAgroIdContact() {
     this.form.controls['use_agroid_contact'].valueChanges.subscribe((v) => {
-      if (!v) {
-        this.form.addControl(
-          'contact',
-          this.fb.group({
-            phone: [null, Validators.required],
-            full_name: [null, Validators.required],
-          })
-        );
-      } else {
-        this.form.removeControl('contact');
-      }
+      this.addOrRemoveContact(v);
     });
+  }
+
+  /**
+   *
+   * @param v
+   */
+  private addOrRemoveContact(v: boolean) {
+    if (!v) {
+      this.form.addControl(
+        'contact',
+        this.fb.group({
+          phone: [
+            this.contact?.phone ? this.contact.phone % 1000000000 : null,
+            Validators.required,
+          ],
+          full_name: [this.contact?.full_name, Validators.required],
+        })
+      );
+    } else {
+      this.form.removeControl('contact');
+    }
   }
 }

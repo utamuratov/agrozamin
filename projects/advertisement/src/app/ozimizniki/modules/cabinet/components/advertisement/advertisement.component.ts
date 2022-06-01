@@ -1,85 +1,126 @@
-// import { style } from '@angular/animations';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AdvertisementStatus } from 'ngx-az-core';
+import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
+import { GridModel } from 'projects/admin/src/app/modules/dashboard/modules/translate/models/grid-model';
+import { GridQuery } from 'projects/admin/src/app/modules/dashboard/modules/translate/models/grid-query.interface';
+import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
+import { Advertisement } from './dto/advertisment.interface';
+import { AdvertisementService } from './services/advertisment.service';
 
 @Component({
   selector: 'az-advertisement',
   templateUrl: './advertisement.component.html',
-  styleUrls: ['./advertisement.component.less']
+  styleUrls: ['./advertisement.component.less'],
+  providers: [AdvertisementService],
 })
-export class AdvertisementComponent implements OnInit {
+export class AdvertisementComponent {
+  /**
+   *
+   */
+  data!: GridModel<Advertisement>;
 
+  /**
+   *
+   */
+  pageSize = AdminConstants.PAGINATION_PAGE_SIZE;
 
-  isActive = false
+  /**
+   *
+   */
+  status!: AdvertisementStatus;
 
-  adverticement = [
-    {
-      img: '/assets/images/kombayn.jpg',
-      imgText: 'Сельхозтехника',
-      title: 'Кормоуборочный комбайн RSM F 2650',
-      desc: `RSM F 2650 - высокопроизводительный кормоуборочный комбайн,
-      способный убирать все виды силосуемых кормовых культур,
-      обеспечивая максимальное качество конечного продукта. Данная
-      машина пригодна для полей ...`,
-      price: '45 659 875 сум'
-    },
-    {
-      img: '/assets/images/semena.jpg',
-      imgText: 'Семена',
-      title: 'Подсолнечник',
-      desc: `По времени созревания разновидности сорта Пионер могут 
-      быть скороспелыми, созревающими за 80-90 дней;ранними, созревающими за 100-115 дней; средними, 
-      срок их созревания длится до 125 дней. Раннеспелые сорта ...`,
-      price: '3 261 сум'
-    },
-    {
-      img: '/assets/images/tedom.jpg',
-      imgText: 'Фермерское оборудование',
-      title: 'Когенерационная установка Quanto 2300 MWM NG OM LB 50Hz S',
-      desc: `Когенерационные установки представляют собой технологическое оборудование, 
-      используемое для совместного производства электро- и 
-      тепловой энергии. Процесс когенерации осуществляется посредством `,
-      price: 'Цена по запросу'
-    },
-    {
-      img: '/assets/images/karto\'shka.jpg',
-      imgText: 'Зерно',
-      title: 'Соя',
-      desc: `Зерно сои МЕЗЕНКА`,
-      price: '419 сум'
-    },
-    {
-      img: '/assets/images/sheep.jpg',
-      imgText: 'Фермерское оборудование',
-      title: 'Племенные бараны',
-      desc: `Баран на племя, возраст 3 года, порода дорпер+тексель. Скидка от 4-х шт.`,
-      price: '659 875 сум'
-    },
-    {
-      img: '/assets/images/kabel.jpg',
-      imgText: 'Резинотехнические изделия',
-      title: 'Шланг ПВХ',
-      desc: `Шланг ПВХ – прочная и практичная альтернатива резиновым изделиям. 
-      Используемый в его составе поливинилхлорид 
-      представляет собой эластичный полимер, способный выдерживать интенсивные `,
-      price: '132 783 сум'
-    }
-  ]
+  /**
+   *
+   */
+  categoryId!: number;
 
-  @Output() handleGridOrList = new EventEmitter<boolean>()
+  /**
+   *
+   */
+  advertisementTypeId!: number;
 
-  constructor() { }
+  /**
+   *
+   */
+  AdvertisementStatus = AdvertisementStatus;
 
-  ngOnInit() {
+  /**
+   *
+   */
+  categories: IdName[] = [];
+
+  /**
+   *
+   */
+  advertisementTypes: IdName[] = [];
+
+  /**
+   *
+   * @param $advertisment
+   * @param route
+   */
+  constructor(
+    private $advertisment: AdvertisementService,
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef
+  ) {
+    this.getFilterData();
+
+    this.route.params.subscribe((params) => {
+      this.status = params['status'];
+      this.loadInitData();
+    });
   }
 
-  isGrid() {
-    this.isActive = false;
-    this.handleGridOrList.emit(false)
-  }
-  
-  isList() {
-    this.isActive = true;
-    this.handleGridOrList.emit(true)
+  /**
+   *
+   */
+  loadInitData() {
+    this.loadDataFromServer(AdminConstants.DEFAULT_GRID_QUERY);
   }
 
+  /**
+   *
+   */
+  loadDataFromServer(query: GridQuery) {
+    query.filter = this.getQueryFilter();
+
+    this.$advertisment.getGridData(query).subscribe((result) => {
+      if (result.success) {
+        this.data = {
+          ...result.data,
+          data: result.data.data,
+        };
+        this.cd.markForCheck();
+      }
+    });
+  }
+
+  /**
+   *
+   */
+  getFilterData() {
+    this.$advertisment.getFilterData().subscribe((result) => {
+      if (result.success) {
+        this.categories = result.data.categories;
+        this.advertisementTypes = result.data.announcement_types;
+      }
+    });
+  }
+
+  /**
+   *
+   * @returns
+   */
+  private getQueryFilter() {
+    return [
+      { key: 'status', value: [String(this.status || '')] },
+      { key: 'category_id', value: [String(this.categoryId || '')] },
+      {
+        key: 'type_id',
+        value: [String(this.advertisementTypeId || '')],
+      },
+    ];
+  }
 }

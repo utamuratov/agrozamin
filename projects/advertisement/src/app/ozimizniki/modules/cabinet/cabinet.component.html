@@ -1,7 +1,6 @@
 <div class="advertisement">
   <div class="container">
     <div nz-row [nzGutter]="[{ xs: 20, sm: 20, lg:20, xl: 30 }, 0]">
-      
       <div nz-col nzXs="0" nzSm="0" nzMd="7" nzLg="6" nzXl="6" style="width: 100px;">
         <div class="wrapper">
           <ul
@@ -10,7 +9,7 @@
             [nzMode]="'inline'"
             [nzInlineCollapsed]="isCollapsed"
           >
-            <li nz-submenu >
+            <li nz-submenu nzOpen>
               <span title
                 ><i
                   ><img
@@ -19,13 +18,44 @@
                     alt="" /></i
                 ><span class="nav-text">Объявления</span
                 ><span style="padding-left: 115px">12</span>
-                </span
-              >
+              </span>
               <ul>
-                <li routerLink="advert" nzSelected nz-menu-item>Активные</li>
-                <li nz-menu-item>Ожидающие</li>
-                <li nz-menu-item>Архивные</li>
-                <li nz-menu-item>Отклоненные</li>
+                <li
+                  routerLinkActive="ant-menu-item-selected"
+                  routerLink="advertisement/{{
+                    AdvertisementStatus.STATUS_CONFIRMED
+                  }}"
+                  nz-menu-item
+                >
+                  Активные
+                </li>
+                <li
+                  routerLink="advertisement/{{
+                    AdvertisementStatus.STATUS_NEW
+                  }}"
+                  routerLinkActive="ant-menu-item-selected"
+                  nz-menu-item
+                >
+                  Ожидающие
+                </li>
+                <li
+                  routerLink="advertisement/{{
+                    AdvertisementStatus.STATUS_ARCHIVED
+                  }}"
+                  routerLinkActive="ant-menu-item-selected"
+                  nz-menu-item
+                >
+                  Архивные
+                </li>
+                <li
+                  routerLink="advertisement/{{
+                    AdvertisementStatus.STATUS_REJECTED
+                  }}"
+                  routerLinkActive="ant-menu-item-selected"
+                  nz-menu-item
+                >
+                  Отклоненные
+                </li>
               </ul>
             </li>
             <li nz-submenu style="padding-top: 5px">
@@ -40,13 +70,29 @@
                 ><span style="padding-left: 115px">12</span></span
               >
               <ul>
-                <li routerLink="messages/messages1" nz-menu-item>
+                <li
+                  routerLink="messages/messages1"
+                  nz-menu-item
+                  routerLinkActive="ant-menu-item-selected"
+                >
                   Непрочитанные
                 </li>
-                <li routerLink="messages/messages2" nz-menu-item>Исходящие</li>
-                <li nz-menu-item>Входящие</li>
-                <li nz-menu-item>Сохранённые</li>
-                <li nz-menu-item>Архивные</li>
+                <li
+                  routerLink="messages/messages2"
+                  nz-menu-item
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  Исходящие
+                </li>
+                <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+                  Входящие
+                </li>
+                <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+                  Сохранённые
+                </li>
+                <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+                  Архивные
+                </li>
               </ul>
             </li>
             <li nz-submenu style="padding-top: 5px">
@@ -60,20 +106,34 @@
                 ><span style="padding-left: 115px">12</span>
               </span>
               <ul>
-                <li nz-menu-item routerLink="favourites/favourite-advert">
+                <li
+                  nz-menu-item
+                  routerLink="favourites/favourite-advert"
+                  routerLinkActive="ant-menu-item-selected"
+                >
                   Объявления
                 </li>
-                <li nz-menu-item routerLink="favourites/sellers">Продавцы</li>
-                <li nz-menu-item routerLink="favourites/filter-options">
+                <li
+                  nz-menu-item
+                  routerLink="favourites/sellers"
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  Продавцы
+                </li>
+                <li
+                  nz-menu-item
+                  routerLink="favourites/filter-options"
+                  routerLinkActive="ant-menu-item-selected"
+                >
                   Параметры фильтров
                 </li>
               </ul>
             </li>
             <li
               nz-menu-item
-              
               style="padding-top: 5px; padding-bottom: 10px"
               routerLink="support"
+              routerLinkActive="ant-menu-item-selected"
             >
               <span>
                 <i nz-icon>

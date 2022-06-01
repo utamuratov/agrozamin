@@ -6,13 +6,12 @@ import {
   Input,
 } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { Observable, Observer } from 'rxjs';
 import { NzImage, NzImageService } from 'ng-zorro-antd/image';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { FormGroup } from '@angular/forms';
-import { setValue } from '@ngxs/store';
+import { Id } from 'projects/admin/src/app/shared/models/id.interface';
 
+export interface NzImageCustom extends NzImage, Id {}
 @Component({
   selector: 'az-media',
   templateUrl: './media.component.html',
@@ -26,6 +25,12 @@ export class MediaComponent implements OnInit {
    */
   @Input()
   form!: FormGroup;
+
+  /**
+   *
+   */
+  @Input()
+  uploadedFiles?: NzImageCustom[];
 
   /**
    *
@@ -44,6 +49,11 @@ export class MediaComponent implements OnInit {
 
   /**
    *
+   */
+  deletedUploadedFileIds: number[] = [];
+
+  /**
+   *
    * @param msg
    * @param nzImageService
    * @param cd
@@ -56,6 +66,8 @@ export class MediaComponent implements OnInit {
 
   ngOnInit() {
     this.appendYoutubeFrame();
+    const videoUrl = this.form.value['video_url'];
+    this.splitYoutubeVideoIdFromUrl(videoUrl);
   }
 
   /**
@@ -79,7 +91,16 @@ export class MediaComponent implements OnInit {
    *
    * @param index
    */
-  deleteImage(index: number) {
+  deleteImage(index: number, image?: NzImageCustom) {
+    // REMOVE FROM UPLOADED FILES
+    if (image) {
+      this.deletedUploadedFileIds.push(image.id);
+      this.form.controls['deleted_files'].setValue(this.deletedUploadedFileIds);
+      this.uploadedFiles?.splice(index, 1);
+      return;
+    }
+
+    // REMOVE FROM NOT UPLOADED FILES
     this.images.splice(index, 1);
     this.imagesSrc.splice(index, 1);
   }
@@ -110,6 +131,14 @@ export class MediaComponent implements OnInit {
    */
   inputVideChange(e: NzSafeAny) {
     const url: string = e.target.value;
+    this.splitYoutubeVideoIdFromUrl(url);
+  }
+
+  /**
+   *
+   * @param url
+   */
+  private splitYoutubeVideoIdFromUrl(url?: string | null) {
     if (url) {
       // SPLITTING VIDEOID FROM YOUTUBE VIDEO URL
       this.videoId = url.split('?v=')?.[1];

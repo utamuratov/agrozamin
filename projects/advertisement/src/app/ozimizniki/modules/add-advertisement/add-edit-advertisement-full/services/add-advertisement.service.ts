@@ -1,30 +1,67 @@
 import { Injectable } from '@angular/core';
 import { BaseResponse, BaseService } from 'ngx-az-core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { AdvertisementEditResponse } from '../dto/advertisement-edit.response';
 import { AdvertisementRequest } from '../dto/advertisement.request';
 import { CategoryType } from '../dto/category-type.interface';
+import { District } from '../dto/district.interface';
 import { Filter } from '../dto/filter.interface';
 import { ReferencesForCreate } from '../dto/references-for-create.interface';
+import { Region } from '../dto/region.interface';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AddAdvertisementService {
-  constructor(private $baseService: BaseService) {}
+  /**
+   *
+   */
+  url!: string;
 
-  getReferencesForCreate() {
-    return this.$baseService.get<ReferencesForCreate>(
-      'cabinet/announcement/create'
-    );
+  /**
+   *
+   * @param $baseService
+   */
+  constructor(protected $baseService: BaseService) {
+    this.url = 'cabinet/announcement';
   }
 
+  /**
+   *
+   * @returns
+   */
+  getReferencesForCreate() {
+    return this.$baseService.get<ReferencesForCreate>(this.url + '/create');
+  }
+
+  /**
+   *
+   * @param categoryId
+   * @returns
+   */
   getFiltersByCategoryId(categoryId: number) {
     return this.$baseService.get<Filter[]>(
-      `cabinet/announcement/category-filter/${categoryId}`
+      `${this.url}/category-filter/${categoryId}`
     );
   }
 
+  /**
+   *
+   * @param categoryId
+   * @returns
+   */
   getCategoryTypesByCategoryId(categoryId: number) {
     return this.$baseService.get<CategoryType[]>(
-      `cabinet/announcement/category-type/${categoryId}`
+      `${this.url}/category-type/${categoryId}`
+    );
+  }
+
+  /**
+   *
+   * @param id
+   * @returns
+   */
+  getAdvertisementForEditById(id: number) {
+    return this.$baseService.get<AdvertisementEditResponse>(
+      `${this.url}/${id}/edit`
     );
   }
 
@@ -35,7 +72,38 @@ export class AddAdvertisementService {
    */
   add(model: AdvertisementRequest): Observable<BaseResponse<any>> {
     const formData = this.convertModelIntoFormData(model);
-    return this.$baseService.post<any>('cabinet/announcement', formData);
+    return this.$baseService.post<any>(this.url, formData);
+  }
+
+  /**
+   *
+   * @param model
+   * @returns
+   */
+  edit(id: number, model: AdvertisementRequest): Observable<BaseResponse<any>> {
+    const formData = this.convertModelIntoFormData(model);
+    return this.$baseService.put<any>(this.url + '/' + id, formData);
+  }
+
+  /**
+   *
+   * @returns
+   */
+  getRegions(): Observable<Region[]> {
+    return this.$baseService
+      .get<Region[]>('region')
+      .pipe(map((result) => result.data));
+  }
+
+  /**
+   *
+   * @param regionId
+   * @returns
+   */
+  getDistrictsByRegionId(regionId: number): Observable<District[]> {
+    return this.$baseService
+      .get<District[]>(`district/${regionId}`)
+      .pipe(map((result) => result.data));
   }
 
   /**
@@ -64,6 +132,10 @@ export class AddAdvertisementService {
     formData.append('use_agroid_contact', model.use_agroid_contact.toString());
     formData.append('location', JSON.stringify(model.location));
     formData.append('video_url', model.video_url);
+    formData.append('deleted_files', JSON.stringify(model.deleted_files));
+
+    if (model.created_for_user)
+      formData.append('created_for_user', model.created_for_user.toString());
 
     return formData;
   }

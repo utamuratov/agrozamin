@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfoComponent } from './components/info/info.component';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
@@ -16,11 +16,11 @@ import { LocationComponent } from './components/location/location.component';
 import { ContactDataComponent } from './components/contact-data/contact-data.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { AngularYandexMapsModule } from 'angular8-yandex-maps';
-import { AddAdvertisementService } from './services/add-advertisement.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { NzFormsSharedModule, ReactiveFormsSharedModule } from 'ngx-az-core';
-import { AddEditAdvertisementFullComponent } from './add-edit-advertisement-full.component';
+import { AddEditAdvertisementControlsComponent } from './components/add-edit-advertisement-controls/add-edit-advertisement-controls.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 @NgModule({
   imports: [
@@ -50,6 +50,7 @@ import { AddEditAdvertisementFullComponent } from './add-edit-advertisement-full
     NzDatePickerModule,
   ],
   declarations: [
+    AddEditAdvertisementControlsComponent,
     InfoComponent,
     AdvertisementTypeComponent,
     MediaComponent,
@@ -58,9 +59,11 @@ import { AddEditAdvertisementFullComponent } from './add-edit-advertisement-full
     CharacteristicsComponent,
     LocationComponent,
     ContactDataComponent,
-    AddEditAdvertisementFullComponent,
   ],
-  exports: [AddEditAdvertisementFullComponent],
-  providers: [AddAdvertisementService],
+  exports: [
+    AddEditAdvertisementControlsComponent,
+    NzFormModule,
+    ReactiveFormsModule,
+  ],
 })
-export class AddEditAdvertisementFullModule {}
+export class AddEditAdvertisementSharedModule {}

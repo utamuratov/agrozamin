@@ -7,6 +7,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngxs/store';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
@@ -51,29 +52,6 @@ export class HeaderComponent implements OnInit {
   regionsChild: any = [];
 
   regionsValue: any = [];
-
-  userMenu = [
-    {
-      logo: '/assets/images/menu-Vector.png',
-      title: 'Объявления'
-    },
-    {
-      logo: '/assets/images/menu-message.png',
-      title: 'Сообщения'
-    },
-    {
-      logo: '/assets/images/menu-heart.png',
-      title: 'Избранное'
-    },
-    {
-      logo: '/assets/images/menu-settings.png',
-      title: 'Настройки'
-    },
-    {
-      logo: '/assets/images/menu-logout.png',
-      title: 'Выйти'
-    },
-  ]
 
   categories = [
     {
@@ -838,12 +816,19 @@ export class HeaderComponent implements OnInit {
   /**
    *
    */
+  isVisibleProfilePopup = false;
+
+  /**
+   *
+   */
   readonly SERVICES = Data.SERVICES;
 
   constructor(
     private fb: FormBuilder,
     private $jwtHelper: JwtHelperService,
     private $store: Store,
+    private router: Router,
+    private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
@@ -955,29 +940,41 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   *
+   * TODO: REMOVE
    */
   navigate() {
-    if (this.isUserAuthenticated) {
-      // NAVIGATE TO CABINET
+    // if (this.isUserAuthenticated) {
+    //   // NAVIGATE TO CABINET
+    //   if (isDevMode()) {
+    //     // result: /agro-id/ru/cabinet
+    //     this.document.location.pathname = `/${
+    //       Constants.AGROID_ROUTE_PATH
+    //     }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
+    //     return;
+    //   }
+    //   // result: /agro-id/az/ru/cabinet
+    //   this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}/${
+    //     Constants.AGROZAMIN_PREFIX_ROUTE_PATH
+    //   }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
+    //   return;
+    // }
+  }
 
-      if (isDevMode()) {
-        // result: /agro-id/ru/cabinet
-        this.document.location.pathname = `/${
-          Constants.AGROID_ROUTE_PATH
-        }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
-
-        return;
-      }
-
-      // result: /agro-id/az/ru/cabinet
-      this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}/${
-        Constants.AGROZAMIN_PREFIX_ROUTE_PATH
-      }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
-      return;
-    }
-
-    // NAVIGATE TO SIGN-IN SCREEN
+  // NAVIGATE TO SIGN-IN SCREEN
+  navigateToSignIn() {
     this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}`;
+  }
+
+  navigateTo(urls: string[]) {
+    this.isVisibleProfilePopup = false;
+    this.router.navigate(urls, { relativeTo: this.route });
+  }
+
+  /**
+   *
+   */
+  logout() {
+    // TODO: DO LOGOUT
+    this.navigateToSignIn();
   }
 }

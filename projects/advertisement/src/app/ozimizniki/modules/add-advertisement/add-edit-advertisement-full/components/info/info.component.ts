@@ -1,5 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
 import { from } from 'rxjs';
 import { Category } from '../../dto/category.interface';
 import { AddAdvertisementService } from '../../services/add-advertisement.service';
@@ -13,6 +22,7 @@ interface CustomTree {
   selector: 'az-info',
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfoComponent implements OnInit {
   /**
@@ -24,13 +34,20 @@ export class InfoComponent implements OnInit {
   /**
    *
    */
-  @Output()
-  categoryIdChange = new EventEmitter<number>();
+  @Input()
+  currentCategory?: IdName;
 
   /**
    *
    */
-  categories!: Category[];
+  @Output()
+  categoryIdChange = new EventEmitter<number | undefined>();
+
+  /**
+   *
+   */
+  @Input()
+  categories?: Category[];
 
   /**
    *
@@ -41,12 +58,19 @@ export class InfoComponent implements OnInit {
    *
    * @param $addAdvertisement
    */
-  constructor(private $addAdvertisement: AddAdvertisementService) {}
+  constructor(
+    private $addAdvertisement: AddAdvertisementService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   /**
    *
    */
   ngOnInit() {
+    if (this.categories) {
+      this.initCustomTree(this.categories);
+      return;
+    }
     this.getReferences();
   }
 
@@ -57,9 +81,18 @@ export class InfoComponent implements OnInit {
     this.$addAdvertisement.getReferencesForCreate().subscribe((result) => {
       if (result.success) {
         this.categories = result.data.categories;
-        this.customTree.push({ selectedId: -1, data: this.categories });
+        this.initCustomTree(this.categories);
+        this.cd.markForCheck();
       }
     });
+  }
+
+  /**
+   *
+   */
+  private initCustomTree(categories: Category[]) {
+    this.customTree = [];
+    this.customTree.push({ selectedId: -1, data: categories });
   }
 
   /**

@@ -1,12 +1,97 @@
 <div class="container height overflow-auto">
   <div nz-row>
     <div nz-col nzSpan="24">
-      <h2>{{ "creatingAdvertisement" | translate }}</h2>
+      <h2>
+        {{
+          isAddMode
+            ? ("creatingAdvertisement" | translate)
+            : "editingAdvertisment"
+        }}
+      </h2>
     </div>
-    <div nz-col nzSpan="24">
-      <az-add-edit-advertisement-full
-        [isForModerator]="true"
-      ></az-add-edit-advertisement-full>
+    <div nz-col nzSpan="24" *ngIf="data || isAddMode">
+      <form
+        nz-form
+        [formGroup]="form"
+        *ngIf="form"
+        (ngSubmit)="submitForm()"
+        nzLayout="vertical"
+      >
+        <div class="inline-card">
+          <div nz-row [nzGutter]="[0, 30]">
+            <div nz-col nzSpan="24">
+              <h3 class="add-title">
+                {{ "ownerOfAdvertisement" | translate }}
+              </h3>
+            </div>
+            <input
+              placeholder="try to type login, firstname, lastname or phonenumber"
+              nz-input
+              nzSize="large"
+              [(ngModel)]="userSearchText"
+              (ngModelChange)="getUsersBySearchText($event)"
+              [nzAutocomplete]="auto"
+              [ngModelOptions]="{ standalone: true }"
+              class="mb-1"
+            />
+            <nz-autocomplete #auto>
+              <nz-auto-option
+                *ngFor="let user of users"
+                [nzLabel]="user.username"
+                [nzValue]="user"
+                (click)="changeSelectedUser(user)"
+                >{{ user.username }}</nz-auto-option
+              >
+            </nz-autocomplete>
+          </div>
+        </div>
+
+        <az-add-edit-advertisement-controls
+          [data]="data"
+          [isHiddenUserAgreement]="true"
+          [isHiddenContactdata]="!!data"
+          [form]="form"
+          [region$]="region$"
+          [district$]="district$"
+          [categoryType$]="categoryType$"
+          [filters]="filters"
+          [uploadedFiles]="uploadedFiles"
+          [categoryId]="categoryId"
+          [currentCategory]="currentCategory"
+          (changeCategoryId)="changeCategoryId($event)"
+        ></az-add-edit-advertisement-controls>
+      </form>
+
+      <div *ngIf="!isAddMode; else edit">
+        <button
+          nz-button
+          nzSize="large"
+          nzType="primary"
+          (click)="submitAndApprove()"
+        >
+          <i nz-icon nzType="check"></i> Approve
+        </button>
+        <button
+          class="ml-1"
+          nz-button
+          nzSize="large"
+          nzType="primary"
+          nzDanger
+          (click)="reject(id!)"
+        >
+          <i nz-icon nzType="close"></i> Reject
+        </button>
+      </div>
+      <ng-template #edit>
+        <button
+          nz-button
+          nzSize="large"
+          nzType="primary"
+          (click)="submitAndApprove()"
+        >
+          <i nz-icon nzType="plus"></i> {{ "add" | translate }}
+        </button>
+      </ng-template>
     </div>
   </div>
 </div>

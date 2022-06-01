@@ -14,6 +14,7 @@ const routes: Routes = [
         component: AdvertisementListComponent,
       },
       { path: 'edit/:id', component: AddEditAdvertisementComponent },
+      { path: 'add', component: AddEditAdvertisementComponent },
     ],
   },
 ];

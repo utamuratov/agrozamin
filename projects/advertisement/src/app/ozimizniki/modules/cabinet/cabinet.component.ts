@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { AdvertisementStatus } from 'ngx-az-core';
 
 @Component({
   selector: 'az-cabinet',
   templateUrl: './cabinet.component.html',
-  styleUrls: ['./cabinet.component.less']
+  styleUrls: ['./cabinet.component.less'],
 })
 export class CabinetComponent implements OnInit {
+  /**
+   *
+   */
+  AdvertisementStatus = AdvertisementStatus;
 
   isCollapsed = false;
 
-  icon = '/assets/images/menu-help.png'
+  icon = '/assets/images/menu-help.png';
 
   change(value: boolean): void {
     console.log(value);
@@ -19,9 +24,7 @@ export class CabinetComponent implements OnInit {
     this.isCollapsed = !this.isCollapsed;
   }
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

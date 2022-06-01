@@ -10,6 +10,7 @@ import { YaGeocoderService } from 'angular8-yandex-maps';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
 import { District } from '../../dto/district.interface';
+import { Location } from '../../dto/location.interface';
 import { Region } from '../../dto/region.interface';
 import { DistrictService } from '../../services/district.service';
 import { RegionService } from '../../services/region.service';
@@ -31,27 +32,27 @@ export class LocationComponent implements OnInit {
   /**
    *
    */
-  coordinates!: GeolocationCoordinates;
+  coordinates!: NzSafeAny;
 
   /**
    *
    */
+  @Input()
   region$!: Observable<Region[]>;
 
   /**
    *
    */
+  @Input()
   district$!: Observable<District[]>;
 
   /**
    *
+   * @param cd
+   * @param yaGeocoderService
    */
-  regionId!: number;
-
   constructor(
     private cd: ChangeDetectorRef,
-    private $region: RegionService,
-    private $district: DistrictService,
     private yaGeocoderService: YaGeocoderService
   ) {}
 
@@ -59,39 +60,38 @@ export class LocationComponent implements OnInit {
    *
    */
   ngOnInit(): void {
-    this.getRegions();
     this.getLocation();
   }
 
   /**
    *
    */
-  getRegions() {
-    this.region$ = this.$region.getRegions();
-  }
-
-  /**
-   *
-   */
-  getDistrictsByRegionId(regionId: number) {
-    if (regionId) {
-      this.district$ = this.$district.getDistrictsByRegionId(regionId);
-    }
-  }
-
-  /**
-   *
-   */
   getLocation() {
-    navigator.geolocation.getCurrentPosition((location) => {
-      this.coordinates = location.coords;
-      this.form.controls['location'].setValue({
-        ln: this.coordinates.longitude,
-        lt: this.coordinates.latitude,
-      });
-      this.getFullAddressFromCoordinates(location);
-      this.cd.markForCheck();
-    });
+    navigator.geolocation.getCurrentPosition(
+      (location) => {
+        this.coordinates = {
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        };
+        const locationForEditing: Location | null | undefined =
+          this.form.value['location'];
+        if (locationForEditing) {
+          this.coordinates.longitude = locationForEditing.ln;
+          this.coordinates.latitude = locationForEditing.lt;
+        } else {
+          this.form.controls['location'].setValue({
+            ln: this.coordinates.longitude,
+            lt: this.coordinates.latitude,
+          });
+        }
+
+        this.getFullAddressFromCoordinates(location);
+        this.cd.markForCheck();
+      },
+      (e) => {
+        alert(JSON.stringify(e));
+      }
+    );
   }
 
   /**
@@ -120,9 +120,10 @@ export class LocationComponent implements OnInit {
    */
   yadragend(e: NzSafeAny) {
     const coordinates = e.target.geometry.getBounds()[0];
+
     this.form.controls['location'].setValue({
-      ln: coordinates.longitude,
-      lt: coordinates.latitude,
+      lt: coordinates[0],
+      ln: coordinates[1],
     });
   }
 }

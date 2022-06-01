@@ -23,13 +23,19 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { Messages1Component } from './components/messages/components/messages1/messages1.component';
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { CurrencyModule } from '../../../shared/currency/currency.module';
+import { ClassByCategoryIdPipe } from './components/advertisement/pipes/suffixByCategoryId.pipe';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @NgModule({
   imports: [
     CommonModule,
-    CabinetRoutes, 
-    FormsModule, 
+    CabinetRoutes,
+    FormsModule,
     ReactiveFormsModule,
+
+    CurrencyModule,
+
     NzGridModule,
     NzMenuModule,
     NzButtonModule,
@@ -40,7 +46,8 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
     NzCheckboxModule,
     NzPopoverModule,
     NzDividerModule,
-    NzTypographyModule
+    NzTypographyModule,
+    NzSelectModule,
   ],
   declarations: [
     CabinetComponent,
@@ -53,6 +60,8 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
     FavouriteAdvertComponent,
     Messages1Component,
     Messages2Component,
+
+    ClassByCategoryIdPipe,
   ],
 })
 export class CabinetModule {}
