@@ -1,22 +1,21 @@
 
-
-
-<div nz-row [nzGutter]="[0, 20]">
+<div nz-row [nzGutter]="[0, {xs:10, sm:10, md:20, lg:20, xl:20}]">
 
     <div nz-col nzSpan="24">
 
       <div class="sort">
-        <div nz-row nzJustify="space-between">
+        <div nz-row nzAlign="middle" nzJustify="space-between" [nzGutter]="[0, {xs:10, sm:10, md: 20, lg:0, xl:0}]">
           <div nz-col class="sort__left">
             <div nz-row [nzGutter]="[8, 0]">
-              <div nz-col><span class="sort__variable">Сортировать:</span></div>
-              <div nz-col>
+              <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="7" nzXl="7" ><span class="sort__variable">Сортировать:</span></div>
+             
+              <div nz-col >
                 <a class="sort__link"
                   ><span>По цене</span
                   ><img src="/assets/images/sort.png" alt="sort icon"
                 /></a>
               </div>
-              <div nz-col>
+              <div nz-col >
                 <a class="sort__link"
                   ><span>По дате</span
                   ><img src="/assets/images/sort.png" alt="sort icon"
@@ -26,7 +25,7 @@
           </div>
           <div nz-col>
             <div nz-row nzAlign="middle" [nzGutter]="[8, 0]">
-              <div nz-col><span class="sort__variable">Вид:</span></div>
+              <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="6" nzXl="6"><span class="sort__variable">Вид:</span></div>
               <div nz-col>
                 <button
                   class="sort__btn"
@@ -129,7 +128,7 @@
     <div *ngFor="let advert of adverticement" nz-col nzSpan="24">
       <div class="advert-cards" nz-row>
         
-        <div nz-col nzSpan="6">
+        <div nz-col nzXs="9" nzSm="9" nzMd="9" nzLg="7" nzXl="6">
   
           <div class="advert-cards__top">
             <div class="advert-cards__top__img">
@@ -137,10 +136,13 @@
             </div>
             <div class="advert-cards__top__info">
               <div nz-row nzAlign="middle" nzJustify="space-between">
-                <div nz-col>
-                  <div class="tag">{{advert.imgText}}</div>
+                <div nz-col nzXs="0" nzSm="0" nzMd="18" nzLg="18" nzXl="18">
+                    <span class="tag">
+                    {{advert.imgText}}
+                  </span>
                 </div>
-                <div nz-col>
+                <div nz-col nzXs="18" nzSm="18" nzMd="0" nzLg="0" nzXl="0"></div>
+                <div nz-col nzXs="6" nzSm="6" nzMd="6" nzLg="6" nzXl="6">
                   <button nz-button nzType="text" class="advert-cards__top__info__icon"><i style="font-size: 24px;" [nzTheme]="'twotone'"  nz-icon nzType="heart"></i></button>
                 </div>
               </div>
@@ -149,16 +151,21 @@
   
         </div>
   
-        <div nz-col nzSpan="11" class="advert-cards__content">
+        <div nz-col nzXs="15" nzSm="15" nzMd="15" nzLg="17" nzXl="11" class="advert-cards__content">
           <div nz-row>
             <div nz-col nzSpan="24">
               <div nz-row>
-                <div nz-col nzSpan="24" class="advert-cards__content__title">
-                  <h3>{{ advert.title }}</h3>
+
+                <div nz-col nzXs="24" nzSm="24" nzMd="0" nzLg="0" nzXl="0">
+                  <span class="tag">{{advert.imgText}}</span>
+                </div>
+
+                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" class="advert-cards__content__title">
+                  <h3 nz-typography nzEllipsis="">{{ advert.title }}</h3>
                 </div>
                 <div
                   nz-col
-                  nzSpan="24"
+                  nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24"
                   class="advert-cards__content__description"
                 >
                   <p>
@@ -167,13 +174,36 @@
                 </div>
               </div>
             </div>
-            <div nz-col nzSpan="24" class="advert-cards__content__price">
+            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24" class="advert-cards__content__price">
               <h3>{{ advert.price }}</h3>
             </div>
+
+            <div class="advert-cards__content__user" nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
+              <div nz-row [nzGutter]="[6,0]">
+                  <div nz-col >
+                      <img src="/assets/images/house.png" alt="">
+                  </div>
+                  <div nz-col>
+                      <h4>Жахонгир Пардаев</h4>
+                  </div>
+              </div>
+          </div>
+          <div class="advert-cards__content__location" nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
+              <div nz-row>
+                  <div nz-col nzXs="2" nzSm="2" nzMd="2" nzLg="1">
+                      <img src="/assets/images/location.svg" alt="">
+                  </div>
+                  <div nz-col nzXs="22" nzSm="22" nzMd="22" nzLg="23">
+                      <h5>Ташкентская область, город Ташкент</h5>
+                  </div>
+              </div>
+          </div>
+
+
           </div>
         </div>
   
-        <div nz-col nzSpan="7" class="advert-cards__rightContent">
+        <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="7" class="advert-cards__rightContent">
           <div nz-row>
             <div nz-col nzSpan="24">
                 <div nz-row [nzGutter]="[0,16]">
@@ -206,6 +236,7 @@
 
           </div>
         </div>
+
       </div>
     </div>
   </div>

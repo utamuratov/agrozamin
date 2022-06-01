@@ -1,7 +1,8 @@
 <div class="advertisement">
   <div class="container">
-    <div nz-row [nzGutter]="[{ xl: 30, lg:20, sm: 20, xs: 20 }, 0]">
-      <div nz-col nzXs="0" nzSm="0" nzMd="6" nzLg="6" nzXl="6">
+    <div nz-row [nzGutter]="[{ xs: 20, sm: 20, lg:20, xl: 30 }, 0]">
+      
+      <div nz-col nzXs="0" nzSm="0" nzMd="7" nzLg="6" nzXl="6" style="width: 100px;">
         <div class="wrapper">
           <ul
             nz-menu
@@ -88,9 +89,10 @@
         </div>
       </div>
 
-      <div nz-col nzXs="24" nzSm="24" nzMd="18" nzLg="18" nzXl="18">
+      <div nz-col nzXs="24" nzSm="24" nzMd="17" nzLg="18" nzXl="18">
         <router-outlet></router-outlet>
       </div>
+
     </div>
   </div>
 </div>

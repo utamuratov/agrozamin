@@ -10,7 +10,7 @@
 
 // Custom Theming for NG-ZORRO
 // For more information: https://ng.ant.design/docs/customize-theme/en
-@import "../../../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+// @import "../../../node_modules/ng-zorro-antd/ng-zorro-antd.less";
 
 @import "../../../dist/ngx-az-core/styles/az-global.less";
 
@@ -228,6 +228,13 @@ ul {
   color: #f91155;
   background: #fce6ec;
   border-radius: 4px;
+
+  @media (max-width: 1200px) {
+    font-size: 8px;
+  }
+  @media (max-width: 575px) {
+    font-size: 10px;
+  }
 }
 
 .add-title {

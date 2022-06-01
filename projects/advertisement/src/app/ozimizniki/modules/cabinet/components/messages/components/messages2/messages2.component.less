@@ -1,8 +1,12 @@
 .messages {
-    width: 960px;
     height: 700px;
     background: #fff;
     border-radius: 12px;
+
+    @media (max-width: 992px) {
+      height: 480px;
+    }   
+
     &__left {
       border-right: 1px solid #cfd3d8;
       height: 700px;
@@ -90,6 +94,11 @@
           border: 1px solid #CFD3D8;
           border-radius: 0px 8px 8px 0px;
           border-left: none;
+
+          @media (max-width: 992px) {
+            height: 350px;
+          }
+
           &__content{
               margin: 8px;
               padding: 8px;
@@ -252,3 +261,7 @@
     background: grey;
     margin-right: 8px;
     }
+
+    .ant-input-affix-wrapper-focused{
+      box-shadow: none;
+  }
