@@ -26,6 +26,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { CurrencyModule } from '../../../shared/currency/currency.module';
 import { ClassByCategoryIdPipe } from './components/advertisement/pipes/suffixByCategoryId.pipe';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { PaginationModule } from '../../../shared/pagination/pagination.module';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     ReactiveFormsModule,
 
     CurrencyModule,
+    PaginationModule,
 
     NzGridModule,
     NzMenuModule,

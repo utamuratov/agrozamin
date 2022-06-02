@@ -6,11 +6,15 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { AdvertisementStatus, BaseResponse, NgDestroy } from 'ngx-az-core';
+import {
+  AdvertisementStatus,
+  BaseResponse,
+  GridModel,
+  GridQuery,
+  NgDestroy,
+} from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
-import { Observable } from 'rxjs';
-import { GridModel } from '../../translate/models/grid-model';
-import { GridQuery } from '../../translate/models/grid-query.interface';
+import { Observable, takeUntil } from 'rxjs';
 import { AdvertisementGetAll } from '../dto/advertisement-get-all.interface';
 import { AdvertisementService } from '../services/advertisement.service';
 
@@ -74,15 +78,17 @@ export class AdvertisementListComponent implements OnInit {
   loadDataFromServer(query: GridQuery) {
     query.filter = this.getQueryFilter();
 
-    this.getGridData(query).subscribe((result) => {
-      if (result.success) {
-        this.data = {
-          ...result.data,
-          data: result.data.data,
-        };
-        this.cd.markForCheck();
-      }
-    });
+    this.getGridData(query)
+      .pipe(takeUntil(this.$destroy))
+      .subscribe((result) => {
+        if (result.success) {
+          this.data = {
+            ...result.data,
+            data: result.data.data,
+          };
+          this.cd.markForCheck();
+        }
+      });
   }
 
   private getQueryFilter() {

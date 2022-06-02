@@ -4,15 +4,13 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { BaseResponse, NgDestroy } from 'ngx-az-core';
+import { BaseResponse, NgDestroy, GridQuery, GridModel } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { UserStatus } from 'projects/admin/src/app/core/enums/user-status.enum';
 import { IdKeyDescription } from 'projects/admin/src/app/shared/models/id-key-description.interface';
 import { Observable, map, takeUntil } from 'rxjs';
-import { GridModel } from '../translate/models/grid-model';
-import { GridQuery } from '../translate/models/grid-query.interface';
 import { AdminUsersService } from './services/admin-users.service';
 import { AdminUserBody } from './models/admin-user.body';
 import { AdminUserGridData } from './models/admin-user.grid.data';
