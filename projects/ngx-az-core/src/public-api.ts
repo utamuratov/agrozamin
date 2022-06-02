@@ -75,12 +75,15 @@ export * from './lib/models/refresh-token.response';
 export * from './lib/models/refresh-token.request';
 export * from './lib/models/id.interface';
 export * from './lib/models/id-name.interface';
+export * from './lib/models/grid-model';
+export * from './lib/models/grid-query.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement-edit.response';
 export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement.request';
 export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement.response';
 export * from './lib/shared/add-edit-advertisement-shared/dto/region.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/district.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/category-type.interface';
+
 // SERVICES
 export * from './lib/services/base.service';
 export * from './lib/services/base-auth.service';

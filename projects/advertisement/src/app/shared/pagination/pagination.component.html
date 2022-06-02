@@ -1,0 +1,13 @@
+<div nz-row *ngIf="total > pageSize">
+  <div nz-col nzSpan="6" class="pagination__left">Всего 53 328 товаров</div>
+  <div nz-col nzSpan="18">
+    <div nz-row nzJustify="end">
+      <nz-pagination
+        [nzPageIndex]="pageIndex"
+        [nzTotal]="total"
+        [nzPageSize]="pageSize"
+        (nzPageIndexChange)="pageIndexChange.emit($event)"
+      ></nz-pagination>
+    </div>
+  </div>
+</div>

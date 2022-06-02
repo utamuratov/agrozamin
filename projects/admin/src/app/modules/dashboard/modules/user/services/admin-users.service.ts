@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BaseResponse, BaseService } from 'ngx-az-core';
+import { BaseResponse, BaseService, GridQuery } from 'ngx-az-core';
 import { CrudService } from 'projects/admin/src/app/core/services/crud.service';
 import { IdKeyDescription } from 'projects/admin/src/app/shared/models/id-key-description.interface';
 import { Observable } from 'rxjs';
 import { RoleService } from '../../admin/role/role.service';
-import { GridQuery } from '../../translate/models/grid-query.interface';
 import { AdminUserBody } from '../models/admin-user.body';
 import { AdminUserResponse } from '../models/admin-user.response';
 import { Moderator } from '../models/moderator.interface';

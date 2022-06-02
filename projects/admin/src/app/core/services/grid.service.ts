@@ -1,10 +1,8 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { BaseResponse, BaseService } from 'ngx-az-core';
+import { BaseResponse, BaseService, GridQuery, GridModel } from 'ngx-az-core';
 import { Observable } from 'rxjs';
-import { GridModel } from '../../modules/dashboard/modules/translate/models/grid-model';
-import { GridQuery } from '../../modules/dashboard/modules/translate/models/grid-query.interface';
 
 @Injectable({
   providedIn: 'root',
