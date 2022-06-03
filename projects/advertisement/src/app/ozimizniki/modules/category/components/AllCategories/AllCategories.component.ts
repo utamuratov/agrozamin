@@ -381,11 +381,11 @@ export class AllCategoriesComponent implements OnInit {
     },
     {
       icon: './assets/images/cow.svg',
-      name: 'Сельскохозяйственные животные',
+      name: 'Сельхоз животные',
       id: 5,
       categories: [
         {
-          name: 'Сельскохозяйственные животные',
+          name: 'Сельхоз животные',
           categories: [
             { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {
@@ -412,7 +412,7 @@ export class AllCategoriesComponent implements OnInit {
           ],
         },
         {
-          name: 'Сельскохозяйственные животные',
+          name: 'Сельхоз животные',
           categories: [
             {
               name: 'Виноградоуборочные комбайны',
@@ -450,7 +450,7 @@ export class AllCategoriesComponent implements OnInit {
           ],
         },
         {
-          name: 'Сельскохозяйственные животные',
+          name: 'Сельхоз животные',
           categories: [
             {
               name: 'Кормоуборочные комбайны',
@@ -939,11 +939,11 @@ export class AllCategoriesComponent implements OnInit {
     },
     {
       icon: './assets/images/rubber.svg',
-      name: 'Резинотехнические изделия',
+      name: 'Резино-технические изделия',
       id: 13,
       categories: [
         {
-          name: 'Резинотехнические изделия',
+          name: 'Резино-технические изделия',
           categories: [
             { name: 'Тракторы', icon: 'assets/images/tractor.svg' },
             {

@@ -13,8 +13,22 @@
     font-size: 16px;
     font-family: Agrofont-Regular;
 
+    @media (max-width: 360px) {
+      span {
+        font-size: 14px;
+      }
+    }
+
     img {
       margin-left: 4px;
+    }
+
+    i {
+      margin-left: 16px;
+
+      @media (max-width: 440px) {
+        margin-left: 6px;
+      }
     }
   }
 
@@ -27,6 +41,18 @@
     border: 1px solid #cfd3d8;
     transition: 0.3s;
     cursor: pointer;
+    height: 40px;
+
+    .look-at-map {
+      font-family: Agrofont-Regular;
+      color: #86898C;
+      margin-left: 8px;
+      font-size: 16px;
+
+      @media (max-width: 992px) {
+        display: none;
+      }
+    }
 
     svg {
       rect {
@@ -37,21 +63,59 @@
     &:hover {
       svg {
         rect {
-          stroke: #22a33f;
+          stroke: #377BE1;
+        }
+
+        path {
+          fill: #377BE1;
         }
       }
 
-      border: 1px solid #22a33f;
+      border: 1px solid #377BE1;
+
+      .look-at-map {
+        color: #377BE1;
+      }
     }
 
     &.active {
-      background: #22a33f;
-      border: 1px solid #22a33f;
+      background: #377BE1;
+      border: 1px solid #377BE1;
       svg {
         rect {
           stroke: #fff;
         }
+        path {
+          fill: #fff;
+        }
+      }
+
+      .look-at-map {
+        color: #fff;
       }
     }
+
   }
+
+
+  .btn-icon {
+    width: 40px;
+
+    &-map {
+      @media (max-width: 992px) {
+        width: 40px;
+      }
+
+      @media (max-width: 360px) {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  
 }

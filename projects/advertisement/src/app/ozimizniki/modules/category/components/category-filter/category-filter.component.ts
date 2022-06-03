@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./category-filter.component.less'],
 })
 export class CategoryFilterComponent implements OnInit {
+  @Input() drawer!: boolean;
   formFilter!: FormGroup;
   value2 = [0, 999000000];
   value1 = 1

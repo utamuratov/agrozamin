@@ -1,14 +1,24 @@
 <div class="items">
-  <div nz-row [nzGutter]="[0, 50]">
+  <div nz-row [nzGutter]="[0, { xs: 20, sm: 20, md: 20, lg: 30, xl: 30 }]">
     <div nz-col nzSpan="24">
       <az-sort-by (handleGridOrList)="onChangeCardStyle($event)"></az-sort-by>
+    </div>
+    <div nz-col nzXs="24" nzSm="0" nzMd="0" nzLg="0" nzXl="0">
+      <button nz-button nzBlock nzSize="large" class="filter__btn" (click)="open()">
+        <i nz-icon nzType="filter" nzTheme="outline"></i>
+        <span>Фильтр</span>
+      </button>
     </div>
     <div nz-col nzSpan="24">
       <div nz-row [nzGutter]="[20, 20]">
         <div
           nz-col
-          [nzSpan]="cardStyleTemplate ? 24 : 6"
           *ngFor="let card of products"
+          [nzXs]="cardStyleTemplate ? 24 : 12"
+          [nzSm]="cardStyleTemplate ? 24 : 12"
+          [nzMd]="cardStyleTemplate ? 24 : 12"
+          [nzLg]="cardStyleTemplate ? 24 : 8"
+          [nzXl]="cardStyleTemplate ? 24 : 6"
         >
           <az-skeleton *ngIf="isLoading; else cards"></az-skeleton>
 
@@ -32,11 +42,45 @@
       </div>
     </div>
     <div nz-col nzSpan="24">
-        <div nz-row nzJustify="end">
-          <div nz-col>
-            <nz-pagination [nzPageIndex]="1" [nzTotal]="500"></nz-pagination>
-          </div>
+      <div nz-row nzJustify="end">
+        <div nz-col>
+          <nz-pagination [nzPageIndex]="1" [nzTotal]="500"></nz-pagination>
         </div>
+      </div>
     </div>
   </div>
 </div>
+
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="visible"
+  nzPlacement="right"
+  (nzOnClose)="close()"
+  nzWidth="100%"
+>
+  <ng-container *nzDrawerContent>
+    <div class="drawer">
+      <div class="drawer__header">
+        <div nz-row [nzGutter]="[0, 25]">
+          <div nz-col nzSpan="24" class="text-end">
+            <button nz-button nzSize="large" (click)="close()">
+              <i nz-icon nzType="close" nzTheme="outline"></i>
+            </button>
+          </div>
+          <div nz-col nzSpan="24">
+            <a nz-button nzType="link" nzSize="large" (click)="close()" class="drawer__title">
+              <i nz-icon nzType="left" nzTheme="outline" class="drawer__title_margin"></i>
+              <span>
+                <i nz-icon nzType="filter" nzTheme="outline"></i>
+                <span class="drawer__title_text">Фильтр</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="drawer__content">
+        <az-category-filter [drawer]="true"></az-category-filter>
+      </div>
+    </div>
+  </ng-container>
+</nz-drawer>

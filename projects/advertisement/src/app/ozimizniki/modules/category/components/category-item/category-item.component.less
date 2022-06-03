@@ -21,15 +21,28 @@
       border-radius: 8px 8px 0 0;
       padding: 16px;
       position: relative;
+
+      @media (max-width: 576px) {
+        padding: 10px;
+      }
+
+      @media (max-width: 450px) {
+        height: 155px;
+      }
     }
 
     &__img {
       position: absolute;
       top: 0;
       left: 0;
-      width: 225px;
+      // width: 225px;
+      width: 100%;
       height: 225px;
       border-radius: 8px 8px 0 0;
+
+      @media (max-width: 450px) {
+        height: 155px;
+      }
 
       img {
         border-radius: 8px 8px 0 0;
@@ -42,27 +55,33 @@
     &__bottom {
       padding: 20px;
 
+      @media (max-width: 360px) {
+        padding: 10px;
+      }
+
       &__title {
         margin-bottom: 0;
         font-size: 14px;
         font-family: Agrofont-Medium;
         color: #1a1a1a;
         line-height: 17px;
+
+        @media (max-width: 360px) {
+          font-size: 12px;
+        }
       }
 
       &__subtitle {
         font-size: 16px;
         font-family: Agrofont-Bold;
-        color: #22a33f;
+        color: #1b59b7;
         line-height: 20px;
         margin: 8px 0 16px 0;
 
-        span {
-          font-size: 12px;
-          font-family: Agrofont-Regular;
-          color: #86898c;
-          line-height: 15px;
-          margin-left: 4px;
+        @media (max-width: 360px) {
+          height: 35px;
+          margin-bottom: 0;
+          font-size: 14px;
         }
       }
 
@@ -71,6 +90,10 @@
         font-family: Agrofont-Regular;
         color: #86898c;
         margin-bottom: 0;
+      }
+
+      &__tag {
+        margin-bottom: 10px;
       }
     }
 
@@ -176,4 +199,8 @@
       justify-content: space-between;
     }
   }
+}
+
+.favorite-icon {
+  font-size: 24px;
 }
