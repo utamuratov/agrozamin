@@ -45,7 +45,12 @@
               [nzAddOnAfter]="suffixIconButton"
               nzSize="large"
             >
-              <input type="text" nz-input placeholder="Поиск по названию" formControlName="region" />
+              <input
+                type="text"
+                nz-input
+                placeholder="Поиск по названию"
+                formControlName="region"
+              />
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
@@ -89,7 +94,12 @@
               [nzAddOnAfter]="suffixIconButton"
               nzSize="large"
             >
-              <input type="text" nz-input placeholder="Поиск по названию" formControlName="company" />
+              <input
+                type="text"
+                nz-input
+                placeholder="Поиск по названию"
+                formControlName="company"
+              />
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
@@ -127,7 +137,12 @@
               [nzAddOnAfter]="suffixIconButton"
               nzSize="large"
             >
-              <input type="text" nz-input placeholder="Поиск по названию" formControlName="country" />
+              <input
+                type="text"
+                nz-input
+                placeholder="Поиск по названию"
+                formControlName="country"
+              />
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
@@ -136,18 +151,29 @@
           <div nz-row [nzGutter]="[0, 10]">
             <div nz-col *ngFor="let country of madeIn">
               <nz-tag class="tag">
-                <a>{{country.country}} <span>{{country.count}}</span></a>
+                <a
+                  >{{ country.country }} <span>{{ country.count }}</span></a
+                >
               </nz-tag>
             </div>
           </div>
         </div>
-        
-
-
       </nz-collapse-panel>
       <ng-template #country>
         <h4 nz-typography class="filter__title">Страна производства</h4>
       </ng-template>
     </nz-collapse>
+
+    <div *ngIf="drawer" nz-row [nzGutter]="[0, 20]" style="padding-top: 30px;">
+      <div nz-col nzSpan="24">
+        <button nz-button nzBlock class="filter__ok" nzType="primary" nzSize="large">
+          
+          <span>Применить фильтр</span>
+        </button>
+      </div>
+      <div nz-col nzSpan="24">
+        <button nz-button nzBlock class="filter__reset" nzType="default" nzSize="large">Сбросить фильтр</button>
+      </div>
+    </div>
   </form>
 </div>

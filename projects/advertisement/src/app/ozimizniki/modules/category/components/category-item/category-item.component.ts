@@ -23,7 +23,7 @@ export class CategoryItemComponent implements OnInit {
 
   @Input() catId!: number
 
-  defaultImage = './assets/images/agrozamin/default-img-card.jpg'
+  defaultImage = './assets/images/default-img-card.jpg'
   constructor(private router: Router, private route: ActivatedRoute) { 
 
   }
