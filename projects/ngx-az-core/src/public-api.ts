@@ -83,6 +83,7 @@ export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement.resp
 export * from './lib/shared/add-edit-advertisement-shared/dto/region.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/district.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/category-type.interface';
+export * from './lib/shared/add-edit-advertisement-shared/dto/filter.interface';
 
 // SERVICES
 export * from './lib/services/base.service';

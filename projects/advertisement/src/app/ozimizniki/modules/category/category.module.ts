@@ -35,6 +35,7 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { PaginationModule } from '../../../shared/pagination/pagination.module';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 @NgModule({
   imports: [
@@ -63,6 +64,8 @@ import { PaginationModule } from '../../../shared/pagination/pagination.module';
     NzDividerModule,
     NzSkeletonModule,
     NzPaginationModule,
+
+    NzPopoverModule,
   ],
   declarations: [
     CategoryComponent,
