@@ -5,28 +5,20 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Select } from '@ngxs/store';
 import {
   Language,
   LanguageState,
   markAllAsDirty,
   NgDestroy,
-} from 'ngx-az-core';
-import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
-import {
   InputTypeForCreator,
   InputTypeForFilter,
-} from 'projects/admin/src/app/core/enums/input-type.enum';
+} from 'ngx-az-core';
+import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
+
 import { Observable, takeUntil, tap } from 'rxjs';
 import { FilterRequest } from '../../../models/filter.request';
 import { FilterResponse } from '../../../models/filter.response';

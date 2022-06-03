@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { AddAdvertisementComponent } from './add-advertisement.component';
-import { AdvertisementEditResolver } from './add-edit-advertisement-full/services/advertisment-edit.resolver';
+import { AdvertisementEditResolver } from './advertisment-edit.resolver';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'add' },

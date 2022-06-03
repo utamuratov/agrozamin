@@ -7,7 +7,7 @@ import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { Project } from 'projects/admin/src/app/core/enums/project.enum';
 import { BaseComponent } from 'projects/admin/src/app/shared/components/base/base.component';
 import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
+import { IdName } from 'ngx-az-core';
 import { map, Observable } from 'rxjs';
 import { CategoriesFilters } from '../../models/categories-filters.interface';
 import { CategoryEditingData } from '../../models/category-editing-data';

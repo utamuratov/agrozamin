@@ -97,7 +97,6 @@
             </div>
           </div>
         </div>
-
         <div
           nz-col
           nzXs="12"
@@ -133,7 +132,6 @@
             </div>
           </div>
         </div>
-
         <div
           nz-col
           nzXs="6"
@@ -292,6 +290,14 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div nz-col nzSpan="24">
+      <az-pagination
+        [pageSize]="pageSize"
+        [total]="data.total"
+        (pageIndexChange)="loadInitData($event)"
+      ></az-pagination>
     </div>
   </ng-container>
 </div>

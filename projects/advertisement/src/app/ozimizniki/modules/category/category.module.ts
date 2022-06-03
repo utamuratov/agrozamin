@@ -36,6 +36,7 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { PaginationModule } from '../../../shared/pagination/pagination.module';
 
 @NgModule({
   imports: [
@@ -43,6 +44,9 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
     FormsModule,
     ReactiveFormsModule,
     CategoryRoutes,
+
+    PaginationModule,
+
     /* NG-ZORRO */
     NzTypographyModule,
     NzGridModule,

@@ -1,10 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AdvertisementStatus } from 'ngx-az-core';
-import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
-import { GridModel } from 'projects/admin/src/app/modules/dashboard/modules/translate/models/grid-model';
-import { GridQuery } from 'projects/admin/src/app/modules/dashboard/modules/translate/models/grid-query.interface';
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
+import { AdvertisementStatus, IdName, GridQuery, GridModel } from 'ngx-az-core';
+import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { Advertisement } from './dto/advertisment.interface';
 import { AdvertisementService } from './services/advertisment.service';
 
@@ -23,7 +20,7 @@ export class AdvertisementComponent {
   /**
    *
    */
-  pageSize = AdminConstants.PAGINATION_PAGE_SIZE;
+  pageSize = AdvertisementConstants.PAGINATION_PAGE_SIZE;
 
   /**
    *
@@ -76,8 +73,10 @@ export class AdvertisementComponent {
   /**
    *
    */
-  loadInitData() {
-    this.loadDataFromServer(AdminConstants.DEFAULT_GRID_QUERY);
+  loadInitData(pageIndex = AdvertisementConstants.DEFAULT_PAGE_INDEX) {
+    const query = AdvertisementConstants.DEFAULT_GRID_QUERY;
+    query.pageIndex = pageIndex;
+    this.loadDataFromServer(query);
   }
 
   /**

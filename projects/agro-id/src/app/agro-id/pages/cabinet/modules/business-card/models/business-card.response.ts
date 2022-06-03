@@ -1,4 +1,4 @@
-import { Id } from 'projects/admin/src/app/shared/models/id.interface';
+import { Id } from 'ngx-az-core';
 import { BusinessCard } from './business-card.interface';
 
 export interface BusinessCardResponse extends Id, BusinessCard {

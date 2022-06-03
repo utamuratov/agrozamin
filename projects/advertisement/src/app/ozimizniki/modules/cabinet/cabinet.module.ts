@@ -22,9 +22,11 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { Messages1Component } from './components/messages/components/messages1/messages1.component';
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { CurrencyModule } from '../../../shared/currency/currency.module';
 import { ClassByCategoryIdPipe } from './components/advertisement/pipes/suffixByCategoryId.pipe';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { PaginationModule } from '../../../shared/pagination/pagination.module';
 
 @NgModule({
   imports: [
@@ -34,6 +36,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     ReactiveFormsModule,
 
     CurrencyModule,
+    PaginationModule,
 
     NzGridModule,
     NzMenuModule,
@@ -45,7 +48,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzCheckboxModule,
     NzPopoverModule,
     NzDividerModule,
-
+    NzTypographyModule,
     NzSelectModule,
   ],
   declarations: [

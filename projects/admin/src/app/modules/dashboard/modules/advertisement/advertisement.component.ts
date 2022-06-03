@@ -1,15 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'az-advertisement',
   templateUrl: './advertisement.component.html',
-  styleUrls: ['./advertisement.component.less']
+  styleUrls: ['./advertisement.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvertisementComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class AdvertisementComponent {}

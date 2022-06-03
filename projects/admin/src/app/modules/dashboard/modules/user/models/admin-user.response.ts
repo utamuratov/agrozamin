@@ -1,5 +1,5 @@
+import { Id } from 'ngx-az-core';
 import { UserStatus } from 'projects/admin/src/app/core/enums/user-status.enum';
-import { Id } from 'projects/admin/src/app/shared/models/id.interface';
 import { AdminUser } from './admin-user.interface';
 import { Moderator } from './moderator.interface';
 

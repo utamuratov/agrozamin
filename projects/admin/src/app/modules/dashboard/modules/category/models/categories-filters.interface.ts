@@ -1,4 +1,4 @@
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
+import { IdName } from 'ngx-az-core';
 import { CategoryWithChild } from './category-with-child.interface';
 import { Filter } from './filter.model';
 

@@ -1,4 +1,4 @@
-import { GridQuery } from '../modules/dashboard/modules/translate/models/grid-query.interface';
+import { GridQuery } from 'ngx-az-core';
 
 export class AdminConstants {
   public static readonly SPLITTER_FOR_TREE = '-';

@@ -1,4 +1,4 @@
-import { Id } from '../../../../../shared/models/id.interface';
+import { Id } from 'ngx-az-core';
 
 export interface Project extends Id {
   name: string;
