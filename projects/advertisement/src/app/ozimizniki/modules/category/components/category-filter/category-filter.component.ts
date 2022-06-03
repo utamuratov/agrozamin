@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Filter, InputTypeForFilter } from 'ngx-az-core';
 import { CategoryFilterService } from './category-filter.service';
 
+
 @Component({
   selector: 'az-category-filter',
   templateUrl: './category-filter.component.html',

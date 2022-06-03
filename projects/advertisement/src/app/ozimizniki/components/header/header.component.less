@@ -13,6 +13,10 @@
     &__top {
       padding-top: 8px;
       font-size: 13px;
+
+      @media (max-width: 992px) {        
+        padding-top: 0;
+      }
     }
 
     &__menu {
@@ -102,6 +106,10 @@
       margin-top: 8px;
       &-btn-text {
         margin-left: 8px;
+      }
+
+      @media (max-width: 767px) {
+        display: none;
       }
     }
 
@@ -469,5 +477,28 @@
       }
     }
  
+  }
+}
+
+.add-advertisement {
+  @media (max-width: 991px) {
+    display: none;
+  }
+}
+
+.nav__logo {
+  @media (max-width: 575px) {
+      img {
+        width: 165px;
+        height: 30px;
+      }
+  }
+}
+
+.enter__btn {
+  @media (max-width: 767px) {
+    &_text {
+      display: none;
+    }
   }
 }

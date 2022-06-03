@@ -4,7 +4,7 @@
       <div nz-row>
         <div nz-col nzSpan="24" class="nav__top">
           <div nz-row nzAlign="middle">
-            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="12">
+            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="12" nzXl="12">
               <ul class="nav__menu" nz-row>
                 <li nz-col class="nav__menu-item">
                   <a [routerLink]="'about'">{{
@@ -31,7 +31,7 @@
               nzXs="0"
               nzSm="0"
               nzMd="0"
-              nzLg="0"
+              nzLg="12"
               nzXl="12"
               class="ml-a"
             >
@@ -55,8 +55,8 @@
 
         <div nz-col nzSpan="24" class="nav__middle">
           <div nz-row nzAlign="middle">
-            <div nz-col nzXs="22" nzSm="14" nzMd="12" nzLg="8" nzXl="9">
-              <a [routerLink]="'./'">
+            <div nz-col nzXs="16" nzSm="11" nzMd="9" nzLg="8" nzXl="9">
+              <a [routerLink]="'./'" class="nav__logo">
                 <img src="./assets/images/logo.svg" alt="logo" />
               </a>
             </div>
@@ -93,7 +93,7 @@
               nzXs="0"
               nzSm="0"
               nzMd="0"
-              nzLg="0"
+              nzLg="5"
               [nzXl]="isUserAuthenticated ? 7 : 4"
             >
               <div nz-row [nzGutter]="[8, 0]" nzJustify="end">
@@ -156,7 +156,36 @@
               </div>
             </div>
 
-            <div nz-col nzXs="0" nzSm="8" nzMd="10" nzLg="4" nzXl="0">
+            <div nz-col nzXs="0" nzSm="0" nzMd="8" nzLg="0" nzXl="0">
+              <div nz-row nzJustify="end" [nzGutter]="[9, 0]">
+                <div nz-col>
+                  <nz-select ngModel="1" nzBorderless>
+                    <nz-option nzValue="1" nzLabel="Ташкент"></nz-option>
+                    <nz-option nzValue="2" nzLabel="Самарканд"></nz-option>
+                  </nz-select>
+                </div>
+
+                <div nz-col class="text-end">
+                  <az-language
+                    [title]="'language' | translate"
+                    [template]="'dropdown'"
+                  ></az-language>
+                </div>
+              </div>
+            </div>
+
+            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="0">
+              <div nz-row nzJustify="end">
+                <div nz-col>
+                  <nz-select ngModel="1" nzBorderless>
+                    <nz-option nzValue="1" nzLabel="Ташкент"></nz-option>
+                    <nz-option nzValue="2" nzLabel="Самарканд"></nz-option>
+                  </nz-select>
+                </div>
+              </div>
+            </div>
+
+            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="0">
               <div nz-row>
                 <div nz-col nzSpan="24" class="text-end">
                   <az-language
@@ -166,25 +195,57 @@
                 </div>
               </div>
             </div>
+
+
+
             <div
               nz-col
-              nzXs="2"
-              nzSm="2"
-              nzMd="2"
-              nzLg="1"
+              nzXs="8"
+              nzSm="12"
+              nzMd="7"
+              nzLg="0"
               nzXl="0"
               class="text-end"
             >
-              <button
-                nz-button
-                nzType="default"
-                nzSize="large"
-                (click)="openAz()"
-              >
-                <i
-                  ><img src="./assets/images/header-burger.svg" alt="burger"
-                /></i>
-              </button>
+              <div nz-row nzJustify="end" [nzGutter]="[10, 0]">
+
+                <div nz-col nzXs="0" nzSm="12" nzMd="0">
+                  <button nz-button nzType="primary" nzSize="large" (click)="open()" nzBlock>
+                    <i><img src="./assets/images/catalog.svg" alt="icon" /></i>
+                    <span class="nav__bottom-btn-text">Каталог</span>
+                  </button>
+                </div>
+
+                <div nz-col nzXs="0" nzSm="4" nzMd="0">
+                  <button nz-button nzSize="large">
+                    <i nz-icon nzType="search" nzTheme="outline"></i>
+                  </button>
+                </div>
+
+                <div nz-col nzSm="0" nzXs="0" nzMd="12">
+                  <button nz-button nzType="default" nzSize="large" nzBlock>
+                    <i nz-icon nzType="user" nzTheme="outline"></i>
+                    <span>Войти</span>
+                  </button>
+                </div>
+
+                <div nz-col nzXs="0" nzSm="4" nzMd="0">
+                  <button nz-button nzType="default" nzSize="large">
+                    <i nz-icon nzType="user" nzTheme="outline"></i>
+                  </button>
+                </div>
+                
+                <div nz-col>
+                  <button
+                    nz-button
+                    nzType="default"
+                    nzSize="large"
+                    (click)="openAz()"
+                  >
+                  <i nz-icon nzType="menu" nzTheme="outline"></i>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -193,13 +254,13 @@
 
     <div class="container">
       <div nz-row class="nav__bottom" [nzGutter]="[16, 0]">
-        <div nz-col>
-          <button nz-button nzType="primary" nzSize="large" (click)="open()">
+        <div nz-col nzXs="3" nzSm="3" nzMd="5" nzLg="4" nzXl="3">
+          <button nz-button nzType="primary" nzSize="large" (click)="open()" nzBlock>
             <i><img src="./assets/images/catalog.svg" alt="icon" /></i>
             <span class="nav__bottom-btn-text">Каталог</span>
           </button>
         </div>
-        <div nz-col nzFlex="auto">
+        <div nz-col nzXs="17" nzSm="17" nzMd="17" nzLg="14" nzXl="16">
           <form nz-form [formGroup]="searchForm" (ngSubmit)="submit()">
             <nz-input-group
               nzSize="large"
@@ -269,16 +330,17 @@
             </ng-template>
           </form>
         </div>
-        <div nz-col>
+        <div nz-col nzXs="4" nzSm="4" nzMd="2" nzLg="6" nzXl="5" class="text-end">
           <button
             nz-button
             nzType="primary"
             nzSize="large"
             class="secondary"
             routerLink="advertisement/add"
+            nzBlock
           >
             <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
-            <span>Подать объявление</span>
+            <span class="add-advertisement">Подать объявление</span>
           </button>
         </div>
       </div>
