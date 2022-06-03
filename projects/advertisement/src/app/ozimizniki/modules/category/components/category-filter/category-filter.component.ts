@@ -18,12 +18,6 @@ export class CategoryFilterComponent implements OnInit {
   /**
    *
    */
-  @Input()
-  drawer!: boolean;
-
-  /**
-   *
-   */
   filters: Filter[] = [];
 
   /**

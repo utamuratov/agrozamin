@@ -4,7 +4,13 @@
       <az-sort-by (handleGridOrList)="onChangeCardStyle($event)"></az-sort-by>
     </div>
     <div nz-col nzXs="24" nzSm="0" nzMd="0" nzLg="0" nzXl="0">
-      <button nz-button nzBlock nzSize="large" class="filter__btn" (click)="open()">
+      <button
+        nz-button
+        nzBlock
+        nzSize="large"
+        class="filter__btn"
+        (click)="open()"
+      >
         <i nz-icon nzType="filter" nzTheme="outline"></i>
         <span>Фильтр</span>
       </button>
@@ -64,8 +70,19 @@
             </button>
           </div>
           <div nz-col nzSpan="24">
-            <a nz-button nzType="link" nzSize="large" (click)="close()" class="drawer__title">
-              <i nz-icon nzType="left" nzTheme="outline" class="drawer__title_margin"></i>
+            <a
+              nz-button
+              nzType="link"
+              nzSize="large"
+              (click)="close()"
+              class="drawer__title"
+            >
+              <i
+                nz-icon
+                nzType="left"
+                nzTheme="outline"
+                class="drawer__title_margin"
+              ></i>
               <span>
                 <i nz-icon nzType="filter" nzTheme="outline"></i>
                 <span class="drawer__title_text">Фильтр</span>
@@ -75,7 +92,7 @@
         </div>
       </div>
       <div class="drawer__content">
-        <az-category-filter [drawer]="true"></az-category-filter>
+        <az-category-filter></az-category-filter>
       </div>
     </div>
   </ng-container>
