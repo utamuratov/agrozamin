@@ -1,4 +1,4 @@
-<div class="category" style="background-color: #F8F9FC;">
+<div class="category" style="background-color: #f8f9fc">
   <div class="container">
     <h2 nz-typography>Каталог</h2>
     <div nz-row [nzGutter]="[{xs: 0, sm: 20, md: 20, lg: 30, xl: 30}, 0]">
@@ -7,9 +7,26 @@
           <div nz-col nzSpan="24">
             <div class="menu">
               <ul nz-row class="menu__list" [nzGutter]="[0, 8]">
-                <li nz-col nzSpan="24" class="menu__item" *ngFor="let category of categories; let isLast = last">
-                  <a class="menu__link" [routerLink]="[category.id]" *ngIf="!isLast" (click)="getCategoryId(category.id)"><img [src]="category.icon" alt="icon"><span>{{category.name}}</span></a>
-                  <a class="menu__link active" *ngIf="isLast"><img [src]="category.icon" alt="icon"><span>{{category.name}}</span></a>
+                <li
+                  nz-col
+                  nzSpan="24"
+                  class="menu__item"
+                  *ngFor="let category of categories; let isLast = last"
+                >
+                  <a
+                    class="menu__link"
+                    [routerLink]="[category.id]"
+                    *ngIf="!isLast"
+                    (click)="getCategoryId(category.id)"
+                    ><img [src]="category.icon" alt="icon" /><span>{{
+                      category.name
+                    }}</span></a
+                  >
+                  <a class="menu__link active" *ngIf="isLast"
+                    ><img [src]="category.icon" alt="icon" /><span>{{
+                      category.name
+                    }}</span></a
+                  >
                 </li>
               </ul>
             </div>
