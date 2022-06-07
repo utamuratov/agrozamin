@@ -13,9 +13,7 @@ export class AllCategoryItemsComponent implements OnInit {
   cardStyleTemplate = false;
   cardSizeIndex = 6;
 
-  visible = true;
-
-
+  visible = false;
 
   constructor() {}
 

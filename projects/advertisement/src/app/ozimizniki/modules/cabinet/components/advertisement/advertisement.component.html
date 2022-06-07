@@ -74,7 +74,7 @@
         <div nz-col nzXs="6" nzSm="6" nzMd="8" nzLg="6" nzXl="6">
           <div class="advert-cards__top">
             <div class="advert-cards__top__img">
-              <img [src]="advert?.file?.file" alt="card img" />
+              <img [src]="advert?.file?.file | noImage" alt="card img" />
             </div>
             <div class="advert-cards__top__info">
               <div nz-row nzAlign="middle" nzJustify="space-between">
