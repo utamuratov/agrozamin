@@ -3,7 +3,7 @@
     background: #fff;
     border-radius: 12px;
 
-    @media (max-width: 992px) {
+    @media (max-width: 768px) {
       height: 480px;
     }   
 
@@ -67,6 +67,9 @@
       &__content{
         padding-top: 16px;
         padding-right: 16px;
+        @media (max-width: 992px) {
+          padding: 16px;
+        }
   
         &__top{  
           &__user{
@@ -90,13 +93,14 @@
   
         &__middle{
           margin-top: 24px;
-          height: 548px;
           border: 1px solid #CFD3D8;
           border-radius: 0px 8px 8px 0px;
           border-left: none;
 
           @media (max-width: 992px) {
-            height: 350px;
+            border-left: 1px solid #CFD3D8;
+            border-radius:8px;
+            // height: 400px;
           }
 
           &__content{
@@ -132,7 +136,6 @@
 
     &__item{
         padding-top: 16px;
-
         span{
             padding: 4px 17px;  
             font-size: 12px; 
@@ -142,28 +145,46 @@
         }
 
         &__user{
+          padding-top: 10px;
         overflow-y: scroll;
+        margin-right: 5px;
+        height: 430px;
+
+        @media (max-width: 768px) {
+          height: 200px;
+        }
+
+        @media (max-width: 576px) {
+            height: 190px;
+          }
+          @media (max-width: 575px) {
+            height: 200px;
+          }
+          @media (max-width: 520px) {
+            height: 170px;
+          }
+
         &::-webkit-scrollbar {
           width: 4px; /* ширина для вертикального скролла */
           background-color: #CFD3D8;
-      }
+        }
       
       /* ползунок скроллбара */
       &::-webkit-scrollbar-thumb {
           background-color: #CFD3D8;
           border-radius: 2px;
-          height: 132px;
       }
       
       &::-webkit-scrollbar-thumb:hover {
           background-color: #253861;
       }
-        margin-right: 5px;
-        height: 255px;
+       
         &__message{
+          width: max-content;
+          margin-right: auto;
           padding-left: 22px;
-          padding-top: 24px;
           p{
+            width: 200px;
             margin: 0;
             padding: 12px 16px;
             background: #F2F6FC;
@@ -171,6 +192,8 @@
           }
         }
         &__message2{
+          width: max-content;
+          margin-right: auto;
           margin-left: 22px;         
           background: #F2F6FC;
           border-radius: 4px;
@@ -178,11 +201,16 @@
             margin: 0;
             font-size: 14px;
             padding: 12px 8px 0px 16px;
+            @media (max-width: 992px) {
+              width: 280px;
+            }
           }
         }
 
         &__message3{
-          margin-top: 154px;
+          width: max-content;
+          margin-left: auto;
+          margin-right: 10px;
           border-radius: 4px;
           background: #377BE1;
           p{
@@ -202,7 +230,7 @@
   
         &__footer{
          
-          padding-top: 12px;
+          padding-top: 10px;
           .ant-input-affix-wrapper {
               padding: 0;
               border: none;

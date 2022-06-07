@@ -1,6 +1,5 @@
 .support{
     padding: 16px;
-    width: 960px;
     height: 700px;
     background: #fff;
     border-radius: 12px;
@@ -20,17 +19,16 @@
         }
     }
     &__body{
-        width: 928px;
         height: 548px;
         border: 1px solid #CFD3D8;
         border-radius: 8px;
         &__user1{
             padding-left: 22px;
-            padding-top: 170px;
             &__message{
                 background: #F2F6FC;
                     border-radius: 4px;
-                    width: 123px;
+                    width: max-content;
+                    margin-right: auto;
                     padding: 12px;
                 p{
                     margin: 0;
@@ -42,7 +40,8 @@
             &__message2{
                 background: #F2F6FC;
                     border-radius: 4px;
-                    width: 250px;
+                    width: max-content;
+                    margin-right: auto;
                     padding: 12px;
                 p{
                     margin: 0;
@@ -53,12 +52,14 @@
                 }
             }
         }
+
         &__date{
             margin: 0;
             padding-top: 16px;
+            position: absolute;
             p{
                 margin-right: 0;
-                width: 115px;
+                width: 115px;                
                 justify-content: center;
                 border-radius: 12px;
                 padding: 4px 17px;
@@ -68,12 +69,11 @@
             }
         }
         &__user2{
-            padding-top: 63px;
-            padding-left: 235px;
-            
-            &__message{
-                width: 121px;
-                text-align: center;
+            padding-right: 20px;            
+              &__message{
+            width: max-content;
+            margin-left: auto;
+            text-align: center;
             padding: 12px 16px;
             background: #377BE1;
             border-radius: 4px;
