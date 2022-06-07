@@ -17,6 +17,7 @@ export * from './lib/shared/partner/partner.module';
 export * from './lib/shared/banner/banner.module';
 export * from './lib/shared/credits/credits.module';
 export * from './lib/shared/news/news.module';
+export * from './lib/shared/add-edit-advertisement-shared/add-edit-advertisement-shared.module';
 
 // COMPONENTS
 export * from './lib/shared/forms-shared/components/error/error.component';
@@ -31,6 +32,8 @@ export * from './lib/shared/partner/partner.component';
 export * from './lib/shared/banner/banner.component';
 export * from './lib/shared/credits/credits.component';
 export * from './lib/shared/news/news.component';
+export * from './lib/shared/add-edit-advertisement-shared/components/add-edit-advertisement-controls/add-edit-advertisement-controls.component';
+export * from './lib/shared/add-edit-advertisement-shared/add-edit-advertisement-full-logic.component';
 
 // DIRECTIVES
 export * from './lib/shared/forms-shared/directives/only-letter.directive';
@@ -70,6 +73,17 @@ export * from './lib/models/sign-in.request';
 export * from './lib/models/sign-in.response';
 export * from './lib/models/refresh-token.response';
 export * from './lib/models/refresh-token.request';
+export * from './lib/models/id.interface';
+export * from './lib/models/id-name.interface';
+export * from './lib/models/grid-model';
+export * from './lib/models/grid-query.interface';
+export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement-edit.response';
+export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement.request';
+export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement.response';
+export * from './lib/shared/add-edit-advertisement-shared/dto/region.interface';
+export * from './lib/shared/add-edit-advertisement-shared/dto/district.interface';
+export * from './lib/shared/add-edit-advertisement-shared/dto/category-type.interface';
+export * from './lib/shared/add-edit-advertisement-shared/dto/filter.interface';
 
 // SERVICES
 export * from './lib/services/base.service';
@@ -78,6 +92,7 @@ export * from './lib/services/logger.service';
 export * from './lib/services/ng-destroy.service';
 export * from './lib/services/seo.service';
 export * from './lib/shared/language/language.service';
+export * from './lib/shared/add-edit-advertisement-shared/services/add-advertisement.service';
 
 // UTILITS
 export * from './lib/utilits/local-storage.utilit';
@@ -98,3 +113,4 @@ export * from './lib/shared/store/auth/auth.action';
 // ENUMS
 export * from './lib/enums/project.enum';
 export * from './lib/enums/advertisement-status.enum';
+export * from './lib/enums/input-type.enum';

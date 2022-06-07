@@ -3,25 +3,37 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'az-sort-by',
   templateUrl: './sort-by.component.html',
-  styleUrls: ['./sort-by.component.less']
+  styleUrls: ['./sort-by.component.less'],
 })
 export class SortByComponent implements OnInit {
-  isActive = false
+  isActive = false;
+  isMapActive = false;
+  date = false;
 
-  @Output() handleGridOrList = new EventEmitter<boolean>()
-  constructor() { }
+  @Output() handleGridOrList = new EventEmitter<boolean>();
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   isGrid() {
     this.isActive = false;
-    this.handleGridOrList.emit(false)
+    this.handleGridOrList.emit(false);
   }
 
   isList() {
     this.isActive = true;
-    this.handleGridOrList.emit(true)
+    this.handleGridOrList.emit(true);
   }
 
+  isMap() {
+    this.isMapActive = !this.isMapActive;
+  }
+
+  byDate() {
+    this.date = true
+  }
+
+  byPrice() {
+    this.date = false
+  }
 }

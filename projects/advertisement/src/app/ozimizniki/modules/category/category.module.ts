@@ -34,6 +34,10 @@ import { SimilarItemsComponent } from './components/similar-items/similar-items.
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { PaginationModule } from '../../../shared/pagination/pagination.module';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 @NgModule({
   imports: [
@@ -41,6 +45,9 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
     FormsModule,
     ReactiveFormsModule,
     CategoryRoutes,
+
+    PaginationModule,
+
     /* NG-ZORRO */
     NzTypographyModule,
     NzGridModule,
@@ -58,7 +65,10 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
     NzTabsModule,
     NzDividerModule,
     NzSkeletonModule,
-    NzPaginationModule
+    NzPaginationModule,
+    NzPopoverModule,
+    NzDropDownModule,
+    NzDrawerModule
   ],
   declarations: [
     CategoryComponent,

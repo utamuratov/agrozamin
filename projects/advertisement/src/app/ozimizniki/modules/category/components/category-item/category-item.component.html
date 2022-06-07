@@ -6,14 +6,19 @@
           <div class="card__grid__img" (click)="routeClick(id)">
             <img [src]="img ? img : defaultImage" alt="card img">
           </div>
-          <div nz-row nzAlign="middle" nzJustify="space-between">
-            <div nz-col>
+          <div nz-row nzAlign="middle">
+            <div nz-col nzXs="0" nzSm="16">
               <az-tag [category]="category"></az-tag>
             </div>
-            <div nz-col>
-              <button nz-button nzType="primary">
-                <i nz-icon nzType="heart" nzTheme="fill"></i>
-              </button>
+            <div nz-col nzXs="24" nzSm="8">
+              <div nz-row nzJustify="end">
+                <div nz-col>
+                  <button nz-button nzType="text" style="padding-top: 0; width: 24px; height: 24px;">
+                    <!-- <i nz-icon nzType="heart" nzTheme="fill"></i> -->
+                    <i nz-icon nzType="heart" nzTheme="twotone" nzTwotoneColor="#B7BBBF" class="favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -21,11 +26,12 @@
       <div nz-col nzSpan="24">
         <div class="card__grid__bottom" (click)="routeClick(id)">
           <div nz-row>
+            <div nz-col nzXs="24" nzSm="0" class="card__grid__bottom__tag"><az-tag [category]="category"></az-tag></div>
             <div nz-col nzSpan="24" class="title_height">
               <h4 class="card__grid__bottom__title" nz-typography nzEllipsis [nzEllipsisRows]="2">{{title}}</h4>
             </div>
             <div nz-col nzSpan="24" class="subtitle_height">
-              <p class="card__grid__bottom__subtitle">7 458 698 сум <span>/ шт</span></p>
+              <p class="card__grid__bottom__subtitle">{{price ? price : 'Цена по запросу'}} <span *ngIf="price">сум</span></p>
             </div>
             <div nz-col nzSpan="24" class="undertitle_height">
               <p class="card__grid__bottom__undertitle">

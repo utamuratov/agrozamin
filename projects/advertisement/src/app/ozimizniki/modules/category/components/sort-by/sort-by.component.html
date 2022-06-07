@@ -1,8 +1,10 @@
 <div class="sort">
   <div nz-row nzAlign="middle" nzJustify="space-between">
-    <div nz-col>
+    <div nz-col nzXs="0" nzSm="0" nzMd="14" nzLg="10" nzXl="10">
       <div nz-row [nzGutter]="[8, 0]">
-        <div nz-col><span class="sort__variable">Сортировать:</span></div>
+        <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="7">
+          <span class="sort__variable">Сортировать:</span>
+        </div>
         <div nz-col>
           <a class="sort__link"
             ><span>По цене</span
@@ -17,12 +19,27 @@
         </div>
       </div>
     </div>
-    <div nz-col>
-      <div nz-row nzAlign="middle" [nzGutter]="[8, 0]">
-        <div nz-col><span class="sort__variable">Вид:</span></div>
+
+    <div nz-col nzXs="12" nzSm="12" nzMd="0" nzLg="0" nzXl="0">
+      <div nz-row [nzGutter]="[8, 0]">
+        <div nz-col>
+          <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" class="sort__link">
+            <span class="sort__response_link">{{date ? "По дате" : "По цене"}}</span
+            ><img src="./assets/images/sort.svg" alt="sort icon" />
+            <i nz-icon nzType="down"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col nzXs="12" nzSm="12" nzMd="10" nzLg="14" nzXl="14">
+      <div nz-row nzAlign="middle" nzJustify="end" [nzGutter]="[8, 0]">
+        <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="3">
+          <span class="sort__variable">Вид:</span>
+        </div>
         <div nz-col>
           <button
-            class="sort__btn"
+            class="sort__btn btn-icon"
             [ngClass]="isActive ? '' : 'active'"
             (click)="isGrid()"
           >
@@ -78,7 +95,7 @@
         </div>
         <div nz-col>
           <button
-            class="sort__btn"
+            class="sort__btn btn-icon"
             [ngClass]="isActive ? 'active' : ''"
             (click)="isList()"
           >
@@ -112,7 +129,59 @@
             </svg>
           </button>
         </div>
+        <div nz-col>
+          <button
+            class="sort__btn btn-icon-map"
+            [ngClass]="isMapActive ? 'active' : ''"
+            (click)="isMap()"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 19 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M5.60781 1.80128L1.75 3.73018V13.3865L5.04136 11.7408C5.3099 11.6065 5.619 11.5778 5.90768 11.6603L13.3922 13.7987L17.25 11.8698V2.21351L13.9586 3.85919C13.6901 3.99346 13.381 4.02219 13.0923 3.93971L5.60781 1.80128ZM5.04136 0.40745C5.30989 0.273184 5.619 0.244455 5.90768 0.326934L13.3922 2.46537L17.0133 0.654792C17.8112 0.255851 18.75 0.836046 18.75 1.7281V12.0552C18.75 12.5097 18.4932 12.9253 18.0867 13.1285L13.9586 15.1925C13.6901 15.3268 13.381 15.3555 13.0923 15.273L5.60781 13.1346L1.98666 14.9452C1.18877 15.3441 0.25 14.7639 0.25 13.8719V3.54477C0.25 3.09025 0.506803 2.67473 0.913344 2.47146L5.04136 0.40745Z"
+                fill="#86898C"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.2168 3.2666V14.5999H12.7168V3.2666H14.2168Z"
+                fill="#86898C"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6.2832 1V12.3333H4.7832V1H6.2832Z"
+                fill="#86898C"
+              />
+            </svg>
+            <span class="look-at-map">Смотреть на карте</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item>
+      <a class="sort__link" (click)="byPrice()"
+        ><span>По цене</span
+        ><img src="./assets/images/sort.svg" alt="sort icon"
+      /></a>
+    </li>
+    <li nz-menu-item>
+      <a class="sort__link" (click)="byDate()"
+        ><span>По дате</span
+        ><img src="./assets/images/sort.svg" alt="sort icon"
+      /></a>
+    </li>
+  </ul>
+</nz-dropdown-menu>

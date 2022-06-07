@@ -1,153 +1,274 @@
 <div class="filter">
-  <form nz-form [formGroup]="formFilter">
-    <nz-collapse nzGhost nzExpandIconPosition="right">
-      <nz-collapse-panel [nzHeader]="priceTitle" nzActive>
-        <div nz-row [nzGutter]="[10, 0]">
-          <div nz-col nzSpan="12">
-            <nz-form-item>
-              <nz-form-control>
-                <nz-input-group [nzPrefix]="prefixFrom" nzSize="large">
-                  <input type="text" nz-input formControlName="priceFrom" />
-                </nz-input-group>
-                <ng-template #prefixFrom>
-                  <span class="prefix">От</span>
-                </ng-template>
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-          <div nz-col nzSpan="12">
-            <nz-form-item>
-              <nz-form-control>
-                <nz-input-group [nzPrefix]="prefixFrom1" nzSize="large">
-                  <input type="text" nz-input formControlName="priceTo" />
-                </nz-input-group>
-                <ng-template #prefixFrom1>
-                  <span class="prefix">До</span>
-                </ng-template>
-              </nz-form-control>
-            </nz-form-item>
-          </div>
+  <nz-collapse nzGhost nzExpandIconPosition="right">
+    <nz-collapse-panel
+      [nzHeader]="filter.name"
+      nzActive
+      *ngFor="let filter of filters"
+    >
+      <ng-container [ngSwitch]="filter.type_for_filter">
+        <ng-container *ngSwitchCase="InputTypeForFilter.Checkbox">
+          <nz-form-item>
+            <nz-form-control nzSpan="24">
+              <nz-checkbox-wrapper
+                (nzOnChange)="onChangeCheckbox($event)"
+                class="checkbox-groups"
+              >
+                <div nz-row [nzGutter]="[0, 16]">
+                  <div
+                    nz-col
+                    nzSpan="24"
+                    *ngFor="let parameter of filter.parameters"
+                  >
+                    <label
+                      nz-checkbox
+                      [nzValue]="parameter.filter_parameter_id"
+                      nz-popover
+                      [(nzPopoverVisible)]="parameter.visiblePopover"
+                      nzPopoverTrigger="click"
+                      [nzPopoverContent]="contentTemplate"
+                      nzPopoverPlacement="right"
+                      >{{ parameter.label }}</label
+                    >
+                  </div>
+                </div>
+              </nz-checkbox-wrapper>
+            </nz-form-control>
+          </nz-form-item>
+          <ng-template #suffixIconButton>
+            <button nz-button nzType="default" nzSearch>
+              <i nz-icon nzType="search"></i>
+            </button> </ng-template
+        ></ng-container>
+        <ng-container *ngSwitchCase="InputTypeForFilter.Slider">
           <div nz-col nzSpan="24">
             <nz-slider nzRange></nz-slider>
           </div>
-        </div>
-
-        <ng-template #priceTitle>
-          <h4 nz-typography class="filter__title">Ценовой диапазон</h4>
-        </ng-template>
-      </nz-collapse-panel>
-
-      <nz-collapse-panel [nzHeader]="regionTitle" nzActive>
-        <nz-form-item>
-          <nz-form-control nzSpan="24">
-            <nz-input-group
-              nzSearch
-              [nzAddOnAfter]="suffixIconButton"
-              nzSize="large"
-            >
-              <input type="text" nz-input placeholder="Поиск по названию" formControlName="region" />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-control nzSpan="24">
-            <nz-checkbox-wrapper
-              (nzOnChange)="logRegion($event)"
-              class="checkbox-groups"
-              formArrayName="regionsList"
-            >
-              <div nz-row [nzGutter]="[0, 16]">
-                <div nz-col nzSpan="24" *ngFor="let region of regions">
-                  <label
-                    nz-checkbox
-                    [nzValue]="region.region"
-                    [ngModel]="true"
-                    >{{ region.region }}</label
-                  >
-                </div>
-              </div>
-            </nz-checkbox-wrapper>
-          </nz-form-control>
-        </nz-form-item>
-
-        <ng-template #regionTitle>
-          <h4 nz-typography class="filter__title">Регион</h4>
-        </ng-template>
-        <ng-template #suffixIconButton>
-          <button nz-button nzType="default" nzSearch>
-            <i nz-icon nzType="search"></i>
-          </button>
-        </ng-template>
-      </nz-collapse-panel>
-
-      <nz-collapse-panel [nzHeader]="manufacturer" nzActive>
-        <nz-form-item>
-          <nz-form-control nzSpan="24">
-            <nz-input-group
-              nzSearch
-              [nzAddOnAfter]="suffixIconButton"
-              nzSize="large"
-            >
-              <input type="text" nz-input placeholder="Поиск по названию" formControlName="company" />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-control nzSpan="24">
-            <nz-checkbox-wrapper
-              (nzOnChange)="logCompany($event)"
-              class="checkbox-groups"
-              formArrayName="companyList"
-            >
-              <div nz-row [nzGutter]="[0, 16]">
-                <div nz-col nzSpan="24" *ngFor="let company of manufactures">
-                  <label
-                    nz-checkbox
-                    [nzValue]="company.name"
-                    [ngModel]="true"
-                    >{{ company.name }}</label
-                  >
-                </div>
-              </div>
-            </nz-checkbox-wrapper>
-          </nz-form-control>
-        </nz-form-item>
-        <ng-template #manufacturer>
-          <h4 nz-typography class="filter__title">Производитель</h4>
-        </ng-template>
-      </nz-collapse-panel>
-
-      <nz-collapse-panel [nzHeader]="country" nzActive>
-        <nz-form-item>
-          <nz-form-control [nzSpan]="24">
-            <nz-input-group
-              nzSearch
-              [nzAddOnAfter]="suffixIconButton"
-              nzSize="large"
-            >
-              <input type="text" nz-input placeholder="Поиск по названию" formControlName="country" />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-
-        <div class="country">
-          <div nz-row [nzGutter]="[0, 10]">
-            <div nz-col *ngFor="let country of madeIn">
-              <nz-tag class="tag">
-                <a>{{country.country}} <span>{{country.count}}</span></a>
-              </nz-tag>
+        </ng-container>
+        <ng-container *ngSwitchCase="InputTypeForFilter.SliderWithInput">
+          <div nz-row [nzGutter]="[10, 0]">
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group [nzPrefix]="prefixFrom" nzSize="large">
+                    <input type="text" nz-input />
+                  </nz-input-group>
+                  <ng-template #prefixFrom>
+                    <span class="prefix">От</span>
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group [nzPrefix]="prefixFrom1" nzSize="large">
+                    <input type="text" nz-input />
+                  </nz-input-group>
+                  <ng-template #prefixFrom1>
+                    <span class="prefix">До</span>
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+              <nz-slider nzRange></nz-slider>
             </div>
           </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="InputTypeForFilter.DateRangePicker">
+          Not implemented
+        </ng-container>
+        <ng-container *ngSwitchCase="InputTypeForFilter.DateYearRangePicker">
+          <div nz-row [nzGutter]="[10, 0]">
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group [nzPrefix]="prefixFrom" nzSize="large">
+                    <input type="text" nz-input />
+                  </nz-input-group>
+                  <ng-template #prefixFrom>
+                    <span class="prefix">От</span>
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group [nzPrefix]="prefixFrom1" nzSize="large">
+                    <input type="text" nz-input />
+                  </nz-input-group>
+                  <ng-template #prefixFrom1>
+                    <span class="prefix">До</span>
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+              <nz-slider nzRange></nz-slider>
+            </div>
+          </div>
+        </ng-container>
+        <div *ngSwitchDefault></div>
+      </ng-container>
+    </nz-collapse-panel>
+
+    <ng-template #contentTemplate>
+      <div class="filter__popover-menu">
+        <div class="filter__popover-menu-item choose">
+          <span><img src="./assets/images/check.svg" /></span>
+          Применить фильтр
         </div>
-        
+        <div class="filter__popover-menu-item cancel">
+          <span><img src="./assets/images/close-red.svg" /></span>
+          Сбросить фильтр
+        </div>
+      </div>
+    </ng-template>
 
-
-      </nz-collapse-panel>
-      <ng-template #country>
-        <h4 nz-typography class="filter__title">Страна производства</h4>
+    <!-- TODO: REMOVE -->
+    <!-- <nz-collapse-panel [nzHeader]="priceTitle" nzActive>
+      <div nz-row [nzGutter]="[10, 0]">
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group [nzPrefix]="prefixFrom" nzSize="large">
+                <input type="text" nz-input />
+              </nz-input-group>
+              <ng-template #prefixFrom>
+                <span class="prefix">От</span>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group [nzPrefix]="prefixFrom1" nzSize="large">
+                <input type="text" nz-input />
+              </nz-input-group>
+              <ng-template #prefixFrom1>
+                <span class="prefix">До</span>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="24">
+          <nz-slider nzRange></nz-slider>
+        </div>
+      </div>
+      <ng-template #priceTitle>
+        <h4 nz-typography class="filter__title">Ценовой диапазон</h4>
       </ng-template>
-    </nz-collapse>
-  </form>
+    </nz-collapse-panel>
+
+    <nz-collapse-panel [nzHeader]="regionTitle" nzActive>
+      <nz-form-item>
+        <nz-form-control nzSpan="24">
+          <nz-input-group
+            nzSearch
+            [nzAddOnAfter]="suffixIconButton"
+            nzSize="large"
+          >
+            <input type="text" nz-input placeholder="Поиск по названию" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control nzSpan="24">
+          <nz-checkbox-wrapper
+            (nzOnChange)="logRegion($event)"
+            class="checkbox-groups"
+          >
+            <div nz-row [nzGutter]="[0, 16]">
+              <div nz-col nzSpan="24" *ngFor="let region of regions">
+                <label nz-checkbox [nzValue]="region.region" [ngModel]="true">{{
+                  region.region
+                }}</label>
+              </div>
+            </div>
+          </nz-checkbox-wrapper>
+        </nz-form-control>
+      </nz-form-item>
+
+      <ng-template #regionTitle>
+        <h4 nz-typography class="filter__title">Регион</h4>
+      </ng-template>
+      <ng-template #suffixIconButton>
+        <button nz-button nzType="default" nzSearch>
+          <i nz-icon nzType="search"></i>
+        </button>
+      </ng-template>
+    </nz-collapse-panel>
+
+    <nz-collapse-panel [nzHeader]="manufacturer" nzActive>
+      <nz-form-item>
+        <nz-form-control nzSpan="24">
+          <nz-input-group
+            nzSearch
+            [nzAddOnAfter]="suffixIconButton"
+            nzSize="large"
+          >
+            <input type="text" nz-input placeholder="Поиск по названию" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control nzSpan="24">
+          <nz-checkbox-wrapper
+            (nzOnChange)="logCompany($event)"
+            class="checkbox-groups"
+          >
+            <div nz-row [nzGutter]="[0, 16]">
+              <div nz-col nzSpan="24" *ngFor="let company of manufactures">
+                <label nz-checkbox [nzValue]="company.name" [ngModel]="true">{{
+                  company.name
+                }}</label>
+              </div>
+            </div>
+          </nz-checkbox-wrapper>
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #manufacturer>
+        <h4 nz-typography class="filter__title">Производитель</h4>
+      </ng-template>
+    </nz-collapse-panel>
+
+    <nz-collapse-panel [nzHeader]="country" nzActive>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="24">
+          <nz-input-group
+            nzSearch
+            [nzAddOnAfter]="suffixIconButton"
+            nzSize="large"
+          >
+            <input type="text" nz-input placeholder="Поиск по названию" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <div class="country">
+        <div nz-row [nzGutter]="[0, 10]">
+          <div nz-col *ngFor="let country of madeIn">
+            <nz-tag class="tag">
+              <a
+                >{{ country.country }} <span>{{ country.count }}</span></a
+              >
+            </nz-tag>
+          </div>
+        </div>
+      </div>
+    </nz-collapse-panel>
+    <ng-template #country>
+      <h4 nz-typography class="filter__title">Страна производства</h4>
+    </ng-template> -->
+  </nz-collapse>
+
+  <div nz-col nzSpan="24">
+    <button nz-button nzType="default" nzBlock nzSize="large">
+      <i nz-icon nzType="close" nzTheme="outline"></i> Сбросить фильтр
+    </button>
+  </div>
 </div>

@@ -5,9 +5,8 @@ import {
   Input,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NgDestroy } from 'ngx-az-core';
+import { IdName, NgDestroy } from 'ngx-az-core';
 import { BaseAddEditComponent } from 'projects/admin/src/app/shared/components/base-add-edit/base-add-edit.component';
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
 import { Observable } from 'rxjs';
 import { RegionResponse } from '../../region/dto/region.response';
 import { DistrictRequet } from '../dto/district.request';

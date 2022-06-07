@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from 'ngx-az-core';
+import { BaseService, IdName } from 'ngx-az-core';
 import { GridService } from 'projects/admin/src/app/core/services/grid.service';
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
 import { Advertisement } from '../dto/advertisment.interface';
 
 @Injectable()

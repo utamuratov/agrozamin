@@ -4,24 +4,34 @@ import { products } from './data';
 @Component({
   selector: 'az-all-category-items',
   templateUrl: './all-category-items.component.html',
-  styleUrls: ['./all-category-items.component.less']
+  styleUrls: ['./all-category-items.component.less'],
 })
 export class AllCategoryItemsComponent implements OnInit {
-  @Input() categoryId!: number
-  isLoading = true
-  products = products
+  @Input() categoryId!: number;
+  isLoading = true;
+  products = products;
   cardStyleTemplate = false;
-  
-  constructor() { }
+  cardSizeIndex = 6;
+
+  visible = false;
+
+  constructor() {}
 
   ngOnInit() {
     setTimeout(() => {
-      this.isLoading = false
+      this.isLoading = false;
     }, 1500);
   }
 
   onChangeCardStyle($event: boolean) {
-    this.cardStyleTemplate = $event
+    this.cardStyleTemplate = $event;
   }
 
+  open(): void {
+    this.visible = true;
+  }
+
+  close(): void {
+    this.visible = false;
+  }
 }

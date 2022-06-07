@@ -1,10 +1,12 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BaseService } from 'ngx-az-core';
-import { CategoryType } from 'projects/advertisement/src/app/ozimizniki/modules/add-advertisement/add-edit-advertisement-full/dto/category-type.interface';
-import { District } from 'projects/advertisement/src/app/ozimizniki/modules/add-advertisement/add-edit-advertisement-full/dto/district.interface';
-import { Region } from 'projects/advertisement/src/app/ozimizniki/modules/add-advertisement/add-edit-advertisement-full/dto/region.interface';
-import { AddAdvertisementService } from 'projects/advertisement/src/app/ozimizniki/modules/add-advertisement/add-edit-advertisement-full/services/add-advertisement.service';
+import {
+  AddAdvertisementService,
+  BaseService,
+  CategoryType,
+  District,
+  Region,
+} from 'ngx-az-core';
 import { map, Observable } from 'rxjs';
 import { UserListItem } from '../dto/user-list-item.interface';
 

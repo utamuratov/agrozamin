@@ -1,5 +1,4 @@
-import { IdName } from 'projects/admin/src/app/shared/models/id-name.interface';
-import { Id } from 'projects/admin/src/app/shared/models/id.interface';
+import { Id, IdName } from 'ngx-az-core';
 
 export interface Advertisement extends Id {
   name: string;

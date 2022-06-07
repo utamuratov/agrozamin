@@ -1,4 +1,4 @@
-import { Id } from 'projects/admin/src/app/shared/models/id.interface';
+import { Id } from 'ngx-az-core';
 import { Company } from './company.interface';
 
 export interface CompanyResponse extends Id, Company {

@@ -6,9 +6,11 @@ import {
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgDestroy } from 'ngx-az-core';
-import { AddEditAdvertisementFullLogicComponent } from 'projects/advertisement/src/app/ozimizniki/modules/add-advertisement/add-edit-advertisement-full/add-edit-advertisement-full-logic.component';
-import { AdvertisementResponse } from 'projects/advertisement/src/app/ozimizniki/modules/add-advertisement/add-edit-advertisement-full/dto/advertisement.response';
+import {
+  AddEditAdvertisementFullLogicComponent,
+  AdvertisementResponse,
+  NgDestroy,
+} from 'ngx-az-core';
 import { UserListItem } from '../dto/user-list-item.interface';
 import { AddEditAdvertismentService } from '../services/add-edit-advertisment.service';
 import { AdvertisementService } from '../services/advertisement.service';
