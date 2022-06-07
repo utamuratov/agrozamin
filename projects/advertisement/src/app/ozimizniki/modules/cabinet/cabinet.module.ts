@@ -27,6 +27,7 @@ import { CurrencyModule } from '../../../shared/currency/currency.module';
 import { ClassByCategoryIdPipe } from './components/advertisement/pipes/suffixByCategoryId.pipe';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { PaginationModule } from '../../../shared/pagination/pagination.module';
+import { NoImageModule } from '../../../shared/no-image/no-image.module';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { PaginationModule } from '../../../shared/pagination/pagination.module';
 
     CurrencyModule,
     PaginationModule,
+    NoImageModule,
 
     NzGridModule,
     NzMenuModule,

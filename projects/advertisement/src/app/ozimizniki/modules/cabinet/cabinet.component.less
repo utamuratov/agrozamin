@@ -1,28 +1,42 @@
 
 .advertisement{
-    // padding: 10px 0;
-    padding-top: 300px;
+    padding-top: 220px;
     padding-bottom: 100px;
     background: #F6F7FA;
 }
 
+.container{
+    
+    &__title{
+        padding-top: 20px;
+        h3{
+            margin: 0;
+            font-size: 32px;
+            line-height: 40px;
+        }
+    }
+}
 
-.wrapper{
-    ul{
+:host ::ng-deep .wrapper {
+    &_bg {
         border-radius: 12px;
         background: #fff;
+        overflow: hidden;
+    }
+      ul{
+        background: #fff;
+        border-right: none;
     }
     li{
         margin: 0;
     }
- 
 }
 
 :host ::ng-deep .wrapper .ant-menu-submenu-arrow {
     display: none;
 }
 :host ::ng-deep .wrapper .ant-menu-item-selected{
-    background-color: #F1F2F5;;
+    background-color: #F1F2F5;
 }
 
 .ant-menu-inline .ant-menu-item::after{

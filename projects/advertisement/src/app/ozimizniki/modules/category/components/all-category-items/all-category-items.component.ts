@@ -15,8 +15,6 @@ export class AllCategoryItemsComponent implements OnInit {
 
   visible = false;
 
-
-
   constructor() {}
 
   ngOnInit() {

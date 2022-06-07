@@ -2,7 +2,6 @@
     background: #fff;
     border-radius: 8px;
     padding: 24px;
-    height: 223px;
     
     &__content{
 
@@ -11,6 +10,10 @@
             font-size: 18px;
             line-height: 23px;
             font-family: Agrofont-Medium;
+
+            @media (max-width:992px) {
+                font-size: 14px;
+            }
         }
 
         &__date{
@@ -19,6 +22,9 @@
                 font-size: 13px;
                 line-height: 16px;
                 color: #86898C;
+                @media (max-width:992px) {
+                    font-size: 12px;
+                }
             }
         }
         &__button{
@@ -46,7 +52,32 @@
     }
 }
 
-.ant-checkbox-checked .ant-checkbox-inner {
-    background-color: green !important;
-    border-color: green;
+.popover{
+    width: 192px;  
+    &__content{
+      padding: 0px;
+      &__item{
+        width:193px; 
+        height: 44px; 
+        border-radius: 4px; 
+        padding: 10px;
+        cursor: pointer;
+        &:active{
+          background: #EDEFF5;
+          color: #86898C;
+        }
+        p{
+          margin: 0;
+        }
+      }
+    }
+  }
+
+:host ::ng-deep .ant-checkbox-checked .ant-checkbox-inner{
+    background-color: #00CD69;
+    box-shadow: none;
+}
+
+:host ::ng-deep .ant-checkbox-checked::after{
+    border: #86898C;
 }

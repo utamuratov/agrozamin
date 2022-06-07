@@ -1,151 +1,165 @@
 <div class="advertisement">
   <div class="container">
-    <div nz-row [nzGutter]="[{ xs: 20, sm: 20, lg:20, xl: 30 }, 0]">
-      <div nz-col nzXs="0" nzSm="0" nzMd="7" nzLg="6" nzXl="6" style="width: 100px;">
-        <div class="wrapper">
-          <ul
-            nz-menu
-            [nzTheme]="'light'"
-            [nzMode]="'inline'"
-            [nzInlineCollapsed]="isCollapsed"
-          >
-            <li nz-submenu nzOpen>
-              <span title
-                ><i
-                  ><img
-                    style="padding-right: 10px"
-                    src="/assets/images/menu-Vector.png"
-                    alt="" /></i
-                ><span class="nav-text">Объявления</span
-                ><span style="padding-left: 115px">12</span>
-              </span>
-              <ul>
-                <li
-                  routerLinkActive="ant-menu-item-selected"
-                  routerLink="advertisement/{{
-                    AdvertisementStatus.STATUS_CONFIRMED
-                  }}"
-                  nz-menu-item
-                >
-                  Активные
-                </li>
-                <li
-                  routerLink="advertisement/{{
-                    AdvertisementStatus.STATUS_NEW
-                  }}"
-                  routerLinkActive="ant-menu-item-selected"
-                  nz-menu-item
-                >
-                  Ожидающие
-                </li>
-                <li
-                  routerLink="advertisement/{{
-                    AdvertisementStatus.STATUS_ARCHIVED
-                  }}"
-                  routerLinkActive="ant-menu-item-selected"
-                  nz-menu-item
-                >
-                  Архивные
-                </li>
-                <li
-                  routerLink="advertisement/{{
-                    AdvertisementStatus.STATUS_REJECTED
-                  }}"
-                  routerLinkActive="ant-menu-item-selected"
-                  nz-menu-item
-                >
-                  Отклоненные
-                </li>
-              </ul>
-            </li>
-            <li nz-submenu style="padding-top: 5px">
-              <span title
-                ><i>
-                  <img
-                    style="padding-right: 10px"
-                    src="../../../../assets/images/menu-message.png"
-                    alt=""
-                  /> </i
-                ><span class="nav-text">Сообщения</span
-                ><span style="padding-left: 115px">12</span></span
-              >
-              <ul>
-                <li
-                  routerLink="messages/messages1"
-                  nz-menu-item
-                  routerLinkActive="ant-menu-item-selected"
-                >
-                  Непрочитанные
-                </li>
-                <li
-                  routerLink="messages/messages2"
-                  nz-menu-item
-                  routerLinkActive="ant-menu-item-selected"
-                >
-                  Исходящие
-                </li>
-                <li nz-menu-item routerLinkActive="ant-menu-item-selected">
-                  Входящие
-                </li>
-                <li nz-menu-item routerLinkActive="ant-menu-item-selected">
-                  Сохранённые
-                </li>
-                <li nz-menu-item routerLinkActive="ant-menu-item-selected">
-                  Архивные
-                </li>
-              </ul>
-            </li>
-            <li nz-submenu style="padding-top: 5px">
-              <span title
-                ><i
-                  ><img
-                    style="padding-right: 10px"
-                    src="../../../../assets/images/menu-heart.png"
-                    alt="" /></i
-                ><span class="nav-text">Избранное</span
-                ><span style="padding-left: 115px">12</span>
-              </span>
-              <ul>
-                <li
-                  nz-menu-item
-                  routerLink="favourites/favourite-advert"
-                  routerLinkActive="ant-menu-item-selected"
-                >
-                  Объявления
-                </li>
-                <li
-                  nz-menu-item
-                  routerLink="favourites/sellers"
-                  routerLinkActive="ant-menu-item-selected"
-                >
-                  Продавцы
-                </li>
-                <li
-                  nz-menu-item
-                  routerLink="favourites/filter-options"
-                  routerLinkActive="ant-menu-item-selected"
-                >
-                  Параметры фильтров
-                </li>
-              </ul>
-            </li>
-            <li
-              nz-menu-item
-              style="padding-top: 5px; padding-bottom: 10px"
-              routerLink="support"
-              routerLinkActive="ant-menu-item-selected"
+    <div nz-row >
+      <div nz-col nzSpan="24" class="container__route">
+        <span>Главная / Личный кабинет</span>
+      </div>
+
+      <div nz-col nzSpan="24" class="container__title">
+        <h3>Объявления</h3>
+      </div>
+    </div>
+    <div nz-row [nzGutter]="[{ xs: 20, sm: 20, lg:20, xl: 30 }, 0]" style="padding-top:40px;">
+
+    
+     
+      <div class="wrapper" nz-col nzXs="0" nzSm="0" nzMd="7" nzLg="6" nzXl="6">
+        <div class="wrapper_bg">
+          <div>
+            <ul
+              nz-menu
+              [nzTheme]="'light'"
+              [nzMode]="'inline'"
+              [nzInlineCollapsed]="isCollapsed"
             >
-              <span>
-                <i nz-icon>
-                  <img
-                    style="padding-right: 10px"
-                    src="/assets/images/menu-help.png"
-                    alt=""
-                  /> </i
-              ></span>
-              Чат с поддержкой
-            </li>
-          </ul>
+              <li nz-submenu nzOpen>
+                <span title
+                  ><i
+                    ><img
+                      style="padding-right: 10px"
+                      src="/assets/images/menu-Vector.png"
+                      alt="" /></i
+                  ><span class="nav-text">Объявления</span
+                  ><span style="padding-left: 115px">12</span>
+                </span>
+                <ul>
+                  <li
+                    routerLinkActive="ant-menu-item-selected"
+                    routerLink="advertisement/{{
+                      AdvertisementStatus.STATUS_CONFIRMED
+                    }}"
+                    nz-menu-item
+                  >
+                    Активные
+                  </li>
+                  <li
+                    routerLink="advertisement/{{
+                      AdvertisementStatus.STATUS_NEW
+                    }}"
+                    routerLinkActive="ant-menu-item-selected"
+                    nz-menu-item
+                  >
+                    Ожидающие
+                  </li>
+                  <li
+                    routerLink="advertisement/{{
+                      AdvertisementStatus.STATUS_ARCHIVED
+                    }}"
+                    routerLinkActive="ant-menu-item-selected"
+                    nz-menu-item
+                  >
+                    Архивные
+                  </li>
+                  <li
+                    routerLink="advertisement/{{
+                      AdvertisementStatus.STATUS_REJECTED
+                    }}"
+                    routerLinkActive="ant-menu-item-selected"
+                    nz-menu-item
+                  >
+                    Отклоненные
+                  </li>
+                </ul>
+              </li>
+              <li nz-submenu style="padding-top: 5px">
+                <span title
+                  ><i>
+                    <img
+                      style="padding-right: 10px"
+                      src="../../../../assets/images/menu-message.png"
+                      alt=""
+                    /> </i
+                  ><span class="nav-text">Сообщения</span
+                  ><span style="padding-left: 115px">12</span></span
+                >
+                <ul>
+                  <li
+                    routerLink="messages/messages1"
+                    nz-menu-item
+                    routerLinkActive="ant-menu-item-selected"
+                  >
+                    Непрочитанные
+                  </li>
+                  <li
+                    routerLink="messages/messages2"
+                    nz-menu-item
+                    routerLinkActive="ant-menu-item-selected"
+                  >
+                    Исходящие
+                  </li>
+                  <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+                    Входящие
+                  </li>
+                  <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+                    Сохранённые
+                  </li>
+                  <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+                    Архивные
+                  </li>
+                </ul>
+              </li>
+              <li nz-submenu style="padding-top: 5px">
+                <span title
+                  ><i
+                    ><img
+                      style="padding-right: 10px"
+                      src="../../../../assets/images/menu-heart.png"
+                      alt="" /></i
+                  ><span class="nav-text">Избранное</span
+                  ><span style="padding-left: 115px">12</span>
+                </span>
+                <ul>
+                  <li
+                    nz-menu-item
+                    routerLink="favourites/favourite-advert"
+                    routerLinkActive="ant-menu-item-selected"
+                  >
+                    Объявления
+                  </li>
+                  <li
+                    nz-menu-item
+                    routerLink="favourites/sellers"
+                    routerLinkActive="ant-menu-item-selected"
+                  >
+                    Продавцы
+                  </li>
+                  <li
+                    nz-menu-item
+                    routerLink="favourites/filter-options"
+                    routerLinkActive="ant-menu-item-selected"
+                  >
+                    Параметры фильтров
+                  </li>
+                </ul>
+              </li>
+              <li
+                nz-menu-item
+                style="padding-top: 5px; padding-bottom: 10px"
+                routerLink="support"
+                routerLinkActive="ant-menu-item-selected"
+              >
+                <span>
+                  <i nz-icon>
+                    <img
+                      style="padding-right: 10px"
+                      src="/assets/images/menu-help.png"
+                      alt=""
+                    /> </i
+                ></span>
+                Чат с поддержкой
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 

@@ -9,6 +9,8 @@ export class FavouriteAdvertComponent implements OnInit {
 
   isActive = false
 
+  date = false
+
   adverticement = [
     {
       img: '/assets/images/kombayn1.jpg',
@@ -78,5 +80,15 @@ export class FavouriteAdvertComponent implements OnInit {
     this.isActive = true;
     this.handleGridOrList.emit(true)
   }
+  
+
+  byDate() {
+    this.date = true
+  }
+
+  byPrice() {
+    this.date = false
+  }
+  
 
 }
