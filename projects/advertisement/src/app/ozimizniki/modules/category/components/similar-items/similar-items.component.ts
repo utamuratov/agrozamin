@@ -8,6 +8,9 @@ import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
   styleUrls: ['./similar-items.component.less'],
 })
 export class SimilarItemsComponent implements OnInit {
+  flexSize = '1'
+
+
   similarList = [
     {
       items: [
@@ -207,14 +210,28 @@ export class SimilarItemsComponent implements OnInit {
 
   ngOnInit() {}
 
-  routeClick(id: number) {
+  routeClick(id: number) {}
+
+  next(e: NzCarouselComponent) {
+    e.next();
   }
 
-  next(e:NzCarouselComponent) {
-    e.next()
+  pre(e: NzCarouselComponent) {
+    e.pre();
   }
 
-  pre(e:NzCarouselComponent) {
-    e.pre()
+  onResize(event: any) {
+    if (event.target.innerWidth <= 992 && event.target.innerWidth > 768) {
+      this.flexSize = '223px'
+    } else if (
+      event.target.innerWidth <= 768 &&
+      event.target.innerWidth > 576
+    ) {
+      this.flexSize = '230px'
+    } else if (event.target.innerWidth <= 576) {
+      console.log(576);
+    } else {
+      this.flexSize = '1'
+    }
   }
 }

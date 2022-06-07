@@ -45,7 +45,7 @@
 
     .look-at-map {
       font-family: Agrofont-Regular;
-      color: #86898C;
+      color: #86898c;
       margin-left: 8px;
       font-size: 16px;
 
@@ -63,24 +63,24 @@
     &:hover {
       svg {
         rect {
-          stroke: #377BE1;
+          stroke: #377be1;
         }
 
         path {
-          fill: #377BE1;
+          fill: #377be1;
         }
       }
 
-      border: 1px solid #377BE1;
+      border: 1px solid #377be1;
 
       .look-at-map {
-        color: #377BE1;
+        color: #377be1;
       }
     }
 
     &.active {
-      background: #377BE1;
-      border: 1px solid #377BE1;
+      background: #377be1;
+      border: 1px solid #377be1;
       svg {
         rect {
           stroke: #fff;
@@ -94,9 +94,7 @@
         color: #fff;
       }
     }
-
   }
-
 
   .btn-icon {
     width: 40px;
@@ -117,5 +115,43 @@
       height: 36px;
     }
   }
-  
+}
+
+.filter__params {
+  padding: 10px 20px !important;
+  border: 1px solid #cfd3d8;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 20px;
+  color: #86898c;
+  font-family: Agrofont-Regular;
+
+  i {
+    vertical-align: middle;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+}
+
+.map {
+  width: 100%;
+  height: 700px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  @media (max-width: 992px) {
+    height: 524px;
+  }
+
+  @media (max-width: 768px) {
+    height: 349px;
+  }
+
+  @media (max-width: 576px) {
+    height: 391px;
+  }
+
+  @media (max-width: 360px) {
+    height: 228px;
+  }
 }

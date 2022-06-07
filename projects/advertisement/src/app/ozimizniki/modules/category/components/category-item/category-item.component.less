@@ -78,7 +78,7 @@
         line-height: 20px;
         margin: 8px 0 16px 0;
 
-        @media (max-width: 360px) {
+        @media (max-width: 390px) {
           height: 35px;
           margin-bottom: 0;
           font-size: 14px;
@@ -104,13 +104,25 @@
 
   &__list {
     &__left {
-      height: 260px;
+      height: 220px;
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
       padding: 16px;
       border-radius: 8px 0 0 8px;
       overflow: hidden;
+
+      @media (max-width: 991px) {
+        height: 200px;
+      }
+
+      @media (max-width: 768px) {
+        height: 180px;
+      }
+
+      @media (max-width: 360px) {
+        height: 160px;
+      }
     }
 
     &__img {
@@ -130,8 +142,16 @@
     }
 
     &__right {
-      padding: 24px 24px 24px 20px;
+      padding: 24px;
       height: 100%;
+
+      @media (max-width: 992px) {
+        padding: 20px;
+      }
+
+      @media (max-width: 360px) {
+        padding: 10px;
+      }
 
       &__title {
         font-size: 18px;
@@ -139,18 +159,46 @@
         color: #1a1a1a;
         line-height: 23px;
         margin-bottom: 12px;
+
+        @media (max-width: 991px) {
+          margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 14px;
+          line-height: 18px;
+        }
+
+        @media (max-width: 768px) {
+          margin-bottom: 16px;
+        }
+
+        @media (max-width: 576px) {
+          margin-bottom: 0px;         
+        }
+
+        @media (max-width: 360px) {
+          font-size: 12px;
+          line-height: 15px;
+        }
       }
 
       &__text {
         font-size: 14px;
         font-family: Agrofont-Regular;
-        color: #1a1a1a;
+        color: #86898C;
         line-height: 18px;
         height: 72px;
+        margin-bottom: 0;
+
+        @media (max-width: 991px) {
+          display: none;
+        }
       }
 
       &__info {
-        width: 402px;
+        max-width: 442px;
+        width: 100%;
       }
 
       .location {
@@ -159,30 +207,63 @@
           align-items: center;
           font-size: 14px;
           font-family: Agrofont-Regular;
+          margin-bottom: 18px;
+
+          @media (max-width: 991px) {
+            margin-bottom: 8px;
+          }
+
+          @media (max-width: 360px) {
+            margin-bottom: 4px;
+          }
 
           span {
             margin-left: 6px;
             font-size: 14px;
             font-family: Agrofont-Regular;
+
+            @media (max-width: 768px) {
+              font-size: 12px;
+            }
+            @media (max-width: 360px) {
+              font-size: 10px;
+            }
           }
         }
 
-        p {
-          margin-bottom: 0;
-          display: flex;
-          align-items: center;
-          span {
-            margin-left: 4px;
+
+        &__addres {
+          font-size: 14px;
+          line-height: 18px;
+          color: #86898C;
+          font-family: Agrofont-Regular;
+          margin-left: 6px;
+
+          @media (max-width: 768px) {
+            font-size: 12px;
+          }
+        @media (max-width: 360px) {
+            font-size: 10px;
           }
         }
       }
 
       &__subtitle {
         font-size: 20px;
-        color: #22a33f;
+        color: #1B59B7;
         line-height: 25px;
         margin: 0;
         font-family: Agrofont-Bold;
+
+        @media (max-width: 768px) {
+          font-size: 16px;
+          line-height: 20px;
+        }
+
+        @media (max-width: 360px) {
+          font-size: 14px;
+          line-height: 18px;
+        }
       }
 
       &__underprice {
@@ -194,9 +275,24 @@
 
     &__derection {
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: space-between;
+    }
+
+    .connect__btn {
+      border-color: #377BE1;
+      color: #377BE1;
+
+      &:hover {
+        border-color: #4D94FF;
+        color: #4D94FF;
+      }
+
+      &:active {
+        background: #1B59B7;
+        color: #fff;
+      }
     }
   }
 }

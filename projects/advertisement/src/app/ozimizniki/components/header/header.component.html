@@ -55,12 +55,93 @@
 
         <div nz-col nzSpan="24" class="nav__middle">
           <div nz-row nzAlign="middle">
-            <div nz-col nzXs="16" nzSm="11" nzMd="9" nzLg="8" nzXl="9">
+            <div nz-col nzXs="16" nzSm="10" nzMd="9" nzLg="7" nzXl="7">
               <a [routerLink]="'./'" class="nav__logo">
                 <img src="./assets/images/logo.svg" alt="logo" />
               </a>
             </div>
-            <div
+
+            <div nz-col nzMd="0" nzLg="17" nzXl="17">
+              <div nz-row [nzGutter]="[98, 0]" nzAlign="middle" nzJustify="end">
+                <div nz-col>
+                  <div nz-row [nzGutter]="[24, 0]" nzJustify="end">
+                    <div nz-col class="nav__contacts">
+                      <a href="tel:998781500088"
+                        ><img
+                          src="./assets/images/phone-icon.svg"
+                          alt="icon"
+                        /><span nz-typography>(78) 150–00–88</span></a
+                      >
+                    </div>
+                    <div nz-col class="nav__contacts">
+                      <a
+                        ><img src="./assets/images/chat-icon.svg" alt="icon" /><span
+                          nz-typography
+                          >{{ "onlineChat" | translate }}</span
+                        ></a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div nz-col>
+                  <div nz-row [nzGutter]="[8, 0]" nzJustify="end">
+                    <div nz-col>
+                      <az-eco-system></az-eco-system>
+                    </div>
+
+                    <div nz-col *ngIf="isUserAuthenticated">
+                      <button nz-button nzType="default" nzSize="large">
+                        <i nz-icon nzType="bell" nzTheme="outline"></i>
+                      </button>
+                    </div>
+
+                    <div nz-col *ngIf="!isUserAuthenticated">
+                      <button
+                        nz-button
+                        nzType="default"
+                        nzSize="large"
+                        (click)="navigateToSignIn()"
+                      >
+                        <i nz-icon nzType="user" nzTheme="outline"></i>
+                        {{ "toComeIn" | translate }}
+                      </button>
+                    </div>
+
+                    <div nz-col *ngIf="isUserAuthenticated">
+                      <nz-button-group
+                        nz-popover
+                        [nzPopoverContent]="contentTemplate"
+                        [(nzPopoverVisible)]="isVisibleProfilePopup"
+                        nzPopoverTrigger="click"
+                        nzPopoverPlacement="bottomRight"
+                      >
+                        <button
+                          nz-button
+                          nzType="default"
+                          nzSize="large"
+                          class="ava-btn"
+                          *ngIf="profileImage"
+                        >
+                          <img [src]="'./assets/images/ava.jpg'" alt="ava-btn" />
+                        </button>
+                        <button
+                          nz-button
+                          nzType="default"
+                          nzSize="large"
+                          class="ava-btn"
+                          *ngIf="!profileImage"
+                        >
+                          <i nz-icon nzType="user" nzTheme="outline"></i>
+                        </button>
+                      </nz-button-group>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div
               nz-col
               nzXs="0"
               nzSm="0"
@@ -154,9 +235,56 @@
                   </nz-button-group>
                 </div>
               </div>
+            </div> -->
+
+            <div nz-col nzSm="0" nzMd="15" nzLg="0">
+              <div nz-row [nzGutter]="[20, 0]" nzJustify="end">
+
+                <div nz-col>
+                  <div nz-row nzJustify="end" [nzGutter]="[9, 0]">
+                    <div nz-col>
+                      <nz-select ngModel="1" nzBorderless>
+                        <nz-option nzValue="1" nzLabel="Ташкент"></nz-option>
+                        <nz-option nzValue="2" nzLabel="Самарканд"></nz-option>
+                      </nz-select>
+                    </div>
+    
+                    <div nz-col class="text-end">
+                      <az-language
+                        [title]="'language' | translate"
+                        [template]="'dropdown'"
+                      ></az-language>
+                    </div>
+                  </div>
+                </div>
+
+                <div nz-col>
+                  <div nz-row nzJustify="end" [nzGutter]="[10, 0]">
+
+                    <div nz-col>
+                      <button nz-button nzType="default" nzSize="large" nzBlock>
+                        <i nz-icon nzType="user" nzTheme="outline"></i>
+                        <span>Войти</span>
+                      </button>
+                    </div>
+                    
+                    <div nz-col>
+                      <button
+                        nz-button
+                        nzType="default"
+                        nzSize="large"
+                        (click)="openAz()"
+                      >
+                      <i nz-icon nzType="menu" nzTheme="outline"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
 
-            <div nz-col nzXs="0" nzSm="0" nzMd="8" nzLg="0" nzXl="0">
+            <!-- <div nz-col nzXs="0" nzSm="0" nzMd="8" nzLg="0" nzXl="0">
               <div nz-row nzJustify="end" [nzGutter]="[9, 0]">
                 <div nz-col>
                   <nz-select ngModel="1" nzBorderless>
@@ -172,7 +300,7 @@
                   ></az-language>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="0">
               <div nz-row nzJustify="end">
@@ -200,36 +328,29 @@
 
             <div
               nz-col
-              nzXs="8"
-              nzSm="12"
-              nzMd="7"
+              nzXs="0"
+              nzSm="14"
+              nzMd="0"
               nzLg="0"
               nzXl="0"
               class="text-end"
             >
               <div nz-row nzJustify="end" [nzGutter]="[10, 0]">
 
-                <div nz-col nzXs="0" nzSm="12" nzMd="0">
+                <div nz-col>
                   <button nz-button nzType="primary" nzSize="large" (click)="open()" nzBlock>
                     <i><img src="./assets/images/catalog.svg" alt="icon" /></i>
                     <span class="nav__bottom-btn-text">Каталог</span>
                   </button>
                 </div>
 
-                <div nz-col nzXs="0" nzSm="4" nzMd="0">
+                <div nz-col>
                   <button nz-button nzSize="large">
                     <i nz-icon nzType="search" nzTheme="outline"></i>
                   </button>
                 </div>
 
-                <div nz-col nzSm="0" nzXs="0" nzMd="12">
-                  <button nz-button nzType="default" nzSize="large" nzBlock>
-                    <i nz-icon nzType="user" nzTheme="outline"></i>
-                    <span>Войти</span>
-                  </button>
-                </div>
-
-                <div nz-col nzXs="0" nzSm="4" nzMd="0">
+                <div nz-col>
                   <button nz-button nzType="default" nzSize="large">
                     <i nz-icon nzType="user" nzTheme="outline"></i>
                   </button>
@@ -247,6 +368,39 @@
                 </div>
               </div>
             </div>
+
+            <!-- <div
+              nz-col
+              nzXs="0"
+              nzSm="0"
+              nzMd="14"
+              nzLg="0"
+              nzXl="0"
+              class="text-end"
+            >
+              <div nz-row nzJustify="end" [nzGutter]="[10, 0]">
+
+                <div nz-col>
+                  <button nz-button nzType="default" nzSize="large" nzBlock>
+                    <i nz-icon nzType="user" nzTheme="outline"></i>
+                    <span>Войти</span>
+                  </button>
+                </div>
+                
+                <div nz-col>
+                  <button
+                    nz-button
+                    nzType="default"
+                    nzSize="large"
+                    (click)="openAz()"
+                  >
+                  <i nz-icon nzType="menu" nzTheme="outline"></i>
+                  </button>
+                </div>
+              </div>
+            </div> -->
+
+
           </div>
         </div>
       </div>

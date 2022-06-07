@@ -1,4 +1,5 @@
 .product {
+  padding-top: 30px;
   &__img {
     position: relative;
 
@@ -6,6 +7,19 @@
       height: 354px;
       overflow: hidden;
       border-radius: 12px;
+
+      @media (max-width: 991px) {
+        height: 535px;
+      }
+      @media (max-width: 767px) {
+        height: 409px;
+      }
+      @media (max-width: 575px) {
+        height: 301px;
+      }
+      @media (max-width: 360px) {
+        height: 180px;
+      }
     }
 
     img {
@@ -13,6 +27,19 @@
       border-radius: 12px;
       object-fit: cover;
       height: 354px;
+
+      @media (max-width: 991px) {
+        height: 535px;
+      }
+      @media (max-width: 767px) {
+        height: 409px;
+      }
+      @media (max-width: 575px) {
+        height: 301px;
+      }
+      @media (max-width: 360px) {
+        height: 180px;
+      }
     }
 
     &__left {
@@ -48,6 +75,19 @@
         &.active {
           outline: 2px solid #ffaa46;
         }
+
+        @media (max-width: 991px) {
+          height: 98px;
+        }
+        @media (max-width: 767px) {
+          height: 72px;
+        }
+        @media (max-width: 575px) {
+          height: 56px;
+        }
+        @media (max-width: 360px) {
+          height: 31px;
+        }
       }
     }
   }
@@ -57,6 +97,14 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+
+    &__type {
+      color: #00cd69;
+      font-size: 20px;
+      line-height: 25px;
+      font-family: Agrofont-Bold;
+      margin-bottom: 0;
+    }
 
     &__cat-info {
       margin-bottom: 0;
@@ -75,26 +123,58 @@
       color: #1a1a1a;
       line-height: 40px;
       margin-bottom: 0;
+
+      @media (max-width: 767px) {
+        font-size: 24px;
+        line-height: 30px;
+      }
+
+      @media (max-width: 360px) {
+        font-size: 20px;
+        line-height: 25px;
+      }
     }
 
     &__price {
       font-size: 32px;
-      color: #22a33f;
+      color: #377be1;
       font-family: Agrofont-Bold;
+
+      @media (max-width: 767px) {
+        font-size: 24px;
+        line-height: 30px;
+      }
+
+      @media (max-width: 360px) {
+        font-size: 20px;
+        line-height: 25px;
+      }
     }
 
     &__subprice {
       font-size: 14px;
       font-family: Agrofont-Regular;
       color: #86898c;
+      padding: 8px;
+      background: #edeff5;
+      border-radius: 4px;
+      line-height: 10px;
     }
 
     &__contacts {
+
+      @media (max-width: 991px) {
+        margin-top: 20px;
+      }
       &__btn {
         display: flex;
         align-items: center;
         span {
           margin-left: 8px;
+        }
+
+        @media (max-width: 991px) {
+          justify-content: center;
         }
       }
 
@@ -106,6 +186,9 @@
           font-family: Agrofont-Regular;
           line-height: 16px;
           color: #22a33f;
+
+          
+
           span {
             margin-left: 8px;
           }
@@ -113,8 +196,13 @@
 
         &-text {
           margin-bottom: 0;
+          font-size: 14px;
+
           span {
             margin-left: 8px;
+            @media (max-width: 360px) {
+              font-size: 12px;
+            }
           }
         }
       }
@@ -135,6 +223,11 @@
         line-height: 16px;
         display: flex;
         align-items: center;
+        transition: 0.3s;
+
+        @media (max-width: 991px) {
+          
+        }
 
         span {
           margin-left: 4px;
@@ -142,14 +235,22 @@
         svg {
           path {
             transition: 0.3s;
-            fill: #22a33f;
+            fill: #377BE1;
           }
         }
 
         &:hover {
           svg {
             path {
-              fill: #ffaa46;
+              fill: #00CD69;
+            }
+          }
+        }
+
+        &:active {
+          svg {
+            path {
+              fill: #1B59B7;
             }
           }
         }
@@ -171,6 +272,15 @@
       &-country {
         color: #86898c;
         margin: 0 6px;
+
+        @media (max-width: 575px) {
+          display: none;
+          &+span {
+            margin-left: 6px;
+          }
+        }
+
+        
       }
     }
 
@@ -190,6 +300,7 @@
       font-size: 16px;
       font-family: Agrofont-Regular;
       line-height: 24px;
+      text-align: justify;
     }
 
     .list-items {
@@ -244,13 +355,211 @@
 
       &__input-block {
         padding: 30px;
-        border: 1px solid #CFD3D8;
+        border: 1px solid #cfd3d8;
         border-radius: 12px;
         h4 {
           margin-bottom: 0;
           font-size: 16px;
           font-family: Agrofont-Medium;
         }
+      }
+    }
+  }
+}
+
+.message-btn {
+  background: #00cd69;
+  color: #fff;
+
+  &:active {
+    border-color: #0bb362;
+  }
+
+  &:hover {
+    border-color:#00cd69;
+  }
+}
+
+.contact-person {
+  &__text {
+    margin-left: 8px;
+    margin-right: 6px;
+    font-size: 14px;
+    color: #86898c;
+    font-family: Agrofont-Regular;
+
+    @media (max-width: 360px) {
+      font-size: 12px;
+    }
+  }
+
+  &__name {
+    font-size: 14px;
+    font-family: Agrofont-Regular;
+    @media (max-width: 360px) {
+      font-size: 12px;
+    }
+  }
+
+  &__status {
+    margin-left: 16px;
+
+    .online {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #52C41A;
+      margin-right: 8px;
+    }
+
+    &__text {
+      color: #86898C;
+      font-size: 12px;
+      font-family: Agrofont-Regular;
+      @media (max-width: 380px) {
+        display: none;
+      }
+
+      &_modify {
+        display: none;
+        @media (max-width: 380px) {
+          font-size: 10px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+
+.carousel__subcard-img {
+  width: 18%;
+  height: 63px;
+
+  @media (max-width: 991px) {
+    width: 18%;
+    height: 98px;
+  }
+
+  @media (max-width: 767px) {
+    height: 72px;
+  }
+  @media (max-width: 575px) {
+    height: 56px;
+  }
+  @media (max-width: 360px) {
+    height: 31px;
+  }
+}
+
+.look-at-map {
+  font-family: Agrofont-Regular;
+  color: #86898c;
+  margin-left: 8px;
+  font-size: 16px;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+}
+
+.map-btn {
+  display: flex;
+  align-items: center;
+  background: #1B59B7;
+  margin-left: auto;
+
+
+  span {
+    margin-left: 8px;
+    color: #fff;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+.similar {
+  padding: 70px 0;
+  background: #F0FAF5;
+
+  @media (max-width: 991px) {
+    padding: 40px 0;
+  }
+
+  @media (max-width: 360px) {
+    padding: 30px 0;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 0;
+    font-family: Agrofont-BExpanded;
+
+    @media (max-width: 991px) {
+      font-size: 25px;
+      line-height: 31px;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    @media (max-width: 575px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+
+  [nz-carousel-content] {
+    height: 392px;
+    background: #364d79;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .card__width {
+    max-width: 262px;
+    width: 100%;
+  }
+
+  &__card {
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+
+    &__top {
+      height: 242px;
+      width: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__bottom {
+      padding: 20px;
+
+      @media (max-width: 360px) {
+        padding: 10px;
       }
     }
   }

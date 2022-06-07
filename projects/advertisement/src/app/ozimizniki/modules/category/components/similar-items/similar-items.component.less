@@ -1,7 +1,15 @@
 .similar {
-  background: #f8f9fc;
+  background: #F0FAF5;
   padding: 70px 0;
   margin-top: 70px;
+
+  @media (max-width: 991px) {
+    padding: 40px 0;
+  }
+
+  @media (max-width: 360px) {
+    padding: 30px 0;
+  }
 
   [nz-carousel-content] {
     color: #fff;
@@ -9,13 +17,62 @@
     // height: 392px;
   }
 
+  &__title {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 0;
+
+    @media (max-width: 992px) {
+      font-size: 25px;
+      line-height: 31px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 18px;
+      line-height: 23px;
+    }
+  }
+
   &-carousel {
     height: 392px;
     position: relative;
 
+    @media (max-width: 991px) {
+      height: 373px;
+      
+    }
+    @media (max-width: 767px) {
+      height: 380px;
+    }
+    @media (max-width: 575px) {
+      height: 400px;
+    }
+    @media (max-width: 360px) {
+      height: 299px;
+    }
+
+    .scroll {
+      overflow-x: scroll;
+      flex-wrap: nowrap;
+    }
+
     .btn {
       position: absolute;
       z-index: 100;
+
+      @media (max-width: 991px) {
+        display: none;
+      }
     }
 
     .left {
@@ -36,13 +93,41 @@
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
+    @media (max-width: 991px) {
+      height: 373px;
+      
+    }
+    @media (max-width: 767px) {
+      height: 380px;
+    }
+    @media (max-width: 575px) {
+      height: 400px;
+    }
+    @media (max-width: 360px) {
+      height: 299px;
+    }
 
     &__img {
-      width: 242px;
+      width: 100%;
       height: 242px;
       position: absolute;
       top: 0;
       left: 0;
+
+      @media (max-width: 991px) {
+        height: 223px;
+      }
+      @media (max-width: 767px) {
+        height: 230px;
+      }
+
+      @media (max-width: 575px) {
+        height: 258px;
+      }
+
+      @media (max-width: 360px) {
+        height: 155px;
+      }
 
       img {
         width: 100%;
@@ -55,6 +140,21 @@
       height: 242px;
       position: relative;
       padding: 16px;
+
+      @media (max-width: 991px) {
+        height: 223px;
+      }
+      @media (max-width: 767px) {
+        height: 230px;
+      }
+
+      @media (max-width: 575px) {
+        height: 258px;
+      }
+
+      @media (max-width: 360px) {
+        height: 155px;
+      }
     }
 
     &__bottom {
@@ -62,12 +162,21 @@
       height: 150px;
       padding: 20px;
 
+      @media (max-width: 360px) {
+        padding: 10px;
+      }
+
       &__title {
         margin-bottom: 0;
         font-size: 14px;
         font-family: Agrofont-Medium;
         color: #1a1a1a;
         line-height: 17px;
+
+        @media (max-width: 360px) {
+          font-size: 12px;
+          line-height: 15px;
+        }
       }
 
       &__subtitle {
@@ -76,6 +185,11 @@
         color: #22a33f;
         line-height: 20px;
         margin: 8px 0 16px 0;
+
+        @media (max-width: 360px) {
+          font-size: 14px;
+          line-height: 15px;
+        }
 
         span {
           font-size: 12px;
