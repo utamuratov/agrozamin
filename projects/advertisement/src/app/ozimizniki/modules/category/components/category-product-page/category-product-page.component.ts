@@ -41,6 +41,8 @@ export class CategoryProductPageComponent implements OnInit {
     },
   ];
 
+  array = [1, 2, 3, 4];
+
   activeSlide = 0;
   mapVisible = false
   textAreaCommend!: string;
