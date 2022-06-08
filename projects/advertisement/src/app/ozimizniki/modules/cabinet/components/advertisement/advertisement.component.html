@@ -38,7 +38,7 @@
                 nzPlaceHolder="Все категории"
                 nzSize="large"
                 [(ngModel)]="categoryId"
-                (ngModelChange)="loadInitData()"
+                (ngModelChange)="onChangeCategoryFilter()"
               >
                 <nz-option
                   [nzValue]="category.id"
@@ -54,7 +54,7 @@
                 nzPlaceHolder="Все типы объявлений"
                 nzSize="large"
                 [(ngModel)]="advertisementTypeId"
-                (ngModelChange)="loadInitData()"
+                (ngModelChange)="onChangeAdvertisementTypeFilter()"
                 [nzDropdownMatchSelectWidth]="false"
               >
                 <nz-option
@@ -181,8 +181,16 @@
               </div>
             </div>
 
-            <div nz-col nzXs="8" nzSm="8" nzMd="0" nzLg="0" nzXl="0" style="padding-top: 5px;">
-              <div nz-row [nzGutter]="[3,0]">
+            <div
+              nz-col
+              nzXs="8"
+              nzSm="8"
+              nzMd="0"
+              nzLg="0"
+              nzXl="0"
+              style="padding-top: 5px"
+            >
+              <div nz-row [nzGutter]="[3, 0]">
                 <div nz-col>
                   <img
                     src="./assets/images/o'zimizniki-Vector (2).png"
@@ -203,8 +211,16 @@
               </div>
             </div>
 
-            <div nz-col nzXs="8" nzSm="8" nzMd="0" nzLg="0" nzXl="0" style="padding-top: 5px;">
-              <div nz-row [nzGutter]="[3,0]">
+            <div
+              nz-col
+              nzXs="8"
+              nzSm="8"
+              nzMd="0"
+              nzLg="0"
+              nzXl="0"
+              style="padding-top: 5px"
+            >
+              <div nz-row [nzGutter]="[3, 0]">
                 <div nz-col>
                   <img src="./assets/images/o'zimizniki-Vector1.png" alt="" />
                 </div>
@@ -214,8 +230,16 @@
               </div>
             </div>
 
-            <div nz-col nzXs="8" nzSm="8" nzMd="0" nzLg="0" nzXl="0" style="padding-top: 5px;">
-              <div nz-row [nzGutter]="[3,0]">
+            <div
+              nz-col
+              nzXs="8"
+              nzSm="8"
+              nzMd="0"
+              nzLg="0"
+              nzXl="0"
+              style="padding-top: 5px"
+            >
+              <div nz-row [nzGutter]="[3, 0]">
                 <div nz-col>
                   <img src="./assets/images/o'zimizniki-phone.png" alt="" />
                 </div>
@@ -267,11 +291,11 @@
                       </i>
                     </div>
                     <div nz-col nzXs="24" nzSm="24" nzMd="0" nzLg="0" nzXl="0">
-                      <i
-                        nz-icon
-                        nzPopoverTrigger="click"
-                      >
-                        <img src="../../../../../../assets/images/top-button_without_text.png" alt="" />
+                      <i nz-icon nzPopoverTrigger="click">
+                        <img
+                          src="../../../../../../assets/images/top-button_without_text.png"
+                          alt=""
+                        />
                       </i>
                     </div>
 
@@ -493,7 +517,7 @@
         </div>
       </div>
     </div>
-    
+
     <ng-template #contentTemplate>
       <div class="popover">
         <div nz-row [nzGutter]="[0, 5]">
@@ -565,7 +589,8 @@
       <az-pagination
         [pageSize]="pageSize"
         [total]="data.total"
-        (pageIndexChange)="loadInitData($event)"
+        [pageIndex]="query.pageIndex"
+        (pageIndexChange)="paginate($event)"
       ></az-pagination>
     </div>
   </ng-container>

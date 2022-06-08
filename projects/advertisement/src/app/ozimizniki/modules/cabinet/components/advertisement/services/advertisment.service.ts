@@ -3,7 +3,7 @@ import { BaseService, IdName } from 'ngx-az-core';
 import { GridService } from 'projects/admin/src/app/core/services/grid.service';
 import { Advertisement } from '../dto/advertisment.interface';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AdvertisementService extends GridService<Advertisement> {
   /**
    *
