@@ -940,31 +940,17 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   * TODO: REMOVE
+   *
+   * NAVIGATE TO SIGN-IN SCREEN
    */
-  navigate() {
-    // if (this.isUserAuthenticated) {
-    //   // NAVIGATE TO CABINET
-    //   if (isDevMode()) {
-    //     // result: /agro-id/ru/cabinet
-    //     this.document.location.pathname = `/${
-    //       Constants.AGROID_ROUTE_PATH
-    //     }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
-    //     return;
-    //   }
-    //   // result: /agro-id/az/ru/cabinet
-    //   this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}/${
-    //     Constants.AGROZAMIN_PREFIX_ROUTE_PATH
-    //   }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
-    //   return;
-    // }
-  }
-
-  // NAVIGATE TO SIGN-IN SCREEN
   navigateToSignIn() {
     this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}`;
   }
 
+  /**
+   *
+   * @param urls
+   */
   navigateTo(urls: string[]) {
     this.isVisibleProfilePopup = false;
     this.router.navigate(urls, { relativeTo: this.route });

@@ -50,12 +50,21 @@ export class ErrorHelper {
    *  Catches http errors and responds by status
    * @param error Http error response
    */
-  static catchErrors(error: HttpErrorResponse, urlSignIn: string): void {
+  static catchErrors(
+    error: HttpErrorResponse,
+    urlSignIn: string,
+    withWindowLocationHref?: boolean
+  ): void {
     if (!error) {
       return;
     }
     const router = InjectorHelper.injector.get(Router);
     if (error.status === HttpStatusCode.Unauthorized) {
+      if (withWindowLocationHref) {
+        window.location.href = urlSignIn;
+        return;
+      }
+
       router.navigate([urlSignIn]);
       return;
     }

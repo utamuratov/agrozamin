@@ -96,7 +96,7 @@ export class BaseService {
    *
    * @param errors
    */
-  private makeError(errors: ErrorItem[]) {
+  makeError(errors: ErrorItem[]) {
     switch (errors[0].field) {
       case Constants.OFFLINE:
         userOffline.next(errors[0]);

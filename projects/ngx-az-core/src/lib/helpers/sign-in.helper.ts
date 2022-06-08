@@ -75,12 +75,16 @@ export class SignInHelper {
     this.isWaitingResponse$ = this.$baseAuth.signIn(model).pipe(
       map((result) => {
         if (result.success) {
-          this.router.navigate(['/']);
+          this.navigateToHome();
         }
 
         return false;
       }),
       startWith(true)
     );
+  }
+
+  protected navigateToHome() {
+    this.router.navigate(['/']);
   }
 }
