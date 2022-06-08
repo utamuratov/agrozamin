@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgroZaminRoutingSharedModule } from 'projects/agro-zamin/src/app/app.module';
 import { AgroIdRoutingSharedModule } from 'projects/agro-id/src/app/app.module';
 import { AdvertisementRoutingSharedModule } from 'projects/advertisement/src/app/app.module';
+import { OnlineConsultantRoutingSharedModule } from 'projects/online-consultant/src/app/app.module';
 
 registerLocaleData(ru);
 
@@ -28,6 +29,7 @@ registerLocaleData(ru);
     AgroZaminRoutingSharedModule.forRoot(),
     AgroIdRoutingSharedModule.forRoot(),
     AdvertisementRoutingSharedModule.forRoot(),
+    OnlineConsultantRoutingSharedModule.forRoot(),
   ],
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent],

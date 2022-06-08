@@ -532,6 +532,11 @@
                 "input": "projects/agro-id/src/styles.less",
                 "bundleName": "agro-id",
                 "inject": false
+              },
+              {
+                "input": "projects/online-consultant/src/styles.less",
+                "bundleName": "online-consultant",
+                "inject": false
               }
             ],
             "scripts": []
