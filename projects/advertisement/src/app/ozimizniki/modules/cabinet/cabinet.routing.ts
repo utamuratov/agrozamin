@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdvertisementStatus } from 'ngx-az-core';
 import { CabinetComponent } from './cabinet.component';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
+import { AdvertisementResolver } from './components/advertisement/services/advertisment.resolver';
 import { FavouriteAdvertComponent } from './components/favourites/components/favourite-advert/favourite-advert.component';
 import { FilterOptionsComponent } from './components/favourites/components/filter-options/filter-options.component';
 import { SellersComponent } from './components/favourites/components/sellers/sellers.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
       {
         path: `advertisement/:status`,
         component: AdvertisementComponent,
+        resolve: { advertisment: AdvertisementResolver },
       },
       {
         path: 'messages',
