@@ -5,7 +5,7 @@
     <div nz-row nzJustify="space-around" nzAlign="middle" style="height: 100%">
       <div nz-col nzSpan="24">
         <!-- ENTER -->
-        <h1>{{ "entrance" | translate }}</h1>
+        <h1>LOGIN</h1>
 
         <nz-divider style="margin-top: -10px; margin-bottom: 0"></nz-divider>
 
@@ -47,15 +47,6 @@
             </nz-form-control>
           </nz-form-item>
 
-          <!-- !IMPLEMENT OR REMOVE THIS CODE SECTION -->
-          <!-- <div nz-row class="login-form-margin">
-            <div nz-col [nzSpan]="12">
-              <label nz-checkbox formControlName="remember">
-                <span>Запомните меня</span>
-              </label>
-            </div>
-          </div> -->
-
           <!-- LOGIN -->
           <div [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }">
             <button
@@ -64,7 +55,7 @@
               [nzType]="'primary'"
               [nzLoading]="isWaitingResponse$ | async"
             >
-              {{ "toComeIn" | translate }}
+              Login
             </button>
           </div>
         </form>
