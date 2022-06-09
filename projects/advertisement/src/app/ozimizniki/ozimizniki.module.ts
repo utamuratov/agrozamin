@@ -22,7 +22,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FilterPipe } from './components/header/pipes/filter.pipe';
 import { LanguageComponent } from './components/language/language.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { PopupProfileComponent } from './components/header/components/popup-profile/popup-profile.component';
 // import { CatalogMembersComponent } from './modules/catalog-members/catalog-members.component';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 
 @NgModule({
   imports: [
@@ -45,6 +47,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     NzLayoutModule,
     NzModalModule,
     NzPopoverModule,
+    NzCollapseModule
   ],
   declarations: [
     OzimiznikiComponent,
@@ -53,6 +56,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     FilterPipe,
     FooterComponent,
     LanguageComponent,
+    PopupProfileComponent
   ],
 })
 export class OzimiznikiModule {}
