@@ -38,6 +38,8 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { PaginationModule } from '../../../shared/pagination/pagination.module';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @NgModule({
   imports: [
@@ -68,7 +70,9 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     NzPaginationModule,
     NzPopoverModule,
     NzDropDownModule,
-    NzDrawerModule
+    NzDrawerModule,
+    NzBreadCrumbModule,
+    NzSelectModule
   ],
   declarations: [
     CategoryComponent,

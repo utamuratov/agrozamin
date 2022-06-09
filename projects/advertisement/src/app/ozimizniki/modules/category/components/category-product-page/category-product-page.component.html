@@ -1,5 +1,45 @@
 <div class="product">
   <div class="container">
+
+    <div nz-row class="product__bradcrumb">
+      <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
+        <nz-breadcrumb>
+          <nz-breadcrumb-item>Главная</nz-breadcrumb-item>
+          <nz-breadcrumb-item>
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+              Каталог
+              <i nz-icon nzType="down"></i>
+            </a>
+          </nz-breadcrumb-item>
+          <nz-breadcrumb-item>
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+              Сельхозтехника
+              <i nz-icon nzType="down"></i>
+            </a>
+          </nz-breadcrumb-item>
+          <nz-breadcrumb-item>
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+              Техника для растениеводства
+              <i nz-icon nzType="down"></i>
+            </a>
+          </nz-breadcrumb-item>
+          <nz-breadcrumb-item>
+            <a>
+              Прочая уборочная техника
+            </a>
+          </nz-breadcrumb-item>
+        </nz-breadcrumb>
+      </div>
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
+        <nz-select ngModel="Сельхозтехника" nzBorderless>
+          <nz-option nzValue="Сельхозтехника" nzLabel="Сельхозтехника"></nz-option>
+          <nz-option nzValue="Техника" nzLabel="Техника"></nz-option>
+          <nz-option nzValue="Техника для растениеводства" nzLabel="Техника для растениеводства"></nz-option>
+          <nz-option nzValue="Техника для животноводства" nzLabel="Техника для животноводства"></nz-option>
+        </nz-select>       
+      </div>
+    </div>
+
     <div nz-row [nzGutter]="[0, 50]">
       <div nz-col nzSpan="24">
         <div nz-row [nzGutter]="[30, {xs: 30, sm: 40, md: 40, lg: 0, xl: 0}]">
@@ -424,3 +464,15 @@
   </div>
   <az-similar-items></az-similar-items>
 </div>
+
+
+<!-- dropdown  -->
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzSelectable>
+    <li nz-menu-item>1st menu item</li>
+    <li nz-menu-item>2nd menu item</li>
+    <li nz-menu-item>3rd menu item</li>
+    <li nz-menu-item nzDanger>4th danger item</li>
+  </ul>
+</nz-dropdown-menu>
