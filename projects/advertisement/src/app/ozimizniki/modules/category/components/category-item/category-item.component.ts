@@ -22,8 +22,9 @@ export class CategoryItemComponent implements OnInit {
   @Input() isLoading = false;
 
   @Input() catId!: number
+  activeCard = false
 
-  defaultImage = './assets/images/default-img-card.jpg'
+  defaultImage = './assets/images/def.jpg'
   constructor(private router: Router, private route: ActivatedRoute) { 
 
   }
@@ -36,7 +37,13 @@ export class CategoryItemComponent implements OnInit {
       this.router.navigate([this.catId,id], {relativeTo: this.route})
     } else {
       this.router.navigate([id], {relativeTo: this.route})
-    }
+    }    
+  }
+
+  addToFavoriteCard() {
+    this.activeCard = !this.activeCard
     
   }
 }
+
+

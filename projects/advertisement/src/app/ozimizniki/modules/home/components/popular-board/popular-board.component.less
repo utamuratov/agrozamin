@@ -2,6 +2,13 @@
   padding: 70px 0;
   background: #f0faf5;
 
+  @media (max-width: 992px) {
+    padding: 40px 0;
+  }
+
+  @media (max-width: 360px) {
+    padding: 30px 0;
+  }
 
   .item {
     position: relative;
@@ -25,6 +32,10 @@
       &__img {
         width: 242px;
         height: 242px;
+
+        @media (max-width: 1199px) {
+          width: 100%;
+        }
 
         img {
           width: 100%;
