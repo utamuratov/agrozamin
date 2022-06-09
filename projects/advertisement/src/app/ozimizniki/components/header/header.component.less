@@ -384,6 +384,7 @@
     padding: 30px;
     &.top {
       padding: 20px 30px;
+      padding-bottom: 0;
     }
   }
 
@@ -392,13 +393,20 @@
   }
 
   &__language {
-    padding: 0 30px;
+    padding: 30px 30px;
+    border-bottom: 1px solid #E6E9ED;
 
     &__title {
       font-size: 16px;
       line-height: 20px;
       font-family: Agrofont-Regular;
       margin-bottom: 16px;
+    }
+
+    &__text {
+      font-size: 20px;
+      line-height: 20px;
+      color: #000;
     }
   }
 }
@@ -483,6 +491,16 @@
 .add-advertisement {
   @media (max-width: 991px) {
     display: none;
+
+    &.drawer-add {
+      display: inline-block;
+    }
+  }
+
+  @media (max-width: 575px) {
+    &.drawer-add {
+      display: none;
+    }
   }
 }
 
@@ -499,6 +517,163 @@
   @media (max-width: 767px) {
     &_text {
       display: none;
+    }
+  }
+}
+
+.drawer__btn__info {
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+
+  img {
+    margin-right: 10px;
+  }
+
+  &__arrow {
+    margin-right: 20px;
+    color: #00CD69;
+  }
+}
+
+.location {
+  &__header_panel {
+    font-size: 16px;
+    font-family: Agrofont-Medium;
+    line-height: 20px;
+    color: #000;
+    margin-bottom: 0;
+    padding-left: 18px;
+
+    &.active {
+      color: #377BE1;
+    }
+  }
+
+  &__city {
+    font-size: 16px;
+    font-family: Agrofont-Regular;
+    line-height: 20px;
+  }
+}
+
+.lang__info {
+  padding: 30px;
+
+  button {
+    font-size: 16px;
+    line-height: 20px;
+    color: #000;
+    font-family: Agrofont-Regular;
+
+    &:disabled {
+      color: #B7BBBF;
+    }
+  }
+}
+
+.search__drawer {
+  padding: 30px;
+}
+
+.catalog-draw {
+  padding: 40px 30px;
+  background: #EDEFF5;
+  height: 100%;
+
+  &__second {
+    background: #fff;
+    height: 100%;
+    padding: 40px 30px;
+  }
+
+  &__header {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    width: max-content;
+
+    &__secondLvl {
+      display: inline-block;
+      margin-left: 20px;      
+    }
+
+    &.secondLvl {
+      font-family: 14px;
+      line-height: 18px;
+    }
+
+    i {
+      margin-right: 20px;
+      color: #00CD69;
+    }
+
+    &.thirdLvl {
+      padding-bottom: 32px;
+      border-bottom: 1px solid #E6E9ED;
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+
+  &__category {
+    .menu {
+      &__item {
+        padding: 15px 0;
+      }
+
+      &__link {
+        display: flex;
+        align-items: center;
+
+        &-text {
+          font-size: 14px;
+          font-family: Agrofont-Medium;
+          line-height: 18px;
+          color: #000;
+          flex-grow: 1;
+        }
+
+        img {
+          margin-right: 20px;
+        }
+
+      }
+    }
+    
+    &__list {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #E6E9ED;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+
+      &.thirdLvl {
+        border-bottom: none;
+      }
+    }
+    
+
+    &__secondLvl {
+      display: inline-block;
+      font-family: Agrofont-Bold;
+      font-size: 16px;
+      line-height: 20px;
+      flex-grow: 1;
+      padding: 20px 0;      
+    }
+
+    &__thirdLvl {
+      font-size: 14px;
+      line-height: 18px;
+      font-family: Agrofont-Regular;
+      padding: 8px 12px;
+      color: #000;
     }
   }
 }

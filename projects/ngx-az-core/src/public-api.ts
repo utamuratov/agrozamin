@@ -18,6 +18,7 @@ export * from './lib/shared/banner/banner.module';
 export * from './lib/shared/credits/credits.module';
 export * from './lib/shared/news/news.module';
 export * from './lib/shared/add-edit-advertisement-shared/add-edit-advertisement-shared.module';
+export * from './lib/shared/sign-in-helper/sign-in-helper.module';
 
 // COMPONENTS
 export * from './lib/shared/forms-shared/components/error/error.component';

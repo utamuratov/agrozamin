@@ -6,7 +6,7 @@ import {
   isDevMode,
   OnInit,
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngxs/store';
@@ -26,6 +26,8 @@ export class HeaderComponent implements OnInit {
 
   lang = '1';
 
+  validateForm!: FormGroup;
+
   isOpened = false;
   activeLink!: number;
   visible = false;
@@ -42,6 +44,7 @@ export class HeaderComponent implements OnInit {
   /* AZ-DRAWER */
   azVisible = false;
   azDrawerWidthValue!: string;
+  azDrawerWidthValueCatalog!: string;
   /* ************************** */
   profileImage = true;
 
@@ -224,11 +227,11 @@ export class HeaderComponent implements OnInit {
     },
     {
       icon: './assets/images/cow.svg',
-      name: 'Сельскохозяйственные животные',
+      name: 'Сельхоз животные',
       id: 5,
       categories: [
         {
-          name: 'Сельскохозяйственные животные',
+          name: 'Сельхоз животные',
           categories: [
             { name: 'Тракторы' },
             { name: 'Минитехника' },
@@ -240,7 +243,7 @@ export class HeaderComponent implements OnInit {
           ],
         },
         {
-          name: 'Сельскохозяйственные животные',
+          name: 'Сельхоз животные',
           categories: [
             { name: 'Виноградоуборочные комбайны' },
             { name: 'Почвообрабатывающая техника' },
@@ -254,7 +257,7 @@ export class HeaderComponent implements OnInit {
           ],
         },
         {
-          name: 'Сельскохозяйственные животные',
+          name: 'Сельхоз животные',
           categories: [
             { name: 'Кормоуборочные комбайны' },
             { name: 'Кормозаготовительная техника' },
@@ -816,13 +819,71 @@ export class HeaderComponent implements OnInit {
   /**
    *
    */
-  isVisibleProfilePopup = false;
+  isVisibleProfilePopupLg = false;
+  isVisibleProfilePopupMd = false;
+  isVisibleProfilePopupSm = false;
+  isVisibleProfilePopupDrawer = false;
+ 
 
   /**
    *
    */
   readonly SERVICES = Data.SERVICES;
 
+  visibleLocationDrawer = false;
+  visibleLangDrawer = false;
+  visibleSearchDrawer = false;
+  visibleCatalogDrawer = false;
+  visibleCatalogDrawerSecondLvl = false;
+  visibleCatalogDrawerThirdLvl = false
+  drawerOffsetValue = 280
+
+  categorySecondLvl: any = []
+  categoryThirdLvl: any = []
+
+  panels = [
+    {
+      name: 'Андижанская область',
+    },
+    {
+      name: 'Бухарская область',
+    },
+    {
+      name: 'Джизакская область',
+    },
+    {
+      name: 'Каракалпакстан',
+    },
+    {
+      name: 'Кашкадарьинская область',
+    },
+    {
+      name: 'Навоийская область',
+    },
+    {
+      name: 'Наманганская область',
+    },
+    {
+      name: 'Самаркандская область',
+    },
+    {
+      name: 'Сурхандарьинская область',
+    },
+    {
+      name: 'Сырдарьинская область',
+    },
+    {
+      name: 'Ташкентская область',
+    },
+    {
+      name: 'Ферганская область',
+    },
+    {
+      name: 'Хорезмская область',
+    },
+  ];
+
+  
   constructor(
     private fb: FormBuilder,
     private $jwtHelper: JwtHelperService,
@@ -833,14 +894,21 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isUserAuthenticated = !this.$jwtHelper.isTokenExpired();
+    // this.isUserAuthenticated = !this.$jwtHelper.isTokenExpired();
 
     this.searchForm = this.fb.group({
       searchInput: [null],
       cityInput: [null],
     });
 
+    this.validateForm = this.fb.group({
+      title: [null, [Validators.required]],
+      city: [null, [Validators.required]]
+    });
+
     this.azDrawerWidthValue = this.azDrawerWidth();
+    this.azDrawerWidthValueCatalog = this.azDrawerWidthCatalog();
+    this.drawerOffsetValue = this.azDrawerOffsetCatalog();
   }
 
   submit() {
@@ -915,8 +983,9 @@ export class HeaderComponent implements OnInit {
 
       if (clientWidth > 1355) {
         clientWidth = 1355;
+      } else if (clientWidth < 1200) {
+        return '280px';
       }
-      ``;
       return `${clientWidth}px`;
     }
   }
@@ -924,7 +993,7 @@ export class HeaderComponent implements OnInit {
   azDrawerWidth(): string {
     if (window.innerWidth > 992) {
       return '470px';
-    } else if (window.innerWidth > 480 && window.innerWidth < 992) {
+    } else if (window.innerWidth > 575 && window.innerWidth < 992) {
       return '374px';
     } else {
       return '100%';
@@ -933,6 +1002,8 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:resize') onResize() {
     this.azDrawerWidthValue = this.azDrawerWidth();
+    this.azDrawerWidthValueCatalog = this.azDrawerWidthCatalog();
+    this.drawerOffsetValue = this.azDrawerOffsetCatalog();
   }
 
   setLang(num: string) {
@@ -940,33 +1011,22 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   * TODO: REMOVE
+   *
+   * NAVIGATE TO SIGN-IN SCREEN
    */
-  navigate() {
-    // if (this.isUserAuthenticated) {
-    //   // NAVIGATE TO CABINET
-    //   if (isDevMode()) {
-    //     // result: /agro-id/ru/cabinet
-    //     this.document.location.pathname = `/${
-    //       Constants.AGROID_ROUTE_PATH
-    //     }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
-    //     return;
-    //   }
-    //   // result: /agro-id/az/ru/cabinet
-    //   this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}/${
-    //     Constants.AGROZAMIN_PREFIX_ROUTE_PATH
-    //   }/${this.$store.selectSnapshot(LanguageState.currentLanguage)}/cabinet`;
-    //   return;
-    // }
-  }
-
-  // NAVIGATE TO SIGN-IN SCREEN
   navigateToSignIn() {
     this.document.location.pathname = `/${Constants.AGROID_ROUTE_PATH}`;
   }
 
+  /**
+   *
+   * @param urls
+   */
   navigateTo(urls: string[]) {
-    this.isVisibleProfilePopup = false;
+    this.isVisibleProfilePopupLg = false;
+    this.isVisibleProfilePopupMd = false;
+    this.isVisibleProfilePopupSm = false;
+    this.isVisibleProfilePopupDrawer = false;
     this.router.navigate(urls, { relativeTo: this.route });
   }
 
@@ -976,5 +1036,103 @@ export class HeaderComponent implements OnInit {
   logout() {
     // TODO: DO LOGOUT
     this.navigateToSignIn();
+  }
+
+  openLocationDrawer(): void {
+    this.visibleLocationDrawer = true;
+  }
+
+  closeLocationDrawer(): void {
+    this.visibleLocationDrawer = false;
+  }
+
+  openLangDrawer(): void {
+    this.visibleLangDrawer = true;
+  }
+
+  closeLangDrawer(): void {
+    this.visibleLangDrawer = false;
+  }
+
+  openSearchDrawer(): void {
+    this.visibleSearchDrawer = true;
+  }
+
+  closeSearchDrawer(): void {
+    this.visibleSearchDrawer = false;
+  }
+
+  openCatalogDrawer(): void {
+    this.visibleCatalogDrawer = true;
+  }
+
+  closeCatalogDrawer(): void {
+    this.visibleCatalogDrawer = false;
+    this.closeDrawerCatalogSubmenu();
+    this.closeDrawerCatalogThirdLvl();
+  }
+
+  
+
+  submitForm(): void {
+    if (this.validateForm.valid) {
+      console.log('submit', this.validateForm.value);
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
+  }
+
+  genderChange(value: string): void {
+    this.validateForm.get('note')!.setValue(value === 'male' ? 'Hi, man!' : 'Hi, lady!');
+  }
+
+  openDrawerCatalogSubmenu(id: number) {
+    console.log(id);
+    this.visibleCatalogDrawerSecondLvl = true;
+    this.categorySecondLvl = this.categories.filter(e => e.id === id)[0]
+    console.log(this.categorySecondLvl);
+  }
+
+  closeDrawerCatalogSubmenu() {
+    this.visibleCatalogDrawerSecondLvl = false
+  }
+
+  openDrawerCatalogThirdLvl(subcategory: []) {
+    this.categoryThirdLvl = subcategory
+    this.visibleCatalogDrawerThirdLvl = true
+    console.log(this.categoryThirdLvl);    
+  }
+
+  closeDrawerCatalogThirdLvl() {
+    this.visibleCatalogDrawerThirdLvl = false
+  }
+
+  openTabDrawer() {
+    console.log('hello');    
+  }
+
+  // setOffsetDrawer() {
+
+  // }
+
+  azDrawerWidthCatalog(): string {
+     if (window.innerWidth > 575 ) {
+      return '280px';
+    } else {
+      return '100%';
+    }
+  }
+
+  azDrawerOffsetCatalog(): number {
+     if (window.innerWidth > 575 ) {
+      return 280;
+    } else {
+      return 0;
+    }
   }
 }

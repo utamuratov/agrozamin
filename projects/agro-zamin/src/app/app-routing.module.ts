@@ -29,6 +29,11 @@ const routes: Routes = [
       },
     ],
   },
+  // THIS ROUTE IS NEEDED FOR DEV MODE
+  {
+    path: 'sign-in',
+    loadChildren: () => import('ngx-az-core').then((m) => m.SignInHelperModule),
+  },
 ];
 
 @NgModule({

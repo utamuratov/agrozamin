@@ -17,7 +17,7 @@ export class BaseAuthService {
    *
    * @param $baseService
    */
-  constructor(private $baseService: BaseService, private $store: Store) {}
+  constructor(protected $baseService: BaseService, protected $store: Store) {}
 
   /**
    *

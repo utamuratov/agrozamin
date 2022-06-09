@@ -1,5 +1,7 @@
 <div nz-row *ngIf="total > pageSize">
-  <div nz-col nzSpan="6" class="pagination__left">Всего 53 328 товаров</div>
+  <div nz-col nzSpan="6" class="pagination__left">
+    {{ "totalWithText" | translate: { value: total } }}
+  </div>
   <div nz-col nzSpan="18">
     <div nz-row nzJustify="end">
       <nz-pagination

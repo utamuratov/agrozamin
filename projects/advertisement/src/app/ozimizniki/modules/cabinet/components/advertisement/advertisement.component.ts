@@ -1,7 +1,14 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AdvertisementStatus, IdName, GridQuery, GridModel } from 'ngx-az-core';
+import {
+  AdvertisementStatus,
+  IdName,
+  GridQuery,
+  GridModel,
+  NgDestroy,
+} from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
+import { takeUntil } from 'rxjs';
 import { Advertisement } from './dto/advertisment.interface';
 import { AdvertisementService } from './services/advertisment.service';
 
@@ -22,6 +29,11 @@ export class AdvertisementComponent {
    *
    */
   pageSize = AdvertisementConstants.PAGINATION_PAGE_SIZE;
+
+  /**
+   *
+   */
+  query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
 
   /**
    *
@@ -61,31 +73,61 @@ export class AdvertisementComponent {
   constructor(
     private $advertisment: AdvertisementService,
     private route: ActivatedRoute,
+    private $destroy: NgDestroy,
     private cd: ChangeDetectorRef
   ) {
     this.getFilterData();
 
-    this.route.params.subscribe((params) => {
+    this.route.params.pipe(takeUntil(this.$destroy)).subscribe((params) => {
       this.status = params['status'];
-      this.loadInitData();
+      this.initQuery();
+      this.data = this.route.snapshot.data['advertisment'];
     });
   }
 
   /**
    *
    */
-  loadInitData(pageIndex = AdvertisementConstants.DEFAULT_PAGE_INDEX) {
-    const query = AdvertisementConstants.DEFAULT_GRID_QUERY;
-    query.pageIndex = pageIndex;
-    this.loadDataFromServer(query);
+  private initQuery() {
+    this.query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
+    this.query.filter = this.getQueryFilter();
+  }
+
+  /**
+   *
+   */
+  private loadDataByInitialQuery() {
+    this.initQuery();
+    this.loadDataFromServer(this.query);
+  }
+
+  /**
+   *
+   */
+  onChangeCategoryFilter() {
+    this.loadDataByInitialQuery();
+  }
+
+  /**
+   *
+   */
+  onChangeAdvertisementTypeFilter() {
+    this.initQuery();
+    this.loadDataFromServer(this.query);
+  }
+
+  /**
+   *
+   */
+  paginate(pageIndex = AdvertisementConstants.DEFAULT_PAGE_INDEX) {
+    this.query.pageIndex = pageIndex;
+    this.loadDataFromServer(this.query);
   }
 
   /**
    *
    */
   loadDataFromServer(query: GridQuery) {
-    query.filter = this.getQueryFilter();
-
     this.$advertisment.getGridData(query).subscribe((result) => {
       if (result.success) {
         this.data = {

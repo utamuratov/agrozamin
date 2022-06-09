@@ -174,7 +174,7 @@
         }
 
         @media (max-width: 576px) {
-          margin-bottom: 0px;         
+          margin-bottom: 0px;
         }
 
         @media (max-width: 360px) {
@@ -186,7 +186,7 @@
       &__text {
         font-size: 14px;
         font-family: Agrofont-Regular;
-        color: #86898C;
+        color: #86898c;
         line-height: 18px;
         height: 72px;
         margin-bottom: 0;
@@ -231,18 +231,17 @@
           }
         }
 
-
         &__addres {
           font-size: 14px;
           line-height: 18px;
-          color: #86898C;
+          color: #86898c;
           font-family: Agrofont-Regular;
           margin-left: 6px;
 
           @media (max-width: 768px) {
             font-size: 12px;
           }
-        @media (max-width: 360px) {
+          @media (max-width: 360px) {
             font-size: 10px;
           }
         }
@@ -250,7 +249,7 @@
 
       &__subtitle {
         font-size: 20px;
-        color: #1B59B7;
+        color: #1b59b7;
         line-height: 25px;
         margin: 0;
         font-family: Agrofont-Bold;
@@ -281,16 +280,16 @@
     }
 
     .connect__btn {
-      border-color: #377BE1;
-      color: #377BE1;
+      border-color: #377be1;
+      color: #377be1;
 
       &:hover {
-        border-color: #4D94FF;
-        color: #4D94FF;
+        border-color: #4d94ff;
+        color: #4d94ff;
       }
 
       &:active {
-        background: #1B59B7;
+        background: #1b59b7;
         color: #fff;
       }
     }
@@ -299,4 +298,27 @@
 
 .favorite-icon {
   font-size: 24px;
+}
+
+.add-to-favorite {
+  padding-top: 0;
+  width: 24px;
+  height: 24px;
+
+  &.active {
+    svg {
+      path {
+        fill: #00CD69;
+        stroke: #FFFFFF;
+      }
+    }
+  }
+
+  &:hover {
+    svg {
+      path {
+        stroke: #00CD69;
+      }
+    }
+  }
 }
