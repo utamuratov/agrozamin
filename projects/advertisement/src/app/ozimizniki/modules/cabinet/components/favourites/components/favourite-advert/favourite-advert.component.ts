@@ -7,12 +7,15 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class FavouriteAdvertComponent implements OnInit {
 
+  isFavorite = false
+
   isActive = false
 
   date = false
 
   adverticement = [
     {
+      id: 1,
       img: '/assets/images/kombayn1.jpg',
       imgText: 'Сельхозтехника',
       title: 'Кормоуборочный комбайн RSM F 2650',
@@ -23,6 +26,7 @@ export class FavouriteAdvertComponent implements OnInit {
       price: '45 659 875 сум'
     },
     {
+      id: 2,
       img: '/assets/images/semena.jpg',
       imgText: 'Семена',
       title: 'Подсолнечник',
@@ -32,6 +36,7 @@ export class FavouriteAdvertComponent implements OnInit {
       price: '3 261 сум'
     },
     {
+      id: 3,
       img: '/assets/images/tedom.jpg',
       imgText: 'Фермерское оборудование',
       title: 'Когенерационная установка Quanto 2300 MWM NG OM LB 50Hz S',
@@ -41,6 +46,7 @@ export class FavouriteAdvertComponent implements OnInit {
       price: 'Цена по запросу'
     },
     {
+      id: 4,
       img: '/assets/images/karto\'shka.jpg',
       imgText: 'Зерно',
       title: 'Соя',
@@ -48,6 +54,7 @@ export class FavouriteAdvertComponent implements OnInit {
       price: '419 сум'
     },
     {
+      id: 5,
       img: '/assets/images/sheep.jpg',
       imgText: 'Фермерское оборудование',
       title: 'Племенные бараны',
@@ -55,6 +62,7 @@ export class FavouriteAdvertComponent implements OnInit {
       price: '659 875 сум'
     },
     {
+      id: 6,
       img: '/assets/images/kabel.jpg',
       imgText: 'Резинотехнические изделия',
       title: 'Шланг ПВХ',
@@ -90,5 +98,10 @@ export class FavouriteAdvertComponent implements OnInit {
     this.date = false
   }
   
+  addToFavorite(id: number) {
+    this.isFavorite = !this.isFavorite
+    console.log(id);
+    
+  }
 
 }

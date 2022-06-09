@@ -19,6 +19,7 @@ import { AdvertisementService } from './services/advertisment.service';
   providers: [AdvertisementService],
 })
 export class AdvertisementComponent {
+  isFavorite = false
   /**
    *
    */
@@ -163,5 +164,10 @@ export class AdvertisementComponent {
         value: [String(this.advertisementTypeId || '')],
       },
     ];
+  }
+
+  addToFavorite(id: number) {
+    this.isFavorite = !this.isFavorite
+    console.log(id);
   }
 }
