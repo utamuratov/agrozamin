@@ -55,7 +55,6 @@
 
         <div nz-col nzSpan="24" class="nav__middle">
           <div nz-row nzAlign="middle">
-            
             <div nz-col nzXs="12" nzSm="10" nzMd="9" nzLg="7" nzXl="7">
               <a [routerLink]="'./'" class="nav__logo">
                 <img src="./assets/images/logo.svg" alt="logo" />
@@ -76,10 +75,12 @@
                     </div>
                     <div nz-col class="nav__contacts">
                       <a
-                        ><img src="./assets/images/chat-icon.svg" alt="icon" /><span
-                          nz-typography
-                          >{{ "onlineChat" | translate }}</span
-                        ></a
+                        ><img
+                          src="./assets/images/chat-icon.svg"
+                          alt="icon"
+                        /><span nz-typography>{{
+                          "onlineChat" | translate
+                        }}</span></a
                       >
                     </div>
                   </div>
@@ -87,11 +88,10 @@
 
                 <div nz-col>
                   <div nz-row [nzGutter]="[8, 0]" nzJustify="end">
-
                     <div nz-col>
                       <az-eco-system></az-eco-system>
                     </div>
-                    
+
                     <div nz-col *ngIf="!isUserAuthenticated">
                       <button
                         nz-button
@@ -131,7 +131,10 @@
                           class="ava-btn"
                           *ngIf="profileImage"
                         >
-                          <img [src]="'./assets/images/ava.jpg'" alt="ava-btn" />
+                          <img
+                            [src]="'./assets/images/ava.jpg'"
+                            alt="ava-btn"
+                          />
                         </button>
                         <button
                           nz-button
@@ -151,7 +154,6 @@
 
             <div nz-col nzXs="0" nzSm="0" nzMd="15" nzLg="0" nzXl="0">
               <div nz-row [nzGutter]="[20, 0]" nzJustify="end" nzAlign="middle">
-
                 <div nz-col>
                   <div nz-row nzJustify="end" [nzGutter]="[9, 0]">
                     <div nz-col>
@@ -160,7 +162,7 @@
                         <nz-option nzValue="2" nzLabel="Самарканд"></nz-option>
                       </nz-select>
                     </div>
-    
+
                     <div nz-col class="text-end">
                       <az-language
                         [title]="'language' | translate"
@@ -172,7 +174,6 @@
 
                 <div nz-col>
                   <div nz-row nzJustify="end" [nzGutter]="[10, 0]">
-
                     <div nz-col *ngIf="!isUserAuthenticated">
                       <button
                         nz-button
@@ -212,7 +213,10 @@
                           class="ava-btn"
                           *ngIf="profileImage"
                         >
-                          <img [src]="'./assets/images/ava.jpg'" alt="ava-btn" />
+                          <img
+                            [src]="'./assets/images/ava.jpg'"
+                            alt="ava-btn"
+                          />
                         </button>
                         <button
                           nz-button
@@ -225,7 +229,7 @@
                         </button>
                       </nz-button-group>
                     </div>
-                    
+
                     <div nz-col>
                       <button
                         nz-button
@@ -233,20 +237,32 @@
                         nzSize="large"
                         (click)="openAz()"
                       >
-                      <i nz-icon nzType="menu" nzTheme="outline"></i>
+                        <i nz-icon nzType="menu" nzTheme="outline"></i>
                       </button>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
 
-            <div nz-col nzXs="0" nzSm="14" nzMd="0" nzLg="0" nzXl="0" class="text-end">
+            <div
+              nz-col
+              nzXs="0"
+              nzSm="14"
+              nzMd="0"
+              nzLg="0"
+              nzXl="0"
+              class="text-end"
+            >
               <div nz-row nzJustify="end" [nzGutter]="[10, 0]">
-
                 <div nz-col>
-                  <button nz-button nzType="primary" nzSize="large" (click)="openTabDrawer()" nzBlock>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzSize="large"
+                    (click)="openTabDrawer()"
+                    nzBlock
+                  >
                     <i><img src="./assets/images/catalog.svg" alt="icon" /></i>
                     <span class="nav__bottom-btn-text">Каталог</span>
                   </button>
@@ -265,33 +281,33 @@
 
                 <div nz-col *ngIf="isUserAuthenticated">
                   <nz-button-group
-                        nz-popover
-                        [nzPopoverContent]="contentTemplate"
-                        [(nzPopoverVisible)]="isVisibleProfilePopupSm"
-                        nzPopoverTrigger="click"
-                        nzPopoverPlacement="bottomRight"
-                      >
-                        <button
-                          nz-button
-                          nzType="default"
-                          nzSize="large"
-                          class="ava-btn"
-                          *ngIf="profileImage"
-                        >
-                          <img [src]="'./assets/images/ava.jpg'" alt="ava-btn" />
-                        </button>
-                        <button
-                          nz-button
-                          nzType="default"
-                          nzSize="large"
-                          class="ava-btn"
-                          *ngIf="!profileImage"
-                        >
-                          <i nz-icon nzType="user" nzTheme="outline"></i>
-                        </button>
+                    nz-popover
+                    [nzPopoverContent]="contentTemplate"
+                    [(nzPopoverVisible)]="isVisibleProfilePopupSm"
+                    nzPopoverTrigger="click"
+                    nzPopoverPlacement="bottomRight"
+                  >
+                    <button
+                      nz-button
+                      nzType="default"
+                      nzSize="large"
+                      class="ava-btn"
+                      *ngIf="profileImage"
+                    >
+                      <img [src]="'./assets/images/ava.jpg'" alt="ava-btn" />
+                    </button>
+                    <button
+                      nz-button
+                      nzType="default"
+                      nzSize="large"
+                      class="ava-btn"
+                      *ngIf="!profileImage"
+                    >
+                      <i nz-icon nzType="user" nzTheme="outline"></i>
+                    </button>
                   </nz-button-group>
                 </div>
-                
+
                 <div nz-col>
                   <button
                     nz-button
@@ -299,16 +315,22 @@
                     nzSize="large"
                     (click)="openAz()"
                   >
-                  <i nz-icon nzType="menu" nzTheme="outline"></i>
+                    <i nz-icon nzType="menu" nzTheme="outline"></i>
                   </button>
                 </div>
-                
               </div>
             </div>
 
-            <div nz-col nzXs="12" nzSm="0" nzMd="0" nzLg="0" nzXl="0" class="text-end">
+            <div
+              nz-col
+              nzXs="12"
+              nzSm="0"
+              nzMd="0"
+              nzLg="0"
+              nzXl="0"
+              class="text-end"
+            >
               <div nz-row nzJustify="end">
-                
                 <div nz-col>
                   <button
                     nz-button
@@ -316,13 +338,11 @@
                     nzSize="large"
                     (click)="openAz()"
                   >
-                  <i nz-icon nzType="menu" nzTheme="outline"></i>
+                    <i nz-icon nzType="menu" nzTheme="outline"></i>
                   </button>
                 </div>
-
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -331,13 +351,25 @@
     <div class="container">
       <div nz-row class="nav__bottom" [nzGutter]="[16, 0]">
         <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="3">
-          <button nz-button nzType="primary" nzSize="large" (click)="open()" nzBlock>
+          <button
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            (click)="open()"
+            nzBlock
+          >
             <i><img src="./assets/images/catalog.svg" alt="icon" /></i>
             <span class="nav__bottom-btn-text">Каталог</span>
           </button>
         </div>
         <div nz-col nzXs="3" nzSm="3" nzMd="5" nzLg="4" nzXl="0">
-          <button nz-button nzType="primary" nzSize="large" (click)="openCatalogDrawer()" nzBlock>
+          <button
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            (click)="openCatalogDrawer()"
+            nzBlock
+          >
             <i><img src="./assets/images/catalog.svg" alt="icon" /></i>
             <span class="nav__bottom-btn-text">Каталог</span>
           </button>
@@ -412,13 +444,21 @@
             </ng-template>
           </form>
         </div>
-        <div nz-col nzXs="4" nzSm="4" nzMd="2" nzLg="6" nzXl="5" class="text-end">
+        <div
+          nz-col
+          nzXs="4"
+          nzSm="4"
+          nzMd="2"
+          nzLg="6"
+          nzXl="5"
+          class="text-end"
+        >
           <button
             nz-button
             nzType="primary"
             nzSize="large"
             class="secondary"
-            routerLink="advertisement/add"
+            routerLink="cabinet/advertisement/add"
             nzBlock
           >
             <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
@@ -636,67 +676,69 @@
             <div nz-row nzJustify="space-between">
               <div nz-col>
                 <div nz-row [nzGutter]="[10, 0]">
-                    <div nz-col nzSm="0" *ngIf="!isUserAuthenticated">
+                  <div nz-col nzSm="0" *ngIf="!isUserAuthenticated">
+                    <button
+                      *ngIf="isUserAuthenticated"
+                      nz-button
+                      nzType="default"
+                      nzSize="large"
+                    >
+                      <i nz-icon nzType="user" nzTheme="outline"></i>
+                      {{ "profile" | translate }}
+                    </button>
+                    <button
+                      *ngIf="!isUserAuthenticated"
+                      nz-button
+                      nzType="default"
+                      nzSize="large"
+                      (click)="navigateToSignIn()"
+                    >
+                      <i nz-icon nzType="user" nzTheme="outline"></i>
+                      {{ "toComeIn" | translate }}
+                    </button>
+                  </div>
+                  <div nz-col nzSm="0" *ngIf="isUserAuthenticated">
+                    <nz-button-group
+                      nz-popover
+                      [nzPopoverContent]="contentTemplate"
+                      [(nzPopoverVisible)]="isVisibleProfilePopupDrawer"
+                      nzPopoverTrigger="click"
+                      nzPopoverPlacement="bottomRight"
+                    >
                       <button
-                        *ngIf="isUserAuthenticated"
                         nz-button
                         nzType="default"
                         nzSize="large"
+                        class="ava-btn"
+                        *ngIf="profileImage"
                       >
-                        <i nz-icon nzType="user" nzTheme="outline"></i>
-                        {{ "profile" | translate }}
+                        <img [src]="'./assets/images/ava.jpg'" alt="ava-btn" />
                       </button>
                       <button
-                        *ngIf="!isUserAuthenticated"
                         nz-button
                         nzType="default"
                         nzSize="large"
-                        (click)="navigateToSignIn()"
+                        class="ava-btn"
+                        *ngIf="!profileImage"
                       >
                         <i nz-icon nzType="user" nzTheme="outline"></i>
-                        {{ "toComeIn" | translate }}
                       </button>
-                    </div>
-                    <div nz-col nzSm="0" *ngIf="isUserAuthenticated">
-                      <nz-button-group
-                        nz-popover
-                        [nzPopoverContent]="contentTemplate"
-                        [(nzPopoverVisible)]="isVisibleProfilePopupDrawer"
-                        nzPopoverTrigger="click"
-                        nzPopoverPlacement="bottomRight"
+                    </nz-button-group>
+                  </div>
+                  <div nz-col nzMd="0">
+                    <button
+                      nz-button
+                      nzType="primary"
+                      nzSize="large"
+                      class="secondary"
+                      routerLink="cabinet/advertisement/add"
+                    >
+                      <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                      <span class="add-advertisement drawer-add"
+                        >Подать объявление</span
                       >
-                        <button
-                          nz-button
-                          nzType="default"
-                          nzSize="large"
-                          class="ava-btn"
-                          *ngIf="profileImage"
-                        >
-                          <img [src]="'./assets/images/ava.jpg'" alt="ava-btn" />
-                        </button>
-                        <button
-                          nz-button
-                          nzType="default"
-                          nzSize="large"
-                          class="ava-btn"
-                          *ngIf="!profileImage"
-                        >
-                          <i nz-icon nzType="user" nzTheme="outline"></i>
-                        </button>
-                  </nz-button-group>
-                    </div>
-                    <div nz-col nzMd="0">
-                      <button
-                        nz-button
-                        nzType="primary"
-                        nzSize="large"
-                        class="secondary"
-                        routerLink="advertisement/add"
-                      >
-                        <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
-                        <span class="add-advertisement drawer-add">Подать объявление</span>
-                      </button>
-                    </div>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div nz-col>
@@ -724,32 +766,51 @@
           <div class="az-drawer__language">
             <div nz-row [nzGutter]="[0, 20]">
               <div nz-col nzXs="24" nzSm="0">
-                <button nz-button nzType="link" class="drawer__btn__info" (click)="openCatalogDrawer()">
-                  <img src="./assets/images/stroke-burger.svg" alt="icon">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"
+                  (click)="openCatalogDrawer()"
+                >
+                  <img src="./assets/images/stroke-burger.svg" alt="icon" />
                   <span class="az-drawer__language__text">Каталог</span>
                 </button>
               </div>
               <div nz-col nzSpan="24">
-                <button nz-button nzType="link" class="drawer__btn__info" (click)="openLocationDrawer()">
-                  <img src="./assets/images/Union.svg" alt="icon">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"
+                  (click)="openLocationDrawer()"
+                >
+                  <img src="./assets/images/Union.svg" alt="icon" />
                   <span class="az-drawer__language__text">Ташкент</span>
                 </button>
               </div>
               <div nz-col nzSpan="24">
-                <button nz-button nzType="link" class="drawer__btn__info" (click)="openLangDrawer()">
-                  <img src="./assets/images/planet-lang.svg" alt="icon">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"
+                  (click)="openLangDrawer()"
+                >
+                  <img src="./assets/images/planet-lang.svg" alt="icon" />
                   <span class="az-drawer__language__text">Русский</span>
                 </button>
               </div>
               <div nz-col nzXs="24" nzSm="0">
-                <button nz-button nzType="link" class="drawer__btn__info" (click)="openSearchDrawer()">
-                  <img src="./assets/images/search.svg" alt="icon">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"
+                  (click)="openSearchDrawer()"
+                >
+                  <img src="./assets/images/search.svg" alt="icon" />
                   <span class="az-drawer__language__text">Поиск</span>
                 </button>
               </div>
             </div>
           </div>
-
         </div>
 
         <div nz-col nzSpan="24">
@@ -853,7 +914,13 @@
     <nz-divider></nz-divider>
     <div nz-col nzSpan="24" class="userPopower__bottom">
       <div nz-row>
-        <div nz-col nzXs="24" nzSm="24" nzMd="0" class="userPopower__bottom__content">
+        <div
+          nz-col
+          nzXs="24"
+          nzSm="24"
+          nzMd="0"
+          class="userPopower__bottom__content"
+        >
           <div nz-row (click)="navigateTo(['cabinet'])">
             <div nz-col nzSpan="4">
               <div class="userPopower__bottom__img">
@@ -893,7 +960,13 @@
         </div>
       </div>
       <div nz-row>
-        <div nz-col nzXs="24" nzSm="24" nzMd="0" class="userPopower__bottom__content">
+        <div
+          nz-col
+          nzXs="24"
+          nzSm="24"
+          nzMd="0"
+          class="userPopower__bottom__content"
+        >
           <div nz-row (click)="navigateTo(['cabinet', 'favourites'])">
             <div nz-col nzSpan="4">
               <div class="userPopower__bottom__img">
@@ -938,7 +1011,6 @@
   </div>
 </ng-template>
 
-
 <!-- LocationDrawer -->
 <nz-drawer
   [nzClosable]="false"
@@ -967,24 +1039,36 @@
         </div>
 
         <div nz-col nzXs="24" nzSm="24" nzMd="0">
-
           <div class="az-drawer__language">
             <div nz-row [nzGutter]="[0, 20]">
               <div nz-col nzSpan="24">
-                <button nz-button nzType="link" class="drawer__btn__info" (click)="closeLocationDrawer()">
-                  <i nz-icon nzType="left" nzTheme="outline" class="drawer__btn__info__arrow"></i>
-                  <img src="./assets/images/Union.svg" alt="icon">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"
+                  (click)="closeLocationDrawer()"
+                >
+                  <i
+                    nz-icon
+                    nzType="left"
+                    nzTheme="outline"
+                    class="drawer__btn__info__arrow"
+                  ></i>
+                  <img src="./assets/images/Union.svg" alt="icon" />
                   <span class="az-drawer__language__text">Ташкент</span>
                 </button>
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
       <div>
-        <nz-collapse nzGhost [nzAccordion]="true" [nzExpandIconPosition]="'right'">
+        <nz-collapse
+          nzGhost
+          [nzAccordion]="true"
+          [nzExpandIconPosition]="'right'"
+        >
           <nz-collapse-panel
             #p
             *ngFor="let panel of panels"
@@ -992,30 +1076,41 @@
             [nzExtra]="arrow"
             [nzShowArrow]="false"
           >
-
             <ng-template #header>
-              <h5 class="location__header_panel" [ngClass]="p.nzActive ? 'active' : ''">{{panel.name}}</h5>
+              <h5
+                class="location__header_panel"
+                [ngClass]="p.nzActive ? 'active' : ''"
+              >
+                {{ panel.name }}
+              </h5>
             </ng-template>
 
             <div nz-row>
-              <div nz-col nzSpan="12" *ngFor="let num of [1, 2,3,4,5,6,7,8,9,10,11,12,13]">
-                <button nz-button nzType="text" class="location__city">Андижан</button>
+              <div
+                nz-col
+                nzSpan="12"
+                *ngFor="let num of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]"
+              >
+                <button nz-button nzType="text" class="location__city">
+                  Андижан
+                </button>
               </div>
             </div>
 
             <ng-template #arrow let-active>
-              <i nz-icon nzType="up" nzTheme="outline" [nzRotate]="p.nzActive ? 0 : 180"></i>
+              <i
+                nz-icon
+                nzType="up"
+                nzTheme="outline"
+                [nzRotate]="p.nzActive ? 0 : 180"
+              ></i>
             </ng-template>
           </nz-collapse-panel>
         </nz-collapse>
-
-        
       </div>
     </div>
-    
   </ng-container>
 </nz-drawer>
-
 
 <!-- language drawer -->
 <nz-drawer
@@ -1023,7 +1118,7 @@
   [nzVisible]="visibleLangDrawer"
   nzPlacement="right"
   [nzWidth]="azDrawerWidthValue"
-  >
+>
   <ng-container *nzDrawerContent>
     <div class="az-drawer">
       <div nz-row [nzGutter]="[0, 0]">
@@ -1045,13 +1140,22 @@
         </div>
 
         <div nz-col nzXs="24" nzSm="24" nzMd="0">
-
           <div class="az-drawer__language">
             <div nz-row [nzGutter]="[0, 20]">
               <div nz-col nzSpan="24">
-                <button nz-button nzType="link" class="drawer__btn__info" (click)="closeLangDrawer()">
-                  <i nz-icon nzType="left" nzTheme="outline" class="drawer__btn__info__arrow"></i>
-                  <img src="./assets/images/planet-lang.svg" alt="icon">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"
+                  (click)="closeLangDrawer()"
+                >
+                  <i
+                    nz-icon
+                    nzType="left"
+                    nzTheme="outline"
+                    class="drawer__btn__info__arrow"
+                  ></i>
+                  <img src="./assets/images/planet-lang.svg" alt="icon" />
                   <span class="az-drawer__language__text">Русский</span>
                 </button>
               </div>
@@ -1059,17 +1163,23 @@
           </div>
 
           <div class="lang__info" nz-row>
-            <div nz-col nzSpan="24"><button nz-button nzType="link">Ўзбекча</button></div>
-            <div nz-col nzSpan="24"><button nz-button nzType="link">O'zbekcha</button></div>
-            <div nz-col nzSpan="24"><button nz-button nzType="link" disabled>Русский</button></div>
-            <div nz-col nzSpan="24"><button nz-button nzType="link">English</button></div>
+            <div nz-col nzSpan="24">
+              <button nz-button nzType="link">Ўзбекча</button>
+            </div>
+            <div nz-col nzSpan="24">
+              <button nz-button nzType="link">O'zbekcha</button>
+            </div>
+            <div nz-col nzSpan="24">
+              <button nz-button nzType="link" disabled>Русский</button>
+            </div>
+            <div nz-col nzSpan="24">
+              <button nz-button nzType="link">English</button>
+            </div>
           </div>
-
         </div>
       </div>
 
-      <div>
-      </div>
+      <div></div>
     </div>
   </ng-container>
 </nz-drawer>
@@ -1080,7 +1190,7 @@
   [nzVisible]="visibleSearchDrawer"
   nzPlacement="right"
   [nzWidth]="azDrawerWidthValue"
-  >
+>
   <ng-container *nzDrawerContent>
     <div class="az-drawer">
       <div nz-row [nzGutter]="[0, 0]">
@@ -1103,11 +1213,16 @@
       </div>
 
       <div class="search__drawer">
-
         <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
           <nz-form-item>
             <nz-form-control [nzSpan]="24">
-              <input type="text" nz-input nzSize="large" formControlName="title" placeholder="Найти среди 273 000 обьявлений" />
+              <input
+                type="text"
+                nz-input
+                nzSize="large"
+                formControlName="title"
+                placeholder="Найти среди 273 000 обьявлений"
+              />
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
@@ -1123,21 +1238,21 @@
               </nz-select>
               <ng-template #defaultTemplate>
                 <i nz-icon nzType="environment" nzTheme="outline"></i>
-                <span style="margin-left: 8px;">Весь Узбекистан</span>
+                <span style="margin-left: 8px">Весь Узбекистан</span>
               </ng-template>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
             <nz-form-control>
-              <button nz-button nzType="primary" nzBlock><i nz-icon nzType="search" nzTheme="outline"></i>Поиск</button>
+              <button nz-button nzType="primary" nzBlock>
+                <i nz-icon nzType="search" nzTheme="outline"></i>Поиск
+              </button>
             </nz-form-control>
           </nz-form-item>
         </form>
-
       </div>
 
-      <div>
-      </div>
+      <div></div>
     </div>
   </ng-container>
 </nz-drawer>
@@ -1148,12 +1263,14 @@
   [nzVisible]="visibleCatalogDrawer"
   nzPlacement="left"
   [nzWidth]="azDrawerWidthValueCatalog"
-  >
+>
   <ng-container *nzDrawerContent>
     <div class="catalog-draw">
       <div nz-row>
         <div nz-col nzSpan="24">
-          <h4 class="catalog-draw__header" (click)="closeCatalogDrawer()"><i nz-icon nzType="left" nzTheme="outline"></i>Каталог товаров</h4>
+          <h4 class="catalog-draw__header" (click)="closeCatalogDrawer()">
+            <i nz-icon nzType="left" nzTheme="outline"></i>Каталог товаров
+          </h4>
         </div>
         <div nz-col nzSpan="24">
           <div class="catalog-draw__category">
@@ -1164,11 +1281,13 @@
                 (click)="openDrawerCatalogSubmenu(category.id)"
                 [ngClass]="activeLink === category.id ? 'active' : ''"
               >
-                <a
-                  class="menu__link"
-                  
-                >
-                  <img width="30" height="30" [src]="category.icon" alt="icon" />
+                <a class="menu__link">
+                  <img
+                    width="30"
+                    height="30"
+                    [src]="category.icon"
+                    alt="icon"
+                  />
                   <span class="menu__link-text">{{ category.name }}</span>
                   <i nz-icon nzType="right" nzTheme="outline"></i>
                 </a>
@@ -1188,21 +1307,40 @@
   nzPlacement="left"
   [nzWidth]="azDrawerWidthValue"
   [nzOffsetX]="drawerOffsetValue"
-  >
+>
   <ng-container *nzDrawerContent>
     <div class="catalog-draw__second">
       <div nz-row>
         <div nz-col nzSpan="24">
-          <h4 class="catalog-draw__header secondLvl" (click)="closeDrawerCatalogSubmenu()"><i nz-icon nzType="left" nzTheme="outline"></i>
-            <img width="30" height="30" [src]="categorySecondLvl.icon" alt="icon" />
-            <span class="catalog-draw__header__secondLvl">{{categorySecondLvl.name}}</span>
+          <h4
+            class="catalog-draw__header secondLvl"
+            (click)="closeDrawerCatalogSubmenu()"
+          >
+            <i nz-icon nzType="left" nzTheme="outline"></i>
+            <img
+              width="30"
+              height="30"
+              [src]="categorySecondLvl.icon"
+              alt="icon"
+            />
+            <span class="catalog-draw__header__secondLvl">{{
+              categorySecondLvl.name
+            }}</span>
           </h4>
         </div>
         <div nz-col nzSpan="24">
           <div class="catalog-draw__category">
             <ul nz-row>
-              <li nz-col nzSpan="24" class="catalog-draw__category__list" *ngFor="let secondLvl of categorySecondLvl.categories" (click)="openDrawerCatalogThirdLvl(secondLvl)">
-                <span class="catalog-draw__category__secondLvl">{{secondLvl.name}}</span>
+              <li
+                nz-col
+                nzSpan="24"
+                class="catalog-draw__category__list"
+                *ngFor="let secondLvl of categorySecondLvl.categories"
+                (click)="openDrawerCatalogThirdLvl(secondLvl)"
+              >
+                <span class="catalog-draw__category__secondLvl">{{
+                  secondLvl.name
+                }}</span>
                 <i nz-icon nzType="right" nzTheme="outline"></i>
               </li>
             </ul>
@@ -1221,20 +1359,33 @@
   [nzWidth]="azDrawerWidthValue"
   [nzOffsetX]="drawerOffsetValue"
   [nzMask]="false"
-  >
+>
   <ng-container *nzDrawerContent>
     <div class="catalog-draw__second">
       <div nz-row>
         <div nz-col nzSpan="24">
-          <h4 class="catalog-draw__header thirdLvl" (click)="closeDrawerCatalogThirdLvl()"><i nz-icon nzType="left" nzTheme="outline"></i>
-            <span class="catalog-draw__header__thirdLvl">{{categoryThirdLvl.name}}</span>
+          <h4
+            class="catalog-draw__header thirdLvl"
+            (click)="closeDrawerCatalogThirdLvl()"
+          >
+            <i nz-icon nzType="left" nzTheme="outline"></i>
+            <span class="catalog-draw__header__thirdLvl">{{
+              categoryThirdLvl.name
+            }}</span>
           </h4>
         </div>
         <div nz-col nzSpan="24">
           <div class="catalog-draw__category">
             <ul nz-row>
-              <li nz-col nzSpan="24" class="catalog-draw__category__list thirdLvl" *ngFor="let thirdLvl of categoryThirdLvl.categories" >
-                <a class="catalog-draw__category__thirdLvl">{{thirdLvl.name}}</a>
+              <li
+                nz-col
+                nzSpan="24"
+                class="catalog-draw__category__list thirdLvl"
+                *ngFor="let thirdLvl of categoryThirdLvl.categories"
+              >
+                <a class="catalog-draw__category__thirdLvl">{{
+                  thirdLvl.name
+                }}</a>
               </li>
             </ul>
           </div>
