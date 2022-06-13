@@ -35,6 +35,7 @@ export * from './lib/shared/credits/credits.component';
 export * from './lib/shared/news/news.component';
 export * from './lib/shared/add-edit-advertisement-shared/components/add-edit-advertisement-controls/add-edit-advertisement-controls.component';
 export * from './lib/shared/add-edit-advertisement-shared/add-edit-advertisement-full-logic.component';
+export * from './lib/shared/breadcrumb/breadcrumb.component';
 
 // DIRECTIVES
 export * from './lib/shared/forms-shared/directives/only-letter.directive';
