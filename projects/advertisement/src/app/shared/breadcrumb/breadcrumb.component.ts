@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Breadcrumb } from 'ngx-az-core';
 
 @Component({
@@ -7,10 +7,4 @@ import { Breadcrumb } from 'ngx-az-core';
   styleUrls: ['./breadcrumb.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BreadcrumbComponent extends Breadcrumb {
-  /**
-   *
-   */
-  @Input()
-  title?: string;
-}
+export class BreadcrumbComponent extends Breadcrumb {}

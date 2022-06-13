@@ -29,6 +29,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { PaginationModule } from '../../../shared/pagination/pagination.module';
 import { NoImageModule } from '../../../shared/no-image/no-image.module';
 import { BreadcrumbModule } from '../../../shared/breadcrumb/breadcrumb.module';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import { BreadcrumbModule } from '../../../shared/breadcrumb/breadcrumb.module';
     NzSelectModule,
   ],
   declarations: [
+    LayoutComponent,
     CabinetComponent,
     AdvertisementComponent,
     MessagesComponent,

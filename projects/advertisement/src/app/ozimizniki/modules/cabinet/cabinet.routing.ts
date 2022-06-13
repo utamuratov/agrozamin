@@ -7,6 +7,7 @@ import { FavouriteAdvertComponent } from './components/favourites/components/fav
 import { FilterOptionsComponent } from './components/favourites/components/filter-options/filter-options.component';
 import { SellersComponent } from './components/favourites/components/sellers/sellers.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
+import { LayoutComponent } from './components/layout/layout.component';
 import { Messages1Component } from './components/messages/components/messages1/messages1.component';
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
 import { MessagesComponent } from './components/messages/messages.component';
@@ -20,34 +21,51 @@ const routes: Routes = [
       bc: 'cabinet',
     },
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'main' },
       {
-        path: '',
-        redirectTo: `advertisement/${AdvertisementStatus.STATUS_CONFIRMED}`,
-        pathMatch: 'full',
-      },
-      {
-        path: `advertisement/:status`,
-        component: AdvertisementComponent,
-        resolve: { advertisment: AdvertisementResolver },
-      },
-      {
-        path: 'messages',
-        component: MessagesComponent,
+        path: 'main',
+        component: LayoutComponent,
         children: [
-          { path: 'messages1', component: Messages1Component },
-          { path: 'messages2', component: Messages2Component },
+          {
+            path: '',
+            redirectTo: `advertisements/${AdvertisementStatus.STATUS_CONFIRMED}`,
+            pathMatch: 'full',
+          },
+          {
+            path: `advertisements/:status`,
+            component: AdvertisementComponent,
+            data: {
+              bc: 'advertisements',
+            },
+            resolve: { advertisment: AdvertisementResolver },
+          },
+          {
+            path: 'messages',
+            component: MessagesComponent,
+            children: [
+              { path: 'messages1', component: Messages1Component },
+              { path: 'messages2', component: Messages2Component },
+            ],
+          },
+          {
+            path: 'favourites',
+            component: FavouritesComponent,
+            children: [
+              { path: 'favourite-advert', component: FavouriteAdvertComponent },
+              { path: 'filter-options', component: FilterOptionsComponent },
+              { path: 'sellers', component: SellersComponent },
+            ],
+          },
+          { path: 'support', component: SupportChatComponent },
         ],
       },
       {
-        path: 'favourites',
-        component: FavouritesComponent,
-        children: [
-          { path: 'favourite-advert', component: FavouriteAdvertComponent },
-          { path: 'filter-options', component: FilterOptionsComponent },
-          { path: 'sellers', component: SellersComponent },
-        ],
+        path: 'advertisement',
+        loadChildren: () =>
+          import('./../add-advertisement/add-advertisement.module').then(
+            (m) => m.AddAdvertisementModule
+          ),
       },
-      { path: 'support', component: SupportChatComponent },
     ],
   },
 ];

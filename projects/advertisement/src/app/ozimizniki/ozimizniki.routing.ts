@@ -29,13 +29,6 @@ const routes: Routes = [
           ).then((m) => m.CatalogMembersPartnerModule),
       },
       {
-        path: 'advertisement',
-        loadChildren: () =>
-          import('./modules/add-advertisement/add-advertisement.module').then(
-            (m) => m.AddAdvertisementModule
-          ),
-      },
-      {
         path: 'cabinet',
         loadChildren: () =>
           import('./modules/cabinet/cabinet.module').then(

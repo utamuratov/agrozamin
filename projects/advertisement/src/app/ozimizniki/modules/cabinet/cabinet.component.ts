@@ -1,30 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AdvertisementStatus } from 'ngx-az-core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'az-cabinet',
   templateUrl: './cabinet.component.html',
   styleUrls: ['./cabinet.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CabinetComponent implements OnInit {
-  /**
-   *
-   */
-  AdvertisementStatus = AdvertisementStatus;
-
-  isCollapsed = false;
-
-  icon = '/assets/images/menu-help.png';
-
-  change(value: boolean): void {
-    console.log(value);
-  }
-
-  toggleCollapsed(): void {
-    this.isCollapsed = !this.isCollapsed;
-  }
-
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class CabinetComponent {}
