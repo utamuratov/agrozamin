@@ -28,6 +28,7 @@ import { ClassByCategoryIdPipe } from './components/advertisement/pipes/suffixBy
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { PaginationModule } from '../../../shared/pagination/pagination.module';
 import { NoImageModule } from '../../../shared/no-image/no-image.module';
+import { BreadcrumbModule } from '../../../shared/breadcrumb/breadcrumb.module';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { NoImageModule } from '../../../shared/no-image/no-image.module';
     CurrencyModule,
     PaginationModule,
     NoImageModule,
+    BreadcrumbModule,
 
     NzGridModule,
     NzMenuModule,

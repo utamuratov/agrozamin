@@ -16,6 +16,9 @@ const routes: Routes = [
   {
     path: '',
     component: CabinetComponent,
+    data: {
+      bc: 'cabinet',
+    },
     children: [
       {
         path: '',
