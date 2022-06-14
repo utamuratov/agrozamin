@@ -1,6 +1,6 @@
 {
     "/v1/*": {
-        "target": "https://announcement.loc",
+        "target": "http://62.209.129.41:8080",
         "secure": false,
         "changeOrigin": true
     }

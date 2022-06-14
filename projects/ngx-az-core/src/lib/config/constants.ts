@@ -4,9 +4,8 @@ export class Constants {
   /**
    * SECURE DATA FOR LOGIN & REFRESH TOKEN
    */
-  public static readonly CLIENT_ID = '95aafe79-4e63-4d6d-98cc-fde7b302fc3f';
-  public static readonly CLIENT_SECRET =
-    'K44OWIgGSqkpH55vY6QQwZldir6iN17IyepOXD4K';
+  static readonly CLIENT_ID = '96880ad0-7b49-4d00-bbe0-da023ef89cf8'; //"95aafe79-4e63-4d6d-98cc-fde7b302fc3f";
+  static readonly CLIENT_SECRET = '9tyUetFhRxu4PjIy07BJ7HzxNC75lGUSmsVMY0GI'; // "K44OWIgGSqkpH55vY6QQwZldir6iN17IyepOXD4K";
 
   /**
    * DEFAULT DATA FOR USER INTERFACE LANGUAGE
