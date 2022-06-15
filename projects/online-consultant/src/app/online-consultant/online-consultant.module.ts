@@ -7,10 +7,24 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 
 @NgModule({
-  imports: [CommonModule, OnlineConsultantRoutingModule, NzIconModule, NzGridModule, NzButtonModule],
-  declarations: [OnlineConsultantComponent,HeaderComponent,FooterComponent],
+  imports: [
+    CommonModule,
+    OnlineConsultantRoutingModule,
+    NzIconModule,
+    NzGridModule,
+    NzButtonModule,
+    NzDrawerModule,
+    NzDividerModule,
+    NzTypographyModule,
+    NzPopoverModule,
+  ],
+  declarations: [OnlineConsultantComponent, HeaderComponent, FooterComponent],
 })
 export class OnlineConsultantModule {}
