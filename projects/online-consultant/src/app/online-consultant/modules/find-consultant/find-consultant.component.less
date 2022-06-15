@@ -1,0 +1,148 @@
+.wrapper {
+  background: #fff;
+  border-radius: 0 0 16px 16px;
+
+  .find-consultant {
+    padding-bottom: 80px;
+    &__breadcrumb {
+      padding-bottom: 40px;
+      border-bottom: 2px solid #000;
+
+      @media (max-width: 575px) {
+        padding-bottom: 14px;
+      }
+    }
+
+    &__title {
+      font-family: MontBold;
+      font-size: 32px;
+      line-height: 41px;
+      color: #000;
+
+      @media (max-width: 991px) {
+        font-size: 24px;
+        line-height: 31px;
+      }
+
+      @media (max-width: 420px) {
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+
+    &__subtitle {
+      font-family: MontSemiBold;
+      font-size: 40px;
+      line-height: 51px;
+      color: #000;
+      max-width: 423px;
+      width: 100%;
+
+      @media (max-width: 991px) {
+        font-size: 32px;
+        line-height: 40px;
+        max-width: 100%;
+      }
+      @media (max-width: 420px) {
+        font-size: 20px;
+        line-height: 26px;
+        max-width: 100%;
+        padding-bottom: 40px;
+      }
+    }
+
+    &__filter {
+      background: #f4f6ff;
+      padding: 40px 0;
+
+      @media (max-width: 575px) {
+        padding: 17px 0;
+      }
+
+      &__title {
+        font-family: MontSemiBold;
+        font-size: 24px;
+        line-height: 36px;
+        color: #11253d;
+        margin-bottom: 0;
+
+        @media (max-width: 575px) {
+          font-size: 20px;
+          line-height: 25px;
+        }
+      }
+
+      &__subtitle {
+        font-family: MontBold;
+        font-size: 16px;
+        line-height: 24px;
+        color: #11253d;
+      }
+
+      &__category {
+        display: flex;
+        align-items: center;
+
+        &__item {
+          padding: 12px;
+          border-radius: 8px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+
+          &:hover {
+            background: linear-gradient(
+              90deg,
+              rgba(57, 106, 252, 0.15) 0%,
+              rgba(41, 72, 255, 0.15) 100%
+            );
+          }
+
+          img {
+            margin-right: 16px;
+          }
+
+          .checkbox {
+            display: block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            opacity: 0;
+            flex-grow: 1;
+            text-align: end;
+          }
+
+          &__text {
+            font-family: MontRegular;
+            font-size: 16px;
+            line-height: 24px;
+            color: #11253d;
+          }
+
+          .checkbox-input {
+            position: absolute;
+            appearance: none;
+
+            &:checked + span {
+              opacity: 1;
+            }
+          }
+        }
+
+        .more__category {
+          font-family: MontSemiBold;
+          font-size: 16px;
+          line-height: 24px;
+          color: linear-gradient(90deg, #396AFC 0%, #2948FF 100%);
+        }
+      }
+
+      &__btn {
+        height: 48px;
+        font-family: MontSemiBold;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
+}
