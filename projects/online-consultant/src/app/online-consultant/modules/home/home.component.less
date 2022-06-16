@@ -1,0 +1,177 @@
+.home{
+    height: calc(100vh - 126px);
+       
+
+    &__background{
+        // height: 100%;
+        width: 1178px;
+        margin-left: 56px;
+        margin-right: 56px;
+        margin-top: 39px;
+        position: absolute;
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__card{
+        width: 219px;
+        background: rgba(0, 0, 0, 0.75);
+        border-radius: 15px;
+        position: relative;
+
+        &__item{
+            padding: 16px;
+            &__img{
+                padding-bottom: 10px;
+                h2{
+                    margin: 0;
+                    font-size: 36px;
+                    line-height: 46px;
+                    background: linear-gradient(81.32deg, #FF512F 0%, #DD2476 100%), #000000;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+                &__item{
+                    margin-left: -3px;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    &:nth-child(1) {
+                        z-index: 4;
+                    }
+                    &:nth-child(2) {
+                        z-index: 3;
+                    }
+                    &:nth-child(3) {
+                        z-index: 2;
+                    }
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+             
+            }
+    
+            &__desc{
+                width: 143px;
+                span{
+                    font-family: 'Mont';
+                    font-size: 12px;
+                    color: #fff;
+                    line-height: 15px;
+                }
+            }
+        }
+
+    }
+    &__bottom{
+        // padding-top: 253px;
+
+        &__btn1{
+            button{
+                background: linear-gradient(72.74deg, #000000 0%, #434343 100%);
+                border-radius: 8px;
+                color: #fff;
+            }
+        }
+        &__btn2{
+            button{
+                background: linear-gradient(86.09deg, #FF512F 0%, #DD2476 100%);
+                border-radius: 8px;
+                color: #fff;
+            }
+        }
+        &__btn3{
+            padding-top: 8px;
+            button{
+                font-size: 14px;
+                font-family: 'Mont';
+                font-weight: 600;
+                background: linear-gradient(106.27deg, #ECE9E6 0%, #FFFFFF 99.34%);
+                border-radius: 8px;
+                color:#000000;
+                // &:hover{
+                //     border: #DD2476;
+                //     box-shadow: #DD2476;
+                // }
+                // &:active{
+                //     border: #DD2476;
+                //     box-shadow: #DD2476;
+                // }
+            }
+        }
+        &__number{
+            h1{
+                margin: 0;
+                font-size: 170px;
+                font-weight: 800;
+                line-height: 245px;
+            }
+        }
+
+        &__card{
+            border-radius: 8px;
+            margin-top: 30px;
+            width: 224px;
+            height: 149px;  
+            background: linear-gradient(90deg, #396AFC 0%, #2948FF 100%);
+
+            &__title{
+                padding: 16px;  
+                h3{
+                    margin: 0;
+                    color: #fff;
+                    font-size: 24px;
+                    line-height: 31px;
+                    font-family: 'Mont';
+                    font-weight: 700;
+                }
+            }
+            &__desc{
+                padding: 16px;
+                span{
+                    font-weight: 600;
+                    line-height: 15px;
+                    font-size: 12px;
+                    color: #fff;
+                }
+            }
+        }
+        &__card2{
+            border-radius: 8px;
+            width: 224px;
+            height: 149px;
+            background: linear-gradient(81.32deg, #FF512F 0%, #DD2476 100%), 
+            linear-gradient(90deg, #396AFC 0%, #2948FF 100%);
+
+
+            &__title{
+                padding: 16px;  
+                h3{
+                    margin: 0;
+                    color: #fff;
+                    font-size: 24px;
+                    line-height: 31px;
+                    font-family: 'Mont';
+                    font-weight: 700;
+                }
+            }
+            &__desc{
+                padding: 16px;
+                span{
+                    font-weight: 600;
+                    line-height: 15px;
+                    font-size: 12px;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

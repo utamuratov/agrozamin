@@ -1,0 +1,104 @@
+nz-divider{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border: 2px solid #000000;
+}
+
+.faq{
+    &__title{
+        h3{
+            margin: 0;
+            font-size: 32px;
+            line-height: 41px;
+            font-weight: 800;
+            font-family: MontBold;
+        }
+    }
+    &__content{
+        padding-top: 20px;
+
+        &__desc{       
+                margin: 0;
+                font-family: MontRegular;
+                font-size: 18px;
+                line-height: 23px;
+                color: #333333;    
+                @media (max-width: 992px) {
+                    font-size: 14px;
+                    line-height: 18px;
+                }     
+                @media (max-width: 575px) {
+                    font-size: 10px;
+                    line-height: 13px;
+                }  
+        }
+
+        &__title{          
+            p{
+                margin: 0;
+                font-size: 32px;
+                line-height: 40px;
+                color: #333333;
+                font-family: MontSemiBold;
+
+                @media (max-width: 992px) {
+                    font-size: 24px;
+                    line-height: 30px;
+                }
+                @media (max-width: 575px) {
+                    font-size: 16px;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        &__icon{
+           width: 65px;
+           height: 65px;
+           border-radius: 50%;
+           border: 1px solid black;
+           text-align: center;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+
+           @media (max-width: 992px) {
+            width: 45px;
+            height: 45px;
+        }
+        @media (max-width: 575px) {
+            width: 36px;
+            height: 36px;
+        }
+            i{
+                font-size: 30px;
+                color: #333333;
+
+                @media (max-width: 992px) {
+                    font-size: 20px;
+                }
+                @media (max-width: 575px) {
+                    font-size: 16px;
+                }
+            }
+        }
+        nz-collapse-panel{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            @media (max-width: 992px) {
+                padding-top: 18px;
+                padding-bottom: 18px;
+            }
+            @media (max-width: 575px) {
+                padding-top: 16px;
+                padding-bottom: 16px;
+            }
+        }
+    }
+}
+
+.ant-collapse-borderless{
+    background-color: #fff;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
