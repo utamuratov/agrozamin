@@ -7,10 +7,16 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddAdvertisementComponent,
+    data: {
+      bc: 'creatingAdvertisement',
+    },
   },
   {
     path: 'edit/:id',
     component: AddAdvertisementComponent,
+    data: {
+      bc: 'editingAdvertisement',
+    },
     resolve: { advertisment: AdvertisementEditResolver },
   },
 ];

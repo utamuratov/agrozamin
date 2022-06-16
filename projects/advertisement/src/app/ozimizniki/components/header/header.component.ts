@@ -823,7 +823,6 @@ export class HeaderComponent implements OnInit {
   isVisibleProfilePopupMd = false;
   isVisibleProfilePopupSm = false;
   isVisibleProfilePopupDrawer = false;
- 
 
   /**
    *
@@ -835,11 +834,11 @@ export class HeaderComponent implements OnInit {
   visibleSearchDrawer = false;
   visibleCatalogDrawer = false;
   visibleCatalogDrawerSecondLvl = false;
-  visibleCatalogDrawerThirdLvl = false
-  drawerOffsetValue = 280
+  visibleCatalogDrawerThirdLvl = false;
+  drawerOffsetValue = 280;
 
-  categorySecondLvl: any = []
-  categoryThirdLvl: any = []
+  categorySecondLvl: any = [];
+  categoryThirdLvl: any = [];
 
   panels = [
     {
@@ -883,7 +882,6 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
-  
   constructor(
     private fb: FormBuilder,
     private $jwtHelper: JwtHelperService,
@@ -894,7 +892,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.isUserAuthenticated = !this.$jwtHelper.isTokenExpired();
+    this.isUserAuthenticated = !this.$jwtHelper.isTokenExpired();
 
     this.searchForm = this.fb.group({
       searchInput: [null],
@@ -903,7 +901,7 @@ export class HeaderComponent implements OnInit {
 
     this.validateForm = this.fb.group({
       title: [null, [Validators.required]],
-      city: [null, [Validators.required]]
+      city: [null, [Validators.required]],
     });
 
     this.azDrawerWidthValue = this.azDrawerWidth();
@@ -1072,13 +1070,11 @@ export class HeaderComponent implements OnInit {
     this.closeDrawerCatalogThirdLvl();
   }
 
-  
-
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
     } else {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
@@ -1088,32 +1084,34 @@ export class HeaderComponent implements OnInit {
   }
 
   genderChange(value: string): void {
-    this.validateForm.get('note')!.setValue(value === 'male' ? 'Hi, man!' : 'Hi, lady!');
+    this.validateForm
+      .get('note')!
+      .setValue(value === 'male' ? 'Hi, man!' : 'Hi, lady!');
   }
 
   openDrawerCatalogSubmenu(id: number) {
     console.log(id);
     this.visibleCatalogDrawerSecondLvl = true;
-    this.categorySecondLvl = this.categories.filter(e => e.id === id)[0]
+    this.categorySecondLvl = this.categories.filter((e) => e.id === id)[0];
     console.log(this.categorySecondLvl);
   }
 
   closeDrawerCatalogSubmenu() {
-    this.visibleCatalogDrawerSecondLvl = false
+    this.visibleCatalogDrawerSecondLvl = false;
   }
 
   openDrawerCatalogThirdLvl(subcategory: []) {
-    this.categoryThirdLvl = subcategory
-    this.visibleCatalogDrawerThirdLvl = true
-    console.log(this.categoryThirdLvl);    
+    this.categoryThirdLvl = subcategory;
+    this.visibleCatalogDrawerThirdLvl = true;
+    console.log(this.categoryThirdLvl);
   }
 
   closeDrawerCatalogThirdLvl() {
-    this.visibleCatalogDrawerThirdLvl = false
+    this.visibleCatalogDrawerThirdLvl = false;
   }
 
   openTabDrawer() {
-    console.log('hello');    
+    console.log('hello');
   }
 
   // setOffsetDrawer() {
@@ -1121,7 +1119,7 @@ export class HeaderComponent implements OnInit {
   // }
 
   azDrawerWidthCatalog(): string {
-     if (window.innerWidth > 575 ) {
+    if (window.innerWidth > 575) {
       return '280px';
     } else {
       return '100%';
@@ -1129,7 +1127,7 @@ export class HeaderComponent implements OnInit {
   }
 
   azDrawerOffsetCatalog(): number {
-     if (window.innerWidth > 575 ) {
+    if (window.innerWidth > 575) {
       return 280;
     } else {
       return 0;

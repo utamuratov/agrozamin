@@ -1,11 +1,13 @@
 import { Routes, RouterModule } from '@angular/router';
-import { CatalogMembersPartnerComponent } from './modules/catalog-members-partner/catalog-members-partner.component';
 import { OzimiznikiComponent } from './ozimizniki.component';
 
 const routes: Routes = [
   {
     path: '',
     component: OzimiznikiComponent,
+    data: {
+      bc: 'main',
+    },
     children: [
       {
         path: '',
@@ -25,13 +27,6 @@ const routes: Routes = [
           import(
             './modules/catalog-members-partner/catalog-members-partner.module'
           ).then((m) => m.CatalogMembersPartnerModule),
-      },
-      {
-        path: 'advertisement',
-        loadChildren: () =>
-          import('./modules/add-advertisement/add-advertisement.module').then(
-            (m) => m.AddAdvertisementModule
-          ),
       },
       {
         path: 'cabinet',
