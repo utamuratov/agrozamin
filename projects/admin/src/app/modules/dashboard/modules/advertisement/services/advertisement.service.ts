@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AdvertisementEditResponse, BaseService } from 'ngx-az-core';
-import { GridService } from 'projects/admin/src/app/core/services/grid.service';
+import {
+  AdvertisementEditResponse,
+  BaseService,
+  GridService,
+} from 'ngx-az-core';
 import { AdvertisementGetAll } from '../dto/advertisement-get-all.interface';
 
 @Injectable()

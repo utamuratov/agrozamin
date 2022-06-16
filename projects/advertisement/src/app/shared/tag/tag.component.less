@@ -1,0 +1,41 @@
+.tag {
+  padding: 5px 8px;
+  font-size: 10px;
+  line-height: 10px;
+  font-family: Agrofont-Regular;
+  color: #f91155;
+  background: #fce6ec;
+  border-radius: 4px;
+  transition: 0.5s;
+
+  &:hover {
+    color: #e5eafd !important;
+    background: #2f54eb !important;
+  }
+
+  &-- {
+    &1 {
+      color: #d92d20;
+      background: #fce7e6;
+    }
+    &2 {
+      color: #00bfbf;
+      background: #e6fcfc;
+    }
+    &3 {
+      color: #12b76a;
+      background: #e6fcf2;
+    }
+    &4 {
+      color: #2f54eb;
+      background: #e5eafd;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 8px;
+  }
+  @media (max-width: 575px) {
+    font-size: 10px;
+  }
+}

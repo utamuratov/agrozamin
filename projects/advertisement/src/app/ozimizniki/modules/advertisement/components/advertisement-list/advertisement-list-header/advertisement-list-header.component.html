@@ -1,0 +1,322 @@
+<div class="sort">
+  <div nz-row nzAlign="middle" nzJustify="space-between" [nzGutter]="[0, 10]">
+    <div nz-col nzXs="0" nzSm="0" nzMd="14" nzLg="10" nzXl="10">
+      <div nz-row [nzGutter]="[8, 0]">
+        <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="7">
+          <span class="sort__variable">Сортировать:</span>
+        </div>
+        <div nz-col>
+          <a
+            class="sort__link"
+            [ngClass]="{ active: sortedByPriceDescanding }"
+            (click)="toggleSortByPrice()"
+            ><span>По цене</span>
+            <svg
+              width="19"
+              height="14"
+              viewBox="0 0 19 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 2H9"
+                stroke="#377BE1"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M1 7H7"
+                stroke="#377BE1"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M1 12H5"
+                stroke="#377BE1"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M15 13L18 10M15 13L12 10M15 13L15 1"
+                stroke="#377BE1"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+        <div nz-col>
+          <a
+            class="sort__link"
+            [ngClass]="{ active: sortedByDateDescanding }"
+            (click)="toggleSortByDate()"
+            ><span>По дате</span>
+            <svg
+              width="19"
+              height="14"
+              viewBox="0 0 19 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 2H9"
+                stroke="#377BE1"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M1 7H7"
+                stroke="#377BE1"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M1 12H5"
+                stroke="#377BE1"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M15 13L18 10M15 13L12 10M15 13L15 1"
+                stroke="#377BE1"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col nzXs="12" nzSm="12" nzMd="0" nzLg="0" nzXl="0">
+      <div nz-row [nzGutter]="[8, 0]">
+        <div nz-col>
+          <a
+            nz-dropdown
+            nzTrigger="click"
+            [nzDropdownMenu]="menu"
+            class="sort__link"
+          >
+            <span class="sort__response_link">{{
+              date ? "По дате" : "По цене"
+            }}</span
+            ><img src="./assets/images/sort.svg" alt="sort icon" />
+            <i nz-icon nzType="down"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col nzXs="12" nzSm="12" nzMd="10" nzLg="14" nzXl="14">
+      <div nz-row nzAlign="middle" nzJustify="end" [nzGutter]="[8, 0]">
+        <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="3">
+          <span class="sort__variable">Вид:</span>
+        </div>
+        <div nz-col>
+          <button
+            class="sort__btn btn-icon"
+            [ngClass]="{ active: !isInline }"
+            (click)="toggleCardStyle()"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="4"
+                y="4"
+                width="6"
+                height="6"
+                rx="1"
+                stroke="#86898C"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="4"
+                y="14"
+                width="6"
+                height="6"
+                rx="1"
+                stroke="#86898C"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="14"
+                y="14"
+                width="6"
+                height="6"
+                rx="1"
+                stroke="#86898C"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="14"
+                y="4"
+                width="6"
+                height="6"
+                rx="1"
+                stroke="#86898C"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <div nz-col>
+          <button
+            class="sort__btn btn-icon"
+            [ngClass]="{ active: isInline }"
+            (click)="toggleCardStyle()"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="4"
+                y="5"
+                width="16"
+                height="5"
+                rx="1"
+                stroke="#86898C"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="4"
+                y="14"
+                width="16"
+                height="5"
+                rx="1"
+                stroke="#86898C"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <div nz-col>
+          <button
+            class="sort__btn btn-icon-map"
+            [ngClass]="isMapActive ? 'active' : ''"
+            (click)="isMap()"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 19 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M5.60781 1.80128L1.75 3.73018V13.3865L5.04136 11.7408C5.3099 11.6065 5.619 11.5778 5.90768 11.6603L13.3922 13.7987L17.25 11.8698V2.21351L13.9586 3.85919C13.6901 3.99346 13.381 4.02219 13.0923 3.93971L5.60781 1.80128ZM5.04136 0.40745C5.30989 0.273184 5.619 0.244455 5.90768 0.326934L13.3922 2.46537L17.0133 0.654792C17.8112 0.255851 18.75 0.836046 18.75 1.7281V12.0552C18.75 12.5097 18.4932 12.9253 18.0867 13.1285L13.9586 15.1925C13.6901 15.3268 13.381 15.3555 13.0923 15.273L5.60781 13.1346L1.98666 14.9452C1.18877 15.3441 0.25 14.7639 0.25 13.8719V3.54477C0.25 3.09025 0.506803 2.67473 0.913344 2.47146L5.04136 0.40745Z"
+                fill="#86898C"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.2168 3.2666V14.5999H12.7168V3.2666H14.2168Z"
+                fill="#86898C"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6.2832 1V12.3333H4.7832V1H6.2832Z"
+                fill="#86898C"
+              />
+            </svg>
+            <span class="look-at-map">Смотреть на карте</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col nzSpan="24" *ngIf="filterParams">
+      <div
+        nz-row
+        [nzGutter]="[
+          { xs: 10, sm: 10, md: 10, lg: 16, xl: 16 },
+          { xs: 10, sm: 10, md: 10, lg: 16, xl: 16 }
+        ]"
+      >
+        <div nz-col nzSpan="24">
+          <div
+            nz-row
+            [nzGutter]="[
+              { xs: 10, sm: 10, md: 10, lg: 16, xl: 16 },
+              { xs: 10, sm: 10, md: 10, lg: 16, xl: 16 }
+            ]"
+          >
+            <div nz-col *ngFor="let param of params">
+              <div class="filter__params">
+                <span>{{ param.title }}</span>
+                <i
+                  nz-icon
+                  nzType="close"
+                  nzTheme="outline"
+                  (click)="deleteParam(param.id)"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div nz-col nzSpan="24">
+          <button nz-button nzType="primary" nzSize="large">
+            <i nz-icon nzType="heart" nzTheme="outline"></i>
+            Сохранить параметры
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col nzSpan="24" *ngIf="isMapActive">
+      <div class="map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.889878402136!2d69.21233362690937!3d41.28830278568446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8a4b03ec22ab%3A0x414bc29a14aa377f!2z0JDQs9GA0L7QsdCw0L3QuiDQkNCi0JE!5e0!3m2!1sru!2s!4v1654498555506!5m2!1sru!2s"
+          width="100%"
+          height="100%"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item>
+      <a class="sort__link" (click)="byPrice()"
+        ><span>По цене</span
+        ><img src="./assets/images/sort.svg" alt="sort icon"
+      /></a>
+    </li>
+    <li nz-menu-item>
+      <a class="sort__link" (click)="byDate()"
+        ><span>По дате</span
+        ><img src="./assets/images/sort.svg" alt="sort icon"
+      /></a>
+    </li>
+  </ul>
+</nz-dropdown-menu>
