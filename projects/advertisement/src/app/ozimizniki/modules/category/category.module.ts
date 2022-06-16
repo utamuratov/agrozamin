@@ -7,7 +7,6 @@ import { CategoryRoutes } from './category.routing';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { AllCategoriesComponent } from './components/AllCategories/AllCategories.component';
 import { NzGridModule } from 'ng-zorro-antd/grid';
-import { CategoryItemComponent } from './components/category-item/category-item.component';
 import { CategoryFilterComponent } from './components/category-filter/category-filter.component';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -22,16 +21,15 @@ import { SortByComponent } from './components/sort-by/sort-by.component';
 import { TagComponent } from './components/tag/tag.component';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { AdvertiseComponent } from './components/advertise/advertise.component';
-import { CategoryPageComponent } from './components/category-page/category-page.component';
+import { CategoryPageComponent } from './pages/category-page/category-page.component';
 import { SingleCategoryComponent } from './components/single-category/single-category.component';
 import { SubcategoryComponent } from './components/subcategory/subcategory.component';
-import { CategoryProductPageComponent } from './components/category-product-page/category-product-page.component';
+import { CategoryProductPageComponent } from './pages/category-product-page/category-product-page.component';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { SimilarItemsComponent } from './components/similar-items/similar-items.component';
-import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -40,6 +38,8 @@ import { PaginationModule } from '../../../shared/pagination/pagination.module';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { CardModule } from '../../../shared/card/card.module';
+import { SkeletonModule } from '../../../shared/skeleton/skeleton.module';
 
 @NgModule({
   imports: [
@@ -49,6 +49,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     CategoryRoutes,
 
     PaginationModule,
+    CardModule,
+    SkeletonModule,
 
     /* NG-ZORRO */
     NzTypographyModule,
@@ -72,12 +74,11 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzDropDownModule,
     NzDrawerModule,
     NzBreadCrumbModule,
-    NzSelectModule
+    NzSelectModule,
   ],
   declarations: [
     CategoryComponent,
     AllCategoriesComponent,
-    CategoryItemComponent,
     CategoryFilterComponent,
     AllCategoryItemsComponent,
     SortByComponent,
@@ -88,7 +89,6 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     SubcategoryComponent,
     CategoryProductPageComponent,
     SimilarItemsComponent,
-    SkeletonComponent,
   ],
 })
 export class CategoryModule {}

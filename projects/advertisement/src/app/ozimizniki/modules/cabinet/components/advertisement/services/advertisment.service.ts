@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseService, IdName } from 'ngx-az-core';
-import { GridService } from 'projects/admin/src/app/core/services/grid.service';
+import { BaseService, GridService, IdName } from 'ngx-az-core';
 import { Advertisement } from '../dto/advertisment.interface';
 
 @Injectable({ providedIn: 'root' })

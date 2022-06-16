@@ -19,7 +19,7 @@ import { AdvertisementService } from './services/advertisment.service';
   providers: [AdvertisementService],
 })
 export class AdvertisementComponent {
-  isFavorite = false
+  isFavorite = false;
   /**
    *
    */
@@ -67,11 +67,11 @@ export class AdvertisementComponent {
 
   /**
    *
-   * @param $advertisment
+   * @param $advertisement
    * @param route
    */
   constructor(
-    private $advertisment: AdvertisementService,
+    private $advertisement: AdvertisementService,
     private route: ActivatedRoute,
     private $destroy: NgDestroy,
     private cd: ChangeDetectorRef
@@ -91,6 +91,21 @@ export class AdvertisementComponent {
   private initQuery() {
     this.query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
     this.query.filter = this.getQueryFilter();
+  }
+
+  /**
+   *
+   * @returns
+   */
+  private getQueryFilter() {
+    return [
+      { key: 'status', value: [String(this.status || '')] },
+      { key: 'category_id', value: [String(this.categoryId || '')] },
+      {
+        key: 'type_id',
+        value: [String(this.advertisementTypeId || '')],
+      },
+    ];
   }
 
   /**
@@ -128,7 +143,7 @@ export class AdvertisementComponent {
    *
    */
   loadDataFromServer(query: GridQuery) {
-    this.$advertisment.getGridData(query).subscribe((result) => {
+    this.$advertisement.getGridData(query).subscribe((result) => {
       if (result.success) {
         this.data = {
           ...result.data,
@@ -143,7 +158,7 @@ export class AdvertisementComponent {
    *
    */
   getFilterData() {
-    this.$advertisment.getFilterData().subscribe((result) => {
+    this.$advertisement.getFilterData().subscribe((result) => {
       if (result.success) {
         this.categories = result.data.categories;
         this.advertisementTypes = result.data.announcement_types;
@@ -151,23 +166,8 @@ export class AdvertisementComponent {
     });
   }
 
-  /**
-   *
-   * @returns
-   */
-  private getQueryFilter() {
-    return [
-      { key: 'status', value: [String(this.status || '')] },
-      { key: 'category_id', value: [String(this.categoryId || '')] },
-      {
-        key: 'type_id',
-        value: [String(this.advertisementTypeId || '')],
-      },
-    ];
-  }
-
   addToFavorite(id: number) {
-    this.isFavorite = !this.isFavorite
+    this.isFavorite = !this.isFavorite;
     console.log(id);
   }
 }

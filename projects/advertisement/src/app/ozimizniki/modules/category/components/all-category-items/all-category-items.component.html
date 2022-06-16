@@ -19,36 +19,31 @@
       <div nz-row [nzGutter]="[20, 20]">
         <div
           nz-col
-          *ngFor="let card of products"
+          *ngFor="let advertisement of data.data"
           [nzXs]="cardStyleTemplate ? 24 : 12"
           [nzSm]="cardStyleTemplate ? 24 : 12"
           [nzMd]="cardStyleTemplate ? 24 : 12"
           [nzLg]="cardStyleTemplate ? 24 : 8"
           [nzXl]="cardStyleTemplate ? 24 : 6"
         >
-          <az-skeleton *ngIf="isLoading; else cards"></az-skeleton>
-
-          <ng-template #cards>
-            <az-category-item
-              [img]="card.img"
-              [title]="card.title"
-              [price]="card.price"
-              [unit]="card.unit"
-              [company]="card.company"
-              [address]="card.address"
-              [city]="card.city"
-              [text]="card.text"
-              [category]="card.category"
-              [id]="card.id"
-              [catId]="categoryId"
-              [cardStyleTemplate]="cardStyleTemplate"
-            ></az-category-item>
+          <az-card
+            *ngIf="isLoaded; else skeleton"
+            [data]="advertisement"
+            [cardStyleTemplate]="cardStyleTemplate"
+          ></az-card>
+          <ng-template #skeleton>
+            <az-skeleton></az-skeleton>
           </ng-template>
         </div>
       </div>
     </div>
-    <div nz-col nzSpan="24">
-      <az-pagination [total]="100"></az-pagination>
+    <div nz-col nzSpan="24" *ngIf="isLoaded">
+      <az-pagination
+        [pageSize]="pageSize"
+        [total]="data.total"
+        [pageIndex]="query.pageIndex"
+        (pageIndexChange)="paginate($event)"
+      ></az-pagination>
     </div>
   </div>
 </div>
