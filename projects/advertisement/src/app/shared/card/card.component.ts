@@ -5,7 +5,7 @@ import {
   Input,
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Advertisement } from '../../ozimizniki/modules/category/dto/advertisement.interface';
+import { Advertisement } from '../../ozimizniki/modules/advertisement/dto/advertisement.interface';
 
 @Component({
   selector: 'az-card',
@@ -20,28 +20,39 @@ export class CardComponent implements OnInit {
   @Input()
   data!: Advertisement;
 
-  @Input() cardStyleTemplate!: boolean;
+  /**
+   *
+   */
+  @Input()
+  isInline = false;
 
-  activeCard = false;
-
-  defaultImage = './assets/images/def.jpg';
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     // TODO: REMOVE OR USE
   }
 
-  routeClick(id: any) {
-    if (this.data.category_id) {
-      this.router.navigate([this.data.category_id, id], {
-        relativeTo: this.route,
-      });
-    } else {
+  /**
+   *
+   * @param id
+   * @returns
+   */
+  navigateToDetails(id: number) {
+    if (this.route.snapshot.params['categoryId']) {
       this.router.navigate([id], { relativeTo: this.route });
+      return;
     }
+
+    this.router.navigate([this.data.category_id, id], {
+      relativeTo: this.route,
+    });
   }
 
-  addToFavoriteCard() {
-    this.activeCard = !this.activeCard;
+  /**
+   *
+   * @param advertisement
+   */
+  toggleFavourite(advertisement: Advertisement) {
+    advertisement.favorite = !advertisement.favorite;
   }
 }

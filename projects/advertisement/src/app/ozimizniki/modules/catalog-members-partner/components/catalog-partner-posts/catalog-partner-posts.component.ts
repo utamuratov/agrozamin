@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { cat } from '../../../category/pages/category-page/subcategory';
+import { cat } from '../../../advertisement/pages/advertisement-list-by-category/subcategory';
 import { partnerProd } from './partnerData';
 
 @Component({
