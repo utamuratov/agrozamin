@@ -30,9 +30,12 @@
             nzMd="6"
             nzLg="6"
             nzXl="6"
-            *ngFor="let category of categoryList"
+            *ngFor="let category of category$ | async"
           >
-            <div class="category__card">
+            <div
+              class="category__card"
+              [routerLink]="['advertisements', category.id]"
+            >
               <div nz-row nzAlign="middle" [nzGutter]="[24, 0]">
                 <div nz-col nzSpan="7">
                   <div class="category__img">
@@ -51,8 +54,9 @@
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
         <div class="category__scroll">
           <div
+            *ngFor="let category of category$ | async"
+            [routerLink]="['advertisements', category.id]"
             class="category__scroll__card"
-            *ngFor="let category of categoryList"
             nz-row
             nzJustify="space-around"
             nzAlign="middle"

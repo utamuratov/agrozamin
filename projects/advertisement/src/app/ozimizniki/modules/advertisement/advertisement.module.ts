@@ -15,7 +15,6 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { SingleCategoryComponent } from './components/single-category/single-category.component';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
@@ -39,17 +38,25 @@ import { AdvertisementListComponent } from './components/advertisement-list/adve
 import { AdvertisementListHeaderComponent } from './components/advertisement-list/advertisement-list-header/advertisement-list-header.component';
 import { JustAdvertisementComponent } from './components/advertise/just-advertisement.component';
 import { SharedModule } from 'ngx-az-core';
+import { CurrencyModule } from '../../../shared/currency/currency.module';
+import { TagModule } from '../../../shared/tag/tag.module';
+import { AngularYandexMapsModule } from 'angular8-yandex-maps';
+import { ChildCategoryComponent } from './components/child-category/child-category.component';
 
 @NgModule({
   imports: [
+    AdvertisementRoutes,
+
     FormsModule,
     ReactiveFormsModule,
-    AdvertisementRoutes,
+    AngularYandexMapsModule,
 
     SharedModule,
     PaginationModule,
     CardModule,
     SkeletonModule,
+    CurrencyModule,
+    TagModule,
 
     /* NG-ZORRO */
     NzTypographyModule,
@@ -83,9 +90,9 @@ import { SharedModule } from 'ngx-az-core';
     AdvertisementListComponent,
     AdvertisementListHeaderComponent,
     JustAdvertisementComponent,
+    ChildCategoryComponent,
 
     CategoryFilterComponent,
-    SingleCategoryComponent,
     SimilarItemsComponent,
   ],
 })

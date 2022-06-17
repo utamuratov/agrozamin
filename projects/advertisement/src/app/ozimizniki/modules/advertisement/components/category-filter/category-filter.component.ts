@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { Filter, InputTypeForFilter } from 'ngx-az-core';
 import { CategoryFilterService } from './category-filter.service';
 
@@ -6,6 +12,7 @@ import { CategoryFilterService } from './category-filter.service';
   selector: 'az-category-filter',
   templateUrl: './category-filter.component.html',
   styleUrls: ['./category-filter.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CategoryFilterService],
 })
 export class CategoryFilterComponent implements OnInit {
@@ -25,7 +32,10 @@ export class CategoryFilterComponent implements OnInit {
    */
   InputTypeForFilter = InputTypeForFilter;
 
-  constructor(private $categoryFilter: CategoryFilterService) {}
+  constructor(
+    private $categoryFilter: CategoryFilterService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.getFiltersByCategoryId(this.categoryId);
@@ -41,6 +51,7 @@ export class CategoryFilterComponent implements OnInit {
       .subscribe((result) => {
         if (result.success) {
           this.filters = result.data;
+          this.cd.markForCheck();
         }
       });
   }

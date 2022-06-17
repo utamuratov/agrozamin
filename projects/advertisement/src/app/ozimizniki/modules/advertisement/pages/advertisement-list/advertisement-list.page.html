@@ -11,20 +11,18 @@
                   nz-col
                   nzSpan="24"
                   class="menu__item"
-                  *ngFor="let category of categories; let isLast = last"
+                  *ngFor="let category of (category$ | async)"
                 >
-                  <a
-                    class="menu__link"
-                    [routerLink]="[category.id]"
-                    *ngIf="!isLast"
-                    (click)="getCategoryId(category.id)"
+                  <a class="menu__link" [routerLink]="[category.id]"
                     ><img [src]="category.icon" alt="icon" /><span
                       >{{ category.name }}</span
                     ></a
                   >
-                  <a class="menu__link active" *ngIf="isLast"
-                    ><img [src]="category.icon" alt="icon" /><span
-                      >{{ category.name }}</span
+                </li>
+                <li nz-col nzSpan="24" class="menu__item">
+                  <a class="menu__link active"
+                    ><img src="./assets/images/other.svg" alt="icon" /><span
+                      >{{ 'Все товары' }}</span
                     ></a
                   >
                 </li>
@@ -37,7 +35,7 @@
         </div>
       </div>
       <div nz-col nzXs="24" nzSm="16" nzMd="15" nzLg="18" nzXl="18">
-        <az-advertisement-list [categoryId]="catId"></az-advertisement-list>
+        <az-advertisement-list></az-advertisement-list>
       </div>
     </div>
   </div>

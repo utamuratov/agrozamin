@@ -1,12 +1,21 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
+import { map, Observable } from 'rxjs';
+import { AdvertisementDetails } from '../../dto/advertisement-details.interface';
+import { AdvertisementService } from '../../services/advertisement.service';
 
 @Component({
   templateUrl: './advertisement-details.page.html',
   styleUrls: ['./advertisement-details.page.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdvertisementDetailsPage implements OnInit {
+  /**
+   *
+   */
+  data!: AdvertisementDetails;
+
   imgList = [
     {
       id: 1,
@@ -41,9 +50,16 @@ export class AdvertisementDetailsPage implements OnInit {
   mapVisible = false;
   textAreaCommend!: string;
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private $advertisement: AdvertisementService
+  ) {
+    this.data = this.route.snapshot.data['advertisment'];
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // TODO
+  }
 
   next(e: NzCarouselComponent) {
     e.next();

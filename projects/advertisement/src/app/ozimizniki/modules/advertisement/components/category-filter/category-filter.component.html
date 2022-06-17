@@ -1,4 +1,4 @@
-<div class="filter">
+<div class="filter" *ngIf="filters.length > 0">
   <nz-collapse nzGhost nzExpandIconPosition="right">
     <nz-collapse-panel
       [nzHeader]="filter.name"

@@ -11,7 +11,6 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { SwiperModule } from 'swiper/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { CategoriesListComponent } from './components/categories-list/categories-list.component';
 import { HistoryComponent } from './components/history/history.component';
 import { PopularBoardComponent } from './components/popular-board/popular-board.component';
 import {
@@ -21,6 +20,7 @@ import {
   NewsModule,
   PartnerModule,
 } from 'ngx-az-core';
+import { CategoryListComponent } from './components/category-list/category-list.component';
 
 @NgModule({
   imports: [
@@ -52,7 +52,7 @@ import {
   ],
   declarations: [
     HomeComponent,
-    CategoriesListComponent,
+    CategoryListComponent,
     HistoryComponent,
     PopularBoardComponent,
   ],

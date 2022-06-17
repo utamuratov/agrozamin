@@ -1,21 +1,28 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Category } from 'projects/advertisement/src/app/shared/models/category.interface';
 import { CategoryService } from 'projects/advertisement/src/app/shared/services/category.service';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Component({
-  templateUrl: './advertisement-list.page.html',
-  styleUrls: ['./advertisement-list.page.less'],
+  selector: 'az-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvertisementListPage implements OnInit {
+export class CategoryListComponent implements OnInit {
   /**
    *
    */
   category$!: Observable<Category[]>;
 
+  /**
+   *
+   */
   constructor(private $category: CategoryService) {}
 
+  /**
+   *
+   */
   ngOnInit() {
     this.getCategories();
   }
