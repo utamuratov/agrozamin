@@ -1,51 +1,54 @@
-<div class="container">
-  <div class="faq">
-
-  <nz-breadcrumb nzSeparator=">">
-    <nz-breadcrumb-item>Главная</nz-breadcrumb-item>
-    <nz-breadcrumb-item>
-      <a>FAQ</a>
-    </nz-breadcrumb-item>    
-  </nz-breadcrumb>
-
-  <nz-divider></nz-divider>
-
-    <div class="faq__title">
-      <h3>FAQ</h3>
-    </div>
-    <div class="faq__content">
-      <nz-collapse  [nzBordered]="false">
-
-        <nz-collapse-panel
-        #p
-          *ngFor="let panel of panels; let isFirst = first " 
-          [nzHeader]="header"
-          [nzActive]="panel.active"
-          [nzExtra]="expandedIcon"
-          nzShowArrow="false"
-        >
-          <p class="faq__content__desc">
-            Связаться с ветеринарами и зоотехниками ВетЭксперт можно устно по телефону или письменно в чате личного кабинета.
-          </p>
-          
-            <ng-template #expandedIcon >
-                <div class="faq__content__icon">
-                  <i nz-icon [nzType]="p.nzActive ? 'minus' : 'plus'" ></i>                  
-                </div>
-            </ng-template>
-
-            <ng-template #header >
-              <div class="faq__content__title">
-                <p>{{panel.name}}</p>
-              </div>
-            </ng-template>       
-
+<div class="wrapper">
+  <div class="container">
+    <div class="faq">
+  
+    <nz-breadcrumb nzSeparator=">">
+      <nz-breadcrumb-item>Главная</nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+        <a>FAQ</a>
+      </nz-breadcrumb-item>    
+    </nz-breadcrumb>
+  
+    <nz-divider></nz-divider>
+  
+      <div class="faq__title">
+        <h3>FAQ</h3>
+      </div>
+      <div class="faq__content">
+        <nz-collapse  [nzBordered]="false">
+  
+          <nz-collapse-panel
+          #p
+            *ngFor="let panel of panels; let isFirst = first " 
+            [nzHeader]="header"
+            [nzActive]="panel.active"
+            [nzExtra]="expandedIcon"
+            nzShowArrow="false"
+          >
+            <p class="faq__content__desc">
+              Связаться с ветеринарами и зоотехниками ВетЭксперт можно устно по телефону или письменно в чате личного кабинета.
+            </p>
             
-        </nz-collapse-panel>
-
-        
-      </nz-collapse>
+              <ng-template #expandedIcon >
+                  <div class="faq__content__icon">
+                    <i nz-icon [nzType]="p.nzActive ? 'minus' : 'plus'" ></i>                  
+                  </div>
+              </ng-template>
+  
+              <ng-template #header >
+                <div class="faq__content__title">
+                  <p>{{panel.name}}</p>
+                </div>
+              </ng-template>       
+  
+              
+          </nz-collapse-panel>
+  
+          
+        </nz-collapse>
+      </div>
     </div>
+  
   </div>
-
+  
 </div>
