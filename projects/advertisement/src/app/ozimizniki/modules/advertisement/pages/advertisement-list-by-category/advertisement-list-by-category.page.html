@@ -46,10 +46,10 @@
         <div nz-row [nzGutter]="[0, 30]">
           <div nz-col nzSpan="24">
             <div class="menu">
-              <az-single-category
-                [categories]="categories"
+              <az-child-category
+                [category$]="category$"
                 (subcategory)="handleCategory($event)"
-              ></az-single-category>
+              ></az-child-category>
             </div>
           </div>
           <div nz-col nzSpan="24">
