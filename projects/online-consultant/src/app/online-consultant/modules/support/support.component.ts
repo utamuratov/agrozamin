@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./support.component.less']
 })
 export class SupportComponent implements OnInit {
-
+  isClient = true;
   constructor() { }
 
   ngOnInit() {
