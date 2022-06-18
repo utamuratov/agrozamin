@@ -1,0 +1,84 @@
+<div class="category-page" style="background-color: #f8f9fc">
+  <div class="container">
+    <div nz-row class="category-page__bradcrumb">
+      <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
+        <nz-breadcrumb>
+          <nz-breadcrumb-item>Главная</nz-breadcrumb-item>
+          <nz-breadcrumb-item>
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+              Каталог
+              <i nz-icon nzType="down"></i>
+            </a>
+          </nz-breadcrumb-item>
+          <nz-breadcrumb-item>
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+              Сельхозтехника
+              <i nz-icon nzType="down"></i>
+            </a>
+          </nz-breadcrumb-item>
+          <nz-breadcrumb-item>
+            <a> Техника </a>
+          </nz-breadcrumb-item>
+        </nz-breadcrumb>
+      </div>
+      <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
+        <nz-select ngModel="Сельхозтехника" nzBorderless>
+          <nz-option
+            nzValue="Сельхозтехника"
+            nzLabel="Сельхозтехника"
+          ></nz-option>
+          <nz-option nzValue="Техника" nzLabel="Техника"></nz-option>
+          <nz-option
+            nzValue="Техника для растениеводства"
+            nzLabel="Техника для растениеводства"
+          ></nz-option>
+          <nz-option
+            nzValue="Техника для животноводства"
+            nzLabel="Техника для животноводства"
+          ></nz-option>
+        </nz-select>
+      </div>
+    </div>
+
+    <h2 nz-typography>Сельскохозяйственная техника</h2>
+    <div nz-row [nzGutter]="[30, 0]">
+      <div nz-col nzXs="0" nzSm="0" nzMd="9" nzLg="8" nzXl="6">
+        <div nz-row [nzGutter]="[0, 30]">
+          <div nz-col nzSpan="24">
+            <div class="menu">
+              <az-child-category
+                [category$]="category$"
+                (subcategory)="handleCategory($event)"
+              ></az-child-category>
+            </div>
+          </div>
+          <div nz-col nzSpan="24">
+            <az-category-filter [categoryId]="categoryId"></az-category-filter>
+          </div>
+          <div nz-col>
+            <!-- <button nz-button>asd</button> -->
+          </div>
+          <div nz-col nzSpan="24">
+            <az-just-advertisement></az-just-advertisement>
+          </div>
+        </div>
+      </div>
+      <div nz-col nzXs="24" nzSm="24" nzMd="15" nzLg="16" nzXl="18">
+        <az-advertisement-list
+          [categoryId]="categoryId"
+        ></az-advertisement-list>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- dropdown  -->
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzSelectable>
+    <li nz-menu-item>1st menu item</li>
+    <li nz-menu-item>2nd menu item</li>
+    <li nz-menu-item>3rd menu item</li>
+    <li nz-menu-item nzDanger>4th danger item</li>
+  </ul>
+</nz-dropdown-menu>

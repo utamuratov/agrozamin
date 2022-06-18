@@ -24,12 +24,12 @@ import { Messages1Component } from './components/messages/components/messages1/m
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { CurrencyModule } from '../../../shared/currency/currency.module';
-import { ClassByCategoryIdPipe } from './components/advertisement/pipes/suffixByCategoryId.pipe';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { PaginationModule } from '../../../shared/pagination/pagination.module';
 import { NoImageModule } from '../../../shared/no-image/no-image.module';
 import { BreadcrumbModule } from '../../../shared/breadcrumb/breadcrumb.module';
 import { LayoutComponent } from './components/layout/layout.component';
+import { TagModule } from '../../../shared/tag/tag.module';
 
 @NgModule({
   imports: [
@@ -42,6 +42,7 @@ import { LayoutComponent } from './components/layout/layout.component';
     PaginationModule,
     NoImageModule,
     BreadcrumbModule,
+    TagModule,
 
     NzGridModule,
     NzMenuModule,
@@ -68,8 +69,6 @@ import { LayoutComponent } from './components/layout/layout.component';
     FavouriteAdvertComponent,
     Messages1Component,
     Messages2Component,
-
-    ClassByCategoryIdPipe,
   ],
 })
 export class CabinetModule {}

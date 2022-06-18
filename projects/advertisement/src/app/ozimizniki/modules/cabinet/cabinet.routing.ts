@@ -62,7 +62,7 @@ const routes: Routes = [
       {
         path: 'advertisement',
         loadChildren: () =>
-          import('./../add-advertisement/add-advertisement.module').then(
+          import('./modules/add-advertisement/add-advertisement.module').then(
             (m) => m.AddAdvertisementModule
           ),
       },

@@ -15,10 +15,10 @@ const routes: Routes = [
           import('./modules/home/home.module').then((m) => m.HomeModule),
       },
       {
-        path: 'categories',
+        path: 'advertisements',
         loadChildren: () =>
-          import('./modules/category/category.module').then(
-            (m) => m.CategoryModule
+          import('./modules/advertisement/advertisement.module').then(
+            (m) => m.AdvertisementModule
           ),
       },
       {

@@ -86,6 +86,8 @@ export * from './lib/shared/add-edit-advertisement-shared/dto/region.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/district.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/category-type.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/filter.interface';
+export * from './lib/shared/add-edit-advertisement-shared/dto/file.response';
+export * from './lib/shared/add-edit-advertisement-shared/dto/location.interface';
 
 // SERVICES
 export * from './lib/services/base.service';
@@ -93,6 +95,7 @@ export * from './lib/services/base-auth.service';
 export * from './lib/services/logger.service';
 export * from './lib/services/ng-destroy.service';
 export * from './lib/services/seo.service';
+export * from './lib/services/grid.service';
 export * from './lib/shared/language/language.service';
 export * from './lib/shared/add-edit-advertisement-shared/services/add-advertisement.service';
 

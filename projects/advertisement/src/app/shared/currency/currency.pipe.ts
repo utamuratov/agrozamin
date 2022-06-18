@@ -4,9 +4,14 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
 @Pipe({
   name: 'azCurrency',
+  pure: false,
 })
 export class CurrencyPipe extends TranslatePipe implements PipeTransform {
   override transform(price: NzSafeAny): string {
+    if (price == undefined || price == null) {
+      return super.transform('priceOnRequest');
+    }
+
     const priceString = price + '';
     let separated = '';
     let start = 0;
