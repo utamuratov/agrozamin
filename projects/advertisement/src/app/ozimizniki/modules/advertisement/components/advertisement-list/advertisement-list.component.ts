@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { GridModel, GridQuery } from 'ngx-az-core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Filter, GridModel, GridQuery, NgDestroy } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
-import { finalize } from 'rxjs';
+import { finalize, takeUntil } from 'rxjs';
 import { Advertisement } from '../../dto/advertisement.interface';
 import { AdvertisementService } from '../../services/advertisement.service';
 import { products } from './data';
@@ -29,12 +30,48 @@ const DEFAULT_DATA: GridModel<Advertisement> = {
   templateUrl: './advertisement-list.component.html',
   styleUrls: ['./advertisement-list.component.less'],
 })
-export class AdvertisementListComponent implements OnInit {
+export class AdvertisementListComponent {
   /**
    *
    */
   @Input()
-  categoryId!: number;
+  filters!: Filter[];
+
+  /**
+   *
+   */
+  private _queryParams!: Params;
+  public get queryParams(): Params {
+    return this._queryParams;
+  }
+  @Input()
+  public set queryParams(v: Params | undefined) {
+    if (v) {
+      this._queryParams = v;
+      this.characteristics = this.queryParams['characteristics'];
+    }
+    this.loadDataByInitialQuery();
+  }
+
+  /**
+   *
+   */
+  private _categoryId!: number;
+  public get categoryId(): number {
+    return this._categoryId;
+  }
+  @Input()
+  public set categoryId(v: number | undefined) {
+    if (v) {
+      this._categoryId = v;
+      this.initQuery();
+    }
+  }
+
+  /**
+   *
+   */
+  characteristics!: string;
 
   /**
    *
@@ -61,21 +98,23 @@ export class AdvertisementListComponent implements OnInit {
    */
   isInlineCard = false;
 
-  products = products;
-  cardSizeIndex = 6;
+  /**
+   *
+   */
+  visibleFilter = false;
 
-  visible = false;
-
+  /**
+   *
+   * @param cd
+   * @param route
+   * @param $advertisement
+   */
   constructor(
     private cd: ChangeDetectorRef,
     private $advertisement: AdvertisementService
   ) {
     this.initQuery();
     this.setDefaultData();
-  }
-
-  ngOnInit() {
-    this.loadDataByInitialQuery();
   }
 
   /**
@@ -92,12 +131,8 @@ export class AdvertisementListComponent implements OnInit {
    */
   private getQueryFilter() {
     return [
-      // { key: 'status', value: [String(this.status || '')] },
+      { key: 'characteristics', value: [this.characteristics || ''] },
       { key: 'category_id', value: [String(this.categoryId || '')] },
-      // {
-      //   key: 'type_id',
-      //   value: [String(this.advertisementTypeId || '')],
-      // },
     ];
   }
 
@@ -164,16 +199,22 @@ export class AdvertisementListComponent implements OnInit {
    *
    */
   sortByDateDescanding(byDescanding: boolean) {
-    this.query.sortField = 'created_date';
+    this.query.sortField = 'created_at';
     this.query.sortOrder = byDescanding ? 'desc' : 'asc';
     this.loadData();
   }
 
-  open(): void {
-    this.visible = true;
+  /**
+   *
+   */
+  openFilter(): void {
+    this.visibleFilter = true;
   }
 
-  close(): void {
-    this.visible = false;
+  /**
+   *
+   */
+  closeFilter(): void {
+    this.visibleFilter = false;
   }
 }

@@ -3,6 +3,7 @@ import {
   InputTypeForCreator,
   InputTypeForFilter,
 } from '../../../enums/input-type.enum';
+import { FilterParameter } from './filter-parameter.interface';
 
 export interface Filter {
   filter_id: number;
@@ -10,16 +11,9 @@ export interface Filter {
   type_for_filter: InputTypeForFilter;
   field_name: string;
   name: string;
-  parameters: {
-    category_filter_id: number;
-    filter_parameter_id: number;
-    label: string;
-
-    // for model
-    visiblePopover: boolean;
-  }[];
+  parameters: FilterParameter[];
 
   // for model
-  value: number | NzCheckBoxOptionInterface[] | Date | string;
+  value: number | NzCheckBoxOptionInterface[] | Date | string | number[];
   invalid: boolean;
 }

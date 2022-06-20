@@ -3,6 +3,7 @@
     <div nz-col nzSpan="24">
       <az-advertisement-list-header
         [(isInline)]="isInlineCard"
+        [filters]="filters"
         (sortedByPriceDescandingChange)="sortByPriceDescanding($event)"
         (sortedByDateDescandingChange)="sortByDateDescanding($event)"
       ></az-advertisement-list-header>
@@ -13,7 +14,7 @@
         nzBlock
         nzSize="large"
         class="filter__btn"
-        (click)="open()"
+        (click)="openFilter()"
       >
         <i nz-icon nzType="filter" nzTheme="outline"></i>
         <span>Фильтр</span>
@@ -54,9 +55,9 @@
 
 <nz-drawer
   [nzClosable]="false"
-  [nzVisible]="visible"
+  [nzVisible]="visibleFilter"
   nzPlacement="right"
-  (nzOnClose)="close()"
+  (nzOnClose)="closeFilter()"
   nzWidth="100%"
 >
   <ng-container *nzDrawerContent>
@@ -64,7 +65,7 @@
       <div class="drawer__header">
         <div nz-row [nzGutter]="[0, 25]">
           <div nz-col nzSpan="24" class="text-end">
-            <button nz-button nzSize="large" (click)="close()">
+            <button nz-button nzSize="large" (click)="closeFilter()">
               <i nz-icon nzType="close" nzTheme="outline"></i>
             </button>
           </div>
@@ -73,7 +74,7 @@
               nz-button
               nzType="link"
               nzSize="large"
-              (click)="close()"
+              (click)="closeFilter()"
               class="drawer__title"
             >
               <i
@@ -91,7 +92,10 @@
         </div>
       </div>
       <div class="drawer__content">
-        <az-category-filter [categoryId]="4"></az-category-filter>
+        <az-category-filter
+          *ngIf="visibleFilter"
+          [categoryId]="categoryId"
+        ></az-category-filter>
       </div>
     </div>
   </ng-container>

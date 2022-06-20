@@ -36,6 +36,20 @@ export function markAllAsDirty(form: FormGroup) {
   });
 }
 
+/**
+ *
+ * @param obj
+ * @returns
+ */
+export function deepClone(obj: NzSafeAny) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+/**
+ *
+ * @param obj
+ * @returns
+ */
 export function obj2FormData(obj: NzSafeAny): FormData {
   const formData: FormData = new FormData();
   createFormData(obj, '', formData);

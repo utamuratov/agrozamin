@@ -266,17 +266,21 @@
               { xs: 10, sm: 10, md: 10, lg: 16, xl: 16 }
             ]"
           >
-            <div nz-col *ngFor="let param of params">
-              <div class="filter__params">
-                <span>{{ param.title }}</span>
-                <i
-                  nz-icon
-                  nzType="close"
-                  nzTheme="outline"
-                  (click)="deleteParam(param.id)"
-                ></i>
-              </div>
-            </div>
+            <ng-container *ngFor="let filter of filters">
+              <ng-container *ngFor="let parameter of filter.parameters">
+                <div nz-col *ngIf="parameter.checked">
+                  <div class="filter__params">
+                    <span>{{ filter.name + ": " + parameter.label }}</span>
+                    <i
+                      nz-icon
+                      nzType="close"
+                      nzTheme="outline"
+                      (click)="deleteParam(parameter)"
+                    ></i>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
           </div>
         </div>
         <div nz-col nzSpan="24">
@@ -307,13 +311,13 @@
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <ul nz-menu>
     <li nz-menu-item>
-      <a class="sort__link" (click)="byPrice()"
+      <a class="sort__link" (click)="toggleSortByPrice()"
         ><span>По цене</span
         ><img src="./assets/images/sort.svg" alt="sort icon"
       /></a>
     </li>
     <li nz-menu-item>
-      <a class="sort__link" (click)="byDate()"
+      <a class="sort__link" (click)="toggleSortByPrice()"
         ><span>По дате</span
         ><img src="./assets/images/sort.svg" alt="sort icon"
       /></a>

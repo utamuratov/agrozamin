@@ -14,10 +14,7 @@
           nzSpan="24"
           *ngFor="let child of categories[0].child_categories"
         >
-          <a
-            class="single-category__sublink"
-            [ngClass]="id === child.id ? 'active' : ''"
-            (click)="handleCategory(child.id)"
+          <a class="single-category__sublink" [routerLink]="['../', child.id]"
             >{{ child.name }}
             <!-- TODO: REMOVE -->
             <!-- <span>{{ cat.count }}</span> -->

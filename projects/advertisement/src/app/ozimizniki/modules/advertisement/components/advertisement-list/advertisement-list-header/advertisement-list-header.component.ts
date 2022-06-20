@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Filter, FilterParameter } from 'ngx-az-core';
 
 @Component({
   selector: 'az-advertisement-list-header',
@@ -12,6 +13,12 @@ export class AdvertisementListHeaderComponent implements OnInit {
    */
   @Input()
   isInline!: boolean;
+
+  /**
+   *
+   */
+  @Input()
+  filters?: Filter[];
 
   /**
    *
@@ -49,15 +56,8 @@ export class AdvertisementListHeaderComponent implements OnInit {
   date = false;
   filterParams = false;
 
-  params = [
-    { id: 1, title: 'Куплю' },
-    { id: 2, title: 'Андижанская область' },
-    { id: 3, title: 'от 500 000 сум' },
-    { id: 4, title: 'Страна производства: Россия' },
-  ];
-
-  constructor(private route: ActivatedRoute) {
-    if (route.snapshot.params['categoryId']) {
+  constructor(private route: ActivatedRoute, private router: Router) {
+    if (this.route.snapshot.params['categoryId']) {
       this.filterParams = true;
     }
   }
@@ -92,23 +92,34 @@ export class AdvertisementListHeaderComponent implements OnInit {
     this.sortedByDateDescandingChange.emit(this.sortedByDateDescanding);
   }
 
+  /**
+   *
+   * @param parameter
+   */
+  deleteParam(parameter: FilterParameter) {
+    parameter.checked = false;
+    this.navigateWithNewQueryParams(parameter);
+  }
+
+  /**
+   *
+   * @param parameter
+   */
+  private navigateWithNewQueryParams(parameter: FilterParameter) {
+    let characteristics: string =
+      this.route.snapshot.queryParams['characteristics'];
+    const characteristic = `${parameter.filter_id}_${parameter.filter_parameter_id}`;
+    characteristics = characteristics.replace(`;${characteristic}`, '');
+    characteristics = characteristics.replace(`${characteristic};`, '');
+    characteristics = characteristics.replace(`${characteristic}`, '');
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { characteristics },
+    });
+  }
+
   isMap() {
     this.isMapActive = !this.isMapActive;
-  }
-
-  byDate() {
-    this.date = true;
-  }
-
-  byPrice() {
-    this.date = false;
-  }
-
-  onClose(): void {
-    console.log('tag was closed.');
-  }
-
-  deleteParam(id: number) {
-    this.params = this.params.filter((e) => e.id != id);
   }
 }

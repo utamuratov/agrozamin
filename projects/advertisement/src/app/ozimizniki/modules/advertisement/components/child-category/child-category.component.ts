@@ -7,7 +7,9 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'projects/advertisement/src/app/shared/models/category.interface';
+import { CategoryService } from 'projects/advertisement/src/app/shared/services/category.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,20 +19,39 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChildCategoryComponent implements OnInit {
-  @Input()
+  /**
+   *
+   */
   category$!: Observable<Category[]>;
-  @Output() subcategory = new EventEmitter<number>();
-  id = 1;
-  constructor(private location: Location) {}
 
-  ngOnInit() {}
+  private _categoryId!: number;
+  public get categoryId(): number {
+    return this._categoryId;
+  }
+  @Input()
+  public set categoryId(v: number | undefined) {
+    if (v) {
+      this._categoryId = v;
+      this.getCategoryByCategoryId(this.categoryId);
+    }
+  }
 
-  handleCategory(id: number) {
-    this.id = id;
-    this.subcategory.emit(this.id);
+  constructor(
+    private location: Location,
+    private router: Router,
+    private route: ActivatedRoute,
+    private $category: CategoryService
+  ) {}
+
+  ngOnInit() {
+    // TODO: REMOVE
   }
 
   back() {
-    this.location.back();
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  getCategoryByCategoryId(categoryId: number) {
+    this.category$ = this.$category.getAll(categoryId);
   }
 }
