@@ -148,7 +148,7 @@
                       <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
                         <div nz-row [nzGutter]="[20, 20]" nzJustify="center">
                           <div nz-col nzFlex="262px" *ngFor="let card of consultants">
-                            <div class="card">
+                            <div class="card" routerLink="../consultant-page">
                               <div class="card__img">
                                 <img [src]="card.img" alt="card_img">
                               </div>
@@ -188,7 +188,7 @@
                       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
                         <div nz-row [nzGutter]="[20, 20]">
                           <div nz-col nzXs="12" nzSm="8" nzMd="8" nzLg="6" nzXl="0" *ngFor="let card of consultants">
-                            <div class="card">
+                            <div class="card" routerLink="../consultant-page">
                               <div class="card__img">
                                 <img [src]="card.img" alt="card_img">
                               </div>
