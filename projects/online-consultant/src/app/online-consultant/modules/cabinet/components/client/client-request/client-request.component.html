@@ -1,0 +1,83 @@
+<div class="request">
+  <div class="container">
+    <div nz-row [nzGutter]="[0, 24]">
+      <div nz-col nzSpan="24">
+        <h2 class="request__title">Мои заявки</h2>
+      </div>
+      <div nz-col nzSpan="24">
+        <div class="request__content">
+          <nz-tabset>
+            <nz-tab [nzTitle]="tab1">
+              <div class="request__content__block">
+                <div nz-row [nzGutter]="[0, 24]">
+                  <div nz-col nzSpan="24">
+                    <span class="request__filter-text">Фильтр</span>
+                    <nz-select ngModel="lucy" nzSize="large">
+                      <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                      <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+                      <nz-option
+                        nzValue="disabled"
+                        nzLabel="Disabled"
+                        nzDisabled
+                      ></nz-option>
+                    </nz-select>
+                  </div>
+                  <div nz-col nzSpan="24">
+                    <nz-table
+                      #nzTable
+                      [nzData]="listOfData"
+                      nzTableLayout="fixed"
+                    >
+                      <thead>
+                        <tr>
+                          <th nzWidth="50px"></th>
+                          <th>ID</th>
+                          <th>Дата</th>
+                          <th>Время</th>
+                          <th>Имя</th>
+                          <th>Направление</th>
+                          <th>Статус</th>
+                          <th>Цена</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="let data of nzTable.data">
+                          <tr>
+                            <td
+                              [nzExpand]="expandSet.has(data.id)"
+                              (nzExpandChange)="onExpandChange(data.id, $event)"
+                            ></td>
+                            <td>{{ data.name }}</td>
+                            <td>{{ data.age }}</td>
+                            <td>{{ data.address }}</td>
+                          </tr>
+                          <tr [nzExpand]="expandSet.has(data.id)">
+                            <span>{{ data.description }}</span>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </nz-table>
+                  </div>
+                </div>
+              </div>
+            </nz-tab>
+            <nz-tab [nzTitle]="tab2">Content of Tab Pane 2</nz-tab>
+          </nz-tabset>
+
+          <ng-template #tab1>
+            <div class="tab">
+              <i nz-icon nzType="flag" nzTheme="fill"></i>
+              <span>Новые заявки</span>
+            </div>
+          </ng-template>
+          <ng-template #tab2>
+            <div class="tab">
+              <i nz-icon nzType="clock-circle" nzTheme="fill"></i>
+              <span>История заявок</span>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

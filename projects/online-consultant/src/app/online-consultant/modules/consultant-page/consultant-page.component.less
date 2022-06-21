@@ -233,27 +233,437 @@
     }
 
     &__author {
-        font-family: MontBold;
-        font-size: 20px;
-        line-height: 25px;
-        color: #333333;
-        margin-bottom: 0;
+      font-family: MontBold;
+      font-size: 20px;
+      line-height: 25px;
+      color: #333333;
+      margin-bottom: 0;
     }
     &__rating {
-        display: flex;
-        align-items: center;
+      display: flex;
+      align-items: center;
+
+      img {
+        padding-left: 23px;
+        padding-right: 15px;
+      }
+
+      span {
+        font-family: MontRegular;
+        font-size: 14px;
+        line-height: 17px;
+        color: #000;
+      }
+    }
+
+    &__textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #cfd3d8;
+      margin-bottom: 20px;
+      outline: none;
+    }
+  }
+
+  &__similar {
+    padding-bottom: 25px;
+    .card {
+      position: relative;
+      height: 340px;
+      border-radius: 16px;
+      overflow: hidden;
+      width: 100%;
+      cursor: pointer;
+
+      @media (max-width: 991px) {
+        height: 330px;
+      }
+
+      @media (max-width: 575px) {
+        height: 226px;
+      }
+
+      &:hover {
+        .card__info {
+          opacity: 1;
+        }
+      }
+
+      &__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
 
         img {
-            padding-left: 23px;
-            padding-right: 15px;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &__info {
+        padding: 8px;
+        height: 100%;
+        opacity: 0;
+        transition: 0.3s;
+
+        @media (max-width: 575px) {
+          opacity: 1;
         }
 
-        span {
+        &__rate {
+          padding: 4px 11px;
+          border-radius: 16px;
+          background: #000;
+          background: rgba(255, 255, 255, 0.9);
+          // backdrop-filter: blur(16px);
+          width: max-content;
+          display: flex;
+          align-items: center;
+          margin-left: auto;
+
+          &-text {
+            padding-left: 7px;
             font-family: MontRegular;
             font-size: 14px;
-            line-height: 17px;
+            line-height: 18px;
             color: #000;
+          }
+
+          @media (max-width: 575px) {
+          }
         }
+
+        &_mod {
+          display: flex;
+          align-items: end;
+          height: 100%;
+        }
+
+        &__block {
+          padding: 12px;
+          border-radius: 16px;
+          background: rgba(255, 255, 255, 0.9);
+          // backdrop-filter: blur(16px);
+
+          &__title {
+            font-family: MontSemiBold;
+            font-size: 16px;
+            line-height: 20px;
+            color: #333333;
+
+            @media (max-width: 575px) {
+              font-size: 11px;
+              line-height: 14px;
+              height: 42px;
+            }
+          }
+
+          &__specialization {
+            font-family: MontRegular;
+            font-size: 14px;
+            line-height: 18px;
+            color: #242533;
+
+            @media (max-width: 575px) {
+              font-size: 10px;
+              line-height: 12px;
+            }
+          }
+
+          &__text {
+            font-size: 10px;
+            line-height: 13px;
+            font-family: MontRegular;
+            color: #86898c;
+          }
+
+          &__price {
+            font-family: MontBold;
+            font-size: 14px;
+            line-height: 18px;
+            color: #000000;
+          }
+        }
+      }
+    }
+  }
+
+  &__modal {
+    &__header {
+      border-bottom: 1px solid #d9d9d9;
+    }
+
+    &__title {
+      margin-bottom: 0;
+      font-family: MontBold;
+      font-size: 14px;
+      line-height: 18px;
+      color: #000000;
+    }
+
+    &__step {
+      font-family: MontLight;
+      color: #242533;
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    &__content {
+      &__btn-group {
+        border: 1px solid #434343;
+        border-radius: 8px;
+        font-family: MontSemiBold;
+
+        &_text {
+          color: #86898c;
+        }
+      }
+
+      &__list-day {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &__select-day {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 57px;
+      }
+
+      &__week {
+        &__day {
+          font-family: MontRegular;
+          font-size: 16px;
+          line-height: 20px;
+          color: #86898c;
+          margin-bottom: 40px;
+        }
+
+        &__radio {
+          span {
+            display: inline-block;
+            padding: 16px 20px;
+            outline: 1px solid #434343;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: MontSemiBold;
+            font-size: 14px;
+          }
+
+          input {
+            appearance: none;
+            position: absolute;
+
+            &:checked + span {
+              background: linear-gradient(81.32deg, #ff512f 0%, #dd2476 100%);
+              color: #fff;
+              outline: none;
+            }
+
+            &:disabled + span {
+              background: #f4f6ff;
+              color: #86898c;
+              outline: none;
+            }
+          }
+        }
+      }
+
+      &__text {
+        margin-bottom: 0;
+        padding: 21px 0;
+        background: #f4f6ff;
+        border-radius: 8px;
+        text-align: center;
+        font-family: MontSemiBold;
+        font-size: 14px;
+        line-height: 18px;
+      }
+
+      &__hour {
+        width: 100%;
+        border: 1px solid #434343;
+        padding: 13px 16px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        &__text {
+          font-family: MontSemiBold;
+          font-size: 14px;
+          line-height: 18px;
+          color: #000;
+          flex-grow: 1;
+          text-align: center;
+        }
+
+        &_custom-radio {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          border: 1px solid #b7bbbf;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: 0.5s;
+
+          
+        }
+
+        &:hover {
+          .consultant__modal__content__hour_custom-radio {
+            opacity: 1;
+          }
+        }
+
+        input {
+          appearance: none;
+          position: absolute;
+
+          &:checked + span {
+            opacity: 1;
+
+            span {
+              display: inline-block;
+              width: 12px;
+              height: 12px;
+              border-radius: 50%;
+              background: linear-gradient(81.32deg, #ff512f 0%, #dd2476 100%);
+              box-shadow: 0 0 6px #dd2476;
+            }
+          }
+        }
+      }
+    }
+
+    &__content-second {
+      padding-top: 25px !important;
+      &__img {
+        width: 100%;
+        height: 200px;
+        border-radius: 16px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &__title {
+        font-family: MontSemiBold;
+        font-size: 20px;
+        line-height: 25px;
+        color: #242533;
+        margin-bottom: 0;
+      }
+
+      &__subtitle {
+        display: block;
+        font-family: MontRegular;
+        font-size: 14px;
+        line-height: 20px;
+        color: #86898C;
+        margin-bottom: 4px;
+      }
+
+      &__textarea-text {
+        font-family: MontRegular;
+        font-size: 14px;
+        line-height: 20px;
+        color: #86898C;
+        display: block;
+        margin-bottom: 16px;
+      }
+    }
+
+    &__content-third {
+      &__title {
+        font-family: MontSemiBold;
+        font-size: 20px;
+        color: #242533;
+        margin-bottom: 0;
+      }
+
+      &__label {
+        font-family: MontRegular;
+        font-size: 14px;
+        line-height: 20px;
+        color: #86898C;
+      }
+
+      &__input {
+        background: #F4F6FF;
+
+        input {
+          background: #F4F6FF;
+        }
+      }
+
+      &__text {
+        font-family: MontRegular;
+        font-size: 14px;
+        line-height: 20px;
+        color: #86898C;
+      }
+    }
+
+    &__content-fourth {
+      padding: 40px;
+      background: #F4F6FF;
+      margin-top: 24px;
+      border-radius: 16px;
+      padding-top: 40px !important;
+      padding-bottom: 40px !important;
+
+      &__title {
+        font-family: MontSemiBold;
+        font-size: 24px;
+        line-height: 30px;
+        color: #22A33F;
+        max-width: 320px;
+        width: 100%;
+        margin-bottom: 0;
+      }
+
+      &__text {
+        font-family: MontSemiBold;
+        font-size: 18px;
+        line-height: 22px;
+        color: #333333;
+        margin-bottom: 0;
+      }
+
+      &__subtext {
+        font-family: MontRegular;
+        font-size: 14px;
+        line-height: 20px;
+        color: #86898C;
+        margin-bottom: 0;
+      }
+    }
+
+    nz-form-item {
+      margin-bottom: 16px;
+    }
+
+    &__footer {
+      button {
+        font-family: MontSemiBold;
+        font-size: 14px;
+        line-height: 18px;
+
+        img {
+          margin-right: 10px;
+        }
+      }
     }
   }
 }
@@ -271,4 +681,80 @@
 .ant-comment-rtl .count {
   padding-right: 8px;
   padding-left: 0;
+}
+
+
+.label-cvc {
+  display: flex;
+  justify-content: end;
+}
+
+.slash {
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.paymentCard {
+  border-radius: 16px;
+  padding: 11px;
+  background: url(../../../../assets/images/pay-card-img.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__close-btn {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  &__type {
+    padding: 7px 9px;
+    background: #fff;
+    border-radius: 18px;
+  }
+
+  &__number {
+    font-family: MontRegular;
+    font-size: 16px;
+    color: #fff;
+    line-height: 20px;
+    margin-top: 30px;
+  }
+
+  &__holder {
+    font-family: MontRegular;
+    font-size: 19px;
+    color: #fff;
+    line-height: 24px;
+  }
+
+  &__add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-family: MOntRegular;
+    color: #CFD3D8;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px dashed #CFD3D8;
+    cursor: pointer;
+    i {
+      font-size: 28px;
+      margin-bottom: 4px;
+    }
+
+    &:hover {
+      background: darken(#fff, 2%);
+    }
+
+    &:active {
+      background: darken(#fff, 5%);
+    }
+  }
 }

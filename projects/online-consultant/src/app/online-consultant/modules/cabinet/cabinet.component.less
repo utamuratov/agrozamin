@@ -1,0 +1,38 @@
+.cabinet {
+  padding: 40px 0 64px 0;
+  background: #fff;
+  border-radius: 0 0 32px 32px;
+
+  &__menu {
+    background: linear-gradient(
+      90deg,
+      rgba(57, 106, 252, 0.05) 0%,
+      rgba(41, 72, 255, 0.05) 100%
+    );
+    border-radius: 8px;
+
+    &__title {
+        font-family: MontSemiBold;
+        font-size: 14px;
+        line-height: 18px;
+        color: #242533;
+    }
+
+    &__item {
+        font-family: MontSemiBold;
+        font-size: 12px;
+        line-height: 17px;
+        color: #000;
+        padding-left: 0;
+
+        span {
+            margin-left: 16px;
+        }
+    }
+  }
+}
+
+
+[nz-menu-item] {
+    padding-left: 24px !important;
+}
