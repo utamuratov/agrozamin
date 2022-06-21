@@ -42,6 +42,8 @@ import { CurrencyModule } from '../../../shared/currency/currency.module';
 import { TagModule } from '../../../shared/tag/tag.module';
 import { AngularYandexMapsModule } from 'angular8-yandex-maps';
 import { ChildCategoryComponent } from './components/child-category/child-category.component';
+import { BreadcrumbModule } from '../../../shared/breadcrumb/breadcrumb.module';
+import { BreadcrumbAdvertisementComponent } from './components/breadcrumb-advertisement/breadcrumb-advertisement.component';
 
 @NgModule({
   imports: [
@@ -57,6 +59,7 @@ import { ChildCategoryComponent } from './components/child-category/child-catego
     SkeletonModule,
     CurrencyModule,
     TagModule,
+    BreadcrumbModule,
 
     /* NG-ZORRO */
     NzTypographyModule,
@@ -91,6 +94,7 @@ import { ChildCategoryComponent } from './components/child-category/child-catego
     AdvertisementListHeaderComponent,
     JustAdvertisementComponent,
     ChildCategoryComponent,
+    BreadcrumbAdvertisementComponent,
 
     CategoryFilterComponent,
     SimilarItemsComponent,
