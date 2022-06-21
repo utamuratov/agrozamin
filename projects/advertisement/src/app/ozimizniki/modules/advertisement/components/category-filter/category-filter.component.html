@@ -10,7 +10,7 @@
           <nz-form-item>
             <nz-form-control nzSpan="24">
               <nz-checkbox-wrapper
-                (nzOnChange)="onChangeCheckbox($event)"
+                (nzOnChange)="onChangeCheckbox($event, filter)"
                 class="checkbox-groups"
               >
                 <div nz-row [nzGutter]="[0, 16]">
@@ -22,11 +22,14 @@
                     <label
                       nz-checkbox
                       [nzValue]="parameter.filter_parameter_id"
+                      [(ngModel)]="parameter.checked"
                       nz-popover
                       [(nzPopoverVisible)]="parameter.visiblePopover"
+                      (nzPopoverVisibleChange)="popoverVisibleChanged()"
                       nzPopoverTrigger="click"
                       [nzPopoverContent]="contentTemplate"
                       nzPopoverPlacement="right"
+                      (click)="clickCheckbox(parameter)"
                       >{{ parameter.label }}</label
                     >
                   </div>
@@ -115,11 +118,14 @@
 
     <ng-template #contentTemplate>
       <div class="filter__popover-menu">
-        <div class="filter__popover-menu-item choose">
+        <div
+          class="filter__popover-menu-item choose"
+          (click)="searchByFilter()"
+        >
           <span><img src="./assets/images/check.svg" /></span>
           Применить фильтр
         </div>
-        <div class="filter__popover-menu-item cancel">
+        <div class="filter__popover-menu-item cancel" (click)="clearFilter()">
           <span><img src="./assets/images/close-red.svg" /></span>
           Сбросить фильтр
         </div>
@@ -267,7 +273,13 @@
   </nz-collapse>
 
   <div nz-col nzSpan="24">
-    <button nz-button nzType="default" nzBlock nzSize="large">
+    <button
+      nz-button
+      nzType="default"
+      nzBlock
+      nzSize="large"
+      (click)="clearFilter()"
+    >
       <i nz-icon nzType="close" nzTheme="outline"></i> Сбросить фильтр
     </button>
   </div>

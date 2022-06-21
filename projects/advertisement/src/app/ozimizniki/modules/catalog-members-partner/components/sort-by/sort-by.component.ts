@@ -1,10 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 
 @Component({
   selector: 'az-sort-by',
   templateUrl: './sort-by.component.html',
-  styleUrls: ['./sort-by.component.less']
+  styleUrls: ['./sort-by.component.less'],
 })
 export class SortByComponent implements OnInit {
   @Output() handleGridOrList = new EventEmitter<boolean>();
@@ -12,20 +13,21 @@ export class SortByComponent implements OnInit {
   isActive = false;
   isMapActive = false;
   date = false;
-  filterParams = false
+  filterParams = false;
 
   params = [
-    {id: 1, title: "Куплю"},
-    {id: 2, title: "Андижанская область"},
-    {id: 3, title: "от 500 000 сум"},
-    {id: 4, title: "Страна производства: Россия"},
-  ]
+    { id: 1, title: 'Куплю' },
+    { id: 2, title: 'Андижанская область' },
+    { id: 3, title: 'от 500 000 сум' },
+    { id: 4, title: 'Страна производства: Россия' },
+  ];
 
   constructor(private route: ActivatedRoute) {
-    if (route.snapshot.params['categoryId']) {
-      this.filterParams = true
+    if (
+      route.snapshot.params[AdvertisementConstants.ROUTER_PARAM_CATEGORY_ID]
+    ) {
+      this.filterParams = true;
     }
-    
   }
 
   ngOnInit() {}
@@ -45,11 +47,11 @@ export class SortByComponent implements OnInit {
   }
 
   byDate() {
-    this.date = true
+    this.date = true;
   }
 
   byPrice() {
-    this.date = false
+    this.date = false;
   }
 
   onClose(): void {
@@ -57,7 +59,6 @@ export class SortByComponent implements OnInit {
   }
 
   deleteParam(id: number) {
-    this.params = this.params.filter(e => e.id != id) 
+    this.params = this.params.filter((e) => e.id != id);
   }
-
 }

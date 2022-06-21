@@ -1,12 +1,25 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Filter, FilterParameter } from 'ngx-az-core';
+
+interface ActiveFilter extends FilterParameter {
+  name: string;
+}
 
 @Component({
   selector: 'az-advertisement-list-header',
   templateUrl: './advertisement-list-header.component.html',
   styleUrls: ['./advertisement-list-header.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvertisementListHeaderComponent implements OnInit {
+export class AdvertisementListHeaderComponent {
   /**
    *
    */
@@ -16,8 +29,28 @@ export class AdvertisementListHeaderComponent implements OnInit {
   /**
    *
    */
+  private _filters!: Filter[];
+  public get filters(): Filter[] {
+    return this._filters;
+  }
+  @Input()
+  public set filters(v: Filter[]) {
+    if (v) {
+      this._filters = v;
+      this.activeFilters = this.getActiveFilters(v);
+    }
+  }
+
+  /**
+   *
+   */
   @Output()
   isInlineChange = new EventEmitter<boolean>();
+
+  /**
+   *
+   */
+  activeFilters: ActiveFilter[] = [];
 
   /**
    *
@@ -47,23 +80,25 @@ export class AdvertisementListHeaderComponent implements OnInit {
 
   isMapActive = false;
   date = false;
-  filterParams = false;
 
-  params = [
-    { id: 1, title: 'Куплю' },
-    { id: 2, title: 'Андижанская область' },
-    { id: 3, title: 'от 500 000 сум' },
-    { id: 4, title: 'Страна производства: Россия' },
-  ];
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
-  constructor(private route: ActivatedRoute) {
-    if (route.snapshot.params['categoryId']) {
-      this.filterParams = true;
-    }
-  }
+  /**
+   *
+   * @param filters
+   * @returns
+   */
+  private getActiveFilters(filters: Filter[]) {
+    const parameters: ActiveFilter[] = [];
+    filters.forEach((filter) => {
+      filter.parameters.forEach((parameter) => {
+        if (parameter.checked) {
+          parameters.push({ ...parameter, name: filter.name });
+        }
+      });
+    });
 
-  ngOnInit() {
-    // TODO
+    return parameters;
   }
 
   /**
@@ -92,23 +127,36 @@ export class AdvertisementListHeaderComponent implements OnInit {
     this.sortedByDateDescandingChange.emit(this.sortedByDateDescanding);
   }
 
+  /**
+   *
+   * @param parameter
+   */
+  deleteFilter(parameter: ActiveFilter) {
+    this.activeFilters = this.activeFilters.filter(
+      (p) => p.filter_parameter_id !== parameter.filter_parameter_id
+    );
+    this.navigateWithNewQueryParams(parameter);
+  }
+
+  /**
+   *
+   * @param parameter
+   */
+  private navigateWithNewQueryParams(parameter: ActiveFilter) {
+    let characteristics: string =
+      this.route.snapshot.queryParams['characteristics'];
+    const characteristic = `${parameter.filter_id}_${parameter.filter_parameter_id}`;
+    characteristics = characteristics.replace(`;${characteristic}`, '');
+    characteristics = characteristics.replace(`${characteristic};`, '');
+    characteristics = characteristics.replace(`${characteristic}`, '');
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { characteristics },
+    });
+  }
+
   isMap() {
     this.isMapActive = !this.isMapActive;
-  }
-
-  byDate() {
-    this.date = true;
-  }
-
-  byPrice() {
-    this.date = false;
-  }
-
-  onClose(): void {
-    console.log('tag was closed.');
-  }
-
-  deleteParam(id: number) {
-    this.params = this.params.filter((e) => e.id != id);
   }
 }

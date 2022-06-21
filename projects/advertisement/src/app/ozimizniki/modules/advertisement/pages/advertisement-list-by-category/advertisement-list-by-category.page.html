@@ -46,14 +46,15 @@
         <div nz-row [nzGutter]="[0, 30]">
           <div nz-col nzSpan="24">
             <div class="menu">
-              <az-child-category
-                [category$]="category$"
-                (subcategory)="handleCategory($event)"
-              ></az-child-category>
+              <az-child-category [categoryId]="categoryId"></az-child-category>
             </div>
           </div>
           <div nz-col nzSpan="24">
-            <az-category-filter [categoryId]="categoryId"></az-category-filter>
+            <az-category-filter
+              [categoryId]="categoryId"
+              [queryParams]="queryParams"
+              (filtersChange)="onChangeFilters($event)"
+            ></az-category-filter>
           </div>
           <div nz-col>
             <!-- <button nz-button>asd</button> -->
@@ -65,7 +66,9 @@
       </div>
       <div nz-col nzXs="24" nzSm="24" nzMd="15" nzLg="16" nzXl="18">
         <az-advertisement-list
+          [filters]="filters"
           [categoryId]="categoryId"
+          [queryParams]="queryParams"
         ></az-advertisement-list>
       </div>
     </div>
