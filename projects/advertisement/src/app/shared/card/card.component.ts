@@ -5,6 +5,7 @@ import {
   Input,
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AdvertisementConstants } from '../../core/constants/advertisement.constants';
 import { Advertisement } from '../../ozimizniki/modules/advertisement/dto/advertisement.interface';
 
 @Component({
@@ -38,7 +39,11 @@ export class CardComponent implements OnInit {
    * @returns
    */
   navigateToDetails(id: number) {
-    if (this.route.snapshot.params['categoryId']) {
+    if (
+      this.route.snapshot.params[
+        AdvertisementConstants.ROUTER_PARAM_CATEGORY_ID
+      ]
+    ) {
       this.router.navigate([id], { relativeTo: this.route });
       return;
     }

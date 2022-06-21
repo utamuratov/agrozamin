@@ -12,10 +12,12 @@
         <li
           nz-col
           nzSpan="24"
-          *ngFor="let child of categories[0].child_categories"
+          *ngFor="let childCategory of categories[0].child_categories"
         >
-          <a class="single-category__sublink" [routerLink]="['../', child.id]"
-            >{{ child.name }}
+          <a
+            class="single-category__sublink"
+            (click)="navigateByCategoryId(childCategory.id)"
+            >{{ childCategory.name }}
             <!-- TODO: REMOVE -->
             <!-- <span>{{ cat.count }}</span> -->
           </a>

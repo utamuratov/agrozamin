@@ -64,7 +64,7 @@ export class AdvertisementListComponent {
   public set categoryId(v: number | undefined) {
     if (v) {
       this._categoryId = v;
-      this.initQuery();
+      this.loadDataByInitialQuery();
     }
   }
 

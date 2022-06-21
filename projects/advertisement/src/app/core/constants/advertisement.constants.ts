@@ -10,4 +10,9 @@ export class AdvertisementConstants {
     sortOrder: '',
     filter: [],
   };
+
+  public static readonly SPLITTER_CATEGORY_ID = '-';
+  public static readonly SPLITTER_FILTERID_VALUE = ';';
+
+  public static readonly ROUTER_PARAM_CATEGORY_ID = 'categoryId';
 }

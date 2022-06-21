@@ -53,7 +53,7 @@
             <az-category-filter
               [categoryId]="categoryId"
               [queryParams]="queryParams"
-              (filtersChange)="filters=$event"
+              (filtersChange)="onChangeFilters($event)"
             ></az-category-filter>
           </div>
           <div nz-col>
