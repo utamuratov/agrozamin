@@ -1,16 +1,16 @@
 <div class="sort">
   <div nz-row nzAlign="middle" nzJustify="space-between" [nzGutter]="[0, 10]">
-    <div nz-col nzXs="0" nzSm="0" nzMd="14" nzLg="10" nzXl="10">
+    <div nz-col nzXs="0" nzSm="0" nzMd="14" nzLg="12" nzXl="12">
       <div nz-row [nzGutter]="[8, 0]">
         <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="7">
-          <span class="sort__variable">Сортировать:</span>
+          <span class="sort__variable">{{ "sort" | translate }}:</span>
         </div>
         <div nz-col>
           <a
             class="sort__link"
             [ngClass]="{ active: sortedByPriceDescanding }"
             (click)="toggleSortByPrice()"
-            ><span>По цене</span>
+            ><span>{{ "byPrice" | translate }}</span>
             <svg
               width="19"
               height="14"
@@ -54,7 +54,7 @@
             class="sort__link"
             [ngClass]="{ active: sortedByDateDescanding }"
             (click)="toggleSortByDate()"
-            ><span>По дате</span>
+            ><span>{{ "byDate" | translate }}</span>
             <svg
               width="19"
               height="14"
@@ -106,7 +106,7 @@
             class="sort__link"
           >
             <span class="sort__response_link">{{
-              date ? "По дате" : "По цене"
+              (date ? "byDate" : "byPrice") | translate
             }}</span
             ><img src="./assets/images/sort.svg" alt="sort icon" />
             <i nz-icon nzType="down"></i>
@@ -115,10 +115,10 @@
       </div>
     </div>
 
-    <div nz-col nzXs="12" nzSm="12" nzMd="10" nzLg="14" nzXl="14">
+    <div nz-col nzXs="12" nzSm="12" nzMd="10" nzLg="12" nzXl="12">
       <div nz-row nzAlign="middle" nzJustify="end" [nzGutter]="[8, 0]">
         <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="3">
-          <span class="sort__variable">Вид:</span>
+          <span class="sort__variable">{{ "view" | translate }}:</span>
         </div>
         <div nz-col>
           <button
@@ -250,7 +250,7 @@
       </div>
     </div>
 
-    <div nz-col nzSpan="24" *ngIf="filterParams">
+    <div nz-col nzSpan="24" *ngIf="activeFilters.length > 0">
       <div
         nz-row
         [nzGutter]="[
@@ -266,27 +266,25 @@
               { xs: 10, sm: 10, md: 10, lg: 16, xl: 16 }
             ]"
           >
-            <ng-container *ngFor="let filter of filters">
-              <ng-container *ngFor="let parameter of filter.parameters">
-                <div nz-col *ngIf="parameter.checked">
-                  <div class="filter__params">
-                    <span>{{ filter.name + ": " + parameter.label }}</span>
-                    <i
-                      nz-icon
-                      nzType="close"
-                      nzTheme="outline"
-                      (click)="deleteParam(parameter)"
-                    ></i>
-                  </div>
+            <ng-container *ngFor="let filter of activeFilters">
+              <div nz-col *ngIf="filter.checked">
+                <div class="filter__params">
+                  <span>{{ filter.name + ": " + filter.label }}</span>
+                  <i
+                    nz-icon
+                    nzType="close"
+                    nzTheme="outline"
+                    (click)="deleteFilter(filter)"
+                  ></i>
                 </div>
-              </ng-container>
+              </div>
             </ng-container>
           </div>
         </div>
         <div nz-col nzSpan="24">
           <button nz-button nzType="primary" nzSize="large">
             <i nz-icon nzType="heart" nzTheme="outline"></i>
-            Сохранить параметры
+            {{ "saveParameters" | translate }}
           </button>
         </div>
       </div>
@@ -308,17 +306,18 @@
   </div>
 </div>
 
+<!-- MENU - SORT BY  -->
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <ul nz-menu>
     <li nz-menu-item>
       <a class="sort__link" (click)="toggleSortByPrice()"
-        ><span>По цене</span
+        ><span>{{ "byPrice" | translate }}</span
         ><img src="./assets/images/sort.svg" alt="sort icon"
       /></a>
     </li>
     <li nz-menu-item>
       <a class="sort__link" (click)="toggleSortByPrice()"
-        ><span>По дате</span
+        ><span>{{ "byDate" | translate }}</span
         ><img src="./assets/images/sort.svg" alt="sort icon"
       /></a>
     </li>

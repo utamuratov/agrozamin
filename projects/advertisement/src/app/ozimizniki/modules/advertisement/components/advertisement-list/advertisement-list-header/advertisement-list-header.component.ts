@@ -1,13 +1,25 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Filter, FilterParameter } from 'ngx-az-core';
+
+interface ActiveFilter extends FilterParameter {
+  name: string;
+}
 
 @Component({
   selector: 'az-advertisement-list-header',
   templateUrl: './advertisement-list-header.component.html',
   styleUrls: ['./advertisement-list-header.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvertisementListHeaderComponent implements OnInit {
+export class AdvertisementListHeaderComponent {
   /**
    *
    */
@@ -17,14 +29,28 @@ export class AdvertisementListHeaderComponent implements OnInit {
   /**
    *
    */
+  private _filters!: Filter[];
+  public get filters(): Filter[] {
+    return this._filters;
+  }
   @Input()
-  filters?: Filter[];
+  public set filters(v: Filter[]) {
+    if (v) {
+      this._filters = v;
+      this.activeFilters = this.getActiveFilters(v);
+    }
+  }
 
   /**
    *
    */
   @Output()
   isInlineChange = new EventEmitter<boolean>();
+
+  /**
+   *
+   */
+  activeFilters: ActiveFilter[] = [];
 
   /**
    *
@@ -54,16 +80,25 @@ export class AdvertisementListHeaderComponent implements OnInit {
 
   isMapActive = false;
   date = false;
-  filterParams = false;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-    if (this.route.snapshot.params['categoryId']) {
-      this.filterParams = true;
-    }
-  }
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
-  ngOnInit() {
-    // TODO
+  /**
+   *
+   * @param filters
+   * @returns
+   */
+  private getActiveFilters(filters: Filter[]) {
+    const parameters: ActiveFilter[] = [];
+    filters.forEach((filter) => {
+      filter.parameters.forEach((parameter) => {
+        if (parameter.checked) {
+          parameters.push({ ...parameter, name: filter.name });
+        }
+      });
+    });
+
+    return parameters;
   }
 
   /**
@@ -96,8 +131,10 @@ export class AdvertisementListHeaderComponent implements OnInit {
    *
    * @param parameter
    */
-  deleteParam(parameter: FilterParameter) {
-    parameter.checked = false;
+  deleteFilter(parameter: ActiveFilter) {
+    this.activeFilters = this.activeFilters.filter(
+      (p) => p.filter_parameter_id !== parameter.filter_parameter_id
+    );
     this.navigateWithNewQueryParams(parameter);
   }
 
@@ -105,7 +142,7 @@ export class AdvertisementListHeaderComponent implements OnInit {
    *
    * @param parameter
    */
-  private navigateWithNewQueryParams(parameter: FilterParameter) {
+  private navigateWithNewQueryParams(parameter: ActiveFilter) {
     let characteristics: string =
       this.route.snapshot.queryParams['characteristics'];
     const characteristic = `${parameter.filter_id}_${parameter.filter_parameter_id}`;
