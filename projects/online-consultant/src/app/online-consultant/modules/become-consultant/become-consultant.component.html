@@ -15,8 +15,13 @@
   
       <div class="consultant__body">
         <div nz-row>
-          <div nz-col nzSpan="12" class="consultant__body__left">
-            <div nz-row [nzGutter]="[0, 48]">
+          <div nz-col   
+             nzXs="24"
+             nzSm="24"
+             nzMd="24"
+             nzLg="12"
+             nzXl="12" class="consultant__body__left">
+            <div nz-row [nzGutter]="[0, {xs:32, sm:32, md:32, lg:48, xl:48}]">
               <div nz-col nzSpan="24">
                 <h3>Как стать консультантом?</h3>
               </div>
@@ -34,7 +39,13 @@
 
             </div>
           </div>
-          <div nz-col nzSpan="12" class="consultant__body__right">
+          <div nz-col 
+          nzXs="24"
+          nzSm="24"
+          nzMd="24"
+          nzLg="12"
+          nzXl="12"
+          class="consultant__body__right">
             <h3>Сотни людей уже ищут специалиста прямо сейчас</h3>
           </div>
         </div>
@@ -43,16 +54,25 @@
     <div class="consultant__footer">
       <div class="container">
         <div nz-row>
-          <div nz-col nzSpan="12">
+          <div nz-col   
+          nzXs="24"
+          nzSm="24"
+          nzMd="24"
+          nzLg="12"
+          nzXl="12">
             <div nz-row>
-              <div nz-col class="consultant__footer__title">
+              <div nz-col nzSpan="24" class="consultant__footer__title">
                 <h3>Плюсы работы консультантом</h3>
               </div>
               <div nz-col nzSpan="24">
                 <div nz-row [nzGutter]="[36, 36]">
                   <div
                     nz-col
-                    nzSpan="12"
+                    nzXs="24"
+                    nzSm="24"
+                    nzMd="24"
+                    nzLg="24"
+                    nzXl="12"
                     *ngFor="let i of items"
                     class="consultant__footer__item"
                   >
@@ -75,7 +95,12 @@
             </div>
           </div>
           <div nz-col></div>
-          <div nz-col nzSpan="12">
+          <div nz-col   
+           nzXs="0"
+          nzSm="0"
+          nzMd="0"
+          nzLg="12"
+          nzXl="12">
             <div class="consultant__footer__img">
               <img src="/assets/images/consult1.png" alt="" />
             </div>
@@ -610,11 +635,6 @@
                 </div>             
           </div>
 
-
-          <div *ngSwitchDefault>
-            <button (click)="pre()">ok</button>
-            <button (click)="next()">next</button>
-          </div>
         </div>
       </ng-container>
     </nz-modal>
@@ -626,10 +646,9 @@
       [nzVisible]="visible"
       [nzPlacement]="placement"
       (nzOnClose)="closeDrawer()"
-      nzHeight="80%"
+      nzHeight="65%"
     >
       <ng-container *nzDrawerContent>
-        
     
           <div [ngSwitch]="currentStep">
             
@@ -638,7 +657,7 @@
               
                 <div nz-row>
                   <div nz-col nzSpan="24">
-                    <div nz-row nzJustify="space-between">
+                    <div nz-row nzJustify="space-between" nzAlign="middle">
                       <div nz-col class="drawer__content__title">
                         <p>Подтверждение личности</p>
                       </div>
@@ -653,54 +672,419 @@
                   </div>
 
                   <div nz-col nzSpan="24">
-                    <div class="drawer__content__body__img">
+                    <div class="drawer__content__img">
                       <img src="/assets/images/kartochka2.svg" alt="">
                     </div>
                   </div>
-    
-                  <!-- <div nz-col nzSpan="24">
+
+                  <nz-divider></nz-divider>
+
+                  <div nz-col nzSpan="24" class="drawer__content__footer">
                     <div nz-row>
-                    
-                      <div nz-col nzSpan="24" class="modal__content__body">
-                        <div nz-row>
-                          <div nz-col nzSpan="11">
-                            <div class="modal__content__body__img">
-                              <img src="/assets/images/kartochka2.svg" alt="">
-                            </div>
-                          </div>
-                          <div nz-col nzSpan="13">
-                            <div nz-row>
-                              <div nz-col nzSpan="24"><span>Отображаемое имя</span></div>
-                              <div nz-col nzSpan="24"><h3>Мун Тимур</h3></div>
-                              <div nz-col nzSpan="24"><button nzSize="large" nzType="default" nz-button>Изменить на AgroID</button></div>
-                            </div>
-                          </div>
-                        </div>
+                      <div nz-col nzSpan="24"><span>Отображаемое имя</span></div>
+                      <div nz-col nzSpan="24"><h3>Мун Тимур Сергеевич</h3></div>
+                      <div nz-col nzSpan="24"><a>Изменить на AgroID</a></div>
+                    </div>
+
+
+                    <div nz-row nzJustify="space-between" class="drawer__content__footer__btn">
+                      <div nz-col>
+                        <button nz-button nzType="link" (click)="closeDrawer()"><i><img src="/assets/images/Vector 10.png" alt=""></i> Назад</button>
                       </div>
-                      <div nz-col nzSpan="24" class="modal__content__footer">
-                        <div nz-row [nzGutter]="[24,0]">
-                          <div nz-col>
-                            
-                            <button nz-button nzType="link" (click)="closeDrawer()"><i><img src="/assets/images/Vector 10.png" alt=""></i> Назад</button>
-                          </div>
-                          <div nz-col>
-                            <button nz-button nzSize="large" (click)="next()">Далее</button>
-                          </div>
-                        </div>
-                        
+                      <div nz-col>
+                        <button nz-button nzSize="large" (click)="next()">Подтвердить</button>
                       </div>
                     </div>
-                  </div> -->
+                  </div>
+                
                 </div>
               </div> 
         
             </div>
-           
-        
-            <div *ngSwitchDefault>
-              <button (click)="pre()">ok</button>
-              <button (click)="next()">next</button>
+
+            <div *ngSwitchCase="2">
+  
+              <div class="drawer__content">
+                 <div nz-row>
+                   <div nz-col nzSpan="24">
+                     <div nz-row nzJustify="space-between">
+                       <div nz-col class="drawer__content__title">
+                         <p>Специализация</p>
+                       </div>
+                       <div nz-col class="drawer__content__shag">
+                         <span>Шаг 2 из 4</span>
+                       </div>
+                     </div>
+                   </div>
+                  
+                   <div nz-col nzSpan="24" class="drawer__content__form">
+                    <form nz-form>
+                      <nz-form-item [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                        <nz-form-control [nzSpan]="24">
+                          <div nz-row class="drawer__content__form__select">
+                            <div nz-col nzSpan="24">
+                              <p>Специализация</p>
+                            </div>
+                            <div nz-col nzSpan="24">
+                              <nz-select formControlName="firstName" nzSize="large" ngModel="Выберите желаемую должность">
+                                <nz-option nzValue="Выберите желаемую должность" nzLabel="Выберите желаемую должность"></nz-option>
+                                <nz-option nzValue="Выберите" nzLabel="Выберите"></nz-option>
+                                <nz-option nzValue="asdasd" nzLabel="asdasd"></nz-option>
+                              </nz-select> 
+                            </div>
+                          </div>
+                        </nz-form-control>
+                      </nz-form-item>
+
+                      <nz-form-item [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                        <nz-form-control [nzSpan]="24">
+                          <div nz-row class="drawer__content__form__select2">
+                            <div nz-col nzSpan="24">
+                              <p>Высшее</p>
+                            </div>
+                            <div nz-col nzSpan="24">
+                              <nz-select formControlName="firstName" nzSize="large" ngModel="Выберите желаемую должность">
+                                <nz-option nzValue="Выберите желаемую должность" nzLabel="Выберите желаемую должность"></nz-option>
+                                <nz-option nzValue="Выберите" nzLabel="Выберите"></nz-option>
+                                <nz-option nzValue="asdasd" nzLabel="asdasd"></nz-option>
+                              </nz-select> 
+                            </div>
+                            <div nz-col nzSpan="24" class="drawer__content__form__select2__link">
+                              <a>Добавить еще</a>
+                            </div>
+                            </div>
+                        </nz-form-control>
+                      </nz-form-item>
+
+                      <nz-divider></nz-divider>
+                      
+                      <nz-form-item [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                        <nz-form-control [nzSpan]="24">
+                          <div nz-row class="drawer__content__form__select2">
+                            <div nz-col nzSpan="24">
+                              <p>Цена за сеанс</p>
+                            </div>
+                            <div nz-col nzSpan="24" class="drawer__content__form__select2__input">
+                              <input formControlName="price" nz-input placeholder="70.000" nzSize="large" />
+                            </div>
+                            </div>
+                        </nz-form-control>
+                      </nz-form-item>
+
+                    </form>
+                   </div>
+
+
+
+                   <div nz-col nzSpan="24" class="drawer__content__footer">
+                    <div nz-row nzJustify="space-between" class="drawer__content__footer__btn">
+                      <div nz-col>
+                        <button nz-button nzType="link" (click)="pre()"><i><img src="/assets/images/Vector 10.png" alt=""></i> Назад</button>
+                      </div>
+                      <div nz-col>
+                        <button nz-button nzSize="large" (click)="next()">Подтвердить</button>
+                      </div>
+                    </div>
+                  </div>
+               
+                     </div>
+                   </div>
             </div>
+            
+            <div *ngSwitchCase="3"> 
+              <div class="drawer__content">
+                 <div nz-row>
+                   <div nz-col nzSpan="24">
+                     <div nz-row nzJustify="space-between">
+                       <div nz-col class="modal__content__title">
+                         <p>Опыт работы</p>
+                       </div>
+                       <div nz-col class="drawer__content__shag">
+                         <span>Шаг 3 из 4</span>
+                       </div>
+                     </div>
+                   </div>
+  
+                   <div nz-col nzSpan="24">
+                     <div nz-row >
+   
+                       <div nz-col nzSpan="24" *ngFor="let i of addNewSomthing" class="drawer__content__card">
+                         <div nz-row [nzGutter]="[0,5]">
+                           <div nz-col nzSpan="24">
+                             {{i.firstName}}
+                           </div>
+                           <div nz-col nzSpan="24">
+                             {{i.lastName}}
+                           </div>
+                           <div nz-col nzSpan="24">
+                             {{i.price}}
+                           </div>
+                         </div>
+                       </div>
+   
+                       <nz-divider *ngIf="addNewSomthing.length >= 1"></nz-divider>
+
+                       <form nz-form nz-col nzSpan="24" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                        <nz-form-item >
+                          <nz-form-control [nzSpan]="24">
+                            <div nz-row class="drawer__content__form">
+                              <div nz-col nzSpan="24" class="drawer__content__form__item">
+                                <p>Местро работы</p>
+                              </div>
+                              <div nz-col nzSpan="24"  style="padding-top: 12px;">
+                                <input formControlName="price" nz-input  nzSize="large" />
+                              </div> 
+                            </div>
+                          </nz-form-control>
+                        </nz-form-item>
+
+                        <nz-form-item >
+                          <nz-form-control [nzSpan]="24">
+                            <div nz-row class="drawer__content__form">
+                              <div nz-col nzSpan="24" class="drawer__content__form__item2">
+                                <p>Начало работы</p>
+                              </div>
+                              <div nz-col nzSpan="24" style="padding-top: 12px;">
+                                <div nz-row [nzGutter]="[5,0]">
+                                  <div nz-col nzSpan="8">
+                                    <nz-select formControlName="lastName" nzSize="large" ngModel="Месяц">
+                                      <nz-option nzValue="Месяц" nzLabel="Месяц"></nz-option>
+                                      <nz-option nzValue="январь" nzLabel="январь"></nz-option>
+                                      <nz-option nzValue="февраль" nzLabel="февраль"></nz-option>
+                                      <nz-option nzValue="Март" nzLabel="Март"></nz-option>
+                                      <nz-option nzValue="апрель" nzLabel="апрель"></nz-option>
+                                      <nz-option nzValue="май" nzLabel="май"></nz-option>
+                                    </nz-select> 
+                                  </div>
+
+                                  <div nz-col nzSpan="7">
+                                    <nz-select formControlName="lastName" nzSize="large" ngModel="Год">
+                                      <nz-option nzValue="Год" nzLabel="Год"></nz-option>
+                                      <nz-option nzValue="2022" nzLabel="2022"></nz-option>
+                                      <nz-option nzValue="2021" nzLabel="2021"></nz-option>
+                                      <nz-option nzValue="2020" nzLabel="2020"></nz-option>
+                                      <nz-option nzValue="2019" nzLabel="2019"></nz-option>
+                                      <nz-option nzValue="2018" nzLabel="2018"></nz-option>
+                                      <nz-option nzValue="2017" nzLabel="2017"></nz-option>
+                                    </nz-select> 
+                                  </div>
+                                </div>
+                              </div> 
+                            </div>
+                          </nz-form-control>
+                        </nz-form-item>
+
+                        <nz-form-item >
+                          <nz-form-control [nzSpan]="24">
+                            <div nz-row class="drawer__content__form">
+                              <div nz-col nzSpan="24" class="drawer__content__form__item2">
+                                <p>Окончание</p>
+                              </div>
+                              <div nz-col nzSpan="24" style="padding-top: 12px;">
+                                <div nz-row [nzGutter]="[5,0]">
+                                  <div nz-col nzSpan="8">
+                                    <nz-select formControlName="lastName" nzSize="large" ngModel="Месяц">
+                                      <nz-option nzValue="Месяц" nzLabel="Месяц"></nz-option>
+                                      <nz-option nzValue="январь" nzLabel="январь"></nz-option>
+                                      <nz-option nzValue="февраль" nzLabel="февраль"></nz-option>
+                                      <nz-option nzValue="Март" nzLabel="Март"></nz-option>
+                                      <nz-option nzValue="апрель" nzLabel="апрель"></nz-option>
+                                      <nz-option nzValue="май" nzLabel="май"></nz-option>
+                                    </nz-select> 
+                                  </div>
+
+                                  <div nz-col nzSpan="7">
+                                    <nz-select formControlName="lastName" nzSize="large" ngModel="Год">
+                                      <nz-option nzValue="Год" nzLabel="Год"></nz-option>
+                                      <nz-option nzValue="2022" nzLabel="2022"></nz-option>
+                                      <nz-option nzValue="2021" nzLabel="2021"></nz-option>
+                                      <nz-option nzValue="2020" nzLabel="2020"></nz-option>
+                                      <nz-option nzValue="2019" nzLabel="2019"></nz-option>
+                                      <nz-option nzValue="2018" nzLabel="2018"></nz-option>
+                                      <nz-option nzValue="2017" nzLabel="2017"></nz-option>
+                                    </nz-select> 
+                                  </div>
+
+                                  <div nz-col nzSpan="9">
+                                    <label class="drawer__content__form__check" nz-checkbox [(ngModel)]="checked">По настоящее время</label> 
+                                  </div>
+
+                                </div>
+                              </div> 
+                            </div>
+                          </nz-form-control>
+                        </nz-form-item>
+
+                        <nz-form-item >
+                          <nz-form-control [nzSpan]="24">
+                            <div nz-row class="drawer__content__form">
+                              <div nz-col nzSpan="24" class="drawer__content__form__item">
+                                <p>Должность</p>
+                              </div>
+                              <div nz-col nzSpan="24" style="padding-top: 12px;">
+                                <input formControlName="price" nz-input  nzSize="large" />
+                              </div> 
+                            </div>
+                          </nz-form-control>
+                        </nz-form-item>
+
+                        <div nz-col nzSpan="24" class="drawer__content__form__button">
+                          <div nz-row [nzGutter]="[10,0]" (click)="onSubmit()">
+                            <div nz-col>
+                              <div class="drawer__content__footer__img">
+                                <img src="/assets/images/Frame 23196.png" alt="">
+                              </div>
+                            </div>
+                            <div nz-col >
+                              <span>Добавить еще</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+
+                       </form>
+   
+                       <div nz-col nzSpan="24" class="drawer__content__footer">
+                        <div nz-row nzJustify="space-between" class="drawer__content__footer__btn">
+                          <div nz-col>
+                            <button nz-button nzType="link" (click)="pre()"><i><img src="/assets/images/Vector 10.png" alt=""></i> Назад</button>
+                          </div>
+                          <div nz-col>
+                            <button nz-button nzSize="large" (click)="next()">Подтвердить</button>
+                          </div>
+                        </div>
+                      </div>
+   
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             
+             </div>
+
+             <div *ngSwitchCase="4">
+              <div class="drawer__content">
+                  <div nz-row>
+                    <div nz-col nzSpan="24">
+                      <div nz-row nzJustify="space-between">
+                        <div nz-col class="drawer__content__title">
+                          <p>Дополнительная информация</p>
+                        </div>
+                        <div nz-col class="modal__content__shag">
+                          <span>Шаг 4 из 4</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div nz-col nzSpan="24" style="text-align: center; padding-top: 20px;">
+                      <form nz-form>
+                 
+                        <nz-form-item [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                          <nz-form-control [nzSpan]="24">
+                            <div nz-row class="drawer__content__form__select2">
+                              <div nz-col nzSpan="24">
+                                <p>Язык консультации</p>
+                              </div>
+                              <div nz-col nzSpan="24">
+                                <nz-select formControlName="firstName" nzSize="large" ngModel="Русский">
+                                  <nz-option nzValue="Русский" nzLabel="Русский"></nz-option>
+                                  <nz-option nzValue="английский" nzLabel="английский"></nz-option>
+                                  <nz-option nzValue="узбекский" nzLabel="узбекский"></nz-option>
+                                </nz-select>
+                              </div>
+                              <div nz-col nzSpan="24" class="drawer__content__form__select2__link">
+                                <a>Добавить еще</a>
+                              </div>
+                              </div>
+                          </nz-form-control>
+                        </nz-form-item>
+  
+                        <nz-divider></nz-divider>
+                        
+                        <nz-form-item [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                          <nz-form-control [nzSpan]="24">
+                            <div nz-row class="drawer__content__form__select2">
+                              <div nz-col nzSpan="24">
+                                <p>Расскажите о себе</p>
+                              </div>
+                              <div nz-col nzSpan="24" class="drawer__content__form__select2__input">
+                                <textarea rows="4" nz-input formControlName="price"
+                                 placeholder="Информация будет отображаться у вас в профиле 
+                                 Опишите себя в нескольких предложениях,это поможет 
+                                 продвигаться в топы консультантов"></textarea>
+                              </div>
+                              </div>
+                          </nz-form-control>
+                        </nz-form-item>
+
+                        <nz-divider></nz-divider>
+
+                        <div nz-col nzSpan="24" class="drawer__content__form__select2">
+                          <div nz-row [nzGutter]="[0,17]">
+                            <div nz-col nzSpan="24">
+                              <p>Прикрепленные файлы</p>
+                            </div>
+                            <div nz-col nzSpan="24" >
+                              <span>Прикрепите до 10 файлов, фотографий или видео материалов</span>
+                            </div>
+                            <div nz-col nzSpan="24">
+                              <div class="drawer__content__form__select2__upload">
+                                <img src="/assets/images/Add_ring_light.png" alt="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div nz-col nzSpan="24" class="drawer__content__footer">
+                          <div nz-row nzJustify="space-between" class="drawer__content__footer__btn">
+                            <div nz-col>
+                              <button nz-button nzType="link" (click)="pre()"><i><img src="/assets/images/Vector 10.png" alt=""></i> Назад</button>
+                            </div>
+                            <div nz-col>
+                              <button nz-button nzSize="large" (click)="next()">Подтвердить</button>
+                            </div>
+                          </div>
+                        </div>
+  
+                      </form>
+                    </div>
+
+                  </div>
+                </div> 
+              </div>
+
+              <div *ngSwitchCase="5">
+                <div class="drawer__content">
+                     <div nz-row >
+                        <div nz-col nzSpan="24" class="drawer__content__end">
+                          <div nz-row [nzGutter]="[0,17]">
+
+                            <div nz-col nzSpan="24">
+                              <h4>Спасибо</h4>
+                            </div>
+                           
+                            <div nz-col nzSpan="24">
+                                <h3>Спасибо ИМЯ 
+                                  ваша заявка отправлена!</h3>
+                            </div>
+                            <div nz-col nzSpan="24">
+                              <p>Наш менеджер свяжется с вами в ближайшее время</p>
+                            </div>
+                          
+                            <div nz-col nzSpan="24">
+                              <button nz-button nzSize="large" (click)="closeDrawer()">На главную</button>
+                            </div>
+                                              
+                          </div>
+                        </div> 
+    
+                    
+    
+                      </div>
+                    </div>             
+              </div>
+      
           </div>
 
      
