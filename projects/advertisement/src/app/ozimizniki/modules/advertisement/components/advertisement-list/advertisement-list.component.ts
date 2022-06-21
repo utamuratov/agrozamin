@@ -45,12 +45,13 @@ export class AdvertisementListComponent {
     return this._queryParams;
   }
   @Input()
-  public set queryParams(v: Params | undefined) {
-    if (v) {
-      this._queryParams = v;
-      this.characteristics = this.queryParams['characteristics'];
+  public set queryParams(params: Params | undefined) {
+    if (params && params[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS]) {
+      this._queryParams = params;
+      this.characteristics =
+        this.queryParams[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS];
+      this.loadDataByInitialQuery();
     }
-    this.loadDataByInitialQuery();
   }
 
   /**
@@ -64,8 +65,8 @@ export class AdvertisementListComponent {
   public set categoryId(v: number | undefined) {
     if (v) {
       this._categoryId = v;
-      this.loadDataByInitialQuery();
     }
+    this.loadDataByInitialQuery();
   }
 
   /**
@@ -131,7 +132,10 @@ export class AdvertisementListComponent {
    */
   private getQueryFilter() {
     return [
-      { key: 'characteristics', value: [this.characteristics || ''] },
+      {
+        key: AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS,
+        value: [this.characteristics || ''],
+      },
       { key: 'category_id', value: [String(this.categoryId || '')] },
     ];
   }

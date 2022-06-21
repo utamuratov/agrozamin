@@ -9,8 +9,14 @@ const routes: Routes = [
   {
     path: '',
     component: AdvertisementComponent,
+    data: {
+      bc: 'catalogue',
+    },
     children: [
-      { path: '', component: AdvertisementListPage },
+      {
+        path: '',
+        component: AdvertisementListPage,
+      },
       {
         path: ':categoryId',
         component: AdvertisementListByCategoryPage,
