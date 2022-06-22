@@ -14,8 +14,15 @@ export class AdvertisementListPage implements OnInit {
    */
   category$!: Observable<Category[]>;
 
+  /**
+   *
+   * @param $category
+   */
   constructor(private $category: CategoryService) {}
 
+  /**
+   *
+   */
   ngOnInit() {
     this.getCategories();
   }
