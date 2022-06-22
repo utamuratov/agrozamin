@@ -59,7 +59,7 @@
                     nzSize="large"
                     class="product__img__left product__img__btn"
                     nzShape="circle"
-                    (click)="pre(slider)"
+                    (click)="previous(slider)"
                   >
                     <i nz-icon nzType="left" nzTheme="outline"></i>
                   </button>
@@ -67,13 +67,23 @@
                     [nzEffect]="'fade'"
                     [nzDots]="false"
                     #slider
-                    (nzAfterChange)="handleActiveSlide($event)"
+                    (nzAfterChange)="handleActiveCarousel($event)"
                   >
                     <div
                       nz-carousel-content
-                      *ngFor="let file of data.files; let idx = index"
+                      *ngFor="let carauselData of data.carauselData; let idx = index"
                     >
-                      <img [src]="file.file" alt="image" />
+                      <ng-container
+                        *ngIf="carauselData.type=== 'video'; else img"
+                      >
+                        <youtube-player
+                          [videoId]="carauselData.src| youtubeVideoIdSplitter"
+                          [playerVars]="{modestbranding: 1, rel: 0}"
+                        ></youtube-player>
+                      </ng-container>
+                      <ng-template #img>
+                        <img [src]="carauselData.src" alt="image" />
+                      </ng-template>
                     </div>
                   </nz-carousel>
                   <button
@@ -97,15 +107,28 @@
                   <div
                     nz-col
                     class="carousel__subcard-img"
-                    *ngFor="let file of data.files; let idx = index"
+                    *ngFor="let carauselData of data.carauselData; let idx = index"
                   >
-                    <div class="product__img__list">
-                      <img
-                        [src]="file.file"
-                        [ngClass]="activeSlide === idx ? 'active' : ''"
-                        (click)="getIndex(idx, slider)"
-                        alt="card img"
-                      />
+                    <div
+                      class="product__img__list"
+                      (click)="selectSliderItem(idx, slider)"
+                    >
+                      <ng-container
+                        *ngIf="carauselData.type=== 'video'; else img"
+                      >
+                        <div class="youtube-topmost"></div>
+                        <youtube-player
+                          [ngClass]="{'active' : activeCarauselItemIndex === idx}"
+                          [videoId]="carauselData.src| youtubeVideoIdSplitter"
+                        ></youtube-player>
+                      </ng-container>
+                      <ng-template #img>
+                        <img
+                          [src]="carauselData.src"
+                          [ngClass]="{'active' : activeCarauselItemIndex === idx}"
+                          alt="card img"
+                        />
+                      </ng-template>
                     </div>
                   </div>
                 </div>
@@ -310,7 +333,10 @@
       </div>
 
       <div nz-col nzSpan="24">
-        <div class="product__map">
+        <div
+          class="product__map"
+          *ngIf="data.location && data.location.lt && data.location.ln"
+        >
           <div
             nz-row
             nzJustify="space-between"
@@ -323,7 +349,7 @@
                 nz-button
                 nzType="default"
                 nzSize="large"
-                (click)="mapVisible = !mapVisible"
+                (click)="isVisibleMap = !isVisibleMap"
                 class="map-btn"
               >
                 <svg
@@ -355,7 +381,8 @@
                 <span> Смотреть на карте </span>
               </button>
             </div>
-            <div nz-col nzSpan="24" *ngIf="mapVisible">
+            <div nz-col nzSpan="24" [hidden]="!isVisibleMap">
+              <!-- YANDEX MAP -->
               <div class="map">
                 <ya-map
                   [center]="[data.location.lt, data.location.ln]"
@@ -365,19 +392,6 @@
                     [geometry]="[data.location.lt, data.location.ln]"
                   ></ya-placemark>
                 </ya-map>
-                <!-- [options]="{ draggable: true }"
-                (yadragend)="yadragend($event)" -->
-
-                <!-- TODO: REMOVE -->
-                <!-- <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11991.904339025807!2d69.22814145!3d41.28762495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8a4b03ec22ab%3A0x414bc29a14aa377f!2z0JDQs9GA0L7QsdCw0L3QuiDQkNCi0JE!5e0!3m2!1sru!2s!4v1649329680251!5m2!1sru!2s"
-                  width="100%"
-                  height="450"
-                  style="border: 0; border-radius: 4px"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe> -->
               </div>
             </div>
           </div>
@@ -517,8 +531,6 @@
   </div>
   <az-similar-items></az-similar-items>
 </div>
-
-<!-- dropdown  -->
 
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <ul nz-menu nzSelectable>

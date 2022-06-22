@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Breadcrumb, Filter } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
-import { CategoryService } from 'projects/advertisement/src/app/shared/services/category.service';
 
 @Component({
   templateUrl: './advertisement-list-by-category.page.html',
@@ -37,8 +36,7 @@ export class AdvertisementListByCategoryPage extends Breadcrumb {
    */
   constructor(
     protected override router: Router,
-    private route: ActivatedRoute,
-    private $category: CategoryService
+    private route: ActivatedRoute
   ) {
     super(router);
 
