@@ -18,6 +18,17 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzCommentModule } from 'ng-zorro-antd/comment';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NgChartsModule } from 'ng2-charts';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+
 
 @NgModule({
   imports: [
@@ -31,7 +42,17 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     NzTabsModule,
     NzIconModule,
     NzSelectModule,
-    NzTableModule
+    NzTableModule,
+    NzCommentModule,
+    NzAvatarModule,
+    NzButtonModule,
+    NgChartsModule,
+    NzTimePickerModule,
+    NzSwitchModule,
+    NzInputModule,
+    NzTypographyModule,
+    NzBadgeModule,
+    NzDrawerModule
   ],
   declarations: [
     CabinetComponent,

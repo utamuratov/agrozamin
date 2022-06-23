@@ -1,0 +1,165 @@
+.payment {
+  &__title {
+    font-family: MontSemiBold;
+    font-size: 20px;
+    line-height: 25px;
+    color: #333333;
+    margin-bottom: 0;
+  }
+
+  &__filter-text {
+    font-family: MontRegular;
+    font-size: 14px;
+    color: #b7bbbf;
+    margin-right: 24px;
+  }
+
+  &__content {
+    &__block {
+      padding: 40px;
+      background: #fff;
+    filter: drop-shadow(0px 0px 25px rgba(0, 0, 0, 0.05));
+    border-radius: 16px;
+    }
+  }
+
+  .paymentCard {
+    border-radius: 16px;
+    padding: 11px;
+    background: url(../../../../../../../assets/images/pay-card-img.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &__close-btn {
+      background: none;
+      border: none;
+      outline: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    &__type {
+      padding: 7px 9px;
+      background: #fff;
+      border-radius: 18px;
+    }
+
+    &__number {
+      font-family: MontRegular;
+      font-size: 16px;
+      color: #fff;
+      line-height: 20px;
+      margin-top: 15px;
+    }
+
+    &__holder {
+      font-family: MontRegular;
+      font-size: 19px;
+      color: #fff;
+      line-height: 24px;
+    }
+
+    &__add {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      font-family: MOntRegular;
+      color: #cfd3d8;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px dashed #cfd3d8;
+      cursor: pointer;
+      i {
+        font-size: 28px;
+        margin-bottom: 4px;
+      }
+
+      &:hover {
+        background: darken(#fff, 2%);
+      }
+
+      &:active {
+        background: darken(#fff, 5%);
+      }
+    }
+  }
+
+  .table {
+    th {
+      background: #fff;
+      position: static;
+      text-align: center;
+      font-family: MontRegular;
+      font-size: 12px;
+      line-height: 18px;
+      color: #b7bbbf;
+    }
+
+    td {
+      font-family: MontRegular;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    &__author {
+      font-family: MontBold;
+      color: #333;
+      font-size: 20px;
+      line-height: 26px;
+    }
+
+    &__description {
+      font-size: 14px;
+      line-height: 18px;
+      font-family: MontRegular;
+    }
+
+    &__btn {
+      font-family: MontSemiBold;
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    &__avatar {
+      margin-left: 8px;
+    }
+
+    &__status {
+      &.complete {
+        color: #22a33f;
+      }
+
+      &.yellow {
+        color: #dbbc19;
+      }
+
+      &.green {
+        color: #22a33f;
+      }
+
+      &.red {
+        color: #e83232;
+      }
+    }
+
+    .counter {
+      font-family: MontSemiBold;
+      font-size: 14px;
+      line-height: 18px;
+      color: #000;
+
+      &__time {
+        padding: 9px 14px;
+        border: 1px solid #396afc;
+        border-radius: 8px;
+        font-family: MontSemiBold;
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+  }
+}

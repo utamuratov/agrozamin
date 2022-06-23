@@ -1,12 +1,12 @@
 <div class="cabinet">
   <div class="container">
-    <div nz-row [nzGutter]="[80, 0]">
-      <div nz-col nzSpan="6">
+    <div nz-row [nzGutter]="[{xs: 0, sm: 10, md: 16, lg: 16, xl: 80}, 0]">
+      <div nz-col nzXs="0" nzSm="0" nzMd="6" nzLg="6" nzXl="6">
         <div nz-row [nzGutter]="[0, 43]">
           <div nz-col nzSpan="24">
             <!-- menu -->
             <ul nz-menu nzMode="inline">
-              <li nz-submenu [nzTitle]="client" class="cabinet__menu">
+              <li nz-submenu [nzTitle]="client" class="cabinet__menu" nzOpen>
                 <ul>
                   <li nz-menu-item class="cabinet__menu__item" nzSelected routerLink="client/request">
 
@@ -135,7 +135,7 @@
           </div>
         </div>
       </div>
-      <div nz-col nzSpan="18">
+      <div nz-col nzXs="24" nzSm="24" nzMd="18" nzLg="18" nzXl="18">
         <router-outlet></router-outlet>
       </div>
     </div>
