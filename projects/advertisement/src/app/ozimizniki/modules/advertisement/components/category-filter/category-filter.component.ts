@@ -14,6 +14,7 @@ import {
   FilterParameter,
   InputTypeForFilter,
 } from 'ngx-az-core';
+import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { map, of, tap } from 'rxjs';
 import { CategoryFilterService } from './category-filter.service';
 
@@ -117,11 +118,14 @@ export class CategoryFilterComponent {
    * @param filters
    */
   private makeFiltersFromQueryParams(filters: Filter[]) {
-    const characteristics: string[] =
-      this.route.snapshot.queryParams['characteristics']?.split(';');
+    const characteristics: string[] = this.route.snapshot.queryParams[
+      AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS
+    ]?.split(AdvertisementConstants.SPLITTER_FILTERID_VALUE);
     if (characteristics) {
       characteristics.forEach((character) => {
-        const filterAndValue = character.split('_'); // 2_5 = filterId_value
+        const filterAndValue = character.split(
+          AdvertisementConstants.SPLITTER_BETWEEN_FILTERID_AND_VALUE
+        ); // 2_5 = filterId_value
         const filter = filters.find(
           (filter) => filter.filter_id === +filterAndValue[0]
         );
@@ -191,7 +195,9 @@ export class CategoryFilterComponent {
       if (filter.value) {
         if (filter.type_for_filter === InputTypeForFilter.Checkbox) {
           (filter.value as number[]).forEach((value) => {
-            characteristics.push(`${filter.filter_id}_${value}`); // 2_3 => filterId_value
+            characteristics.push(
+              `${filter.filter_id}${AdvertisementConstants.SPLITTER_BETWEEN_FILTERID_AND_VALUE}${value}`
+            ); // 2_3 => filterId_value
           });
         }
       }
@@ -200,7 +206,11 @@ export class CategoryFilterComponent {
     this.filtersChange.emit(deepClone(this.filters));
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { characteristics: characteristics.join(';') },
+      queryParams: {
+        characteristics: characteristics.join(
+          AdvertisementConstants.SPLITTER_FILTERID_VALUE
+        ),
+      },
     });
   }
 

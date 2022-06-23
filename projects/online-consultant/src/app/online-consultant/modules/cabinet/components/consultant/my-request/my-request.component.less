@@ -1,0 +1,109 @@
+.request {
+  &__title {
+    font-family: MontSemiBold;
+    font-size: 20px;
+    line-height: 25px;
+    color: #333;
+    margin-bottom: 0;
+  }
+
+  &__filter-text {
+    font-family: MontRegular;
+    font-size: 14px;
+    color: #b7bbbf;
+    margin-right: 24px;
+  }
+
+  &__content {
+    background: #fff;
+    filter: drop-shadow(0px 0px 25px rgba(0, 0, 0, 0.05));
+    border-radius: 16px;
+
+    &__block {
+      padding: 25px 40px;
+    }
+  }
+
+  .tab {
+    width: 100%;
+  }
+
+  .table {
+    th {
+      background: #fff;
+      position: static;
+      text-align: center;
+      font-family: MontRegular;
+      font-size: 12px;
+      line-height: 18px;
+      color: #b7bbbf;
+    }
+
+    td {
+      font-family: MontRegular;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    &__author {
+      font-family: MontBold;
+      color: #333;
+      font-size: 20px;
+      line-height: 26px;
+    }
+
+    &__description {
+      font-size: 14px;
+      line-height: 18px;
+      font-family: MontRegular;
+    }
+
+    &__btn {
+      font-family: MontSemiBold;
+      font-size: 14px;
+      line-height: 18px;
+
+      &.bdGreen {
+        border-color: #22a33f;
+      }
+    }
+
+    &__avatar {
+      margin-left: 8px;
+    }
+
+    &__status {
+      &.complete {
+        color: #22a33f;
+      }
+
+      &.yellow {
+        color: #dbbc19;
+      }
+
+      &.green {
+        color: #22a33f;
+      }
+
+      &.red {
+        color: #e83232;
+      }
+    }
+
+    .counter {
+      font-family: MontSemiBold;
+      font-size: 14px;
+      line-height: 18px;
+      color: #000;
+
+      &__time {
+        padding: 9px 14px;
+        border: 1px solid #396afc;
+        border-radius: 8px;
+        font-family: MontSemiBold;
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+  }
+}

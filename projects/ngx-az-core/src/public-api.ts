@@ -19,6 +19,7 @@ export * from './lib/shared/credits/credits.module';
 export * from './lib/shared/news/news.module';
 export * from './lib/shared/add-edit-advertisement-shared/add-edit-advertisement-shared.module';
 export * from './lib/shared/sign-in-helper/sign-in-helper.module';
+export * from './lib/shared/youtube-video-id-splitter/youtube-video-id-splitter.module';
 
 // COMPONENTS
 export * from './lib/shared/forms-shared/components/error/error.component';
@@ -42,6 +43,7 @@ export * from './lib/shared/forms-shared/directives/only-letter.directive';
 
 // PIPES
 export * from './lib/shared/full-name/fullName.pipe';
+export * from './lib/shared/youtube-video-id-splitter/youtubeVideoIdSplitter.pipe';
 
 // CONFIG
 export * from './lib/config/constants';

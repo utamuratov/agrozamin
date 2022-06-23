@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Filter, FilterParameter } from 'ngx-az-core';
+import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 
 interface ActiveFilter extends FilterParameter {
   name: string;
@@ -145,7 +146,7 @@ export class AdvertisementListHeaderComponent {
   private navigateWithNewQueryParams(parameter: ActiveFilter) {
     let characteristics: string =
       this.route.snapshot.queryParams['characteristics'];
-    const characteristic = `${parameter.filter_id}_${parameter.filter_parameter_id}`;
+    const characteristic = `${parameter.filter_id}${AdvertisementConstants.SPLITTER_BETWEEN_FILTERID_AND_VALUE}${parameter.filter_parameter_id}`;
     characteristics = characteristics.replace(`;${characteristic}`, '');
     characteristics = characteristics.replace(`${characteristic};`, '');
     characteristics = characteristics.replace(`${characteristic}`, '');

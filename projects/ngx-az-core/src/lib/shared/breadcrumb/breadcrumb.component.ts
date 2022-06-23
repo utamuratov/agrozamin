@@ -18,7 +18,7 @@ export class Breadcrumb {
    *
    * @param router
    */
-  constructor(private router: Router) {
+  constructor(protected router: Router) {
     this.router.events.subscribe(() => {
       this.breadcrumbs = [];
       this.parseRoute(this.router.routerState.snapshot.root);
@@ -35,16 +35,23 @@ export class Breadcrumb {
       node.pathFromRoot.forEach((routerState) => {
         urlSegments = urlSegments.concat(routerState.url);
       });
-      const url = urlSegments
+      let url = urlSegments
         .map((urlSegment) => {
           return urlSegment.path;
         })
         .join('/');
+      url = '/' + url;
+
+      if (this.breadcrumbs.find((bc) => bc.url === url)) {
+        return;
+      }
+
       this.breadcrumbs.push({
         name: node.data['bc'],
-        url: '/' + url,
+        url,
       });
     }
+
     if (node.firstChild) {
       this.parseRoute(node.firstChild);
     }

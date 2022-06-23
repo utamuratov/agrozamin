@@ -24,6 +24,14 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzCommentModule } from 'ng-zorro-antd/comment';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NgChartsModule } from 'ng2-charts';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+
 
 @NgModule({
   imports: [
@@ -46,6 +54,16 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzDrawerModule,
     NzCheckboxModule,
     NzInputModule
+    NzCommentModule,
+    NzAvatarModule,
+    NzButtonModule,
+    NgChartsModule,
+    NzTimePickerModule,
+    NzSwitchModule,
+    NzInputModule,
+    NzTypographyModule,
+    NzBadgeModule,
+    NzDrawerModule
   ],
   declarations: [
     CabinetComponent,

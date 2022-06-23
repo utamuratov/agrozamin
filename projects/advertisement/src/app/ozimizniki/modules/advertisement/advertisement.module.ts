@@ -37,11 +37,14 @@ import { AdvertisementDetailsPage } from './pages/advertisement-details/advertis
 import { AdvertisementListComponent } from './components/advertisement-list/advertisement-list.component';
 import { AdvertisementListHeaderComponent } from './components/advertisement-list/advertisement-list-header/advertisement-list-header.component';
 import { JustAdvertisementComponent } from './components/advertise/just-advertisement.component';
-import { SharedModule } from 'ngx-az-core';
+import { SharedModule, YoutubeVideoIdSplitterModule } from 'ngx-az-core';
 import { CurrencyModule } from '../../../shared/currency/currency.module';
 import { TagModule } from '../../../shared/tag/tag.module';
 import { AngularYandexMapsModule } from 'angular8-yandex-maps';
 import { ChildCategoryComponent } from './components/child-category/child-category.component';
+import { BreadcrumbModule } from '../../../shared/breadcrumb/breadcrumb.module';
+import { BreadcrumbAdvertisementComponent } from './components/breadcrumb-advertisement/breadcrumb-advertisement.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   imports: [
@@ -50,6 +53,7 @@ import { ChildCategoryComponent } from './components/child-category/child-catego
     FormsModule,
     ReactiveFormsModule,
     AngularYandexMapsModule,
+    YouTubePlayerModule,
 
     SharedModule,
     PaginationModule,
@@ -57,6 +61,8 @@ import { ChildCategoryComponent } from './components/child-category/child-catego
     SkeletonModule,
     CurrencyModule,
     TagModule,
+    BreadcrumbModule,
+    YoutubeVideoIdSplitterModule,
 
     /* NG-ZORRO */
     NzTypographyModule,
@@ -91,6 +97,7 @@ import { ChildCategoryComponent } from './components/child-category/child-catego
     AdvertisementListHeaderComponent,
     JustAdvertisementComponent,
     ChildCategoryComponent,
+    BreadcrumbAdvertisementComponent,
 
     CategoryFilterComponent,
     SimilarItemsComponent,
