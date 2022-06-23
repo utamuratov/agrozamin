@@ -18,6 +18,8 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+
 
 @NgModule({
   imports: [
@@ -39,7 +41,8 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzRadioModule,
     NzInputModule,
     NzFormModule,
-    NzCheckboxModule
+    NzCheckboxModule,
+    NzDrawerModule
   ],
   declarations: [ConsultantPageComponent]
 })

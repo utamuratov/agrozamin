@@ -17,8 +17,9 @@ export class ConsultantPageComponent implements OnInit {
 
   inputValue = '';
   visibleRequest = false;
-  isVisibleModal = true;
-  current = 3;
+  isVisibleModal = false;
+  visibleDrawer = false;
+  current = 1;
   radioValue = 'A';
   index = 'First-content';
   hoursTable: any = []
@@ -235,6 +236,7 @@ export class ConsultantPageComponent implements OnInit {
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisibleModal = false;
+    this.current = 1
   }
 
   pre(): void {
@@ -276,7 +278,15 @@ export class ConsultantPageComponent implements OnInit {
   }
 
   submitForm() {
-    console.log('data');
-    
+    console.log('data');    
+  }
+
+  showDrawer() {
+    this.visibleDrawer = true;
+  }
+
+  closeDrawer(): void {
+    this.visibleDrawer = false;
+    this.current = 1
   }
 }
