@@ -1,3 +1,8 @@
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CabinetComponent } from './cabinet.component';
@@ -18,6 +23,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 @NgModule({
   imports: [
@@ -31,7 +37,15 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     NzTabsModule,
     NzIconModule,
     NzSelectModule,
-    NzTableModule
+    NzTableModule,
+    NzGridModule,
+    NzButtonModule,
+    NzCheckboxModule,
+    NzModalModule,
+    NzDividerModule,
+    NzDrawerModule,
+    NzCheckboxModule,
+    NzInputModule
   ],
   declarations: [
     CabinetComponent,

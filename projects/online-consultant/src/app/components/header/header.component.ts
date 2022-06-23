@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
   drawerState = 'none'
   location = false
 
+  btn = false
+
   constructor() { }
 
   ngOnInit() {
