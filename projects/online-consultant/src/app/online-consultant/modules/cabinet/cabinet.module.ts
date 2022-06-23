@@ -53,7 +53,7 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
     NzDividerModule,
     NzDrawerModule,
     NzCheckboxModule,
-    NzInputModule
+    NzInputModule,
     NzCommentModule,
     NzAvatarModule,
     NzButtonModule,
