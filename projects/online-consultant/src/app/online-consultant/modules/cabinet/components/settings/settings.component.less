@@ -1,0 +1,189 @@
+.setting{
+    &__all{
+
+        @media (max-width: 575px) {
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h3{
+            margin: 0;
+            font-size: 20px;
+            line-height: 25px;
+            color: #333333;
+            font-family: MontSemiBold;
+
+            @media (max-width: 575px) {
+               font-size: 14px;
+               line-height: 18px;
+            }
+        }
+
+
+        &__photo{
+            &__img{
+                margin: auto;
+                width: 180px;
+                height: 180px;
+    
+                @media (max-width: 1200px) {
+                    width: 160px;
+                    height: 160px;
+                }
+    
+                @media (max-width: 992px) {
+                    width: 140px;
+                    height: 140px;
+                }
+    
+                @media (max-width: 575px) {
+                    width: 120px;
+                    height: 120px;
+                }
+    
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+
+
+        &__client{
+            @media (max-width: 575px) {
+                text-align: center;
+            }
+            &__tag{
+                span{
+                    background: linear-gradient(90deg, rgba(57, 106, 252, 0.05) 0%, rgba(41, 72, 255, 0.05) 100%);
+                    border-radius: 8px;
+                    padding: 8px 16px;
+                    font-size: 14px;
+                    color: #242533;
+                    font-family: MontSemiBold;
+                }
+            }
+            &__title{
+                h3{
+                    margin: 0;
+                    font-size: 32px;
+                    line-height: 38px;
+                    color: #242533;
+                    font-family: MontSemiBold;
+
+                    @media (max-width: 1200px) {
+                        font-size: 28px;
+                        line-height: 34px;
+                    }
+
+                    @media (max-width: 992px) {
+                        font-size: 24px;
+                        line-height: 29px;
+                    }
+                }
+            }
+            &__contact{
+
+             
+
+                &__item{
+                    @media (max-width: 575px) {
+                        justify-content: center;
+                    }
+
+                    p{
+                        margin: 0;
+                        color: #B7BBBF;
+                        font-size: 16px;
+                        line-height: 24px;
+                        font-family: MontLight;
+                       
+                        @media (max-width: 992px) {
+                            font-size: 14px;
+                            line-height: 24px;
+                        }
+                        @media (max-width: 575px) {
+                            font-size: 12px;
+                            line-height: 24px;
+                        }
+                       
+                    }
+                    span{
+                        color: #242533;
+                        font-size: 16px;
+                        line-height: 24px;
+                        font-family: MontLight;
+    
+                        @media (max-width: 992px) {
+                            font-size: 14px;
+                            line-height: 24px;
+                        }
+                        @media (max-width: 575px) {
+                            font-size: 12px;
+                            line-height: 24px;
+                        }
+                    }
+                }
+
+               
+            }
+        }
+
+    }
+
+    &__notifications{
+        padding-top: 48px;
+
+        @media (max-width: 575px) {
+            text-align: center;
+            justify-content: center;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        h3{
+            margin: 0;
+            font-size: 20px;
+            line-height: 25px;
+            color: #333333;
+            font-family: MontSemiBold;
+        }
+        &__contact{
+            margin-top: 36px;
+        }
+        span{
+            padding-top: 36px;
+            font-size: 18px;
+            line-height: 28px;
+            color: #11253D;
+            font-family: MontMedium;
+
+            @media (max-width: 575px) {
+                font-size: 14px;
+                line-height: 16px;
+            }
+        }
+        label{
+            color: #242533;
+            font-size: 16px;
+            line-height: 24px;
+            font-family: MontLight;
+
+            @media (max-width: 575px) {
+                font-size: 14px;
+                line-height: 16px;
+            }
+        }
+        &__btn{
+            padding-top: 32px;
+        }
+    }
+ 
+}
+
+:host ::ng-deep .ant-checkbox-checked .ant-checkbox-inner {
+    background: #22A33F;
+    border-color: #22A33F;
+}

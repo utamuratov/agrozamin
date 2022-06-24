@@ -425,6 +425,26 @@
       &__list-day {
         display: flex;
         justify-content: space-between;
+
+        &.drawer {
+          width: 100%;
+          flex-wrap: nowrap;
+          overflow-x: scroll;
+          padding-bottom: 5px;
+
+          &::-webkit-scrollbar {
+            width: 0; /* ширина для вертикального скролла */
+            height: 0; /* высота для горизонтального скролла */
+            background-color: transparent;
+          }
+
+          /* ползунок скроллбара */
+          &::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            border-radius: 9em;
+            box-shadow: inset 1px 1px 10px #f3faf7;
+          }
+        }
       }
 
       &__select-day {
@@ -432,6 +452,18 @@
         flex-direction: column;
         align-items: center;
         width: 57px;
+
+        &.drawer {
+          margin-right: 10px;
+
+          &:first-of-type {
+            margin-left: 5px;
+          }
+
+          &:last-of-type {
+            margin-right: 5px;
+          }
+        }
       }
 
       &__week {
@@ -512,8 +544,6 @@
           justify-content: center;
           opacity: 0;
           transition: 0.5s;
-
-          
         }
 
         &:hover {
@@ -570,7 +600,7 @@
         font-family: MontRegular;
         font-size: 14px;
         line-height: 20px;
-        color: #86898C;
+        color: #86898c;
         margin-bottom: 4px;
       }
 
@@ -578,7 +608,7 @@
         font-family: MontRegular;
         font-size: 14px;
         line-height: 20px;
-        color: #86898C;
+        color: #86898c;
         display: block;
         margin-bottom: 16px;
       }
@@ -596,14 +626,14 @@
         font-family: MontRegular;
         font-size: 14px;
         line-height: 20px;
-        color: #86898C;
+        color: #86898c;
       }
 
       &__input {
-        background: #F4F6FF;
+        background: #f4f6ff;
 
         input {
-          background: #F4F6FF;
+          background: #f4f6ff;
         }
       }
 
@@ -611,13 +641,13 @@
         font-family: MontRegular;
         font-size: 14px;
         line-height: 20px;
-        color: #86898C;
+        color: #86898c;
       }
     }
 
     &__content-fourth {
       padding: 40px;
-      background: #F4F6FF;
+      background: #f4f6ff;
       margin-top: 24px;
       border-radius: 16px;
       padding-top: 40px !important;
@@ -627,7 +657,7 @@
         font-family: MontSemiBold;
         font-size: 24px;
         line-height: 30px;
-        color: #22A33F;
+        color: #22a33f;
         max-width: 320px;
         width: 100%;
         margin-bottom: 0;
@@ -645,7 +675,7 @@
         font-family: MontRegular;
         font-size: 14px;
         line-height: 20px;
-        color: #86898C;
+        color: #86898c;
         margin-bottom: 0;
       }
     }
@@ -682,7 +712,6 @@
   padding-right: 8px;
   padding-left: 0;
 }
-
 
 .label-cvc {
   display: flex;
@@ -739,10 +768,10 @@
     height: 100%;
     width: 100%;
     font-family: MOntRegular;
-    color: #CFD3D8;
+    color: #cfd3d8;
     background: #fff;
     border-radius: 16px;
-    border: 1px dashed #CFD3D8;
+    border: 1px dashed #cfd3d8;
     cursor: pointer;
     i {
       font-size: 28px;
@@ -756,5 +785,12 @@
     &:active {
       background: darken(#fff, 5%);
     }
+
+    &.drawer {
+      padding: 30px 0;
+    }
   }
+}
+
+.drawer {
 }

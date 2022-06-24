@@ -20,12 +20,132 @@
     border-radius: 16px;
 
     &__block {
-        padding: 40px;
+      padding: 25px 40px;
+
+      @media (max-width: 575px) {
+        padding: 15px 15px;
+      }
     }
   }
 
   .tab {
     width: 100%;
+  }
+
+  .table {
+
+    &__row-id {
+      width: 60px;
+    }
+
+    th {
+        background: #fff;
+        position: static;
+        text-align: center;
+        font-family: MontRegular;
+        font-size: 12px;
+        line-height: 18px;
+        color: #B7BBBF;
+
+        @media (max-width: 575px) {
+          font-size: 10px;
+          line-height: 12px;
+          padding: 6px;
+        }
+    }
+
+    td {
+        font-family: MontRegular;
+        font-size: 12px;
+        text-align: center;
+
+        @media (max-width: 575px) {
+          font-size: 10px;
+          line-height: 12px;
+          padding-left: 6px;
+          padding-right: 6px;
+        }
+    }
+
+    &__author {
+        font-family: MontBold;
+        color: #333;
+        font-size: 20px;
+        line-height: 26px;
+
+        @media (max-width: 575px) {
+          font-size: 13px;
+          line-height: 16px;
+        }
+    }
+
+    &__description {
+        font-size: 14px;
+        line-height: 18px;
+        font-family: MontRegular;
+        
+        @media (max-width: 575px) {
+          font-size: 8px;
+          line-height: 10px;
+        }
+    }
+
+    &__btn {
+        font-family: MontSemiBold;
+        font-size: 14px;
+        line-height: 18px;    
+        
+        @media (max-width: 575px) {
+          font-size: 8px;
+          line-height: 10px;
+        }    
+    }
+
+    &__avatar {
+        margin-left: 8px;
+    }
+
+    &__status {
+        
+
+        &.complete {
+            color: #22A33F;
+        }
+
+        &.yellow {
+          color: #DBBC19;
+        }
+
+        &.green {
+          color: #22A33F;
+        }
+
+        &.red {
+          color: #E83232;
+        }
+    }
+
+    .counter {
+      font-family: MontSemiBold;
+      font-size: 14px;
+      line-height: 18px;
+      color: #000;
+
+      &__time {
+        padding: 9px 14px;
+        border: 1px solid #396AFC;
+        border-radius: 8px;
+        font-family: MontSemiBold;
+        font-size: 14px;
+        line-height: 18px;
+
+        @media (max-width: 575px) {
+          font-size: 8px;
+          line-height: 10px;
+          padding: 9px;
+        }  
+      }
+    }
   }
 
 }

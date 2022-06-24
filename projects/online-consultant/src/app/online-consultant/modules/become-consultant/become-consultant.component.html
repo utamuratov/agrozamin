@@ -117,6 +117,7 @@
       [(nzVisible)]="isVisible"   
       [nzClosable]="false"
       [nzFooter]="null"
+      nzWidth="663px"
       >
       <ng-container *nzModalContent >
     
@@ -196,21 +197,7 @@
                 <div nz-col nzSpan="24">
                   <div nz-row >
 
-                    <!-- <div nz-col nzSpan="24" *ngFor="let i of addNewSomthing" class="modal__content__body3">
-                      <div nz-row >
-                        <div nz-col>
-                          {{i.firstName}}
-                        </div>
-                        <div nz-col>
-                          {{i.lastName}}
-                        </div>
-                        <div nz-col>
-                          {{i.price}}
-                        </div>
-                      </div>
-                    </div> -->
-
-                    <nz-divider *ngIf="addNewSomthing.length >= 1"></nz-divider>
+                   <nz-divider *ngIf="addNewSomthing.length >= 1"></nz-divider>
 
                     <div nz-col nzSpan="24" class="modal__content__body2">
                       <div nz-row [nzGutter]="[0,17]">

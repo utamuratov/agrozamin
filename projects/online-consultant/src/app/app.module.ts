@@ -10,6 +10,7 @@ import ru from '@angular/common/locales/ru';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
+import { NgChartsModule } from 'ng2-charts';
 
 registerLocaleData(ru);
 
@@ -27,6 +28,7 @@ const providers = [{ provide: NZ_I18N, useValue: ru_RU }];
     NgxAzCoreModule,
 
     BrowserAnimationsModule,
+      NgChartsModule,
   ],
   providers: providers,
   bootstrap: [AppComponent],

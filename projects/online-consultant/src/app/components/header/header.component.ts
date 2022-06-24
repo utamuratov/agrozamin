@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,} from '@angular/core';
+import { NzTabPosition } from 'ng-zorro-antd/tabs';
 
 @Component({
   selector: 'az-header',
@@ -22,6 +23,24 @@ export class HeaderComponent implements OnInit {
   drawerState = 'none'
   location = false
 
+  toggle = true;
+
+
+  schedule = [
+    {
+      time: '11:00',
+      img: '/assets/images/unsplash_3mynAJgeK6g.png',
+      name: 'Александров Михаил',
+      timeLength: '11:00 - 11:30'
+    },
+    {
+      time: '12:00',
+      img: '/assets/images/unsplash_3mynAJgeK6g.png',
+      name: 'Александров Михаил',
+      timeLength: '12:00 - 12:30'
+    }
+  ]
+
   constructor() { }
 
   ngOnInit() {
@@ -29,6 +48,10 @@ export class HeaderComponent implements OnInit {
 
   isAuth() {
     this.isUserAuth = !this.isUserAuth    
+  }
+
+  changeBtnBackground() {
+    this.toggle = !this.toggle;
   }
 
   changeBurgerState() {

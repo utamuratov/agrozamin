@@ -1,0 +1,171 @@
+.timetable {
+  &__content {
+    &__btn-group {
+      border: 1px solid #434343;
+      border-radius: 8px;
+      font-family: MontSemiBold;
+
+      &_text {
+        color: #86898c;
+      }
+    }
+
+    &__list-day {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__select-day {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 57px;
+    }
+
+    &__week {
+      &__day {
+        font-family: MontRegular;
+        font-size: 16px;
+        line-height: 20px;
+        color: #86898c;
+        margin-bottom: 40px;
+      }
+
+      &__radio {
+        span {
+          display: inline-block;
+          padding: 16px 20px;
+          outline: 1px solid #434343;
+          border-radius: 8px;
+          cursor: pointer;
+          font-family: MontSemiBold;
+          font-size: 14px;
+        }
+
+        input {
+          appearance: none;
+          position: absolute;
+
+          &:checked + span {
+            background: linear-gradient(81.32deg, #ff512f 0%, #dd2476 100%);
+            color: #fff;
+            outline: none;
+          }
+
+          &:disabled + span {
+            background: #f4f6ff;
+            color: #86898c;
+            outline: none;
+          }
+        }
+      }
+    }
+
+    &__text {
+      margin-bottom: 0;
+      padding: 21px 0;
+      background: #f4f6ff;
+      border-radius: 8px;
+      text-align: center;
+      font-family: MontSemiBold;
+      font-size: 14px;
+      line-height: 18px;
+
+      &.time-pick {
+        background: none;
+      }
+    }
+
+    &__switcher {
+      font-family: MontRegular;
+      font-size: 14px;
+      line-height: 20px;
+      color: #707c8b;
+      margin-right: 16px;
+    }
+
+    &__hour {
+      border: 1px solid #434343;
+      border-radius: 8px;
+      cursor: pointer;
+
+      &__label {
+        width: 100%;
+
+        padding: 13px 16px;
+
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      &__text {
+        font-family: MontSemiBold;
+        font-size: 14px;
+        line-height: 18px;
+        color: #b7bbbf;
+        flex-grow: 1;
+        text-align: center;
+      }
+
+      &_custom-radio {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 1px solid #b7bbbf;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s;
+      }
+
+      input {
+        appearance: none;
+        position: absolute;
+
+        &:checked + span {
+          opacity: 1;
+
+          span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(81.32deg, #ff512f 0%, #dd2476 100%);
+            box-shadow: 0 0 6px #dd2476;
+          }
+        }
+
+        &:checked ~ span {
+          color: #000;
+        }
+      }
+    }
+
+    &__description {
+        padding: 13px 16px;        
+
+        &_bg {
+            padding: 12px 13px;
+            background: #F1F2F5;
+            border-radius: 8px;
+        }
+
+        &__name {
+            font-family: MontSemiBold;
+            font-size: 14px;
+            line-height: 18px;
+            color: #242533;
+            margin-left: 9px;
+        }
+
+        &__btn {
+            font-family: MontSemiBold;
+            font-size: 14px;
+            line-height: 18px;
+            color: #242533;
+            margin-left: 9px;
+        }
+    }
+  }
+}
