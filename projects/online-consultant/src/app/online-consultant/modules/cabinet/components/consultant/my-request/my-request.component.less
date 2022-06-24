@@ -21,6 +21,10 @@
 
     &__block {
       padding: 25px 40px;
+
+      @media (max-width: 575px) {
+        padding: 15px 15px;
+      }
     }
   }
 
@@ -29,65 +33,96 @@
   }
 
   .table {
+
+    &__row-id {
+      width: 60px;
+    }
+
     th {
-      background: #fff;
-      position: static;
-      text-align: center;
-      font-family: MontRegular;
-      font-size: 12px;
-      line-height: 18px;
-      color: #b7bbbf;
+        background: #fff;
+        position: static;
+        text-align: center;
+        font-family: MontRegular;
+        font-size: 12px;
+        line-height: 18px;
+        color: #B7BBBF;
+
+        @media (max-width: 575px) {
+          font-size: 10px;
+          line-height: 12px;
+          padding: 6px;
+        }
     }
 
     td {
-      font-family: MontRegular;
-      font-size: 12px;
-      text-align: center;
+        font-family: MontRegular;
+        font-size: 12px;
+        text-align: center;
+
+        @media (max-width: 575px) {
+          font-size: 10px;
+          line-height: 12px;
+          padding-left: 6px;
+          padding-right: 6px;
+        }
     }
 
     &__author {
-      font-family: MontBold;
-      color: #333;
-      font-size: 20px;
-      line-height: 26px;
+        font-family: MontBold;
+        color: #333;
+        font-size: 20px;
+        line-height: 26px;
+
+        @media (max-width: 575px) {
+          font-size: 13px;
+          line-height: 16px;
+        }
     }
 
     &__description {
-      font-size: 14px;
-      line-height: 18px;
-      font-family: MontRegular;
+        font-size: 14px;
+        line-height: 18px;
+        font-family: MontRegular;
+        
+        @media (max-width: 575px) {
+          font-size: 8px;
+          line-height: 10px;
+        }
     }
 
     &__btn {
-      font-family: MontSemiBold;
-      font-size: 14px;
-      line-height: 18px;
-
-      &.bdGreen {
-        border-color: #22a33f;
-      }
+        font-family: MontSemiBold;
+        font-size: 14px;
+        line-height: 18px;    
+        
+        @media (max-width: 575px) {
+          font-size: 8px;
+          line-height: 10px;
+        }    
     }
 
     &__avatar {
-      margin-left: 8px;
+        margin-left: 8px;
     }
 
     &__status {
-      &.complete {
-        color: #22a33f;
-      }
+        
 
-      &.yellow {
-        color: #dbbc19;
-      }
+        &.complete {
+            color: #22A33F;
+        }
 
-      &.green {
-        color: #22a33f;
-      }
+        &.yellow {
+          color: #DBBC19;
+        }
 
-      &.red {
-        color: #e83232;
-      }
+        &.green {
+          color: #22A33F;
+        }
+
+        &.red {
+          color: #E83232;
+        }
     }
 
     .counter {
@@ -98,12 +133,19 @@
 
       &__time {
         padding: 9px 14px;
-        border: 1px solid #396afc;
+        border: 1px solid #396AFC;
         border-radius: 8px;
         font-family: MontSemiBold;
         font-size: 14px;
         line-height: 18px;
+
+        @media (max-width: 575px) {
+          font-size: 8px;
+          line-height: 10px;
+          padding: 9px;
+        }  
       }
     }
   }
+
 }
