@@ -119,7 +119,7 @@
           <div nz-col nzXs="0" nzSm="24">
             <div nz-row [nzGutter]="[{xs: 8, sm: 8, md: 16, lg: 16, xl: 16}, 0]" nzJustify="end" nzAlign="middle">
               <div nz-col>
-                <button nz-button nzType="default" nzSize="large" class="header__btn icon" nz-popover  [nzPopoverContent]="plan" nzPopoverPlacement="bottom">
+                <button nz-button nzType="default" nzSize="large" class="header__btn icon" nz-popover nzPopoverTrigger="click" [nzPopoverContent]="plan" nzPopoverPlacement="bottom">
                   <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.919922" y="4" width="18" height="15" rx="2" stroke="black" stroke-width="1.5"/>
                     <path d="M0.919922 9L18.9199 9" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
@@ -130,7 +130,7 @@
                 </button>            
               </div>
               <div nz-col>
-                  <button nz-button nzType="default" nzSize="large" class="header__btn icon" nz-popover nzPopoverTitle="Title" nzPopoverContent="Content" nzPopoverPlacement="bottom">
+                  <button nz-button nzType="default" nzSize="large" class="header__btn icon" nz-popover [nzPopoverContent]="Content" nzPopoverPlacement="bottom">
                     <svg width="18" height="18" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M4.36776 5.96942C4.68211 3.14032 7.07341 1 9.91992 1V1C12.7664 1 15.1577 3.14032 15.4721 5.96942L15.7239 8.23563C15.7271 8.26452 15.7287 8.27897 15.7303 8.29326C15.8593 9.41695 16.225 10.5005 16.8035 11.4725C16.8108 11.4849 16.8183 11.4973 16.8333 11.5222L17.4113 12.4856C17.9359 13.3599 18.1981 13.797 18.1415 14.1559C18.1038 14.3946 17.9809 14.6117 17.7956 14.7668C17.517 15 17.0072 15 15.9877 15H3.85215C2.83261 15 2.32283 15 2.04426 14.7668C1.8589 14.6117 1.73601 14.3946 1.69833 14.1559C1.64171 13.797 1.90399 13.3599 2.42854 12.4856L3.00658 11.5222C3.02153 11.4973 3.02901 11.4849 3.03637 11.4725C3.6148 10.5005 3.98056 9.41695 4.10951 8.29326C4.11115 8.27897 4.11275 8.26452 4.11596 8.23563L4.36776 5.96942Z" stroke="black" stroke-width="1.5"/>
                       <path d="M7.02214 15.4059C7.19307 16.1501 7.5697 16.8077 8.09364 17.2767C8.61757 17.7458 9.25952 18 9.91992 18C10.5803 18 11.2223 17.7458 11.7462 17.2767C12.2701 16.8077 12.6468 16.1501 12.8177 15.4059" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
@@ -515,8 +515,194 @@
 </div>
 
 <ng-template #plan>
-  <div class="plan">
-    <div nz-row [nzGutter]="[0, 20]">
+
+ 
+<div class="plan">
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <h4 class="plan__title">Расписание консультаций</h4>
+    </div>
+    <div nz-col nzSpan="24">
+      <h5 class="plan__subtitle">Сегодня - Среда 6 апреля 2022</h5>
+    </div>
+  </div>
+  <nz-tabset [nzTabBarGutter]="10" nzType="card" nzHideAdd>
+    <nz-tab [nzTitle]="tab" >
+      <div nz-row [nzGutter]="[0, 20]">
+        
+        <div nz-col nzSpan="24">
+          <div nz-row [nzGutter]="[0,36]">
+            <div nz-col nzSpan="24" class="plan__content">
+              <div nz-row [nzGutter]="[0,36]">
+                <div nz-col nzSpan="24" *ngFor="let i of schedule">
+                  <div nz-row>
+                    <div nz-col nzSpan="8">
+                      <h4> {{i.time}} </h4>
+                    </div>
+                    <div nz-col nzSpan="2">
+                      <nz-divider class="plan__content__divider" nzType="vertical"></nz-divider>
+                    </div>
+                 
+                    <div nz-col nzSpan="14" class="plan__content__user">
+                      <div nz-row [nzGutter]="[0,8]">
+                        <div nz-col nzSpan="24">
+                          <div nz-row [nzGutter]="[8,0]"> 
+                            <div nz-col>
+                              <div class="plan__content__user__logo">
+                                <img [src]="i.img" alt="">
+                              </div>
+                            </div>
+                            <div nz-col>
+                              <span>{{i.name}}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div nz-col class="plan__content__user__date">
+                          <span>{{i.timeLength}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <nz-divider></nz-divider>
+  
+                <div class="plan__content__date">
+                  <p>7 Апреля 2022</p>
+                </div>
+  
+                <div nz-col nzSpan="24">
+                  <div nz-row>
+                    <div nz-col nzSpan="8">
+                      <h4> 16:00 </h4>
+                    </div>
+                    <div nz-col nzSpan="2">
+                      <nz-divider class="plan__content__divider" nzType="vertical"></nz-divider>
+                    </div>
+                 
+                    <div nz-col nzSpan="14" class="plan__content__user">
+                      <div nz-row [nzGutter]="[0,8]">
+                        <div nz-col nzSpan="24">
+                          <div nz-row [nzGutter]="[8,0]"> 
+                            <div nz-col>
+                              <div class="plan__content__user__logo">
+                                <img src="/assets/images/unsplash_3mynAJgeK6g.png" alt="">
+                              </div>
+                            </div>
+                            <div nz-col>
+                              <span>Александров Михаил</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div nz-col class="plan__content__user__date">
+                          <span>16:00 - 16:30</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+  
+          </div>
+        </div>
+      </div>
+    </nz-tab>
+
+    <nz-tab [nzTitle]="tab2">
+      <div nz-row [nzGutter]="[0, 20]">
+        
+        <div nz-col nzSpan="24">
+          <div nz-row [nzGutter]="[0,36]">
+            <div nz-col nzSpan="24" class="plan__content">
+              <div nz-row [nzGutter]="[0,36]">
+                <div nz-col nzSpan="24" *ngFor="let i of schedule">
+                  <div nz-row>
+                    <div nz-col nzSpan="8">
+                      <h4> {{i.time}} </h4>
+                    </div>
+                    <div nz-col nzSpan="2">
+                      <nz-divider class="plan__content__divider" nzType="vertical"></nz-divider>
+                    </div>
+                 
+                    <div nz-col nzSpan="14" class="plan__content__user">
+                      <div nz-row [nzGutter]="[0,8]">
+                        <div nz-col nzSpan="24">
+                          <div nz-row [nzGutter]="[8,0]"> 
+                            <div nz-col>
+                              <div class="plan__content__user__logo">
+                                <img [src]="i.img" alt="">
+                              </div>
+                            </div>
+                            <div nz-col>
+                              <span>{{i.name}}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div nz-col class="plan__content__user__date">
+                          <span>{{i.timeLength}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <nz-divider></nz-divider>
+  
+                <div class="plan__content__date">
+                  <p>7 Апреля 2022</p>
+                </div>
+  
+                <div nz-col nzSpan="24">
+                  <div nz-row>
+                    <div nz-col nzSpan="8">
+                      <h4> 16:00 </h4>
+                    </div>
+                    <div nz-col nzSpan="2">
+                      <nz-divider class="plan__content__divider" nzType="vertical"></nz-divider>
+                    </div>
+                 
+                    <div nz-col nzSpan="14" class="plan__content__user">
+                      <div nz-row [nzGutter]="[0,8]">
+                        <div nz-col nzSpan="24">
+                          <div nz-row [nzGutter]="[8,0]"> 
+                            <div nz-col>
+                              <div class="plan__content__user__logo">
+                                <img src="/assets/images/unsplash_3mynAJgeK6g.png" alt="">
+                              </div>
+                            </div>
+                            <div nz-col>
+                              <span>Александров Михаил</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div nz-col class="plan__content__user__date">
+                          <span>16:00 - 16:30</span>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+
+                <div nz-col nzSpan="24" >
+                  <button nz-button nzType="default">все</button>
+                </div>
+
+              </div>
+            </div>
+  
+  
+          </div>
+        </div>
+      </div>
+    </nz-tab>
+
+  </nz-tabset>
+
+ <!-- <div nz-row [nzGutter]="[0, 20]">
       <div nz-col nzSpan="24">
         <h4 class="plan__title">Расписание консультаций</h4>
       </div>
@@ -529,10 +715,83 @@
           <div nz-col nzSpan="24" class="plan__button">
             <div nz-row>
               <div nz-col nzSpan="12">
-                <button nz-button nzSize="large" nzType="default">Ближайшие</button>
+                <button nz-button nzSize="large" (click)="changeBtnBackground()"  [ngClass]="{'background' : toggle, 'defauld': !toggle}" nzType="default">Ближайшие</button>
               </div>
               <div nz-col nzSpan="12">
-                <button nz-button nzSize="large" nzType="default">Новые заявки</button>
+                <button nz-button nzSize="large" (click)="changeBtnBackground()" [ngClass]="{'background' : !toggle, 'defauld': toggle}" nzType="default">Новые заявки</button>
+              </div>
+            </div>
+          </div>
+
+
+          <div nz-col nzSpan="24" class="plan__content">
+            <div nz-row [nzGutter]="[0,36]">
+              <div nz-col nzSpan="24" *ngFor="let i of schedule">
+                <div nz-row>
+                  <div nz-col nzSpan="8">
+                    <h4> {{i.time}} </h4>
+                  </div>
+                  <div nz-col nzSpan="2">
+                    <nz-divider class="plan__content__divider" nzType="vertical"></nz-divider>
+                  </div>
+               
+                  <div nz-col nzSpan="14" class="plan__content__user">
+                    <div nz-row [nzGutter]="[0,8]">
+                      <div nz-col nzSpan="24">
+                        <div nz-row [nzGutter]="[8,0]"> 
+                          <div nz-col>
+                            <div class="plan__content__user__logo">
+                              <img [src]="i.img" alt="">
+                            </div>
+                          </div>
+                          <div nz-col>
+                            <span>{{i.name}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div nz-col class="plan__content__user__date">
+                        <span>{{i.timeLength}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <nz-divider></nz-divider>
+
+              <div class="plan__content__date">
+                <p>7 Апреля 2022</p>
+              </div>
+
+              <div nz-col nzSpan="24">
+                <div nz-row>
+                  <div nz-col nzSpan="8">
+                    <h4> 16:00 </h4>
+                  </div>
+                  <div nz-col nzSpan="2">
+                    <nz-divider class="plan__content__divider" nzType="vertical"></nz-divider>
+                  </div>
+               
+                  <div nz-col nzSpan="14" class="plan__content__user">
+                    <div nz-row [nzGutter]="[0,8]">
+                      <div nz-col nzSpan="24">
+                        <div nz-row [nzGutter]="[8,0]"> 
+                          <div nz-col>
+                            <div class="plan__content__user__logo">
+                              <img src="/assets/images/unsplash_3mynAJgeK6g.png" alt="">
+                            </div>
+                          </div>
+                          <div nz-col>
+                            <span>Александров Михаил</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div nz-col class="plan__content__user__date">
+                        <span>16:00 - 16:30</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -540,7 +799,72 @@
 
         </div>
       </div>
-      <button nz-button nzType="primary" nzSize="large" nzBlock>Еще</button>
+    </div>  -->
+  </div>
+
+</ng-template>
+
+<ng-template #tab>
+  <span>Ближайшие</span>
+</ng-template>
+<ng-template #tab2>
+  <span>Новые заявки</span>
+</ng-template>
+
+<ng-template #Content>
+  <div class="notifications">
+    <div nz-row [nzGutter]="[0,22]">
+      <div nz-col nzSpan="24" class="notifications__title">
+        <div nz-row [nzGutter]="[0,20]">
+          <div nz-col nzSpan="24" >
+            <h3>Оповещения</h3>
+          </div>
+          <div nz-col nzSpan="24">
+            <span>Сегодня - Среда 6 апреля 2022</span>
+          </div>
+        </div>
+      </div>
+
+      <div nz-col nzSpan="24" class="notifications__body">
+        <div nz-row>
+          <div nz-col nzSpan="24">
+            <div nz-row nzJustify="space-between" nzAlign="middle">
+              <div nz-col>
+                <h3>Ваша заявка 
+                  на модерации</h3>
+              </div>
+              <div nz-col>
+                <img src="/assets/images/Frame 34185.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div nz-col nzSpan="24">
+            <span>Запрос находится в обработке</span>
+          </div>
+          <nz-divider></nz-divider>
+        </div>
+      </div>
+
+      <div nz-col nzSpan="24" class="notifications__footer">
+        <div nz-row [nzGutter]="[0,20]">
+          <div nz-col nzSpan="24">
+            <span>7 Апреля 2022</span>
+          </div>
+          <div nz-col nzSpan="24">
+            <div nz-row nzJustify="space-between">
+              <div nz-col>
+                <h3>У вас новая заявка</h3>
+              </div>
+              <div nz-col>
+                <img src="/assets/images/Time_duotone_line.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div nz-col nzSpan="24">
+            <p>Запрос на индетификацию в обработке</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </ng-template>

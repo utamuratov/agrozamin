@@ -11,6 +11,7 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     NzDividerModule,
     NzTypographyModule,
     NzPopoverModule,
+    NzTabsModule
   ],
   declarations: [OnlineConsultantComponent, HeaderComponent, FooterComponent],
 })
