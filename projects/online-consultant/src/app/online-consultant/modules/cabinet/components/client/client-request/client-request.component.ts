@@ -4,14 +4,15 @@ import { formatDistance } from 'date-fns';
 @Component({
   selector: 'az-client-request',
   templateUrl: './client-request.component.html',
-  styleUrls: ['./client-request.component.less']
+  styleUrls: ['./client-request.component.less'],
 })
 export class ClientRequestComponent implements OnInit {
-
   expandSet = new Set<number>();
   time = formatDistance(new Date(), new Date());
-
-  
+  tableSize = '180px';
+  get size() {
+    return this.tableSize;
+  }
   listOfData = [
     {
       id: 1,
@@ -22,8 +23,9 @@ export class ClientRequestComponent implements OnInit {
       price: '70.000 сум',
       name: 'Нарбеков Артур',
       avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
+      description:
+        'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+      clientAvatar: './assets/images/avatar.jpg',
     },
     {
       id: 2,
@@ -34,8 +36,9 @@ export class ClientRequestComponent implements OnInit {
       price: '70.000 сум',
       name: 'Нарбеков Артур',
       avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
+      description:
+        'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+      clientAvatar: './assets/images/avatar.jpg',
     },
     {
       id: 3,
@@ -46,8 +49,9 @@ export class ClientRequestComponent implements OnInit {
       price: '70.000 сум',
       name: 'Нарбеков Артур',
       avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
+      description:
+        'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+      clientAvatar: './assets/images/avatar.jpg',
     },
     {
       id: 4,
@@ -58,8 +62,9 @@ export class ClientRequestComponent implements OnInit {
       price: '70.000 сум',
       name: 'Нарбеков Артур',
       avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
+      description:
+        'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+      clientAvatar: './assets/images/avatar.jpg',
     },
     {
       id: 5,
@@ -70,8 +75,9 @@ export class ClientRequestComponent implements OnInit {
       price: '70.000 сум',
       name: 'Нарбеков Артур',
       avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
+      description:
+        'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+      clientAvatar: './assets/images/avatar.jpg',
     },
     {
       id: 6,
@@ -82,8 +88,9 @@ export class ClientRequestComponent implements OnInit {
       price: '70.000 сум',
       name: 'Нарбеков Артур',
       avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
+      description:
+        'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+      clientAvatar: './assets/images/avatar.jpg',
     },
     {
       id: 7,
@@ -94,8 +101,9 @@ export class ClientRequestComponent implements OnInit {
       price: '70.000 сум',
       name: 'Нарбеков Артур',
       avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
+      description:
+        'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+      clientAvatar: './assets/images/avatar.jpg',
     },
     {
       id: 8,
@@ -106,20 +114,9 @@ export class ClientRequestComponent implements OnInit {
       price: '70.000 сум',
       name: 'Нарбеков Артур',
       avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
-    },
-    {
-      id: 6,
-      date: '15.04.2022',
-      time: '18:00-18:30',
-      direction: 'Ветеренария',
-      status: 3,
-      price: '70.000 сум',
-      name: 'Нарбеков Артур',
-      avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
+      description:
+        'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+      clientAvatar: './assets/images/avatar.jpg',
     },
     {
       id: 9,
@@ -130,8 +127,9 @@ export class ClientRequestComponent implements OnInit {
       price: '70.000 сум',
       name: 'Нарбеков Артур',
       avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
+      description:
+        'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+      clientAvatar: './assets/images/avatar.jpg',
     },
     {
       id: 10,
@@ -142,8 +140,9 @@ export class ClientRequestComponent implements OnInit {
       price: '70.000 сум',
       name: 'Нарбеков Артур',
       avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
+      description:
+        'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+      clientAvatar: './assets/images/avatar.jpg',
     },
     {
       id: 11,
@@ -154,21 +153,22 @@ export class ClientRequestComponent implements OnInit {
       price: '70.000 сум',
       name: 'Нарбеков Артур',
       avatar: './assets/images/avatar.jpg',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      clientAvatar: './assets/images/avatar.jpg'
+      description:
+        'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+      clientAvatar: './assets/images/avatar.jpg',
     },
   ];
 
-  waitingRequests: any = []
+  waitingRequests: any = [];
 
-  completedRequests: any = []
+  completedRequests: any = [];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.waitingRequests = this.listOfData.filter((e:any) => e.status < 2)
-    this.completedRequests = this.listOfData.filter((e:any) => e.status > 1)
-    console.log(this.completedRequests);    
+    this.waitingRequests = this.listOfData.filter((e: any) => e.status < 2);
+    this.completedRequests = this.listOfData.filter((e: any) => e.status > 1);
+    console.log(this.completedRequests);
   }
 
   onExpandChange(id: number, checked: boolean): void {
@@ -177,5 +177,11 @@ export class ClientRequestComponent implements OnInit {
     } else {
       this.expandSet.delete(id);
     }
+  }
+
+  onResize(e: any) {
+    if (e.target.innerWidth < 1201) {
+      this.tableSize = '130px';
+    } else this.tableSize = '180px';
   }
 }

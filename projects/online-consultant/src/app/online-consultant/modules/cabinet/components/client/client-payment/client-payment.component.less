@@ -18,8 +18,15 @@
     &__block {
       padding: 40px;
       background: #fff;
-    filter: drop-shadow(0px 0px 25px rgba(0, 0, 0, 0.05));
-    border-radius: 16px;
+      filter: drop-shadow(0px 0px 25px rgba(0, 0, 0, 0.05));
+      border-radius: 16px;
+
+      @media (max-width: 767px) {
+        padding: 25px;
+      }
+      @media (max-width: 575px) {
+        padding: 25px 10px;
+      }
     }
   }
 
@@ -73,6 +80,11 @@
       border-radius: 16px;
       border: 1px dashed #cfd3d8;
       cursor: pointer;
+
+      @media (max-width: 575px) {
+        padding: 15px 0;
+      }
+
       i {
         font-size: 28px;
         margin-bottom: 4px;
@@ -89,6 +101,10 @@
   }
 
   .table {
+    &__row-id {
+      width: 60px;
+    }
+
     th {
       background: #fff;
       position: static;
@@ -97,12 +113,25 @@
       font-size: 12px;
       line-height: 18px;
       color: #b7bbbf;
+
+      @media (max-width: 575px) {
+        font-size: 10px;
+        line-height: 12px;
+        padding: 6px;
+      }
     }
 
     td {
       font-family: MontRegular;
       font-size: 12px;
       text-align: center;
+
+      @media (max-width: 575px) {
+        font-size: 10px;
+        line-height: 12px;
+        padding-left: 6px;
+        padding-right: 6px;
+      }
     }
 
     &__author {
@@ -110,18 +139,33 @@
       color: #333;
       font-size: 20px;
       line-height: 26px;
+
+      @media (max-width: 575px) {
+        font-size: 13px;
+        line-height: 16px;
+      }
     }
 
     &__description {
       font-size: 14px;
       line-height: 18px;
       font-family: MontRegular;
+
+      @media (max-width: 575px) {
+        font-size: 8px;
+        line-height: 10px;
+      }
     }
 
     &__btn {
       font-family: MontSemiBold;
       font-size: 14px;
       line-height: 18px;
+
+      @media (max-width: 575px) {
+        font-size: 8px;
+        line-height: 10px;
+      }
     }
 
     &__avatar {
@@ -159,6 +203,12 @@
         font-family: MontSemiBold;
         font-size: 14px;
         line-height: 18px;
+
+        @media (max-width: 575px) {
+          font-size: 8px;
+          line-height: 10px;
+          padding: 9px;
+        }
       }
     }
   }
