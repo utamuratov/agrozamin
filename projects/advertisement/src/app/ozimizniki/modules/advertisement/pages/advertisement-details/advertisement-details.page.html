@@ -142,11 +142,11 @@
                   <div nz-col nzSpan="24">
                     <div nz-row [nzGutter]="[20, 0]" nzJustify="space-between">
                       <div nz-col>
-                        <h6 class="product__info__type">Продаю</h6>
+                        <h6 class="product__info__type">{{data.type}}</h6>
                       </div>
                       <div nz-col>
                         <p class="product__info__cat-info">
-                          <span>ID номер</span> {{data.id}}
+                          <span>I{{'idNumber' | translate}}</span> {{data.id}}
                         </p>
                       </div>
                     </div>
@@ -168,7 +168,7 @@
                           nz-typography
                           class="product__info__subprice"
                           *ngIf="data.deal"
-                          >Есть торг</span
+                          >{{'agreementPrice' | translate}}</span
                         >
                       </div>
                     </div>
@@ -197,7 +197,7 @@
                           <img
                             src="./assets/images/message.svg"
                             alt="phone icon"
-                          /><span>Сообщение</span>
+                          /><span>{{'messages' | translate}}</span>
                         </button>
                       </div>
 
@@ -212,7 +212,7 @@
                           <img
                             src="./assets/images/phone.svg"
                             alt="phone icon"
-                          /><span>Позвонить</span>
+                          /><span>{{'phoneCall' | translate}}</span>
                         </button>
                       </div>
                     </div>
@@ -228,7 +228,7 @@
                             class="contact-person__img"
                           />
                           <span class="contact-person__text"
-                            >Контактное лицо:</span
+                            >{{'contactPerson' | translate}}:</span
                           >
                           <span class="contact-person__name"
                             >{{data.contact.full_name}}</span
@@ -243,7 +243,9 @@
                             alt="icon"
                             class="contact-person__img"
                           />
-                          <span class="contact-person__text">Продавец:</span>
+                          <span class="contact-person__text"
+                            >{{'seller' | translate}}:</span
+                          >
                           <a class="contact-person__name"
                             >{{data.created_by.full_name}}</a
                           >

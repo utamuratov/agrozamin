@@ -8,7 +8,11 @@ import { ISignInRequest } from '../../models/sign-in.request';
 import { SignInResponse } from '../../models/sign-in.response';
 import { BaseAuthService } from '../../services/base-auth.service';
 import { BaseService } from '../../services/base.service';
-import { AccessToken, RefreshToken } from '../store/auth/auth.action';
+import {
+  AccessToken,
+  AuthorizedUser,
+  RefreshToken,
+} from '../store/auth/auth.action';
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +54,14 @@ export class SignInHelperService extends BaseAuthService {
           if (result.success) {
             this.$store.dispatch(new AccessToken(result.data.access_token));
             this.$store.dispatch(new RefreshToken(result.data.refresh_token));
+            this.$store.dispatch(
+              new AuthorizedUser({
+                f_name: result.data.f_name,
+                l_name: result.data.l_name,
+                photo: result.data.photo,
+                role: result.data.role,
+              })
+            );
           }
         })
       );

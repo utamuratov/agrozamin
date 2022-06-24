@@ -1,17 +1,37 @@
-<nz-breadcrumb [nzAutoGenerate]="true">
-  <nz-breadcrumb-item *ngFor="let bcElement of breadcrumbs; let last = last">
-    <a [routerLink]="bcElement.url">{{ bcElement.name | translate }}</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item *ngFor="let category of categories; let i = index">
-    <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
-      Каталог
-      <i nz-icon nzType="down"></i>
-    </a>
+<ng-container *ngIf="category$ | async as categories">
+  <nz-breadcrumb [nzAutoGenerate]="true">
+    <nz-breadcrumb-item *ngFor="let bcElement of breadcrumbs; let last = last">
+      <a [routerLink]="bcElement.url">{{ bcElement.name | translate }}</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item *ngFor="let category of categories; let i = index">
+      <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+        {{ category.name }}
+        <i nz-icon nzType="down"></i>
+      </a>
 
-    <nz-dropdown-menu #menu="nzDropdownMenu">
-      <ul nz-menu nzSelectable>
-        <li nz-menu-item *ngFor="let c of category">{{ c.name }}</li>
-      </ul>
-    </nz-dropdown-menu>
-  </nz-breadcrumb-item>
-</nz-breadcrumb>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li
+            nz-menu-item
+            [routerLink]="['../', c.sequence]"
+            *ngFor="let c of category.neighbor_categories"
+            [ngClass]="{
+              active: c.id === category.id
+            }"
+          >
+            {{ c.name }}
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <div
+    *ngIf="categories[categories.length - 1] as lastBC"
+    nz-col
+    nzSpan="24"
+    class="container__title"
+  >
+    <h3>{{ lastBC.name | translate }}</h3>
+  </div>
+</ng-container>

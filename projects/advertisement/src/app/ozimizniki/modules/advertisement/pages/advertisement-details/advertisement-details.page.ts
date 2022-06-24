@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
 import { AdvertisementDetails } from '../../dto/advertisement-details.interface';

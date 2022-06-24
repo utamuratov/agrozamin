@@ -1,12 +1,17 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Filter, GridModel, GridQuery, NgDestroy } from 'ngx-az-core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+} from '@angular/core';
+import { Params } from '@angular/router';
+import { Filter, GridModel, GridQuery } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
-import { finalize, takeUntil } from 'rxjs';
+import { finalize } from 'rxjs';
 import { Advertisement } from '../../dto/advertisement.interface';
 import { AdvertisementService } from '../../services/advertisement.service';
-import { products } from './data';
 
+const PAGINATION_PAGE_SIZE = 12;
 const DEFAULT_DATA: GridModel<Advertisement> = {
   current_page: 0,
   data: [
@@ -20,15 +25,18 @@ const DEFAULT_DATA: GridModel<Advertisement> = {
     {} as Advertisement,
     {} as Advertisement,
     {} as Advertisement,
+    {} as Advertisement,
+    {} as Advertisement,
   ],
-  per_page: AdvertisementConstants.PAGINATION_PAGE_SIZE,
-  total: AdvertisementConstants.PAGINATION_PAGE_SIZE,
+  per_page: PAGINATION_PAGE_SIZE,
+  total: PAGINATION_PAGE_SIZE,
 };
 
 @Component({
   selector: 'az-advertisement-list',
   templateUrl: './advertisement-list.component.html',
   styleUrls: ['./advertisement-list.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdvertisementListComponent {
   /**
@@ -82,7 +90,7 @@ export class AdvertisementListComponent {
   /**
    *
    */
-  pageSize = AdvertisementConstants.PAGINATION_PAGE_SIZE;
+  pageSize = PAGINATION_PAGE_SIZE;
 
   /**
    *
@@ -123,6 +131,7 @@ export class AdvertisementListComponent {
    */
   private initQuery() {
     this.query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
+    this.query.pageSize = PAGINATION_PAGE_SIZE;
     this.query.filter = this.getQueryFilter();
   }
 

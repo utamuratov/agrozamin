@@ -12,6 +12,7 @@ export interface AdvertisementDetails extends Id, Advertisement {
   characteristics_detail: CharacteristicsDetail[];
   user_is_online: boolean;
   location: Location;
+  type: string;
 
   // for model
   carauselData: { type: 'video' | 'img'; src: string }[];

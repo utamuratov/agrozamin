@@ -1,4 +1,5 @@
 import { Constants } from '../../../config/constants';
+import { AuthorizedUserModel } from '../../../models/authorized-user.interface';
 
 export interface AuthStateModel {
   /**
@@ -10,4 +11,9 @@ export interface AuthStateModel {
    *
    */
   [Constants.REFRESH_TOKEN]: string | null;
+
+  /**
+   *
+   */
+  authorizedUser: AuthorizedUserModel | null;
 }

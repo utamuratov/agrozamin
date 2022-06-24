@@ -81,6 +81,7 @@ export * from './lib/models/id.interface';
 export * from './lib/models/id-name.interface';
 export * from './lib/models/grid-model';
 export * from './lib/models/grid-query.interface';
+export * from './lib/models/authorized-user.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement-edit.response';
 export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement.request';
 export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement.response';

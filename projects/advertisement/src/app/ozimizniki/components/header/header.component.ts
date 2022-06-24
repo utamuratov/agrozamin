@@ -1,17 +1,13 @@
 import { DOCUMENT } from '@angular/common';
-import {
-  Component,
-  HostListener,
-  Inject,
-  isDevMode,
-  OnInit,
-} from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
-import { Constants, Data, LanguageState } from 'ngx-az-core';
+import { AuthState, Constants, Data } from 'ngx-az-core';
+import { AuthorizedUserModel } from 'projects/ngx-az-core/src/public-api';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'az-header',
@@ -23,6 +19,12 @@ export class HeaderComponent implements OnInit {
    *
    */
   AGRO_ID_ROUTE = Constants.AGROID_ROUTE_PATH;
+
+  /**
+   *
+   */
+  @Select(AuthState.authorizedUser)
+  authorizedUser$!: Observable<AuthorizedUserModel>;
 
   lang = '1';
 

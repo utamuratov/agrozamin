@@ -1,4 +1,4 @@
-import { FileResponse, Id, IdName } from 'ngx-az-core';
+import { Id, IdName } from 'ngx-az-core';
 import { Person } from './person.interface';
 
 export interface Advertisement extends Id {
@@ -6,7 +6,7 @@ export interface Advertisement extends Id {
   category: IdName;
   category_id: number;
   favorite: boolean;
-  file: FileResponse;
+  file: string;
   name: string;
   price: number;
   status: number;

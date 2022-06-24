@@ -132,7 +132,7 @@
                           *ngIf="profileImage"
                         >
                           <img
-                            [src]="'./assets/images/ava.jpg'"
+                            [src]="(authorizedUser$ | async)?.photo"
                             alt="ava-btn"
                           />
                         </button>
@@ -214,7 +214,7 @@
                           *ngIf="profileImage"
                         >
                           <img
-                            [src]="'./assets/images/ava.jpg'"
+                            [src]="(authorizedUser$ | async)?.photo"
                             alt="ava-btn"
                           />
                         </button>
@@ -294,7 +294,10 @@
                       class="ava-btn"
                       *ngIf="profileImage"
                     >
-                      <img [src]="'./assets/images/ava.jpg'" alt="ava-btn" />
+                      <img
+                        [src]="(authorizedUser$ | async)?.photo"
+                        alt="ava-btn"
+                      />
                     </button>
                     <button
                       nz-button
@@ -896,13 +899,13 @@
       <div nz-row>
         <div nz-col nzSpan="5">
           <div class="userPopower__top__img">
-            <img src="/assets/images/header-user.png" alt="" />
+            <img [src]="(authorizedUser$ | async)?.photo" alt="" />
           </div>
         </div>
         <div nz-col nzSpan="19">
           <div nz-row [nzGutter]="[0, 2]" class="userPopower__top__text">
             <div nz-col nzSpan="24">
-              <h3>Жахонгир Пардаев</h3>
+              <h3>{{ authorizedUser$ | async | fullName }}</h3>
             </div>
             <div nz-col nzSpan="24">
               <span>Agro ID</span>

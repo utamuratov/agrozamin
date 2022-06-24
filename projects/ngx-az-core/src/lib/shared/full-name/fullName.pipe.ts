@@ -9,6 +9,10 @@ export class FullNamePipe implements PipeTransform {
       return '';
     }
 
+    if (!user.s_name) {
+      return [user.f_name, user.l_name].join(' ');
+    }
+
     return [user.f_name, user.l_name, user.s_name].join(' ');
   }
 }

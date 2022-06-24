@@ -6,8 +6,10 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Breadcrumb } from 'ngx-az-core';
-import { Category } from 'projects/advertisement/src/app/shared/models/category.interface';
+import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
+import { CategoryForBreadcrumb } from 'projects/advertisement/src/app/shared/models/category-for-breadcrumb.interface';
 import { CategoryService } from 'projects/advertisement/src/app/shared/services/category.service';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'az-breadcrumb-advertisement',
@@ -19,23 +21,29 @@ export class BreadcrumbAdvertisementComponent extends Breadcrumb {
   /**
    *
    */
-  private _categoryIds!: string[];
-  public get categoryIds(): string[] {
-    return this._categoryIds;
+  private _categorySequence!: string;
+  public get categorySequence(): string {
+    return this._categorySequence;
   }
   @Input()
-  public set categoryIds(v: string[]) {
+  public set categorySequence(v: string) {
     if (v.length > 0) {
-      this._categoryIds = v;
-      this.makeBreadcrumb();
+      this._categorySequence = v;
+      this.getCategoriesBySequence();
     }
   }
 
   /**
    *
    */
-  categories: Category[][] = [];
+  category$!: Observable<CategoryForBreadcrumb[]>;
 
+  /**
+   *
+   * @param router
+   * @param $category
+   * @param cd
+   */
   constructor(
     protected override router: Router,
     private $category: CategoryService,
@@ -47,18 +55,33 @@ export class BreadcrumbAdvertisementComponent extends Breadcrumb {
   /**
    *
    */
-  private makeBreadcrumb() {
-    this.categories = [];
-    this.$category.getAll().subscribe((result) => {
-      this.categories.push(result);
-      this.cd.markForCheck();
-    });
-    for (let index = 0; index < this.categoryIds.length - 1; index++) {
-      const categoryId = +this.categoryIds[index];
-      this.$category.getAll(categoryId).subscribe((result) => {
-        this.categories.push(result);
-        this.cd.markForCheck();
-      });
-    }
+  private getCategoriesBySequence() {
+    this.category$ = this.$category
+      .getCategoriesByCategorySequence(this.categorySequence)
+      .pipe(
+        map((categories) => {
+          categories.forEach((category, index) => {
+            if (index === 0) {
+              category.sequence = category.id + '';
+            } else {
+              category.sequence = `${categories[index - 1].sequence}${
+                AdvertisementConstants.SPLITTER_CATEGORY_ID
+              }${category.id}`;
+            }
+
+            category.neighbor_categories.forEach((neighbour) => {
+              if (index === 0) {
+                neighbour.sequence = neighbour.id + '';
+              } else {
+                neighbour.sequence = `${categories[index - 1].sequence}${
+                  AdvertisementConstants.SPLITTER_CATEGORY_ID
+                }${neighbour.id}`;
+              }
+            });
+          });
+
+          return categories;
+        })
+      );
   }
 }

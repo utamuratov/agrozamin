@@ -214,22 +214,11 @@ export class AddEditAdvertisementFullLogicComponent implements OnInit {
    */
   doAfterRequestFinished() {
     if (this.data) {
-      this.router.navigate(
-        [
-          '../../../',
-          'cabinet',
-          'advertisement',
-          AdvertisementStatus.STATUS_NEW,
-        ],
-        { relativeTo: this.route }
-      );
+      this.router.navigate(['../../../'], { relativeTo: this.route });
       return;
     }
 
-    this.router.navigate(
-      ['../../', 'cabinet', 'advertisement', AdvertisementStatus.STATUS_NEW],
-      { relativeTo: this.route }
-    );
+    this.router.navigate(['../../'], { relativeTo: this.route });
   }
 
   /**

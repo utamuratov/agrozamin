@@ -1,3 +1,5 @@
+import { AuthorizedUserModel } from '../../../models/authorized-user.interface';
+
 export class AccessToken {
   /**
    *
@@ -22,4 +24,17 @@ export class RefreshToken {
    * @param refreshToken
    */
   constructor(public refreshToken: string) {}
+}
+
+export class AuthorizedUser {
+  /**
+   *
+   */
+  static readonly type = '[Auth API] Get authorized user';
+
+  /**
+   *
+   * @param authorizedUser
+   */
+  constructor(public authorizedUser: AuthorizedUserModel) {}
 }

@@ -27,7 +27,7 @@ export class AdvertisementListByCategoryPage extends Breadcrumb {
   /**
    *
    */
-  categoryIds: string[] = [];
+  categorySequence!: string;
 
   /**
    *
@@ -41,12 +41,12 @@ export class AdvertisementListByCategoryPage extends Breadcrumb {
     super(router);
 
     this.route.params.subscribe((params) => {
-      const categoryId =
+      this.categorySequence =
         params[AdvertisementConstants.ROUTER_PARAM_CATEGORY_ID]; // 2_3_.. = categoryId_categoryId_..
-      this.categoryIds = categoryId.split(
+      const categoryIds = this.categorySequence.split(
         AdvertisementConstants.SPLITTER_CATEGORY_ID
       );
-      this.categoryId = +this.categoryIds[this.categoryIds.length - 1];
+      this.categoryId = +categoryIds[categoryIds.length - 1];
     });
     this.route.queryParams.subscribe((queryParams) => {
       this.queryParams = queryParams;

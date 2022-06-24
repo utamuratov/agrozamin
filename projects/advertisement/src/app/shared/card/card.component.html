@@ -5,7 +5,7 @@
         <div nz-col nzXs="10" nzSm="10" nzMd="10" nzLg="7" nzXl="6" nzXXl="6">
           <div class="card__list__left">
             <div class="card__list__img" (click)="navigateToDetails(data.id)">
-              <img [src]="data.file?.file | noImage" alt="card img" />
+              <img [src]="data.file | noImage" alt="card img" />
             </div>
             <div nz-row nzAlign="middle" nzJustify="end">
               <div nz-col nzXs="0" nzSm="18">
@@ -135,7 +135,7 @@
         <div nz-col nzSpan="24">
           <div class="card__grid__top">
             <div class="card__grid__img" (click)="navigateToDetails(data.id)">
-              <img [src]="data.file?.file | noImage" alt="card img" />
+              <img [src]="data.file | noImage" alt="card img" />
             </div>
             <div nz-row nzAlign="middle">
               <div nz-col nzXs="0" nzSm="16">

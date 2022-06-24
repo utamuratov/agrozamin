@@ -52,6 +52,7 @@ export class Constants {
   public static readonly LOGIN_TYPE = 'loginType';
   public static readonly ACCESS_TOKEN = 'access_token';
   public static readonly REFRESH_TOKEN = 'refresh_token';
+  public static readonly AUTHORIZED_USER = 'authorizedUser';
 
   /**
    * HEADER

@@ -1,7 +1,8 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseService } from 'ngx-az-core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { CategoryForBreadcrumb } from '../models/category-for-breadcrumb.interface';
 import { Category } from '../models/category.interface';
 
 @Injectable({
@@ -23,5 +24,16 @@ export class CategoryService {
     return this.$base
       .get<Category[]>('category')
       .pipe(map((result) => result.data));
+  }
+
+  getCategoriesByCategorySequence(
+    categorySequence: string
+  ): Observable<CategoryForBreadcrumb[]> {
+    return this.$base
+      .get<{ categories: CategoryForBreadcrumb[] }>(
+        'category/breadcrumb',
+        new HttpParams().set('categories', categorySequence)
+      )
+      .pipe(map((result) => result.data.categories));
   }
 }

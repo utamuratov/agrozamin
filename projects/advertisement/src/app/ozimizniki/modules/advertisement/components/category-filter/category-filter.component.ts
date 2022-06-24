@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -15,7 +14,7 @@ import {
   InputTypeForFilter,
 } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
-import { map, of, tap } from 'rxjs';
+import { map } from 'rxjs';
 import { CategoryFilterService } from './category-filter.service';
 
 @Component({
@@ -89,6 +88,13 @@ export class CategoryFilterComponent {
    */
   lastClickedParameter?: FilterParameter;
 
+  /**
+   *
+   * @param $categoryFilter
+   * @param route
+   * @param router
+   * @param cd
+   */
   constructor(
     private $categoryFilter: CategoryFilterService,
     private route: ActivatedRoute,

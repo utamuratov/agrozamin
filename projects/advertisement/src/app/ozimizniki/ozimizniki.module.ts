@@ -4,6 +4,7 @@ import {
   BackTopModule,
   CallbackModule,
   EcoSystemModule,
+  FullNameModule,
   GeneralFooterModule,
   NzFormsSharedModule,
   ReactiveFormsSharedModule,
@@ -38,6 +39,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
     BackTopModule,
     EcoSystemModule,
     GeneralFooterModule,
+    FullNameModule,
 
     NzGridModule,
     NzSelectModule,
@@ -47,7 +49,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
     NzLayoutModule,
     NzModalModule,
     NzPopoverModule,
-    NzCollapseModule
+    NzCollapseModule,
   ],
   declarations: [
     OzimiznikiComponent,
@@ -56,7 +58,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
     FilterPipe,
     FooterComponent,
     LanguageComponent,
-    PopupProfileComponent
+    PopupProfileComponent,
   ],
 })
 export class OzimiznikiModule {}
