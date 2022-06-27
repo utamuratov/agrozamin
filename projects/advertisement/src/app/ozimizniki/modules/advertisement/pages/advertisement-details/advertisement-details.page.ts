@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
@@ -27,6 +31,11 @@ export class AdvertisementDetailsPage {
   /**
    *
    */
+  isShowedPhoneNumber = false;
+
+  /**
+   *
+   */
   activeCarauselItemIndex = 0;
 
   /**
@@ -41,9 +50,17 @@ export class AdvertisementDetailsPage {
 
   /**
    *
+   */
+  get phoneNumber(): number {
+    return this.data.contact.phone || this.data.created_by.phone;
+  }
+
+  /**
+   *
    * @param route
    */
   constructor(
+    private cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     private $advertisement: AdvertisementService,
     private $similar: AdvertisementSimilarService
@@ -112,12 +129,22 @@ export class AdvertisementDetailsPage {
    *
    */
   showPhoneNumber(advertisementId: number) {
+    if (this.isShowedPhoneNumber) {
+      this.call();
+      return;
+    }
+
     this.$advertisement.showPhoneNumber(advertisementId).subscribe((result) => {
       if (result.success) {
-        location.href =
-          'tel:' + (this.data.contact.phone || this.data.created_by.phone);
+        this.isShowedPhoneNumber = true;
+        this.cd.markForCheck();
+        this.call();
       }
     });
+  }
+
+  private call() {
+    location.href = 'tel:' + this.phoneNumber;
   }
 
   /**

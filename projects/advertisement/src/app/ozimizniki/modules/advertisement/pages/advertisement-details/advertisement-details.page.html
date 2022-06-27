@@ -180,7 +180,14 @@
                         </button>
                       </div>
 
-                      <div nz-col nzXs="24" nzSm="7" nzMd="6" nzLg="8" nzXl="6">
+                      <div
+                        nz-col
+                        nzXs="24"
+                        nzSm="7"
+                        nzMd="6"
+                        nzLg="8"
+                        [nzXl]="isShowedPhoneNumber ? 7 : 6"
+                      >
                         <button
                           nz-button
                           nzType="primary"
@@ -192,7 +199,10 @@
                           <img
                             src="./assets/images/phone.svg"
                             alt="phone icon"
-                          /><span>{{'phoneCall' | translate}}</span>
+                          /><span
+                            >{{isShowedPhoneNumber ? phoneNumber : 'phoneCall' |
+                            translate}}</span
+                          >
                         </button>
                       </div>
                     </div>
