@@ -1,101 +1,10 @@
-.similar {
-  background: #F0FAF5;
-  padding: 70px 0;
-  margin-top: 70px;
-
-  @media (max-width: 991px) {
-    padding: 40px 0;
-  }
-
-  @media (max-width: 360px) {
-    padding: 30px 0;
-  }
-
-  [nz-carousel-content] {
-    color: #fff;
-    overflow: hidden;
-    // height: 392px;
-  }
-
-  &__title {
-    font-size: 32px;
-    line-height: 40px;
-    margin-bottom: 0;
-
-    @media (max-width: 992px) {
-      font-size: 25px;
-      line-height: 31px;
-    }
-
-    @media (max-width: 768px) {
-      font-size: 20px;
-      line-height: 25px;
-    }
-
-    @media (max-width: 576px) {
-      font-size: 22px;
-      line-height: 28px;
-    }
-
-    @media (max-width: 360px) {
-      font-size: 18px;
-      line-height: 23px;
-    }
-  }
-
-  &-carousel {
-    height: 392px;
-    position: relative;
-
-    @media (max-width: 991px) {
-      height: 373px;
-      
-    }
-    @media (max-width: 767px) {
-      height: 380px;
-    }
-    @media (max-width: 575px) {
-      height: 400px;
-    }
-    @media (max-width: 360px) {
-      height: 299px;
-    }
-
-    .scroll {
-      overflow-x: scroll;
-      flex-wrap: nowrap;
-    }
-
-    .btn {
-      position: absolute;
-      z-index: 100;
-
-      @media (max-width: 991px) {
-        display: none;
-      }
-    }
-
-    .left {
-      top: 50%;
-      left: 0;
-      transform: translate(-50%, -50%);
-    }
-
-    .right {
-      top: 50%;
-      right: 0;
-      transform: translate(50%, -50%);
-    }
-  }
-
+:host ::ng-deep {
   .card__grid {
     height: 392px;
     border-radius: 8px;
     overflow: hidden;
-    cursor: pointer;
     @media (max-width: 991px) {
       height: 373px;
-      
     }
     @media (max-width: 767px) {
       height: 380px;
@@ -209,6 +118,96 @@
     }
     .title_height {
       height: 36px;
+    }
+  }
+}
+
+.similar {
+  background: #f0faf5;
+  padding: 70px 0;
+  margin-top: 70px;
+
+  @media (max-width: 991px) {
+    padding: 40px 0;
+  }
+
+  @media (max-width: 360px) {
+    padding: 30px 0;
+  }
+
+  [nz-carousel-content] {
+    color: #fff;
+    overflow: hidden;
+    // height: 392px;
+  }
+
+  &__title {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 0;
+
+    @media (max-width: 992px) {
+      font-size: 25px;
+      line-height: 31px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 18px;
+      line-height: 23px;
+    }
+  }
+
+  &-carousel {
+    height: 392px;
+    position: relative;
+
+    @media (max-width: 991px) {
+      height: 373px;
+    }
+    @media (max-width: 767px) {
+      height: 380px;
+    }
+    @media (max-width: 575px) {
+      height: 400px;
+    }
+    @media (max-width: 360px) {
+      height: 299px;
+    }
+
+    .scroll {
+      overflow-x: scroll;
+      flex-wrap: nowrap;
+    }
+
+    .btn {
+      position: absolute;
+      z-index: 100;
+
+      @media (max-width: 991px) {
+        display: none;
+      }
+    }
+
+    .left {
+      top: 50%;
+      left: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    .right {
+      top: 50%;
+      right: 0;
+      transform: translate(50%, -50%);
     }
   }
 }

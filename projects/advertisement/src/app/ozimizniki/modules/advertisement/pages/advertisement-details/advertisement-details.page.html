@@ -1,32 +1,11 @@
 <div class="product">
   <div class="container">
     <div nz-row class="product__bradcrumb">
-      <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
-        <nz-breadcrumb>
-          <nz-breadcrumb-item>Главная</nz-breadcrumb-item>
-          <nz-breadcrumb-item>
-            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
-              Каталог
-              <i nz-icon nzType="down"></i>
-            </a>
-          </nz-breadcrumb-item>
-          <nz-breadcrumb-item>
-            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
-              Сельхозтехника
-              <i nz-icon nzType="down"></i>
-            </a>
-          </nz-breadcrumb-item>
-          <nz-breadcrumb-item>
-            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
-              Техника для растениеводства
-              <i nz-icon nzType="down"></i>
-            </a>
-          </nz-breadcrumb-item>
-          <nz-breadcrumb-item>
-            <a> Прочая уборочная техника </a>
-          </nz-breadcrumb-item>
-        </nz-breadcrumb>
-      </div>
+      <az-breadcrumb-advertisement
+        [title]="false"
+        [categorySequence]="categorySequence"
+      ></az-breadcrumb-advertisement>
+
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
         <nz-select ngModel="Сельхозтехника" nzBorderless>
           <nz-option
@@ -146,7 +125,7 @@
                       </div>
                       <div nz-col>
                         <p class="product__info__cat-info">
-                          <span>I{{'idNumber' | translate}}</span> {{data.id}}
+                          <span>{{'idNumber' | translate}}</span> {{data.id}}
                         </p>
                       </div>
                     </div>
@@ -207,6 +186,7 @@
                           nzType="primary"
                           nzSize="large"
                           class="product__info__contacts__btn"
+                          (click)="showPhoneNumber(data.id)"
                           nzBlock
                         >
                           <img
@@ -418,7 +398,8 @@
                 >
                   {{characteristic.filter}}<span class="value"
                     >{{characteristic.parameter ? characteristic.parameter :
-                    characteristic.value}}</span
+                    (characteristic.value | valueByInputType:
+                    characteristic.type_for_filter)}}</span
                   >
                 </li>
               </ul>
@@ -531,7 +512,7 @@
       </div>
     </div>
   </div>
-  <az-similar-items></az-similar-items>
+  <az-similar-items [data]="similar$ | async"></az-similar-items>
 </div>
 
 <nz-dropdown-menu #menu="nzDropdownMenu">

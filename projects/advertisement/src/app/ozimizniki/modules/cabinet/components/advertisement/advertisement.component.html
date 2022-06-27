@@ -84,7 +84,7 @@
         <div nz-col nzXs="6" nzSm="6" nzMd="8" nzLg="7" nzXl="6">
           <div class="advert-cards__top">
             <div class="advert-cards__top__img">
-              <img [src]="advert?.file?.file | noImage" alt="card img" />
+              <img [src]="advert?.file | noImage" alt="card img" />
             </div>
             <div class="advert-cards__top__info">
               <div nz-row nzAlign="middle">
@@ -100,7 +100,7 @@
                     nz-button
                     nzType="text"
                     class="advert-cards__icon"
-                    (click)="addToFavorite(advert.file.id)"
+                    (click)="addToFavorite(advert.id)"
                   >
                     <svg
                       width="21"

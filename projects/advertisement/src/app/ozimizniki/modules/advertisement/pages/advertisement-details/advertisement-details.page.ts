@@ -1,7 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
+import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
+import { map, Observable } from 'rxjs';
 import { AdvertisementDetails } from '../../dto/advertisement-details.interface';
+import { Advertisement } from '../../dto/advertisement.interface';
+import { AdvertisementSimilarService } from '../../services/advertisement-similar.service';
+import { AdvertisementService } from '../../services/advertisement.service';
 
 @Component({
   templateUrl: './advertisement-details.page.html',
@@ -17,6 +22,11 @@ export class AdvertisementDetailsPage {
   /**
    *
    */
+  similar$!: Observable<Advertisement[][]>;
+
+  /**
+   *
+   */
   activeCarauselItemIndex = 0;
 
   /**
@@ -26,11 +36,26 @@ export class AdvertisementDetailsPage {
 
   /**
    *
+   */
+  categorySequence!: string;
+
+  /**
+   *
    * @param route
    */
-  constructor(private route: ActivatedRoute) {
-    this.data = this.route.snapshot.data['advertisment'];
-    this.makeCarouselData();
+  constructor(
+    private route: ActivatedRoute,
+    private $advertisement: AdvertisementService,
+    private $similar: AdvertisementSimilarService
+  ) {
+    this.route.params.subscribe(() => {
+      this.data = this.route.snapshot.data['advertisment'];
+      this.categorySequence =
+        this.route.snapshot.params[
+          AdvertisementConstants.ROUTER_PARAM_CATEGORY_ID
+        ]; // 2_3_.. = categoryId_categoryId_..
+      this.makeCarouselData();
+    });
   }
 
   /**
@@ -44,6 +69,7 @@ export class AdvertisementDetailsPage {
     this.data.files.forEach((file) => {
       this.data.carauselData.push({ type: 'img', src: file.file });
     });
+    this.getSimilarAdvertisements(this.data.id);
   }
 
   /**
@@ -80,5 +106,58 @@ export class AdvertisementDetailsPage {
     const carauselDataLength = this.data.carauselData.length;
     this.activeCarauselItemIndex =
       (event + carauselDataLength) % carauselDataLength;
+  }
+
+  /**
+   *
+   */
+  showPhoneNumber(advertisementId: number) {
+    this.$advertisement.showPhoneNumber(advertisementId).subscribe((result) => {
+      if (result.success) {
+        location.href =
+          'tel:' + (this.data.contact.phone || this.data.created_by.phone);
+      }
+    });
+  }
+
+  /**
+   *
+   */
+  getSimilarAdvertisements(advertisementId: number) {
+    this.similar$ = this.$similar
+      .getSimilarAdvertisements(advertisementId)
+      .pipe(
+        map((result) => {
+          return this.advetisementsAsCarauselData(result);
+        })
+      );
+  }
+
+  /**
+   *
+   * @param result
+   * @returns
+   */
+  private advetisementsAsCarauselData(result: Advertisement[]) {
+    const length = result.length;
+    const grouped = [];
+    const step = 5;
+    let from = 0;
+    let to = from + step;
+
+    const extra = length % step;
+    for (let i = 0; i < extra; i++) {
+      grouped.push(result.slice(from, to));
+      from++;
+      to++;
+    }
+
+    while (from < length) {
+      grouped.push(result.slice(from, to));
+      from = to;
+      to += 5;
+    }
+
+    return grouped;
   }
 }

@@ -3,16 +3,19 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   Input,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdvertisementConstants } from '../../core/constants/advertisement.constants';
 import { Advertisement } from '../../ozimizniki/modules/advertisement/dto/advertisement.interface';
+import { FavouriteService } from '../services/favourite.service';
 
 @Component({
   selector: 'az-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [FavouriteService],
 })
 export class CardComponent implements OnInit {
   /**
@@ -27,7 +30,12 @@ export class CardComponent implements OnInit {
   @Input()
   isInline = false;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private $favourite: FavouriteService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     // TODO: REMOVE OR USE
@@ -39,6 +47,15 @@ export class CardComponent implements OnInit {
    * @returns
    */
   navigateToDetails(id: number) {
+    if (
+      this.route.snapshot.params[
+        AdvertisementConstants.ROUTER_PARAM_ADVERTISEMENT_ID
+      ]
+    ) {
+      this.router.navigate(['../', id], { relativeTo: this.route });
+      return;
+    }
+
     if (
       this.route.snapshot.params[
         AdvertisementConstants.ROUTER_PARAM_CATEGORY_ID
@@ -58,6 +75,13 @@ export class CardComponent implements OnInit {
    * @param advertisement
    */
   toggleFavourite(advertisement: Advertisement) {
-    advertisement.favorite = !advertisement.favorite;
+    this.$favourite
+      .addDeleteFavourite({ announcement_id: advertisement.id })
+      .subscribe((result) => {
+        if (result.success) {
+          advertisement.favorite = !advertisement.favorite;
+          this.cd.markForCheck();
+        }
+      });
   }
 }
