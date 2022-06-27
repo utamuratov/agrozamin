@@ -33,6 +33,9 @@ export class BreadcrumbAdvertisementComponent extends Breadcrumb {
     }
   }
 
+  @Input()
+  title = true;
+
   /**
    *
    */

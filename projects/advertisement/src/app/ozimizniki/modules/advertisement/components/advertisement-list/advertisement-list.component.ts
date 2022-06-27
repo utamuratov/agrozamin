@@ -54,7 +54,10 @@ export class AdvertisementListComponent {
   }
   @Input()
   public set queryParams(params: Params | undefined) {
-    if (params && params[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS]) {
+    if (
+      params &&
+      params[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS] !== undefined
+    ) {
       this._queryParams = params;
       this.characteristics =
         this.queryParams[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS];

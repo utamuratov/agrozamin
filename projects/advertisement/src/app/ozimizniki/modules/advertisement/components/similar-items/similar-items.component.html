@@ -1,136 +1,97 @@
-<div class="similar" (window:resize)="onResize($event)">
+<div
+  class="similar"
+  (window:resize)="onResize($event)"
+  *ngIf="data && data.length > 0"
+>
   <div class="container">
     <div nz-row [nzGutter]="[0, 50]">
       <div nz-col nzSpan="24">
         <div nz-row nzJustify="space-between" nzAlign="middle">
-          <div nz-col nzSpan="13"><h4 nz-typography class="similar__title">Похожие товары</h4></div>
-          <div nz-col nzSpan="11" class="text-end"><a nz-button nzType="link"><span>Смотреть все</span><i nz-icon nzType="right" nzTheme="outline"></i></a></div>
+          <div nz-col nzSpan="13">
+            <h4 nz-typography class="similar__title">Похожие товары</h4>
+          </div>
+          <div nz-col nzSpan="11" class="text-end">
+            <a nz-button nzType="link"
+              ><span>Смотреть все</span
+              ><i nz-icon nzType="right" nzTheme="outline"></i
+            ></a>
+          </div>
         </div>
       </div>
       <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24">
         <div class="similar-carousel">
-          <button nz-button class="btn left" nzShape="circle" nzSize="large" nzType="default" (click)="pre(similarCarousel)"><i nz-icon nzType="left" nzTheme="outline"></i></button>
+          <button
+            nz-button
+            class="btn left"
+            nzShape="circle"
+            nzSize="large"
+            nzType="default"
+            (click)="pre(similarCarousel)"
+          >
+            <i nz-icon nzType="left" nzTheme="outline"></i>
+          </button>
           <nz-carousel [nzEffect]="'fade'" #similarCarousel>
-            <div nz-carousel-content *ngFor="let carousel of similarList">
-              <div nz-row [nzGutter]="[{xs: 10, sm: 20}, 0]">
-                <div nz-col [nzFlex]="flexSize" *ngFor="let card of carousel.items">
-                  <div class="card__grid">
-                    <div nz-row>
-                      <div nz-col nzSpan="24">
-                        <div class="card__grid__top">
-                          <div class="card__grid__img" (click)="routeClick(card.id)">
-                            <img [src]="card.img ? card.img : defaultImage" alt="card img" />
-                          </div>
-                          <div nz-row nzAlign="middle" nzJustify="end">
-                            <div nz-col>
-                              <button nz-button nzType="text" style="padding-top: 0; width: 24px; height: 24px;">
-                                <i nz-icon nzType="heart" nzTheme="twotone" nzTwotoneColor="#B7BBBF" class="favorite-icon"></i>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div nz-col nzSpan="24">
-                        <div class="card__grid__bottom" (click)="routeClick(card.id)">
-                          <div nz-row>
-                            <div nz-col nzSpan="24" class="title_height">
-                              <h4
-                                class="card__grid__bottom__title"
-                                nz-typography
-                                nzEllipsis
-                                [nzEllipsisRows]="2"
-                              >
-                                {{ card.title }}
-                              </h4>
-                            </div>
-                            <div nz-col nzSpan="24" class="subtitle_height">
-                              <p class="card__grid__bottom__subtitle">
-                                7 458 698 сум
-                              </p>
-                            </div>
-                            <div nz-col nzSpan="24" class="undertitle_height">
-                              <p class="card__grid__bottom__undertitle">
-                                {{ card.company }}, <br />
-                                {{ card.city }}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <div nz-carousel-content *ngFor="let carousel of data">
+              <div nz-row [nzGutter]="[{ xs: 10, sm: 20 }, 0]">
+                <div nz-col [nzFlex]="flexSize" *ngFor="let data of carousel">
+                  <az-card *ngIf="data" [data]="data"></az-card>
                 </div>
               </div>
             </div>
           </nz-carousel>
-          <button nz-button class="btn right" nzShape="circle" nzSize="large" nzType="default" (click)="next(similarCarousel)"><i nz-icon nzType="right" nzTheme="outline"></i></button>
+          <button
+            nz-button
+            class="btn right"
+            nzShape="circle"
+            nzSize="large"
+            nzType="default"
+            (click)="next(similarCarousel)"
+          >
+            <i nz-icon nzType="right" nzTheme="outline"></i>
+          </button>
         </div>
       </div>
-
 
       <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0">
         <div class="similar-carousel">
-          <button nz-button class="btn left" nzShape="circle" nzSize="large" nzType="default" (click)="pre(similarCarousel)"><i nz-icon nzType="left" nzTheme="outline"></i></button>
+          <button
+            nz-button
+            class="btn left"
+            nzShape="circle"
+            nzSize="large"
+            nzType="default"
+            (click)="pre(similarCarousel)"
+          >
+            <i nz-icon nzType="left" nzTheme="outline"></i>
+          </button>
           <nz-carousel [nzEffect]="'fade'" #similarCarousel>
-            <div nz-carousel-content *ngFor="let carousel of similarList">
-              <div nz-row [nzGutter]="[{xs: 10, sm: 20}, 0]">
-                <div nz-col nzXs="12" nzSm="8" nzMd="6" nzLg="0" *ngFor="let card of carousel.items">
-                  <div class="card__grid">
-                    <div nz-row>
-                      <div nz-col nzSpan="24">
-                        <div class="card__grid__top">
-                          <div class="card__grid__img" (click)="routeClick(card.id)">
-                            <img [src]="card.img ? card.img : defaultImage" alt="card img" />
-                          </div>
-                          <div nz-row nzAlign="middle" nzJustify="end">
-                            <div nz-col>
-                              <button nz-button nzType="text" style="padding-top: 0; width: 24px; height: 24px;">
-                                <i nz-icon nzType="heart" nzTheme="twotone" nzTwotoneColor="#B7BBBF" class="favorite-icon"></i>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div nz-col nzSpan="24">
-                        <div class="card__grid__bottom" (click)="routeClick(card.id)">
-                          <div nz-row>
-                            <div nz-col nzSpan="24" class="title_height">
-                              <h4
-                                class="card__grid__bottom__title"
-                                nz-typography
-                                nzEllipsis
-                                [nzEllipsisRows]="2"
-                              >
-                                {{ card.title }}
-                              </h4>
-                            </div>
-                            <div nz-col nzSpan="24" class="subtitle_height">
-                              <p class="card__grid__bottom__subtitle">
-                                7 458 698 сум
-                              </p>
-                            </div>
-                            <div nz-col nzSpan="24" class="undertitle_height">
-                              <p class="card__grid__bottom__undertitle">
-                                {{ card.company }}, <br />
-                                {{ card.city }}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <div nz-carousel-content *ngFor="let carousel of data">
+              <div nz-row [nzGutter]="[{ xs: 10, sm: 20 }, 0]">
+                <div
+                  nz-col
+                  nzXs="12"
+                  nzSm="8"
+                  nzMd="6"
+                  nzLg="0"
+                  *ngFor="let data of carousel"
+                >
+                  <az-card *ngIf="data" [data]="data"></az-card>
                 </div>
               </div>
             </div>
           </nz-carousel>
-          <button nz-button class="btn right" nzShape="circle" nzSize="large" nzType="default" (click)="next(similarCarousel)"><i nz-icon nzType="right" nzTheme="outline"></i></button>
+          <button
+            nz-button
+            class="btn right"
+            nzShape="circle"
+            nzSize="large"
+            nzType="default"
+            (click)="next(similarCarousel)"
+          >
+            <i nz-icon nzType="right" nzTheme="outline"></i>
+          </button>
         </div>
       </div>
-
-
-
-
     </div>
   </div>
 </div>

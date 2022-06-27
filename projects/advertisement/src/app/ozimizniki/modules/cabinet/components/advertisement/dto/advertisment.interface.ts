@@ -7,8 +7,5 @@ export interface Advertisement extends Id {
   status: number;
   category_id: number;
   category: IdName;
-  file: {
-    id: number;
-    file: string;
-  };
+  file: string;
 }

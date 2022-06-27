@@ -45,6 +45,8 @@ import { ChildCategoryComponent } from './components/child-category/child-catego
 import { BreadcrumbModule } from '../../../shared/breadcrumb/breadcrumb.module';
 import { BreadcrumbAdvertisementComponent } from './components/breadcrumb-advertisement/breadcrumb-advertisement.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { NoImageModule } from '../../../shared/no-image/no-image.module';
+import { ValueByInputTypeModule } from '../../../shared/value-by-input-type/value-by-input-type.module';
 
 @NgModule({
   imports: [
@@ -63,6 +65,8 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     TagModule,
     BreadcrumbModule,
     YoutubeVideoIdSplitterModule,
+    NoImageModule,
+    ValueByInputTypeModule,
 
     /* NG-ZORRO */
     NzTypographyModule,
