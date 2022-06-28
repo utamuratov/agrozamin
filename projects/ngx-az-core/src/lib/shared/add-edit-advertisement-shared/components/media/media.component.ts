@@ -54,6 +54,18 @@ export class MediaComponent implements OnInit {
 
   /**
    *
+   */
+  get showUploadButton() {
+    return (
+      this.imagesSrc.length +
+        (this.uploadedFiles?.length || 0) +
+        (this.videoId ? 1 : 0) <
+      5
+    );
+  }
+
+  /**
+   *
    * @param msg
    * @param nzImageService
    * @param cd

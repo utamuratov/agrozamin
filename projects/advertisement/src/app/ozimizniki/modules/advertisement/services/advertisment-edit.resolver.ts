@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import {
-  AddAdvertisementService,
-  AdvertisementEditResponse,
-} from 'ngx-az-core';
 import { Observable, map } from 'rxjs';
 import { AdvertisementDetails } from '../dto/advertisement-details.interface';
 import { AdvertisementService } from './advertisement.service';

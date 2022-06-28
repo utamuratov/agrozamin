@@ -56,18 +56,8 @@ export class AdvertisementListHeaderComponent {
   /**
    *
    */
-  sortedByPriceDescanding!: boolean;
-
-  /**
-   *
-   */
   @Output()
   sortedByPriceDescandingChange = new EventEmitter<boolean>();
-
-  /**
-   *
-   */
-  sortedByDateDescanding!: boolean;
 
   /**
    *
@@ -80,7 +70,6 @@ export class AdvertisementListHeaderComponent {
    */
 
   isMapActive = false;
-  date = false;
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
@@ -108,24 +97,6 @@ export class AdvertisementListHeaderComponent {
   toggleCardStyle() {
     this.isInline = !this.isInline;
     this.isInlineChange.emit(this.isInline);
-  }
-
-  /**
-   *
-   */
-  toggleSortByPrice() {
-    this.sortedByDateDescanding = false;
-    this.sortedByPriceDescanding = !this.sortedByPriceDescanding;
-    this.sortedByPriceDescandingChange.emit(this.sortedByPriceDescanding);
-  }
-
-  /**
-   *
-   */
-  toggleSortByDate() {
-    this.sortedByPriceDescanding = false;
-    this.sortedByDateDescanding = !this.sortedByDateDescanding;
-    this.sortedByDateDescandingChange.emit(this.sortedByDateDescanding);
   }
 
   /**

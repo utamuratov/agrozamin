@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'az-sellers',
-  templateUrl: './sellers.component.html',
-  styleUrls: ['./sellers.component.less'],
+  templateUrl: './favourite-sellers.component.html',
+  styleUrls: ['./favourite-sellers.component.less'],
 })
-export class SellersComponent implements OnInit {
+export class FavouriteSellersComponent implements OnInit {
   isOnline = true;
   // counter = 0;
   // tagCategory: any = [];

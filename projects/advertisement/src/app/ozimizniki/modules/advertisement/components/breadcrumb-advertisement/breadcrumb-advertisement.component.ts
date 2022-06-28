@@ -4,7 +4,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Breadcrumb } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { CategoryForBreadcrumb } from 'projects/advertisement/src/app/shared/models/category-for-breadcrumb.interface';
@@ -33,8 +33,17 @@ export class BreadcrumbAdvertisementComponent extends Breadcrumb {
     }
   }
 
+  /**
+   *
+   */
   @Input()
-  title = true;
+  showTitle = true;
+
+  /**
+   *
+   */
+  @Input()
+  lastBC?: string;
 
   /**
    *
@@ -49,6 +58,7 @@ export class BreadcrumbAdvertisementComponent extends Breadcrumb {
    */
   constructor(
     protected override router: Router,
+    private route: ActivatedRoute,
     private $category: CategoryService,
     private cd: ChangeDetectorRef
   ) {
@@ -63,7 +73,14 @@ export class BreadcrumbAdvertisementComponent extends Breadcrumb {
       .getCategoriesByCategorySequence(this.categorySequence)
       .pipe(
         map((categories) => {
+          const validCategories: CategoryForBreadcrumb[] = [];
           categories.forEach((category, index) => {
+            if (
+              !category.neighbor_categories.find((w) => w.id === category.id)
+            ) {
+              return;
+            }
+
             if (index === 0) {
               category.sequence = category.id + '';
             } else {
@@ -81,10 +98,29 @@ export class BreadcrumbAdvertisementComponent extends Breadcrumb {
                 }${neighbour.id}`;
               }
             });
+            validCategories.push(category);
           });
 
-          return categories;
+          return validCategories;
         })
       );
+  }
+
+  /**
+   *
+   * @param sequence
+   * @returns
+   */
+  navigateBySequence(sequence: string) {
+    if (
+      this.route.snapshot.params[
+        AdvertisementConstants.ROUTER_PARAM_ADVERTISEMENT_ID
+      ]
+    ) {
+      this.router.navigate(['../../', sequence], { relativeTo: this.route });
+      return;
+    }
+
+    this.router.navigate(['../', sequence], { relativeTo: this.route });
   }
 }

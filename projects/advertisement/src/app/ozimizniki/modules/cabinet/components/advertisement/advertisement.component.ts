@@ -1,13 +1,15 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   AdvertisementStatus,
   IdName,
   GridQuery,
   GridModel,
   NgDestroy,
+  Constants,
 } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
+import { prefixPath } from 'projects/advertisement/src/app/core/utilits/advertisement.utilits';
 import { takeUntil } from 'rxjs';
 import { Advertisement } from './dto/advertisment.interface';
 import { AdvertisementService } from './services/advertisment.service';
@@ -19,7 +21,6 @@ import { AdvertisementService } from './services/advertisment.service';
   providers: [AdvertisementService],
 })
 export class AdvertisementComponent {
-  isFavorite = false;
   /**
    *
    */
@@ -73,6 +74,7 @@ export class AdvertisementComponent {
   constructor(
     private $advertisement: AdvertisementService,
     private route: ActivatedRoute,
+    private router: Router,
     private $destroy: NgDestroy,
     private cd: ChangeDetectorRef
   ) {
@@ -166,8 +168,34 @@ export class AdvertisementComponent {
     });
   }
 
-  addToFavorite(id: number) {
-    this.isFavorite = !this.isFavorite;
-    console.log(id);
+  /**
+   *
+   */
+  sortByPriceDescanding(byDescanding: boolean) {
+    this.query.sortField = 'price';
+    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
+    this.loadDataFromServer(this.query);
+  }
+
+  /**
+   *
+   */
+  sortByDateDescanding(byDescanding: boolean) {
+    this.query.sortField = 'created_at';
+    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
+    this.loadDataFromServer(this.query);
+  }
+
+  /**
+   *
+   */
+  navigateToDetails(advertisement: Advertisement) {
+    this.router.navigate([
+      prefixPath,
+      Constants.DEFAULT_LANGUAGE_CODE,
+      AdvertisementConstants.ROUTER_PATH_ADVERTISEMENTS,
+      advertisement.category_id,
+      advertisement.id,
+    ]);
   }
 }

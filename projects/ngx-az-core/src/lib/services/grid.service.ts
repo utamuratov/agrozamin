@@ -48,7 +48,9 @@ export class GridService<TResponse = NzSafeAny> {
       .append('order_by', `${query.sortOrder.replace('end', '')}`);
     query.filter.forEach((filterItem) => {
       filterItem.value.forEach((value) => {
-        params = params.append(filterItem.key, value);
+        if (value.length > 0) {
+          params = params.append(filterItem.key, value);
+        }
       });
     });
     return params;

@@ -13,7 +13,7 @@
         <ul nz-menu nzSelectable>
           <li
             nz-menu-item
-            [routerLink]="['../', c.sequence]"
+            (click)="navigateBySequence(c.sequence)"
             *ngFor="let c of category.neighbor_categories"
             [ngClass]="{
               active: c.id === category.id
@@ -24,10 +24,13 @@
         </ul>
       </nz-dropdown-menu>
     </nz-breadcrumb-item>
+    <nz-breadcrumb-item *ngIf="lastBC">
+      <a>{{ lastBC }}</a>
+    </nz-breadcrumb-item>
   </nz-breadcrumb>
 
   <div
-    *ngIf="title && categories[categories.length - 1] as lastBC"
+    *ngIf="showTitle && categories[categories.length - 1] as lastBC"
     nz-col
     nzSpan="24"
     class="container__title"

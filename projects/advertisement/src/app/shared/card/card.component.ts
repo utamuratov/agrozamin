@@ -6,7 +6,9 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Constants } from 'ngx-az-core';
 import { AdvertisementConstants } from '../../core/constants/advertisement.constants';
+import { prefixPath } from '../../core/utilits/advertisement.utilits';
 import { Advertisement } from '../../ozimizniki/modules/advertisement/dto/advertisement.interface';
 import { FavouriteService } from '../services/favourite.service';
 
@@ -15,7 +17,6 @@ import { FavouriteService } from '../services/favourite.service';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [FavouriteService],
 })
 export class CardComponent implements OnInit {
   /**
@@ -65,9 +66,13 @@ export class CardComponent implements OnInit {
       return;
     }
 
-    this.router.navigate([this.data.category_id, id], {
-      relativeTo: this.route,
-    });
+    this.router.navigate([
+      prefixPath,
+      Constants.DEFAULT_LANGUAGE_CODE,
+      AdvertisementConstants.ROUTER_PATH_ADVERTISEMENTS,
+      this.data.category_id,
+      id,
+    ]);
   }
 
   /**

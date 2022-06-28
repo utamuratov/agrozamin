@@ -8,53 +8,6 @@
     font-family: Agrofont-Regular;
   }
 
-  &__link {
-    padding: 10px 12px;
-    font-size: 16px;
-    font-family: Agrofont-Regular;
-
-    &:hover {
-      svg {
-        path {
-          stroke: #00cd69;
-        }
-      }
-    }
-
-    &.active {
-      background-color: #377be1;
-      border-radius: 8px;
-      color: white;
-      &:hover {
-        color: white !important;
-      }
-      svg {
-        path {
-          stroke: white;
-        }
-      }
-    }
-
-    @media (max-width: 360px) {
-      span {
-        font-size: 14px;
-      }
-    }
-
-    svg {
-      margin-left: 4px;
-      vertical-align: middle;
-    }
-
-    i {
-      margin-left: 16px;
-
-      @media (max-width: 440px) {
-        margin-left: 6px;
-      }
-    }
-  }
-
   &__btn {
     display: flex;
     align-items: center;
