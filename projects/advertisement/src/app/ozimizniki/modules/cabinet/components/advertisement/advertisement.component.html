@@ -8,23 +8,10 @@
         [nzGutter]="[0, { xs: 10, sm: 10, md: 10, lg: 0, xl: 0 }]"
       >
         <div nz-col class="sort__left">
-          <div nz-row [nzGutter]="[8, 0]">
-            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="7">
-              <span class="sort__variable">Сортировать:</span>
-            </div>
-            <div nz-col>
-              <a class="sort__link"
-                ><span>По цене</span
-                ><img src="/assets/images/sort.png" alt="sort icon"
-              /></a>
-            </div>
-            <div nz-col>
-              <a class="sort__link"
-                ><span>По дате</span
-                ><img src="/assets/images/sort.png" alt="sort icon"
-              /></a>
-            </div>
-          </div>
+          <az-sort
+            (sortedByPriceDescandingChange)="sortByPriceDescanding($event)"
+            (sortedByDateDescandingChange)="sortByDateDescanding($event)"
+          ></az-sort>
         </div>
         <div nz-col class="sort__right">
           <div
@@ -70,542 +57,538 @@
     </div>
   </div>
 
-  <ng-container *ngIf="data">
-    <div
-      *ngFor="let advert of data.data"
-      nz-col
-      nzXs="24"
-      nzSm="24"
-      nzMd="24"
-      nzLg="24"
-      nzXl="24"
-    >
-      <div class="advert-cards" nz-row>
-        <div nz-col nzXs="6" nzSm="6" nzMd="8" nzLg="7" nzXl="6">
-          <div class="advert-cards__top">
-            <div class="advert-cards__top__img">
-              <img [src]="advert?.file | noImage" alt="card img" />
-            </div>
-            <div class="advert-cards__top__info">
-              <div nz-row nzAlign="middle">
-                <div nz-col nzXs="0" nzSm="0" nzMd="18" nzLg="18" nzXl="18">
-                  <az-tag
-                    [title]="advert.category.name"
-                    [category_id]="advert.category_id"
+  <div
+    *ngFor="let advert of data.data"
+    nz-col
+    nzXs="24"
+    nzSm="24"
+    nzMd="24"
+    nzLg="24"
+    nzXl="24"
+  >
+    <div class="advert-cards" nz-row>
+      <div nz-col nzXs="6" nzSm="6" nzMd="8" nzLg="7" nzXl="6">
+        <div class="advert-cards__top">
+          <div class="advert-cards__top__img">
+            <img [src]="advert?.file | noImage" alt="card img" />
+          </div>
+          <div class="advert-cards__top__info">
+            <div nz-row nzAlign="middle">
+              <div nz-col nzXs="0" nzSm="0" nzMd="18" nzLg="18" nzXl="18">
+                <az-tag
+                  [title]="advert.category.name"
+                  [category_id]="advert.category_id"
+                >
+                </az-tag>
+              </div>
+              <div nz-col nzXs="0" nzSm="0" nzMd="6" nzLg="6" nzXl="6">
+                <!-- TODO: REMOVE -->
+                <!-- <button
+                  nz-button
+                  nzType="text"
+                  class="advert-cards__icon"
+                  (click)="addToFavorite(advert.id)"
+                >
+                  <svg
+                    width="21"
+                    height="18"
+                    viewBox="0 0 21 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                  </az-tag>
-                </div>
-                <div nz-col nzXs="0" nzSm="0" nzMd="6" nzLg="6" nzXl="6">
-                  <button
-                    nz-button
-                    nzType="text"
-                    class="advert-cards__icon"
-                    (click)="addToFavorite(advert.id)"
-                  >
-                    <svg
-                      width="21"
-                      height="18"
-                      viewBox="0 0 21 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M2.28651 10.4336L2.28901 10.436L9.2866 16.9637C9.40016 17.0725 9.51083 17.1781 9.61582 17.2581C9.7306 17.3455 9.86744 17.4257 10.042 17.4606L10.0906 17.4703H10.1401H10.3301C10.5793 17.4703 10.7589 17.3411 10.8602 17.2577C10.933 17.1979 11.0185 17.1145 11.0986 17.0365C11.1246 17.0111 11.15 16.9863 11.1743 16.963C11.1749 16.9625 11.1754 16.9619 11.176 16.9613L18.1213 10.4358C18.1214 10.4357 18.1216 10.4356 18.1217 10.4355C19.1626 9.46319 19.8018 8.13639 19.9134 6.71634C20.025 5.29638 19.6009 3.88612 18.7247 2.76322C18.7245 2.76304 18.7244 2.76287 18.7242 2.76269L18.4153 2.36412C17.9121 1.71455 17.2508 1.20475 16.4946 0.883313C15.7384 0.56188 14.9124 0.439512 14.0955 0.52792C13.2785 0.616328 12.4979 0.912551 11.8279 1.38832C11.158 1.8641 10.6211 2.50359 10.2685 3.24577L10.2624 3.25848L10.2571 3.2715C10.2541 3.2788 10.249 3.2851 10.2424 3.28957C10.2357 3.29402 10.228 3.29638 10.2201 3.29638C10.2122 3.29638 10.2044 3.29402 10.1978 3.28957C10.1911 3.2851 10.186 3.2788 10.183 3.2715L10.1777 3.25848L10.1717 3.24577C9.81905 2.5036 9.28216 1.8641 8.61221 1.38832C7.94227 0.912551 7.1616 0.616328 6.34467 0.52792C5.52773 0.439512 4.70178 0.56188 3.94556 0.883313C3.18936 1.20474 2.52812 1.71453 2.02488 2.36406C2.02486 2.36408 2.02485 2.3641 2.02483 2.36412L1.71572 2.76296C0.83828 3.8826 0.410314 5.28945 0.515698 6.70809C0.621118 8.1272 1.25264 9.45581 2.28651 10.4336Z"
-                        [ngStyle]="{ fill: isFavorite ? 'white' : '#00CD69' }"
-                        fill="white"
-                        fill-opacity="0.75"
-                        stroke="#B7BBBF"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                    <path
+                      d="M2.28651 10.4336L2.28901 10.436L9.2866 16.9637C9.40016 17.0725 9.51083 17.1781 9.61582 17.2581C9.7306 17.3455 9.86744 17.4257 10.042 17.4606L10.0906 17.4703H10.1401H10.3301C10.5793 17.4703 10.7589 17.3411 10.8602 17.2577C10.933 17.1979 11.0185 17.1145 11.0986 17.0365C11.1246 17.0111 11.15 16.9863 11.1743 16.963C11.1749 16.9625 11.1754 16.9619 11.176 16.9613L18.1213 10.4358C18.1214 10.4357 18.1216 10.4356 18.1217 10.4355C19.1626 9.46319 19.8018 8.13639 19.9134 6.71634C20.025 5.29638 19.6009 3.88612 18.7247 2.76322C18.7245 2.76304 18.7244 2.76287 18.7242 2.76269L18.4153 2.36412C17.9121 1.71455 17.2508 1.20475 16.4946 0.883313C15.7384 0.56188 14.9124 0.439512 14.0955 0.52792C13.2785 0.616328 12.4979 0.912551 11.8279 1.38832C11.158 1.8641 10.6211 2.50359 10.2685 3.24577L10.2624 3.25848L10.2571 3.2715C10.2541 3.2788 10.249 3.2851 10.2424 3.28957C10.2357 3.29402 10.228 3.29638 10.2201 3.29638C10.2122 3.29638 10.2044 3.29402 10.1978 3.28957C10.1911 3.2851 10.186 3.2788 10.183 3.2715L10.1777 3.25848L10.1717 3.24577C9.81905 2.5036 9.28216 1.8641 8.61221 1.38832C7.94227 0.912551 7.1616 0.616328 6.34467 0.52792C5.52773 0.439512 4.70178 0.56188 3.94556 0.883313C3.18936 1.20474 2.52812 1.71453 2.02488 2.36406C2.02486 2.36408 2.02485 2.3641 2.02483 2.36412L1.71572 2.76296C0.83828 3.8826 0.410314 5.28945 0.515698 6.70809C0.621118 8.1272 1.25264 9.45581 2.28651 10.4336Z"
+                      [ngStyle]="{ fill: isFavorite ? 'white' : '#00CD69' }"
+                      fill="white"
+                      fill-opacity="0.75"
+                      stroke="#B7BBBF"
+                    />
+                  </svg>
+                </button> -->
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div
-          nz-col
-          nzXs="12"
-          nzSm="12"
-          nzMd="11"
-          nzLg="11"
-          nzXl="12"
-          class="advert-cards__content"
-        >
-          <div nz-row>
-            <div nz-col nzSpan="24">
-              <div nz-row>
-                <div nz-col nzSpan="24" class="advert-cards__content__title">
-                  <h3>{{ advert.name }}</h3>
-                </div>
-                <div
-                  nz-col
-                  nzXs="0"
-                  nzSm="0"
-                  nzMd="0"
-                  nzLg="0"
-                  nzXl="24"
-                  class="advert-cards__content__description"
+      <div
+        nz-col
+        nzXs="12"
+        nzSm="12"
+        nzMd="11"
+        nzLg="11"
+        nzXl="12"
+        class="advert-cards__content"
+      >
+        <div nz-row>
+          <div nz-col nzSpan="24">
+            <div nz-row>
+              <div nz-col nzSpan="24" class="advert-cards__content__title">
+                <h3>{{ advert.name }}</h3>
+              </div>
+              <div
+                nz-col
+                nzXs="0"
+                nzSm="0"
+                nzMd="0"
+                nzLg="0"
+                nzXl="24"
+                class="advert-cards__content__description"
+              >
+                <p>
+                  {{ advert.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div nz-col nzSpan="24" class="advert-cards__content__price">
+            <h3>{{ advert.price | azCurrency }}</h3>
+          </div>
+
+          <div
+            class="advert-cards__content__companyDirector"
+            nz-col
+            nzXs="24"
+            nzSm="24"
+            nzMd="24"
+            nzLg="24"
+            nzXl="0"
+          >
+            <div nz-row [nzGutter]="[6, 0]">
+              <div nz-col>
+                <img src="/assets/images/house.png" alt="" />
+              </div>
+              <div nz-col>
+                <h4>Жахонгир Пардаев</h4>
+              </div>
+            </div>
+          </div>
+          <div
+            class="advert-cards__content__companyLocation"
+            nz-col
+            nzXs="24"
+            nzSm="24"
+            nzMd="24"
+            nzLg="24"
+            nzXl="0"
+          >
+            <div nz-row>
+              <div nz-col nzXs="2" nzSm="2" nzMd="2" nzLg="1">
+                <img src="/assets/images/location.svg" alt="" />
+              </div>
+              <div nz-col nzXs="22" nzSm="22" nzMd="22" nzLg="23">
+                <h5>Ташкентская область, город Ташкент</h5>
+              </div>
+            </div>
+          </div>
+
+          <div
+            nz-col
+            nzXs="8"
+            nzSm="8"
+            nzMd="0"
+            nzLg="0"
+            nzXl="0"
+            style="padding-top: 5px"
+          >
+            <div nz-row [nzGutter]="[3, 0]">
+              <div nz-col>
+                <img src="./assets/images/o'zimizniki-Vector (2).png" alt="" />
+              </div>
+              <div
+                class="advert-cards__rightContent__text"
+                nz-col
+                nzXs="8"
+                nzSm="8"
+                nzMd="0"
+                nzLg="0"
+                nzXl="0"
+              >
+                <span>352</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            nz-col
+            nzXs="8"
+            nzSm="8"
+            nzMd="0"
+            nzLg="0"
+            nzXl="0"
+            style="padding-top: 5px"
+          >
+            <div nz-row [nzGutter]="[3, 0]">
+              <div nz-col>
+                <img src="./assets/images/o'zimizniki-Vector1.png" alt="" />
+              </div>
+              <div class="advert-cards__rightContent__text" nz-col>
+                <span>25</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            nz-col
+            nzXs="8"
+            nzSm="8"
+            nzMd="0"
+            nzLg="0"
+            nzXl="0"
+            style="padding-top: 5px"
+          >
+            <div nz-row [nzGutter]="[3, 0]">
+              <div nz-col>
+                <img src="./assets/images/o'zimizniki-phone.png" alt="" />
+              </div>
+              <div class="advert-cards__rightContent__text" nz-col>
+                <span>16</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        nz-col
+        nzXs="6"
+        nzSm="6"
+        nzMd="5"
+        nzLg="6"
+        nzXl="6"
+        class="advert-cards__rightContent"
+      >
+        <div nz-row>
+          <div nz-col nzSpan="24">
+            <div nz-row [nzGutter]="[0, 12]">
+              <div [ngSwitch]="advert.status">
+                <ng-container *ngSwitchCase="AdvertisementStatus.STATUS_NEW">
+                  <div nz-col nzSpan="24">
+                    <div nz-row [nzGutter]="[8, 0]">
+                      <div nz-col>
+                        <img src="./assets/images/view-outline.svg" alt="" />
+                      </div>
+                      <div class="advert-cards__rightContent__text" nz-col>
+                        <span>Объявление на модерации</span>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-container
+                  *ngSwitchCase="AdvertisementStatus.STATUS_CONFIRMED"
                 >
-                  <p>
-                    {{ advert.description }}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzSpan="24" class="advert-cards__content__price">
-              <h3>{{ advert.price | azCurrency }}</h3>
-            </div>
+                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0">
+                    <i
+                      nz-icon
+                      nz-popover
+                      [nzPopoverContent]="contentTemplate"
+                      nzPopoverPlacement="bottomRight"
+                      nzPopoverTrigger="click"
+                    >
+                      <img src="/assets/images/top-button.png" alt="" />
+                    </i>
+                  </div>
+                  <div nz-col nzXs="24" nzSm="24" nzMd="0" nzLg="0" nzXl="0">
+                    <i nz-icon nzPopoverTrigger="click">
+                      <img
+                        src="../../../../../../assets/images/top-button_without_text.png"
+                        alt=""
+                      />
+                    </i>
+                  </div>
 
-            <div
-              class="advert-cards__content__companyDirector"
-              nz-col
-              nzXs="24"
-              nzSm="24"
-              nzMd="24"
-              nzLg="24"
-              nzXl="0"
-            >
-              <div nz-row [nzGutter]="[6, 0]">
-                <div nz-col>
-                  <img src="/assets/images/house.png" alt="" />
-                </div>
-                <div nz-col>
-                  <h4>Жахонгир Пардаев</h4>
-                </div>
-              </div>
-            </div>
-            <div
-              class="advert-cards__content__companyLocation"
-              nz-col
-              nzXs="24"
-              nzSm="24"
-              nzMd="24"
-              nzLg="24"
-              nzXl="0"
-            >
-              <div nz-row>
-                <div nz-col nzXs="2" nzSm="2" nzMd="2" nzLg="1">
-                  <img src="/assets/images/location.svg" alt="" />
-                </div>
-                <div nz-col nzXs="22" nzSm="22" nzMd="22" nzLg="23">
-                  <h5>Ташкентская область, город Ташкент</h5>
-                </div>
-              </div>
-            </div>
+                  <div nz-col>
+                    <div nz-row [nzGutter]="[8, 0]">
+                      <div
+                        nz-col
+                        nzXs="0"
+                        nzSm="0"
+                        nzMd="12"
+                        nzLg="12"
+                        nzXl="3"
+                      >
+                        <img
+                          src="./assets/images/o'zimizniki-Vector (2).png"
+                          alt=""
+                        />
+                      </div>
+                      <div
+                        class="advert-cards__rightContent__text"
+                        nz-col
+                        nzXs="0"
+                        nzSm="0"
+                        nzMd="12"
+                        nzLg="12"
+                        nzXl="4"
+                      >
+                        <span>352</span>
+                      </div>
 
-            <div
-              nz-col
-              nzXs="8"
-              nzSm="8"
-              nzMd="0"
-              nzLg="0"
-              nzXl="0"
-              style="padding-top: 5px"
-            >
-              <div nz-row [nzGutter]="[3, 0]">
-                <div nz-col>
+                      <div
+                        class="advert-cards__rightContent__text"
+                        nz-col
+                        nzXs="0"
+                        nzSm="0"
+                        nzMd="0"
+                        nzLg="0"
+                        nzXl="17"
+                      >
+                        <span>просмотров</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div nz-col>
+                    <div nz-row [nzGutter]="[12, 0]">
+                      <div
+                        nz-col
+                        nzXs="0"
+                        nzSm="0"
+                        nzMd="12"
+                        nzLg="12"
+                        nzXl="3"
+                      >
+                        <img
+                          src="./assets/images/o'zimizniki-Vector1.png"
+                          alt=""
+                        />
+                      </div>
+                      <div
+                        class="advert-cards__rightContent__text"
+                        nz-col
+                        nzXs="0"
+                        nzSm="0"
+                        nzMd="12"
+                        nzLg="12"
+                        nzXl="3"
+                      >
+                        <span>25</span>
+                      </div>
+                      <div
+                        class="advert-cards__rightContent__text"
+                        nz-col
+                        nzXs="0"
+                        nzSm="0"
+                        nzMd="0"
+                        nzLg="0"
+                        nzXl="18"
+                      >
+                        <span>добавили в Избранное</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div nz-col>
+                    <div nz-row [nzGutter]="[8, 0]">
+                      <div
+                        nz-col
+                        nzXs="0"
+                        nzSm="0"
+                        nzMd="12"
+                        nzLg="12"
+                        nzXl="3"
+                      >
+                        <img
+                          src="./assets/images/o'zimizniki-phone.png"
+                          alt=""
+                        />
+                      </div>
+                      <div
+                        class="advert-cards__rightContent__text"
+                        nz-col
+                        nzXs="0"
+                        nzSm="0"
+                        nzMd="12"
+                        nzLg="12"
+                        nzXl="3"
+                      >
+                        <span>16</span>
+                      </div>
+                      <div
+                        class="advert-cards__rightContent__text"
+                        nz-col
+                        nzXs="0"
+                        nzSm="0"
+                        nzMd="0"
+                        nzLg="0"
+                        nzXl="18"
+                      >
+                        <span>нажали на Позвонить</span>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-container
+                  *ngSwitchCase="AdvertisementStatus.STATUS_ARCHIVED"
+                >
+                  <div nz-col nzSpan="24">
+                    <div nz-row [nzGutter]="[8, 0]">
+                      <div nz-col>
+                        <img src="./assets/images/archive-dark.png" alt="" />
+                      </div>
+                      <div class="advert-cards__rightContent__text" nz-col>
+                        <span>В архиве с 10.02.2022</span>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-container
+                  *ngSwitchCase="AdvertisementStatus.STATUS_REJECTED"
+                >
+                  <div nz-col nzSpan="24">
+                    <div nz-row [nzGutter]="[8, 0]">
+                      <div nz-col>
+                        <img src="./assets/images/block-red.svg" alt="" />
+                      </div>
+                      <div class="advert-cards__rightContent__text" nz-col>
+                        <span>Объявление отклонено</span>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                <div *ngSwitchDefault></div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            nz-col
+            nzXs="0"
+            nzSm="0"
+            nzMd="0"
+            nzLg="24"
+            nzXl="24"
+            class="advert-cards__rightContent__bottom"
+          >
+            <div nz-row [nzGutter]="[10, 0]">
+              <div
+                nz-col
+                *ngIf="advert.status === AdvertisementStatus.STATUS_REJECTED"
+              >
+                <button>
+                  <img src="./assets/images/info.svg" alt="" />
+                </button>
+              </div>
+              <div nz-col>
+                <button (click)="navigateToDetails(advert)">
                   <img
                     src="./assets/images/o'zimizniki-Vector (2).png"
                     alt=""
                   />
-                </div>
-                <div
-                  class="advert-cards__rightContent__text"
-                  nz-col
-                  nzXs="8"
-                  nzSm="8"
-                  nzMd="0"
-                  nzLg="0"
-                  nzXl="0"
-                >
-                  <span>352</span>
-                </div>
+                </button>
               </div>
-            </div>
-
-            <div
-              nz-col
-              nzXs="8"
-              nzSm="8"
-              nzMd="0"
-              nzLg="0"
-              nzXl="0"
-              style="padding-top: 5px"
-            >
-              <div nz-row [nzGutter]="[3, 0]">
-                <div nz-col>
-                  <img src="./assets/images/o'zimizniki-Vector1.png" alt="" />
-                </div>
-                <div class="advert-cards__rightContent__text" nz-col>
-                  <span>25</span>
-                </div>
+              <div nz-col>
+                <button
+                  [routerLink]="['../../../advertisement', 'edit', advert.id]"
+                >
+                  <img src="./assets/images/o'zimizniki-edit.png" alt="" />
+                </button>
               </div>
-            </div>
-
-            <div
-              nz-col
-              nzXs="8"
-              nzSm="8"
-              nzMd="0"
-              nzLg="0"
-              nzXl="0"
-              style="padding-top: 5px"
-            >
-              <div nz-row [nzGutter]="[3, 0]">
-                <div nz-col>
-                  <img src="./assets/images/o'zimizniki-phone.png" alt="" />
-                </div>
-                <div class="advert-cards__rightContent__text" nz-col>
-                  <span>16</span>
-                </div>
+              <div
+                nz-col
+                *ngIf="advert.status === AdvertisementStatus.STATUS_CONFIRMED"
+              >
+                <button>
+                  <img src="./assets/images/archive-dark.png" alt="" />
+                </button>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          nz-col
-          nzXs="6"
-          nzSm="6"
-          nzMd="5"
-          nzLg="6"
-          nzXl="6"
-          class="advert-cards__rightContent"
-        >
-          <div nz-row>
-            <div nz-col nzSpan="24">
-              <div nz-row [nzGutter]="[0, 12]">
-                <div [ngSwitch]="advert.status">
-                  <ng-container *ngSwitchCase="AdvertisementStatus.STATUS_NEW">
-                    <div nz-col nzSpan="24">
-                      <div nz-row [nzGutter]="[8, 0]">
-                        <div nz-col>
-                          <img src="./assets/images/view-outline.svg" alt="" />
-                        </div>
-                        <div class="advert-cards__rightContent__text" nz-col>
-                          <span>Объявление на модерации</span>
-                        </div>
-                      </div>
-                    </div>
-                  </ng-container>
-                  <ng-container
-                    *ngSwitchCase="AdvertisementStatus.STATUS_CONFIRMED"
-                  >
-                    <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0">
-                      <i
-                        nz-icon
-                        nz-popover
-                        [nzPopoverContent]="contentTemplate"
-                        nzPopoverPlacement="bottomRight"
-                        nzPopoverTrigger="click"
-                      >
-                        <img src="/assets/images/top-button.png" alt="" />
-                      </i>
-                    </div>
-                    <div nz-col nzXs="24" nzSm="24" nzMd="0" nzLg="0" nzXl="0">
-                      <i nz-icon nzPopoverTrigger="click">
-                        <img
-                          src="../../../../../../assets/images/top-button_without_text.png"
-                          alt=""
-                        />
-                      </i>
-                    </div>
-
-                    <div nz-col>
-                      <div nz-row [nzGutter]="[8, 0]">
-                        <div
-                          nz-col
-                          nzXs="0"
-                          nzSm="0"
-                          nzMd="12"
-                          nzLg="12"
-                          nzXl="3"
-                        >
-                          <img
-                            src="./assets/images/o'zimizniki-Vector (2).png"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="advert-cards__rightContent__text"
-                          nz-col
-                          nzXs="0"
-                          nzSm="0"
-                          nzMd="12"
-                          nzLg="12"
-                          nzXl="4"
-                        >
-                          <span>352</span>
-                        </div>
-
-                        <div
-                          class="advert-cards__rightContent__text"
-                          nz-col
-                          nzXs="0"
-                          nzSm="0"
-                          nzMd="0"
-                          nzLg="0"
-                          nzXl="17"
-                        >
-                          <span>просмотров</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div nz-col>
-                      <div nz-row [nzGutter]="[12, 0]">
-                        <div
-                          nz-col
-                          nzXs="0"
-                          nzSm="0"
-                          nzMd="12"
-                          nzLg="12"
-                          nzXl="3"
-                        >
-                          <img
-                            src="./assets/images/o'zimizniki-Vector1.png"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="advert-cards__rightContent__text"
-                          nz-col
-                          nzXs="0"
-                          nzSm="0"
-                          nzMd="12"
-                          nzLg="12"
-                          nzXl="3"
-                        >
-                          <span>25</span>
-                        </div>
-                        <div
-                          class="advert-cards__rightContent__text"
-                          nz-col
-                          nzXs="0"
-                          nzSm="0"
-                          nzMd="0"
-                          nzLg="0"
-                          nzXl="18"
-                        >
-                          <span>добавили в Избранное</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div nz-col>
-                      <div nz-row [nzGutter]="[8, 0]">
-                        <div
-                          nz-col
-                          nzXs="0"
-                          nzSm="0"
-                          nzMd="12"
-                          nzLg="12"
-                          nzXl="3"
-                        >
-                          <img
-                            src="./assets/images/o'zimizniki-phone.png"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="advert-cards__rightContent__text"
-                          nz-col
-                          nzXs="0"
-                          nzSm="0"
-                          nzMd="12"
-                          nzLg="12"
-                          nzXl="3"
-                        >
-                          <span>16</span>
-                        </div>
-                        <div
-                          class="advert-cards__rightContent__text"
-                          nz-col
-                          nzXs="0"
-                          nzSm="0"
-                          nzMd="0"
-                          nzLg="0"
-                          nzXl="18"
-                        >
-                          <span>нажали на Позвонить</span>
-                        </div>
-                      </div>
-                    </div>
-                  </ng-container>
-                  <ng-container
-                    *ngSwitchCase="AdvertisementStatus.STATUS_ARCHIVED"
-                  >
-                    <div nz-col nzSpan="24">
-                      <div nz-row [nzGutter]="[8, 0]">
-                        <div nz-col>
-                          <img src="./assets/images/archive-dark.png" alt="" />
-                        </div>
-                        <div class="advert-cards__rightContent__text" nz-col>
-                          <span>В архиве с 10.02.2022</span>
-                        </div>
-                      </div>
-                    </div>
-                  </ng-container>
-                  <ng-container
-                    *ngSwitchCase="AdvertisementStatus.STATUS_REJECTED"
-                  >
-                    <div nz-col nzSpan="24">
-                      <div nz-row [nzGutter]="[8, 0]">
-                        <div nz-col>
-                          <img src="./assets/images/block-red.svg" alt="" />
-                        </div>
-                        <div class="advert-cards__rightContent__text" nz-col>
-                          <span>Объявление отклонено</span>
-                        </div>
-                      </div>
-                    </div>
-                  </ng-container>
-                  <div *ngSwitchDefault></div>
-                </div>
+              <div
+                nz-col
+                *ngIf="advert.status === AdvertisementStatus.STATUS_ARCHIVED"
+              >
+                <button>
+                  <img src="./assets/images/on.svg" alt="" />
+                </button>
               </div>
-            </div>
-
-            <div
-              nz-col
-              nzXs="0"
-              nzSm="0"
-              nzMd="0"
-              nzLg="24"
-              nzXl="24"
-              class="advert-cards__rightContent__bottom"
-            >
-              <div nz-row [nzGutter]="[10, 0]">
-                <div
-                  nz-col
-                  *ngIf="advert.status === AdvertisementStatus.STATUS_REJECTED"
-                >
-                  <button>
-                    <img src="./assets/images/info.svg" alt="" />
-                  </button>
-                </div>
-                <div nz-col>
-                  <button>
-                    <img
-                      src="./assets/images/o'zimizniki-Vector (2).png"
-                      alt=""
-                    />
-                  </button>
-                </div>
-                <div nz-col>
-                  <button
-                    [routerLink]="['../../../advertisement', 'edit', advert.id]"
-                  >
-                    <img src="./assets/images/o'zimizniki-edit.png" alt="" />
-                  </button>
-                </div>
-                <div
-                  nz-col
-                  *ngIf="advert.status === AdvertisementStatus.STATUS_CONFIRMED"
-                >
-                  <button>
-                    <img src="./assets/images/archive-dark.png" alt="" />
-                  </button>
-                </div>
-                <div
-                  nz-col
-                  *ngIf="advert.status === AdvertisementStatus.STATUS_ARCHIVED"
-                >
-                  <button>
-                    <img src="./assets/images/on.svg" alt="" />
-                  </button>
-                </div>
-                <div
-                  nz-col
-                  *ngIf="
-                    advert.status === AdvertisementStatus.STATUS_ARCHIVED ||
-                    advert.status === AdvertisementStatus.STATUS_REJECTED
-                  "
-                >
-                  <button>
-                    <img src="./assets/images/trash.svg" alt="" />
-                  </button>
-                </div>
+              <div
+                nz-col
+                *ngIf="
+                  advert.status === AdvertisementStatus.STATUS_ARCHIVED ||
+                  advert.status === AdvertisementStatus.STATUS_REJECTED
+                "
+              >
+                <button>
+                  <img src="./assets/images/trash.svg" alt="" />
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <ng-template #contentTemplate>
-      <div class="popover">
-        <div nz-row [nzGutter]="[0, 5]">
-          <div nz-col nzSpan="24" class="popover__content">
-            <div class="popover__content__item">
-              <div nz-row>
-                <div nz-col nzSpan="4">
-                  <img
-                    src="../../../../../../../../assets/images/archive.png"
-                    alt=""
-                  />
-                </div>
-                <div nz-col nzSpan="20">
-                  <p>Архивировать</p>
-                </div>
+  <ng-template #contentTemplate>
+    <div class="popover">
+      <div nz-row [nzGutter]="[0, 5]">
+        <div nz-col nzSpan="24" class="popover__content">
+          <div class="popover__content__item">
+            <div nz-row>
+              <div nz-col nzSpan="4">
+                <img
+                  src="../../../../../../../../assets/images/archive.png"
+                  alt=""
+                />
+              </div>
+              <div nz-col nzSpan="20">
+                <p>Архивировать</p>
               </div>
             </div>
           </div>
-          <div nz-col nzSpan="24" class="popover__content">
-            <div class="popover__content__item">
-              <div nz-row>
-                <div nz-col nzSpan="4">
-                  <img
-                    src="../../../../../../../../assets/images/bookmark.png"
-                    alt=""
-                  />
-                </div>
-                <div nz-col nzSpan="20">
-                  <p>Сохранить</p>
-                </div>
+        </div>
+        <div nz-col nzSpan="24" class="popover__content">
+          <div class="popover__content__item">
+            <div nz-row>
+              <div nz-col nzSpan="4">
+                <img
+                  src="../../../../../../../../assets/images/bookmark.png"
+                  alt=""
+                />
+              </div>
+              <div nz-col nzSpan="20">
+                <p>Сохранить</p>
               </div>
             </div>
           </div>
-          <div nz-col nzSpan="24" class="popover__content">
-            <div class="popover__content__item">
-              <div nz-row>
-                <div nz-col nzSpan="4">
-                  <img
-                    src="../../../../../../../../assets/images/block.png"
-                    alt=""
-                  />
-                </div>
-                <div nz-col nzSpan="20">
-                  <p>Заблокировать</p>
-                </div>
+        </div>
+        <div nz-col nzSpan="24" class="popover__content">
+          <div class="popover__content__item">
+            <div nz-row>
+              <div nz-col nzSpan="4">
+                <img
+                  src="../../../../../../../../assets/images/block.png"
+                  alt=""
+                />
+              </div>
+              <div nz-col nzSpan="20">
+                <p>Заблокировать</p>
               </div>
             </div>
           </div>
-          <div nz-col nzSpan="24" class="popover__content">
-            <div class="popover__content__item">
-              <div nz-row>
-                <div nz-col nzSpan="4">
-                  <img
-                    src="../../../../../../../../assets/images/unlock.png"
-                    alt=""
-                  />
-                </div>
-                <div nz-col nzSpan="20">
-                  <p>Разблокировать</p>
-                </div>
+        </div>
+        <div nz-col nzSpan="24" class="popover__content">
+          <div class="popover__content__item">
+            <div nz-row>
+              <div nz-col nzSpan="4">
+                <img
+                  src="../../../../../../../../assets/images/unlock.png"
+                  alt=""
+                />
+              </div>
+              <div nz-col nzSpan="20">
+                <p>Разблокировать</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </ng-template>
-
-    <div nz-col nzSpan="24">
-      <az-pagination
-        [pageSize]="pageSize"
-        [total]="data.total"
-        [pageIndex]="query.pageIndex"
-        (pageIndexChange)="paginate($event)"
-      ></az-pagination>
     </div>
-  </ng-container>
+  </ng-template>
+
+  <div nz-col nzSpan="24">
+    <az-pagination
+      [pageSize]="pageSize"
+      [total]="data.total"
+      [pageIndex]="query.pageIndex"
+      (pageIndexChange)="paginate($event)"
+    ></az-pagination>
+  </div>
 </div>

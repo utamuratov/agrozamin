@@ -103,7 +103,7 @@
                       </div>
                     </div>
                   </div>
-                  <div nz-col>
+                  <div nz-col *ngIf="showUploadButton">
                     <div class="media__image__upload-btn">
                       <div class="upload" (click)="uploadImage.click()">
                         <input

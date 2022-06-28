@@ -3,10 +3,6 @@ import { AdvertisementStatus } from 'ngx-az-core';
 import { CabinetComponent } from './cabinet.component';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
 import { AdvertisementResolver } from './components/advertisement/services/advertisment.resolver';
-import { FavouriteAdvertComponent } from './components/favourites/components/favourite-advert/favourite-advert.component';
-import { FilterOptionsComponent } from './components/favourites/components/filter-options/filter-options.component';
-import { SellersComponent } from './components/favourites/components/sellers/sellers.component';
-import { FavouritesComponent } from './components/favourites/favourites.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { Messages1Component } from './components/messages/components/messages1/messages1.component';
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
@@ -49,12 +45,10 @@ const routes: Routes = [
           },
           {
             path: 'favourites',
-            component: FavouritesComponent,
-            children: [
-              { path: 'favourite-advert', component: FavouriteAdvertComponent },
-              { path: 'filter-options', component: FilterOptionsComponent },
-              { path: 'sellers', component: SellersComponent },
-            ],
+            loadChildren: () =>
+              import('./modules/favourite/favourite.module').then(
+                (m) => m.FavouriteModule
+              ),
           },
           { path: 'support', component: SupportChatComponent },
         ],

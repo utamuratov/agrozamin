@@ -1,7 +1,9 @@
+import { DOCUMENT, Location } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Inject,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
@@ -61,6 +63,7 @@ export class AdvertisementDetailsPage {
    */
   constructor(
     private cd: ChangeDetectorRef,
+    @Inject(DOCUMENT) private document: Document,
     private route: ActivatedRoute,
     private $advertisement: AdvertisementService,
     private $similar: AdvertisementSimilarService
@@ -143,8 +146,11 @@ export class AdvertisementDetailsPage {
     });
   }
 
+  /**
+   *
+   */
   private call() {
-    location.href = 'tel:' + this.phoneNumber;
+    this.document.location.href = 'tel:' + this.phoneNumber;
   }
 
   /**

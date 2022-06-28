@@ -47,6 +47,7 @@ import { BreadcrumbAdvertisementComponent } from './components/breadcrumb-advert
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { NoImageModule } from '../../../shared/no-image/no-image.module';
 import { ValueByInputTypeModule } from '../../../shared/value-by-input-type/value-by-input-type.module';
+import { SortModule } from '../../../shared/sort/sort.module';
 
 @NgModule({
   imports: [
@@ -67,7 +68,9 @@ import { ValueByInputTypeModule } from '../../../shared/value-by-input-type/valu
     YoutubeVideoIdSplitterModule,
     NoImageModule,
     ValueByInputTypeModule,
+    SortModule,
 
+    // TODO: REMOVE UNUSED MODULES
     /* NG-ZORRO */
     NzTypographyModule,
     NzGridModule,
@@ -78,14 +81,10 @@ import { ValueByInputTypeModule } from '../../../shared/value-by-input-type/valu
     NzInputModule,
     NzButtonModule,
     NzCheckboxModule,
-    NzTagModule,
-    NzCardModule,
     NzCarouselModule,
     NzRateModule,
     NzTabsModule,
     NzDividerModule,
-    NzSkeletonModule,
-    NzPaginationModule,
     NzPopoverModule,
     NzDropDownModule,
     NzDrawerModule,

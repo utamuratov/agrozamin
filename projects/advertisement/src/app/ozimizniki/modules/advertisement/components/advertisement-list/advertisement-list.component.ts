@@ -11,7 +11,6 @@ import { finalize } from 'rxjs';
 import { Advertisement } from '../../dto/advertisement.interface';
 import { AdvertisementService } from '../../services/advertisement.service';
 
-const PAGINATION_PAGE_SIZE = 12;
 const DEFAULT_DATA: GridModel<Advertisement> = {
   current_page: 0,
   data: [
@@ -28,8 +27,8 @@ const DEFAULT_DATA: GridModel<Advertisement> = {
     {} as Advertisement,
     {} as Advertisement,
   ],
-  per_page: PAGINATION_PAGE_SIZE,
-  total: PAGINATION_PAGE_SIZE,
+  per_page: AdvertisementConstants.PAGINATION_PAGE_SIZE,
+  total: AdvertisementConstants.PAGINATION_PAGE_SIZE,
 };
 
 @Component({
@@ -93,12 +92,12 @@ export class AdvertisementListComponent {
   /**
    *
    */
-  pageSize = PAGINATION_PAGE_SIZE;
+  pageSize = AdvertisementConstants.PAGINATION_PAGE_SIZE;
 
   /**
    *
    */
-  query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
+  query!: GridQuery;
 
   /**
    *
@@ -134,7 +133,6 @@ export class AdvertisementListComponent {
    */
   private initQuery() {
     this.query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
-    this.query.pageSize = PAGINATION_PAGE_SIZE;
     this.query.filter = this.getQueryFilter();
   }
 

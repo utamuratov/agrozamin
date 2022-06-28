@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { AdvertisementConstants } from '../core/constants/advertisement.constants';
 import { OzimiznikiComponent } from './ozimizniki.component';
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
           import('./modules/home/home.module').then((m) => m.HomeModule),
       },
       {
-        path: 'advertisements',
+        path: AdvertisementConstants.ROUTER_PATH_ADVERTISEMENTS,
         loadChildren: () =>
           import('./modules/advertisement/advertisement.module').then(
             (m) => m.AdvertisementModule

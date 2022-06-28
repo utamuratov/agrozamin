@@ -5,7 +5,6 @@ import { CabinetComponent } from './cabinet.component';
 import { CabinetRoutes } from './cabinet.routing';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
 import { MessagesComponent } from './components/messages/messages.component';
-import { FavouritesComponent } from './components/favourites/favourites.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -15,9 +14,6 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { SupportChatComponent } from './components/support-chat/support-chat.component';
-import { SellersComponent } from './components/favourites/components/sellers/sellers.component';
-import { FilterOptionsComponent } from './components/favourites/components/filter-options/filter-options.component';
-import { FavouriteAdvertComponent } from './components/favourites/components/favourite-advert/favourite-advert.component';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { Messages1Component } from './components/messages/components/messages1/messages1.component';
@@ -30,6 +26,7 @@ import { NoImageModule } from '../../../shared/no-image/no-image.module';
 import { BreadcrumbModule } from '../../../shared/breadcrumb/breadcrumb.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { TagModule } from '../../../shared/tag/tag.module';
+import { SortModule } from '../../../shared/sort/sort.module';
 
 @NgModule({
   imports: [
@@ -43,6 +40,7 @@ import { TagModule } from '../../../shared/tag/tag.module';
     NoImageModule,
     BreadcrumbModule,
     TagModule,
+    SortModule,
 
     NzGridModule,
     NzMenuModule,
@@ -62,11 +60,7 @@ import { TagModule } from '../../../shared/tag/tag.module';
     CabinetComponent,
     AdvertisementComponent,
     MessagesComponent,
-    FavouritesComponent,
     SupportChatComponent,
-    SellersComponent,
-    FilterOptionsComponent,
-    FavouriteAdvertComponent,
     Messages1Component,
     Messages2Component,
   ],
