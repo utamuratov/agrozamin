@@ -14,6 +14,7 @@ import { AgroZaminRoutingSharedModule } from 'projects/agro-zamin/src/app/app.mo
 import { AgroIdRoutingSharedModule } from 'projects/agro-id/src/app/app.module';
 import { AdvertisementRoutingSharedModule } from 'projects/advertisement/src/app/app.module';
 import { OnlineConsultantRoutingSharedModule } from 'projects/online-consultant/src/app/app.module';
+import { AgroPayRoutingSharedModule } from 'projects/agro-pay/src/app/app.module';
 
 registerLocaleData(ru);
 
@@ -30,6 +31,7 @@ registerLocaleData(ru);
     AgroIdRoutingSharedModule.forRoot(),
     AdvertisementRoutingSharedModule.forRoot(),
     OnlineConsultantRoutingSharedModule.forRoot(),
+    AgroPayRoutingSharedModule.forRoot(),
   ],
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent],
