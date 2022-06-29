@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseService, GridService } from 'ngx-az-core';
+import { BaseService, GridModel, GridService } from 'ngx-az-core';
 import { map } from 'rxjs';
 import { AdvertisementDetails } from '../dto/advertisement-details.interface';
 import { Advertisement } from '../dto/advertisement.interface';
@@ -29,5 +29,15 @@ export class AdvertisementService extends GridService<Advertisement> {
    */
   showPhoneNumber(advertisementId: number) {
     return this.$baseService.get(`cabinet/action/phone/${advertisementId}`);
+  }
+
+  /**
+   *
+   * @returns
+   */
+  getPopular() {
+    return this.$baseService
+      .get<GridModel<Advertisement>>(this.url + '/popular')
+      .pipe(map((result) => result.data.data));
   }
 }
