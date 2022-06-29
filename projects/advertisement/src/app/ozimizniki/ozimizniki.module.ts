@@ -26,6 +26,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { PopupProfileComponent } from './components/header/components/popup-profile/popup-profile.component';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { CatalogueComponent } from './components/header/components/catalogue/catalogue.component';
+import { DrawerWidthPipe } from './components/header/pipes/drawerWidth.pipe';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { CatalogueComponent } from './components/header/components/catalogue/cat
     OzimiznikiComponent,
     HeaderComponent,
     CatalogueComponent,
+    DrawerWidthPipe,
     FilterPipe,
     FooterComponent,
     LanguageComponent,

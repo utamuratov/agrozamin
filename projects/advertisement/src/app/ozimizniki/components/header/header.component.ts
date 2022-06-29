@@ -7,11 +7,7 @@ import { Select, Store } from '@ngxs/store';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
 import { AuthState, Constants, Data } from 'ngx-az-core';
 import { AuthorizedUserModel } from 'projects/ngx-az-core/src/public-api';
-import { map, Observable } from 'rxjs';
-import { AdvertisementConstants } from '../../../core/constants/advertisement.constants';
-import { prefixPath } from '../../../core/utilits/advertisement.utilits';
-import { CategoryTree } from '../../../shared/models/category-tree.interface';
-import { CategoryService } from '../../../shared/services/category.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'az-header',
@@ -30,15 +26,38 @@ export class HeaderComponent implements OnInit {
   @Select(AuthState.authorizedUser)
   authorizedUser$!: Observable<AuthorizedUserModel>;
 
-  lang = '1';
+  /**
+   *
+   */
+  visibleMainCatalogue = false;
+
+  /**
+   *
+   */
+  visibleSecondaryCatalogue = false;
+
+  /**
+   *
+   */
+  drawerWidthValue!: string;
+
+  /**
+   *
+   */
+  drawerWidthValueCatalog!: string;
+
+  /**
+   *
+   */
+  drawerOffsetValue = 280;
 
   validateForm!: FormGroup;
 
+  //!
   isOpened = false;
-  visible = false;
+
   isWidth = '280px';
   placement: NzDrawerPlacement = 'left';
-  categoryChilds?: CategoryTree[] = [];
   touched = false;
   serachInputDrawer = false;
   inputValue = 2;
@@ -48,8 +67,6 @@ export class HeaderComponent implements OnInit {
   search = '';
   /* AZ-DRAWER */
   azVisible = false;
-  azDrawerWidthValue!: string;
-  azDrawerWidthValueCatalog!: string;
   /* ************************** */
   profileImage = true;
 
@@ -372,13 +389,6 @@ export class HeaderComponent implements OnInit {
   visibleLocationDrawer = false;
   visibleLangDrawer = false;
   visibleSearchDrawer = false;
-  visibleCatalogDrawer = false;
-  visibleCatalogDrawerSecondLvl = false;
-  visibleCatalogDrawerThirdLvl = false;
-  drawerOffsetValue = 280;
-
-  categorySecondLvl: CategoryTree = {} as CategoryTree;
-  categoryThirdLvl: CategoryTree = {} as CategoryTree;
 
   panels = [
     {
@@ -422,29 +432,78 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
-  /**
-   *
-   */
-  categoryTree$!: Observable<CategoryTree[]>;
-
-  /**
-   *
-   */
-  activeParentCategory!: number;
-
   constructor(
     private fb: FormBuilder,
     private $jwtHelper: JwtHelperService,
     private $store: Store,
     private router: Router,
     private route: ActivatedRoute,
-    private $category: CategoryService,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
-  ngOnInit(): void {
-    this.isUserAuthenticated = !this.$jwtHelper.isTokenExpired();
+  /**
+   *
+   */
+  private calcDrawersSettings() {
+    this.drawerWidthValue = this.azDrawerWidth();
+    this.drawerWidthValueCatalog = this.azDrawerWidthCatalog();
+    this.drawerOffsetValue = this.azDrawerOffsetCatalog();
+  }
 
+  /**
+   *
+   * @returns
+   */
+  private azDrawerWidthCatalog(): string {
+    if (window.innerWidth > 575) {
+      return '280px';
+    }
+    return '100%';
+  }
+
+  /**
+   *
+   * @returns
+   */
+  private azDrawerOffsetCatalog(): number {
+    if (window.innerWidth > 575) {
+      return 280;
+    }
+    return 0;
+  }
+
+  /**
+   *
+   * @returns
+   */
+  private azDrawerWidth(): string {
+    if (window.innerWidth >= 992) {
+      return '470px';
+    }
+
+    if (window.innerWidth >= 768 && window.innerWidth < 992) {
+      return '374px';
+    }
+
+    if (window.innerWidth > 575 && window.innerWidth < 768) {
+      return '274px';
+    }
+
+    return '100%';
+  }
+
+  /**
+   *
+   */
+  private checkUserToAuthenticated() {
+    this.isUserAuthenticated = !this.$jwtHelper.isTokenExpired();
+  }
+
+  /**
+   *
+   * TODO: IMPLEMENT FULLY OR REMOVE
+   */
+  private initForms() {
     this.searchForm = this.fb.group({
       searchInput: [null],
       cityInput: [null],
@@ -454,66 +513,29 @@ export class HeaderComponent implements OnInit {
       title: [null, [Validators.required]],
       city: [null, [Validators.required]],
     });
-
-    this.azDrawerWidthValue = this.azDrawerWidth();
-    this.azDrawerWidthValueCatalog = this.azDrawerWidthCatalog();
-    this.drawerOffsetValue = this.azDrawerOffsetCatalog();
-
-    this.getCategories();
   }
 
   /**
    *
    */
-  getCategories() {
-    this.categoryTree$ = this.$category.getAllAsTree().pipe(
-      map((categories) => {
-        if (categories.length) {
-          this.makeSequence(categories);
-        }
-
-        return categories;
-      })
-    );
-  }
-
-  /**
-   *
-   * @param categories
-   * @param previousSequence
-   */
-  private makeSequence(categories: CategoryTree[], previousSequence = '') {
-    categories.forEach((category) => {
-      category.sequence = previousSequence + category.id;
-      if (category.child_categories?.length) {
-        this.makeSequence(
-          category.child_categories,
-          category.sequence + AdvertisementConstants.SPLITTER_CATEGORY_ID
-        );
-      }
-    });
-  }
-
-  /**
-   *
-   * @param sequence
-   */
-  navigateByCategory(sequence: string) {
-    this.isOpened = false;
-    this.visible = false;
-    this.router.navigate([
-      prefixPath,
-      Constants.DEFAULT_LANGUAGE_CODE,
-      AdvertisementConstants.ROUTER_PATH_ADVERTISEMENTS,
-      sequence,
-    ]);
+  ngOnInit(): void {
+    this.checkUserToAuthenticated();
+    this.calcDrawersSettings();
+    this.initForms();
   }
 
   /**
    *
    */
-  openCategories(): void {
-    this.visible = true;
+  openMainCatalogue(): void {
+    this.visibleMainCatalogue = true;
+  }
+
+  /**
+   *
+   */
+  openSecondaryCatalogue(): void {
+    this.visibleSecondaryCatalogue = true;
   }
 
   submit() {
@@ -528,11 +550,6 @@ export class HeaderComponent implements OnInit {
     console.log(value);
   }
 
-  close(): void {
-    this.visible = false;
-    this.isOpened = false;
-  }
-
   openAz(): void {
     this.azVisible = true;
   }
@@ -541,18 +558,8 @@ export class HeaderComponent implements OnInit {
     this.azVisible = false;
   }
 
-  openSubmenu(id: number) {
-    this.isOpened = true;
-    this.activeParentCategory = id;
-  }
-
   closed() {
     this.isOpened = false;
-  }
-
-  getChild(category: CategoryTree) {
-    this.isOpened = true;
-    this.categoryChilds = category.child_categories;
   }
 
   getCities(id: any) {
@@ -571,42 +578,6 @@ export class HeaderComponent implements OnInit {
       this.searchDropDown = false;
     }
     this.searchCityDropDown = true;
-  }
-
-  calcDrawerWidth(): string {
-    if (!this.isOpened) {
-      return '280px';
-    } else {
-      let clientWidth = window.innerWidth;
-      clientWidth = clientWidth * 0.65;
-
-      if (clientWidth > 1355) {
-        clientWidth = 1355;
-      } else if (clientWidth < 1200) {
-        return '280px';
-      }
-      return `${clientWidth}px`;
-    }
-  }
-
-  azDrawerWidth(): string {
-    if (window.innerWidth > 992) {
-      return '470px';
-    } else if (window.innerWidth > 575 && window.innerWidth < 992) {
-      return '374px';
-    } else {
-      return '100%';
-    }
-  }
-
-  @HostListener('window:resize') onResize() {
-    this.azDrawerWidthValue = this.azDrawerWidth();
-    this.azDrawerWidthValueCatalog = this.azDrawerWidthCatalog();
-    this.drawerOffsetValue = this.azDrawerOffsetCatalog();
-  }
-
-  setLang(num: string) {
-    this.lang = num;
   }
 
   /**
@@ -661,16 +632,6 @@ export class HeaderComponent implements OnInit {
     this.visibleSearchDrawer = false;
   }
 
-  openCatalogDrawer(): void {
-    this.visibleCatalogDrawer = true;
-  }
-
-  closeCatalogDrawer(): void {
-    this.visibleCatalogDrawer = false;
-    this.closeDrawerCatalogSubmenu();
-    this.closeDrawerCatalogThirdLvl();
-  }
-
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
@@ -690,48 +651,18 @@ export class HeaderComponent implements OnInit {
       .setValue(value === 'male' ? 'Hi, man!' : 'Hi, lady!');
   }
 
-  openDrawerCatalogSubmenu(category: CategoryTree) {
-    console.log(category);
-    this.visibleCatalogDrawerSecondLvl = true;
-    this.categorySecondLvl = category;
-    console.log(this.categorySecondLvl);
-  }
-
-  closeDrawerCatalogSubmenu() {
-    this.visibleCatalogDrawerSecondLvl = false;
-  }
-
-  openDrawerCatalogThirdLvl(subcategory: CategoryTree) {
-    this.categoryThirdLvl = subcategory;
-    this.visibleCatalogDrawerThirdLvl = true;
-    console.log(this.categoryThirdLvl);
-  }
-
-  closeDrawerCatalogThirdLvl() {
-    this.visibleCatalogDrawerThirdLvl = false;
-  }
-
   openTabDrawer() {
+    this.visibleSecondaryCatalogue = true;
     console.log('hello');
   }
 
-  // setOffsetDrawer() {
-
-  // }
-
-  azDrawerWidthCatalog(): string {
-    if (window.innerWidth > 575) {
-      return '280px';
-    } else {
-      return '100%';
-    }
-  }
-
-  azDrawerOffsetCatalog(): number {
-    if (window.innerWidth > 575) {
-      return 280;
-    } else {
-      return 0;
-    }
+  /**
+   *
+   */
+  @HostListener('window:resize')
+  onResize() {
+    this.drawerWidthValue = this.azDrawerWidth();
+    this.drawerWidthValueCatalog = this.azDrawerWidthCatalog();
+    this.drawerOffsetValue = this.azDrawerOffsetCatalog();
   }
 }
