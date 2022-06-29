@@ -21,6 +21,7 @@ import {
   PartnerModule,
 } from 'ngx-az-core';
 import { CategoryListComponent } from './components/category-list/category-list.component';
+import { CardModule } from '../../../shared/card/card.module';
 
 @NgModule({
   imports: [
@@ -30,13 +31,14 @@ import { CategoryListComponent } from './components/category-list/category-list.
     ReactiveFormsModule,
 
     /**
-     * NGX-AZ-CORE
+     *
      */
     CarouselFooterModule,
     PartnerModule,
     BannerModule,
     CreditsModule,
     NewsModule,
+    CardModule,
 
     /**
      * NG ZORRO
