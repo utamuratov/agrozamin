@@ -14,7 +14,7 @@
       padding-top: 8px;
       font-size: 13px;
 
-      @media (max-width: 992px) {        
+      @media (max-width: 992px) {
         padding-top: 0;
       }
     }
@@ -190,129 +190,6 @@
   }
 }
 
-.drawer {
-  height: 100%;
-
-  .menu {
-    background: #f1f2f5;
-    height: 100%;
-
-    &__title {
-      font-size: 20px;
-      line-height: 25px;
-      color: #1a1a1a;
-      padding: 40px 20px 30px;
-    }
-
-    &__link {
-      display: block;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: 0.3s;
-
-      &.active {
-        background: #fff;
-        color: #22a33f;
-      }
-
-      img {
-        margin-right: 20px;
-      }
-      i {
-        color: #86898c;
-      }
-
-      &:hover {
-        background: #fff;
-
-        i {
-          color: #22a33f;
-        }
-      }
-
-      &-text {
-        color: #1a1a1a;
-        font-family: Agrofont-Medium;
-        flex-grow: 1;
-      }
-    }
-  }
-
-  .submenu {
-    background: #fff;
-    padding: 40px 30px 40px 35px;
-    height: 100%;
-    overflow-y: auto;
-    position: fixed;
-    max-width: 1355px;
-    width: 100%;
-    top: 0;
-    left: 280px;
-
-    &__title {
-      font-size: 16px;
-      line-height: 20px;
-      color: #1a1a1a;
-      font-family: Agrofont-Bold;
-      display: block;
-      margin-bottom: 16px;
-    }
-
-    &__item {
-      margin-bottom: 8px;
-    }
-
-    &__link {
-      display: inline-block;
-      font-size: 14px;
-      line-height: 18px;
-      color: #1a1a1a;
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-bottom: 8px;
-
-      &:hover {
-        background: #edeff5;
-        color: #000 !important;
-      }
-
-      &:active {
-        background: #377be1;
-        color: #fff !important;
-      }
-    }
-
-    .adv {
-      width: 300px;
-      height: 400px;
-
-      a {
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-
-  .close-btn {
-    position: fixed;
-    top: 30px;
-    left: 300px;
-  }
-  .close-btn-right {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-  }
-}
-
 .az-drawer {
   min-height: 100%;
   background: #fff;
@@ -394,7 +271,7 @@
 
   &__language {
     padding: 30px 30px;
-    border-bottom: 1px solid #E6E9ED;
+    border-bottom: 1px solid #e6e9ed;
 
     &__title {
       font-size: 16px;
@@ -422,69 +299,64 @@
   }
 }
 
-
-.userPopower{
+.userPopower {
   width: 248px;
 
-  &__top{
-    &__img{
+  &__top {
+    &__img {
       width: 40px;
       height: 40px;
-      img{
+      img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
     }
 
-    &__text{
-      h3{
+    &__text {
+      h3 {
         margin: 0;
         font-size: 16px;
         line-height: 20px;
         font-family: Agrofont-Bold;
       }
-      span{
+      span {
         font-size: 14px;
         line-height: 18px;
-        color: #86898C;
+        color: #86898c;
       }
     }
   }
 
-
-  &__bottom{
-   
-
-    &__content{
+  &__bottom {
+    &__content {
       cursor: pointer;
       padding: 10px;
 
-      &:active{
-        background: #EDEFF5;
+      &:active {
+        background: #edeff5;
         border-radius: 4px;
       }
 
-      &__img{
+      &__img {
         width: 24px;
         height: 24px;
-        img{
+        img {
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
       }
 
-      span{
-        &:hover{
-          color: #86898C;
+      span {
+        &:hover {
+          color: #86898c;
         }
-        &:active{
-          color: #86898C;
+        &:active {
+          color: #86898c;
         }
       }
     }
- 
   }
 }
 
@@ -506,10 +378,10 @@
 
 .nav__logo {
   @media (max-width: 575px) {
-      img {
-        width: 165px;
-        height: 30px;
-      }
+    img {
+      width: 165px;
+      height: 30px;
+    }
   }
 }
 
@@ -532,7 +404,7 @@
 
   &__arrow {
     margin-right: 20px;
-    color: #00CD69;
+    color: #00cd69;
   }
 }
 
@@ -546,7 +418,7 @@
     padding-left: 18px;
 
     &.active {
-      color: #377BE1;
+      color: #377be1;
     }
   }
 
@@ -567,113 +439,11 @@
     font-family: Agrofont-Regular;
 
     &:disabled {
-      color: #B7BBBF;
+      color: #b7bbbf;
     }
   }
 }
 
 .search__drawer {
   padding: 30px;
-}
-
-.catalog-draw {
-  padding: 40px 30px;
-  background: #EDEFF5;
-  height: 100%;
-
-  &__second {
-    background: #fff;
-    height: 100%;
-    padding: 40px 30px;
-  }
-
-  &__header {
-    font-size: 20px;
-    line-height: 24px;
-    margin-bottom: 30px;
-    cursor: pointer;
-    width: max-content;
-
-    &__secondLvl {
-      display: inline-block;
-      margin-left: 20px;      
-    }
-
-    &.secondLvl {
-      font-family: 14px;
-      line-height: 18px;
-    }
-
-    i {
-      margin-right: 20px;
-      color: #00CD69;
-    }
-
-    &.thirdLvl {
-      padding-bottom: 32px;
-      border-bottom: 1px solid #E6E9ED;
-      width: 100%;
-      margin-bottom: 10px;
-      font-size: 16px;
-      line-height: 20px;
-    }
-  }
-
-  &__category {
-    .menu {
-      &__item {
-        padding: 15px 0;
-      }
-
-      &__link {
-        display: flex;
-        align-items: center;
-
-        &-text {
-          font-size: 14px;
-          font-family: Agrofont-Medium;
-          line-height: 18px;
-          color: #000;
-          flex-grow: 1;
-        }
-
-        img {
-          margin-right: 20px;
-        }
-
-      }
-    }
-    
-    &__list {
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #E6E9ED;
-
-      &:last-of-type {
-        border-bottom: none;
-      }
-
-      &.thirdLvl {
-        border-bottom: none;
-      }
-    }
-    
-
-    &__secondLvl {
-      display: inline-block;
-      font-family: Agrofont-Bold;
-      font-size: 16px;
-      line-height: 20px;
-      flex-grow: 1;
-      padding: 20px 0;      
-    }
-
-    &__thirdLvl {
-      font-size: 14px;
-      line-height: 18px;
-      font-family: Agrofont-Regular;
-      padding: 8px 12px;
-      color: #000;
-    }
-  }
 }

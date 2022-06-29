@@ -1,7 +1,9 @@
+<!-- HEADER -->
 <div class="header" (window:resize)="onResize()">
   <nav class="nav">
     <div class="container">
       <div nz-row>
+        <!-- HEADER TOP -->
         <div nz-col nzSpan="24" class="nav__top">
           <div nz-row nzAlign="middle">
             <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="12" nzXl="12">
@@ -53,6 +55,7 @@
           </div>
         </div>
 
+        <!-- HEADER MIDDLE -->
         <div nz-col nzSpan="24" class="nav__middle">
           <div nz-row nzAlign="middle">
             <div nz-col nzXs="12" nzSm="10" nzMd="9" nzLg="7" nzXl="7">
@@ -351,6 +354,7 @@
       </div>
     </div>
 
+    <!-- HEADER BOTTOM -->
     <div class="container">
       <div nz-row class="nav__bottom" [nzGutter]="[16, 0]">
         <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="3">
@@ -358,7 +362,7 @@
             nz-button
             nzType="primary"
             nzSize="large"
-            (click)="open()"
+            (click)="openMainCatalogue()"
             nzBlock
           >
             <i><img src="./assets/images/catalog.svg" alt="icon" /></i>
@@ -370,7 +374,7 @@
             nz-button
             nzType="primary"
             nzSize="large"
-            (click)="openCatalogDrawer()"
+            (click)="openSecondaryCatalogue()"
             nzBlock
           >
             <i><img src="./assets/images/catalog.svg" alt="icon" /></i>
@@ -563,113 +567,20 @@
   </div>
 </div>
 
-<!-- DRAWER -->
-<nz-drawer
-  [nzClosable]="false"
-  [nzVisible]="visible"
-  nzPlacement="left"
-  (nzOnClose)="close()"
-  [nzWidth]="calcDrawerWidth()"
->
-  <ng-container *nzDrawerContent>
-    <div class="drawer-block">
-      <div nz-row class="drawer">
-        <div nz-col class="menu" nzFlex="280px">
-          <h4 class="menu__title">Каталог товаров</h4>
-          <ul class="menu__list">
-            <li
-              class="menu__item"
-              *ngFor="let category of categories"
-              (mouseenter)="getChild(category.id)"
-            >
-              <a
-                class="menu__link"
-                (mouseenter)="openSubmenu(category.id)"
-                [ngClass]="activeLink === category.id ? 'active' : ''"
-              >
-                <img width="30" height="25" [src]="category.icon" alt="icon" />
-                <span class="menu__link-text">{{ category.name }}</span>
-                <i nz-icon nzType="right" nzTheme="outline"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="submenu" *ngIf="isOpened" nz-col nzFlex="auto">
-          <div nz-row [nzGutter]="[10, 0]">
-            <div nz-col nzSpan="18">
-              <div nz-row [nzGutter]="[20, 20]">
-                <div
-                  nz-col
-                  nzSpan="8"
-                  *ngFor="let subcategory of categoryChilds"
-                >
-                  <ul>
-                    <li>
-                      <a class="submenu__title" href="">{{
-                        subcategory.name
-                      }}</a>
-                      <ul class="submenu__list">
-                        <li
-                          class="submenu__item"
-                          *ngFor="let child of subcategory.categories"
-                        >
-                          <a href="" class="submenu__link"
-                            ><span>{{ child.name }}</span></a
-                          >
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div nz-col nzSpan="6">
-              <div nz-row [nzGutter]="[0, 30]">
-                <div nz-col nzSpan="24">
-                  <div class="adv">
-                    <a
-                      ><img src="./assets/images/drawer-adv-1.jpg" alt="adv"
-                    /></a>
-                  </div>
-                </div>
-                <div nz-col nzSpan="24">
-                  <div class="adv">
-                    <a
-                      ><img src="./assets/images/drawer-adv-2.jpg" alt="adv"
-                    /></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          [ngClass]="isOpened ? 'close-btn-right' : 'close-btn'"
-          nz-col
-          nzFlex="20px"
-        >
-          <button
-            nz-button
-            nzType="default"
-            nzGhost
-            nzShape="circle"
-            nzSize="large"
-            (click)="close()"
-          >
-            <i nz-icon nzType="close" nzTheme="outline"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-</nz-drawer>
+<az-catalogue
+  [(visibleMainCatalogue)]="visibleMainCatalogue"
+  [(visibleSecondaryCatalogue)]="visibleSecondaryCatalogue"
+  [drawerWidthValue]="drawerWidthValue"
+  [drawerWidthValueCatalog]="drawerWidthValueCatalog"
+  [drawerOffsetValue]="drawerOffsetValue"
+></az-catalogue>
 
 <!-- MOBILE DRAWER -->
 <nz-drawer
   [nzClosable]="false"
   [nzVisible]="azVisible"
   nzPlacement="right"
-  [nzWidth]="azDrawerWidthValue"
+  [nzWidth]="drawerWidthValue"
 >
   <ng-container *nzDrawerContent>
     <div class="az-drawer">
@@ -773,7 +684,7 @@
                   nz-button
                   nzType="link"
                   class="drawer__btn__info"
-                  (click)="openCatalogDrawer()"
+                  (click)="openSecondaryCatalogue()"
                 >
                   <img src="./assets/images/stroke-burger.svg" alt="icon" />
                   <span class="az-drawer__language__text">Каталог</span>
@@ -1019,7 +930,7 @@
   [nzClosable]="false"
   [nzVisible]="visibleLocationDrawer"
   nzPlacement="right"
-  [nzWidth]="azDrawerWidthValue"
+  [nzWidth]="drawerWidthValue"
 >
   <ng-container *nzDrawerContent>
     <div class="az-drawer">
@@ -1120,7 +1031,7 @@
   [nzClosable]="false"
   [nzVisible]="visibleLangDrawer"
   nzPlacement="right"
-  [nzWidth]="azDrawerWidthValue"
+  [nzWidth]="drawerWidthValue"
 >
   <ng-container *nzDrawerContent>
     <div class="az-drawer">
@@ -1192,7 +1103,7 @@
   [nzClosable]="false"
   [nzVisible]="visibleSearchDrawer"
   nzPlacement="right"
-  [nzWidth]="azDrawerWidthValue"
+  [nzWidth]="drawerWidthValue"
 >
   <ng-container *nzDrawerContent>
     <div class="az-drawer">
@@ -1259,143 +1170,3 @@
     </div>
   </ng-container>
 </nz-drawer>
-
-<!-- catalog drawer -->
-<nz-drawer
-  [nzClosable]="false"
-  [nzVisible]="visibleCatalogDrawer"
-  nzPlacement="left"
-  [nzWidth]="azDrawerWidthValueCatalog"
->
-  <ng-container *nzDrawerContent>
-    <div class="catalog-draw">
-      <div nz-row>
-        <div nz-col nzSpan="24">
-          <h4 class="catalog-draw__header" (click)="closeCatalogDrawer()">
-            <i nz-icon nzType="left" nzTheme="outline"></i>Каталог товаров
-          </h4>
-        </div>
-        <div nz-col nzSpan="24">
-          <div class="catalog-draw__category">
-            <ul class="menu__list">
-              <li
-                class="menu__item"
-                *ngFor="let category of categories"
-                (click)="openDrawerCatalogSubmenu(category.id)"
-                [ngClass]="activeLink === category.id ? 'active' : ''"
-              >
-                <a class="menu__link">
-                  <img
-                    width="30"
-                    height="30"
-                    [src]="category.icon"
-                    alt="icon"
-                  />
-                  <span class="menu__link-text">{{ category.name }}</span>
-                  <i nz-icon nzType="right" nzTheme="outline"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-</nz-drawer>
-
-<!-- catalog submenu 2 lvl drawer -->
-<nz-drawer
-  [nzClosable]="false"
-  [nzVisible]="visibleCatalogDrawerSecondLvl"
-  nzPlacement="left"
-  [nzWidth]="azDrawerWidthValue"
-  [nzOffsetX]="drawerOffsetValue"
->
-  <ng-container *nzDrawerContent>
-    <div class="catalog-draw__second">
-      <div nz-row>
-        <div nz-col nzSpan="24">
-          <h4
-            class="catalog-draw__header secondLvl"
-            (click)="closeDrawerCatalogSubmenu()"
-          >
-            <i nz-icon nzType="left" nzTheme="outline"></i>
-            <img
-              width="30"
-              height="30"
-              [src]="categorySecondLvl.icon"
-              alt="icon"
-            />
-            <span class="catalog-draw__header__secondLvl">{{
-              categorySecondLvl.name
-            }}</span>
-          </h4>
-        </div>
-        <div nz-col nzSpan="24">
-          <div class="catalog-draw__category">
-            <ul nz-row>
-              <li
-                nz-col
-                nzSpan="24"
-                class="catalog-draw__category__list"
-                *ngFor="let secondLvl of categorySecondLvl.categories"
-                (click)="openDrawerCatalogThirdLvl(secondLvl)"
-              >
-                <span class="catalog-draw__category__secondLvl">{{
-                  secondLvl.name
-                }}</span>
-                <i nz-icon nzType="right" nzTheme="outline"></i>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-</nz-drawer>
-
-<!-- catalog submenu 3 lvl drawer -->
-<nz-drawer
-  [nzClosable]="false"
-  [nzVisible]="visibleCatalogDrawerThirdLvl"
-  nzPlacement="left"
-  [nzWidth]="azDrawerWidthValue"
-  [nzOffsetX]="drawerOffsetValue"
-  [nzMask]="false"
->
-  <ng-container *nzDrawerContent>
-    <div class="catalog-draw__second">
-      <div nz-row>
-        <div nz-col nzSpan="24">
-          <h4
-            class="catalog-draw__header thirdLvl"
-            (click)="closeDrawerCatalogThirdLvl()"
-          >
-            <i nz-icon nzType="left" nzTheme="outline"></i>
-            <span class="catalog-draw__header__thirdLvl">{{
-              categoryThirdLvl.name
-            }}</span>
-          </h4>
-        </div>
-        <div nz-col nzSpan="24">
-          <div class="catalog-draw__category">
-            <ul nz-row>
-              <li
-                nz-col
-                nzSpan="24"
-                class="catalog-draw__category__list thirdLvl"
-                *ngFor="let thirdLvl of categoryThirdLvl.categories"
-              >
-                <a class="catalog-draw__category__thirdLvl">{{
-                  thirdLvl.name
-                }}</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-</nz-drawer>
-
-<!-- catalog Tab drawer -->
