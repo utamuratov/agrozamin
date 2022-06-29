@@ -7,7 +7,11 @@ import { Select, Store } from '@ngxs/store';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
 import { AuthState, Constants, Data } from 'ngx-az-core';
 import { AuthorizedUserModel } from 'projects/ngx-az-core/src/public-api';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { AdvertisementConstants } from '../../../core/constants/advertisement.constants';
+import { prefixPath } from '../../../core/utilits/advertisement.utilits';
+import { CategoryTree } from '../../../shared/models/category-tree.interface';
+import { CategoryService } from '../../../shared/services/category.service';
 
 @Component({
   selector: 'az-header',
@@ -31,11 +35,10 @@ export class HeaderComponent implements OnInit {
   validateForm!: FormGroup;
 
   isOpened = false;
-  activeLink!: number;
   visible = false;
   isWidth = '280px';
   placement: NzDrawerPlacement = 'left';
-  categoryChilds: any = [];
+  categoryChilds?: CategoryTree[] = [];
   touched = false;
   serachInputDrawer = false;
   inputValue = 2;
@@ -57,471 +60,6 @@ export class HeaderComponent implements OnInit {
   regionsChild: any = [];
 
   regionsValue: any = [];
-
-  categories = [
-    {
-      icon: './assets/images/tractor.svg',
-      name: 'Сельхозтехника',
-      id: 1,
-      categories: [
-        {
-          name: 'Техника',
-          categories: [
-            { name: 'Тракторы' },
-            { name: 'Минитехника' },
-            { name: 'Транспортные средства для с/х' },
-            { name: 'Погрузчики' },
-            { name: 'Полуприцепы и прицепы' },
-            { name: 'Сельхозтехника для хранения зерна' },
-            { name: 'Электронные системы' },
-          ],
-        },
-        {
-          name: 'Техника для растениеводства',
-          categories: [
-            { name: 'Виноградоуборочные комбайны' },
-            { name: 'Почвообрабатывающая техника' },
-            { name: 'Посевные машины' },
-            { name: 'Картофельная техника' },
-            { name: 'Техника для внесения удобрений' },
-            { name: 'Зерноочистительные машины' },
-            { name: 'Зерносушилки' },
-            { name: 'Опрыскиватели' },
-            { name: 'Жатки' },
-          ],
-        },
-        {
-          name: 'Техника для животноводства',
-          categories: [
-            { name: 'Кормоуборочные комбайны' },
-            { name: 'Кормозаготовительная техника' },
-            { name: 'Оборудование для производства комбикормов' },
-            { name: 'Кормораздатчики и смесители' },
-          ],
-        },
-      ],
-    },
-    {
-      icon: './assets/images/seeds.svg',
-      name: 'Семена',
-      id: 2,
-      categories: [
-        {
-          name: 'Семена',
-          categories: [
-            { name: 'Тракторы' },
-            { name: 'Минитехника' },
-            { name: 'Транспортные средства для с/х' },
-            { name: 'Погрузчики' },
-            { name: 'Полуприцепы и прицепы' },
-            { name: 'Сельхозтехника для хранения зерна' },
-            { name: 'Электронные системы' },
-          ],
-        },
-        {
-          name: 'Семена',
-          categories: [
-            { name: 'Виноградоуборочные комбайны' },
-            { name: 'Почвообрабатывающая техника' },
-            { name: 'Посевные машины' },
-            { name: 'Картофельная техника' },
-            { name: 'Техника для внесения удобрений' },
-            { name: 'Зерноочистительные машины' },
-            { name: 'Зерносушилки' },
-            { name: 'Опрыскиватели' },
-            { name: 'Жатки' },
-          ],
-        },
-        {
-          name: 'Семена',
-          categories: [
-            { name: 'Кормоуборочные комбайны' },
-            { name: 'Кормозаготовительная техника' },
-            { name: 'Оборудование для производства комбикормов' },
-            { name: 'Кормораздатчики и смесители' },
-          ],
-        },
-      ],
-    },
-    {
-      icon: './assets/images/fert.svg',
-      name: 'Удобрения',
-      id: 3,
-      categories: [
-        {
-          name: 'Удобрения',
-          categories: [
-            { name: 'Тракторы' },
-            { name: 'Минитехника' },
-            { name: 'Транспортные средства для с/х' },
-            { name: 'Погрузчики' },
-            { name: 'Полуприцепы и прицепы' },
-            { name: 'Сельхозтехника для хранения зерна' },
-            { name: 'Электронные системы' },
-          ],
-        },
-        {
-          name: 'Удобрения',
-          categories: [
-            { name: 'Виноградоуборочные комбайны' },
-            { name: 'Почвообрабатывающая техника' },
-            { name: 'Посевные машины' },
-            { name: 'Картофельная техника' },
-            { name: 'Техника для внесения удобрений' },
-            { name: 'Зерноочистительные машины' },
-            { name: 'Зерносушилки' },
-            { name: 'Опрыскиватели' },
-            { name: 'Жатки' },
-          ],
-        },
-        {
-          name: 'Удобрения',
-          categories: [
-            { name: 'Кормоуборочные комбайны' },
-            { name: 'Кормозаготовительная техника' },
-            { name: 'Оборудование для производства комбикормов' },
-            { name: 'Кормораздатчики и смесители' },
-          ],
-        },
-      ],
-    },
-    {
-      icon: './assets/images/chemy.svg',
-      name: 'Агрохимия',
-      id: 4,
-      categories: [
-        {
-          name: 'Агрохимия',
-          categories: [
-            { name: 'Тракторы' },
-            { name: 'Минитехника' },
-            { name: 'Транспортные средства для с/х' },
-            { name: 'Погрузчики' },
-            { name: 'Полуприцепы и прицепы' },
-            { name: 'Сельхозтехника для хранения зерна' },
-            { name: 'Электронные системы' },
-          ],
-        },
-        {
-          name: 'Агрохимия',
-          categories: [
-            { name: 'Виноградоуборочные комбайны' },
-            { name: 'Почвообрабатывающая техника' },
-            { name: 'Посевные машины' },
-            { name: 'Картофельная техника' },
-            { name: 'Техника для внесения удобрений' },
-            { name: 'Зерноочистительные машины' },
-            { name: 'Зерносушилки' },
-            { name: 'Опрыскиватели' },
-            { name: 'Жатки' },
-          ],
-        },
-        {
-          name: 'Агрохимия',
-          categories: [
-            { name: 'Кормоуборочные комбайны' },
-            { name: 'Кормозаготовительная техника' },
-            { name: 'Оборудование для производства комбикормов' },
-            { name: 'Кормораздатчики и смесители' },
-          ],
-        },
-      ],
-    },
-    {
-      icon: './assets/images/cow.svg',
-      name: 'Сельхоз животные',
-      id: 5,
-      categories: [
-        {
-          name: 'Сельхоз животные',
-          categories: [
-            { name: 'Тракторы' },
-            { name: 'Минитехника' },
-            { name: 'Транспортные средства для с/х' },
-            { name: 'Погрузчики' },
-            { name: 'Полуприцепы и прицепы' },
-            { name: 'Сельхозтехника для хранения зерна' },
-            { name: 'Электронные системы' },
-          ],
-        },
-        {
-          name: 'Сельхоз животные',
-          categories: [
-            { name: 'Виноградоуборочные комбайны' },
-            { name: 'Почвообрабатывающая техника' },
-            { name: 'Посевные машины' },
-            { name: 'Картофельная техника' },
-            { name: 'Техника для внесения удобрений' },
-            { name: 'Зерноочистительные машины' },
-            { name: 'Зерносушилки' },
-            { name: 'Опрыскиватели' },
-            { name: 'Жатки' },
-          ],
-        },
-        {
-          name: 'Сельхоз животные',
-          categories: [
-            { name: 'Кормоуборочные комбайны' },
-            { name: 'Кормозаготовительная техника' },
-            { name: 'Оборудование для производства комбикормов' },
-            { name: 'Кормораздатчики и смесители' },
-          ],
-        },
-      ],
-    },
-    {
-      icon: './assets/images/corn.svg',
-      name: 'Зерно',
-      id: 6,
-      categories: [
-        {
-          name: 'Зерно',
-          categories: [
-            { name: 'Тракторы' },
-            { name: 'Минитехника' },
-            { name: 'Транспортные средства для с/х' },
-            { name: 'Погрузчики' },
-            { name: 'Полуприцепы и прицепы' },
-            { name: 'Сельхозтехника для хранения зерна' },
-            { name: 'Электронные системы' },
-          ],
-        },
-        {
-          name: 'Зерно',
-          categories: [
-            { name: 'Виноградоуборочные комбайны' },
-            { name: 'Почвообрабатывающая техника' },
-            { name: 'Посевные машины' },
-            { name: 'Картофельная техника' },
-            { name: 'Техника для внесения удобрений' },
-            { name: 'Зерноочистительные машины' },
-            { name: 'Зерносушилки' },
-            { name: 'Опрыскиватели' },
-            { name: 'Жатки' },
-          ],
-        },
-        {
-          name: 'Зерно',
-          categories: [
-            { name: 'Кормоуборочные комбайны' },
-            { name: 'Кормозаготовительная техника' },
-            { name: 'Оборудование для производства комбикормов' },
-            { name: 'Кормораздатчики и смесители' },
-          ],
-        },
-      ],
-    },
-    {
-      icon: './assets/images/garden.svg',
-      name: 'Сад и огород',
-      id: 7,
-      categories: [
-        {
-          name: 'Сад и огород',
-          categories: [
-            { name: 'Тракторы' },
-            { name: 'Минитехника' },
-            { name: 'Транспортные средства для с/х' },
-            { name: 'Погрузчики' },
-            { name: 'Полуприцепы и прицепы' },
-            { name: 'Сельхозтехника для хранения зерна' },
-            { name: 'Электронные системы' },
-          ],
-        },
-        {
-          name: 'Сад и огород',
-          categories: [
-            { name: 'Виноградоуборочные комбайны' },
-            { name: 'Почвообрабатывающая техника' },
-            { name: 'Посевные машины' },
-            { name: 'Картофельная техника' },
-            { name: 'Техника для внесения удобрений' },
-            { name: 'Зерноочистительные машины' },
-            { name: 'Зерносушилки' },
-            { name: 'Опрыскиватели' },
-            { name: 'Жатки' },
-          ],
-        },
-        {
-          name: 'Сад и огород',
-          categories: [
-            { name: 'Кормоуборочные комбайны' },
-            { name: 'Кормозаготовительная техника' },
-            { name: 'Оборудование для производства комбикормов' },
-            { name: 'Кормораздатчики и смесители' },
-          ],
-        },
-      ],
-    },
-    {
-      icon: './assets/images/transport.svg',
-      name: 'Спецтехника',
-      id: 8,
-      categories: [
-        {
-          name: 'Спецтехника',
-          categories: [
-            { name: 'Тракторы' },
-            { name: 'Минитехника' },
-            { name: 'Транспортные средства для с/х' },
-            { name: 'Погрузчики' },
-            { name: 'Полуприцепы и прицепы' },
-            { name: 'Сельхозтехника для хранения зерна' },
-            { name: 'Электронные системы' },
-          ],
-        },
-        {
-          name: 'Спецтехника',
-          categories: [
-            { name: 'Виноградоуборочные комбайны' },
-            { name: 'Почвообрабатывающая техника' },
-            { name: 'Посевные машины' },
-            { name: 'Картофельная техника' },
-            { name: 'Техника для внесения удобрений' },
-            { name: 'Зерноочистительные машины' },
-            { name: 'Зерносушилки' },
-            { name: 'Опрыскиватели' },
-            { name: 'Жатки' },
-          ],
-        },
-        {
-          name: 'Спецтехника',
-          categories: [
-            { name: 'Кормоуборочные комбайны' },
-            { name: 'Кормозаготовительная техника' },
-            { name: 'Оборудование для производства комбикормов' },
-            { name: 'Кормораздатчики и смесители' },
-          ],
-        },
-      ],
-    },
-    {
-      icon: './assets/images/shield.svg',
-      name: 'Средства защиты растений',
-      id: 9,
-      categories: [
-        {
-          name: 'Средства защиты растений',
-          categories: [
-            { name: 'Тракторы' },
-            { name: 'Минитехника' },
-            { name: 'Транспортные средства для с/х' },
-            { name: 'Погрузчики' },
-            { name: 'Полуприцепы и прицепы' },
-            { name: 'Сельхозтехника для хранения зерна' },
-            { name: 'Электронные системы' },
-          ],
-        },
-        {
-          name: 'Средства защиты растений',
-          categories: [
-            { name: 'Виноградоуборочные комбайны' },
-            { name: 'Почвообрабатывающая техника' },
-            { name: 'Посевные машины' },
-            { name: 'Картофельная техника' },
-            { name: 'Техника для внесения удобрений' },
-            { name: 'Зерноочистительные машины' },
-            { name: 'Зерносушилки' },
-            { name: 'Опрыскиватели' },
-            { name: 'Жатки' },
-          ],
-        },
-        {
-          name: 'Техника для животноводства',
-          categories: [
-            { name: 'Кормоуборочные комбайны' },
-            { name: 'Кормозаготовительная техника' },
-            { name: 'Оборудование для производства комбикормов' },
-            { name: 'Кормораздатчики и смесители' },
-          ],
-        },
-      ],
-    },
-    {
-      icon: './assets/images/tech.svg',
-      name: 'Фермерское оборудование',
-      id: 12,
-      categories: [
-        {
-          name: 'Фермерское оборудование',
-          categories: [
-            { name: 'Тракторы' },
-            { name: 'Минитехника' },
-            { name: 'Транспортные средства для с/х' },
-            { name: 'Погрузчики' },
-            { name: 'Полуприцепы и прицепы' },
-            { name: 'Сельхозтехника для хранения зерна' },
-            { name: 'Электронные системы' },
-          ],
-        },
-        {
-          name: 'Фермерское оборудование',
-          categories: [
-            { name: 'Виноградоуборочные комбайны' },
-            { name: 'Почвообрабатывающая техника' },
-            { name: 'Посевные машины' },
-            { name: 'Картофельная техника' },
-            { name: 'Техника для внесения удобрений' },
-            { name: 'Зерноочистительные машины' },
-            { name: 'Зерносушилки' },
-            { name: 'Опрыскиватели' },
-            { name: 'Жатки' },
-          ],
-        },
-        {
-          name: 'Фермерское оборудование',
-          categories: [
-            { name: 'Кормоуборочные комбайны' },
-            { name: 'Кормозаготовительная техника' },
-            { name: 'Оборудование для производства комбикормов' },
-            { name: 'Кормораздатчики и смесители' },
-          ],
-        },
-      ],
-    },
-    {
-      icon: './assets/images/rubber.svg',
-      name: 'Резинотехнические изделия',
-      id: 13,
-      categories: [
-        {
-          name: 'Резинотехнические изделия',
-          categories: [
-            { name: 'Тракторы' },
-            { name: 'Минитехника' },
-            { name: 'Транспортные средства для с/х' },
-            { name: 'Погрузчики' },
-            { name: 'Полуприцепы и прицепы' },
-            { name: 'Сельхозтехника для хранения зерна' },
-            { name: 'Электронные системы' },
-          ],
-        },
-        {
-          name: 'Резинотехнические изделия',
-          categories: [
-            { name: 'Виноградоуборочные комбайны' },
-            { name: 'Почвообрабатывающая техника' },
-            { name: 'Посевные машины' },
-            { name: 'Картофельная техника' },
-            { name: 'Техника для внесения удобрений' },
-            { name: 'Зерноочистительные машины' },
-            { name: 'Зерносушилки' },
-            { name: 'Опрыскиватели' },
-            { name: 'Жатки' },
-          ],
-        },
-        {
-          name: 'Резинотехнические изделия',
-          categories: [
-            { name: 'Кормоуборочные комбайны' },
-            { name: 'Кормозаготовительная техника' },
-            { name: 'Оборудование для производства комбикормов' },
-            { name: 'Кормораздатчики и смесители' },
-          ],
-        },
-      ],
-    },
-  ];
 
   searchParamas = [
     {
@@ -839,8 +377,8 @@ export class HeaderComponent implements OnInit {
   visibleCatalogDrawerThirdLvl = false;
   drawerOffsetValue = 280;
 
-  categorySecondLvl: any = [];
-  categoryThirdLvl: any = [];
+  categorySecondLvl: CategoryTree = {} as CategoryTree;
+  categoryThirdLvl: CategoryTree = {} as CategoryTree;
 
   panels = [
     {
@@ -884,12 +422,23 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
+  /**
+   *
+   */
+  categoryTree$!: Observable<CategoryTree[]>;
+
+  /**
+   *
+   */
+  activeParentCategory!: number;
+
   constructor(
     private fb: FormBuilder,
     private $jwtHelper: JwtHelperService,
     private $store: Store,
     private router: Router,
     private route: ActivatedRoute,
+    private $category: CategoryService,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
@@ -909,6 +458,62 @@ export class HeaderComponent implements OnInit {
     this.azDrawerWidthValue = this.azDrawerWidth();
     this.azDrawerWidthValueCatalog = this.azDrawerWidthCatalog();
     this.drawerOffsetValue = this.azDrawerOffsetCatalog();
+
+    this.getCategories();
+  }
+
+  /**
+   *
+   */
+  getCategories() {
+    this.categoryTree$ = this.$category.getAllAsTree().pipe(
+      map((categories) => {
+        if (categories.length) {
+          this.makeSequence(categories);
+        }
+
+        return categories;
+      })
+    );
+  }
+
+  /**
+   *
+   * @param categories
+   * @param previousSequence
+   */
+  private makeSequence(categories: CategoryTree[], previousSequence = '') {
+    categories.forEach((category) => {
+      category.sequence = previousSequence + category.id;
+      if (category.child_categories?.length) {
+        this.makeSequence(
+          category.child_categories,
+          category.sequence + AdvertisementConstants.SPLITTER_CATEGORY_ID
+        );
+      }
+    });
+  }
+
+  /**
+   *
+   * @param sequence
+   */
+  navigateByCategory(sequence: string) {
+    this.isOpened = false;
+    this.visible = false;
+    this.router.navigate([
+      prefixPath,
+      Constants.DEFAULT_LANGUAGE_CODE,
+      AdvertisementConstants.ROUTER_PATH_ADVERTISEMENTS,
+      sequence,
+    ]);
+  }
+
+  /**
+   *
+   */
+  openCategories(): void {
+    this.visible = true;
   }
 
   submit() {
@@ -921,10 +526,6 @@ export class HeaderComponent implements OnInit {
 
   change(value: boolean): void {
     console.log(value);
-  }
-
-  open(): void {
-    this.visible = true;
   }
 
   close(): void {
@@ -940,20 +541,18 @@ export class HeaderComponent implements OnInit {
     this.azVisible = false;
   }
 
-  openSubmenu(id: any) {
+  openSubmenu(id: number) {
     this.isOpened = true;
-    this.activeLink = id;
+    this.activeParentCategory = id;
   }
 
   closed() {
     this.isOpened = false;
   }
 
-  getChild(id: any) {
+  getChild(category: CategoryTree) {
     this.isOpened = true;
-    this.categoryChilds = this.categories.filter(
-      (e) => e.id === id
-    )[0].categories;
+    this.categoryChilds = category.child_categories;
   }
 
   getCities(id: any) {
@@ -1091,10 +690,10 @@ export class HeaderComponent implements OnInit {
       .setValue(value === 'male' ? 'Hi, man!' : 'Hi, lady!');
   }
 
-  openDrawerCatalogSubmenu(id: number) {
-    console.log(id);
+  openDrawerCatalogSubmenu(category: CategoryTree) {
+    console.log(category);
     this.visibleCatalogDrawerSecondLvl = true;
-    this.categorySecondLvl = this.categories.filter((e) => e.id === id)[0];
+    this.categorySecondLvl = category;
     console.log(this.categorySecondLvl);
   }
 
@@ -1102,7 +701,7 @@ export class HeaderComponent implements OnInit {
     this.visibleCatalogDrawerSecondLvl = false;
   }
 
-  openDrawerCatalogThirdLvl(subcategory: []) {
+  openDrawerCatalogThirdLvl(subcategory: CategoryTree) {
     this.categoryThirdLvl = subcategory;
     this.visibleCatalogDrawerThirdLvl = true;
     console.log(this.categoryThirdLvl);

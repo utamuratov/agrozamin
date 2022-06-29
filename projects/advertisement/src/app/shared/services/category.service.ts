@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from 'ngx-az-core';
 import { map, Observable } from 'rxjs';
 import { CategoryForBreadcrumb } from '../models/category-for-breadcrumb.interface';
+import { CategoryTree } from '../models/category-tree.interface';
 import { Category } from '../models/category.interface';
 
 @Injectable({
@@ -11,6 +12,9 @@ import { Category } from '../models/category.interface';
 export class CategoryService {
   constructor(private $base: BaseService) {}
 
+  /**
+   *
+   */
   getAll(categoryId?: number) {
     if (categoryId) {
       return this.$base
@@ -26,6 +30,11 @@ export class CategoryService {
       .pipe(map((result) => result.data));
   }
 
+  /**
+   *
+   * @param categorySequence
+   * @returns
+   */
   getCategoriesByCategorySequence(
     categorySequence: string
   ): Observable<CategoryForBreadcrumb[]> {
@@ -35,5 +44,15 @@ export class CategoryService {
         new HttpParams().set('categories', categorySequence)
       )
       .pipe(map((result) => result.data.categories));
+  }
+
+  /**
+   *
+   * @returns
+   */
+  getAllAsTree() {
+    return this.$base
+      .get<CategoryTree[]>('category/tree')
+      .pipe(map((w) => w.data));
   }
 }

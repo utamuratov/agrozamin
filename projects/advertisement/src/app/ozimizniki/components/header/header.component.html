@@ -358,7 +358,7 @@
             nz-button
             nzType="primary"
             nzSize="large"
-            (click)="open()"
+            (click)="openCategories()"
             nzBlock
           >
             <i><img src="./assets/images/catalog.svg" alt="icon" /></i>
@@ -579,13 +579,14 @@
           <ul class="menu__list">
             <li
               class="menu__item"
-              *ngFor="let category of categories"
-              (mouseenter)="getChild(category.id)"
+              *ngFor="let category of categoryTree$ | async"
+              (mouseenter)="getChild(category)"
             >
               <a
                 class="menu__link"
+                (click)="navigateByCategory(category.sequence)"
                 (mouseenter)="openSubmenu(category.id)"
-                [ngClass]="activeLink === category.id ? 'active' : ''"
+                [ngClass]="{ active: activeParentCategory === category.id }"
               >
                 <img width="30" height="25" [src]="category.icon" alt="icon" />
                 <span class="menu__link-text">{{ category.name }}</span>
@@ -605,15 +606,19 @@
                 >
                   <ul>
                     <li>
-                      <a class="submenu__title" href="">{{
-                        subcategory.name
-                      }}</a>
+                      <a
+                        class="submenu__title"
+                        (click)="navigateByCategory(subcategory.sequence)"
+                        >{{ subcategory.name }}</a
+                      >
                       <ul class="submenu__list">
                         <li
                           class="submenu__item"
-                          *ngFor="let child of subcategory.categories"
+                          *ngFor="let child of subcategory.child_categories"
                         >
-                          <a href="" class="submenu__link"
+                          <a
+                            (click)="navigateByCategory(child.sequence)"
+                            class="submenu__link"
                             ><span>{{ child.name }}</span></a
                           >
                         </li>
@@ -1280,9 +1285,9 @@
             <ul class="menu__list">
               <li
                 class="menu__item"
-                *ngFor="let category of categories"
-                (click)="openDrawerCatalogSubmenu(category.id)"
-                [ngClass]="activeLink === category.id ? 'active' : ''"
+                *ngFor="let category of categoryTree$ | async"
+                (click)="openDrawerCatalogSubmenu(category)"
+                [ngClass]="{ active: activeParentCategory === category.id }"
               >
                 <a class="menu__link">
                   <img
@@ -1338,7 +1343,7 @@
                 nz-col
                 nzSpan="24"
                 class="catalog-draw__category__list"
-                *ngFor="let secondLvl of categorySecondLvl.categories"
+                *ngFor="let secondLvl of categorySecondLvl.child_categories"
                 (click)="openDrawerCatalogThirdLvl(secondLvl)"
               >
                 <span class="catalog-draw__category__secondLvl">{{
@@ -1384,7 +1389,7 @@
                 nz-col
                 nzSpan="24"
                 class="catalog-draw__category__list thirdLvl"
-                *ngFor="let thirdLvl of categoryThirdLvl.categories"
+                *ngFor="let thirdLvl of categoryThirdLvl.child_categories"
               >
                 <a class="catalog-draw__category__thirdLvl">{{
                   thirdLvl.name
