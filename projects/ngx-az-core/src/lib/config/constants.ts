@@ -79,4 +79,5 @@ export class Constants {
   public static readonly AGRO_ZAMIN_ROUTE_PATH = 'main';
   static readonly ADVERTISEMENT_ROUTE_PATH = 'advertisement';
   static readonly ONLINE_CONSULTANT_ROUTE_PATH = 'online-consultant';
+  static readonly AGRO_PAY_ROUTE_PATH = 'agro-pay';
 }
