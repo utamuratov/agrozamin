@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { District } from '../../dto/district.interface';
 import { Location } from '../../dto/location.interface';
 import { Region } from '../../dto/region.interface';
+import { Constants } from '../../../../config/constants';
 
 @Component({
   selector: 'az-location',
@@ -29,7 +30,8 @@ export class LocationComponent implements OnInit {
   /**
    *
    */
-  coordinates!: NzSafeAny;
+  coordinates: { latitude: number; longitude: number } =
+    Constants.DEFAULT_LOCATION;
 
   /**
    *
@@ -72,7 +74,11 @@ export class LocationComponent implements OnInit {
         };
         const locationForEditing: Location | null | undefined =
           this.form.value['location'];
-        if (locationForEditing) {
+        if (
+          locationForEditing &&
+          locationForEditing.ln &&
+          locationForEditing.lt
+        ) {
           this.coordinates.longitude = locationForEditing.ln;
           this.coordinates.latitude = locationForEditing.lt;
         } else {

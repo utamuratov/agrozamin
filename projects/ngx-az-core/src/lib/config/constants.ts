@@ -28,6 +28,10 @@ export class Constants {
       short_name: 'Uzb',
     },
   ];
+  public static readonly DEFAULT_LOCATION = {
+    latitude: 41.287625,
+    longitude: 69.2281415,
+  };
 
   /**
    * FORM CONTROL NAMES

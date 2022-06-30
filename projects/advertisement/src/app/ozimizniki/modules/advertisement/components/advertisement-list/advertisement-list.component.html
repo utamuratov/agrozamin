@@ -4,6 +4,7 @@
       <az-advertisement-list-header
         [(isInline)]="isInlineCard"
         [filters]="filters"
+        [advertisements]="data.data"
         (sortedByPriceDescandingChange)="sortByPriceDescanding($event)"
         (sortedByDateDescandingChange)="sortByDateDescanding($event)"
       ></az-advertisement-list-header>

@@ -188,15 +188,27 @@
 
     <div nz-col nzSpan="24" *ngIf="isMapActive">
       <div class="map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.889878402136!2d69.21233362690937!3d41.28830278568446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8a4b03ec22ab%3A0x414bc29a14aa377f!2z0JDQs9GA0L7QsdCw0L3QuiDQkNCi0JE!5e0!3m2!1sru!2s!4v1654498555506!5m2!1sru!2s"
-          width="100%"
-          height="100%"
-          style="border: 0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+        <ya-map
+          [zoom]="12"
+          [center]="[coordinates.latitude, coordinates.longitude]"
+        >
+          <ya-placemark
+            *ngFor="let advertisement of advertisements"
+            [geometry]="[
+              advertisement.location?.lt,
+              advertisement.location?.ln
+            ]"
+            [properties]="{
+              balloonContent:
+                '<div><img src=\'' +
+                advertisement.file +
+                '\' width=\'100px\' />' +
+                advertisement.name +
+                '</div> <button style=\'color: red\'>Смотреть объявление</button>'
+            }"
+          >
+          </ya-placemark>
+        </ya-map>
       </div>
     </div>
   </div>
