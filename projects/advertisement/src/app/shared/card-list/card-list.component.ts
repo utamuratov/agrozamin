@@ -24,5 +24,5 @@ export class CardListComponent {
    *
    */
   @Input()
-  isLoaded = false;
+  isLoaded = true;
 }

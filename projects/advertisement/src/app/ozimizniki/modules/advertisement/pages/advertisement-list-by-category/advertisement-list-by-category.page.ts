@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Breadcrumb, Filter } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
+import { ParamAndQuery } from '../../dto/param-and-query.interface';
 
 @Component({
   templateUrl: './advertisement-list-by-category.page.html',
@@ -12,12 +13,7 @@ export class AdvertisementListByCategoryPage extends Breadcrumb {
   /**
    *
    */
-  categoryId!: number;
-
-  /**
-   *
-   */
-  queryParams!: Params;
+  filter: ParamAndQuery = {} as ParamAndQuery;
 
   /**
    *
@@ -46,10 +42,13 @@ export class AdvertisementListByCategoryPage extends Breadcrumb {
       const categoryIds = this.categorySequence.split(
         AdvertisementConstants.SPLITTER_CATEGORY_ID
       );
-      this.categoryId = +categoryIds[categoryIds.length - 1];
+      this.filter = {
+        ...this.filter,
+        categoryId: +categoryIds[categoryIds.length - 1],
+      };
     });
     this.route.queryParams.subscribe((queryParams) => {
-      this.queryParams = queryParams;
+      this.filter = { ...this.filter, queryParams };
     });
   }
 

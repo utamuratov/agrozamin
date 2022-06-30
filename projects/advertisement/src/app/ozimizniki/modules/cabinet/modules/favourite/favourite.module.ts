@@ -16,6 +16,7 @@ import { PaginationModule } from 'projects/advertisement/src/app/shared/paginati
 import { SortModule } from 'projects/advertisement/src/app/shared/sort/sort.module';
 import { CardListModule } from 'projects/advertisement/src/app/shared/card-list/card-list.module';
 import { AdvertisementListHeaderModule } from 'projects/advertisement/src/app/shared/advertisement-list-header/advertisement-list-header.module';
+import { GridModule } from 'projects/advertisement/src/app/shared/grid/grid.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { AdvertisementListHeaderModule } from 'projects/advertisement/src/app/sh
 
     SharedModule,
     PaginationModule,
-    CardListModule,
+    GridModule,
     SortModule,
     AdvertisementListHeaderModule,
 

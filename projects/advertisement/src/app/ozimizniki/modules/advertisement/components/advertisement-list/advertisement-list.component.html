@@ -21,20 +21,14 @@
       </button>
     </div>
 
-    <az-card-list
-      [data]="data.data"
+    <az-grid
+      [data]="data"
       [isLoaded]="isLoaded"
       [isInlineCard]="isInlineCard"
-    ></az-card-list>
-
-    <div nz-col nzSpan="24">
-      <az-pagination
-        [pageSize]="pageSize"
-        [total]="data.total"
-        [pageIndex]="query.pageIndex"
-        (pageIndexChange)="paginate($event)"
-      ></az-pagination>
-    </div>
+      [query]="query"
+      [pageSize]="pageSize"
+      (pageIndexChange)="paginate($event)"
+    ></az-grid>
   </div>
 </div>
 
@@ -79,7 +73,7 @@
       <div class="drawer__content">
         <az-category-filter
           *ngIf="visibleFilter"
-          [categoryId]="categoryId"
+          [categoryId]="filter?.categoryId"
         ></az-category-filter>
       </div>
     </div>

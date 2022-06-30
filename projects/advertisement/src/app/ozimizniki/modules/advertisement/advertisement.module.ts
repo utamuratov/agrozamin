@@ -43,7 +43,7 @@ import { NoImageModule } from '../../../shared/no-image/no-image.module';
 import { ValueByInputTypeModule } from '../../../shared/value-by-input-type/value-by-input-type.module';
 import { SortModule } from '../../../shared/sort/sort.module';
 import { AdvertisementListHeaderModule } from '../../../shared/advertisement-list-header/advertisement-list-header.module';
-import { CardListModule } from '../../../shared/card-list/card-list.module';
+import { GridModule } from '../../../shared/grid/grid.module';
 
 @NgModule({
   imports: [
@@ -57,7 +57,7 @@ import { CardListModule } from '../../../shared/card-list/card-list.module';
     SharedModule,
     PaginationModule,
     CardModule,
-    CardListModule,
+    GridModule,
     SkeletonModule,
     CurrencyModule,
     TagModule,
