@@ -237,7 +237,9 @@
                           <span class="contact-person__text"
                             >{{'seller' | translate}}:</span
                           >
-                          <a class="contact-person__name"
+                          <a
+                            class="contact-person__name"
+                            (click)="navigateToSeller(data.created_by.id)"
                             >{{data.created_by.full_name}}</a
                           >
                           <span

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AdvertisementRoutes } from './advertisement.routing';
 /* NG-ZORRO */
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
@@ -13,9 +13,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
-import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { SimilarItemsComponent } from './components/similar-items/similar-items.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
@@ -50,7 +48,6 @@ import { GridModule } from '../../../shared/grid/grid.module';
     AdvertisementRoutes,
 
     FormsModule,
-    ReactiveFormsModule,
     AngularYandexMapsModule,
     YouTubePlayerModule,
 
@@ -68,7 +65,6 @@ import { GridModule } from '../../../shared/grid/grid.module';
     SortModule,
     AdvertisementListHeaderModule,
 
-    // TODO: REMOVE UNUSED MODULES
     /* NG-ZORRO */
     NzTypographyModule,
     NzGridModule,
@@ -80,9 +76,7 @@ import { GridModule } from '../../../shared/grid/grid.module';
     NzButtonModule,
     NzCheckboxModule,
     NzCarouselModule,
-    NzRateModule,
     NzTabsModule,
-    NzDividerModule,
     NzPopoverModule,
     NzDropDownModule,
     NzDrawerModule,

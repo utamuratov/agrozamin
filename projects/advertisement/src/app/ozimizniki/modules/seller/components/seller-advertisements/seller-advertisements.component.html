@@ -79,6 +79,19 @@
                   ></az-advertisement-list-header>
                 </div>
 
+                <div nz-col nzXs="24" nzSm="0" nzMd="0" nzLg="0" nzXl="0">
+                  <button
+                    nz-button
+                    nzBlock
+                    nzSize="large"
+                    class="filter__btn"
+                    (click)="openCategoryDrawer()"
+                  >
+                    <i nz-icon nzType="filter" nzTheme="outline"></i>
+                    <span>Категории продавца</span>
+                  </button>
+                </div>
+
                 <!-- GRID -->
                 <az-grid
                   [data]="data"
@@ -93,9 +106,9 @@
 
             <nz-drawer
               [nzClosable]="false"
-              [nzVisible]="visible"
+              [nzVisible]="visibleCategoryDrawer"
               nzPlacement="right"
-              (nzOnClose)="close()"
+              (nzOnClose)="closeCategoryDrawer()"
               nzWidth="100%"
             >
               <ng-container *nzDrawerContent>
@@ -103,7 +116,11 @@
                   <div class="drawer__header">
                     <div nz-row [nzGutter]="[0, 25]">
                       <div nz-col nzSpan="24" class="text-end">
-                        <button nz-button nzSize="large" (click)="close()">
+                        <button
+                          nz-button
+                          nzSize="large"
+                          (click)="closeCategoryDrawer()"
+                        >
                           <i nz-icon nzType="close" nzTheme="outline"></i>
                         </button>
                       </div>
@@ -112,7 +129,7 @@
                           nz-button
                           nzType="link"
                           nzSize="large"
-                          (click)="close()"
+                          (click)="closeCategoryDrawer()"
                           class="drawer__title"
                         >
                           <i
@@ -123,15 +140,15 @@
                           ></i>
                           <span>
                             <i nz-icon nzType="filter" nzTheme="outline"></i>
-                            <span class="drawer__title_text">Фильтр</span>
+                            <span class="drawer__title_text"
+                              >Категории продавца</span
+                            >
                           </span>
                         </a>
                       </div>
                     </div>
                   </div>
-                  <div class="drawer__content">
-                    <az-filter [categoryId]="4"></az-filter>
-                  </div>
+                  <div class="drawer__content">Content</div>
                 </div>
               </ng-container>
             </nz-drawer>

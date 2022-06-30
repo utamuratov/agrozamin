@@ -23,11 +23,11 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'sellers/:sellerId',
+        path: `${AdvertisementConstants.ROUTER_PATH_SELLERS}/:${AdvertisementConstants.ROUTER_PARAM_SELLER_ID}`,
         loadChildren: () =>
-          import(
-            './modules/catalog-members-partner/catalog-members-partner.module'
-          ).then((m) => m.CatalogMembersPartnerModule),
+          import('./modules/seller/seller.module').then(
+            (m) => m.SellerPartnerModule
+          ),
       },
       {
         path: 'cabinet',

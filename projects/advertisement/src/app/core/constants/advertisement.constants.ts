@@ -16,7 +16,9 @@ export class AdvertisementConstants {
   public static readonly SPLITTER_FILTERID_VALUE = ';';
 
   public static readonly ROUTER_PATH_ADVERTISEMENTS = 'advertisements';
+  public static readonly ROUTER_PATH_SELLERS = 'sellers';
   public static readonly ROUTER_PARAM_CATEGORY_ID = 'categoryId';
+  public static readonly ROUTER_PARAM_SELLER_ID = 'sellerId';
   public static readonly ROUTER_PARAM_ADVERTISEMENT_ID = 'advertisementId';
   public static readonly QUERY_PARAM_CHARACTERISTICS = 'characteristics';
 }

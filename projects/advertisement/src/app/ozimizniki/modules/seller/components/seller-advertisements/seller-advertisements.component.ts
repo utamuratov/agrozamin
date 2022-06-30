@@ -1,17 +1,23 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GridQuery } from 'ngx-az-core';
+import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
 import { cat } from '../../../advertisement/pages/advertisement-list-by-category/subcategory';
 import { SellerService } from '../../services/seller.service';
-import { partnerProd } from './partnerData';
 
 @Component({
-  selector: 'az-catalog-partner-posts',
-  templateUrl: './catalog-partner-posts.component.html',
-  styleUrls: ['./catalog-partner-posts.component.less'],
+  selector: 'az-seller-advertisements',
+  templateUrl: './seller-advertisements.component.html',
+  styleUrls: ['./seller-advertisements.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CatalogPartnerPostsComponent extends GridLogic implements OnInit {
+export class SellerAdvertisementsComponent extends GridLogic implements OnInit {
   /**
    *
    */
@@ -22,23 +28,28 @@ export class CatalogPartnerPostsComponent extends GridLogic implements OnInit {
    */
   isInlineCard = false;
 
+  /**
+   *
+   */
+  visibleCategoryDrawer = false;
+
   categories = cat;
   id = 1;
-  isActive = false;
-  partnerProducts = partnerProd;
-  @Input() categoryId!: number;
-  products = partnerProd;
-  cardSizeIndex = 6;
 
-  visible = false;
-
+  /**
+   *
+   * @param $data
+   * @param cd
+   * @param route
+   */
   constructor(
     protected override $data: SellerService,
     protected override cd: ChangeDetectorRef,
     private route: ActivatedRoute
   ) {
     super($data, cd);
-    this.sellerId = this.route.snapshot.params['sellerId'];
+    this.sellerId =
+      this.route.snapshot.params[AdvertisementConstants.ROUTER_PARAM_SELLER_ID];
   }
 
   /**
@@ -59,19 +70,17 @@ export class CatalogPartnerPostsComponent extends GridLogic implements OnInit {
     this.id = id;
   }
 
-  isGrid() {
-    this.isActive = false;
+  /**
+   *
+   */
+  openCategoryDrawer(): void {
+    this.visibleCategoryDrawer = true;
   }
 
-  isList() {
-    this.isActive = true;
-  }
-
-  open(): void {
-    this.visible = true;
-  }
-
-  close(): void {
-    this.visible = false;
+  /**
+   *
+   */
+  closeCategoryDrawer(): void {
+    this.visibleCategoryDrawer = false;
   }
 }
