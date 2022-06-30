@@ -23,7 +23,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'members',
+        path: 'sellers/:sellerId',
         loadChildren: () =>
           import(
             './modules/catalog-members-partner/catalog-members-partner.module'

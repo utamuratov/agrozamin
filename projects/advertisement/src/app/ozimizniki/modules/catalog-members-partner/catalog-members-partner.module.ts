@@ -24,9 +24,9 @@ import { SortByComponent } from './components/sort-by/sort-by.component';
 import { SkletonComponent } from './components/skleton/skleton.component';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { FilterComponent } from './components/filter/filter.component';
-import { PartnerItemComponent } from './components/partner-item/partner-item.component';
 import { TagComponent } from './components/tag/tag.component';
-
+import { AdvertisementListHeaderModule } from '../../../shared/advertisement-list-header/advertisement-list-header.module';
+import { CardListModule } from '../../../shared/card-list/card-list.module';
 
 @NgModule({
   declarations: [
@@ -36,12 +36,14 @@ import { TagComponent } from './components/tag/tag.component';
     SortByComponent,
     SkletonComponent,
     FilterComponent,
-    PartnerItemComponent,
     TagComponent,
   ],
   imports: [
-    CommonModule, 
+    CommonModule,
     CatalogMembersPartnerRoutingModule,
+
+    CardListModule,
+    AdvertisementListHeaderModule,
 
     FormsModule,
     NzIconModule,
@@ -58,7 +60,7 @@ import { TagComponent } from './components/tag/tag.component';
     NzCheckboxModule,
     NzPopoverModule,
     NzSliderModule,
-    NzInputModule
+    NzInputModule,
   ],
 })
 export class CatalogMembersPartnerModule {}

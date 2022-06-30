@@ -13,8 +13,9 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { FormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { PaginationModule } from 'projects/advertisement/src/app/shared/pagination/pagination.module';
-import { CardModule } from 'projects/advertisement/src/app/shared/card/card.module';
 import { SortModule } from 'projects/advertisement/src/app/shared/sort/sort.module';
+import { CardListModule } from 'projects/advertisement/src/app/shared/card-list/card-list.module';
+import { AdvertisementListHeaderModule } from 'projects/advertisement/src/app/shared/advertisement-list-header/advertisement-list-header.module';
 
 @NgModule({
   declarations: [
@@ -29,8 +30,9 @@ import { SortModule } from 'projects/advertisement/src/app/shared/sort/sort.modu
 
     SharedModule,
     PaginationModule,
-    CardModule,
+    CardListModule,
     SortModule,
+    AdvertisementListHeaderModule,
 
     NzGridModule,
     NzDropDownModule,

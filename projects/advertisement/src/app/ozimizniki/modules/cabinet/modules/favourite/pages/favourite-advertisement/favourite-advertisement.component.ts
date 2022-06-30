@@ -63,14 +63,6 @@ export class FavouriteAdvertisementComponent {
   /**
    *
    */
-  private loadDataByInitialQuery() {
-    this.initQuery();
-    this.loadData();
-  }
-
-  /**
-   *
-   */
   loadDataFromServer(query: GridQuery) {
     this.$favourite.getGridData(query).subscribe((result) => {
       if (result.success) {

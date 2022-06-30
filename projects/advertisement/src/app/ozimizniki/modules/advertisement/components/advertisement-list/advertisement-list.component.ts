@@ -11,7 +11,7 @@ import { finalize } from 'rxjs';
 import { Advertisement } from '../../dto/advertisement.interface';
 import { AdvertisementService } from '../../services/advertisement.service';
 
-const DEFAULT_DATA: GridModel<Advertisement> = {
+export const DEFAULT_DATA: GridModel<Advertisement> = {
   current_page: 0,
   data: [
     {} as Advertisement,
