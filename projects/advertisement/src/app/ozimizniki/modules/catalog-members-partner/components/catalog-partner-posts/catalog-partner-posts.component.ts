@@ -1,10 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GridModel, GridQuery } from 'ngx-az-core';
-import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
-import { finalize } from 'rxjs';
-import { DEFAULT_DATA } from '../../../advertisement/components/advertisement-list/advertisement-list.component';
-import { Advertisement } from '../../../advertisement/dto/advertisement.interface';
+import { GridQuery } from 'ngx-az-core';
+import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
 import { cat } from '../../../advertisement/pages/advertisement-list-by-category/subcategory';
 import { SellerService } from '../../services/seller.service';
 import { partnerProd } from './partnerData';
@@ -14,22 +11,7 @@ import { partnerProd } from './partnerData';
   templateUrl: './catalog-partner-posts.component.html',
   styleUrls: ['./catalog-partner-posts.component.less'],
 })
-export class CatalogPartnerPostsComponent implements OnInit {
-  /**
-   *
-   */
-  data!: GridModel<Advertisement>;
-
-  /**
-   *
-   */
-  pageSize = AdvertisementConstants.PAGINATION_PAGE_SIZE;
-
-  /**
-   *
-   */
-  query!: GridQuery;
-
+export class CatalogPartnerPostsComponent extends GridLogic implements OnInit {
   /**
    *
    */
@@ -39,11 +21,6 @@ export class CatalogPartnerPostsComponent implements OnInit {
    *
    */
   isInlineCard = false;
-
-  /**
-   *
-   */
-  isLoaded = false;
 
   categories = cat;
   id = 1;
@@ -56,107 +33,26 @@ export class CatalogPartnerPostsComponent implements OnInit {
   visible = false;
 
   constructor(
-    private $seller: SellerService,
-    private cd: ChangeDetectorRef,
+    protected override $data: SellerService,
+    protected override cd: ChangeDetectorRef,
     private route: ActivatedRoute
   ) {
+    super($data, cd);
     this.sellerId = this.route.snapshot.params['sellerId'];
-    this.initQuery();
-    this.setDefaultData();
   }
 
   /**
    *
    */
-  private initQuery() {
-    this.query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
-    this.query.filter = this.getQueryFilter();
-  }
-
-  /**
-   *
-   * @returns
-   */
-  private getQueryFilter() {
-    return [
-      // {
-      //   key: AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS,
-      //   value: [this.characteristics || ''],
-      // },
-      // { key: 'category_id', value: [String(this.categoryId || '')] },
-    ];
+  override loadDataFromServer(query: GridQuery) {
+    super.loadDataFromServer(query, `user/announcement/${this.sellerId}`);
   }
 
   /**
    *
    */
-  private loadDataByInitialQuery() {
-    this.initQuery();
-    this.loadData();
-  }
-
-  /**
-   *
-   */
-  private setDefaultData() {
-    this.isLoaded = false;
-    this.data = DEFAULT_DATA;
-  }
-
-  /**
-   *
-   */
-  loadDataFromServer(query: GridQuery) {
-    this.$seller
-      .getGridData(query, `user/announcement/${this.sellerId}`)
-      .pipe(finalize(() => (this.isLoaded = true)))
-      .subscribe((result) => {
-        if (result.success) {
-          this.data = {
-            ...result.data,
-            data: result.data.data,
-          };
-          this.cd.markForCheck();
-        }
-      });
-  }
-
-  /**
-   *
-   */
-  paginate(pageIndex = AdvertisementConstants.DEFAULT_PAGE_INDEX) {
-    this.query.pageIndex = pageIndex;
-    this.loadData();
-  }
-
-  /**
-   *
-   */
-  private loadData() {
-    this.setDefaultData();
-    this.loadDataFromServer(this.query);
-  }
-
-  /**
-   *
-   */
-  sortByPriceDescanding(byDescanding: boolean) {
-    this.query.sortField = 'price';
-    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
-    this.loadData();
-  }
-
-  /**
-   *
-   */
-  sortByDateDescanding(byDescanding: boolean) {
-    this.query.sortField = 'created_at';
-    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
-    this.loadData();
-  }
-
   ngOnInit(): void {
-    this.loadDataByInitialQuery();
+    this.onInit();
   }
 
   handleCategory(id: number) {

@@ -7,20 +7,12 @@
     ></az-advertisement-list-header>
   </div>
 
-  <ng-container *ngIf="data">
-    <az-card-list
-      [data]="data.data"
-      [isLoaded]="true"
-      [isInlineCard]="isInlineCard"
-    ></az-card-list>
-
-    <div nz-col nzSpan="24">
-      <az-pagination
-        [pageSize]="pageSize"
-        [total]="data.total"
-        [pageIndex]="query.pageIndex"
-        (pageIndexChange)="paginate($event)"
-      ></az-pagination>
-    </div>
-  </ng-container>
+  <az-grid
+    [data]="data"
+    [isLoaded]="isLoaded"
+    [isInlineCard]="isInlineCard"
+    [query]="query"
+    [pageSize]="pageSize"
+    (pageIndexChange)="paginate($event)"
+  ></az-grid>
 </div>

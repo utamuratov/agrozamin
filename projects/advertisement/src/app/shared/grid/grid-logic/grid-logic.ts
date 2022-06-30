@@ -1,0 +1,159 @@
+import { KeyValue } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
+import { GridModel, GridQuery, GridService } from 'ngx-az-core';
+import { finalize } from 'rxjs';
+import { AdvertisementConstants } from '../../../core/constants/advertisement.constants';
+import { Advertisement } from '../../../ozimizniki/modules/advertisement/dto/advertisement.interface';
+
+export class GridLogic<TData = Advertisement> {
+  /**
+   *
+   */
+  get DEFAULT_DATA(): GridModel<TData> {
+    const data = [];
+    for (
+      let index = 0;
+      index < AdvertisementConstants.PAGINATION_PAGE_SIZE;
+      index++
+    ) {
+      data.push({} as TData);
+    }
+    return {
+      current_page: 0,
+      data,
+      per_page: AdvertisementConstants.PAGINATION_PAGE_SIZE,
+      total: AdvertisementConstants.PAGINATION_PAGE_SIZE,
+    };
+  }
+
+  /**
+   *
+   */
+  data!: GridModel<TData>;
+
+  /**
+   *
+   */
+  pageSize = AdvertisementConstants.PAGINATION_PAGE_SIZE;
+
+  /**
+   *
+   */
+  query!: GridQuery;
+
+  /**
+   *
+   */
+  isLoaded = true;
+
+  /**
+   *
+   * @param $data
+   * @param cd
+   */
+  constructor(
+    protected $data: GridService<TData>,
+    protected cd: ChangeDetectorRef
+  ) {
+    this.init();
+  }
+
+  /**
+   *
+   */
+  protected init() {
+    this.initQuery();
+    this.setDefaultData();
+  }
+
+  /**
+   *
+   */
+  protected initQuery() {
+    this.query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
+    this.query.filter = this.getQueryFilter();
+  }
+
+  /**
+   *
+   * @returns
+   */
+  protected getQueryFilter(): KeyValue<string, string[]>[] {
+    return [];
+  }
+
+  /**
+   *
+   */
+  protected loadDataByInitialQuery() {
+    this.initQuery();
+    this.loadData();
+  }
+
+  /**
+   *
+   */
+  private setDefaultData() {
+    this.isLoaded = false;
+    this.data = this.DEFAULT_DATA;
+  }
+
+  /**
+   *
+   */
+  protected loadDataFromServer(query: GridQuery, url?: string) {
+    this.$data
+      .getGridData(query, url)
+      .pipe(finalize(() => (this.isLoaded = true)))
+      .subscribe((result) => {
+        if (result.success) {
+          this.data = {
+            ...result.data,
+            data: result.data.data,
+          };
+          this.cd.markForCheck();
+        }
+      });
+  }
+
+  /**
+   *
+   */
+  protected loadData() {
+    this.setDefaultData();
+    this.loadDataFromServer(this.query);
+  }
+
+  /**
+   *
+   */
+  onInit() {
+    this.loadDataByInitialQuery();
+  }
+
+  /**
+   *
+   */
+  sortByPriceDescanding(byDescanding: boolean) {
+    this.query.sortField = 'price';
+    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
+    this.loadData();
+  }
+
+  /**
+   *
+   */
+  sortByDateDescanding(byDescanding: boolean) {
+    this.query.sortField = 'created_at';
+    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
+    this.loadData();
+  }
+
+  /**
+   *
+   */
+  paginate(pageIndex = AdvertisementConstants.DEFAULT_PAGE_INDEX) {
+    this.query.pageIndex = pageIndex;
+    this.loadData();
+  }
+}

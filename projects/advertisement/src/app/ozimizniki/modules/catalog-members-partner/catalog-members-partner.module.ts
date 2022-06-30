@@ -26,7 +26,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { FilterComponent } from './components/filter/filter.component';
 import { TagComponent } from './components/tag/tag.component';
 import { AdvertisementListHeaderModule } from '../../../shared/advertisement-list-header/advertisement-list-header.module';
-import { CardListModule } from '../../../shared/card-list/card-list.module';
+import { GridModule } from '../../../shared/grid/grid.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { CardListModule } from '../../../shared/card-list/card-list.module';
     CommonModule,
     CatalogMembersPartnerRoutingModule,
 
-    CardListModule,
+    GridModule,
     AdvertisementListHeaderModule,
 
     FormsModule,

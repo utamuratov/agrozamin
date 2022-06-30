@@ -4,108 +4,47 @@ import {
   Component,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GridModel, GridQuery } from 'ngx-az-core';
-import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
+import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
 import { FavouriteService } from 'projects/advertisement/src/app/shared/services/favourite.service';
-import { Advertisement } from '../../../../../advertisement/dto/advertisement.interface';
 
 @Component({
   templateUrl: './favourite-advertisement.component.html',
   styleUrls: ['./favourite-advertisement.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FavouriteAdvertisementComponent {
-  /**
-   *
-   */
-  data!: GridModel<Advertisement>;
-
-  /**
-   *
-   */
-  pageSize = AdvertisementConstants.PAGINATION_PAGE_SIZE;
-
-  /**
-   *
-   */
-  query!: GridQuery;
-
+export class FavouriteAdvertisementComponent extends GridLogic {
   /**
    *
    */
   isInlineCard = true;
 
+  /**
+   *
+   * @param $data
+   * @param cd
+   * @param route
+   */
   constructor(
-    private route: ActivatedRoute,
-    private $favourite: FavouriteService,
-    private cd: ChangeDetectorRef
+    protected override $data: FavouriteService,
+    protected override cd: ChangeDetectorRef,
+    private route: ActivatedRoute
   ) {
-    this.initQuery();
+    super($data, cd);
     this.data = this.route.snapshot.data['advertisements'];
   }
 
   /**
    *
    */
-  private initQuery() {
-    this.query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
-    this.query.filter = this.getQueryFilter();
-  }
-
-  /**
-   *
-   * @returns
-   */
-  private getQueryFilter() {
-    return [];
+  protected override init(): void {
+    this.initQuery();
   }
 
   /**
    *
    */
-  loadDataFromServer(query: GridQuery) {
-    this.$favourite.getGridData(query).subscribe((result) => {
-      if (result.success) {
-        this.data = {
-          ...result.data,
-          data: result.data.data,
-        };
-        this.cd.markForCheck();
-      }
-    });
-  }
-
-  /**
-   *
-   */
-  paginate(pageIndex = AdvertisementConstants.DEFAULT_PAGE_INDEX) {
-    this.query.pageIndex = pageIndex;
-    this.loadData();
-  }
-
-  /**
-   *
-   */
-  private loadData() {
+  override loadData() {
     this.loadDataFromServer(this.query);
-  }
-
-  /**
-   *
-   */
-  sortByPriceDescanding(byDescanding: boolean) {
-    this.query.sortField = 'price';
-    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
-    this.loadData();
-  }
-
-  /**
-   *
-   */
-  sortByDateDescanding(byDescanding: boolean) {
-    this.query.sortField = 'created_at';
-    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
-    this.loadData();
   }
 
   /**

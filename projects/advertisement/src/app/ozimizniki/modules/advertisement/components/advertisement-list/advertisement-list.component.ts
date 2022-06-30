@@ -5,31 +5,11 @@ import {
   Input,
 } from '@angular/core';
 import { Params } from '@angular/router';
-import { Filter, GridModel, GridQuery } from 'ngx-az-core';
+import { Filter } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
-import { finalize } from 'rxjs';
-import { Advertisement } from '../../dto/advertisement.interface';
+import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
+import { ParamAndQuery } from '../../dto/param-and-query.interface';
 import { AdvertisementService } from '../../services/advertisement.service';
-
-export const DEFAULT_DATA: GridModel<Advertisement> = {
-  current_page: 0,
-  data: [
-    {} as Advertisement,
-    {} as Advertisement,
-    {} as Advertisement,
-    {} as Advertisement,
-    {} as Advertisement,
-    {} as Advertisement,
-    {} as Advertisement,
-    {} as Advertisement,
-    {} as Advertisement,
-    {} as Advertisement,
-    {} as Advertisement,
-    {} as Advertisement,
-  ],
-  per_page: AdvertisementConstants.PAGINATION_PAGE_SIZE,
-  total: AdvertisementConstants.PAGINATION_PAGE_SIZE,
-};
 
 @Component({
   selector: 'az-advertisement-list',
@@ -37,7 +17,7 @@ export const DEFAULT_DATA: GridModel<Advertisement> = {
   styleUrls: ['./advertisement-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvertisementListComponent {
+export class AdvertisementListComponent extends GridLogic {
   /**
    *
    */
@@ -47,62 +27,63 @@ export class AdvertisementListComponent {
   /**
    *
    */
-  private _queryParams!: Params;
-  public get queryParams(): Params {
-    return this._queryParams;
-  }
-  @Input()
-  public set queryParams(params: Params | undefined) {
-    if (
-      params &&
-      params[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS] !== undefined
-    ) {
-      this._queryParams = params;
-      this.characteristics =
-        this.queryParams[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS];
-      this.loadDataByInitialQuery();
-    }
-  }
 
-  /**
-   *
-   */
-  private _categoryId!: number;
-  public get categoryId(): number {
-    return this._categoryId;
+  private _filter?: ParamAndQuery;
+  public get filter(): ParamAndQuery | undefined {
+    return this._filter;
   }
   @Input()
-  public set categoryId(v: number | undefined) {
-    if (v) {
-      this._categoryId = v;
+  public set filter(v: ParamAndQuery | undefined) {
+    this._filter = v;
+
+    const characteristics =
+      v?.queryParams[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS];
+    if (characteristics !== undefined) {
+      this.characteristics = characteristics;
     }
+
     this.loadDataByInitialQuery();
   }
+
+  // /**
+  //  *
+  //  */
+  // private _queryParams!: Params;
+  // public get queryParams(): Params {
+  //   return this._queryParams;
+  // }
+  // @Input()
+  // public set queryParams(params: Params | undefined) {
+  //   if (
+  //     params &&
+  //     params[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS] !== undefined
+  //   ) {
+  //     this._queryParams = params;
+  //     this.characteristics =
+  //       this.queryParams[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS];
+  //     this.loadDataByInitialQuery();
+  //   }
+  // }
+
+  // /**
+  //  *
+  //  */
+  // private _categoryId!: number;
+  // public get categoryId(): number {
+  //   return this._categoryId;
+  // }
+  // @Input()
+  // public set categoryId(v: number | undefined) {
+  //   if (v) {
+  //     this._categoryId = v;
+  //   }
+  //   this.loadDataByInitialQuery();
+  // }
 
   /**
    *
    */
   characteristics!: string;
-
-  /**
-   *
-   */
-  data!: GridModel<Advertisement>;
-
-  /**
-   *
-   */
-  pageSize = AdvertisementConstants.PAGINATION_PAGE_SIZE;
-
-  /**
-   *
-   */
-  query!: GridQuery;
-
-  /**
-   *
-   */
-  isLoaded!: boolean;
 
   /**
    *
@@ -121,101 +102,24 @@ export class AdvertisementListComponent {
    * @param $advertisement
    */
   constructor(
-    private cd: ChangeDetectorRef,
-    private $advertisement: AdvertisementService
+    protected override $data: AdvertisementService,
+    protected override cd: ChangeDetectorRef
   ) {
-    this.initQuery();
-    this.setDefaultData();
-  }
-
-  /**
-   *
-   */
-  private initQuery() {
-    this.query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
-    this.query.filter = this.getQueryFilter();
+    super($data, cd);
   }
 
   /**
    *
    * @returns
    */
-  private getQueryFilter() {
+  override getQueryFilter() {
     return [
       {
         key: AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS,
         value: [this.characteristics || ''],
       },
-      { key: 'category_id', value: [String(this.categoryId || '')] },
+      { key: 'category_id', value: [String(this.filter?.categoryId || '')] },
     ];
-  }
-
-  /**
-   *
-   */
-  private loadDataByInitialQuery() {
-    this.initQuery();
-    this.loadData();
-  }
-
-  /**
-   *
-   */
-  private setDefaultData() {
-    this.isLoaded = false;
-    this.data = DEFAULT_DATA;
-  }
-
-  /**
-   *
-   */
-  loadDataFromServer(query: GridQuery) {
-    this.$advertisement
-      .getGridData(query)
-      .pipe(finalize(() => (this.isLoaded = true)))
-      .subscribe((result) => {
-        if (result.success) {
-          this.data = {
-            ...result.data,
-            data: result.data.data,
-          };
-          this.cd.markForCheck();
-        }
-      });
-  }
-
-  /**
-   *
-   */
-  paginate(pageIndex = AdvertisementConstants.DEFAULT_PAGE_INDEX) {
-    this.query.pageIndex = pageIndex;
-    this.loadData();
-  }
-
-  /**
-   *
-   */
-  private loadData() {
-    this.setDefaultData();
-    this.loadDataFromServer(this.query);
-  }
-
-  /**
-   *
-   */
-  sortByPriceDescanding(byDescanding: boolean) {
-    this.query.sortField = 'price';
-    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
-    this.loadData();
-  }
-
-  /**
-   *
-   */
-  sortByDateDescanding(byDescanding: boolean) {
-    this.query.sortField = 'created_at';
-    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
-    this.loadData();
   }
 
   /**
