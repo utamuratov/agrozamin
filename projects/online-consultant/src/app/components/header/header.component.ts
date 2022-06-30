@@ -1,6 +1,6 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit,} from '@angular/core';
-import { NzTabPosition } from 'ng-zorro-antd/tabs';
+import { state, style, trigger } from '@angular/animations';
+import { Component, OnInit, TemplateRef,} from '@angular/core';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'az-header',
@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   burgerState = false
   drawerState = 'none'
   location = false
+  play = false
 
   toggle = true;
 
@@ -41,7 +42,8 @@ export class HeaderComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(private notification: NzNotificationService) {
+   }
 
   ngOnInit() {
   }
@@ -62,5 +64,17 @@ export class HeaderComponent implements OnInit {
   closeDrawer() {
     this.drawerState = 'none';
     this.burgerState = false
+  }
+
+  createBasicNotification(notice: TemplateRef<{}>): void {
+    this.notification.template(notice, {
+      nzStyle: {
+        background: '#F4F6FF'
+      }
+    });
+  }
+
+  playVideo() {
+    this.play = true
   }
 }
