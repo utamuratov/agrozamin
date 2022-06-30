@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertisementRoutes } from './advertisement.routing';
@@ -13,15 +12,11 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import { NzTagModule } from 'ng-zorro-antd/tag';
-import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { SimilarItemsComponent } from './components/similar-items/similar-items.component';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { PaginationModule } from '../../../shared/pagination/pagination.module';
@@ -35,7 +30,6 @@ import { AdvertisementListPage } from './pages/advertisement-list/advertisement-
 import { AdvertisementListByCategoryPage } from './pages/advertisement-list-by-category/advertisement-list-by-category.page';
 import { AdvertisementDetailsPage } from './pages/advertisement-details/advertisement-details.page';
 import { AdvertisementListComponent } from './components/advertisement-list/advertisement-list.component';
-import { AdvertisementListHeaderComponent } from './components/advertisement-list/advertisement-list-header/advertisement-list-header.component';
 import { JustAdvertisementComponent } from './components/advertise/just-advertisement.component';
 import { SharedModule, YoutubeVideoIdSplitterModule } from 'ngx-az-core';
 import { CurrencyModule } from '../../../shared/currency/currency.module';
@@ -48,6 +42,8 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { NoImageModule } from '../../../shared/no-image/no-image.module';
 import { ValueByInputTypeModule } from '../../../shared/value-by-input-type/value-by-input-type.module';
 import { SortModule } from '../../../shared/sort/sort.module';
+import { AdvertisementListHeaderModule } from '../../../shared/advertisement-list-header/advertisement-list-header.module';
+import { CardListModule } from '../../../shared/card-list/card-list.module';
 
 @NgModule({
   imports: [
@@ -61,6 +57,7 @@ import { SortModule } from '../../../shared/sort/sort.module';
     SharedModule,
     PaginationModule,
     CardModule,
+    CardListModule,
     SkeletonModule,
     CurrencyModule,
     TagModule,
@@ -69,6 +66,7 @@ import { SortModule } from '../../../shared/sort/sort.module';
     NoImageModule,
     ValueByInputTypeModule,
     SortModule,
+    AdvertisementListHeaderModule,
 
     // TODO: REMOVE UNUSED MODULES
     /* NG-ZORRO */
@@ -97,7 +95,6 @@ import { SortModule } from '../../../shared/sort/sort.module';
     AdvertisementListByCategoryPage,
     AdvertisementDetailsPage,
     AdvertisementListComponent,
-    AdvertisementListHeaderComponent,
     JustAdvertisementComponent,
     ChildCategoryComponent,
     BreadcrumbAdvertisementComponent,

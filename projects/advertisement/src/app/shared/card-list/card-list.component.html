@@ -1,0 +1,23 @@
+<div nz-col nzSpan="24">
+  <div nz-row [nzGutter]="[20, 20]">
+    <div
+      nz-col
+      *ngFor="let advertisement of data"
+      [nzXs]="isInlineCard ? 24 : 12"
+      [nzSm]="isInlineCard ? 24 : 12"
+      [nzMd]="isInlineCard ? 24 : 12"
+      [nzLg]="isInlineCard ? 24 : 8"
+      [nzXl]="isInlineCard ? 24 : 6"
+    >
+      <az-card
+        *ngIf="isLoaded; else skeleton"
+        [data]="advertisement"
+        [isInline]="isInlineCard"
+      ></az-card>
+
+      <ng-template #skeleton>
+        <az-skeleton></az-skeleton>
+      </ng-template>
+    </div>
+  </div>
+</div>

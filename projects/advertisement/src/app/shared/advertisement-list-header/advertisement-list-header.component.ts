@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -71,6 +70,11 @@ export class AdvertisementListHeaderComponent {
 
   isMapActive = false;
 
+  /**
+   *
+   * @param route
+   * @param router
+   */
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   /**
