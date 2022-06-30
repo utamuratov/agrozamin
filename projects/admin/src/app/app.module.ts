@@ -22,8 +22,8 @@ registerLocaleData(ru);
   imports: [
     AppRoutingModule,
 
-    NgxUiLoaderModule,
-    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
+    // NgxUiLoaderModule,
+    // NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
 
     /**
      * CUSTOM MODULES
