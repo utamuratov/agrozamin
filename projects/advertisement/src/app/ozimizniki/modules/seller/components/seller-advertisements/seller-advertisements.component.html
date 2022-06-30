@@ -70,6 +70,7 @@
                 <div nz-col nzSpan="24">
                   <az-advertisement-list-header
                     [(isInline)]="isInlineCard"
+                    [advertisements]="data.data"
                     (sortedByPriceDescandingChange)="
                       sortByPriceDescanding($event)
                     "

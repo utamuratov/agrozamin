@@ -1,13 +1,16 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
   Output,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Filter, FilterParameter } from 'ngx-az-core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { Constants, Filter, FilterParameter } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
+import { Advertisement } from '../../ozimizniki/modules/advertisement/dto/advertisement.interface';
 
 interface ActiveFilter extends FilterParameter {
   name: string;
@@ -44,6 +47,12 @@ export class AdvertisementListHeaderComponent {
   /**
    *
    */
+  @Input()
+  advertisements: Advertisement[] = [];
+
+  /**
+   *
+   */
   @Output()
   isInlineChange = new EventEmitter<boolean>();
 
@@ -72,10 +81,22 @@ export class AdvertisementListHeaderComponent {
 
   /**
    *
+   */
+  coordinates: { latitude: number; longitude: number } =
+    Constants.DEFAULT_LOCATION;
+
+  /**
+   *
    * @param route
    * @param router
    */
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private cd: ChangeDetectorRef
+  ) {
+    this.getCurrentLocation();
+  }
 
   /**
    *
@@ -129,6 +150,18 @@ export class AdvertisementListHeaderComponent {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { characteristics },
+    });
+  }
+
+  /**
+   *
+   */
+  private getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition((location) => {
+      this.coordinates = {
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      };
     });
   }
 

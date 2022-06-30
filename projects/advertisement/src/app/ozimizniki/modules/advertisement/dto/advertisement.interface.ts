@@ -1,4 +1,4 @@
-import { Id, IdName } from 'ngx-az-core';
+import { Id, IdName, Location } from 'ngx-az-core';
 import { Person } from './person.interface';
 
 export interface Advertisement extends Id {
@@ -13,4 +13,5 @@ export interface Advertisement extends Id {
   description: string;
   contact: Person;
   created_by: Person;
+  location: Location;
 }
