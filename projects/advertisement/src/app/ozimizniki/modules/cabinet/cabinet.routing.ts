@@ -1,8 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { AdvertisementStatus } from 'ngx-az-core';
 import { CabinetComponent } from './cabinet.component';
-import { AdvertisementComponent } from './components/advertisement/advertisement.component';
-import { AdvertisementResolver } from './components/advertisement/services/advertisment.resolver';
 import { LayoutComponent } from './components/layout/layout.component';
 import { Messages1Component } from './components/messages/components/messages1/messages1.component';
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
@@ -24,16 +21,15 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            redirectTo: `advertisements/${AdvertisementStatus.STATUS_CONFIRMED}`,
+            redirectTo: `advertisements`,
             pathMatch: 'full',
           },
           {
-            path: `advertisements/:status`,
-            component: AdvertisementComponent,
-            data: {
-              bc: 'advertisements',
-            },
-            resolve: { advertisment: AdvertisementResolver },
+            path: `advertisements`,
+            loadChildren: () =>
+              import('./modules/advertisement/advertisement.module').then(
+                (m) => m.AdvertisementModule
+              ),
           },
           {
             path: 'messages',

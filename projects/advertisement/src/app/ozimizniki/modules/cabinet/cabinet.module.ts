@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CabinetComponent } from './cabinet.component';
 import { CabinetRoutes } from './cabinet.routing';
-import { AdvertisementComponent } from './components/advertisement/advertisement.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -58,7 +57,6 @@ import { SortModule } from '../../../shared/sort/sort.module';
   declarations: [
     LayoutComponent,
     CabinetComponent,
-    AdvertisementComponent,
     MessagesComponent,
     SupportChatComponent,
     Messages1Component,
