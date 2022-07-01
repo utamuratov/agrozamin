@@ -1,6 +1,5 @@
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CabinetComponent } from './cabinet.component';
 import { CabinetRoutes } from './cabinet.routing';
 import { MessagesComponent } from './components/messages/messages.component';
@@ -26,14 +25,15 @@ import { BreadcrumbModule } from '../../../shared/breadcrumb/breadcrumb.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { TagModule } from '../../../shared/tag/tag.module';
 import { SortModule } from '../../../shared/sort/sort.module';
+import { SharedModule } from 'ngx-az-core';
 
 @NgModule({
   imports: [
-    CommonModule,
     CabinetRoutes,
     FormsModule,
     ReactiveFormsModule,
 
+    SharedModule,
     CurrencyModule,
     PaginationModule,
     NoImageModule,

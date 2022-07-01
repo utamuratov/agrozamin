@@ -71,6 +71,13 @@ export class GridLogic<TData = Advertisement> {
    */
   protected initQuery() {
     this.query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
+    this.setQuery();
+  }
+
+  /**
+   *
+   */
+  protected setQuery() {
     this.query.filter = this.getQueryFilter();
   }
 

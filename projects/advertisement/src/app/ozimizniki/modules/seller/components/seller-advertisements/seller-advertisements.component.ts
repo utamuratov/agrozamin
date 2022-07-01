@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Input,
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +10,7 @@ import { GridQuery } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
 import { cat } from '../../../advertisement/pages/advertisement-list-by-category/subcategory';
+import { Category } from '../../dto/category.interface';
 import { SellerService } from '../../services/seller.service';
 
 @Component({
@@ -33,7 +35,11 @@ export class SellerAdvertisementsComponent extends GridLogic implements OnInit {
    */
   visibleCategoryDrawer = false;
 
-  categories = cat;
+  /**
+   *
+   */
+  @Input()
+  categories!: Category[];
   id = 1;
 
   /**

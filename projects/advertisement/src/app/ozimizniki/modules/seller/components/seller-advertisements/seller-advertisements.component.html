@@ -12,45 +12,35 @@
                 <div class="menu">
                   <div class="single-category">
                     <div nz-row [nzGutter]="[0, 27]">
-                      <div nz-col nzSpan="24">
+                      <div
+                        nz-col
+                        nzSpan="24"
+                        *ngFor="let category of categories"
+                      >
                         <a class="single-category__link active">
-                          <img src="./assets/images/tractor.svg" alt="icon" />
-                          <span>Сельхозтехника</span>
+                          <img [src]="category.icon" alt="icon" />
+                          <span>{{ category.name }}</span>
                         </a>
-                      </div>
-                      <div nz-col nzSpan="24">
-                        <ul nz-row [nzGutter]="[0, 16]">
-                          <li
-                            nz-col
-                            nzSpan="24"
-                            *ngFor="let cat of categories; let isFirst = first"
-                          >
-                            <a
-                              class="single-category__sublink"
-                              [ngClass]="id === cat.id ? 'active' : ''"
-                              (click)="handleCategory(cat.id)"
-                              >{{ cat.cat }} <span>2</span></a
+                        <div nz-col nzSpan="24">
+                          <ul nz-row [nzGutter]="[0, 16]">
+                            <li
+                              nz-col
+                              nzSpan="24"
+                              *ngFor="
+                                let child_category of category.child_categories;
+                                let isFirst = first
+                              "
                             >
-                          </li>
-                        </ul>
-                      </div>
-                      <div nz-col nzSpan="24">
-                        <div nz-row [nzGutter]="[0, 8]">
-                          <div nz-col nzSpan="24">
-                            <a class="single-category__link">
-                              <img src="./assets/images/cow.svg" alt="icon" />
-                              <span>С/х животные</span>
-                            </a>
-                          </div>
-                          <div nz-col nzSpan="24">
-                            <a class="single-category__link">
-                              <img
-                                src="./assets/images/transport.svg"
-                                alt="icon"
-                              />
-                              <span>Спецтехника</span>
-                            </a>
-                          </div>
+                              <a
+                                class="single-category__sublink"
+                                [ngClass]="isFirst ? 'active' : ''"
+                                (click)="handleCategory(child_category.id)"
+                                >{{ child_category.name }}
+                                <!-- TODO: REMOVE -->
+                                <!-- <span>2</span> -->
+                              </a>
+                            </li>
+                          </ul>
                         </div>
                       </div>
                     </div>

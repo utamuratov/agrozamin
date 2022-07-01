@@ -1,4 +1,6 @@
 <div style="padding-top: 20px; padding-bottom: 150px">
-  <az-seller-info></az-seller-info>
-  <az-seller-advertisements></az-seller-advertisements>
+  <az-seller-info [sellerDetails]="data"></az-seller-info>
+  <az-seller-advertisements
+    [categories]="data.categories"
+  ></az-seller-advertisements>
 </div>
