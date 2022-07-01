@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'az-tag',
@@ -11,7 +6,7 @@ import {
   styleUrls: ['./tag.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TagComponent implements OnInit {
+export class TagComponent {
   /**
    *
    */
@@ -24,7 +19,9 @@ export class TagComponent implements OnInit {
   @Input()
   category_id = 1;
 
-  ngOnInit() {
-    // TODO: DO SMTH OR REMOVE
-  }
+  /**
+   *
+   */
+  @Input()
+  larger = false;
 }

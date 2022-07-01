@@ -42,43 +42,9 @@ export class AdvertisementListComponent extends GridLogic {
       this.characteristics = characteristics;
     }
 
-    this.loadDataByInitialQuery();
+    this.setQuery();
+    this.loadData();
   }
-
-  // /**
-  //  *
-  //  */
-  // private _queryParams!: Params;
-  // public get queryParams(): Params {
-  //   return this._queryParams;
-  // }
-  // @Input()
-  // public set queryParams(params: Params | undefined) {
-  //   if (
-  //     params &&
-  //     params[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS] !== undefined
-  //   ) {
-  //     this._queryParams = params;
-  //     this.characteristics =
-  //       this.queryParams[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS];
-  //     this.loadDataByInitialQuery();
-  //   }
-  // }
-
-  // /**
-  //  *
-  //  */
-  // private _categoryId!: number;
-  // public get categoryId(): number {
-  //   return this._categoryId;
-  // }
-  // @Input()
-  // public set categoryId(v: number | undefined) {
-  //   if (v) {
-  //     this._categoryId = v;
-  //   }
-  //   this.loadDataByInitialQuery();
-  // }
 
   /**
    *

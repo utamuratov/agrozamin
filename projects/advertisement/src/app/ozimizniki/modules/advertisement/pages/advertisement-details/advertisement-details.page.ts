@@ -10,6 +10,7 @@ import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
 import { Constants } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { prefixPath } from 'projects/advertisement/src/app/core/utilits/advertisement.utilits';
+import { FavouriteService } from 'projects/advertisement/src/app/shared/services/favourite.service';
 import { map, Observable } from 'rxjs';
 import { AdvertisementDetails } from '../../dto/advertisement-details.interface';
 import { Advertisement } from '../../dto/advertisement.interface';
@@ -68,6 +69,7 @@ export class AdvertisementDetailsPage {
     @Inject(DOCUMENT) private document: Document,
     private route: ActivatedRoute,
     private $advertisement: AdvertisementService,
+    private $favourite: FavouriteService,
     private $similar: AdvertisementSimilarService,
     private router: Router
   ) {
@@ -208,5 +210,20 @@ export class AdvertisementDetailsPage {
       AdvertisementConstants.ROUTER_PATH_SELLERS,
       sellerId,
     ]);
+  }
+
+  /**
+   *
+   * @param advertisement
+   */
+  toggleFavourite(advertisement: Advertisement) {
+    this.$favourite
+      .addDeleteFavourite({ announcement_id: advertisement.id })
+      .subscribe((result) => {
+        if (result.success) {
+          advertisement.favorite = !advertisement.favorite;
+          this.cd.markForCheck();
+        }
+      });
   }
 }

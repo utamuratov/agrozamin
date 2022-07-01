@@ -42,6 +42,7 @@ import { ValueByInputTypeModule } from '../../../shared/value-by-input-type/valu
 import { SortModule } from '../../../shared/sort/sort.module';
 import { AdvertisementListHeaderModule } from '../../../shared/advertisement-list-header/advertisement-list-header.module';
 import { GridModule } from '../../../shared/grid/grid.module';
+import { FavoriteShareComplaintModule } from '../../../shared/favorite-share-complaint/favorite-share-complaint.module';
 
 @NgModule({
   imports: [
@@ -64,6 +65,7 @@ import { GridModule } from '../../../shared/grid/grid.module';
     ValueByInputTypeModule,
     SortModule,
     AdvertisementListHeaderModule,
+    FavoriteShareComplaintModule,
 
     /* NG-ZORRO */
     NzTypographyModule,

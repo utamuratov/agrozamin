@@ -1,3 +1,7 @@
-<a class="tag {{ category_id | classByCategoryId }}" *ngIf="title">
+<a
+  class="tag {{ category_id | classByCategoryId }}"
+  [ngClass]="{ larger: larger }"
+  *ngIf="title"
+>
   {{ title }}
 </a>

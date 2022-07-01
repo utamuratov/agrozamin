@@ -11,6 +11,9 @@ import { SellerRoutingModule } from './seller-routing.module';
 import { SharedModule } from 'ngx-az-core';
 import { SellerAdvertisementsComponent } from './components/seller-advertisements/seller-advertisements.component';
 import { SellerInfoComponent } from './components/seller-info/seller-info.component';
+import { NoImageModule } from '../../../shared/no-image/no-image.module';
+import { TagModule } from '../../../shared/tag/tag.module';
+import { FavoriteShareComplaintModule } from '../../../shared/favorite-share-complaint/favorite-share-complaint.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { SellerInfoComponent } from './components/seller-info/seller-info.compon
     SharedModule,
     GridModule,
     AdvertisementListHeaderModule,
+    NoImageModule,
+    TagModule,
+    FavoriteShareComplaintModule,
 
     NzIconModule,
     NzGridModule,

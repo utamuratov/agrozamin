@@ -10,6 +10,7 @@ import {
 } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { prefixPath } from 'projects/advertisement/src/app/core/utilits/advertisement.utilits';
+import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
 import { takeUntil } from 'rxjs';
 import { Advertisement } from './dto/advertisment.interface';
 import { AdvertisementService } from './services/advertisment.service';
@@ -20,22 +21,7 @@ import { AdvertisementService } from './services/advertisment.service';
   styleUrls: ['./advertisement.component.less'],
   providers: [AdvertisementService],
 })
-export class AdvertisementComponent {
-  /**
-   *
-   */
-  data!: GridModel<Advertisement>;
-
-  /**
-   *
-   */
-  pageSize = AdvertisementConstants.PAGINATION_PAGE_SIZE;
-
-  /**
-   *
-   */
-  query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
-
+export class AdvertisementComponent extends GridLogic<Advertisement> {
   /**
    *
    */
@@ -72,12 +58,13 @@ export class AdvertisementComponent {
    * @param route
    */
   constructor(
-    private $advertisement: AdvertisementService,
+    protected override $data: AdvertisementService,
+    protected override cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     private router: Router,
-    private $destroy: NgDestroy,
-    private cd: ChangeDetectorRef
+    private $destroy: NgDestroy
   ) {
+    super($data, cd);
     this.getFilterData();
 
     this.route.params.pipe(takeUntil(this.$destroy)).subscribe((params) => {
@@ -89,17 +76,9 @@ export class AdvertisementComponent {
 
   /**
    *
-   */
-  private initQuery() {
-    this.query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
-    this.query.filter = this.getQueryFilter();
-  }
-
-  /**
-   *
    * @returns
    */
-  private getQueryFilter() {
+  protected override getQueryFilter() {
     return [
       { key: 'status', value: [String(this.status || '')] },
       { key: 'category_id', value: [String(this.categoryId || '')] },
@@ -113,16 +92,16 @@ export class AdvertisementComponent {
   /**
    *
    */
-  private loadDataByInitialQuery() {
-    this.initQuery();
-    this.loadDataFromServer(this.query);
+  onChangeCategoryFilter() {
+    this.setQuery();
+    this.loadData();
   }
 
   /**
    *
    */
-  onChangeCategoryFilter() {
-    this.loadDataByInitialQuery();
+  protected override loadData(): void {
+    this.loadDataFromServer(this.query);
   }
 
   /**
@@ -136,54 +115,13 @@ export class AdvertisementComponent {
   /**
    *
    */
-  paginate(pageIndex = AdvertisementConstants.DEFAULT_PAGE_INDEX) {
-    this.query.pageIndex = pageIndex;
-    this.loadDataFromServer(this.query);
-  }
-
-  /**
-   *
-   */
-  loadDataFromServer(query: GridQuery) {
-    this.$advertisement.getGridData(query).subscribe((result) => {
-      if (result.success) {
-        this.data = {
-          ...result.data,
-          data: result.data.data,
-        };
-        this.cd.markForCheck();
-      }
-    });
-  }
-
-  /**
-   *
-   */
   getFilterData() {
-    this.$advertisement.getFilterData().subscribe((result) => {
+    this.$data.getFilterData().subscribe((result) => {
       if (result.success) {
         this.categories = result.data.categories;
         this.advertisementTypes = result.data.announcement_types;
       }
     });
-  }
-
-  /**
-   *
-   */
-  sortByPriceDescanding(byDescanding: boolean) {
-    this.query.sortField = 'price';
-    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
-    this.loadDataFromServer(this.query);
-  }
-
-  /**
-   *
-   */
-  sortByDateDescanding(byDescanding: boolean) {
-    this.query.sortField = 'created_at';
-    this.query.sortOrder = byDescanding ? 'desc' : 'asc';
-    this.loadDataFromServer(this.query);
   }
 
   /**
