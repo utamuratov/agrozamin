@@ -200,12 +200,14 @@
             ]"
             [properties]="{
               balloonContent:
-                '<div><img src=\'' +
+               '<div class=\'map-description\'><div class=\'map-description__info\'><div class=\'map-description__info__img\'><img src=\'' +
                 advertisement.file +
-                '\' width=\'100px\' />' +
-                advertisement.name +
-                '</div> <button style=\'color: red\'>Смотреть объявление</button>'
+                '\' alt=\'image\'></div><div class=\'map-description__info__text\'><p>' + advertisement.name + '</p><span>'+ advertisement.price +' сум</span></div></div><p class=\'map-description__description\'>ОАО “Вымпел”, Ташкент</p><button class=\'map-description__btn\'>Смотреть объявление</button></div>'
             }"
+            [options]="{
+              iconLayout: 'default#image',
+              iconImageHref: './assets/images/map-icon.svg'
+            }"            
           >
           </ya-placemark>
         </ya-map>
@@ -213,3 +215,10 @@
     </div>
   </div>
 </div>
+
+
+<!-- '<div style=\'width: 60px; height: 60px; borderRadius: 4px; overflow: hidden;\'><img src=\'' +
+  advertisement.file +
+  '\' width=\'100%\' height=\'100%\'  />' +
+  advertisement.name +
+  '</div> <button style=\'color: red\'>Смотреть объявление</button>' -->
