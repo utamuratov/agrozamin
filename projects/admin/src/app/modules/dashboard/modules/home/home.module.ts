@@ -17,8 +17,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { ModalComponent } from './components/regions/components/modal/modal.component';
 import { DistrictComponent } from './components/district/district.component';
 import { RegionsComponent } from './components/regions/regions.component';
-import { DistrictModalComponent } from './components/district/components/modal/modal.component';
+
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { DistrictModalComponent } from './components/district/components/modal/modal.component';
 
 @NgModule({
   declarations: [
