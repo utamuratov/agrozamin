@@ -1,0 +1,96 @@
+:host ::ng-deep {
+  .ant-menu {
+    background: #f5f5f7;
+  }
+
+  .ant-menu-item {
+    font-family: Agrofont-Regular;
+    font-size: 16px;
+    line-height: 20px;
+    color: #545454;
+    border-radius: 16px;
+    transition: 0.3s;
+    height: 55px;
+
+    i {
+      svg {
+        path {
+          transition: 0.3s;
+        }
+
+        circle {
+          transition: 0.3s;
+        }
+      }
+
+      &.fill {
+        svg {
+          path {
+            transition: 0.3s;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      color: #fff;
+      background: #377be1;
+
+      i {
+        svg {
+          path {
+            stroke: #fff;
+          }
+
+          circle {
+            stroke: #fff;
+          }
+        }
+
+        &.fill {
+          svg {
+            path {
+              fill: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background: #377be1;
+  }
+
+  .ant-menu-item-selected {
+    font-family: Agrofont-Medium;
+    color: #fff;
+
+    i {
+      svg {
+        path {
+          stroke: #fff;
+        }
+
+        circle {
+          stroke: #fff;
+        }
+      }
+
+      &.fill {
+        svg {
+          path {
+            fill: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sidebar {
+  .logo {
+    cursor: pointer;
+    margin-bottom: 36px;
+  }
+}
