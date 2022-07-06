@@ -17,7 +17,10 @@
                         nzSpan="24"
                         *ngFor="let category of categories"
                       >
-                        <a class="single-category__link active">
+                        <a
+                          class="single-category__link active"
+                          (click)="handleCategory(category.id)"
+                        >
                           <img [src]="category.icon" alt="icon" />
                           <span>{{ category.name }}</span>
                         </a>
@@ -27,13 +30,14 @@
                               nz-col
                               nzSpan="24"
                               *ngFor="
-                                let child_category of category.child_categories;
-                                let isFirst = first
+                                let child_category of category.child_categories
                               "
                             >
                               <a
                                 class="single-category__sublink"
-                                [ngClass]="isFirst ? 'active' : ''"
+                                [ngClass]="{
+                                  active: categoryId === child_category.id
+                                }"
                                 (click)="handleCategory(child_category.id)"
                                 >{{ child_category.name }}
                                 <!-- TODO: REMOVE -->
@@ -85,6 +89,7 @@
 
                 <!-- GRID -->
                 <az-grid
+                  class="w-100"
                   [data]="data"
                   [isLoaded]="isLoaded"
                   [isInlineCard]="isInlineCard"

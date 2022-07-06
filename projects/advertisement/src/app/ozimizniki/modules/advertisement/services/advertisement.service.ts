@@ -28,7 +28,7 @@ export class AdvertisementService extends GridService<Advertisement> {
    * @returns
    */
   showPhoneNumber(advertisementId: number) {
-    return this.$baseService.get(`cabinet/action/phone/${advertisementId}`);
+    return this.$baseService.get(`action/phone/${advertisementId}`);
   }
 
   /**

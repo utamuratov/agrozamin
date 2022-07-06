@@ -14,6 +14,7 @@ import { SellerInfoComponent } from './components/seller-info/seller-info.compon
 import { NoImageModule } from '../../../shared/no-image/no-image.module';
 import { TagModule } from '../../../shared/tag/tag.module';
 import { FavoriteShareComplaintModule } from '../../../shared/favorite-share-complaint/favorite-share-complaint.module';
+import { ActiveFromModule } from '../../../shared/active-from/active-from.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FavoriteShareComplaintModule } from '../../../shared/favorite-share-com
     NoImageModule,
     TagModule,
     FavoriteShareComplaintModule,
+    ActiveFromModule,
 
     NzIconModule,
     NzGridModule,

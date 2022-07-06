@@ -17,6 +17,8 @@ import { SortModule } from 'projects/advertisement/src/app/shared/sort/sort.modu
 import { CardListModule } from 'projects/advertisement/src/app/shared/card-list/card-list.module';
 import { AdvertisementListHeaderModule } from 'projects/advertisement/src/app/shared/advertisement-list-header/advertisement-list-header.module';
 import { GridModule } from 'projects/advertisement/src/app/shared/grid/grid.module';
+import { NoImageModule } from 'projects/advertisement/src/app/shared/no-image/no-image.module';
+import { ActiveFromModule } from 'projects/advertisement/src/app/shared/active-from/active-from.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { GridModule } from 'projects/advertisement/src/app/shared/grid/grid.modu
     GridModule,
     SortModule,
     AdvertisementListHeaderModule,
+    NoImageModule,
+    ActiveFromModule,
 
     NzGridModule,
     NzDropDownModule,

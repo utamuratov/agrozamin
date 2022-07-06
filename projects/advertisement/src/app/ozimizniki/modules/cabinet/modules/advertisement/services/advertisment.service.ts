@@ -23,4 +23,26 @@ export class AdvertisementService extends GridService<Advertisement> {
       categories: IdName[];
     }>(`${this.url}/filter-data`);
   }
+
+  /**
+   *
+   * @param advertisementId
+   * @returns
+   */
+  addArchive(advertisementId: number) {
+    return this.$baseService.put<boolean>('cabinet/announcements/archive', {
+      announcement_id: advertisementId,
+    });
+  }
+
+  /**
+   *
+   * @param advertisementId
+   * @returns
+   */
+  unArchive(advertisementId: number) {
+    return this.$baseService.put<boolean>('cabinet/announcements/unarchive', {
+      announcement_id: advertisementId,
+    });
+  }
 }

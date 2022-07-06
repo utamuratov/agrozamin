@@ -1,9 +1,9 @@
-<div nz-row [nzGutter]="[0, 20]" (window:resize)="onResize($event)">
-  <div nz-col *ngFor="let seller of sellerInfo">
+<div nz-row [nzGutter]="[0, 20]">
+  <div nz-col nzSpan="24" *ngFor="let seller of data.data">
     <div nz-row class="sellerInfo">
       <div nz-col nzXs="4" nzSm="4" nzMd="8" nzLg="6" nzXl="5">
         <div class="sellerInfo__img">
-          <img [src]="seller.img" alt="" />
+          <img [src]="seller.photo | noImage" alt="" />
         </div>
       </div>
 
@@ -18,18 +18,18 @@
       >
         <div nz-row [nzGutter]="[0, 12]">
           <div class="sellerInfo__body__title" nz-col nzSpan="24">
-            <h3>{{ seller.name }}</h3>
+            <h3>{{ seller.full_name }}</h3>
           </div>
 
           <div class="sellerInfo__body__info" nz-col nzSpan="24">
             <div nz-row [nzGutter]="[20, 0]">
               <div nz-col>
-                <p>{{ seller.date }}</p>
+                <p>{{ seller.created_at | activeFrom }}</p>
               </div>
               <div nz-col>
-                <span [ngClass]="isOnline ? 'green' : 'grey'"></span
+                <span [ngClass]="seller.online ? 'green' : 'grey'"></span
                 ><span>{{
-                  (isOnline ? "nowOnline" : "notOnline") | translate
+                  (seller.online ? "nowOnline" : "notOnline") | translate
                 }}</span>
               </div>
             </div>
@@ -38,11 +38,11 @@
           <div nz-col nzSpan="24">
             <div nz-row [nzGutter]="[8, 8]">
               <div
-                *ngFor="let tag of tags"
+                *ngFor="let tag of [].constructor(2)"
                 class="sellerInfo__body__semena"
                 nz-col
               >
-                <span> {{ tag.name }} </span>
+                <span> {{ "yeap" }} </span>
               </div>
               <!-- <div class="sellerInfo__body__semena" nz-col  >
                           <span> {{counter}} </span>
@@ -55,16 +55,30 @@
             <img src="./assets/images/ads.png" alt="" />
           </div>
           <div nz-col nzXs="20" nzSm="21" nzMd="14" nzLg="22" nzXl="23">
-            <p>{{ seller.advert }}</p>
+            <p>
+              {{
+                "pieceOfAdvertisements"
+                  | translate: { value: seller.announcements_count }
+              }}
+            </p>
           </div>
 
           <div nz-col nzXs="0" nzSm="0" nzMd="8" nzLg="0" nzXl="0">
             <div nz-row [nzGutter]="[8, 0]">
               <div nz-col>
-                <img src="./assets/images/button_without_text.png" alt="" />
+                <img
+                  class="pointer"
+                  (click)="navigateToSellerDetails(seller.id)"
+                  src="./assets/images/button_without_text.png"
+                  alt=""
+                />
               </div>
               <div nz-col>
-                <img src="./assets/images/button_without_text (1).png" alt="" />
+                <img
+                  class="pointer"
+                  src="./assets/images/button_without_text (1).png"
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -82,10 +96,19 @@
       >
         <div nz-row [nzGutter]="[10, 0]">
           <div nz-col>
-            <img src="./assets/images/button_without_text.png" alt="" />
+            <img
+              class="pointer"
+              (click)="navigateToSellerDetails(seller.id)"
+              src="./assets/images/button_without_text.png"
+              alt=""
+            />
           </div>
           <div nz-col>
-            <img src="./assets/images/button_without_text (1).png" alt="" />
+            <img
+              class="pointer"
+              src="./assets/images/button_without_text (1).png"
+              alt=""
+            />
           </div>
         </div>
       </div>
