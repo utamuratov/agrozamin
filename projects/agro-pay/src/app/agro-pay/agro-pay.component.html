@@ -1,14 +1,21 @@
-<nz-layout class="layout">
-  <nz-sider nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="0" nzWidth="323px">
-    <az-sidebar></az-sidebar>
+<nz-layout class="layout" (window:resize)="onResize($event)">
+  <nz-sider
+    nzCollapsible
+    nzBreakpoint="lg"
+    [nzCollapsedWidth]="64"
+    [nzWidth]="siderWidth"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+    class="nz-sider"
+  >
+    <az-sidebar [(isCollapsed)]="isCollapsed"></az-sidebar>
   </nz-sider>
-  <nz-layout class="right">
-    <nz-header>
-      <az-header></az-header>
+  <nz-layout class="right-layout">
+    <nz-header class="header-layout">
+      <div class="inner-header"><az-header></az-header></div>
     </nz-header>
-    <nz-content>  
-      <p>lorem1000</p>    
-      <!-- <router-outlet></router-outlet> -->
+    <nz-content>
+      <div class="inner-content"><router-outlet></router-outlet></div>
     </nz-content>
   </nz-layout>
 </nz-layout>

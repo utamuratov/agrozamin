@@ -1,9 +1,23 @@
 <div class="sidebar">
   <div class="logo">
-    <img src="./assets/image/agro-pay-logo.svg" alt="logo" />
+    <img src="./assets/image/logo-A.png" alt="logo" />
+    <h4 *ngIf="!isCollapsed">AgroPay</h4>
+    <i
+      class="trigger icon"
+      (click)="changeColapsed()"
+      nz-icon
+      [nzType]="isCollapsed ? 'arrow-right' : 'arrow-left'"
+      nzTheme="outline"
+    ></i>
   </div>
   <ul nz-menu nzMode="inline">
-    <li nz-menu-item style="padding-left: 15px;">
+    <li
+      nz-menu-item
+      style="padding-left: 15px"
+      [ngStyle]="{ 'justify-content': isCollapsed ? 'center' : 'start' }"
+      routerLink="home"
+      routerLinkActive="ant-menu-item-selected"
+    >
       <i nz-icon
         ><svg
           width="24"
@@ -26,9 +40,15 @@
           />
         </svg>
       </i>
-      <span>nav 1</span>
+      <span *ngIf="!isCollapsed">Главная</span>
     </li>
-    <li nz-menu-item style="padding-left: 15px;">
+    <li
+      nz-menu-item
+      style="padding-left: 15px"
+      [ngStyle]="{ 'justify-content': isCollapsed ? 'center' : 'start' }"
+      routerLink="pay"
+      routerLinkActive="ant-menu-item-selected"
+    >
       <i nz-icon
         ><svg
           width="24"
@@ -55,9 +75,15 @@
           />
         </svg>
       </i>
-      <span>nav 2</span>
+      <span *ngIf="!isCollapsed">Оплата</span>
     </li>
-    <li nz-menu-item style="padding-left: 15px;">
+    <li
+      nz-menu-item
+      style="padding-left: 15px"
+      [ngStyle]="{ 'justify-content': isCollapsed ? 'center' : 'start' }"
+      routerLink="cards"
+      routerLinkActive="ant-menu-item-selected"
+    >
       <i nz-icon
         ><svg
           width="24"
@@ -79,9 +105,15 @@
           />
         </svg>
       </i>
-      <span>nav 3</span>
+      <span *ngIf="!isCollapsed">Мои карты</span>
     </li>
-    <li nz-menu-item style="padding-left: 15px;">
+    <li
+      nz-menu-item
+      style="padding-left: 15px"
+      [ngStyle]="{ 'justify-content': isCollapsed ? 'center' : 'start' }"
+      routerLink="transfer"
+      routerLinkActive="ant-menu-item-selected"
+    >
       <i nz-icon class="fill"
         ><svg
           width="24"
@@ -100,9 +132,15 @@
           />
         </svg>
       </i>
-      <span>nav 4</span>
+      <span *ngIf="!isCollapsed">Переводы</span>
     </li>
-    <li nz-menu-item style="padding-left: 15px;">
+    <li
+      nz-menu-item
+      style="padding-left: 15px"
+      [ngStyle]="{ 'justify-content': isCollapsed ? 'center' : 'start' }"
+      routerLink="support"
+      routerLinkActive="ant-menu-item-selected"
+    >
       <i nz-icon
         ><svg
           width="24"
@@ -132,9 +170,15 @@
           />
         </svg>
       </i>
-      <span>nav 4</span>
+      <span *ngIf="!isCollapsed">Поддержка</span>
     </li>
-    <li nz-menu-item style="padding-left: 15px;">
+    <li
+      nz-menu-item
+      style="padding-left: 15px"
+      [ngStyle]="{ 'justify-content': isCollapsed ? 'center' : 'start' }"
+      routerLink="history"
+      routerLinkActive="ant-menu-item-selected"
+    >
       <i nz-icon
         ><svg
           width="24"
@@ -158,9 +202,15 @@
           />
         </svg>
       </i>
-      <span>nav 4</span>
+      <span *ngIf="!isCollapsed">История</span>
     </li>
-    <li nz-menu-item style="padding-left: 15px;">
+    <li
+      nz-menu-item
+      style="padding-left: 15px"
+      [ngStyle]="{ 'justify-content': isCollapsed ? 'center' : 'start' }"
+      routerLink="details"
+      routerLinkActive="ant-menu-item-selected"
+    >
       <i nz-icon
         ><svg
           width="24"
@@ -179,7 +229,7 @@
           />
         </svg>
       </i>
-      <span>nav 4</span>
+      <span *ngIf="!isCollapsed">Аналитика</span>
     </li>
   </ul>
 </div>

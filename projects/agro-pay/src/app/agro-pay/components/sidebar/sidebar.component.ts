@@ -1,15 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'az-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.less']
+  styleUrls: ['./sidebar.component.less'],
 })
 export class SidebarComponent implements OnInit {
+  /**
+   *
+   */
+  @Input()
+  isCollapsed!: boolean;
 
-  constructor() { }
+  /**
+   *
+   */
+  @Output()
+  isCollapsedChange = new EventEmitter<boolean>();
 
-  ngOnInit() {
+  isDark = false;
+
+  /**
+   *
+   */
+  constructor() {}
+
+  /**
+   *
+   */
+  ngOnInit(): void {
+    this.isDark = localStorage.getItem('theme') === 'true';
   }
 
+  /**
+   *
+   */
+  changeColapsed(): void {
+    this.isCollapsedChange.emit(!this.isCollapsed);
+  }
 }

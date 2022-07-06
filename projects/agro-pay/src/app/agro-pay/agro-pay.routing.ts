@@ -8,6 +8,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
         loadChildren: () =>
           import('./modules/home/home.module').then((m) => m.HomeModule),
       },
@@ -49,6 +54,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/details/details.module').then(
             (m) => m.DetailsModule
+          ),
+      },
+      {
+        path: 'notification',
+        loadChildren: () =>
+          import('./modules/notification/notification.module').then(
+            (m) => m.NotificationModule
           ),
       },
     ],

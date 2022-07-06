@@ -762,7 +762,12 @@
               }
             ],
             "styles": [
-              "projects/agro-pay/src/styles.less"
+              "projects/agro-pay/src/styles.less",
+              {
+                "input": "projects/agro-pay/src/dark.less",
+                "bundleName": "dark",
+                "inject": false
+              }
             ],
             "scripts": []
           },
