@@ -8,4 +8,8 @@ export interface Advertisement extends Id {
   category_id: number;
   category: IdName;
   file: string;
+  favorite_count: number;
+  views_count: number;
+  views_count_of_phone: number;
+  favorite: boolean;
 }

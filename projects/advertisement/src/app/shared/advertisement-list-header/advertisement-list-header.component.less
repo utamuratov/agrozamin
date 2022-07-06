@@ -136,5 +136,23 @@
   color: red;
 }
 
+:host ::ng-deep {
+  .map-description__info__text {
+    span {
+      font-family: Agrofont-BExpanded !important;
+    }
+  }
 
-
+  .map-description__btn {
+    cursor: pointer;
+    padding: 0 !important;
+    a {
+      padding: 10px 20px;
+      display: inline-block;
+      color: white;
+      &:hover {
+        color: white !important;
+      }
+    }
+  }
+}

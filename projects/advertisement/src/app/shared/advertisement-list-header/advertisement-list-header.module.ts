@@ -6,10 +6,14 @@ import { SortModule } from '../sort/sort.module';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { AngularYandexMapsModule } from 'angular8-yandex-maps';
+import { CurrencyModule } from '../currency/currency.module';
 
 @NgModule({
   imports: [
     AngularYandexMapsModule,
+
+    CurrencyModule,
+
     SharedModule,
     SortModule,
     NzGridModule,

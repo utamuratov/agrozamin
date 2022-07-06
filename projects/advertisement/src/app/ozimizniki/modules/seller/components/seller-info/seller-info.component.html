@@ -21,7 +21,7 @@
         >
           <div nz-row [nzGutter]="[20, 0]">
             <div nz-col>
-              <p>На O’zimizniki 5 месяцев</p>
+              <p>{{ sellerDetails.user.created_at | activeFrom }}</p>
             </div>
             <div nz-col>
               <span

@@ -40,7 +40,11 @@ export class SellerAdvertisementsComponent extends GridLogic implements OnInit {
    */
   @Input()
   categories!: Category[];
-  id = 1;
+
+  /**
+   *
+   */
+  categoryId!: number;
 
   /**
    *
@@ -67,13 +71,34 @@ export class SellerAdvertisementsComponent extends GridLogic implements OnInit {
 
   /**
    *
+   * @returns
+   */
+  override getQueryFilter() {
+    return [{ key: 'category_id', value: [String(this.categoryId || '')] }];
+  }
+
+  /**
+   *
+   */
+  protected override loadData(): void {
+    this.loadDataFromServer(this.query);
+  }
+
+  /**
+   *
    */
   ngOnInit(): void {
     this.onInit();
   }
 
-  handleCategory(id: number) {
-    this.id = id;
+  /**
+   *
+   * @param categoryId
+   */
+  handleCategory(categoryId: number) {
+    this.categoryId = categoryId;
+    this.setQuery();
+    this.loadData();
   }
 
   /**

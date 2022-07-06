@@ -1,67 +1,63 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Constants } from 'ngx-az-core';
+import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
+import { prefixPath } from 'projects/advertisement/src/app/core/utilits/advertisement.utilits';
+import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
+import { Seller } from '../../dto/seller.interface';
+import { SellerService } from '../../services/seller.service';
 
 @Component({
   selector: 'az-sellers',
   templateUrl: './favourite-sellers.component.html',
   styleUrls: ['./favourite-sellers.component.less'],
 })
-export class FavouriteSellersComponent implements OnInit {
-  isOnline = true;
-  // counter = 0;
-  // tagCategory: any = [];
+export class FavouriteSellersComponent extends GridLogic<Seller> {
+  /**
+   *
+   */
+  isInlineCard = true;
 
-  sellerInfo = [
-    {
-      img: '/assets/images/partner-Info-Img.png',
-      name: 'Жахонгир Пардаев',
-      date: 'На O’zimizniki 5 месяцев',
-      advert: '36 объявлений',
-    },
-    {
-      img: '/assets/images/partner-Info-Img1.jpg',
-      name: 'Жахонгир Пардаев',
-      date: 'На O’zimizniki 5 месяцев',
-      advert: '36 объявлений',
-    },
-    {
-      img: '/assets/images/partner-Info-Img3.jpg',
-      name: 'Жахонгир Пардаев',
-      date: 'На O’zimizniki 5 месяцев',
-      advert: '36 объявлений',
-    },
-    {
-      img: '/assets/images/partner-Info-Img2.jpg',
-      name: 'Жахонгир Пардаев',
-      date: 'На O’zimizniki 5 месяцев',
-      advert: '36 объявлений',
-    },
-  ];
-
-  tags = [
-    { id: 1, name: 'Спецтехника' },
-    { id: 1, name: 'С/х животные' },
-    { id: 1, name: 'Спецтехника' },
-    { id: 1, name: 'Фермерское оборудование' },
-  ];
-
-  constructor() {}
-
-  ngOnInit(): void {
-    // this.tagCategory = this.tags;
+  /**
+   *
+   * @param $data
+   * @param cd
+   * @param route
+   */
+  constructor(
+    protected override $data: SellerService,
+    protected override cd: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    super($data, cd);
+    this.data =
+      this.route.snapshot.data[AdvertisementConstants.RESOLVERS_SELLERS];
   }
 
-  onResize(e: any) {
-    console.log(e.target.innerWidth);
+  /**
+   *
+   */
+  protected override init(): void {
+    this.initQuery();
+  }
 
-    // if (e.target.innerWidth < 992) {
-    //   this.tagCategory = this.tags.filter((el: any, index: number) => el[index] < 3);
-    //   this.counter = 1;
-    // }
-    // else if (e.target.innerWidth < 768) {
-    //   this.counter = 2;
-    // }
-    // else if (e.target.innerWidth < 576) {
-    //   this.counter = 3;
-    // }
+  /**
+   *
+   */
+  override loadData() {
+    this.loadDataFromServer(this.query);
+  }
+
+  /**
+   *
+   */
+  navigateToSellerDetails(sellerId: number) {
+    this.router.navigate([
+      prefixPath,
+      Constants.DEFAULT_LANGUAGE_CODE,
+      AdvertisementConstants.ROUTER_PATH_SELLERS,
+      sellerId,
+    ]);
   }
 }

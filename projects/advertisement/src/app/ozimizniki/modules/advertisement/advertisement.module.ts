@@ -43,6 +43,7 @@ import { SortModule } from '../../../shared/sort/sort.module';
 import { AdvertisementListHeaderModule } from '../../../shared/advertisement-list-header/advertisement-list-header.module';
 import { GridModule } from '../../../shared/grid/grid.module';
 import { FavoriteShareComplaintModule } from '../../../shared/favorite-share-complaint/favorite-share-complaint.module';
+import { CardListModule } from '../../../shared/card-list/card-list.module';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { FavoriteShareComplaintModule } from '../../../shared/favorite-share-com
     SharedModule,
     PaginationModule,
     CardModule,
+    CardListModule,
     GridModule,
     SkeletonModule,
     CurrencyModule,

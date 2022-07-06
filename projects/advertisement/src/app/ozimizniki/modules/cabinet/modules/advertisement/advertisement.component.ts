@@ -11,6 +11,7 @@ import {
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { prefixPath } from 'projects/advertisement/src/app/core/utilits/advertisement.utilits';
 import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
+import { FavouriteService } from 'projects/advertisement/src/app/shared/services/favourite.service';
 import { takeUntil } from 'rxjs';
 import { Advertisement } from './dto/advertisment.interface';
 import { AdvertisementService } from './services/advertisment.service';
@@ -62,13 +63,14 @@ export class AdvertisementComponent extends GridLogic<Advertisement> {
     protected override cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     private router: Router,
-    private $destroy: NgDestroy
+    private $destroy: NgDestroy,
+    private $favourite: FavouriteService
   ) {
     super($data, cd);
     this.getFilterData();
 
     this.route.params.pipe(takeUntil(this.$destroy)).subscribe((params) => {
-      this.status = params['status'];
+      this.status = +params['status'];
       this.initQuery();
       this.data = this.route.snapshot.data['advertisment'];
     });
@@ -80,7 +82,14 @@ export class AdvertisementComponent extends GridLogic<Advertisement> {
    */
   protected override getQueryFilter() {
     return [
-      { key: 'status', value: [String(this.status || '')] },
+      this.status === AdvertisementStatus.STATUS_ARCHIVED
+        ? {
+            key: 'archive',
+            value: [
+              String(this.status === AdvertisementStatus.STATUS_ARCHIVED),
+            ],
+          }
+        : { key: 'status', value: [String(this.status || '')] },
       { key: 'category_id', value: [String(this.categoryId || '')] },
       {
         key: 'type_id',
@@ -135,5 +144,42 @@ export class AdvertisementComponent extends GridLogic<Advertisement> {
       advertisement.category_id,
       advertisement.id,
     ]);
+  }
+
+  /**
+   *
+   * @param advertisement
+   */
+  toggleFavourite(advertisement: Advertisement) {
+    this.$favourite
+      .addDeleteFavourite({ announcement_id: advertisement.id })
+      .subscribe((result) => {
+        if (result.success) {
+          advertisement.favorite = !advertisement.favorite;
+          this.cd.markForCheck();
+        }
+      });
+  }
+
+  /**
+   *
+   */
+  addArchive(advertisementId: number) {
+    this.$data.addArchive(advertisementId).subscribe((result) => {
+      if (result.data) {
+        this.loadData();
+      }
+    });
+  }
+
+  /**
+   *
+   */
+  unArchive(advertisementId: number) {
+    this.$data.unArchive(advertisementId).subscribe((result) => {
+      if (result.data) {
+        this.loadData();
+      }
+    });
   }
 }

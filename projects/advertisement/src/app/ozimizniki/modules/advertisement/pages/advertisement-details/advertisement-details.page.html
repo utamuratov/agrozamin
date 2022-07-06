@@ -202,8 +202,8 @@
                             src="./assets/images/phone.svg"
                             alt="phone icon"
                           /><span
-                            >{{isShowedPhoneNumber ? phoneNumber : 'phoneCall' |
-                            translate}}</span
+                            >{{isShowedPhoneNumber ? ('+' + phoneNumber) :
+                            'phoneCall' | translate}}</span
                           >
                         </button>
                       </div>
@@ -329,7 +329,7 @@
                     fill="#fff"
                   />
                 </svg>
-                <span> Смотреть на карте </span>
+                <span> {{ 'seeOnTheMap' | translate }} </span>
               </button>
             </div>
             <div nz-col nzSpan="24" [hidden]="!isVisibleMap">

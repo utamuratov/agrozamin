@@ -140,7 +140,7 @@
                 fill="#86898C"
               />
             </svg>
-            <span class="look-at-map">Смотреть на карте</span>
+            <span class="look-at-map">{{ "seeOnTheMap" | translate }}</span>
           </button>
         </div>
       </div>
@@ -200,14 +200,28 @@
             ]"
             [properties]="{
               balloonContent:
-               '<div class=\'map-description\'><div class=\'map-description__info\'><div class=\'map-description__info__img\'><img src=\'' +
+                '<div class=\'map-description\'><div class=\'map-description__info\'><div class=\'map-description__info__img\'><img src=\'' +
                 advertisement.file +
-                '\' alt=\'image\'></div><div class=\'map-description__info__text\'><p>' + advertisement.name + '</p><span>'+ advertisement.price +' сум</span></div></div><p class=\'map-description__description\'>ОАО “Вымпел”, Ташкент</p><button class=\'map-description__btn\'>Смотреть объявление</button></div>'
+                '\' alt=\'image\'></div><div class=\'map-description__info__text\'><p>' +
+                advertisement.name +
+                '</p><span>' +
+                (advertisement.price | azCurrency) +
+                '</span></div></div><p class=\'map-description__description\'>' +
+                advertisement.address +
+                '</p><button class=\'map-description__btn\'><a href=\'' +
+                prefixPath +
+                '/' +
+                advertisement.category_id +
+                '/' +
+                advertisement.id +
+                '\'>' +
+                ('seeAdvertisement' | translate) +
+                '</a></button></div>'
             }"
             [options]="{
               iconLayout: 'default#image',
               iconImageHref: './assets/images/map-icon.svg'
-            }"            
+            }"
           >
           </ya-placemark>
         </ya-map>
@@ -215,7 +229,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- '<div style=\'width: 60px; height: 60px; borderRadius: 4px; overflow: hidden;\'><img src=\'' +
   advertisement.file +

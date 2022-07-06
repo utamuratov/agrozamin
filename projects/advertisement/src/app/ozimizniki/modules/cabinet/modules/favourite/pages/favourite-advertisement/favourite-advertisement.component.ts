@@ -4,6 +4,7 @@ import {
   Component,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
 import { FavouriteService } from 'projects/advertisement/src/app/shared/services/favourite.service';
 
@@ -30,7 +31,10 @@ export class FavouriteAdvertisementComponent extends GridLogic {
     private route: ActivatedRoute
   ) {
     super($data, cd);
-    this.data = this.route.snapshot.data['advertisements'];
+    this.data =
+      this.route.snapshot.data[
+        AdvertisementConstants.RESOLVERS_FAVORITE_ADVERTISEMENTS
+      ];
   }
 
   /**

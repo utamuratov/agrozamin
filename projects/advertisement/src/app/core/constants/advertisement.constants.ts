@@ -21,4 +21,8 @@ export class AdvertisementConstants {
   public static readonly ROUTER_PARAM_SELLER_ID = 'sellerId';
   public static readonly ROUTER_PARAM_ADVERTISEMENT_ID = 'advertisementId';
   public static readonly QUERY_PARAM_CHARACTERISTICS = 'characteristics';
+
+  // RESOLVERS
+  public static readonly RESOLVERS_SELLERS = 'sellers';
+  public static readonly RESOLVERS_FAVORITE_ADVERTISEMENTS = 'advertisements';
 }
