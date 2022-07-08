@@ -60,6 +60,7 @@ export class RejectReasonListComponent
         }),
         new Column({
           field: 'content',
+          header: 'reason',
           colspan: languages.length,
           isHeader: true,
           row: 1,

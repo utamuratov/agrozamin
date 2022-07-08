@@ -42,7 +42,10 @@ export class AdvertisementService extends GridService<AdvertisementGetAll> {
    * @param id
    * @returns
    */
-  reject(id: number) {
-    return this.$baseService.put(`${this.url}/reject/${id}`);
+  reject(id: number, reason_id: number) {
+    return this.$baseService.put(`${this.url}/reject`, {
+      announcement_id: id,
+      reason_id,
+    });
   }
 }

@@ -1,0 +1,38 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="'rejectReason' | translate"
+  (nzOnCancel)="close()"
+  modal
+>
+  <div *nzModalContent>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <nz-form-item>
+        <nz-form-label nzFor="region_id">{{
+          "reason" | translate
+        }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="errorKey">
+          <nz-select id="region_id" formControlName="rejectReason">
+            <nz-option
+              *ngFor="let rejectReason of rejectReason$ | async"
+              [nzLabel]="rejectReason.content"
+              [nzValue]="rejectReason.id"
+            >
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+        <ng-template #errorKey let-control>
+          <error [control]="control"></error>
+        </ng-template>
+      </nz-form-item>
+    </form>
+  </div>
+  <div *nzModalFooter>
+    <button
+      (click)="reject(form.controls['rejectReason'].value)"
+      nz-button
+      nzType="primary"
+    >
+      {{ "reject" | translate }}
+    </button>
+  </div>
+</nz-modal>

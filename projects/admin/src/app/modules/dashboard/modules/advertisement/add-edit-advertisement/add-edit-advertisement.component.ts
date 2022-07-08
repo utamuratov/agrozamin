@@ -45,6 +45,11 @@ export class AddEditAdvertisementComponent
    */
   users: UserListItem[] = [];
 
+  /**
+   *
+   */
+  isVisibleRejectReasonModal = false;
+
   constructor(
     protected $addEditadvertisement: AddEditAdvertismentService,
     protected override fb: FormBuilder,
@@ -156,12 +161,19 @@ export class AddEditAdvertisementComponent
    *
    * @param id
    */
-  reject(id: number) {
-    this.$adv.reject(id).subscribe((result) => {
+  reject(id: number, reasonId: number) {
+    this.$adv.reject(id, reasonId).subscribe((result) => {
       if (result) {
         this.navigateToList();
       }
     });
+  }
+
+  /**
+   *
+   */
+  openRejectReasonModal() {
+    this.isVisibleRejectReasonModal = true;
   }
 
   /**
