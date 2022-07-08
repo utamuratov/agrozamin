@@ -12,7 +12,7 @@
                   nz-col
                   nzSpan="24"
                   class="menu__item"
-                  *ngFor="let category of (category$ | async)"
+                  *ngFor="let category of categories"
                 >
                   <a class="menu__link" [routerLink]="[category.id]"
                     ><img [src]="category.icon" alt="icon" /><span

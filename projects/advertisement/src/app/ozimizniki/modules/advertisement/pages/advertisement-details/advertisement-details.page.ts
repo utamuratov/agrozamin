@@ -1,4 +1,4 @@
-import { DOCUMENT, Location } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -10,6 +10,7 @@ import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
 import { Constants } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { prefixPath } from 'projects/advertisement/src/app/core/utilits/advertisement.utilits';
+import { CategoryForBreadcrumb } from 'projects/advertisement/src/app/shared/models/category-for-breadcrumb.interface';
 import { FavouriteService } from 'projects/advertisement/src/app/shared/services/favourite.service';
 import { map, Observable } from 'rxjs';
 import { AdvertisementDetails } from '../../dto/advertisement-details.interface';
@@ -51,7 +52,7 @@ export class AdvertisementDetailsPage {
   /**
    *
    */
-  categorySequence!: string;
+  categoriesForBreadcrumb!: CategoryForBreadcrumb[];
 
   /**
    *
@@ -74,11 +75,16 @@ export class AdvertisementDetailsPage {
     private router: Router
   ) {
     this.route.params.subscribe(() => {
-      this.data = this.route.snapshot.data['advertisment'];
-      this.categorySequence =
-        this.route.snapshot.params[
-          AdvertisementConstants.ROUTER_PARAM_CATEGORY_ID
-        ]; // 2_3_.. = categoryId_categoryId_..
+      this.data =
+        this.route.snapshot.data[
+          AdvertisementConstants.RESOLVERS_ADVERTISEMENT_DETAILS
+        ];
+
+      this.categoriesForBreadcrumb =
+        this.route.snapshot.data[
+          AdvertisementConstants.RESOLVERS_BREADCRUMB_BY_CATEGORY_SEQUENCE
+        ];
+
       this.makeCarouselData();
     });
   }

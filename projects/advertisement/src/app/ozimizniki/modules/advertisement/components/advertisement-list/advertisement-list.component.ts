@@ -4,7 +4,6 @@ import {
   Component,
   Input,
 } from '@angular/core';
-import { Params } from '@angular/router';
 import { Filter } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
@@ -27,7 +26,6 @@ export class AdvertisementListComponent extends GridLogic {
   /**
    *
    */
-
   private _filter?: ParamAndQuery;
   public get filter(): ParamAndQuery | undefined {
     return this._filter;
@@ -35,12 +33,8 @@ export class AdvertisementListComponent extends GridLogic {
   @Input()
   public set filter(v: ParamAndQuery | undefined) {
     this._filter = v;
-
-    const characteristics =
+    this.characteristics =
       v?.queryParams[AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS];
-    if (characteristics !== undefined) {
-      this.characteristics = characteristics;
-    }
 
     this.setQuery();
     this.loadData();

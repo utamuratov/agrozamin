@@ -86,6 +86,9 @@ export class AdvertisementListHeaderComponent {
   coordinates: { latitude: number; longitude: number } =
     Constants.DEFAULT_LOCATION;
 
+  /**
+   *
+   */
   readonly prefixPath = [
     prefixPath,
     Constants.DEFAULT_LANGUAGE_CODE,
