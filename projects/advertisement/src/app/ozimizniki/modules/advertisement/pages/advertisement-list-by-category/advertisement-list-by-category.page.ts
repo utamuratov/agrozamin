@@ -1,7 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Breadcrumb, Filter } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
+import { CategoryForBreadcrumb } from 'projects/advertisement/src/app/shared/models/category-for-breadcrumb.interface';
+import { Category } from 'projects/advertisement/src/app/shared/models/category.interface';
 import { ParamAndQuery } from '../../dto/param-and-query.interface';
 
 @Component({
@@ -23,7 +29,12 @@ export class AdvertisementListByCategoryPage extends Breadcrumb {
   /**
    *
    */
-  categorySequence!: string;
+  categories!: Category[];
+
+  /**
+   *
+   */
+  categoriesForBreadcrumb!: CategoryForBreadcrumb[];
 
   /**
    *
@@ -32,23 +43,29 @@ export class AdvertisementListByCategoryPage extends Breadcrumb {
    */
   constructor(
     protected override router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef
   ) {
     super(router);
 
-    this.route.params.subscribe((params) => {
-      this.categorySequence =
-        params[AdvertisementConstants.ROUTER_PARAM_CATEGORY_ID]; // 2_3_.. = categoryId_categoryId_..
-      const categoryIds = this.categorySequence.split(
-        AdvertisementConstants.SPLITTER_CATEGORY_ID
-      );
+    this.route.data.subscribe((data) => {
       this.filter = {
-        ...this.filter,
-        categoryId: +categoryIds[categoryIds.length - 1],
+        ...data[AdvertisementConstants.RESOLVERS_ADVERTISEMENTS_BY_CATEGORY]
+          .filter,
       };
+      this.categories =
+        data[
+          AdvertisementConstants.RESOLVERS_ADVERTISEMENTS_BY_CATEGORY
+        ].categories;
+      this.categoriesForBreadcrumb =
+        data[AdvertisementConstants.RESOLVERS_BREADCRUMB_BY_CATEGORY_SEQUENCE];
+      this.filters = [];
+      this.cd.markForCheck();
     });
+
     this.route.queryParams.subscribe((queryParams) => {
       this.filter = { ...this.filter, queryParams };
+      this.cd.markForCheck();
     });
   }
 

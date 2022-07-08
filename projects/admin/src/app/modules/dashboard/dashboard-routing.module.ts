@@ -64,6 +64,13 @@ const routes: Routes = [
             (m) => m.AdvertisementModule
           ),
       },
+      {
+        path: 'reject-reason',
+        loadChildren: () =>
+          import('./modules/reject-reason/reject-reason.module').then(
+            (m) => m.RejectReasonModule
+          ),
+      },
     ],
   },
 ];

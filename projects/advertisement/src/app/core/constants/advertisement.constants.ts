@@ -25,4 +25,10 @@ export class AdvertisementConstants {
   // RESOLVERS
   public static readonly RESOLVERS_SELLERS = 'sellers';
   public static readonly RESOLVERS_FAVORITE_ADVERTISEMENTS = 'advertisements';
+  public static readonly RESOLVERS_ADVERTISEMENTS_BY_CATEGORY =
+    'advertisementsByCategory';
+  public static readonly RESOLVERS_ADVERTISEMENT_DETAILS =
+    'advertisementDetails';
+  public static readonly RESOLVERS_BREADCRUMB_BY_CATEGORY_SEQUENCE =
+    'breadcrumbByCategorySequence';
 }
