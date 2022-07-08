@@ -163,11 +163,36 @@
                           /><span>{{'messages' | translate}}</span>
                         </button>
                       </div>
-
+                      <!-- Mobile -->
                       <div
                         nz-col
                         nzXs="24"
                         nzSm="7"
+                        nzMd="0"
+                      >
+                        <button
+                          nz-button
+                          nzType="primary"
+                          nzSize="large"
+                          class="product__info__contacts__btn"
+                          (click)="showPhoneNumber(data.id)"
+                          nzBlock
+                        >
+                          <img
+                            src="./assets/images/phone.svg"
+                            alt="phone icon"
+                          /><span
+                            >{{isShowedPhoneNumber ? ('+' + phoneNumber) :
+                            'phoneCall' | translate}}</span
+                          >
+                        </button>
+                      </div>
+
+                      <!-- desktop -->
+                      <div
+                        nz-col
+                        nzXs="0"
+                        nzSm="0"
                         nzMd="6"
                         nzLg="8"
                         [nzXl]="isShowedPhoneNumber ? 7 : 6"
@@ -185,7 +210,7 @@
                             alt="phone icon"
                           /><span
                             >{{isShowedPhoneNumber ? ('+' + phoneNumber) :
-                            'phoneCall' | translate}}</span
+                            'show' | translate}}</span
                           >
                         </button>
                       </div>

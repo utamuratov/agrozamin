@@ -11,43 +11,38 @@
               <div nz-col nzSpan="24">
                 <div class="menu">
                   <div class="single-category">
-                    <div nz-row [nzGutter]="[0, 27]">
-                      <div
-                        nz-col
-                        nzSpan="24"
-                        *ngFor="let category of categories"
-                      >
-                        <a
+                    
+
+                    <ul nz-menu nzMode="inline">                      
+                      <li nz-submenu [nzTitle]="title" *ngFor="let category of categories" >
+                        <ul>
+                          <li nz-menu-item *ngFor="
+                          let child_category of category.child_categories">
+                          <a
+                          class="single-category__sublink"
+                          [ngClass]="{
+                            active: categoryId === child_category.id
+                          }"
+                          (click)="handleCategory(child_category.id)"
+                          >{{ child_category.name }}
+                          <!-- TODO: REMOVE -->
+                          <!-- <span>2</span> -->
+                        </a>
+                      </li>
+                        </ul>
+
+                        <ng-template #title style="padding-left: 0;">
+                          <a
                           class="single-category__link active"
                           (click)="handleCategory(category.id)"
                         >
                           <img [src]="category.icon" alt="icon" />
                           <span>{{ category.name }}</span>
                         </a>
-                        <div nz-col nzSpan="24">
-                          <ul nz-row [nzGutter]="[0, 16]">
-                            <li
-                              nz-col
-                              nzSpan="24"
-                              *ngFor="
-                                let child_category of category.child_categories
-                              "
-                            >
-                              <a
-                                class="single-category__sublink"
-                                [ngClass]="{
-                                  active: categoryId === child_category.id
-                                }"
-                                (click)="handleCategory(child_category.id)"
-                                >{{ child_category.name }}
-                                <!-- TODO: REMOVE -->
-                                <!-- <span>2</span> -->
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                        </ng-template>
+                      </li>
+                    </ul>
+
                   </div>
                 </div>
               </div>
@@ -74,7 +69,7 @@
                   ></az-advertisement-list-header>
                 </div>
 
-                <div nz-col nzXs="24" nzSm="0" nzMd="0" nzLg="0" nzXl="0">
+                <div nz-col nzXs="24" nzSm="24" nzMd="0" nzLg="0" nzXl="0">
                   <button
                     nz-button
                     nzBlock
