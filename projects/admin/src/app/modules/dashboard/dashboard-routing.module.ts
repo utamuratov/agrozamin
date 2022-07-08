@@ -39,18 +39,6 @@ const routes: Routes = [
           import('./modules/admin/admin.module').then((m) => m.AdminModule),
       },
       {
-        path: 'region',
-        loadChildren: () =>
-          import('./modules/region/region.module').then((m) => m.RegionModule),
-      },
-      {
-        path: 'district',
-        loadChildren: () =>
-          import('./modules/district/district.module').then(
-            (m) => m.DistrictModule
-          ),
-      },
-      {
         path: 'advertisement-type',
         loadChildren: () =>
           import('./modules/advertisement-type/advertisement-type.module').then(
@@ -62,13 +50,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/advertisement/advertisement.module').then(
             (m) => m.AdvertisementModule
-          ),
-      },
-      {
-        path: 'reject-reason',
-        loadChildren: () =>
-          import('./modules/reject-reason/reject-reason.module').then(
-            (m) => m.RejectReasonModule
           ),
       },
     ],

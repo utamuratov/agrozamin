@@ -12,4 +12,5 @@ export interface Advertisement extends Id {
   views_count: number;
   views_count_of_phone: number;
   favorite: boolean;
+  reject_reason: string;
 }

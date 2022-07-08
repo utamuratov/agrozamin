@@ -3,9 +3,8 @@
     <div nz-col nzSpan="24">
       <h2>
         {{
-          isAddMode
-            ? ("creatingAdvertisement" | translate)
-            : "editingAdvertisment"
+          (isAddMode ? "creatingAdvertisement" : "editingAdvertisment")
+            | translate
         }}
       </h2>
     </div>
@@ -69,7 +68,7 @@
           nzType="primary"
           (click)="submitAndApprove()"
         >
-          <i nz-icon nzType="check"></i> Approve
+          <i nz-icon nzType="check"></i> {{ "approve" | translate }}
         </button>
         <button
           class="ml-1"
@@ -77,9 +76,9 @@
           nzSize="large"
           nzType="primary"
           nzDanger
-          (click)="reject(id!)"
+          (click)="openRejectReasonModal()"
         >
-          <i nz-icon nzType="close"></i> Reject
+          <i nz-icon nzType="close"></i> {{ "reject" | translate }}
         </button>
       </div>
       <ng-template #edit>
@@ -95,3 +94,8 @@
     </div>
   </div>
 </div>
+
+<az-reject-reason-modal
+  [(isVisible)]="isVisibleRejectReasonModal"
+  (rejectReasonId)="reject(id!, $event)"
+></az-reject-reason-modal>

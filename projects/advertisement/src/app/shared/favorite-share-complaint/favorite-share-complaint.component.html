@@ -1,13 +1,14 @@
 <div nz-row [nzGutter]="[24, { xs: 10, sm: 0 }]">
-  <div nz-col nzXs="24" nzSm="6" nzMd="6" nzLg="8" nzXl="6">
+  <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="8" nzXl="6">
     <a
       class="links"
       (click)="isFavoriteChange.emit(true)"
       [ngClass]="{ active: isFavorite }"
       ><i nz-icon nzType="heart"></i><span>В Избранное</span></a
     >
+    <!-- TODO: REMOVE -->
   </div>
-  <div nz-col nzXs="24" nzSm="6" nzMd="6" nzLg="8" nzXl="6">
+  <!-- <div nz-col nzXs="24" nzSm="6" nzMd="6" nzLg="8" nzXl="6">
     <a class="links">
       <svg
         width="17"
@@ -25,8 +26,8 @@
       </svg>
       <span>Поделиться</span></a
     >
-  </div>
-  <div nz-col nzXs="24" nzSm="6" nzMd="6" nzLg="8" nzXl="6">
+  </div> -->
+  <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="8" nzXl="6">
     <a class="links">
       <svg
         width="20"

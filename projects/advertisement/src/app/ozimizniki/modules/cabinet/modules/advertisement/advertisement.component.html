@@ -440,9 +440,18 @@
                         <img src="./assets/images/block-red.svg" alt="" />
                       </div>
                       <div class="advert-cards__rightContent__text" nz-col>
-                        <span>Объявление отклонено</span>
+                        <span>{{ "advertisementRejected" | translate }}</span>
                       </div>
                     </div>
+                  </div>
+                  <div
+                    nz-col
+                    nzSpan="24"
+                    class="advert-cards__content__description"
+                  >
+                    <p>
+                      {{ advertisement.reject_reason }}
+                    </p>
                   </div>
                 </ng-container>
                 <div *ngSwitchDefault></div>

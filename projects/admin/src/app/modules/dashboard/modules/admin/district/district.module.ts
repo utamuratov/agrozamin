@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { DistrictRoutingModule } from './district-routing.module';
-import { DistrictComponent } from './district.component';
 import { AddEditDistrictComponent } from './add-edit-district/add-edit-district.component';
 import { DistrictListComponent } from './district-list/district-list.component';
 import { DashboardSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
@@ -10,11 +9,7 @@ import { DistrictService } from './services/district.service';
 import { RegionService } from '../region/service/region.service';
 
 @NgModule({
-  declarations: [
-    DistrictComponent,
-    AddEditDistrictComponent,
-    DistrictListComponent,
-  ],
+  declarations: [AddEditDistrictComponent, DistrictListComponent],
   imports: [DistrictRoutingModule, DashboardSharedModule, NzSelectModule],
   providers: [DistrictService, RegionService],
 })

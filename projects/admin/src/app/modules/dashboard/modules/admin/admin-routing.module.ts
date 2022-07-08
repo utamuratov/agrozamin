@@ -40,6 +40,23 @@ const routes: Routes = [
           bc: 'controls',
         },
       },
+      {
+        path: 'region',
+        loadChildren: () =>
+          import('./region/region.module').then((m) => m.RegionModule),
+      },
+      {
+        path: 'district',
+        loadChildren: () =>
+          import('./district/district.module').then((m) => m.DistrictModule),
+      },
+      {
+        path: 'reject-reason',
+        loadChildren: () =>
+          import('./reject-reason/reject-reason.module').then(
+            (m) => m.RejectReasonModule
+          ),
+      },
     ],
   },
 ];
