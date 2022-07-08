@@ -20,6 +20,9 @@ import { RegionsComponent } from './components/regions/regions.component';
 
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { DistrictModalComponent } from './components/district/components/modal/modal.component';
+import { RolesComponent } from './components/roles/roles.component';
+import { RoleModalComponent } from './components/roles/components/role-modal/role-modal.component';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { DistrictModalComponent } from './components/district/components/modal/m
     ModalComponent,
     DistrictComponent,
     RegionsComponent,
-    DistrictModalComponent
+    DistrictModalComponent,
+    RolesComponent,
+    RoleModalComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +49,8 @@ import { DistrictModalComponent } from './components/district/components/modal/m
     NzFormModule,
     NzTableModule,
     NzModalModule,
-    NzSelectModule
+    NzSelectModule,
+    NzTagModule
   ]
 })
 export class HomeModule { }

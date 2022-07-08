@@ -1,0 +1,48 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="editingData ? 'Изменить' : 'Добавить'"
+  (nzOnOk)="save()"
+  (nzOnCancel)="close()"
+  [nzOkLoading]="isOkLoading"
+>
+  <form nz-form *nzModalContent [formGroup]="districtForm">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24">Регион</nz-form-label>
+      <nz-form-control [nzSpan]="24">
+        <nz-select formControlName="region_id">
+          <nz-option *ngFor="let region of list" [nzValue]="region.id" [nzLabel]="region.name"></nz-option>          
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24">Русский</nz-form-label>
+      <nz-form-control [nzSpan]="24">
+        <textarea
+          nz-input
+          [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+          formControlName="ru"
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24">Узбек</nz-form-label>
+      <nz-form-control [nzSpan]="24">
+        <textarea
+          nz-input
+          [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+          formControlName="uz_cyrl"
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24">O`zbek</nz-form-label>
+      <nz-form-control [nzSpan]="24">
+        <textarea
+          nz-input
+          [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+          formControlName="uz_latn"
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>
