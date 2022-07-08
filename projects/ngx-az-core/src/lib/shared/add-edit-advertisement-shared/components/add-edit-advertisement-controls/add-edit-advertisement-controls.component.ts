@@ -14,6 +14,7 @@ import { District } from '../../dto/district.interface';
 import { Filter } from '../../dto/filter.interface';
 import { Region } from '../../dto/region.interface';
 import { NzImageCustom } from '../media/media.component';
+import { ReferencesForCreate } from '../../dto/references-for-create.interface';
 
 @Component({
   selector: 'az-add-edit-advertisement-controls',
@@ -63,6 +64,12 @@ export class AddEditAdvertisementControlsComponent {
    */
   @Input()
   categoryType$!: Observable<CategoryType[]>;
+
+  /**
+   *
+   */
+  @Input()
+  referencesForCreate$!: Observable<ReferencesForCreate>;
 
   /**
    *

@@ -1,3 +1,4 @@
+import { AdvertisementStatus } from '../../../enums/advertisement-status.enum';
 import { IdName } from '../../../models/id-name.interface';
 import { Advertisement } from './advertisement.interface';
 import { FileResponse } from './file.response';
@@ -7,4 +8,6 @@ export interface AdvertisementResponse
   category: IdName;
   id: number;
   created_by: { id: number; username: string };
+  status: AdvertisementStatus;
+  reject_reason: string;
 }

@@ -11,7 +11,6 @@ import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
 
 import { map, Observable, of, takeUntil } from 'rxjs';
 import { Constants } from '../../config/constants';
-import { AdvertisementStatus } from '../../enums/advertisement-status.enum';
 import { InputTypeForCreator } from '../../enums/input-type.enum';
 import { IdName } from '../../models/id-name.interface';
 import { NgDestroy } from '../../services/ng-destroy.service';
@@ -25,6 +24,7 @@ import { CategoryType } from './dto/category-type.interface';
 import { Characteristics } from './dto/characteristics.interface';
 import { District } from './dto/district.interface';
 import { Filter } from './dto/filter.interface';
+import { ReferencesForCreate } from './dto/references-for-create.interface';
 import { Region } from './dto/region.interface';
 import { AddAdvertisementService } from './services/add-advertisement.service';
 @Component({
@@ -51,6 +51,11 @@ export class AddEditAdvertisementFullLogicComponent implements OnInit {
    *
    */
   categoryType$!: Observable<CategoryType[]>;
+
+  /**
+   *
+   */
+  referencesForCreate$!: Observable<ReferencesForCreate>;
 
   /**
    *
@@ -113,6 +118,7 @@ export class AddEditAdvertisementFullLogicComponent implements OnInit {
       return;
     }
 
+    this.getReferencesForCreate();
     this.initializeForm();
   }
 
@@ -121,6 +127,13 @@ export class AddEditAdvertisementFullLogicComponent implements OnInit {
    */
   getRegions() {
     this.region$ = this.$advertisement.getRegions();
+  }
+
+  /**
+   *
+   */
+  getReferencesForCreate() {
+    this.referencesForCreate$ = this.$advertisement.getReferencesForCreate();
   }
 
   /**

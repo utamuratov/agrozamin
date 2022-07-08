@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {
   AddEditAdvertisementFullLogicComponent,
   AdvertisementResponse,
+  AdvertisementStatus,
   NgDestroy,
 } from 'ngx-az-core';
 import { UserListItem } from '../dto/user-list-item.interface';
@@ -50,6 +51,21 @@ export class AddEditAdvertisementComponent
    */
   isVisibleRejectReasonModal = false;
 
+  /**
+   *
+   */
+  readonly STATUS = AdvertisementStatus;
+
+  /**
+   *
+   * @param $addEditadvertisement
+   * @param fb
+   * @param cd
+   * @param router
+   * @param route
+   * @param $destroy
+   * @param $adv
+   */
   constructor(
     protected $addEditadvertisement: AddEditAdvertismentService,
     protected override fb: FormBuilder,
@@ -132,7 +148,7 @@ export class AddEditAdvertisementComponent
   /**
    *
    */
-  submitAndApprove() {
+  submitAndConfirm() {
     this.submitForm();
   }
 
@@ -140,8 +156,8 @@ export class AddEditAdvertisementComponent
    *
    * @param id
    */
-  approve(id: number) {
-    this.$adv.approve(id).subscribe((result) => {
+  confirm(id: number) {
+    this.$adv.confirm(id).subscribe((result) => {
       if (result) {
         this.navigateToList();
       }
@@ -153,7 +169,7 @@ export class AddEditAdvertisementComponent
    */
   override doAfterRequestFinished() {
     if (this.id) {
-      this.approve(this.id);
+      this.confirm(this.id);
     }
   }
 

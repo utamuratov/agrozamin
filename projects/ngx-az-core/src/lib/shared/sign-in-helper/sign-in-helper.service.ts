@@ -21,7 +21,7 @@ export class SignInHelperService extends BaseAuthService {
   /**
    * admin endpoint
    */
-  readonly endpoint = 'http://62.209.129.41/api/v1/'; // 'http://192.168.1.118/api/v1/';
+  readonly endpoint = 'http://62.209.129.41:8000/api/v1/'; // 'http://192.168.1.118/api/v1/';
 
   constructor(
     protected override $baseService: BaseService,

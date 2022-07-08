@@ -30,7 +30,9 @@ export class AddAdvertisementService {
    * @returns
    */
   getReferencesForCreate() {
-    return this.$baseService.get<ReferencesForCreate>(this.url + '/create');
+    return this.$baseService
+      .get<ReferencesForCreate>(this.url + '/create')
+      .pipe(map((result) => result.data));
   }
 
   /**

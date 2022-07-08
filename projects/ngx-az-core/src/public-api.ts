@@ -92,6 +92,7 @@ export * from './lib/shared/add-edit-advertisement-shared/dto/filter.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/filter-parameter.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/file.response';
 export * from './lib/shared/add-edit-advertisement-shared/dto/location.interface';
+export * from './lib/shared/add-edit-advertisement-shared/dto/references-for-create.interface';
 
 // SERVICES
 export * from './lib/services/base.service';

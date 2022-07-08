@@ -8,9 +8,10 @@ import {
   Output,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { IdName } from '../../../../models/id-name.interface';
 import { Category } from '../../dto/category.interface';
-import { AddAdvertisementService } from '../../services/add-advertisement.service';
+import { ReferencesForCreate } from '../../dto/references-for-create.interface';
 
 interface CustomTree {
   selectedId: number;
@@ -51,16 +52,19 @@ export class InfoComponent implements OnInit {
   /**
    *
    */
+  @Input()
+  referencesForCreate$!: Observable<ReferencesForCreate>;
+
+  /**
+   *
+   */
   customTree: CustomTree[] = [];
 
   /**
    *
    * @param $addAdvertisement
    */
-  constructor(
-    private $addAdvertisement: AddAdvertisementService,
-    private cd: ChangeDetectorRef
-  ) {}
+  constructor(private cd: ChangeDetectorRef) {}
 
   /**
    *
@@ -77,12 +81,10 @@ export class InfoComponent implements OnInit {
    *
    */
   getReferences() {
-    this.$addAdvertisement.getReferencesForCreate().subscribe((result) => {
-      if (result.success) {
-        this.categories = result.data.categories;
-        this.initCustomTree(this.categories);
-        this.cd.markForCheck();
-      }
+    this.referencesForCreate$.subscribe((result) => {
+      this.categories = result.categories;
+      this.initCustomTree(this.categories);
+      this.cd.markForCheck();
     });
   }
 
