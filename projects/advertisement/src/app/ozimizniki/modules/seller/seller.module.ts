@@ -16,12 +16,14 @@ import { TagModule } from '../../../shared/tag/tag.module';
 import { FavoriteShareComplaintModule } from '../../../shared/favorite-share-complaint/favorite-share-complaint.module';
 import { ActiveFromModule } from '../../../shared/active-from/active-from.module';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 
 @NgModule({
   declarations: [
     SellerComponent,
     SellerAdvertisementsComponent,
     SellerInfoComponent,
+    CategoryMenuComponent,
   ],
   imports: [
     SellerRoutingModule,

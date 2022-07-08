@@ -97,6 +97,7 @@ export class SellerAdvertisementsComponent extends GridLogic implements OnInit {
    */
   handleCategory(categoryId: number) {
     this.categoryId = categoryId;
+    this.closeCategoryDrawer();
     this.setQuery();
     this.loadData();
   }

@@ -1,0 +1,69 @@
+.single-category {
+  &__link {
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    img {
+      width: 30px;
+      height: 30px;
+      margin-right: 20px;
+    }
+
+    span {
+      color: #1a1a1a;
+      font-family: Agrofont-Medium;
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    &.active {
+      background: #f1f2f5;
+    }
+  }
+
+  &__sublink {
+    display: flex;
+    justify-content: space-between;
+    color: #1a1a1a;
+    font-family: Agrofont-Medium;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 3px 0;
+    transition: none !important;
+
+    &.active {
+      color: #22a33f;
+    }
+
+    span {
+      color: #86898c;
+      font-family: Agrofont-Regular;
+    }
+
+    &:hover {
+      color: #22a33f !important;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .ant-menu-submenu-title {
+    background: #f1f2f5;
+    border-radius: 8px;
+    padding: 0;
+  }
+
+  .ant-menu-item {
+    padding-left: 12px !important;
+  }
+
+  .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
+    height: 54px;
+    padding-left: 0 !important;
+  }
+
+  .ant-menu-inline {
+    border-right: none;
+  }
+}

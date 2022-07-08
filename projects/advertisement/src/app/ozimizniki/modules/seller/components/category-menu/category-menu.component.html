@@ -1,0 +1,28 @@
+<ul nz-menu nzMode="inline">
+  <li nz-submenu [nzTitle]="title" *ngFor="let category of categories">
+    <ul>
+      <li nz-menu-item *ngFor="let child_category of category.child_categories">
+        <a
+          class="single-category__sublink"
+          [ngClass]="{
+            active: categoryId === child_category.id
+          }"
+          (click)="handleCategory(child_category.id)"
+          >{{ child_category.name }}
+          <!-- TODO: REMOVE -->
+          <!-- <span>2</span> -->
+        </a>
+      </li>
+    </ul>
+
+    <ng-template #title style="padding-left: 0">
+      <a
+        class="single-category__link active"
+        (click)="handleCategory(category.id)"
+      >
+        <img [src]="category.icon" alt="icon" />
+        <span>{{ category.name }}</span>
+      </a>
+    </ng-template>
+  </li>
+</ul>
