@@ -33,7 +33,7 @@ export class AdvertisementService extends GridService<AdvertisementGetAll> {
    * @param id
    * @returns
    */
-  approve(id: number) {
+  confirm(id: number) {
     return this.$baseService.put(`${this.url}/approve/${id}`);
   }
 

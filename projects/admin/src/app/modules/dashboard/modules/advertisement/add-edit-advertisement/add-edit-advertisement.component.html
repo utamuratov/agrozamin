@@ -7,7 +7,28 @@
             | translate
         }}
       </h2>
+
+      <ng-container [ngSwitch]="data?.announcement?.status">
+        <ng-container *ngSwitchCase="STATUS.STATUS_CONFIRMED">
+          <h3 class="confirmed">
+            <i nz-icon nzType="check-circle" nzTheme="twotone"></i>
+            {{ "confirmed" | translate }}
+          </h3>
+        </ng-container>
+        <div *ngSwitchCase="STATUS.STATUS_REJECTED">
+          <h3 class="rejected">
+            <i nz-icon nzType="close-circle"></i>
+            {{ "rejected" | translate }}
+          </h3>
+          <h4>
+            {{ "rejectReason" | translate }}:
+            {{ data?.announcement?.reject_reason }}
+          </h4>
+        </div>
+        <div *ngSwitchDefault></div>
+      </ng-container>
     </div>
+    <nz-divider class="mt-0"></nz-divider>
     <div nz-col nzSpan="24" *ngIf="data || isAddMode">
       <form
         nz-form
@@ -51,6 +72,7 @@
           [isHiddenContactdata]="!!data"
           [form]="form"
           [region$]="region$"
+          [referencesForCreate$]="referencesForCreate$"
           [district$]="district$"
           [categoryType$]="categoryType$"
           [filters]="filters"
@@ -61,35 +83,42 @@
         ></az-add-edit-advertisement-controls>
       </form>
 
-      <div *ngIf="!isAddMode; else edit">
+      <div *ngIf="isAddMode; else edit">
         <button
           nz-button
           nzSize="large"
           nzType="primary"
-          (click)="submitAndApprove()"
-        >
-          <i nz-icon nzType="check"></i> {{ "approve" | translate }}
-        </button>
-        <button
-          class="ml-1"
-          nz-button
-          nzSize="large"
-          nzType="primary"
-          nzDanger
-          (click)="openRejectReasonModal()"
-        >
-          <i nz-icon nzType="close"></i> {{ "reject" | translate }}
-        </button>
-      </div>
-      <ng-template #edit>
-        <button
-          nz-button
-          nzSize="large"
-          nzType="primary"
-          (click)="submitAndApprove()"
+          (click)="submitAndConfirm()"
         >
           <i nz-icon nzType="plus"></i> {{ "add" | translate }}
         </button>
+      </div>
+      <ng-template #edit>
+        <ng-container
+          *ngIf="
+            data?.announcement?.status !== STATUS.STATUS_CONFIRMED &&
+            data?.announcement?.status !== STATUS.STATUS_REJECTED
+          "
+        >
+          <button
+            nz-button
+            nzSize="large"
+            nzType="primary"
+            (click)="submitAndConfirm()"
+          >
+            <i nz-icon nzType="check"></i> {{ "confirm" | translate }}
+          </button>
+          <button
+            class="ml-1"
+            nz-button
+            nzSize="large"
+            nzType="primary"
+            nzDanger
+            (click)="openRejectReasonModal()"
+          >
+            <i nz-icon nzType="close"></i> {{ "reject" | translate }}
+          </button>
+        </ng-container>
       </ng-template>
     </div>
   </div>

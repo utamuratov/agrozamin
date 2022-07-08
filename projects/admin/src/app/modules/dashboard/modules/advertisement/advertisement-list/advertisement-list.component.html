@@ -22,6 +22,7 @@
   >
     <thead>
       <tr class="tr__th--border-bottom-0">
+        <th [nzWidth]="'10px'" style="border: none"></th>
         <th
           [nzWidth]="'70px'"
           nzAlign="center"
@@ -63,6 +64,7 @@
     <tbody>
       <tr *ngFor="let data of groupingTable.data">
         <!-- ID -->
+        <td [class]="STATUS[data.status]"></td>
         <td nzAlign="center" nzLeft>{{ data.id }}</td>
 
         <!-- NAME -->
@@ -72,7 +74,11 @@
         <td>{{ data.price }}</td>
 
         <!-- STATUS -->
-        <td nzAlign="center">{{ STATUS[data.status] }}</td>
+        <td nzAlign="center">
+          <div nz-typography class="mb-0">
+            <code>{{ STATUS[data.status] | translate }}</code>
+          </div>
+        </td>
 
         <td nzRight nzAlign="center">
           <nz-button-group>

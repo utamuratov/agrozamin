@@ -2,6 +2,7 @@
 <az-info
   [form]="form"
   [categories]="data?.categories"
+  [referencesForCreate$]="referencesForCreate$"
   [currentCategory]="currentCategory"
   (categoryIdChange)="changeCategoryId.emit($event)"
 ></az-info>
