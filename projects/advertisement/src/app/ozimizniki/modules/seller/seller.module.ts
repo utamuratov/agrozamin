@@ -15,6 +15,7 @@ import { NoImageModule } from '../../../shared/no-image/no-image.module';
 import { TagModule } from '../../../shared/tag/tag.module';
 import { FavoriteShareComplaintModule } from '../../../shared/favorite-share-complaint/favorite-share-complaint.module';
 import { ActiveFromModule } from '../../../shared/active-from/active-from.module';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ActiveFromModule } from '../../../shared/active-from/active-from.module
     NzButtonModule,
     NzTypographyModule,
     NzDrawerModule,
+    NzMenuModule
   ],
 })
 export class SellerPartnerModule {}

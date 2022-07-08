@@ -3,16 +3,16 @@
   margin-top: 60px;
 
   &__name {
-      font-size: 24px;
+    font-size: 24px;
 
-      @media (max-width:1200px) {
-        font-size: 20px;
-        margin-bottom: -40px;
-      }
-      @media (max-width:576px) {
-        font-size: 16px;
-        margin-bottom: -50px;
-      }
+    @media (max-width: 1200px) {
+      font-size: 20px;
+      margin-bottom: -40px;
+    }
+    @media (max-width: 576px) {
+      font-size: 16px;
+      margin-bottom: -50px;
+    }
   }
 
   .single-category {
@@ -67,7 +67,6 @@
       }
     }
   }
-
 }
 
 .items {
@@ -86,20 +85,41 @@
 .drawer {
   &__header {
     padding: 20px;
-    border-bottom: 1px solid #E6E9ED;
+    border-bottom: 1px solid #e6e9ed;
     background: #fff;
   }
 
   &__title {
-      font-size: 20px;
-      &_text {
-          margin-left: 10px;
-          color: #000;
-      }
+    font-size: 20px;
+    &_text {
+      margin-left: 10px;
+      color: #000;
+    }
 
-      &_margin {
-          display: inline-block;
-          margin-right: 12px;
-      }
+    &_margin {
+      display: inline-block;
+      margin-right: 12px;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .ant-menu-submenu-title {
+    background: #f1f2f5;
+    border-radius: 8px;
+    padding: 0;
+  }
+
+  .ant-menu-item {
+    padding-left: 12px !important;
+  }
+
+  .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
+    height: 54px;
+    padding-left: 0 !important;
+  }
+
+  .ant-menu-inline {
+    border-right: none;
   }
 }
