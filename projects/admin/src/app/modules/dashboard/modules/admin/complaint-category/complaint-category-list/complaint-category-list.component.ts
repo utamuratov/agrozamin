@@ -8,17 +8,17 @@ import { Language, NgDestroy } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { BaseComponent } from 'projects/admin/src/app/shared/components/base/base.component';
 import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
-import { SpamCategoryRequest } from '../dto/spam-category.request';
-import { SpamCategoryResponse } from '../dto/spam-category.response';
-import { SpamCategoryService } from '../services/spam-category.service';
+import { ComplaintCategoryRequest } from '../dto/complaint-category.request';
+import { ComplaintCategoryResponse } from '../dto/complaint-category.response';
+import { ComplaintCategoryService } from '../services/complaint-category.service';
 
 @Component({
-  templateUrl: './spam-category-list.component.html',
-  styleUrls: ['./spam-category-list.component.less'],
+  templateUrl: './complaint-category-list.component.html',
+  styleUrls: ['./complaint-category-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpamCategoryListComponent
-  extends BaseComponent<SpamCategoryResponse, SpamCategoryRequest>
+export class ComplaintCategoryListComponent
+  extends BaseComponent<ComplaintCategoryResponse, ComplaintCategoryRequest>
   implements OnInit
 {
   /**
@@ -28,7 +28,7 @@ export class SpamCategoryListComponent
    * @param cd
    */
   constructor(
-    protected override $data: SpamCategoryService,
+    protected override $data: ComplaintCategoryService,
     protected override $destroy: NgDestroy,
     protected override cd: ChangeDetectorRef
   ) {
@@ -59,7 +59,7 @@ export class SpamCategoryListComponent
         }),
         new Column({
           field: 'content',
-          header: 'spam',
+          header: 'complaint',
           colspan: languages.length,
           isHeader: true,
           row: 1,

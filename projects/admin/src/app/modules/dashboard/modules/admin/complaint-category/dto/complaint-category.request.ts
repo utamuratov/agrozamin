@@ -1,3 +1,3 @@
 import { IContent } from 'projects/admin/src/app/shared/models/content.interface';
 
-export type SpamCategoryRequest = IContent;
+export type ComplaintCategoryRequest = IContent;
