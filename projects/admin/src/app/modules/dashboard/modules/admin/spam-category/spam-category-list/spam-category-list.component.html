@@ -1,0 +1,25 @@
+<!-- HEADER -->
+<az-header-with-divider-advanced
+  [config]="{
+    title: 'spamCategories' | translate,
+    searchInputAdvancedConfig: searchInputConfig
+  }"
+  (clickedAddEditButton)="addEdit()"
+></az-header-with-divider-advanced>
+
+<!-- BODY -->
+<az-grid
+  [data]="searchInputConfig.filteredData"
+  [columns]="columns"
+  (deleted)="delete($event)"
+  (addEdited)="addEdit($event)"
+  [nzWidthConfig]="nzWidthConfig"
+>
+</az-grid>
+
+<!-- ADD-EDIT MODAL -->
+<az-add-edit-spam-category
+  [(isVisible)]="isVisible"
+  [editingData]="editingData"
+  (modified)="modified()"
+></az-add-edit-spam-category>

@@ -57,6 +57,13 @@ const routes: Routes = [
             (m) => m.RejectReasonModule
           ),
       },
+      {
+        path: 'spam-category',
+        loadChildren: () =>
+          import('./spam-category/spam-category.module').then(
+            (m) => m.SpamCategoryModule
+          ),
+      },
     ],
   },
 ];
