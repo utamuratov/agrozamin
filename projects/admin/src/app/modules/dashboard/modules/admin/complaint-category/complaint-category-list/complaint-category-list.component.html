@@ -1,7 +1,7 @@
 <!-- HEADER -->
 <az-header-with-divider-advanced
   [config]="{
-    title: 'spamCategories' | translate,
+    title: 'complaintCategories' | translate,
     searchInputAdvancedConfig: searchInputConfig
   }"
   (clickedAddEditButton)="addEdit()"
@@ -18,8 +18,8 @@
 </az-grid>
 
 <!-- ADD-EDIT MODAL -->
-<az-add-edit-spam-category
+<az-add-edit-complaint-category
   [(isVisible)]="isVisible"
   [editingData]="editingData"
   (modified)="modified()"
-></az-add-edit-spam-category>
+></az-add-edit-complaint-category>

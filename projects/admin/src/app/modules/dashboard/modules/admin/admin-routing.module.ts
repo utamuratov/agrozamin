@@ -58,10 +58,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'spam-category',
+        path: 'complaint-category',
         loadChildren: () =>
-          import('./spam-category/spam-category.module').then(
-            (m) => m.SpamCategoryModule
+          import('./complaint-category/complaint-category.module').then(
+            (m) => m.ComplaintCategoryModule
           ),
       },
     ],

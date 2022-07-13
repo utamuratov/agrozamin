@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from 'ngx-az-core';
 import { CrudService } from 'projects/admin/src/app/core/services/crud.service';
-import { SpamCategoryRequest } from '../dto/spam-category.request';
-import { SpamCategoryResponse } from '../dto/spam-category.response';
+import { ComplaintCategoryRequest } from '../dto/complaint-category.request';
+import { ComplaintCategoryResponse } from '../dto/complaint-category.response';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SpamCategoryService extends CrudService<
-  SpamCategoryResponse,
-  SpamCategoryRequest
+export class ComplaintCategoryService extends CrudService<
+  ComplaintCategoryResponse,
+  ComplaintCategoryRequest
 > {
   /**
    *
@@ -17,6 +17,6 @@ export class SpamCategoryService extends CrudService<
    */
   constructor(protected override $baseService: BaseService) {
     super($baseService);
-    this.url = 'admin/announcement/spam-category';
+    this.url = 'admin/announcement/complaint-category';
   }
 }
