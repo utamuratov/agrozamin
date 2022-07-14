@@ -1,142 +1,171 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 import { NgDestroy } from 'ngx-az-core';
 import { finalize, takeUntil } from 'rxjs';
-import { DistrictResponse } from '../../../../dto/district.response';
-import { DistrictResponseRegion } from '../../../../dto/district.response-region';
-import { DistrictService } from '../../../district/services/district.service';
+import { RequestRole } from '../../../../dto/roles/request-role.interface';
+import { Role } from '../../../../dto/roles/roles.interface';
+import { RolesService } from '../../services/roles.service';
 
 @Component({
   selector: 'az-role-modal',
   templateUrl: './role-modal.component.html',
-  styleUrls: ['./role-modal.component.less']
+  styleUrls: ['./role-modal.component.less'],
 })
 export class RoleModalComponent {
-/**
+  /**
    *
    */
- @Input()
- isVisible!: boolean;
+  @Output()
+  isLoading = new EventEmitter<boolean>();
 
- /**
-  *
-  */
- @Input()
- editingData?: DistrictResponse;
+  /**
+   *
+   */
+  @Output()
+  isVisibleChange = new EventEmitter<boolean>();
 
- /**
-  *
-  */
- @Input()
- districtForm!: FormGroup;
+  /**
+   *
+   */
+  @Input()
+  isVisible!: boolean;
 
- /**
-  *
-  */
- @Input()
- list!: DistrictResponseRegion[];
+  /**
+   *
+   */
+  @Input()
+  form!: FormGroup;
 
- /**
-  *
-  */
- @Output()
- isVisibleChange = new EventEmitter<boolean>();
+  /**
+   *
+   */
+  @Input()
+  editingData?: Role;
 
- /**
-  *
-  */
- @Output()
- isLoading = new EventEmitter<boolean>();
+  /**
+   *
+   */
+  @Input()
+  actionList!: NzTreeNodeOptions[];
 
- /**
-  *
-  */
- isOkLoading = false;
+  /**
+   *
+   */
+  isOkLoading = false;
 
- /**
-  *
-  * @param $data
-  * @param $destroy
-  */
- constructor(private $data: DistrictService, private $destroy: NgDestroy) {}
+  /**
+   *
+   * @param $data
+   * @param $destroy
+   */
+  constructor(private $data: RolesService, private $destroy: NgDestroy) {}
 
- /**
-  *
-  */
- private doAfterSuccess() {
-   this.isOkLoading = false;
-   this.isLoading.emit(true);
-   this.close();
- }
+  /**
+   *
+   * @param formAccess
+   * @returns
+   */
+  private getControls(formAccess: string[]): number[] {
+    const actions: number[] = [];
+    formAccess.forEach((el: string) => {
+      const splitted = el.split('-');
+      if (splitted.length > 1) {
+        actions.push(+splitted[1]);
+      } else {
+        const control = this.actionList.find((k) => k.key === el)?.children;
+        control?.forEach((act) => {
+          actions.push(+act.key.split('-')[1]);
+        });
+      }
+    });
+    return actions;
+  }
 
- /**
-  *
-  * @returns
-  */
- private buildRequest() {
-   return {
-     name: {
-       ru: this.districtForm.value.ru,
-       uz_cyrl: this.districtForm.value.uz_cyrl,
-       uz_latn: this.districtForm.value.uz_latn,
-     },
-     region_id: this.districtForm.value.region_id,
-   };
- }
+  /**
+   *
+   * @returns
+   */
+  private formValues(): RequestRole {
+    const controls = this.getControls(this.form.controls['actions'].value);
+    const bodyRequest = {
+      key: this.form.controls['key'].value,
+      description: {
+        ru: this.form.controls['ru'].value,
+        uz_cyrl: this.form.controls['uz_cyrl'].value,
+        uz_latn: this.form.controls['uz_latn'].value,
+      },
+      access: controls,
+    };
+    return bodyRequest;
+  }
 
- /**
-  *
-  */
- close() {
-   this.isVisibleChange.emit(false);
-   this.districtForm.reset();
-   console.log(this.list);
- }
+  /**
+   *
+   */
+  private doAfterSuccess(): void {
+    this.isOkLoading = false;
+    this.isLoading.emit(true);
+    this.close();
+  }
 
- /**
-  *
-  */
- addDistrict(): void {
-   this.isOkLoading = true;
-   const requestBody = this.buildRequest();
-   this.$data
-     .add(requestBody)
-     .pipe(
-       takeUntil(this.$destroy),
-       finalize(() => {
-         this.isOkLoading = false;
-       })
-     )
-     .subscribe(() => {
-       this.districtForm.reset();
-       this.doAfterSuccess();
-     });
- }
+  /**
+   *
+   */
+  addRole(): void {
+    this.isOkLoading = true;
+    const bodyRequest = this.formValues();
+    this.$data
+      .add(bodyRequest)
+      .pipe(
+        takeUntil(this.$destroy),
+        finalize(() => {
+          this.isOkLoading = false;
+        })
+      )
+      .subscribe(() => {
+        this.doAfterSuccess();
+        this.form.reset();
+      });
+  }
 
- /**
-  *
-  * @param id
-  */
- editDistrict(id: number) {
-   this.isOkLoading = true;
-   const requestBody = this.buildRequest();
-   this.$data
-     .update(id, requestBody)
-     .pipe(takeUntil(this.$destroy))
-     .subscribe(() => {
-       this.doAfterSuccess();
-     });
- }
+  /**
+   *
+   * @param id
+   */
+  editRole(id: number): void {
+    this.isOkLoading = true;
+    const bodyRequest = this.formValues();
+    this.$data
+      .update(id, bodyRequest)
+      .pipe(
+        takeUntil(this.$destroy),
+        finalize(() => {
+          this.isOkLoading = false;
+        })
+      )
+      .subscribe(() => {
+        this.doAfterSuccess();
+      });
+  }
 
- /**
-  *
-  * @returns
-  */
- save() {
-   if (this.editingData) {
-     this.editDistrict(this.editingData.id);
-     return;
-   }
-   this.addDistrict();
- }
+  /**
+   *
+   * @returns
+   */
+  save(): void {
+    if (this.editingData) {
+      this.editRole(this.editingData.id);
+      return;
+    }
+    this.addRole();
+  }
+
+  /**
+   *
+   */
+  close(): void {
+    this.isVisibleChange.emit(false);
+    this.form.reset();
+  }
 }

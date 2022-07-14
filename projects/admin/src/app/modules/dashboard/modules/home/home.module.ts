@@ -23,6 +23,8 @@ import { DistrictModalComponent } from './components/district/components/modal/m
 import { RolesComponent } from './components/roles/roles.component';
 import { RoleModalComponent } from './components/roles/components/role-modal/role-modal.component';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
     NzTableModule,
     NzModalModule,
     NzSelectModule,
-    NzTagModule
+    NzTagModule,
+    NzTreeSelectModule,
+    NzToolTipModule
   ]
 })
 export class HomeModule { }

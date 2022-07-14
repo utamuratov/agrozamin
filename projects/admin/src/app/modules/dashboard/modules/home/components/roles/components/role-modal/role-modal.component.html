@@ -5,15 +5,33 @@
   (nzOnCancel)="close()"
   [nzOkLoading]="isOkLoading"
 >
-  <form nz-form *nzModalContent [formGroup]="districtForm">
+  <form nz-form *nzModalContent [formGroup]="form">
     <nz-form-item>
-      <nz-form-label [nzSpan]="24">Регион</nz-form-label>
+      <nz-form-label [nzSpan]="24">Ключ</nz-form-label>
       <nz-form-control [nzSpan]="24">
-        <nz-select formControlName="region_id">
-          <nz-option *ngFor="let region of list" [nzValue]="region.id" [nzLabel]="region.name"></nz-option>          
-        </nz-select>
+        <input
+          nz-input
+          formControlName="key"
+        />
       </nz-form-control>
     </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24">Действие</nz-form-label>
+      <nz-form-control [nzSpan]="24">
+        <nz-tree-select
+          [nzNodes]="actionList"
+          nzShowSearch
+          nzCheckable
+          nzPlaceHolder="Please select"
+          formControlName="actions"
+          [nzTreeTemplate]="actionTree"
+        ></nz-tree-select>
+        <ng-template #actionTree let-node let-origin="origin">
+          <span>{{origin.description}}</span>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <h3 style="margin-bottom: 0;">Описание</h3>
     <nz-form-item>
       <nz-form-label [nzSpan]="24">Русский</nz-form-label>
       <nz-form-control [nzSpan]="24">

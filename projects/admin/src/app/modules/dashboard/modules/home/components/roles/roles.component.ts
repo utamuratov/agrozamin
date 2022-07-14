@@ -1,11 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BaseService, NgDestroy } from 'ngx-az-core';
-import { map, Observable, takeUntil } from 'rxjs';
-import { DistrictResponse } from '../../dto/district.response';
-import { DistrictResponseRegion } from '../../dto/district.response-region';
-import { DistrictService } from '../district/services/district.service';
+import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
+import { map, Observable } from 'rxjs';
+import { Role } from '../../dto/roles/roles.interface';
+import { RolesService } from './services/roles.service';
 
 @Component({
   selector: 'az-roles',
@@ -13,135 +11,149 @@ import { DistrictService } from '../district/services/district.service';
   styleUrls: ['./roles.component.less'],
 })
 export class RolesComponent implements OnInit {
-  baseUrl = 'admin/role'
   /**
    *
    */
-   data$!: Observable<DistrictResponse[]>;
+  data$!: Observable<Role[]>;
 
-   /**
-    *
-    */
-   isVisible = false;
- 
-   /**
-    *
-    */
-   editingData?: DistrictResponse;
-   form!: FormGroup;
- 
-   /**
-    *
-    */
-   regions!: DistrictResponseRegion[];
- 
-   /**
-    *
-    * @param fb
-    * @param $data
-    * @param $destroy
-    */
-   constructor(
-     private fb: FormBuilder,
-     private $data: DistrictService,
-     private $destroy: NgDestroy,
-     private http: HttpClient,
-     private $baseService: BaseService
-   ) {}
+  /**
+   *
+   */
+  isVisible = false;
 
+  /**
+   *
+   */
+  form!: FormGroup;
 
-   getRoles() {
-    this.$baseService.get(this.baseUrl).subscribe(res => {
-      console.log(res)      
-    })
-   }
- 
-   /**
-    *
-    * @param district
-    */
-   private setFormControlsValues(district?: DistrictResponse) {
-     this.form.controls['ru'].setValue(district?.name.ru);
-     this.form.controls['uz_cyrl'].setValue(district?.name.uz_cyrl);
-     this.form.controls['uz_latn'].setValue(district?.name.uz_latn);
-     this.form.controls['region_id'].setValue(district?.region_id);
-   }
- 
-   /**
-    *
-    */
-   private getAll() {
-     this.data$ = this.$data.getAll().pipe(
-       map((resp) => {
-         return resp.data;
-       })
-     );
-   }
- 
-   /**
-    *
-    */
-   private getList() {
-     this.$data
-       .getRegionList()
-       .pipe(takeUntil(this.$destroy))
-       .subscribe((res) => (this.regions = res.data));
-   }
- 
-   /**
-    *
-    */
-   private initForm() {
-     this.form = this.fb.group({
-       ru: [null, [Validators.required]],
-       uz_cyrl: [null, [Validators.required]],
-       uz_latn: [null, [Validators.required]],
-       region_id: [null, [Validators.required]],
-     });
-   }
- 
-   /**
-    *
-    */
-   ngOnInit(): void {
-     this.getAll();
-     this.initForm();
-     this.getList();
-     this.getRoles()
-   }
- 
-   /**
-    *
-    * @param district
-    */
-  //  showModal(district?: DistrictResponse): void {
-  //    if (district) {
-  //      this.setFormControlsValues(district);
-  //    }
-  //    this.editingData = district;
-  //    this.isVisible = true;
-  //  }
-   showModal(): void {
-     this.isVisible = true;
-   }
- 
-   /**
-    *
-    * @param id
-    */
-   deleteDistrict(id: number) {
-     this.$data.delete(id).subscribe(() => {
-       this.getAll();
-     });
-   }
- 
-   /**
-    *
-    * @param successfully
-    */
-   afterSuccess(successfully: boolean) {
-     if (successfully) {
-       this.getAll();
-     }
-   }
+  /**
+   *
+   */
+  actionList!: NzTreeNodeOptions[];
+
+  /**
+   *
+   */
+  editingData?: Role;
+
+  /**
+   *
+   * @param fb
+   * @param $data
+   */
+  constructor(private fb: FormBuilder, private $data: RolesService) {}
+
+  /**
+   *
+   */
+  private initForm(): void {
+    this.form = this.fb.group({
+      key: [null, [Validators.required]],
+      actions: [null],
+      ru: [null, [Validators.required]],
+      uz_cyrl: [null, [Validators.required]],
+      uz_latn: [null, [Validators.required]],
+    });
+  }
+
+  /**
+   *
+   */
+  private getAll(): void {
+    this.data$ = this.$data.getAll().pipe(
+      map((resp) => {
+        return resp.data;
+      })
+    );
+  }
+
+  /**
+   *
+   * @param role
+   * @param access
+   */
+  private setEditDataForm(role?: Role, access?: string[]): void {
+    const control = this.form.controls;
+    control['key'].setValue(role?.key);
+    control['actions'].setValue(access);
+    control['ru'].setValue(role?.description.ru);
+    control['uz_cyrl'].setValue(role?.description.uz_cyrl);
+    control['uz_latn'].setValue(role?.description.uz_latn);
+  }
+
+  /**
+   *
+   */
+  ngOnInit(): void {
+    this.initForm();
+    this.getAll();
+    this.customizeTreeNodeList();
+  }
+
+  /**
+   *
+   * @param role
+   */
+  showModal(role?: Role): void {
+    if (role) {
+      const access: string[] = [];
+      role.access_controls.forEach((control) => {
+        control.access_actions.forEach((action) => {
+          access.push(`${control.id}-${action.control_action_id}`);
+        });
+      });
+
+      this.setEditDataForm(role, access);
+    }
+    this.editingData = role;
+    this.isVisible = true;
+  }
+
+  /**
+   *
+   */
+  customizeTreeNodeList(): void {
+    this.$data.getList().subscribe((res) => {
+      if (res.success) {
+        this.actionList = res.data.map((option) => {
+          return {
+            title: `${option.description}`,
+            description: `${option.description}`,
+            value: `${option.description}`,
+            key: `${option.id}`,
+            isLeaf: !option.access.length,
+            children: option.access.map((child) => {
+              return {
+                title: `${option.description} - ${child.description}`,
+                description: `${child.description}`,
+                isLeaf: true,
+                key: `${option.id}-${child.id}`,
+                value: `${child.id}`,
+              } as NzTreeNodeOptions;
+            }),
+          } as NzTreeNodeOptions;
+        });
+      }
+    });
+  }
+
+  /**
+   *
+   * @param id
+   */
+  deleteRole(id: number): void {
+    this.$data.delete(id).subscribe((status) => {
+      this.afterSuccess(status.success);
+    });
+  }
+
+  /**
+   *
+   * @param successfully
+   */
+  afterSuccess(successfully: boolean): void {
+    if (successfully) {
+      this.getAll();
+    }
+  }
 }
