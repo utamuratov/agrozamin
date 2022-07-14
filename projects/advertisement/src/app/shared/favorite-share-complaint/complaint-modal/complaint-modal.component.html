@@ -1,0 +1,39 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="'complaining' | translate"
+  (nzOnCancel)="close()"
+  [nzWidth]="400"
+  modal
+>
+  <div *nzModalContent>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <nz-radio-group formControlName="complaint_id">
+        <label
+          nz-radio
+          [nzValue]="complaintCategory.id"
+          *ngFor="let complaintCategory of complaintCategory$ | async"
+          >{{ complaintCategory.content }}</label
+        >
+      </nz-radio-group>
+
+      <textarea
+        class="mt-1"
+        nz-input
+        formControlName="comment"
+        [placeholder]="'giveFullInformation' | translate"
+        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+      ></textarea>
+    </form>
+  </div>
+  <div *nzModalFooter>
+    <button
+      [disabled]="form.invalid"
+      (click)="sendToComplaint()"
+      nz-button
+      nzBlock
+      nzType="primary"
+    >
+      {{ "send" | translate }}
+    </button>
+  </div>
+</nz-modal>
