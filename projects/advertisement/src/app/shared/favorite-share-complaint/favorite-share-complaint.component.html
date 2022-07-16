@@ -29,7 +29,7 @@
     >
   </div> -->
   <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="8" nzXl="6">
-    <a class="links" (click)="openComplaintModal()">
+    <a class="links" (click)="complain()">
       <svg
         width="20"
         height="18"
@@ -50,5 +50,6 @@
 
 <az-complaint-modal
   [(isVisible)]="isVisibleComplaint"
+  [complaintCategories]="complaintCategory$ | async"
   [advertisementId]="advertisementId"
 ></az-complaint-modal>

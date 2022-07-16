@@ -45,7 +45,8 @@ export class ComplaintModalComponent implements OnInit {
   /**
    *
    */
-  complaintCategory$!: Observable<ComplaintCategoryResponse[]>;
+  @Input()
+  complaintCategories!: ComplaintCategoryResponse[] | null;
 
   /**
    *
@@ -66,13 +67,6 @@ export class ComplaintModalComponent implements OnInit {
 
   /**
    *
-   */
-  private getComplaintCategories() {
-    this.complaintCategory$ = this.$complement.getComplaintCategories();
-  }
-
-  /**
-   *
    * @param request
    */
   private complaint(request: ComplaintReuqest) {
@@ -87,7 +81,6 @@ export class ComplaintModalComponent implements OnInit {
    *
    */
   ngOnInit(): void {
-    this.getComplaintCategories();
     this.initForm();
   }
 

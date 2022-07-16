@@ -15,7 +15,7 @@
         <label
           nz-radio
           [nzValue]="complaintCategory.id"
-          *ngFor="let complaintCategory of complaintCategory$ | async"
+          *ngFor="let complaintCategory of complaintCategories"
           >{{ complaintCategory.content }}</label
         >
       </nz-radio-group>
