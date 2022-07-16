@@ -30,5 +30,6 @@ export class AdminConstants {
 
   public static readonly WIDTH_COLUMN_ID = '100px';
   public static readonly WIDTH_COLUMN_KEY = '200px';
+  public static readonly WIDTH_COLUMN_LANGUAGE = '220px';
   public static readonly WIDTH_COLUMN_ACTIONS = '130px';
 }

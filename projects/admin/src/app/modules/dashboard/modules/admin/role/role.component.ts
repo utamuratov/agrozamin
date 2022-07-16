@@ -172,7 +172,7 @@ export class RoleComponent
     this.nzWidthConfig = [
       AdminConstants.WIDTH_COLUMN_ID,
       AdminConstants.WIDTH_COLUMN_KEY,
-      ...languages.map(() => ''),
+      ...languages.map(() => AdminConstants.WIDTH_COLUMN_LANGUAGE),
       '300px',
       AdminConstants.WIDTH_COLUMN_ACTIONS,
     ];

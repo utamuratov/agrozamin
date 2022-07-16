@@ -73,6 +73,7 @@ export class ComplaintedAdvertisementListComponent extends GridLogicWithBackend<
         header: '',
         row: 1,
         hasTemplate: true,
+        nzRight: true,
       }),
     ];
 

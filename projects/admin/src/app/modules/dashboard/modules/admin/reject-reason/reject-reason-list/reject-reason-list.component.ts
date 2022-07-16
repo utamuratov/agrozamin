@@ -88,7 +88,7 @@ export class RejectReasonListComponent
   override makeWidthConfig(languages: Language[]) {
     this.nzWidthConfig = [
       AdminConstants.WIDTH_COLUMN_ID,
-      ...languages.map(() => ''),
+      ...languages.map(() => ''), // * USE AdminConstants.WIDTH_COLUMN_LANGUAGE INSTEAD OF, IF COLUMN IS NOT OK ON THE SMALL SCREENS
       AdminConstants.WIDTH_COLUMN_ACTIONS,
     ];
   }
