@@ -63,11 +63,11 @@
               <div nz-col nzSpan="24">
                 <div
                   nz-row
-                  nzJustify="space-between"
-                  [nzGutter]="[0, {xs: 0, sm: 0, md: 20, lg: 8, xl: 8}]"
+                  [nzGutter]="[{xs: 10, sm: 10, md: 20}, {xs: 0, sm: 0, md: 20, lg: 8, xl: 8}]"
                 >
                   <div
                     nz-col
+                    nzFlex="20%"
                     class="carousel__subcard-img"
                     *ngFor="let carauselData of data.carauselData; let idx = index"
                   >

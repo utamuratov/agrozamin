@@ -44,6 +44,7 @@ import { AdvertisementListHeaderModule } from '../../../shared/advertisement-lis
 import { GridModule } from '../../../shared/grid/grid.module';
 import { FavoriteShareComplaintModule } from '../../../shared/favorite-share-complaint/favorite-share-complaint.module';
 import { CardListModule } from '../../../shared/card-list/card-list.module';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
@@ -68,6 +69,7 @@ import { CardListModule } from '../../../shared/card-list/card-list.module';
     SortModule,
     AdvertisementListHeaderModule,
     FavoriteShareComplaintModule,
+    SwiperModule,
 
     /* NG-ZORRO */
     NzTypographyModule,
