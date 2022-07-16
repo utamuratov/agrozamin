@@ -1,3 +1,5 @@
+
+
 .popular {
   padding: 70px 0;
   background: #f0faf5;
@@ -10,12 +12,17 @@
     padding: 30px 0;
   }
 
+  .swiper {
+    padding: 0;
+    background: none;
+    height: 100%;
+  }
+
   .item {
     position: relative;
     border-radius: 8px;
     // height: 392px;
     // background: #f0faf5;
-
 
     &:hover {
       box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
@@ -96,34 +103,31 @@
     }
   }
 
-
   &__scroll {
-    display: flex;
-    overflow-x: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    width: 100%;
+    // display: flex;
+    // overflow-x: auto;
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
 
-    &::-webkit-scrollbar-thumb {
-      display: none;
-    }
+    // &::-webkit-scrollbar-thumb {
+    //   display: none;
+    // }
 
     &__card {
-        background: #F6F7FA;
-        transition: 0.5s;
-        cursor: pointer;
+      background: #f6f7fa;
+      transition: 0.5s;
+      cursor: pointer;
       width: 250px;
-      flex: none;
+      // flex: none;
       border-radius: 12px;
       margin-right: 20px;
       display: flex;
-    
 
-      @media (max-width: 1200px) {
-        height: 370px;
-      }
+      // @media (max-width: 1200px) {
+      //   height: 370px;
+      // }
     }
   }
-
-
 }

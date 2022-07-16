@@ -32,7 +32,7 @@ export class AdvertisementDetailsPage {
   /**
    *
    */
-  similar$!: Observable<Advertisement[][]>;
+  similar$!: Observable<Advertisement[]>;
 
   /**
    *
@@ -170,40 +170,7 @@ export class AdvertisementDetailsPage {
    */
   getSimilarAdvertisements(advertisementId: number) {
     this.similar$ = this.$similar
-      .getSimilarAdvertisements(advertisementId)
-      .pipe(
-        map((result) => {
-          return this.advetisementsAsCarauselData(result);
-        })
-      );
-  }
-
-  /**
-   *
-   * @param result
-   * @returns
-   */
-  private advetisementsAsCarauselData(result: Advertisement[]) {
-    const length = result.length;
-    const grouped = [];
-    const step = 5;
-    let from = 0;
-    let to = from + step;
-
-    const extra = length % step;
-    for (let i = 0; i < extra; i++) {
-      grouped.push(result.slice(from, to));
-      from++;
-      to++;
-    }
-
-    while (from < length) {
-      grouped.push(result.slice(from, to));
-      from = to;
-      to += 5;
-    }
-
-    return grouped;
+      .getSimilarAdvertisements(advertisementId);
   }
 
   /**

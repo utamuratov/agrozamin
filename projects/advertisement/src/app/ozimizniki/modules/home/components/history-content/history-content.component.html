@@ -1,0 +1,108 @@
+<div class="history">
+  <div class="container">
+    <div nz-row [nzGutter]="[0, { xl: 50, sm: 30, xs: 20 }]">
+      <div nz-col nzSpan="24">
+        <h3 class="history__title">История</h3>
+      </div>
+      <div nz-col nzSpan="24" class="history__slider">
+        <button
+          nzSize="large"
+          nz-button
+          nzType="default"
+          nzShape="circle"
+          class="prev"
+          (click)="slidePrev()"
+        >
+          <i nz-icon nzType="left" nzTheme="outline"></i>
+        </button>
+        <swiper
+          [slidesPerView]="6"
+          [spaceBetween]="30"
+          class="history-swiper"
+          #swiper
+          [breakpoints]="{
+            '@0.00': {
+              slidesPerView: 2,
+              spaceBetween: 10
+            },
+            '@0.75': {
+              slidesPerView: 3,
+              spaceBetween: 20
+            },
+            '@1.00': {
+              slidesPerView: 4,
+              spaceBetween: 20
+            },
+            '@1.50': {
+              slidesPerView: 6,
+              spaceBetween: 30
+            }
+          }"
+        >
+          <ng-template swiperSlide *ngFor="let card of history">
+            <div class="history-swiper__block__img" (click)="viewHistory(card.id)">
+              <img
+              class="history-swiper__img"
+              [src]="card.img"
+              alt="history"
+            />
+            </div>
+          </ng-template>
+        </swiper>
+        <button
+          nzSize="large"
+          nz-button
+          nzType="default"
+          nzShape="circle"
+          class="next"
+          (click)="slideNext()"
+        >
+          <i nz-icon nzType="right" nzTheme="outline"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="storys" *ngIf="historyVisible">
+  <swiper
+  [effect]="'coverflow'"
+  [grabCursor]="false"
+  [centeredSlides]="true"
+  [slidesPerView]="'auto'"
+  [coverflowEffect]="{
+    rotate: 0,
+    stretch: 0,
+    depth: 300,
+    modifier: 1,
+    slideShadows: true
+  }" 
+  class="swiper-block"
+  [allowTouchMove]="true"
+  #storysSwiper
+  (slideChange)="onSlideChange(storysSwiper)"  
+>
+  <ng-template swiperSlide *ngFor="let story of history" let-data>
+    <div class="swiper-card">
+      <div class="swiper-card-progress" *ngIf="data.isActive">
+        <div nz-row>
+          <div nz-col nzSpan="24">
+            <div class="line">
+              <span class="progress" [ngStyle]="{'width': progressValue + '%'}"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-card-image">
+        <img [src]="story.img" />
+      </div>      
+    </div>
+  </ng-template>
+</swiper>
+
+<button (click)="slideNextStory()" *ngIf="!isLastSlide" class="next-swipe swipe-btn" ><i nz-icon nzType="right" nzTheme="outline"></i></button>
+<button (click)="slidePrevStory()" *ngIf="!isFirstSlide" class="prev-swipe swipe-btn"><i nz-icon nzType="left" nzTheme="outline"></i></button>
+
+<button class="swiperBtn" nz-button nzType="default" nzGhost nzShape="circle" (click)="historyVisible = false"><i nz-icon nzType="close" nzTheme="outline"></i></button>
+</div>

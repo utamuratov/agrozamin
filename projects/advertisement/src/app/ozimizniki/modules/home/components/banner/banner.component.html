@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="banner">
+    <!-- <nz-carousel [nzEffect]="'fade'" [nzDots]="dots" nzAutoPlay>
+      <div nz-carousel-content *ngFor="let slide of bannerCarousel">
+
+        <div class="banner__content">
+          <div class="banner__content__img">
+            <img
+              [src]="slide.imgBg"
+              alt="background"
+            />
+          </div>
+
+          <div class="banner__content__pattern">
+            <img
+              [src]="slide.patternBg"
+              alt="pattern"
+            />
+          </div>
+
+          <div nz-row class="banner__content__info">
+            <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+              <div
+                nz-row
+                [nzGutter]="[
+                  { xs: 0, sm: 0, md: 0, lg: 0, xl: 0 },
+                  { xs: 130, sm: 152, md: 24, lg: 26, xl: 68 }
+                ]"
+              >
+                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
+                  <div class="banner__content__descriptions">
+                    <h3 nz-typography class="banner__content__info__title">
+                      {{slide.title}}
+                    </h3>
+                    <p nz-typography class="banner__content__info__text">
+                      {{slide.description}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+              <div nz-row nzAlign="bottom" style="height: 100%;" nzJustify="end">
+                <div nz-col>
+                  <div class="banner__content__info__img">
+                    <img
+                      [src]="slide.slideImg"
+                      alt="slider image"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="banner__content__info__btn">
+              <button nz-button nzSize="large" nzType="primary">
+                {{slide.button}}
+              </button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </nz-carousel> -->
+  
+    <swiper
+    [pagination]="{
+      clickable: true
+    }"
+    [autoplay]="{
+      delay: 2500,
+      disableOnInteraction: false
+    }"
+    [loop]="true"
+    class="mySwiper"
+  >
+    <ng-template swiperSlide *ngFor="let slide of bannerCarousel">
+      <div class="banner__content">
+        <div class="banner__content__img">
+          <img
+            [src]="slide.imgBg"
+            alt="background"
+          />
+        </div>
+      
+        <div class="banner__content__pattern">
+          <img
+            [src]="slide.patternBg"
+            alt="pattern"
+          />
+        </div>
+      
+        <div nz-row class="banner__content__info">
+          <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <div
+              nz-row
+              [nzGutter]="[
+                { xs: 0, sm: 0, md: 0, lg: 0, xl: 0 },
+                { xs: 130, sm: 152, md: 24, lg: 26, xl: 68 }
+              ]"
+            >
+              <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
+                <div class="banner__content__descriptions">
+                  <h3 nz-typography class="banner__content__info__title">
+                    {{slide.title}}
+                  </h3>
+                  <p nz-typography class="banner__content__info__text">
+                    {{slide.description}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <div nz-row nzAlign="bottom" style="height: 100%;" nzJustify="end">
+              <div nz-col>
+                <div class="banner__content__info__img">
+                  <img
+                    [src]="slide.slideImg"
+                    alt="slider image"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="banner__content__info__btn">
+            <button nz-button nzSize="large" nzType="primary">
+              {{slide.button}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </swiper>
+  
+  </div>
+</div>
+
+
