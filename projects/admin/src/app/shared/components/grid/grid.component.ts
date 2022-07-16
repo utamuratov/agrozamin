@@ -10,6 +10,7 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SUBTRAHEND } from '../../pipes/make-nz-scroll.pipe';
 import { Column } from './models/column.interface';
 
+// TODO: MOVE TO NGX-AZ-CORE
 @Component({
   selector: 'az-grid',
   templateUrl: './grid.component.html',
@@ -21,7 +22,7 @@ export class GridComponent {
    *
    */
   @Input()
-  data: NzSafeAny[] = [];
+  data: NzSafeAny[] | NzSafeAny = [];
 
   /**
    *
@@ -70,6 +71,12 @@ export class GridComponent {
    */
   @Input()
   columnTemplate!: TemplateRef<NzSafeAny>;
+
+  /**
+   *
+   */
+  @Input()
+  showActions = true;
 
   /**
    *

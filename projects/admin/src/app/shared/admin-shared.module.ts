@@ -23,6 +23,7 @@ import { LanguageControlsComponent } from './components/language-controls/langua
 import { BaseComponent } from './components/base/base.component';
 import { BaseAddEditComponent } from './components/base-add-edit/base-add-edit.component';
 import { NoImagePipe } from './pipes/noImage.pipe';
+import { GridWithBackendComponent } from './components/grid/grid-with-backend/grid-with-backend.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { NoImagePipe } from './pipes/noImage.pipe';
     SearchInputAdvancedComponent,
     TransferComponent,
     GridComponent,
+    GridWithBackendComponent,
     LanguageControlsComponent,
     BaseComponent,
     BaseAddEditComponent,
@@ -103,6 +105,7 @@ import { NoImagePipe } from './pipes/noImage.pipe';
     SearchInputAdvancedComponent,
     TransferComponent,
     GridComponent,
+    GridWithBackendComponent,
     LanguageControlsComponent,
     BaseComponent,
     BaseAddEditComponent,

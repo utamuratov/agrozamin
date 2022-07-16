@@ -1,11 +1,15 @@
 <nz-modal
   [(nzVisible)]="isVisible"
-  [nzTitle]="'complaining' | translate"
   (nzOnCancel)="close()"
-  [nzWidth]="400"
+  [nzWidth]="410"
   modal
 >
   <div *nzModalContent>
+    <div class="text-center">
+      <img src="./assets/images/complaint.svg" />
+      <h1 class="mt-2 mb-0">{{ "complaint" | translate }}</h1>
+      <h4>{{ "whatWrongAdvertisement" | translate }}:</h4>
+    </div>
     <form [formGroup]="form" nz-form nzLayout="vertical">
       <nz-radio-group formControlName="complaint_id">
         <label
@@ -31,8 +35,10 @@
       (click)="sendToComplaint()"
       nz-button
       nzBlock
-      nzType="primary"
+      nzType="default"
+      class="green-btn"
     >
+      <i nz-icon nzType="send" nzTheme="outline"></i>
       {{ "send" | translate }}
     </button>
   </div>

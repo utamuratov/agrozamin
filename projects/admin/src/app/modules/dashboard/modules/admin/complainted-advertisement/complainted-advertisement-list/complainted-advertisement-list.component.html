@@ -1,0 +1,56 @@
+<ng-container *ngIf="data">
+  <!-- HEADER -->
+  <az-header-with-divider
+    [title]="
+      ('complaintedAdvertisements' | translate) + (data.total | titleTotal)
+    "
+  >
+  </az-header-with-divider>
+
+  <az-grid-with-backend
+    [data]="data"
+    [columns]="columns"
+    [nzWidthConfig]="nzWidthConfig"
+    [showActions]="false"
+    [query]="query"
+    [pageSize]="pageSize"
+    (onQueryParamsChange)="onQueryParamsChange($event)"
+    (pageIndexChange)="paginate($event)"
+    [columnTemplate]="template"
+  >
+    <ng-template #template let-column let-data="data">
+      <ng-container [ngSwitch]="column.field">
+        <ng-container *ngSwitchCase="'actions'">
+          <nz-button-group>
+            <a
+              nz-button
+              nzType="default"
+              target="_blank"
+              [routerLink]="data | advertisementUrl"
+            >
+              <span>
+                <i nz-icon nzType="eye" nzTheme="twotone"></i>
+              </span>
+            </a>
+            <button
+              nz-button
+              nzType="default"
+              (click)="openBlockUserModal(data.id)"
+            >
+              <span>
+                <i nz-icon nzType="stop" nzTheme="twotone"></i>
+              </span>
+            </button>
+          </nz-button-group>
+        </ng-container>
+        <div *ngSwitchDefault></div>
+      </ng-container>
+    </ng-template>
+  </az-grid-with-backend>
+</ng-container>
+
+<az-block-advertisement-modal
+  [(isVisible)]="isVisibleBlockUserModal"
+  [advertisementId]="advertisementId"
+  (blocked)="blocked($event)"
+></az-block-advertisement-modal>
