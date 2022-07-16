@@ -24,7 +24,12 @@
       >
         {{ column.header | translate }}
       </th>
-      <th nzRight *ngIf="isFirst" [rowspan]="theadRows.length"></th>
+      <!-- FOR ACTIONS -->
+      <th
+        nzRight
+        *ngIf="isFirst && showActions"
+        [rowspan]="theadRows.length"
+      ></th>
     </tr>
   </thead>
   <tbody>
@@ -48,7 +53,7 @@
         </td>
       </ng-container>
 
-      <td nzRight nzAlign="center">
+      <td nzRight nzAlign="center" *ngIf="showActions">
         <nz-button-group>
           <button (click)="delete(data.id)" nz-button nzType="default">
             <span>

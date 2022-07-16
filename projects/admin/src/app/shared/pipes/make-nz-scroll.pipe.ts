@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { innerHeight$ } from '../../components/app/app.component';
+import { AdminConstants } from '../../core/admin-constants';
 
 export const SUBTRAHEND = 350;
 @Pipe({
@@ -10,7 +11,7 @@ export class MakeNzScrollPipe implements PipeTransform {
   transform(
     total: number,
     subtrahend = SUBTRAHEND,
-    x?: number,
+    x = 500,
     showScrollbar = false
   ): Observable<{
     x?: string | null;
@@ -22,7 +23,7 @@ export class MakeNzScrollPipe implements PipeTransform {
           x?: string | null;
           y?: string | null;
         } =
-          total > 10 || showScrollbar
+          total > AdminConstants.PAGINATION_PAGE_SIZE || showScrollbar
             ? { y: innerHeight - subtrahend + 'px' }
             : {};
         if (x !== undefined) {

@@ -154,7 +154,7 @@
                           nz-button
                           nzType="default"
                           nzSize="large"
-                          class="product__info__contacts__btn message-btn"
+                          class="product__info__contacts__btn green-btn"
                           nzBlock
                         >
                           <img
@@ -164,12 +164,7 @@
                         </button>
                       </div>
                       <!-- Mobile -->
-                      <div
-                        nz-col
-                        nzXs="24"
-                        nzSm="7"
-                        nzMd="0"
-                      >
+                      <div nz-col nzXs="24" nzSm="7" nzMd="0">
                         <button
                           nz-button
                           nzType="primary"
@@ -280,6 +275,7 @@
                   <div nz-col nzSpan="24">
                     <az-favorite-share-complaint
                       [isFavorite]="data.favorite"
+                      [advertisementId]="data.id"
                       (isFavoriteChange)="toggleFavourite(data)"
                     ></az-favorite-share-complaint>
                   </div>

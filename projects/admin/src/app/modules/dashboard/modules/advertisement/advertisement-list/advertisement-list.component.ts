@@ -1,20 +1,14 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import {
-  AdvertisementStatus,
-  BaseResponse,
-  GridModel,
-  GridQuery,
-  NgDestroy,
-} from 'ngx-az-core';
+import { AdvertisementStatus } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
-import { Observable, takeUntil } from 'rxjs';
+import { GridLogicWithBackend } from 'projects/admin/src/app/shared/components/grid/grid-logic/grid-logic-with-backend';
+import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
 import { AdvertisementGetAll } from '../dto/advertisement-get-all.interface';
 import { AdvertisementService } from '../services/advertisement.service';
 
@@ -24,17 +18,7 @@ import { AdvertisementService } from '../services/advertisement.service';
   styleUrls: ['./advertisement-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvertisementListComponent implements OnInit {
-  /**
-   *
-   */
-  data!: GridModel<AdvertisementGetAll>;
-
-  /**
-   *
-   */
-  pageSize = AdminConstants.PAGINATION_PAGE_SIZE;
-
+export class AdvertisementListComponent extends GridLogicWithBackend<AdvertisementGetAll> {
   /**
    *
    */
@@ -42,82 +26,85 @@ export class AdvertisementListComponent implements OnInit {
 
   /**
    *
+   * @param $data
+   * @param cd
+   * @param router
+   * @param route
    */
-  getGridData: (
-    query: GridQuery,
-    url?: string
-  ) => Observable<BaseResponse<GridModel<AdvertisementGetAll>>>;
-
   constructor(
-    private $destroy: NgDestroy,
-    private cd: ChangeDetectorRef,
-    private $advertisement: AdvertisementService,
+    protected override $data: AdvertisementService,
+    protected override cd: ChangeDetectorRef,
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.getGridData = this.$advertisement.getGridData.bind($advertisement);
+    super($data, cd);
   }
 
   /**
    *
    */
-  ngOnInit(): void {
-    this.loadInitData();
+  override makeColumnsForGrid() {
+    this.columns = [
+      new Column({
+        field: 'statusByColor',
+        header: '',
+        row: 1,
+        hasTemplate: true,
+        nzLeft: true,
+      }),
+      new Column({
+        field: 'id',
+        sortable: true,
+        nzLeft: true,
+        row: 1,
+      }),
+      new Column({
+        field: 'name',
+        sortable: true,
+        row: 1,
+      }),
+      new Column({
+        field: 'price',
+        sortable: true,
+        row: 1,
+      }),
+      new Column({
+        field: 'status',
+        row: 1,
+        hasTemplate: true,
+      }),
+      new Column({
+        field: 'actions',
+        header: '',
+        row: 1,
+        hasTemplate: true,
+        nzRight: true,
+      }),
+    ];
+
+    this.makeWidthConfig();
   }
 
   /**
    *
+   * @param languages
    */
-  loadInitData() {
-    this.loadDataFromServer(AdminConstants.DEFAULT_GRID_QUERY);
-  }
-
-  /**
-   *
-   */
-  loadDataFromServer(query: GridQuery) {
-    query.filter = this.getQueryFilter();
-
-    this.getGridData(query)
-      .pipe(takeUntil(this.$destroy))
-      .subscribe((result) => {
-        if (result.success) {
-          this.data = {
-            ...result.data,
-            data: result.data.data,
-          };
-          this.cd.markForCheck();
-        }
-      });
-  }
-
-  private getQueryFilter() {
-    return [
-      // { key: 'role', value: [String(this.filterRole || '')] },
-      // { key: 'moderator', value: [String(this.filterModerator || '')] },
-      // { key: 'search_by', value: [this.searchBy] },
-      // { key: 'search_text', value: [this.searchText] },
+  override makeWidthConfig() {
+    this.nzWidthConfig = [
+      '10px',
+      '70px',
+      '250px',
+      '100px',
+      '200px',
+      AdminConstants.WIDTH_COLUMN_ACTIONS,
     ];
   }
 
   /**
    *
-   * @param params
+   * @param model
+   * @returns
    */
-  onQueryParamsChange(params: NzTableQueryParams): void {
-    const { pageSize, pageIndex, sort, filter } = params;
-    const currentSort = sort.find((item) => item.value !== null);
-    const sortField = (currentSort && currentSort.key) || '';
-    const sortOrder = (currentSort && currentSort.value) || '';
-    this.loadDataFromServer({
-      pageIndex,
-      pageSize,
-      sortField,
-      sortOrder,
-      filter,
-    });
-  }
-
   addEdit(model?: AdvertisementGetAll) {
     // EDIT
     if (model) {
@@ -127,9 +114,5 @@ export class AdvertisementListComponent implements OnInit {
 
     // ADD
     this.router.navigate(['add'], { relativeTo: this.route });
-  }
-
-  delete(id: number) {
-    // TODO
   }
 }

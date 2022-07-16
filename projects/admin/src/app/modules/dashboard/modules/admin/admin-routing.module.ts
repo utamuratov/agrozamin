@@ -64,6 +64,13 @@ const routes: Routes = [
             (m) => m.ComplaintCategoryModule
           ),
       },
+      {
+        path: 'complainted-advertisement',
+        loadChildren: () =>
+          import(
+            './complainted-advertisement/complainted-advertisement.module'
+          ).then((m) => m.ComplaintedAdvertisementModule),
+      },
     ],
   },
 ];

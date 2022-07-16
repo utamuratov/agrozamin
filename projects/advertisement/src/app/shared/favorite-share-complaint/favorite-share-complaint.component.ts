@@ -17,6 +17,12 @@ export class FavoriteShareComplaintComponent {
    *
    */
   @Input()
+  advertisementId!: number;
+
+  /**
+   *
+   */
+  @Input()
   isFavorite!: boolean;
 
   /**
@@ -24,4 +30,16 @@ export class FavoriteShareComplaintComponent {
    */
   @Output()
   isFavoriteChange = new EventEmitter<boolean>();
+
+  /**
+   *
+   */
+  isVisibleComplaint = false;
+
+  /**
+   *
+   */
+  openComplaintModal() {
+    this.isVisibleComplaint = true;
+  }
 }

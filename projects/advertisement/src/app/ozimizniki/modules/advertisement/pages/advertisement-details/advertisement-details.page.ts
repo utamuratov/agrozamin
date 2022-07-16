@@ -86,6 +86,7 @@ export class AdvertisementDetailsPage {
         ];
 
       this.makeCarouselData();
+      this.cd.markForCheck();
     });
   }
 

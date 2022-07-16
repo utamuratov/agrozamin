@@ -183,13 +183,14 @@ export class CategoryListComponent
    *
    * @param languages
    */
-  private makeWidthConfig(languages: Language[]) {
+  override makeWidthConfig(languages: Language[]) {
     this.nzWidthConfig = [
       AdminConstants.WIDTH_COLUMN_ID,
       '100px',
-      ...languages.map(() => ''),
-      '200px',
-      '200px',
+      ...languages.map(() => AdminConstants.WIDTH_COLUMN_LANGUAGE),
+      '180px',
+      '190px',
+      '190px',
       AdminConstants.WIDTH_COLUMN_ACTIONS,
     ];
   }

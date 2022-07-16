@@ -4,7 +4,8 @@
       class="links"
       (click)="isFavoriteChange.emit(true)"
       [ngClass]="{ active: isFavorite }"
-      ><i nz-icon nzType="heart"></i><span>В Избранное</span></a
+      ><i nz-icon nzType="heart"></i
+      ><span>{{ "toFavorites" | translate }}</span></a
     >
     <!-- TODO: REMOVE -->
   </div>
@@ -28,7 +29,7 @@
     >
   </div> -->
   <div nz-col nzXs="12" nzSm="12" nzMd="8" nzLg="8" nzXl="6">
-    <a class="links">
+    <a class="links" (click)="openComplaintModal()">
       <svg
         width="20"
         height="18"
@@ -42,7 +43,12 @@
         />
       </svg>
 
-      <span>Пожаловаться</span></a
+      <span>{{ "complaining" | translate }}</span></a
     >
   </div>
 </div>
+
+<az-complaint-modal
+  [(isVisible)]="isVisibleComplaint"
+  [advertisementId]="advertisementId"
+></az-complaint-modal>

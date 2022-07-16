@@ -90,11 +90,11 @@ export class AccessActionComponent
    *
    * @param languages
    */
-  private makeWidthConfig(languages: Language[]) {
+  override makeWidthConfig(languages: Language[]) {
     this.nzWidthConfig = [
       AdminConstants.WIDTH_COLUMN_ID,
       AdminConstants.WIDTH_COLUMN_KEY,
-      ...languages.map(() => ''),
+      ...languages.map(() => ''), // * USE AdminConstants.WIDTH_COLUMN_LANGUAGE INSTEAD OF, IF COLUMN IS NOT OK ON THE SMALL SCREENS
       AdminConstants.WIDTH_COLUMN_ACTIONS,
     ];
   }
