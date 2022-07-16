@@ -6,13 +6,13 @@ import { Observable, takeUntil } from 'rxjs';
 import { CrudService } from '../../../core/services/crud.service';
 import { Column } from '../grid/models/column.interface';
 import { SearchInputAdvancedConfig } from '../search-input/search-input-advanced/search-input-advanced.component';
+import { IBaseComponent } from './base-component.interface';
 
 @Component({
-  selector: 'az-base',
   template: '',
 })
 export class BaseComponent<TResponse, TBody, TEditingData = TResponse>
-  implements OnInit
+  implements OnInit, IBaseComponent
 {
   /**
    *
@@ -133,6 +133,17 @@ export class BaseComponent<TResponse, TBody, TEditingData = TResponse>
     this.loadData();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  makeColumnsForGrid() {}
+  /**
+   *
+   */
+  makeColumnsForGrid() {
+    throw new Error('Method not implemented.');
+  }
+
+  /**
+   *
+   */
+  makeWidthConfig(languages?: Language[]): void {
+    throw new Error('Method not implemented.');
+  }
 }

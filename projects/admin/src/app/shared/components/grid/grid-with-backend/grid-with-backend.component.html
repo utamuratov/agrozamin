@@ -1,12 +1,17 @@
 <nz-table
   #table
-  [nzData]="data"
+  [nzData]="data.data"
+  [nzFrontPagination]="false"
+  [nzTotal]="data.total"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="data.current_page"
+  (nzQueryParams)="onQueryParamsChange.emit($event)"
   nzShowPagination
   nzShowSizeChanger
   nzSize="small"
   nzBordered
   [nzScroll]="
-    (data.length | makeNzScroll: subtrahend:undefined:showScrollbar | async)!
+    (data.total | makeNzScroll: subtrahend:undefined:showScrollbar | async)!
   "
   [nzWidthConfig]="nzWidthConfig"
 >
@@ -19,7 +24,8 @@
         [nzLeft]="column.nzLeft"
         [nzRight]="column.nzRight"
         [nzShowSort]="column.sortable"
-        [nzSortFn]="column.field | azSort: column.sortByLocalCompare"
+        [nzColumnKey]="column.field"
+        [nzSortFn]="column.sortable"
         *ngFor="let column of row"
       >
         {{ column.header | translate }}

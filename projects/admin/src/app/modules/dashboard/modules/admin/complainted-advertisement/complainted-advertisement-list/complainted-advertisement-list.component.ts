@@ -1,41 +1,38 @@
 import {
-  Component,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { AdvertisementStatus } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
 import { GridLogicWithBackend } from 'projects/admin/src/app/shared/components/grid/grid-logic/grid-logic-with-backend';
 import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
-import { AdvertisementGetAll } from '../dto/advertisement-get-all.interface';
-import { AdvertisementService } from '../services/advertisement.service';
+import { ComplaintedAdvertisement } from '../dto/complainted-advertisement.interface';
+import { ComplaintedUserService } from '../services/complainted-user.service';
 
 @Component({
-  selector: 'az-advertisement-list',
-  templateUrl: './advertisement-list.component.html',
-  styleUrls: ['./advertisement-list.component.less'],
+  templateUrl: './complainted-advertisement-list.component.html',
+  styleUrls: ['./complainted-advertisement-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvertisementListComponent extends GridLogicWithBackend<AdvertisementGetAll> {
+export class ComplaintedAdvertisementListComponent extends GridLogicWithBackend<ComplaintedAdvertisement> {
   /**
    *
    */
-  STATUS = AdvertisementStatus;
+  isVisibleBlockUserModal = false;
+
+  /**
+   *
+   */
+  advertisementId!: number;
 
   /**
    *
    * @param $data
    * @param cd
-   * @param router
-   * @param route
    */
   constructor(
-    protected override $data: AdvertisementService,
-    protected override cd: ChangeDetectorRef,
-    private router: Router,
-    private route: ActivatedRoute
+    protected override $data: ComplaintedUserService,
+    protected override cd: ChangeDetectorRef
   ) {
     super($data, cd);
   }
@@ -45,12 +42,6 @@ export class AdvertisementListComponent extends GridLogicWithBackend<Advertiseme
    */
   override makeColumnsForGrid() {
     this.columns = [
-      new Column({
-        field: 'statusByColor',
-        header: '',
-        row: 1,
-        hasTemplate: true,
-      }),
       new Column({
         field: 'id',
         sortable: true,
@@ -68,9 +59,14 @@ export class AdvertisementListComponent extends GridLogicWithBackend<Advertiseme
         row: 1,
       }),
       new Column({
-        field: 'status',
+        field: 'complaint_content',
+        header: 'complaint',
         row: 1,
-        hasTemplate: true,
+      }),
+      new Column({
+        field: 'comment',
+        header: 'commentary',
+        row: 1,
       }),
       new Column({
         field: 'actions',
@@ -89,10 +85,10 @@ export class AdvertisementListComponent extends GridLogicWithBackend<Advertiseme
    */
   override makeWidthConfig() {
     this.nzWidthConfig = [
-      '10px',
       '70px',
       '250px',
-      '100px',
+      '120px',
+      '200px',
       '200px',
       AdminConstants.WIDTH_COLUMN_ACTIONS,
     ];
@@ -100,17 +96,20 @@ export class AdvertisementListComponent extends GridLogicWithBackend<Advertiseme
 
   /**
    *
-   * @param model
-   * @returns
+   * @param advertisementId
    */
-  addEdit(model?: AdvertisementGetAll) {
-    // EDIT
-    if (model) {
-      this.router.navigate(['edit', model.id], { relativeTo: this.route });
-      return;
-    }
+  openBlockUserModal(advertisementId: number) {
+    this.advertisementId = advertisementId;
+    this.isVisibleBlockUserModal = true;
+  }
 
-    // ADD
-    this.router.navigate(['add'], { relativeTo: this.route });
+  /**
+   *
+   * @param success
+   */
+  blocked(success: boolean) {
+    if (success) {
+      this.loadData();
+    }
   }
 }

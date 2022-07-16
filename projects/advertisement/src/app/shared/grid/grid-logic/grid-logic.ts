@@ -29,6 +29,11 @@ export class GridLogic<TData = Advertisement> {
   /**
    *
    */
+  DEFAULT_QUERY = AdvertisementConstants.DEFAULT_GRID_QUERY;
+
+  /**
+   *
+   */
   data!: GridModel<TData>;
 
   /**
@@ -70,7 +75,7 @@ export class GridLogic<TData = Advertisement> {
    *
    */
   protected initQuery() {
-    this.query = { ...AdvertisementConstants.DEFAULT_GRID_QUERY };
+    this.query = { ...this.DEFAULT_QUERY };
     this.setQuery();
   }
 
@@ -125,6 +130,7 @@ export class GridLogic<TData = Advertisement> {
 
   /**
    *
+   * LOAD DATA AGAIN
    */
   protected loadData() {
     this.setDefaultData();
