@@ -135,7 +135,7 @@ export class TranslationComponent
     this.nzWidthConfig = [
       AdminConstants.WIDTH_COLUMN_KEY,
       ...languages.map(() => ''),
-      WIDTH_COLUMN_PROJECTS,
+      WIDTH_COLUMN_PROJECTS, // * USE AdminConstants.WIDTH_COLUMN_LANGUAGE INSTEAD OF, IF COLUMN IS NOT OK ON THE SMALL SCREENS
       AdminConstants.WIDTH_COLUMN_ACTIONS,
     ];
   }

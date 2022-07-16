@@ -50,6 +50,7 @@ export class AdvertisementListComponent extends GridLogicWithBackend<Advertiseme
         header: '',
         row: 1,
         hasTemplate: true,
+        nzLeft: true,
       }),
       new Column({
         field: 'id',
@@ -77,6 +78,7 @@ export class AdvertisementListComponent extends GridLogicWithBackend<Advertiseme
         header: '',
         row: 1,
         hasTemplate: true,
+        nzRight: true,
       }),
     ];
 

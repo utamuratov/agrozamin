@@ -114,7 +114,7 @@ export class FilterListComponent
   override makeWidthConfig(languages: Language[]) {
     this.nzWidthConfig = [
       AdminConstants.WIDTH_COLUMN_ID,
-      ...languages.map(() => ''),
+      ...languages.map(() => AdminConstants.WIDTH_COLUMN_LANGUAGE),
       '200px',
       '200px',
       AdminConstants.WIDTH_COLUMN_ACTIONS,
