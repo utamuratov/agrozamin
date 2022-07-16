@@ -1,3 +1,10 @@
+.swiper {
+  padding: 0;
+  background: none;
+  height: 100px;
+}
+
+
 .category {
   padding-bottom: 70px;
 
@@ -18,7 +25,10 @@
     height: 120px;
     background: #f6f7fa;
     border-radius: 12px;
-    transition: box-shadow 0.5s;
+    transition-property: background, box-shadow;
+    transition-duration: 0.5s;
+    // transition: background 0.5s;
+    // transition:  box-shadow 0.5s;
     cursor: pointer;
 
     &:hover {
@@ -70,13 +80,13 @@
 
     &__card {
       background: #f6f7fa;
-      transition: 0.5s;
+      transition: 0.5s ease-in-out;
       cursor: pointer;
-      width: 250px;
+      // width: 250px;
       height: 100px;
       flex: none;
       border-radius: 12px;
-      margin-right: 20px;
+      // margin-right: 20px;
       display: flex;
 
       @media (max-width: 1200px) {

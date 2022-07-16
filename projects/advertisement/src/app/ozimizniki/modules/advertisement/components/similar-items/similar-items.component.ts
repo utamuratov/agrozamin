@@ -1,6 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { Advertisement } from '../../dto/advertisement.interface';
+import SwiperCore, { Navigation } from 'swiper';
+import { SwiperComponent } from 'swiper/angular';
+
+// install Swiper modules
+SwiperCore.use([Navigation]);
 
 @Component({
   selector: 'az-similar-items',
@@ -10,49 +19,27 @@ import { Advertisement } from '../../dto/advertisement.interface';
 })
 export class SimilarItemsComponent {
   /**
+   * 
+   */
+  @ViewChild('swiper') swiper!: SwiperComponent;
+  
+  /**
    *
    */
   @Input()
-  data: Advertisement[][] | null = [];
+  data: Advertisement[] | null = [];
 
   /**
    *
    */
-  flexSize = '1';
-
-  /**
-   *
-   * @param e
-   */
-  next(e: NzCarouselComponent) {
-    e.next();
+  next() {
+    this.swiper.swiperRef.slideNext();
   }
 
   /**
    *
-   * @param e
    */
-  pre(e: NzCarouselComponent) {
-    e.pre();
-  }
-
-  /**
-   *
-   * @param event
-   */
-  onResize(event: any) {
-    if (event.target.innerWidth <= 992 && event.target.innerWidth > 768) {
-      this.flexSize = '223px';
-      return;
-    }
-
-    if (event.target.innerWidth <= 768 && event.target.innerWidth > 576) {
-      this.flexSize = '230px';
-      return;
-    }
-
-    if (event.target.innerWidth > 576) {
-      this.flexSize = '1';
-    }
+  pre() {
+    this.swiper.swiperRef.slidePrev();
   }
 }
