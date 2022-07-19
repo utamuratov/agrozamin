@@ -7,7 +7,7 @@ import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic
 import { IBaseComponent } from '../../base/base-component.interface';
 import { Column } from '../models/column.interface';
 
-export class GridLogicWithBackend<TData = NzSafeAny>
+export class GridLogicAdmin<TData = NzSafeAny>
   extends GridLogic<TData>
   implements IBaseComponent
 {

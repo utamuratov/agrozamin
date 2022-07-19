@@ -11,7 +11,6 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
-import { SupportChatComponent } from './components/support-chat/support-chat.component';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { Messages1Component } from './components/messages/components/messages1/messages1.component';
@@ -58,7 +57,6 @@ import { SharedModule } from 'ngx-az-core';
     LayoutComponent,
     CabinetComponent,
     MessagesComponent,
-    SupportChatComponent,
     Messages1Component,
     Messages2Component,
   ],
