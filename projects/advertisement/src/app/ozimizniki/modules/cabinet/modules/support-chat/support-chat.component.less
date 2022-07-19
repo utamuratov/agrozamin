@@ -1,0 +1,151 @@
+.support {
+  padding: 16px;
+  height: 700px;
+  background: #fff;
+  border-radius: 12px;
+  &__head {
+    &__status {
+      padding-top: 8px;
+      h3 {
+        margin: 0;
+        font-size: 14px;
+        line-height: 18px;
+        font-family: Agrofont-Medium;
+      }
+      span {
+        font-size: 14px;
+        color: #86898c;
+      }
+    }
+  }
+  &__body {
+    height: 548px;
+    overflow-y: auto;
+    border: 1px solid #cfd3d8;
+    border-radius: 8px;
+    &__user {
+      padding: 5px 22px;
+      &__message {
+        border-radius: 4px;
+        width: max-content;
+        padding: 12px;
+        margin-bottom: 5px;
+        p {
+          margin: 0;
+        }
+
+        span {
+          font-size: 12px;
+        }
+
+        &.left {
+          margin-right: auto;
+          background: #f2f6fc;
+          span {
+            color: #86898c;
+          }
+        }
+
+        &.right {
+          margin-left: auto;
+          background: #377be1;
+
+          p {
+            color: #fff;
+          }
+          span {
+            color: #fff;
+          }
+        }
+
+        &.image {
+          background: white;
+
+          .image__error {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(#07020280, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgb(243, 86, 86);
+            border-radius: 4px;
+          }
+          img {
+            width: 200px;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    &__date {
+      margin: 0;
+      padding-top: 16px;
+      p {
+        margin-right: 0;
+        width: max-content;
+        justify-content: center;
+        border-radius: 12px;
+        padding: 4px 17px;
+        background: #f2f6fc;
+        margin: 0;
+        color: #86898c;
+      }
+    }
+  }
+  &__footer {
+    padding-top: 12px;
+    .ant-input-affix-wrapper {
+      padding: 0;
+      border: none;
+    }
+    .ant-input-affix-wrapper:hover {
+      border: none;
+    }
+    button {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-left: 10px;
+      padding-right: 0;
+    }
+  }
+}
+
+.green {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #52c41a;
+  margin-right: 8px;
+}
+
+.grey {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: grey;
+  margin-right: 8px;
+}
+
+.ant-input-affix-wrapper-focused {
+  box-shadow: none;
+}
+
+:host ::ng-deep {
+  .image__error {
+    button {
+      min-width: 30px;
+      width: 30px;
+      height: 30px;
+      margin: 0 2px;
+    }
+  }
+}

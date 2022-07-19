@@ -114,18 +114,27 @@ export class GridLogic<TData = Advertisement> {
    *
    */
   protected loadDataFromServer(query: GridQuery, url?: string) {
-    this.$data
+    this.$loadDataFromServer(query, url).subscribe((result) => {
+      if (result.success) {
+        this.data = {
+          ...result.data,
+          data: result.data.data,
+        };
+        this.cd.markForCheck();
+      }
+    });
+  }
+
+  /**
+   *
+   * @param query
+   * @param url
+   * @returns
+   */
+  protected $loadDataFromServer(query: GridQuery, url: string | undefined) {
+    return this.$data
       .getGridData(query, url)
-      .pipe(finalize(() => (this.isLoaded = true)))
-      .subscribe((result) => {
-        if (result.success) {
-          this.data = {
-            ...result.data,
-            data: result.data.data,
-          };
-          this.cd.markForCheck();
-        }
-      });
+      .pipe(finalize(() => (this.isLoaded = true)));
   }
 
   /**

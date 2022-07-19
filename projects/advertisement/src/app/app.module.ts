@@ -1,4 +1,9 @@
-import { Injector, ModuleWithProviders, NgModule } from '@angular/core';
+import {
+  Injector,
+  LOCALE_ID,
+  ModuleWithProviders,
+  NgModule,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +19,10 @@ import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
 import { NgxMaskModule } from 'ngx-mask';
 
 registerLocaleData(ru);
-const providers = [{ provide: NZ_I18N, useValue: ru_RU }];
+const providers = [
+  { provide: NZ_I18N, useValue: ru_RU },
+  { provide: LOCALE_ID, useValue: 'ru-RU' },
+];
 
 const mapConfig: YaConfig = {
   apikey: 'a54566ed-23f8-4e22-b3ea-0eaf50216fb5',

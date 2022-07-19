@@ -4,7 +4,7 @@ import {
   Component,
 } from '@angular/core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
-import { GridLogicWithBackend } from 'projects/admin/src/app/shared/components/grid/grid-logic/grid-logic-with-backend';
+import { GridLogicAdmin } from 'projects/admin/src/app/shared/components/grid/grid-logic/grid-logic-admin';
 import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
 import { ComplaintedAdvertisement } from '../dto/complainted-advertisement.interface';
 import { ComplaintedUserService } from '../services/complainted-user.service';
@@ -14,7 +14,7 @@ import { ComplaintedUserService } from '../services/complainted-user.service';
   styleUrls: ['./complainted-advertisement-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ComplaintedAdvertisementListComponent extends GridLogicWithBackend<ComplaintedAdvertisement> {
+export class ComplaintedAdvertisementListComponent extends GridLogicAdmin<ComplaintedAdvertisement> {
   /**
    *
    */

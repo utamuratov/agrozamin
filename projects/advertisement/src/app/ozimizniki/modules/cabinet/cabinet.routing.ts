@@ -4,7 +4,6 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { Messages1Component } from './components/messages/components/messages1/messages1.component';
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
 import { MessagesComponent } from './components/messages/messages.component';
-import { SupportChatComponent } from './components/support-chat/support-chat.component';
 
 const routes: Routes = [
   {
@@ -46,7 +45,13 @@ const routes: Routes = [
                 (m) => m.FavouriteModule
               ),
           },
-          { path: 'support', component: SupportChatComponent },
+          {
+            path: 'support',
+            loadChildren: () =>
+              import('./modules/support-chat/support-chat.module').then(
+                (m) => m.SupportChatModule
+              ),
+          },
         ],
       },
       {

@@ -4,10 +4,9 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { AdvertisementStatus } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
-import { GridLogicWithBackend } from 'projects/admin/src/app/shared/components/grid/grid-logic/grid-logic-with-backend';
+import { GridLogicAdmin } from 'projects/admin/src/app/shared/components/grid/grid-logic/grid-logic-admin';
 import { Column } from 'projects/admin/src/app/shared/components/grid/models/column.interface';
 import { AdvertisementGetAll } from '../dto/advertisement-get-all.interface';
 import { AdvertisementService } from '../services/advertisement.service';
@@ -18,7 +17,7 @@ import { AdvertisementService } from '../services/advertisement.service';
   styleUrls: ['./advertisement-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvertisementListComponent extends GridLogicWithBackend<AdvertisementGetAll> {
+export class AdvertisementListComponent extends GridLogicAdmin<AdvertisementGetAll> {
   /**
    *
    */
