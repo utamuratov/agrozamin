@@ -71,13 +71,6 @@ const routes: Routes = [
             './complainted-advertisement/complainted-advertisement.module'
           ).then((m) => m.ComplaintedAdvertisementModule),
       },
-      {
-        path: 'support-chat',
-        loadChildren: () =>
-          import('./support-chat/support-chat.module').then(
-            (m) => m.SupportChatModule
-          ),
-      },
     ],
   },
 ];

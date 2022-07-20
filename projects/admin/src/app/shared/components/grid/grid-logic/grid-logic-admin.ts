@@ -15,10 +15,11 @@ export class GridLogicAdmin<TData = NzSafeAny>
    *
    */
   override get DEFAULT_DATA(): GridModel<TData> {
-    const data = [];
-    for (let index = 0; index < AdminConstants.PAGINATION_PAGE_SIZE; index++) {
-      data.push({} as TData);
-    }
+    const data = [] as TData[];
+    // TODO: REMOVE
+    // for (let index = 0; index < AdminConstants.PAGINATION_PAGE_SIZE; index++) {
+    //   data.push({} as TData);
+    // }
     return {
       current_page: AdminConstants.DEFAULT_PAGE_INDEX,
       data,

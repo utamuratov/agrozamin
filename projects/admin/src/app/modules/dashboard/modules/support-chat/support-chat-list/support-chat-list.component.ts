@@ -35,6 +35,7 @@ export class SupportChatListComponent extends GridLogicAdmin<SupportChatResponse
       }),
       new Column({
         field: 'full_name',
+        header: 'fromWhom',
         sortable: true,
         row: 1,
       }),
@@ -45,6 +46,7 @@ export class SupportChatListComponent extends GridLogicAdmin<SupportChatResponse
       }),
       new Column({
         field: 'message_count',
+        header: 'newMessages',
         row: 1,
       }),
       new Column({
