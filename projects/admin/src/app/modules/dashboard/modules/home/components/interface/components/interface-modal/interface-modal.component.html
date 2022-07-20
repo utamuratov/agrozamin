@@ -1,0 +1,64 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="editingData ? 'Изменить' : 'Добавить'"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzWidth]="1000"
+>
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="form" nzLayout="vertical">
+      <div nz-row [nzGutter]="[20, 0]">
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzFor="key">Ключ</nz-form-label>
+            <nz-form-control>
+              <input nz-input nzSize="large" type="text" id="key" formControlName="key" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-transfer
+              [nzDataSource]="list"
+              [nzTitles]="['Biriktirilmagan', 'Biriktirilmagan']"
+              [nzSelectedKeys]="['0', '2']"
+              (nzChange)="change($event)"
+              [nzListStyle]="{ 'width.px': 213, 'height.px': 275 }"
+            ></nz-transfer>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzFor="key">Русский</nz-form-label>
+            <nz-form-control>
+              <textarea
+                nz-input
+                [nzAutosize]="{ minRows: 3, maxRows: 6 }"
+                formControlName="ru"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label nzFor="key">Узбекча</nz-form-label>
+            <nz-form-control>
+              <textarea
+                nz-input
+                [nzAutosize]="{ minRows: 3, maxRows: 6 }"
+                formControlName="uz_cyrl"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label nzFor="key">O'zbekcha</nz-form-label>
+            <nz-form-control>
+              <textarea
+                nz-input
+                [nzAutosize]="{ minRows: 3, maxRows: 6 }"
+                formControlName="uz_latn"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+</nz-modal>

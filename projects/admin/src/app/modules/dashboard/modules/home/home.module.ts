@@ -25,6 +25,9 @@ import { RoleModalComponent } from './components/roles/components/role-modal/rol
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { InterfaceComponent } from './components/interface/interface.component';
+import { InterfaceModalComponent } from './components/interface/components/interface-modal/interface-modal.component';
+import { NzTransferModule } from 'ng-zorro-antd/transfer';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     RegionsComponent,
     DistrictModalComponent,
     RolesComponent,
-    RoleModalComponent
+    RoleModalComponent,
+    InterfaceComponent,
+    InterfaceModalComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +59,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     NzSelectModule,
     NzTagModule,
     NzTreeSelectModule,
-    NzToolTipModule
+    NzToolTipModule,
+    NzTransferModule
   ]
 })
 export class HomeModule { }

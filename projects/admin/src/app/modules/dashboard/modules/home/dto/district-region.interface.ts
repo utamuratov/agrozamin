@@ -1,4 +1,4 @@
-import { Translate } from "./translate.interface";
+import { Translate } from './translate.interface';
 
 export interface DistrictRegion {
   name: Translate;
