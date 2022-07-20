@@ -1,0 +1,34 @@
+<ng-container *ngIf="data">
+  <!-- HEADER -->
+  <az-header-with-divider
+    [title]="('supportChat' | translate) + (data.total | titleTotal)"
+  >
+  </az-header-with-divider>
+
+  <az-grid-with-backend
+    [data]="data"
+    [columns]="columns"
+    [nzWidthConfig]="nzWidthConfig"
+    [showActions]="false"
+    [query]="query"
+    [pageSize]="pageSize"
+    (onQueryParamsChange)="onQueryParamsChange($event)"
+    (pageIndexChange)="paginate($event)"
+    [columnTemplate]="template"
+  >
+    <ng-template #template let-column let-data="data">
+      <ng-container [ngSwitch]="column.field">
+        <ng-container *ngSwitchCase="'actions'">
+          <nz-button-group>
+            <button nz-button nzType="default" [routerLink]="[data.id]">
+              <span>
+                <i nz-icon nzType="message" nzTheme="twotone"></i>
+              </span>
+            </button>
+          </nz-button-group>
+        </ng-container>
+        <div *ngSwitchDefault></div>
+      </ng-container>
+    </ng-template>
+  </az-grid-with-backend>
+</ng-container>
