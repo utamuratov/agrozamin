@@ -1,11 +1,31 @@
 .support {
   padding: 16px;
-  height: 700px;
+  min-height: 700px;
   background: #fff;
   border-radius: 12px;
+
+  @media (max-width: 767px) {
+    min-height: 500px;
+  }
+
+  &__img {
+    width: 40px;
+    height: 40px;
+
+    @media (max-width: 575px) {
+      width: 34px;
+      height: 34px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
   &__head {
     &__status {
-      padding-top: 8px;
       h3 {
         margin: 0;
         font-size: 14px;
@@ -13,34 +33,70 @@
         font-family: Agrofont-Medium;
       }
       span {
-        font-size: 14px;
+        font-size: 12px;
         color: #86898c;
+        font-family: Agrofont-Regular;
       }
     }
   }
   &__body {
     height: 548px;
     overflow-y: auto;
+    overflow-x: hidden;
     border: 1px solid #cfd3d8;
     border-radius: 8px;
+    padding: 8px 16px;
+
+    @media (max-width: 767px) {
+      height: 350px;
+      padding: 8px;
+    }
+
     &__user {
-      padding: 5px 22px;
+      position: relative;
       &__message {
         border-radius: 4px;
+        max-width: 600px;
         width: max-content;
-        padding: 12px;
+        padding: 12px 16px;
         margin-bottom: 5px;
+        overflow: hidden;
+
+        @media (max-width: 991px) {
+          max-width: 450px;
+        }
+        @media (max-width: 575px) {
+          max-width: 300px;
+        }
+
+        @media (max-width: 400px) {
+          max-width: 260px;
+        }
+
+        @media (max-width: 359px) {
+          max-width: 220px;
+        }
+
         p {
           margin: 0;
+          font-family: Agrofont-Regular;
+          color: #000;
+          font-size: 14px;
+
+          @media (max-width: 575px) {
+            font-size: 12px;
+          }
         }
 
         span {
           font-size: 12px;
+          font-family: Agrofont-Regular;
         }
 
         &.left {
           margin-right: auto;
           background: #f2f6fc;
+
           span {
             color: #86898c;
           }
@@ -54,7 +110,9 @@
             color: #fff;
           }
           span {
-            color: #fff;
+            color: rgb(192, 191, 191);
+            display: block;
+            text-align: right;
           }
         }
 
@@ -86,20 +144,22 @@
     &__date {
       margin: 0;
       padding-top: 16px;
+      position: sticky;
+      top: 0;
       p {
-        margin-right: 0;
         width: max-content;
-        justify-content: center;
         border-radius: 12px;
         padding: 4px 17px;
         background: #f2f6fc;
         margin: 0;
         color: #86898c;
+        font-family: Agrofont-Regular;
+        font-size: 12px;
+        line-height: 15px;
       }
     }
   }
   &__footer {
-    padding-top: 12px;
     .ant-input-affix-wrapper {
       padding: 0;
       border: none;
@@ -148,4 +208,65 @@
       margin: 0 2px;
     }
   }
+
+  .ant-btn-icon-only > * {
+    font-size: 28px;
+
+    @media (max-width: 575px) {
+      font-size: 20px;
+    }
+  }
+
+  .ant-input-suffix, .ant-input-prefix {
+    align-items: end;
+  }
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  margin: 8px 0;
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cfd3d8;
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.pointer {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.chat-textarea {
+  resize: none;
+  min-height: 44px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+  
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }  
+}
+
+

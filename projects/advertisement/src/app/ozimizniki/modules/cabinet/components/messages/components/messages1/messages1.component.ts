@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './messages1.component.html',
   styleUrls: ['./messages1.component.less']
 })
-export class Messages1Component implements OnInit {
+export class ChatComponent implements OnInit {
 
 
   users = [

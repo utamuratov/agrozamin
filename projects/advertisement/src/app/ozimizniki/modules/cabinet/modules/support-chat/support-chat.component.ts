@@ -89,6 +89,13 @@ export class SupportChatComponent
           messages.forEach((message) => {
             this.setMessageToMap(message);
           });
+
+          // TODO:REMOVE
+          messages.forEach((message) => {
+            this.setMessageToMap({...message, owner: false});
+          });
+
+
           this.scrollToBottom();
 
           return;

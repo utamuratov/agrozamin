@@ -1,8 +1,11 @@
 import { Routes, RouterModule } from '@angular/router';
 import { CabinetComponent } from './cabinet.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { Messages1Component } from './components/messages/components/messages1/messages1.component';
+import { ArchivedMessagesComponent } from './components/messages/components/archived-messages/archived-messages.component';
+import { BlockedMessagesComponent } from './components/messages/components/blocked-messages/blocked-messages.component';
+import { ChatComponent } from './components/messages/components/messages1/messages1.component';
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
+import { SavedMessagesComponent } from './components/messages/components/saved-messages/saved-messages.component';
 import { MessagesComponent } from './components/messages/messages.component';
 
 const routes: Routes = [
@@ -34,8 +37,11 @@ const routes: Routes = [
             path: 'messages',
             component: MessagesComponent,
             children: [
-              { path: 'messages1', component: Messages1Component },
+              { path: 'chat', component: ChatComponent },
               { path: 'messages2', component: Messages2Component },
+              { path: 'saved', component: SavedMessagesComponent },
+              { path: 'archived', component: ArchivedMessagesComponent },
+              { path: 'blocked', component: BlockedMessagesComponent },
             ],
           },
           {

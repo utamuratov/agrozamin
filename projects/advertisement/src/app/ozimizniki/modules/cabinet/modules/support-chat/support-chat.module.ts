@@ -8,6 +8,7 @@ import { SupportChatRoutes } from './support-chat.routing';
 import { FormsModule } from '@angular/forms';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzButtonModule,
     NzGridModule,
     NzSpinModule,
+    NzPopoverModule,
     NzIconModule,
   ],
   declarations: [SupportChatComponent],

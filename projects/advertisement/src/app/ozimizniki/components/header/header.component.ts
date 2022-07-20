@@ -486,7 +486,7 @@ export class HeaderComponent implements OnInit {
     }
 
     if (window.innerWidth > 575 && window.innerWidth < 768) {
-      return '274px';
+      return '315px';
     }
 
     return '100%';
