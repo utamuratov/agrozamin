@@ -131,11 +131,6 @@
           >
             <span>{{ "complaintedAdvertisements" | translate }}</span>
           </li>
-
-          <!-- SUPPORT-CHAT -->
-          <li routerLink="./admin/support-chat" nz-menu-item nzMatchRouter>
-            <span>{{ "supportChat" | translate }}</span>
-          </li>
         </ul>
       </li>
 
@@ -151,6 +146,12 @@
             <span>{{ "advertisements" | translate }}</span>
           </li>
         </ul>
+      </li>
+
+      <!-- SUPPORT CHAT -->
+      <li routerLink="support-chat" nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="message"></i>
+        <span>{{ "onlineChat" | translate }}</span>
       </li>
     </ul>
   </nz-sider>

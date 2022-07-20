@@ -52,6 +52,13 @@ const routes: Routes = [
             (m) => m.AdvertisementModule
           ),
       },
+      {
+        path: 'support-chat',
+        loadChildren: () =>
+          import('./modules/support-chat/support-chat.module').then(
+            (m) => m.SupportChatModule
+          ),
+      },
     ],
   },
 ];
