@@ -13,12 +13,12 @@
             (sortedByDateDescandingChange)="sortByDateDescanding($event)"
           ></az-sort>
         </div>
-        <div nz-col class="sort__right">
+        <div nz-col class="sort__right selects">
           <div
             nz-row
             [nzGutter]="[20, { xs: 10, sm: 10, md: 0, lg: 0, xl: 0 }]"
           >
-            <div nz-col>
+            <div nz-col class="selects">
               <nz-select
                 nzShowSearch
                 nzAllowClear
@@ -26,6 +26,7 @@
                 nzSize="large"
                 [(ngModel)]="categoryId"
                 (ngModelChange)="onChangeCategoryFilter()"
+                class="select-category"
               >
                 <nz-option
                   [nzValue]="category.id"
@@ -34,7 +35,7 @@
                 ></nz-option>
               </nz-select>
             </div>
-            <div nz-col>
+            <div nz-col class="selects">
               <nz-select
                 nzShowSearch
                 nzAllowClear
@@ -43,6 +44,7 @@
                 [(ngModel)]="advertisementTypeId"
                 (ngModelChange)="onChangeAdvertisementTypeFilter()"
                 [nzDropdownMatchSelectWidth]="false"
+                class="select-type"
               >
                 <nz-option
                   [nzValue]="advertisementType.id"

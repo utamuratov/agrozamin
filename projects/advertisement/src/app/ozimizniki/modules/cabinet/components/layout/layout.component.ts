@@ -17,4 +17,18 @@ export class LayoutComponent {
    *
    */
   isCollapsed = false;
+
+  openMap: { [name: string]: boolean } = {
+    sub1: false,
+    sub2: true,
+    sub3: false
+  };
+
+  openHandler(value: string): void {
+    for (const key in this.openMap) {
+      if (key !== value) {
+        this.openMap[key] = false;
+      }
+    }
+  }
 }

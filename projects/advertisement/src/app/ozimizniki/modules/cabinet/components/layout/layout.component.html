@@ -5,7 +5,7 @@
     <div nz-row [nzGutter]="[{ xs: 20, sm: 20, lg: 20, xl: 30 }, 0]">
       <div class="wrapper" nz-col nzXs="0" nzSm="0" nzMd="7" nzLg="6" nzXl="6">
         <div class="wrapper_bg">
-          <div>
+          <!-- <div>
             <ul
               nz-menu
               [nzTheme]="'light'"
@@ -149,7 +149,196 @@
                 Чат с поддержкой
               </li>
             </ul>
-          </div>
+          </div> -->
+
+          <ul nz-menu nzMode="inline" class="menu">
+            <li
+              nz-submenu
+              [nzTitle]="title1"
+              nzOpen
+              [(nzOpen)]="openMap['sub1']"
+              (nzOpenChange)="openHandler('sub1')"
+            >
+              <ng-template #title1>
+                <div class="menu__item">
+                  <i
+                    ><img src="./assets/images/menu-Vector.png" alt="icon"
+                  /></i>
+                  <span>Объявления</span>
+                </div>
+              </ng-template>
+
+              <ul>
+                <li
+                  nz-menu-item
+                  routerLinkActive="ant-menu-item-selected"
+                  routerLink="advertisements/{{
+                    AdvertisementStatus.STATUS_CONFIRMED
+                  }}"
+                >
+                  Активные
+                </li>
+                <li
+                  nz-menu-item
+                  routerLink="advertisements/{{
+                    AdvertisementStatus.STATUS_NEW
+                  }}"
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  Ожидающие
+                </li>
+                <li
+                  nz-menu-item
+                  routerLink="advertisements/{{
+                    AdvertisementStatus.STATUS_ARCHIVED
+                  }}"
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  Архивные
+                </li>
+                <li
+                  nz-menu-item
+                  routerLink="advertisements/{{
+                    AdvertisementStatus.STATUS_REJECTED
+                  }}"
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  Отклоненные
+                </li>
+              </ul>
+            </li>
+            <li
+              nz-submenu
+              [nzTitle]="title2"
+              [(nzOpen)]="openMap['sub2']"
+              (nzOpenChange)="openHandler('sub2')"
+            >
+              <ng-template #title2>
+                <div class="menu__item">
+                  <i
+                    ><img src="./assets/images/menu-message.png" alt="icon"
+                  /></i>
+                  <span>Сообщения</span>
+                </div>
+              </ng-template>
+
+              <ul>
+                <li
+                  nz-menu-item
+                  class="menu__item__message"
+                  routerLink="messages/chat"
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  <span>Чат</span>
+                  <nz-badge
+                    nzStandalone
+                    [nzCount]="4"
+                    [nzStyle]="{ backgroundColor: '#52c41a' }"
+                  ></nz-badge>
+                </li>
+                <li
+                  nz-menu-item
+                  class="menu__item__message"
+                  routerLink="messages/saved"
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  <span>Сохранённые</span>
+                  <nz-badge
+                    nzStandalone
+                    [nzCount]="4"
+                    [nzStyle]="{
+                      backgroundColor: '#fff',
+                      color: '#999',
+                      boxShadow: '0 0 0 1px #d9d9d9 inset'
+                    }"
+                  ></nz-badge>
+                </li>
+                <li
+                  nz-menu-item
+                  class="menu__item__message"
+                  routerLink="messages/archived"
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  <span>Архивные</span>
+                  <nz-badge
+                    nzStandalone
+                    [nzCount]="2"
+                    [nzStyle]="{
+                      backgroundColor: '#fff',
+                      color: '#999',
+                      boxShadow: '0 0 0 1px #d9d9d9 inset'
+                    }"
+                  ></nz-badge>
+                </li>
+                <li
+                  nz-menu-item
+                  class="menu__item__message"
+                  routerLink="messages/blocked"
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  <span>Блокированные</span>
+                  <nz-badge
+                    nzStandalone
+                    [nzCount]="1"
+                    [nzStyle]="{
+                      backgroundColor: '#fff',
+                      color: '#999',
+                      boxShadow: '0 0 0 1px #d9d9d9 inset'
+                    }"
+                  ></nz-badge>
+                </li>
+              </ul>
+            </li>
+            <li
+              nz-submenu
+              [nzTitle]="title3"
+              [(nzOpen)]="openMap['sub3']"
+              (nzOpenChange)="openHandler('sub3')"
+            >
+              <ng-template #title3>
+                <div class="menu__item">
+                  <i><img src="./assets/images/menu-heart.png" alt="icon" /></i>
+                  <span>Избранное</span>
+                </div>
+              </ng-template>
+
+              <ul>
+                <li
+                  nz-menu-item
+                  routerLink="favourites/advertisements"
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  Объявления
+                </li>
+                <li
+                  nz-menu-item
+                  routerLink="favourites/sellers"
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  Продавцы
+                </li>
+                <li
+                  nz-menu-item
+                  routerLink="favourites/filter-options"
+                  routerLinkActive="ant-menu-item-selected"
+                >
+                  Параметры фильтров
+                </li>
+              </ul>
+            </li>
+            <li
+              nz-menu-item
+              nzIcon="setting"
+              class="last-menu"
+              routerLink="support"
+              routerLinkActive="ant-menu-item-selected"
+            >
+              <div class="menu__item">
+                <i><img src="./assets/images/menu-help.png" alt="icon" /></i>
+                <span>Чат с поддержкой</span>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
 
