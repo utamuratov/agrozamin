@@ -19,7 +19,7 @@ export class GridLogic<TData = Advertisement> {
       data.push({} as TData);
     }
     return {
-      current_page: 0,
+      current_page: AdvertisementConstants.DEFAULT_PAGE_INDEX,
       data,
       per_page: AdvertisementConstants.PAGINATION_PAGE_SIZE,
       total: AdvertisementConstants.PAGINATION_PAGE_SIZE,

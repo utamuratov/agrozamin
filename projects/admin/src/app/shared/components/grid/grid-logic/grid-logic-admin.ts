@@ -20,7 +20,7 @@ export class GridLogicAdmin<TData = NzSafeAny>
       data.push({} as TData);
     }
     return {
-      current_page: 0,
+      current_page: AdminConstants.DEFAULT_PAGE_INDEX,
       data,
       per_page: AdminConstants.PAGINATION_PAGE_SIZE,
       total: AdminConstants.PAGINATION_PAGE_SIZE,
