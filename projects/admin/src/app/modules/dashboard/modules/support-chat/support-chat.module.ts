@@ -5,7 +5,7 @@ import { SupportChatComponent } from './support-chat.component';
 import { SupportChatListComponent } from './support-chat-list/support-chat-list.component';
 import { SupportChatItemComponent } from './support-chat-item/support-chat-item.component';
 import { DashboardSharedModule } from 'projects/admin/src/app/shared/admin-shared.module';
-import { SharedModule } from 'ngx-az-core';
+import { SharedModule, SupportChatGeneralModule } from 'ngx-az-core';
 
 @NgModule({
   declarations: [
@@ -13,6 +13,11 @@ import { SharedModule } from 'ngx-az-core';
     SupportChatListComponent,
     SupportChatItemComponent,
   ],
-  imports: [SharedModule, DashboardSharedModule, SupportChatRoutingModule],
+  imports: [
+    SharedModule,
+    DashboardSharedModule,
+    SupportChatRoutingModule,
+    SupportChatGeneralModule,
+  ],
 })
 export class SupportChatModule {}

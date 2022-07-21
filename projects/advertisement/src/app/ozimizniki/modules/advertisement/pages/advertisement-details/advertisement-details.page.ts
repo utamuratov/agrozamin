@@ -7,14 +7,13 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
-import { Constants } from 'ngx-az-core';
+import { Advertisement, Constants } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { prefixPath } from 'projects/advertisement/src/app/core/utilits/advertisement.utilits';
 import { CategoryForBreadcrumb } from 'projects/advertisement/src/app/shared/models/category-for-breadcrumb.interface';
 import { FavouriteService } from 'projects/advertisement/src/app/shared/services/favourite.service';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AdvertisementDetails } from '../../dto/advertisement-details.interface';
-import { Advertisement } from '../../dto/advertisement.interface';
 import { AdvertisementSimilarService } from '../../services/advertisement-similar.service';
 import { AdvertisementService } from '../../services/advertisement.service';
 
@@ -169,8 +168,7 @@ export class AdvertisementDetailsPage {
    *
    */
   getSimilarAdvertisements(advertisementId: number) {
-    this.similar$ = this.$similar
-      .getSimilarAdvertisements(advertisementId);
+    this.similar$ = this.$similar.getSimilarAdvertisements(advertisementId);
   }
 
   /**

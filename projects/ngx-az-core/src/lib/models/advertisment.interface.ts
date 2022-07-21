@@ -1,5 +1,7 @@
-import { Id, IdName, Location } from 'ngx-az-core';
+import { IdName } from './id-name.interface';
+import { Id } from './id.interface';
 import { Person } from './person.interface';
+import { Location } from '../shared/add-edit-advertisement-shared/dto/location.interface';
 
 export interface Advertisement extends Id {
   address: string;

@@ -1,16 +1,6 @@
-import { GridQuery } from 'ngx-az-core';
+import { GridQueryConstants } from 'ngx-az-core';
 
-export class AdvertisementConstants {
-  public static readonly PAGINATION_PAGE_SIZE = 12;
-  public static readonly DEFAULT_PAGE_INDEX = 1;
-  public static readonly DEFAULT_GRID_QUERY: GridQuery = {
-    pageIndex: this.DEFAULT_PAGE_INDEX,
-    pageSize: this.PAGINATION_PAGE_SIZE,
-    sortField: '',
-    sortOrder: '',
-    filter: [],
-  };
-
+export class AdvertisementConstants extends GridQueryConstants {
   public static readonly SPLITTER_CATEGORY_ID = '_';
   public static readonly SPLITTER_BETWEEN_FILTERID_AND_VALUE = '_';
   public static readonly SPLITTER_FILTERID_VALUE = ';';

@@ -1,9 +1,8 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { GridModel, GridQuery, GridService } from 'ngx-az-core';
+import { GridLogic, GridModel, GridQuery, GridService } from 'ngx-az-core';
 import { AdminConstants } from 'projects/admin/src/app/core/admin-constants';
-import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
 import { IBaseComponent } from '../../base/base-component.interface';
 import { Column } from '../models/column.interface';
 

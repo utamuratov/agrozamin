@@ -7,11 +7,9 @@ import {
   Output,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { Constants, Filter, FilterParameter } from 'ngx-az-core';
+import { Advertisement, Constants, Filter, FilterParameter } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { prefixPath } from '../../core/utilits/advertisement.utilits';
-import { Advertisement } from '../../ozimizniki/modules/advertisement/dto/advertisement.interface';
 
 interface ActiveFilter extends FilterParameter {
   name: string;

@@ -1,17 +1,7 @@
-import { GridQuery } from 'ngx-az-core';
+import { GridQueryConstants } from 'ngx-az-core';
 
-export class AdminConstants {
+export class AdminConstants extends GridQueryConstants {
   public static readonly SPLITTER_FOR_TREE = '-';
-
-  public static readonly PAGINATION_PAGE_SIZE = 10;
-  public static readonly DEFAULT_PAGE_INDEX = 1;
-  public static readonly DEFAULT_GRID_QUERY: GridQuery = {
-    pageIndex: this.DEFAULT_PAGE_INDEX,
-    pageSize: this.PAGINATION_PAGE_SIZE,
-    sortField: '',
-    sortOrder: '',
-    filter: [],
-  };
 
   public static readonly ROUTER_ADMIN = 'admin';
 

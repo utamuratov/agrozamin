@@ -1,27 +1,10 @@
 import { NgModule } from '@angular/core';
 import { SupportChatComponent } from './support-chat.component';
-import { NzGridModule } from 'ng-zorro-antd/grid';
-import { SharedModule } from 'ngx-az-core';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzButtonModule } from 'ng-zorro-antd/button';
+import { SharedModule, SupportChatGeneralModule } from 'ngx-az-core';
 import { SupportChatRoutes } from './support-chat.routing';
-import { FormsModule } from '@angular/forms';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 @NgModule({
-  imports: [
-    SupportChatRoutes,
-    FormsModule,
-    SharedModule,
-    NzInputModule,
-    NzButtonModule,
-    NzGridModule,
-    NzSpinModule,
-    NzPopoverModule,
-    NzIconModule,
-  ],
+  imports: [SupportChatRoutes, SharedModule, SupportChatGeneralModule],
   declarations: [SupportChatComponent],
 })
 export class SupportChatModule {}

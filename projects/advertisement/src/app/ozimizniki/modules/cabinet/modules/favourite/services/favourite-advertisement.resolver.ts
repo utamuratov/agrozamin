@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { GridModel } from 'ngx-az-core';
+import { Resolve } from '@angular/router';
+import { Advertisement, GridModel } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { FavouriteService } from 'projects/advertisement/src/app/shared/services/favourite.service';
 import { Observable, map } from 'rxjs';
-import { Advertisement } from '../../../../advertisement/dto/advertisement.interface';
 
 @Injectable({ providedIn: 'root' })
 export class FavouriteAdvertisementResolver

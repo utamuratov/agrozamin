@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BaseService, GridModel, GridService } from 'ngx-az-core';
+import {
+  Advertisement,
+  BaseService,
+  GridModel,
+  GridService,
+} from 'ngx-az-core';
 import { map } from 'rxjs';
 import { AdvertisementDetails } from '../dto/advertisement-details.interface';
-import { Advertisement } from '../dto/advertisement.interface';
 
 @Injectable({
   providedIn: 'root',

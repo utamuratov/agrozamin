@@ -5,7 +5,7 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { ru_RU } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
-import { InjectorHelper, NgxAzCoreModule } from 'ngx-az-core';
+import { InjectorHelper, NgxAzCoreModule, SettingsHelper } from 'ngx-az-core';
 import { AppComponent } from './components/app/app.component';
 import { RootLayoutComponent } from './components/root-layout/root-layout.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -23,7 +23,10 @@ registerLocaleData(ru);
     AppRoutingModule,
 
     NgxUiLoaderModule,
-    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true,
+      exclude: ['/api/v1/admin/support-chat'],
+    }),
 
     /**
      * CUSTOM MODULES

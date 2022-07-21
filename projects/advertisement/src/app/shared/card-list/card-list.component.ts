@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Advertisement } from '../../ozimizniki/modules/advertisement/dto/advertisement.interface';
+import { Advertisement } from 'ngx-az-core';
 
 @Component({
   selector: 'az-card-list',

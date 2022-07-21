@@ -1,9 +1,8 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Constants } from 'ngx-az-core';
+import { Constants, GridLogic } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { prefixPath } from 'projects/advertisement/src/app/core/utilits/advertisement.utilits';
-import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
 import { Seller } from '../../dto/seller.interface';
 import { SellerService } from '../../services/seller.service';
 
