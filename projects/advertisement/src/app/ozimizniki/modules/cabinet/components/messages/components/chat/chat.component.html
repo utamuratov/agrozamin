@@ -1,0 +1,518 @@
+<!-- 
+<div class="messages">
+  <div nz-row>
+    
+    <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="8" nzXl="8" class="messages__left">
+      <div nz-row class="messages__left__content">
+        
+        <div nz-col nzSpan="24" class="messages__left__content__input">
+          <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input type="text" nz-input placeholder="Поиск объявления" />
+          </nz-input-group>
+          <ng-template #suffixIconButton>
+            <button nz-button nzSearch><i nz-icon nzType="search"></i></button>
+          </ng-template>
+        </div>
+
+        <div nz-col nzSpan="24" class="messages__left__content__user" *ngFor="let user of users">
+          <div nz-row style="padding: 12px;" > 
+
+            <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="6" nzXl="4">
+              <div class="messages__left__users__item__img">
+                <img [src]="user.img" alt="" />
+              </div>
+            </div>
+
+            <div nz-col nzXs="16" nzSm="16" nzMd="16" nzLg="14" nzXl="16">
+              <div nz-row>
+                <div nz-col nzSpan="24">
+                  <p nz-typography nzEllipsis=""> {{user.title}} </p>
+                </div>
+                <div nz-col nzSpan="24">
+                  <span> {{user.count}} </span>
+                </div>
+              </div>
+            </div>
+
+            <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4" style="padding-top: 6px; padding-left: 5px;">
+              <a><i nz-icon nzType="right"></i></a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="16" nzXl="16" class="messages__body">
+      <div nz-row class="messages__body__content">
+        <div nz-col nzSpan="24" class="messages__body__content__top">
+          <div nz-row>
+            
+            <div nz-col nzXs="22" nzSm="22" nzMd="22" nzLg="22" nzXl="22">
+              <div nz-row>
+                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" class="messages__body__content__top__input">
+                  <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                    <input type="text" nz-input placeholder="Поиск объявления" />
+                  </nz-input-group>
+                  <ng-template #suffixIconButton>
+                    <button nz-button nzSearch><i nz-icon nzType="search"></i></button>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+
+            <div nz-col nzSpan="2"> 
+              <i nz-icon
+              nz-popover              
+              [nzPopoverContent]="contentTemplate"
+              nzPopoverPlacement="bottomRight"
+              nzPopoverTrigger="click"
+              >
+                  <img src="/assets/images/top-button.png" alt="">
+              </i>
+            </div>
+            
+          </div>
+        </div>
+
+        <div nz-col nzSpan="24" class="messages__body__content__middle">
+            <div nz-row>
+
+              <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0" nzXl="0" class="messages__body__content__middle__user" *ngFor="let user of users">
+                <div nz-row style="padding: 12px;" > 
+      
+                  <div nz-col nzXs="4" nzSm="4" nzMd="3" nzLg="6" nzXl="4">
+                    <div class="messages__left__users__item__img">
+                      <img [src]="user.img" alt="" />
+                    </div>
+                  </div>
+      
+                  <div nz-col nzXs="16" nzSm="16" nzMd="17" nzLg="14" nzXl="16">
+                    <div nz-row>
+                      <div nz-col nzSpan="24">
+                        <p nz-typography nzEllipsis=""> {{user.title}} </p>
+                      </div>
+                      <div nz-col nzSpan="24">
+                        <span> {{user.count}} </span>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4" style="padding-top: 6px; padding-left: 5px;">
+                    <a><i nz-icon nzType="right"></i></a>
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+        </div>
+       
+        <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="24" nzXl="24" class="messages__body__content__footer">
+          <div>
+            
+              <nz-input-group nzSize="large" [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
+                <input  type="text" nz-input placeholder="Написать сообщение" />
+              </nz-input-group>
+              <ng-template #prefixTemplateUser><i  nz-button  style="padding-left: 10px;"> <img src="/assets/images/attach.png" alt=""></i></ng-template>
+           
+              <ng-template #suffixTemplateInfo>
+                  <i nz-icon ><img src="/assets/images/emoji.png" alt=""></i>
+                  <button  nz-button ><img src="/assets/images/send-attach.png" alt=""></button>
+              </ng-template>
+
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #contentTemplate>
+  <div class="popover">
+   <div nz-row [nzGutter]="[0,5]">
+     <div nz-col  nzSpan="24" class="popover__content">
+      <div class="popover__content__item">
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <img src="../../../../../../../../assets/images/archive.png" alt="">
+          </div>
+          <div nz-col nzSpan="20">
+            <p>Архивировать</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nz-col  nzSpan="24" class="popover__content">
+      <div class="popover__content__item">
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <img src="../../../../../../../../assets/images/bookmark.png" alt="">
+          </div>
+          <div nz-col nzSpan="20">
+            <p>Сохранить</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nz-col  nzSpan="24" class="popover__content">
+      <div class="popover__content__item">
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <img src="../../../../../../../../assets/images/block.png" alt="">
+          </div>
+          <div nz-col nzSpan="20">
+            <p>Заблокировать</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nz-col  nzSpan="24" class="popover__content">
+      <div class="popover__content__item">
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <img src="../../../../../../../../assets/images/unlock.png" alt="">
+          </div>
+          <div nz-col nzSpan="20">
+            <p>Разблокировать</p>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+  </div>
+</ng-template> -->
+
+<div class="chat">
+  <div nz-row>
+    <div nz-col [nzXs]="chatId ? 0 : 24" nzSm="24" nzMd="9" nzLg="8" nzXl="8" class="chat_border">
+      <div class="chat__list">
+        <div nz-row [nzGutter]="[0, 20]">
+          <div nz-col nzSpan="24">
+            <div class="chat__search">
+              <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixIconButton">
+                <input type="text" nz-input placeholder="Поиск объявления" />
+              </nz-input-group>
+              <ng-template #suffixIconButton>
+                <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+              </ng-template>
+            </div>
+          </div>
+          <div nz-col nzSpan="24">
+            <div class="chat__list__items">
+              <div nz-row [nzGutter]="[0, 5]">
+                <div nz-col nzSpan="24" *ngFor="let card of [].constructor(10)">
+                  <div class="chat__list__card active">
+                    <div nz-row [nzGutter]="[5, 0]" nzAlign="middle">
+                      <div nz-col nzXs="5" nzSm="3" nzMd="6" nzLg="5" nzXl="5">
+                        <div class="chat__list__card__img">
+                          <img src="/assets/images/kombayn1.png" alt="avatar">
+                        </div>
+                      </div>
+                      <div nz-col nzXs="15" nzSm="17" nzMd="14" nzLg="15" nzXl="15">
+                        <div nz-row>
+                          <div nz-col nzSpan="24">
+                            <p class="chat__list__card__owner">Джахонгир Пардаев</p>
+                          </div>
+                          <div nz-col nzSpan="24">
+                            <p class="chat__list__card__adv">Трактор "Беларус 32 уровень неизвестен</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4">
+                        <div nz-row>
+                          <div nz-col nzSpan="24" class="text-end">
+                            <span class="chat__list__card__time">19:32</span>
+                          </div>
+                          <div nz-col nzSpan="24" class="text-end">
+                            <i nz-icon class="chat__list__card__save" [ngClass]="savedMessage ? 'active':''" (click)="addToSave()">
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 9.21878C4 6.28722 4 4.82144 4.91072 3.91072C5.82144 3 7.28722 3 10.2188 3H14.3646C17.2962 3 18.762 3 19.6727 3.91072C20.5834 4.82144 20.5834 6.28722 20.5834 9.21878V16.2953C20.5834 19.0765 20.5834 20.467 19.7083 20.8924C18.8333 21.3177 17.7398 20.4586 15.553 18.7403L14.8531 18.1904C13.6235 17.2243 13.0087 16.7412 12.2917 16.7412C11.5748 16.7412 10.9599 17.2243 9.73031 18.1904L9.03044 18.7403C6.84358 20.4586 5.75016 21.3177 4.87508 20.8924C4 20.467 4 19.0765 4 16.2953V9.21878Z" stroke="black" stroke-width="1.5"/>
+                              </svg>                                
+                            </i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nz-col [nzXs]="chatId ? 24 : 0" nzSm="0" nzMd="15" nzLg="16" nzXl="16">
+      <div class="chat__dialogs">
+        <div nz-row>
+
+
+          <div nz-col nzSpan="24">
+            <div class="chat__dialogs__person">
+              <div nz-row nzAlign="middle">
+                <div nz-col nzXs="3" nzSm="2" nzMd="0">
+                  <button nz-button nzType="text" class="arrow">
+                    <i nz-icon nzType="left" nzTheme="outline"></i>
+                  </button>
+                </div>
+                <div nz-col nzXs="18" nzSm="12" nzMd="14" nzLg="12" nzXl="12" class="chat__dialogs__person__info">
+                  <div nz-row nzAlign="middle" [nzGutter]="[12, 0]">
+                    <div nz-col nzXs="5" nzSm="4" nzMd="5" nzLg="5" nzXl="5">
+                      <div class="chat__dialogs__person__ava">
+                        <img src="/assets/images/images/per-ava.jpg" alt="ava">
+                      </div>
+                    </div>
+                    <div nz-col nzXs="19" nzSm="20" nzMd="19" nzLg="19" nzXl="19">
+                      <div nz-row>
+                        <div nz-col nzSpan="24"><span class="chat__dialogs__person__name">Рустам Маматов</span></div>
+                        <div nz-col nzSpan="24">
+                          <span class="chat__dialogs__person__status">
+                            <span *ngIf="isOnline" class="online">Сейчас онлайн</span>
+                            <span *ngIf="!isOnline">Офлайн</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div nz-col nzXs="0" nzSm="10" nzMd="10" nzLg="12" nzXl="12">
+                  <div class="chat__dialogs__person__options">
+                    <div nz-row [nzGutter]="[20, 0]" nzJustify="end">
+                      <div nz-col>
+                          <i nz-icon nz-tooltip nzTooltipTitle="Сохранить" class="chat__dialogs__person__options__img" [ngClass]="savedMessage ? 'active':''" (click)="addToSave()">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M4 9.21878C4 6.28722 4 4.82144 4.91072 3.91072C5.82144 3 7.28722 3 10.2188 3H14.3646C17.2962 3 18.762 3 19.6727 3.91072C20.5834 4.82144 20.5834 6.28722 20.5834 9.21878V16.2953C20.5834 19.0765 20.5834 20.467 19.7083 20.8924C18.8333 21.3177 17.7398 20.4586 15.553 18.7403L14.8531 18.1904C13.6235 17.2243 13.0087 16.7412 12.2917 16.7412C11.5748 16.7412 10.9599 17.2243 9.73031 18.1904L9.03044 18.7403C6.84358 20.4586 5.75016 21.3177 4.87508 20.8924C4 20.467 4 19.0765 4 16.2953V9.21878Z" stroke="black" stroke-width="1.5"/>
+                            </svg>                                
+                          </i>
+                      </div>
+                      <div nz-col>
+                        <i nz-tooltip nzTooltipTitle="Заблокировать" nz-icon class="chat__dialogs__person__options__img" (click)="blockChat(3)">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.4683C7.84036 4.4683 4.4683 7.84036 4.4683 12C4.4683 16.1596 7.84036 19.5317 12 19.5317C16.1596 19.5317 19.5317 16.1596 19.5317 12C19.5317 7.84036 16.1596 4.4683 12 4.4683ZM3.0989 12C3.0989 7.08406 7.08406 3.0989 12 3.0989C16.9159 3.0989 20.9011 7.08406 20.9011 12C20.9011 16.9159 16.9159 20.9011 12 20.9011C7.08406 20.9011 3.0989 16.9159 3.0989 12Z" fill="black"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.00656 6.03824L17.9618 16.9934L16.9934 17.9618L6.03824 7.00656L7.00656 6.03824Z" fill="black"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12ZM12 3.1978C7.13868 3.1978 3.1978 7.13868 3.1978 12C3.1978 16.8613 7.13868 20.8022 12 20.8022C16.8613 20.8022 20.8022 16.8613 20.8022 12C20.8022 7.13868 16.8613 3.1978 12 3.1978ZM6.21924 7.32742C5.18606 8.60404 4.5672 10.2297 4.5672 12C4.5672 16.105 7.89498 19.4328 12 19.4328C13.7703 19.4328 15.396 18.8139 16.6726 17.7808L6.21924 7.32742ZM6.07861 7.18679C5.01001 8.49983 4.3694 10.1751 4.3694 12C4.3694 16.2143 7.78574 19.6306 12 19.6306C13.8249 19.6306 15.5002 18.99 16.8132 17.9214L16.9934 18.1016L18.1016 16.9934L17.9214 16.8132C18.99 15.5002 19.6306 13.8249 19.6306 12C19.6306 7.78574 16.2143 4.3694 12 4.3694C10.1751 4.3694 8.49983 5.01001 7.18679 6.07861L7.00656 5.89838L5.89838 7.00656L6.07861 7.18679ZM6.34624 7.17469L16.8253 17.6538C17.1227 17.3997 17.3997 17.1227 17.6538 16.8253L7.17469 6.34624C6.87734 6.60027 6.60027 6.87734 6.34624 7.17469ZM7.0344 6.20595C6.73759 6.46056 6.46056 6.73759 6.20595 7.0344L6.17811 7.00656L7.00656 6.17811L7.0344 6.20595ZM7.32742 6.21924L17.7808 16.6726C18.8139 15.396 19.4328 13.7703 19.4328 12C19.4328 7.89498 16.105 4.5672 12 4.5672C10.2297 4.5672 8.60404 5.18606 7.32742 6.21924ZM17.794 16.9656C17.5394 17.2624 17.2624 17.5394 16.9656 17.794L16.9934 17.8219L17.8219 16.9934L17.794 16.9656Z" fill="black"/>
+                          </svg>                                                           
+                        </i>
+                      </div>
+                      <div nz-col>
+                        <i nz-tooltip nzTooltipTitle="Пожаловаться" nz-icon class="chat__dialogs__person__options__img" (click)="toComplaint(5)">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 16.4286V5.5C6 5.2643 6 5.14645 6.07322 5.07322C6.14645 5 6.2643 5 6.5 5H18.5072C19.0209 5 19.2778 5 19.3417 5.15433C19.4056 5.30866 19.224 5.49029 18.8607 5.85355L14.2828 10.4314C14.1495 10.5648 14.0828 10.6314 14.0828 10.7143C14.0828 10.7971 14.1495 10.8638 14.2828 10.9971L18.8607 15.575C19.224 15.9383 19.4056 16.1199 19.3417 16.2742C19.2778 16.4286 19.0209 16.4286 18.5072 16.4286H6ZM6 16.4286V21" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                          </svg>                                                           
+                        </i>
+                      </div>
+                      <div nz-col>
+                        <i nz-tooltip nzTooltipTitle="Удалить" nz-icon class="chat__dialogs__person__options__img" (click)="deleteChat(6)">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.8333 5.33333H17.25C17.0566 4.39284 16.5449 3.54779 15.801 2.9406C15.0572 2.33341 14.1268 2.00121 13.1667 2L11.5 2C10.5398 2.00121 9.60943 2.33341 8.86562 2.9406C8.12182 3.54779 7.61008 4.39284 7.41667 5.33333H4.83333C4.61232 5.33333 4.40036 5.42113 4.24408 5.57741C4.0878 5.73369 4 5.94565 4 6.16667C4 6.38768 4.0878 6.59964 4.24408 6.75592C4.40036 6.9122 4.61232 7 4.83333 7H5.66667V17.8333C5.66799 18.938 6.1074 19.997 6.88852 20.7782C7.66963 21.5593 8.72867 21.9987 9.83333 22H14.8333C15.938 21.9987 16.997 21.5593 17.7782 20.7782C18.5593 19.997 18.9987 18.938 19 17.8333V7H19.8333C20.0543 7 20.2663 6.9122 20.4226 6.75592C20.5789 6.59964 20.6667 6.38768 20.6667 6.16667C20.6667 5.94565 20.5789 5.73369 20.4226 5.57741C20.2663 5.42113 20.0543 5.33333 19.8333 5.33333ZM11.5 3.66667H13.1667C13.6836 3.6673 14.1876 3.82781 14.6097 4.1262C15.0317 4.42459 15.3512 4.84624 15.5242 5.33333H9.1425C9.31549 4.84624 9.63492 4.42459 10.057 4.1262C10.4791 3.82781 10.9831 3.6673 11.5 3.66667ZM17.3333 17.8333C17.3333 18.4964 17.0699 19.1323 16.6011 19.6011C16.1323 20.0699 15.4964 20.3333 14.8333 20.3333H9.83333C9.17029 20.3333 8.53441 20.0699 8.06557 19.6011C7.59673 19.1323 7.33333 18.4964 7.33333 17.8333V7H17.3333V17.8333Z" fill="black"/>
+                            <path d="M10.6668 17C10.8878 17 11.0998 16.9122 11.2561 16.7559C11.4124 16.5996 11.5002 16.3877 11.5002 16.1666V11.1666C11.5002 10.9456 11.4124 10.7337 11.2561 10.5774C11.0998 10.4211 10.8878 10.3333 10.6668 10.3333C10.4458 10.3333 10.2339 10.4211 10.0776 10.5774C9.92129 10.7337 9.8335 10.9456 9.8335 11.1666V16.1666C9.8335 16.3877 9.92129 16.5996 10.0776 16.7559C10.2339 16.9122 10.4458 17 10.6668 17Z" fill="black"/>
+                            <path d="M13.9998 17C14.2209 17 14.4328 16.9122 14.5891 16.7559C14.7454 16.5996 14.8332 16.3877 14.8332 16.1666V11.1666C14.8332 10.9456 14.7454 10.7337 14.5891 10.5774C14.4328 10.4211 14.2209 10.3333 13.9998 10.3333C13.7788 10.3333 13.5669 10.4211 13.4106 10.5774C13.2543 10.7337 13.1665 10.9456 13.1665 11.1666V16.1666C13.1665 16.3877 13.2543 16.5996 13.4106 16.7559C13.5669 16.9122 13.7788 17 13.9998 17Z" fill="black"/>
+                          </svg>                                                       
+                        </i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div nz-col nzXs="3" nzSm="0" class="text-end">
+                  <button nz-button nzType="default" (click)="open()" class="ellips">
+                    <i nz-icon nzType="ellipsis" nzTheme="outline"></i>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+          <div nz-col nzSpan="24">
+            <div class="chat__dialogs__person__advert">
+              <div nz-row nzJustify="space-between">
+                <div nz-col nzXs="18" nzSm="18" nzMd="19" nzLg="16" nzXl="16">
+                  <div nz-row nzAlign="middle" [nzGutter]="[{xs: 10, sm: 10, md: 10, lg: 15, xl: 20}, 0]">
+                    <div nz-col nzXs="7" nzSm="4" nzMd="4" nzLg="4" nzXl="4">
+                      <div class="chat__dialogs__person__advert__img">
+                        <img src="./assets/images/images/adve-img.jpg" alt="adv image">
+                      </div>
+                    </div>
+                    <div nz-col nzXs="17" nzSm="20" nzMd="20" nzLg="20" nzXl="20">
+                      <div nz-row>
+                        <div nz-col nzSpan="24">
+                          <p class="chat__dialogs__person__advert__title" nz-typography nzEllipsis [nzEllipsisRows]="2">Кормоуборочный комбайн RSM F 2650</p>
+                        </div>
+                        <div nz-col nzSpan="24">
+                          <p class="chat__dialogs__person__advert__price">659 875 сум</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div nz-col nzXs="6" nzSm="6" nzMd="5" nzLg="8" nzXl="8" class="text-end">
+                  <span lass="chat__dialogs__person__advert__id">ID 45648198</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div nz-col nzSpan="24">
+            <div class="chat__dialogs__person__messages">
+                
+                <div
+                  nz-row
+                  class="chat__body"
+                  #scrollMe
+                  (scroll)="onScrollEvent($event)"
+                >
+                  <div nz-col nzSpan="24" class="chat__body__user">
+                    <ng-container>
+                      <!-- DATE -->
+                      <div nz-col nzSpan="24" class="chat__body__date">
+                        <div nz-row nzJustify="center">
+                          <div nz-col>
+                            <div>
+                              <p>123</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- MESSAGES -->
+                      <ng-container *ngFor="let message of [1,2,2,2,2,2,]">
+                        <div
+                          class="chat__body__user__message"
+                          [ngClass]="true ? 'right' : 'left'"
+                        >
+                          <p>text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text text texttext text </p>
+                          <span>12:23</span>
+                        </div>
+
+                        <div
+                          class="chat__body__user__message image"
+                          [ngClass]="true ? 'right' : 'left'"
+                          
+                        >
+
+                        <img src="./assets/images/images/adve-img.jpg"  />
+
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+
+
+          <div nz-col nzSpan="24">
+            <div class="chat__footer" nz-col nzSpan="24">
+              <form (ngSubmit)="sendMessage(message)">
+                <nz-input-group
+                  nzSize="large"
+                  [nzSuffix]="suffixTemplateInfo"
+                  [nzPrefix]="prefixTemplateUser"
+                >
+                  <textarea
+                    class="chat-textarea"
+                    type="text"
+                    nz-input
+                    placeholder="Написать..."
+                    [(ngModel)]="message"
+                    [ngModelOptions]="{ standalone: true }"
+                    [nzAutosize]="{ maxRows: 3 }"
+                  ></textarea>
+                </nz-input-group>
+                <ng-template #prefixTemplateUser>
+                  <button nz-button (click)="uploadImage.click()" nzType="default">
+                    <i nz-icon><img src="/assets/images/attach.png" alt="icon" /></i>
+                  </button>
+                  <!-- <i nz-button  class="pointer">
+                    <img src="/assets/images/attach.png" alt="icon" />
+                  </i> -->
+
+                  <input
+                    hidden
+                    #uploadImage
+                    type="file"
+                    (change)="handleImagesInput($event)"
+                    multiple="false"
+                    accept="image/png, image/jpeg"
+                  />
+                </ng-template>
+
+                <ng-template #suffixTemplateInfo>
+                  <!-- TODO: REMOVE OR IMPLEMENT -->
+                  <!-- <i nz-icon><img src="/assets/images/emoji.png" alt="" /></i> -->
+                  <button nz-button>
+                    <img src="/assets/images/send-attach.png" alt="icon" />
+                  </button>
+                </ng-template>
+              </form>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- DRAWER -->
+<nz-drawer
+      [nzClosable]="false"
+      [nzVisible]="drawerVisible"
+      nzPlacement="right"
+      (nzOnClose)="close()"
+      [nzPlacement]="'bottom'"
+      nzHeight="195px"
+    >
+      <ng-container *nzDrawerContent>
+        <div class="chat__dialogs__person__options drawer">
+          <div nz-row [nzGutter]="[20, 20]" nzJustify="end">
+            <div nz-col nzSpan="24" class="chat__dialogs__person__options__picker" (click)="addToSave()">
+                <i nz-icon class="chat__dialogs__person__options__img" [ngClass]="savedMessage ? 'active':''" >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 9.21878C4 6.28722 4 4.82144 4.91072 3.91072C5.82144 3 7.28722 3 10.2188 3H14.3646C17.2962 3 18.762 3 19.6727 3.91072C20.5834 4.82144 20.5834 6.28722 20.5834 9.21878V16.2953C20.5834 19.0765 20.5834 20.467 19.7083 20.8924C18.8333 21.3177 17.7398 20.4586 15.553 18.7403L14.8531 18.1904C13.6235 17.2243 13.0087 16.7412 12.2917 16.7412C11.5748 16.7412 10.9599 17.2243 9.73031 18.1904L9.03044 18.7403C6.84358 20.4586 5.75016 21.3177 4.87508 20.8924C4 20.467 4 19.0765 4 16.2953V9.21878Z" stroke="black" stroke-width="1.5"/>
+                  </svg>                                
+                </i>
+                <span class="chat__dialogs__person__options__text">Сохранить</span>
+            </div>
+            <div nz-col nzSpan="24" class="chat__dialogs__person__options__picker" (click)="blockChat(3)">
+              <i nz-tooltip nzTooltipTitle="Заблокировать" nz-icon class="chat__dialogs__person__options__img" >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.4683C7.84036 4.4683 4.4683 7.84036 4.4683 12C4.4683 16.1596 7.84036 19.5317 12 19.5317C16.1596 19.5317 19.5317 16.1596 19.5317 12C19.5317 7.84036 16.1596 4.4683 12 4.4683ZM3.0989 12C3.0989 7.08406 7.08406 3.0989 12 3.0989C16.9159 3.0989 20.9011 7.08406 20.9011 12C20.9011 16.9159 16.9159 20.9011 12 20.9011C7.08406 20.9011 3.0989 16.9159 3.0989 12Z" fill="black"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.00656 6.03824L17.9618 16.9934L16.9934 17.9618L6.03824 7.00656L7.00656 6.03824Z" fill="black"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12ZM12 3.1978C7.13868 3.1978 3.1978 7.13868 3.1978 12C3.1978 16.8613 7.13868 20.8022 12 20.8022C16.8613 20.8022 20.8022 16.8613 20.8022 12C20.8022 7.13868 16.8613 3.1978 12 3.1978ZM6.21924 7.32742C5.18606 8.60404 4.5672 10.2297 4.5672 12C4.5672 16.105 7.89498 19.4328 12 19.4328C13.7703 19.4328 15.396 18.8139 16.6726 17.7808L6.21924 7.32742ZM6.07861 7.18679C5.01001 8.49983 4.3694 10.1751 4.3694 12C4.3694 16.2143 7.78574 19.6306 12 19.6306C13.8249 19.6306 15.5002 18.99 16.8132 17.9214L16.9934 18.1016L18.1016 16.9934L17.9214 16.8132C18.99 15.5002 19.6306 13.8249 19.6306 12C19.6306 7.78574 16.2143 4.3694 12 4.3694C10.1751 4.3694 8.49983 5.01001 7.18679 6.07861L7.00656 5.89838L5.89838 7.00656L6.07861 7.18679ZM6.34624 7.17469L16.8253 17.6538C17.1227 17.3997 17.3997 17.1227 17.6538 16.8253L7.17469 6.34624C6.87734 6.60027 6.60027 6.87734 6.34624 7.17469ZM7.0344 6.20595C6.73759 6.46056 6.46056 6.73759 6.20595 7.0344L6.17811 7.00656L7.00656 6.17811L7.0344 6.20595ZM7.32742 6.21924L17.7808 16.6726C18.8139 15.396 19.4328 13.7703 19.4328 12C19.4328 7.89498 16.105 4.5672 12 4.5672C10.2297 4.5672 8.60404 5.18606 7.32742 6.21924ZM17.794 16.9656C17.5394 17.2624 17.2624 17.5394 16.9656 17.794L16.9934 17.8219L17.8219 16.9934L17.794 16.9656Z" fill="black"/>
+                </svg>                                                           
+              </i>
+              <span class="chat__dialogs__person__options__text">Заблокировать</span>
+            </div>
+            <div nz-col nzSpan="24" class="chat__dialogs__person__options__picker" (click)="toComplaint(5)">
+              <i nz-tooltip nzTooltipTitle="Пожаловаться" nz-icon class="chat__dialogs__person__options__img" >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 16.4286V5.5C6 5.2643 6 5.14645 6.07322 5.07322C6.14645 5 6.2643 5 6.5 5H18.5072C19.0209 5 19.2778 5 19.3417 5.15433C19.4056 5.30866 19.224 5.49029 18.8607 5.85355L14.2828 10.4314C14.1495 10.5648 14.0828 10.6314 14.0828 10.7143C14.0828 10.7971 14.1495 10.8638 14.2828 10.9971L18.8607 15.575C19.224 15.9383 19.4056 16.1199 19.3417 16.2742C19.2778 16.4286 19.0209 16.4286 18.5072 16.4286H6ZM6 16.4286V21" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>                                                           
+              </i>
+              <span class="chat__dialogs__person__options__text">Пожаловаться</span>
+            </div>
+            <div nz-col nzSpan="24" class="chat__dialogs__person__options__picker" (click)="deleteChat(6)">
+              <i nz-tooltip nzTooltipTitle="Удалить" nz-icon class="chat__dialogs__person__options__img" >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19.8333 5.33333H17.25C17.0566 4.39284 16.5449 3.54779 15.801 2.9406C15.0572 2.33341 14.1268 2.00121 13.1667 2L11.5 2C10.5398 2.00121 9.60943 2.33341 8.86562 2.9406C8.12182 3.54779 7.61008 4.39284 7.41667 5.33333H4.83333C4.61232 5.33333 4.40036 5.42113 4.24408 5.57741C4.0878 5.73369 4 5.94565 4 6.16667C4 6.38768 4.0878 6.59964 4.24408 6.75592C4.40036 6.9122 4.61232 7 4.83333 7H5.66667V17.8333C5.66799 18.938 6.1074 19.997 6.88852 20.7782C7.66963 21.5593 8.72867 21.9987 9.83333 22H14.8333C15.938 21.9987 16.997 21.5593 17.7782 20.7782C18.5593 19.997 18.9987 18.938 19 17.8333V7H19.8333C20.0543 7 20.2663 6.9122 20.4226 6.75592C20.5789 6.59964 20.6667 6.38768 20.6667 6.16667C20.6667 5.94565 20.5789 5.73369 20.4226 5.57741C20.2663 5.42113 20.0543 5.33333 19.8333 5.33333ZM11.5 3.66667H13.1667C13.6836 3.6673 14.1876 3.82781 14.6097 4.1262C15.0317 4.42459 15.3512 4.84624 15.5242 5.33333H9.1425C9.31549 4.84624 9.63492 4.42459 10.057 4.1262C10.4791 3.82781 10.9831 3.6673 11.5 3.66667ZM17.3333 17.8333C17.3333 18.4964 17.0699 19.1323 16.6011 19.6011C16.1323 20.0699 15.4964 20.3333 14.8333 20.3333H9.83333C9.17029 20.3333 8.53441 20.0699 8.06557 19.6011C7.59673 19.1323 7.33333 18.4964 7.33333 17.8333V7H17.3333V17.8333Z" fill="black"/>
+                  <path d="M10.6668 17C10.8878 17 11.0998 16.9122 11.2561 16.7559C11.4124 16.5996 11.5002 16.3877 11.5002 16.1666V11.1666C11.5002 10.9456 11.4124 10.7337 11.2561 10.5774C11.0998 10.4211 10.8878 10.3333 10.6668 10.3333C10.4458 10.3333 10.2339 10.4211 10.0776 10.5774C9.92129 10.7337 9.8335 10.9456 9.8335 11.1666V16.1666C9.8335 16.3877 9.92129 16.5996 10.0776 16.7559C10.2339 16.9122 10.4458 17 10.6668 17Z" fill="black"/>
+                  <path d="M13.9998 17C14.2209 17 14.4328 16.9122 14.5891 16.7559C14.7454 16.5996 14.8332 16.3877 14.8332 16.1666V11.1666C14.8332 10.9456 14.7454 10.7337 14.5891 10.5774C14.4328 10.4211 14.2209 10.3333 13.9998 10.3333C13.7788 10.3333 13.5669 10.4211 13.4106 10.5774C13.2543 10.7337 13.1665 10.9456 13.1665 11.1666V16.1666C13.1665 16.3877 13.2543 16.5996 13.4106 16.7559C13.5669 16.9122 13.7788 17 13.9998 17Z" fill="black"/>
+                </svg>                                                       
+              </i>
+              <span class="chat__dialogs__person__options__text">Удалить</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </nz-drawer>

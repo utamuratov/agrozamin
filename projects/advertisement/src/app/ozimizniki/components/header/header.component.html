@@ -587,9 +587,9 @@
       <div nz-row [nzGutter]="[0, 0]">
         <div nz-col nzSpan="24">
           <div class="az-drawer_padding top">
-            <div nz-row nzJustify="space-between">
-              <div nz-col>
-                <div nz-row [nzGutter]="[10, 0]">
+            <div nz-row [nzGutter]="[10, 0]" nzJustify="space-between">
+              <div nz-col nzXs="24" nzSm="20">
+                <div nz-row [nzGutter]="[10, 10]">
                   <div nz-col nzSm="0" *ngIf="!isUserAuthenticated">
                     <button
                       *ngIf="isUserAuthenticated"
@@ -611,7 +611,7 @@
                       {{ "toComeIn" | translate }}
                     </button>
                   </div>
-                  <div nz-col nzSm="0" *ngIf="isUserAuthenticated">
+                  <!-- <div nz-col nzSm="0" *ngIf="isUserAuthenticated">
                     <nz-button-group
                       nz-popover
                       [nzPopoverContent]="contentTemplate"
@@ -638,14 +638,53 @@
                         <i nz-icon nzType="user" nzTheme="outline"></i>
                       </button>
                     </nz-button-group>
+                  </div> -->
+                  <div nz-col nzXs="24" nzSm="0">
+                    <div nz-row>
+                      <div nz-col nzSpan="20">
+                        <div nz-row [nzGutter]="[16, 0]">
+                          <div nz-col nzSpan="5">
+                            <div class="drawer-user-avatar">
+                              <img
+                                [src]="'./assets/images/ava.jpg'"
+                                alt="ava-btn"
+                              />
+                            </div>
+                          </div>
+                          <div nz-col nzSpan="19">
+                            <div nz-row>
+                              <div nz-col nzSpan="24">
+                                <h3 class="drawer-user-name">
+                                  Жахонгир Пардаев
+                                </h3>
+                              </div>
+                              <div nz-col nzSpan="24">
+                                <span class="drawer-user-service">Agro ID</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div nz-col nzSpan="4" class="text-end">
+                        <button
+                          nz-button
+                          nzType="default"
+                          nzSize="large"
+                          (click)="closeAz()"
+                        >
+                          <i nz-icon nzType="close" nzTheme="outline"></i>
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <div nz-col nzMd="0">
+                  <div nz-col nzXs="24" nzSm="24" nzMd="0">
                     <button
                       nz-button
                       nzType="primary"
                       nzSize="large"
                       class="secondary"
                       routerLink="cabinet/advertisement/add"
+                      nzBlock
                     >
                       <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
                       <span class="add-advertisement drawer-add"
@@ -655,7 +694,7 @@
                   </div>
                 </div>
               </div>
-              <div nz-col>
+              <div nz-col nzXs="0" nzSm="4">
                 <button
                   nz-button
                   nzType="default"
@@ -663,6 +702,79 @@
                   (click)="closeAz()"
                 >
                   <i nz-icon nzType="close" nzTheme="outline"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div nz-col nzXs="24" nzSm="24" nzMd="0">
+
+          <div class="az-drawer__language">
+            <div nz-row [nzGutter]="[0, 20]">
+              <div nz-col nzXs="24" nzSm="0">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"
+                  (click)="navigateTo(['cabinet'])"
+                >
+                  <img src="'../../../../../../assets/images/bell.png" alt="icon" />
+                  <span class="az-drawer__language__text">Уведомления</span>
+                </button>
+              </div>
+              <div nz-col nzXs="24" nzSm="0">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"
+                  (click)="navigateTo(['cabinet'])"
+                >
+                  <img src="'../../../../../../assets/images/menu-Vector.png" alt="icon" />
+                  <span class="az-drawer__language__text">Объявления</span>
+                </button>
+              </div>
+              <div nz-col nzXs="24" nzSm="0">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"
+                  (click)="navigateTo(['cabinet/main/messages/chat'])"
+                >
+                  <img src="'../../../../../../assets/images/menu-message.png" alt="icon" />
+                  <span class="az-drawer__language__text">Сообщения</span>
+                </button>
+              </div>
+              <div nz-col nzXs="24" nzSm="0">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"
+                  (click)="navigateTo(['cabinet/main/favourites/advertisements'])"
+                >
+                  <img src="'../../../../../../assets/images/menu-heart.png" alt="icon" />
+                  <span class="az-drawer__language__text">Избранное</span>
+                </button>
+              </div>
+              <div nz-col nzXs="24" nzSm="0">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"
+                  (click)="navigateTo(['cabinet'])"
+                >
+                  <img src="'../../../../../../assets/images/menu-settings.png" alt="icon" />
+                  <span class="az-drawer__language__text">Настройки</span>
+                </button>
+              </div>
+              <div nz-col nzXs="24" nzSm="0">
+                <button
+                  nz-button
+                  nzType="link"
+                  class="drawer__btn__info"                  
+                >
+                  <img src="'../../../../../../assets/images/menu-logout.png" alt="icon" />
+                  <span class="az-drawer__language__text">Выйти</span>
                 </button>
               </div>
             </div>

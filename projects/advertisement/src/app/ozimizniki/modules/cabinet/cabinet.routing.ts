@@ -3,7 +3,7 @@ import { CabinetComponent } from './cabinet.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { ArchivedMessagesComponent } from './components/messages/components/archived-messages/archived-messages.component';
 import { BlockedMessagesComponent } from './components/messages/components/blocked-messages/blocked-messages.component';
-import { ChatComponent } from './components/messages/components/messages1/messages1.component';
+import { ChatComponent } from './components/messages/components/chat/chat.component';
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
 import { SavedMessagesComponent } from './components/messages/components/saved-messages/saved-messages.component';
 import { MessagesComponent } from './components/messages/messages.component';
