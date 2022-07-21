@@ -20,6 +20,7 @@ export * from './lib/shared/news/news.module';
 export * from './lib/shared/add-edit-advertisement-shared/add-edit-advertisement-shared.module';
 export * from './lib/shared/sign-in-helper/sign-in-helper.module';
 export * from './lib/shared/youtube-video-id-splitter/youtube-video-id-splitter.module';
+export * from './lib/shared/support-chat/support-chat.module';
 
 // COMPONENTS
 export * from './lib/shared/forms-shared/components/error/error.component';
@@ -37,6 +38,8 @@ export * from './lib/shared/news/news.component';
 export * from './lib/shared/add-edit-advertisement-shared/components/add-edit-advertisement-controls/add-edit-advertisement-controls.component';
 export * from './lib/shared/add-edit-advertisement-shared/add-edit-advertisement-full-logic.component';
 export * from './lib/shared/breadcrumb/breadcrumb.component';
+export * from './lib/shared/support-chat/support-chat-general/support-chat-general.component';
+export * from './lib/shared/support-chat/support-chat-logic/support-chat-logic.component';
 
 // DIRECTIVES
 export * from './lib/shared/forms-shared/directives/only-letter.directive';
@@ -49,6 +52,7 @@ export * from './lib/shared/youtube-video-id-splitter/youtubeVideoIdSplitter.pip
 export * from './lib/config/constants';
 export * from './lib/config/di-tokens';
 export * from './lib/config/_data';
+export * from './lib/config/grid-query-default.consants';
 
 // HELPERS
 export * from './lib/helpers/injector.helper';
@@ -60,6 +64,7 @@ export * from './lib/helpers/settings.helper';
 export * from './lib/helpers/validation.helper';
 export * from './lib/helpers/sign-in.helper';
 export * from './lib/helpers/language.helper';
+export * from './lib/helpers/grid-logic';
 
 // INTERCEPTORS
 export * from './lib/interceptors/handle.error.interceptor';
@@ -82,6 +87,8 @@ export * from './lib/models/id-name.interface';
 export * from './lib/models/grid-model';
 export * from './lib/models/grid-query.interface';
 export * from './lib/models/authorized-user.interface';
+export * from './lib/models/advertisment.interface';
+export * from './lib/models/person.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement-edit.response';
 export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement.request';
 export * from './lib/shared/add-edit-advertisement-shared/dto/advertisement.response';
@@ -93,6 +100,8 @@ export * from './lib/shared/add-edit-advertisement-shared/dto/filter-parameter.i
 export * from './lib/shared/add-edit-advertisement-shared/dto/file.response';
 export * from './lib/shared/add-edit-advertisement-shared/dto/location.interface';
 export * from './lib/shared/add-edit-advertisement-shared/dto/references-for-create.interface';
+export * from './lib/shared/support-chat/dto/support-chat.request';
+export * from './lib/shared/support-chat/dto/support-chat.response';
 
 // SERVICES
 export * from './lib/services/base.service';
@@ -103,6 +112,7 @@ export * from './lib/services/seo.service';
 export * from './lib/services/grid.service';
 export * from './lib/shared/language/language.service';
 export * from './lib/shared/add-edit-advertisement-shared/services/add-advertisement.service';
+export * from './lib/shared/support-chat/services/support-chat.service';
 
 // UTILITS
 export * from './lib/utilits/local-storage.utilit';

@@ -1,1 +1,10 @@
-<p>support-chat-item works!</p>
+<az-support-chat-general
+  [messagesByDate]="messagesByDate"
+  [isOnline]="isOnline"
+  [partner]="userFullName"
+  (myScrollContainerChange)="myScrollContainer = $event"
+  (onScrollEventChange)="onScrollEvent($event)"
+  (sendMessageChange)="sendMessage($event)"
+  (handleImagesInputChange)="handleImagesInput($event)"
+  (reSendImageChange)="reSendImage($event)"
+></az-support-chat-general>

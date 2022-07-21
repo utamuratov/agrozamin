@@ -1,5 +1,4 @@
-import { FileResponse, Id, Location } from 'ngx-az-core';
-import { Advertisement } from './advertisement.interface';
+import { Advertisement, FileResponse, Id } from 'ngx-az-core';
 import { CharacteristicsDetail } from './characteristics-detail.interface';
 
 export interface AdvertisementDetails extends Id, Advertisement {
@@ -11,7 +10,6 @@ export interface AdvertisementDetails extends Id, Advertisement {
   files: FileResponse[];
   characteristics_detail: CharacteristicsDetail[];
   user_is_online: boolean;
-  location: Location;
   type: string;
 
   // for model

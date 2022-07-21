@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseService, GridService } from 'ngx-az-core';
-import { map } from 'rxjs';
-import { Advertisement } from '../../advertisement/dto/advertisement.interface';
+import { Advertisement, BaseService, GridService } from 'ngx-az-core';
 import { SellerDetails } from '../dto/seller-details.interface';
 
 @Injectable({

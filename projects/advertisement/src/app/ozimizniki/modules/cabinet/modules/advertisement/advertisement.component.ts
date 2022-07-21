@@ -3,14 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {
   AdvertisementStatus,
   IdName,
-  GridQuery,
-  GridModel,
   NgDestroy,
   Constants,
+  GridLogic,
 } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { prefixPath } from 'projects/advertisement/src/app/core/utilits/advertisement.utilits';
-import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
 import { FavouriteService } from 'projects/advertisement/src/app/shared/services/favourite.service';
 import { takeUntil } from 'rxjs';
 import { Advertisement } from './dto/advertisment.interface';

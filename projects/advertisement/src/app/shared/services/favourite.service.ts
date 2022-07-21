@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseService, GridService } from 'ngx-az-core';
-import { Advertisement } from '../../ozimizniki/modules/advertisement/dto/advertisement.interface';
+import { Advertisement, BaseService, GridService } from 'ngx-az-core';
 
 @Injectable({ providedIn: 'root' })
 export class FavouriteService extends GridService<Advertisement> {

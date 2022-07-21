@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BaseService, GridService } from 'ngx-az-core';
+import { BaseService } from '../../../services/base.service';
+import { GridService } from '../../../services/grid.service';
 import { SupportChatRequest } from '../dto/support-chat.request';
 import { SupportChatResponse } from '../dto/support-chat.response';
 
@@ -35,6 +36,9 @@ export class SupportChatService extends GridService<SupportChatResponse> {
     const formData = new FormData();
     if (model.file) {
       formData.append(`file`, model.file, model.file?.name);
+    }
+    if (model.chat_id) {
+      formData.append('chat_id', model.chat_id.toString());
     }
     formData.append('text', model.text);
 

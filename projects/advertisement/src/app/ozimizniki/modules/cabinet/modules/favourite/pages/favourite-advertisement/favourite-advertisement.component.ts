@@ -4,8 +4,8 @@ import {
   Component,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { GridLogic } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
-import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
 import { FavouriteService } from 'projects/advertisement/src/app/shared/services/favourite.service';
 
 @Component({

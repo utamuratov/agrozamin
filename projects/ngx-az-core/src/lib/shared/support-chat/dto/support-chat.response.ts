@@ -7,6 +7,7 @@ export interface SupportChatResponse {
   // for model
   isLoading?: boolean;
   hasError?: boolean;
-  fileNotLoaded?: File;
+  fileNotSended?: File;
+  textNotSended?: string;
   deleted?: boolean;
 }

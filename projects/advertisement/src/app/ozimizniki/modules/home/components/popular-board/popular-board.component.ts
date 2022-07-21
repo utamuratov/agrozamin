@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Advertisement } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { map, Observable } from 'rxjs';
-import { Advertisement } from '../../../advertisement/dto/advertisement.interface';
 import { AdvertisementPopularService } from '../../../advertisement/services/advertisement-popular.service';
 
 @Component({

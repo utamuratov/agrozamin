@@ -4,7 +4,7 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
-import { Advertisement } from '../../dto/advertisement.interface';
+import { Advertisement } from 'ngx-az-core';
 import SwiperCore, { Navigation } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 
@@ -19,10 +19,10 @@ SwiperCore.use([Navigation]);
 })
 export class SimilarItemsComponent {
   /**
-   * 
+   *
    */
   @ViewChild('swiper') swiper!: SwiperComponent;
-  
+
   /**
    *
    */

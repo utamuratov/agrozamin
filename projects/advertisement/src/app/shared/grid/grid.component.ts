@@ -5,8 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { GridModel, GridQuery } from 'ngx-az-core';
-import { Advertisement } from '../../ozimizniki/modules/advertisement/dto/advertisement.interface';
+import { Advertisement, GridModel, GridQuery } from 'ngx-az-core';
 
 @Component({
   selector: 'az-grid',

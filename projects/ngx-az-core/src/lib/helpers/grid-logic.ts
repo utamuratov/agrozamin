@@ -1,9 +1,11 @@
 import { KeyValue } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
-import { GridModel, GridQuery, GridService } from 'ngx-az-core';
 import { finalize } from 'rxjs';
-import { AdvertisementConstants } from '../../../core/constants/advertisement.constants';
-import { Advertisement } from '../../../ozimizniki/modules/advertisement/dto/advertisement.interface';
+import { GridQueryConstants } from '../config/grid-query-default.consants';
+import { Advertisement } from '../models/advertisment.interface';
+import { GridModel } from '../models/grid-model';
+import { GridQuery } from '../models/grid-query.interface';
+import { GridService } from '../services/grid.service';
 
 export class GridLogic<TData = Advertisement> {
   /**
@@ -13,23 +15,23 @@ export class GridLogic<TData = Advertisement> {
     const data = [];
     for (
       let index = 0;
-      index < AdvertisementConstants.PAGINATION_PAGE_SIZE;
+      index < GridQueryConstants.PAGINATION_PAGE_SIZE;
       index++
     ) {
       data.push({} as TData);
     }
     return {
-      current_page: AdvertisementConstants.DEFAULT_PAGE_INDEX,
+      current_page: GridQueryConstants.DEFAULT_PAGE_INDEX,
       data,
-      per_page: AdvertisementConstants.PAGINATION_PAGE_SIZE,
-      total: AdvertisementConstants.PAGINATION_PAGE_SIZE,
+      per_page: GridQueryConstants.PAGINATION_PAGE_SIZE,
+      total: GridQueryConstants.PAGINATION_PAGE_SIZE,
     };
   }
 
   /**
    *
    */
-  DEFAULT_QUERY = AdvertisementConstants.DEFAULT_GRID_QUERY;
+  DEFAULT_QUERY = GridQueryConstants.DEFAULT_GRID_QUERY;
 
   /**
    *
@@ -39,7 +41,7 @@ export class GridLogic<TData = Advertisement> {
   /**
    *
    */
-  pageSize = AdvertisementConstants.PAGINATION_PAGE_SIZE;
+  pageSize = GridQueryConstants.PAGINATION_PAGE_SIZE;
 
   /**
    *
@@ -174,7 +176,7 @@ export class GridLogic<TData = Advertisement> {
   /**
    *
    */
-  paginate(pageIndex = AdvertisementConstants.DEFAULT_PAGE_INDEX) {
+  paginate(pageIndex = GridQueryConstants.DEFAULT_PAGE_INDEX) {
     this.query.pageIndex = pageIndex;
     this.loadData();
   }

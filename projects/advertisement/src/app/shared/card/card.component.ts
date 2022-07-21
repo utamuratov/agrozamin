@@ -6,10 +6,9 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Constants } from 'ngx-az-core';
+import { Advertisement, Constants } from 'ngx-az-core';
 import { AdvertisementConstants } from '../../core/constants/advertisement.constants';
 import { prefixPath } from '../../core/utilits/advertisement.utilits';
-import { Advertisement } from '../../ozimizniki/modules/advertisement/dto/advertisement.interface';
 import { FavouriteService } from '../services/favourite.service';
 
 @Component({

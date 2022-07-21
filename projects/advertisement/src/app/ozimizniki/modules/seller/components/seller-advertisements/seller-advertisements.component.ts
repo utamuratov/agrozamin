@@ -6,10 +6,8 @@ import {
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GridQuery } from 'ngx-az-core';
+import { GridQuery, GridLogic } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
-import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
-import { cat } from '../../../advertisement/pages/advertisement-list-by-category/subcategory';
 import { Category } from '../../dto/category.interface';
 import { SellerService } from '../../services/seller.service';
 

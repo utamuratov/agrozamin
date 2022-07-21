@@ -4,9 +4,8 @@ import {
   Component,
   Input,
 } from '@angular/core';
-import { Filter } from 'ngx-az-core';
+import { Filter, GridLogic } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
-import { GridLogic } from 'projects/advertisement/src/app/shared/grid/grid-logic/grid-logic';
 import { ParamAndQuery } from '../../dto/param-and-query.interface';
 import { AdvertisementService } from '../../services/advertisement.service';
 

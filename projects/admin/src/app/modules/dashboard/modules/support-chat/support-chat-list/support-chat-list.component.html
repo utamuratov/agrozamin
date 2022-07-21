@@ -20,7 +20,12 @@
       <ng-container [ngSwitch]="column.field">
         <ng-container *ngSwitchCase="'actions'">
           <nz-button-group>
-            <button nz-button nzType="default" [routerLink]="[data.id]">
+            <button
+              nz-button
+              nzType="default"
+              [routerLink]="[data.id]"
+              [queryParams]="{ userFullName: data.full_name }"
+            >
               <span>
                 <i nz-icon nzType="message" nzTheme="twotone"></i>
               </span>
