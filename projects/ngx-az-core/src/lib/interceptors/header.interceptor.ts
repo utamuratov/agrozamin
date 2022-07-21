@@ -6,18 +6,21 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LanguageUtilit } from '../utilits/language.utilit';
 import { Constants } from '../config/constants';
+import { Store } from '@ngxs/store';
+import { LanguageState } from './../shared/store/language/language.state';
 
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
+  constructor(private $store: Store) {}
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const headers = req.headers.set(
       Constants.HEADER_LANGUAGE,
-      LanguageUtilit.currentLanguage
+      this.$store.selectSnapshot(LanguageState.currentLanguage)
     );
     const cloneRequest = req.clone({ headers });
     return next.handle(cloneRequest);

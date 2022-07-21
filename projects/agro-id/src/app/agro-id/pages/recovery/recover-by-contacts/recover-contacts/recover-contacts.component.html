@@ -1,0 +1,69 @@
+<div nz-row class="recover-login h-100">
+  <div
+    nz-col
+    nzXs="22"
+    nzSm="20"
+    nzMd="20"
+    nzLg="16"
+    nzXl="16"
+    class="d-flex flex-column"
+  >
+    <div class="flex-grow-1 d-flex align-items-center">
+      <div>
+        <!-- TITLE -->
+        <h2 nz-typography class="agro-id-form-title">
+          {{ "recover" | translate }}
+        </h2>
+
+        <!-- SUB TITLE -->
+        <p nz-typography class="recover-login__desc">
+          {{ "enterEmailOrPhoneNumber" | translate }}
+        </p>
+
+        <nz-divider class="mt-10p"></nz-divider>
+
+        <!-- ERRORS FROM SERVER -->
+        <error-from-server></error-from-server>
+
+        <!-- FORM -->
+        <form
+          nz-form
+          nzLayout="vertical"
+          [formGroup]="form"
+          (ngSubmit)="submitForm()"
+        >
+          <!-- LOGIN INPUT FIELD -->
+          <input-phone-email
+            [config]="{
+              form: form,
+              isLoginOnly: false,
+              phoneFormControlName: 'phone',
+              emailFormControlName: 'email',
+              toggleTitleForPhone: 'byEmail' | translate,
+              toggleTitleForEmail: 'byPhoneNumber' | translate
+            }"
+            (changedLoginType)="onChangedLoginType($event)"
+          ></input-phone-email>
+
+          <!-- CONTINUE -->
+          <div [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }">
+            <button
+              nz-button
+              nzType="primary"
+              nzBlock
+              nzShape="round"
+              [nzLoading]="isWaitingResponse$ | async"
+              class="recover-login__btn font-agro-medium"
+            >
+              {{ "continue" | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <back-and-language></back-and-language>
+  </div>
+  <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="4" nzXl="4"></div>
+  <div nz-col nzXs="1" nzSm="2" nzMd="2" nzLg="4" nzXl="4"></div>
+</div>

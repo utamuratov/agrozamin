@@ -113,4 +113,20 @@ export class ValidationHelper {
     }
     return null;
   }
+
+  /**
+   *
+   * @param initialValue
+   * @returns
+   */
+  static notChanged = (initialValue: any): ValidationErrors | null => {
+    return (control: AbstractControl) => {
+      if (JSON.stringify(initialValue) !== JSON.stringify(control.value)) {
+        return null;
+      }
+      return {
+        notChanged: true,
+      };
+    };
+  };
 }

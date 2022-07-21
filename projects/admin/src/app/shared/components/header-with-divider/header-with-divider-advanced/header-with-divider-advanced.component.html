@@ -1,0 +1,11 @@
+<az-header-with-divider-basic
+  [title]="
+    config.title +
+    (config.searchInputAdvancedConfig.filteredData.length | titleTotal)
+  "
+  (clickedAddEditButton)="addEdit()"
+>
+  <az-search-input-advanced
+    [config]="config.searchInputAdvancedConfig"
+  ></az-search-input-advanced>
+</az-header-with-divider-basic>

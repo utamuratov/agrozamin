@@ -1,0 +1,231 @@
+<nz-layout class="app-layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
+        <h1>Admin panel</h1>
+      </a>
+    </div>
+    <ul
+      nz-menu
+      nzTheme="dark"
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+    >
+      <!-- DASHBOARD -->
+      <li routerLink="home" nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="dashboard"></i>
+        <span>{{ "dashboard" | translate }}</span>
+      </li>
+
+      <!-- TRANSLATES -->
+      <li
+        nz-submenu
+        [nzTitle]="'translate' | translate"
+        nzIcon="unordered-list"
+      >
+        <ul>
+          <li
+            [routerLink]="
+              './translate/' + TranslationType[TranslationType.interface]
+            "
+            onchange="changeName()"
+            nz-menu-item
+            nzMatchRouter
+          >
+            <a>{{ "interface" | translate }}</a>
+          </li>
+          <li
+            [routerLink]="'./translate/' + TranslationType[TranslationType.seo]"
+            nz-menu-item
+            nzMatchRouter
+          >
+            <a>{{ "seo" | translate }}</a>
+          </li>
+          <li routerLink="./translate/contents" nz-menu-item nzMatchRouter>
+            <a>{{ "contents" | translate }}</a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- CATEGORY -->
+      <li nz-submenu [nzTitle]="'category' | translate" nzIcon="profile">
+        <ul>
+          <li routerLink="category/filter" nz-menu-item nzMatchRouter>
+            <span>{{ "filters" | translate }}</span>
+          </li>
+          <li
+            routerLink="category/{{ Project[Project.uzimizniki] }}"
+            nz-menu-item
+            nzMatchRouter
+          >
+            <span>{{ "uzimizniki" | translate }}</span>
+          </li>
+          <li
+            routerLink="category/{{ Project[Project.consultant] }}"
+            nz-menu-item
+            nzMatchRouter
+          >
+            <span>{{ "consultant" | translate }}</span>
+          </li>
+        </ul>
+      </li>
+
+      <!-- AGRO ID -->
+      <li routerLink="user" nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="user"></i>
+        <span>{{ "agroId" | translate }}</span>
+      </li>
+
+      <!-- ADMIN -->
+      <li nz-submenu [nzTitle]="'admin' | translate" nzIcon="form">
+        <ul>
+          <li routerLink="./admin/users" nz-menu-item nzMatchRouter>
+            <span>{{ "users" | translate }}</span>
+          </li>
+          <li routerLink="./admin/role" nz-menu-item nzMatchRouter>
+            <span>{{ "roles" | translate }}</span>
+          </li>
+          <li routerLink="./admin/access-action" nz-menu-item nzMatchRouter>
+            <span>{{ "actions" | translate }}</span>
+          </li>
+          <li routerLink="./admin/access-control" nz-menu-item nzMatchRouter>
+            <span>{{ "controls" | translate }}</span>
+          </li>
+          <!-- REGION -->
+          <li routerLink="./admin/region" nz-menu-item nzMatchRouter>
+            <span>{{ "regions" | translate }}</span>
+          </li>
+
+          <!-- DISTRICT -->
+          <li routerLink="./admin/district" nz-menu-item nzMatchRouter>
+            <span>{{ "district" | translate }}</span>
+          </li>
+
+          <!-- REJECT REASON -->
+          <li routerLink="./admin/reject-reason" nz-menu-item nzMatchRouter>
+            <span>{{ "rejectReasons" | translate }}</span>
+          </li>
+
+          <!-- COMPLAINT CATEGORIES -->
+          <li
+            routerLink="./admin/complaint-category"
+            nz-menu-item
+            nzMatchRouter
+          >
+            <span>{{ "complaintCategories" | translate }}</span>
+          </li>
+
+          <!-- COMPLAINTED ADVERTISEMENTS -->
+          <li
+            routerLink="./admin/complainted-advertisement"
+            nz-menu-item
+            nzMatchRouter
+          >
+            <span>{{ "complaintedAdvertisements" | translate }}</span>
+          </li>
+        </ul>
+      </li>
+
+      <!-- UZIMIZNIKI -->
+      <li nz-submenu [nzTitle]="'uzimizniki' | translate" nzIcon="read">
+        <ul>
+          <!-- ADVERTISEMENT TYPE -->
+          <li routerLink="advertisement-type" nz-menu-item nzMatchRouter>
+            <span>{{ "advertisementTypes" | translate }}</span>
+          </li>
+          <!-- ADVERTISEMENTS -->
+          <li routerLink="advertisement" nz-menu-item nzMatchRouter>
+            <span>{{ "advertisements" | translate }}</span>
+          </li>
+        </ul>
+      </li>
+
+      <!-- SUPPORT CHAT -->
+      <li routerLink="support-chat" nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="message"></i>
+        <span>{{ "onlineChat" | translate }}</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <div nz-row>
+          <div nz-col nzFlex="60px">
+            <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+              <i
+                class="trigger"
+                nz-icon
+                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+              ></i>
+            </span>
+          </div>
+          <div nz-col nzFlex="auto">
+            <!-- <div nz-row nzJustify="space-around" nzAlign="middle" style="height: 100%;"> -->
+            <div nz-col nzSpan="24">
+              <div nz-row>
+                <div nz-col nzFlex="auto">
+                  <div nz-row>
+                    <div nz-col nzFlex="auto">
+                      <div
+                        nz-row
+                        nzJustify="space-between"
+                        nzAlign="middle"
+                        style="height: 100%"
+                      >
+                        <div nz-row>
+                          <div
+                            nz-col
+                            nzXs="0"
+                            nzSm="0"
+                            nzMd="0"
+                            nzLg="24"
+                            nzXl="24"
+                          >
+                            <agro-breadcrumb></agro-breadcrumb>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div nz-col>
+                      <az-language></az-language>
+                    </div>
+                    <div nz-col nzFlex="50px">
+                      <nz-avatar
+                        nz-tooltip
+                        nzTooltipTitle="Ergashev Ismoil"
+                        nzTooltipPlacement="left"
+                        nzText="EI"
+                      ></nz-avatar>
+                    </div>
+                  </div>
+                </div>
+
+                <div nz-col nzFlex="100px">
+                  <button nz-button nzType="primary" routerLink="./sign-in">
+                    <i nz-icon nzType="logout" nzTheme="outline"></i>Exit
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

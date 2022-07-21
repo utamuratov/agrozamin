@@ -1,0 +1,79 @@
+.partnerInfo {
+  padding-top: 40px;
+
+  &__img {
+    width: 190px;
+    height: 190px;
+
+    @media (max-width: 576px) {
+      width: 100px;
+      height: 100px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 32px;
+    line-height: 40px;
+    @media (max-width: 1200px) {
+      font-size: 30px;
+    }
+    @media (max-width: 992px) {
+      font-size: 24px;
+    }
+    @media (max-width: 576px) {
+      font-size: 20px;
+    }
+  }
+  &__status {
+    padding-top: 8px;
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: #86898c;
+    }
+    span {
+      font-size: 14px;
+      color: #86898c;
+    }
+  }
+  &__info {
+    padding-top: 16px;
+
+    p {
+      margin-bottom: 0;
+      text-align: center;
+      font-size: 10px;
+      line-height: 14px;
+    }
+  }
+  &__favorites {
+    padding-top: 56px;
+  }
+  &__favorites2 {
+    padding-top: 16px;
+  }
+}
+
+.green {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #52c41a;
+  margin-right: 8px;
+}
+
+.grey {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: grey;
+  margin-right: 8px;
+}

@@ -1,0 +1,238 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="close()"
+>
+  <ng-template #modalTitle
+    ><h3 nz-typography>{{ "addCompany" | translate }}</h3></ng-template
+  >
+
+  <ng-template #modalContent>
+    <form nz-form [formGroup]="form" nzLayout="vertical">
+      <nz-form-item>
+        <nz-form-control [nzSpan]="24">
+          <div nz-row nzAlign="middle" nzJustify="center" [nzGutter]="[10, 10]">
+            <div
+              nz-col
+              nzXs="12"
+              nzSm="6"
+              nzMd="6"
+              nzLg="6"
+              nzXl="8"
+              nzXXl="8"
+              class="text-center"
+            >
+              <div nz-row>
+                <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
+                  <nz-avatar
+                    [nzSize]="140"
+                    [nzIcon]="
+                      photoSrc ? photoSrc : editingData?.photo ? '' : 'camera'
+                    "
+                    [nzSrc]="
+                      photoSrc
+                        ? photoSrc
+                        : editingData?.photo
+                        ? editingData?.photo
+                        : ''
+                    "
+                  ></nz-avatar>
+                </div>
+                <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
+                  <nz-avatar
+                    [nzSize]="100"
+                    [nzIcon]="
+                      photoSrc ? photoSrc : editingData?.photo ? '' : 'camera'
+                    "
+                    [nzSrc]="
+                      photoSrc
+                        ? photoSrc
+                        : editingData?.photo
+                        ? editingData?.photo
+                        : ''
+                    "
+                  ></nz-avatar>
+                </div>
+              </div>
+            </div>
+            <div
+              nz-col
+              nzXs="24"
+              nzSm="18"
+              nzMd="18"
+              nzLg="18"
+              nzXl="16"
+              nzXXl="16"
+            >
+              <div nz-row [nzGutter]="[0, 15]" nzJustify="center">
+                <input
+                  type="file"
+                  [hidden]="true"
+                  #avatar
+                  (change)="handleFileInput($event)"
+                />
+                <div nz-col>
+                  <span
+                    >{{
+                      editingData?.id
+                        ? ""
+                        : "Персонализируйте свою компанию с помощью фотографи или логотипа"
+                    }}
+                    Фотография профиля будет отображаться в приложениях и
+                    устройствах, использующих вашу учетную запись AgroID.</span
+                  >
+                </div>
+                <div nz-col>
+                  <button
+                    nz-button
+                    nzShape="round"
+                    nzType="default"
+                    (click)="avatar.click()"
+                  >
+                    {{ editingData?.id ? "Изменить" : "Добавить" }} фотографию
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+
+      <error-from-server></error-from-server>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="companyName"
+          >Название компании</nz-form-label
+        >
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="error">
+          <input
+            nz-input
+            type="text"
+            id="companyName"
+            nzSize="large"
+            formControlName="name"
+          />
+        </nz-form-control>
+        <ng-template #error let-control>
+          <error [control]="control"></error>
+        </ng-template>
+      </nz-form-item>
+
+      <!-- ADDRESS -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="companyAdres">Адрес</nz-form-label>
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="error">
+          <input
+            nz-input
+            type="text"
+            id="companyAdres"
+            nzSize="large"
+            formControlName="address"
+          />
+        </nz-form-control>
+        <ng-template #error let-control>
+          <error [control]="control"></error>
+        </ng-template>
+      </nz-form-item>
+
+      <!-- BANK -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="bank">Банк</nz-form-label>
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="error">
+          <input
+            nz-input
+            type="text"
+            id="bank"
+            nzSize="large"
+            formControlName="bank"
+          />
+        </nz-form-control>
+        <ng-template #error let-control>
+          <error [control]="control"></error>
+        </ng-template>
+      </nz-form-item>
+
+      <!-- INN -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="stir">ИНН</nz-form-label>
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="error">
+          <input
+            nz-input
+            type="number"
+            id="stir"
+            nzSize="large"
+            formControlName="inn"
+          />
+        </nz-form-control>
+        <ng-template #error let-control>
+          <error [control]="control"></error>
+        </ng-template>
+      </nz-form-item>
+
+      <!-- MFO -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="mfo">МФО</nz-form-label>
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="error">
+          <input
+            nz-input
+            type="number"
+            id="mfo"
+            nzSize="large"
+            formControlName="mfo"
+          />
+        </nz-form-control>
+        <ng-template #error let-control>
+          <error [control]="control"></error>
+        </ng-template>
+      </nz-form-item>
+
+      <!-- SETTLEMENT ACCOUNT -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="paymentAccount"
+          >Расчетный счет</nz-form-label
+        >
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="error">
+          <input
+            nz-input
+            type="number"
+            id="paymentAccount"
+            nzSize="large"
+            formControlName="settlement_account"
+          />
+        </nz-form-control>
+        <ng-template #error let-control>
+          <error [control]="control"></error>
+        </ng-template>
+      </nz-form-item>
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <div nz-row [nzGutter]="[20, 0]">
+      <div nz-col nzSpan="12">
+        <button
+          nzShape="round"
+          nz-button
+          nzType="default"
+          (click)="close()"
+          nzBlock
+        >
+          {{ "cancel" | translate }}
+        </button>
+      </div>
+      <div nz-col nzSpan="12">
+        <button
+          nzShape="round"
+          nz-button
+          nzType="primary"
+          (click)="submit()"
+          nzBlock
+        >
+          {{ "save" | translate }}
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</nz-modal>

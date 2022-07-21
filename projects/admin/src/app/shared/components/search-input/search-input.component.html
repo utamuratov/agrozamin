@@ -1,0 +1,20 @@
+<div [style.width]="width">
+  <nz-input-group [nzSuffix]="suffixIconSearch">
+    <input
+      nz-input
+      type="text"
+      (keyup.enter)="keyUpEnter(searchText)"
+      [(ngModel)]="searchText"
+      (ngModelChange)="search(searchText)"
+      [placeholder]="'searchText' | translate"
+    />
+  </nz-input-group>
+  <ng-template #suffixIconSearch>
+    <a *ngIf="searchText.length > 0; else searchIcon" (click)="search('')">
+      <i nz-icon nzType="close"></i>
+    </a>
+    <ng-template #searchIcon
+      ><i *ngIf="showSearchIcon" nz-icon nzType="search"></i
+    ></ng-template>
+  </ng-template>
+</div>

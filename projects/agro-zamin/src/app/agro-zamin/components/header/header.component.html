@@ -1,0 +1,312 @@
+<div class="header" (window:resize)="onResize()">
+  <nav class="nav">
+    <div class="container">
+      <div nz-row>
+        <div nz-col nzSpan="24" class="nav__top">
+          <div nz-row nzAlign="middle">
+            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="12">
+              <ul class="nav__menu" nz-row>
+                <li nz-col class="nav__menu-item">
+                  <a [routerLink]="'about'">{{
+                    "aboutTheProject" | translate
+                  }}</a>
+                </li>
+                <li nz-col class="nav__menu-item">
+                  <a [routerLink]="'faq'">{{ "help" | translate }}</a>
+                </li>
+                <li nz-col class="nav__menu-item">
+                  <span class="link-divider"></span>
+                </li>
+                <li nz-col class="nav__menu-item">
+                  <a>{{ "bankProducts" | translate }}</a>
+                </li>
+                <li nz-col class="nav__menu-item">
+                  <a>{{ "onlineConsultant" | translate }}</a>
+                </li>
+              </ul>
+            </div>
+            <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="9">
+              <div nz-row nzAlign="middle" [nzGutter]="[24, 0]" nzJustify="end">
+                <div nz-col class="nav__currency text-end">
+                  <i class="red" nz-icon nzType="fall" nzTheme="outline"></i>
+                  <span nz-typography>USD 10 677.66</span>
+                </div>
+                <div nz-col class="nav__weather">
+                  <img
+                    width="20"
+                    src="./assets/images/sun-svg.svg"
+                    alt="weather-icon"
+                  />
+                  <span nz-typography>27 °C</span>
+                </div>
+              </div>
+            </div>
+            <div
+              nz-col
+              nzXs="0"
+              nzSm="0"
+              nzMd="0"
+              nzLg="0"
+              nzXl="3"
+              class="ml-a"
+            >
+              <div nz-row>
+                <div nz-col nzSpan="24" class="text-end">
+                  <az-language
+                    [title]="'language' | translate"
+                    [template]="'dropdown'"
+                  ></az-language>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div nz-col nzSpan="24" class="nav__middle">
+          <div nz-row nzAlign="middle">
+            <div nz-col nzXs="22" nzSm="14" nzMd="12" nzLg="8" nzXl="9">
+              <a [routerLink]="'./'">
+                <img src="./assets/images/logo.svg" alt="logo" />
+              </a>
+            </div>
+            <div
+              nz-col
+              nzXs="0"
+              nzSm="0"
+              nzMd="0"
+              nzLg="11"
+              [nzXl]="isUserAuthenticated ? 8 : 11"
+            >
+              <div nz-row [nzGutter]="[24, 0]" nzJustify="end">
+                <div nz-col class="nav__contacts">
+                  <a href="tel:998781500088"
+                    ><img
+                      src="./assets/images/phone-icon.svg"
+                      alt="icon"
+                    /><span nz-typography>(78) 150–00–88</span></a
+                  >
+                </div>
+                <div nz-col class="nav__contacts">
+                  <a
+                    ><img src="./assets/images/chat-icon.svg" alt="icon" /><span
+                      nz-typography
+                      >{{ "onlineChat" | translate }}</span
+                    ></a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              nz-col
+              nzXs="0"
+              nzSm="0"
+              nzMd="0"
+              nzLg="0"
+              [nzXl]="isUserAuthenticated ? 7 : 4"
+            >
+              <div nz-row [nzGutter]="[8, 0]" nzJustify="end">
+                <div nz-col>
+                  <az-eco-system
+                    [iconSrc]="'./assets/images/services-icon.svg'"
+                  ></az-eco-system>
+                </div>
+
+                <div nz-col *ngIf="!isUserAuthenticated">
+                  <button
+                    nz-button
+                    nzType="default"
+                    nzSize="large"
+                    (click)="navigate()"
+                  >
+                    <i nz-icon nzType="user" nzTheme="outline"></i>
+                    {{ "toComeIn" | translate }}
+                  </button>
+                </div>
+
+                <div nz-col *ngIf="isUserAuthenticated">
+                  <nz-button-group (click)="navigate()">
+                    <button
+                      nz-button
+                      nzType="default"
+                      nzSize="large"
+                      class="ava-btn"
+                      *ngIf="profileImage"
+                    >
+                      <img [src]="'./assets/images/ava.jpg'" alt="ava-btn" />
+                    </button>
+                    <button
+                      nz-button
+                      nzType="default"
+                      nzSize="large"
+                      class="ava-btn"
+                      *ngIf="!profileImage"
+                    >
+                      <i nz-icon nzType="user" nzTheme="outline"></i>
+                    </button>
+                  </nz-button-group>
+                </div>
+              </div>
+            </div>
+
+            <div nz-col nzXs="0" nzSm="8" nzMd="10" nzLg="4" nzXl="0">
+              <div nz-row>
+                <div nz-col nzSpan="24" class="text-end">
+                  <az-language
+                    [title]="'language' | translate"
+                    [template]="'dropdown'"
+                  ></az-language>
+                </div>
+              </div>
+            </div>
+            <div
+              nz-col
+              nzXs="2"
+              nzSm="2"
+              nzMd="2"
+              nzLg="1"
+              nzXl="0"
+              class="text-end"
+            >
+              <button
+                nz-button
+                nzType="default"
+                nzSize="large"
+                (click)="openAz()"
+              >
+                <i
+                  ><img src="./assets/images/header-burger.svg" alt="burger"
+                /></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="azVisible"
+  nzPlacement="right"
+  [nzWidth]="azDrawerWidthValue"
+>
+  <ng-container *nzDrawerContent>
+    <div class="az-drawer">
+      <div nz-row [nzGutter]="[0, 0]">
+        <div nz-col nzSpan="24">
+          <div class="az-drawer_padding top">
+            <div nz-row nzJustify="space-between">
+              <div nz-col>
+                <button
+                  nz-button
+                  nzType="default"
+                  nzSize="large"
+                  (click)="navigate()"
+                >
+                  <i nz-icon nzType="user" nzTheme="outline"></i>
+                  {{
+                    (isUserAuthenticated ? "profile" : "toComeIn") | translate
+                  }}
+                </button>
+              </div>
+              <div nz-col>
+                <button
+                  nz-button
+                  nzType="default"
+                  nzSize="large"
+                  (click)="closeAz()"
+                >
+                  <i nz-icon nzType="close" nzTheme="outline"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div nz-col nzXs="24" nzSm="0">
+          <div class="az-drawer__language">
+            <az-language
+              [title]="'language' | translate"
+              [template]="'button'"
+            ></az-language>
+          </div>
+        </div>
+
+        <div nz-col nzSpan="24">
+          <div class="az-drawer_padding">
+            <p nz-typography class="az-drawer__title">
+              {{ "otherEcosystemSites" | translate }}
+            </p>
+
+            <div nz-row [nzGutter]="[0, 20]">
+              <div nz-col *ngFor="let service of SERVICES" nzSpan="24">
+                <div nz-row nzAlign="middle" [nzGutter]="[16, 0]">
+                  <div nz-col>
+                    <div class="az-drawer__service-image">
+                      <img [src]="service.logo" alt="service logo" />
+                    </div>
+                  </div>
+                  <div nz-col>
+                    <h6 nz-typography class="az-drawer__service-name">
+                      {{ service.name }}
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nz-divider class="divider"></nz-divider>
+        <div nz-col nzSpan="24">
+          <div class="az-drawer_padding">
+            <ul nz-row [nzGutter]="[0, 20]">
+              <li nz-col nzSpan="24">
+                <a nz-button nzType="link" class="az-drawer__link">
+                  <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+                  <span>{{ "aboutTheProject" | translate }}</span>
+                </a>
+              </li>
+              <li nz-col nzSpan="24">
+                <a nz-button nzType="link" class="az-drawer__link">
+                  <i nz-icon nzType="question-circle" nzTheme="outline"></i>
+                  <span>{{ "help" | translate }}</span>
+                </a>
+              </li>
+              <li nz-col nzSpan="24">
+                <a nz-button nzType="link" class="az-drawer__link">
+                  <i nz-icon nzType="bank" nzTheme="outline"></i>
+                  <span>{{ "bankProducts" | translate }}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <nz-divider class="divider"></nz-divider>
+        <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="0">
+          <div class="az-drawer_padding bot">
+            <div nz-row [nzGutter]="[0, 30]">
+              <div nz-col nzSpan="24">
+                <a href="tel:998781500088" class="az-drawer__contacts"
+                  ><img src="./assets/images/phone-icon.svg" alt="icon" /><span
+                    nz-typography
+                    >(78) 150–00–88</span
+                  ></a
+                >
+              </div>
+              <div nz-col nzSpan="24">
+                <a class="az-drawer__contacts"
+                  ><img src="./assets/images/chat-icon.svg" alt="icon" /><span
+                    nz-typography
+                    >{{ "onlineChat" | translate }}</span
+                  ></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</nz-drawer>

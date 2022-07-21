@@ -1,0 +1,57 @@
+<div class="question">
+    <div class="container">
+        <div class="addquestion">
+            <div nz-row>
+                <div class="addquestion__text" nz-col nzSpan="8">
+                    <h3>Задать свой вопрос</h3>
+                    <p>Если вы не нашли ответ на свой вопрос, то можете задать его через данную форму</p>
+                </div>
+                <div nz-col nzSpan="16">
+                      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                            <div nz-row [nzGutter]="[30, 0]">
+                                <div nz-col nzSpan="12">
+                                    <nz-form-item >
+                                        <nz-form-label  [nzSpan]="24" nzFor="name" [nzRequired]="validateForm.get('required')?.value">
+                                           <span>Ваше имя</span> 
+                                        </nz-form-label>
+                                        <nz-form-control [nzSpan]="24" nzErrorTip="Please input your nickname">
+                                          <input  nz-input  placeholder="Введите имя, например: Шавкат" />
+                                        </nz-form-control>
+                                      </nz-form-item>
+
+                                      <nz-form-item >
+                                        <nz-form-label class="label" [nzSpan]="24"  [nzRequired]="validateForm.get('required')?.value">
+                                           <span>Ваш номер телефона</span> 
+                                        </nz-form-label>
+                                        <nz-form-control [nzSpan]="24" nzErrorTip="Please input your nickname">
+                                          <input  nz-input  placeholder="+998" />
+                                        </nz-form-control>
+                                      </nz-form-item>
+                                </div>
+                                <div nz-col nzSpan="12">
+                                    <nz-form-item>
+                                        <nz-form-label class="label" [nzSpan]="24" > <span>Вопрос</span> </nz-form-label>
+                                        <nz-form-control [nzSpan]="24" nzErrorTip="Please write something here!">
+                                          <textarea  formControlName="comment" nz-input rows="2" placeholder="Текст вопроса"></textarea>
+                                        </nz-form-control>
+                                      </nz-form-item>
+                                </div>
+                                
+                                <div nz-col nzSpan="24" style="padding-top: 40px;">
+                                    <nz-form-item nzJustify="end">
+                                      <nz-form-control [nzOffset]="24">
+                                        <button nz-button nzType="primary">Задать вопрос</button>
+                                      </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                        
+
+                        
+
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

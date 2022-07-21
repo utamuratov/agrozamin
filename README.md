@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## APIS
+
+LOCAL
+ADMIN: https://192.168.1.118
+ADVERTISEMENT: https://announcement.loc
+
+SERVER
+ADMIN: http://62.209.129.41
+ADVERTISEMENT: http://62.209.129.41:8080/

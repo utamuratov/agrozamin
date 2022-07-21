@@ -1,0 +1,31 @@
+<div class="add-adv">
+  <div class="container">
+    <div nz-row [nzGutter]="[0, 40]">
+      <az-breadcrumb></az-breadcrumb>
+
+      <div nz-col nzSpan="24">
+        <form
+          nz-form
+          [formGroup]="form"
+          *ngIf="form"
+          (ngSubmit)="submitForm()"
+          nzLayout="vertical"
+        >
+          <az-add-edit-advertisement-controls
+            [data]="data"
+            [form]="form"
+            [region$]="region$"
+            [referencesForCreate$]="referencesForCreate$"
+            [district$]="district$"
+            [categoryType$]="categoryType$"
+            [filters]="filters"
+            [uploadedFiles]="uploadedFiles"
+            [categoryId]="categoryId"
+            [currentCategory]="currentCategory"
+            (changeCategoryId)="changeCategoryId($event)"
+          ></az-add-edit-advertisement-controls>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="h-100 d-flex flex-column justify-content-center">
+  <!-- TITLE -->
+  <div class="confirm-text">
+    <h2 nz-typography class="agro-id-form-title">
+      {{ "confirmation" | translate }}
+    </h2>
+    <p nz-typography nzType="secondary">
+      {{
+        (data?.phone
+          ? "confirmationDescriptionPhone"
+          : "confirmationDescriptionEmail"
+        )
+          | translate
+            : {
+                value:
+                  data.confirmationType === confirmationType.RecoverByLogin
+                    ? data?.phone
+                      ? data.phone
+                      : data.email
+                    : data.phone
+                    ? (data.phone | phoneAsterisk)
+                    : (data?.email | emailAsterisk)
+              }
+      }}
+      <span
+        nz-typography
+        nzType="warning"
+        *ngIf="confirmationForm.$leftSeconds | async"
+        >{{ "confirmTimer" | translate }}
+        {{ confirmationForm.$leftSeconds | async | date: "mm:ss" }}</span
+      >
+    </p>
+  </div>
+
+  <nz-divider class="mt-10p"></nz-divider>
+
+  <!-- BODY -->
+  <div nz-row>
+    <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="20" nzXl="20">
+      <div></div>
+
+      <az-confirmation-form
+        #confirmationForm
+        [phone]="data?.phone"
+      ></az-confirmation-form>
+
+      <!-- Ask activation code again -->
+      <div *ngIf="(confirmationForm.$leftSeconds | async) === 0">
+        <ng-template #indicatorTemplate>
+          <i
+            nz-icon
+            nzType="loading"
+            *ngIf="isWaitingActivationCodeResponse$ | async"
+          ></i>
+          <a
+            (click)="resendActivationCode(confirmationForm)"
+            [textContent]="'getConfirmCodeAgain' | translate"
+          ></a>
+        </ng-template>
+        <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
+      </div>
+
+      <!-- Send activation code -->
+      <div [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }">
+        <button
+          nzBlock
+          nz-button
+          class="confirm-btn font-agro-medium"
+          nzShape="round"
+          nzType="primary"
+          [disabled]="!confirmationForm.form.valid"
+          [nzLoading]="isWaitingResponse$ | async"
+          (click)="submit(confirmationForm.getActivationCode())"
+        >
+          {{ "confirm" | translate }}
+        </button>
+      </div>
+
+      <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="2" nzXl="2"></div>
+      <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="2" nzXl="2"></div>
+    </div>
+  </div>
+</div>

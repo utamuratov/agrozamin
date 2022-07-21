@@ -1,0 +1,16 @@
+<ngx-ui-loader
+  [fgsTemplate]="foregroundSpinner"
+  [bgsTemplate]="backgroundSpinner"
+  [overlayColor]="'rgba(255,255,255,.5)'"
+  [hasProgressBar]="false"
+></ngx-ui-loader>
+
+<router-outlet (window:resize)="onResize($event)"></router-outlet>
+
+<ng-template #foregroundSpinner>
+  <nz-spin nzSimple></nz-spin>
+</ng-template>
+
+<ng-template #backgroundSpinner>
+  <nz-spin nzSimple></nz-spin>
+</ng-template>

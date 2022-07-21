@@ -1,0 +1,556 @@
+<div nz-row>
+  <div nz-col nzSpan="20" nzOffset="2" class="personal">
+    <h2 class="cabinet-title" nz-typography>{{ "profile" | translate }}</h2>
+    <div nz-row class="personal__block">
+      <div nz-col nzSpan="22" nzOffset="1">
+        <div nz-row [nzGutter]="[5, 20]">
+          <div nz-col nzSpan="24">
+            <div
+              nz-row
+              nzAlign="middle"
+              [nzGutter]="[10, 10]"
+              nzJustify="center"
+            >
+              <div
+                nz-col
+                nzXs="14"
+                nzSm="6"
+                nzMd="6"
+                nzLg="5"
+                nzXl="5"
+                nzXXl="4"
+              >
+                <div nz-row>
+                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
+                    <ng-container *ngIf="profile?.photo; else avatar">
+                      <img [src]="profile.photo" width="140px" />
+                    </ng-container>
+                    <ng-template #avatar>
+                      <nz-avatar [nzSize]="140" nzIcon="user"></nz-avatar>
+                    </ng-template>
+                  </div>
+                  <div nz-col nzXs="0" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
+                    <ng-container *ngIf="profile?.photo; else avatar">
+                      <img [src]="profile.photo" width="100px" />
+                    </ng-container>
+                    <ng-template #avatar>
+                      <nz-avatar [nzSize]="100" nzIcon="user"></nz-avatar>
+                    </ng-template>
+                  </div>
+                  <div
+                    nz-col
+                    nzXs="24"
+                    nzSm="0"
+                    nzMd="0"
+                    nzLg="0"
+                    nzXl="0"
+                    style="text-align: center"
+                  >
+                    <ng-container *ngIf="profile?.photo; else avatar">
+                      <img [src]="profile.photo" width="110px" />
+                    </ng-container>
+                    <ng-template #avatar>
+                      <nz-avatar [nzSize]="110" nzIcon="user"></nz-avatar>
+                    </ng-template>
+                    <button
+                      nz-button
+                      nzType="primary"
+                      nzShape="circle"
+                      class="avatar-add-photo"
+                      (click)="addEditAvatar()"
+                    >
+                      <i nz-icon nzType="camera" nzTheme="outline"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                nz-col
+                nzXs="24"
+                nzSm="24"
+                nzMd="18"
+                nzLg="19"
+                nzXl="19"
+                nzXXl="20"
+              >
+                <div nz-row>
+                  <div
+                    nz-col
+                    nzXs="24"
+                    nzSm="24"
+                    nzMd="24"
+                    nzLg="20"
+                    nzXl="16"
+                    nzXXl="12"
+                  >
+                    <p class="avatar-desc">
+                      {{ "photoTitleOne" | translate }}
+                    </p>
+                    <p class="avatar-desc">
+                      {{ "photoTitleTwo" | translate }}
+                    </p>
+                    <div nz-row>
+                      <div
+                        nz-col
+                        nzXs="0"
+                        nzSm="0"
+                        nzMd="24"
+                        nzLg="24"
+                        nzXl="24"
+                        nzXXl="24"
+                      >
+                        <button
+                          nz-button
+                          nzType="default"
+                          nzShape="round"
+                          class="font-agro-medium"
+                          style="border-color: #3c4bdc"
+                          (click)="addEditAvatar()"
+                        >
+                          {{ "addPhoto" | translate }}
+                        </button>
+                      </div>
+                      <div
+                        nz-col
+                        nzXs="0"
+                        nzSm="24"
+                        nzMd="0"
+                        nzLg="0"
+                        nzXl="0"
+                        nzXXl="0"
+                      >
+                        <button
+                          nz-button
+                          nzBlock
+                          nzType="default"
+                          nzShape="round"
+                          nzSize="large"
+                          class="font-agro-medium"
+                          style="border-color: #3c4bdc; font-size: 12px"
+                          (click)="addEditAvatar()"
+                        >
+                          {{ "addPhoto" | translate }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div nz-col nzSpan="24">
+            <nz-divider class="divider-margin"></nz-divider>
+            <div nz-row nzAlign="middle">
+              <div
+                nz-col
+                nzXs="24"
+                nzSm="24"
+                nzMd="8"
+                nzLg="6"
+                nzXl="5"
+                nzXXl="5"
+              >
+                <span
+                  nz-typography
+                  nzType="secondary"
+                  class="font-agro-medium"
+                  >{{ "fullName" | translate }}</span
+                >
+              </div>
+              <div
+                nz-col
+                nzXs="12"
+                nzSm="12"
+                nzMd="8"
+                nzLg="6"
+                nzXl="11"
+                nzXXl="11"
+              >
+                <span nz-typography>{{ profile | fullName }}</span>
+              </div>
+              <div
+                nz-col
+                nzXs="12"
+                nzSm="12"
+                nzMd="8"
+                nzLg="12"
+                nzXl="8"
+                nzXXl="8"
+              >
+                <div nz-row>
+                  <div
+                    nz-col
+                    nzXs="0"
+                    nzSm="0"
+                    nzMd="0"
+                    nzLg="24"
+                    nzXl="24"
+                    nzXXl="24"
+                    class="text-end"
+                  >
+                    <button nz-button nzType="link" (click)="editFullname()">
+                      {{ "changeName" | translate }}
+                    </button>
+                  </div>
+                  <div
+                    nz-col
+                    nzXs="24"
+                    nzSm="24"
+                    nzMd="24"
+                    nzLg="0"
+                    nzXl="0"
+                    nzXXl="0"
+                    class="text-end"
+                  >
+                    <button nz-button nzType="link" (click)="editFullname()">
+                      <i nz-icon nzType="edit" nzTheme="outline"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <nz-divider class="divider-margin"></nz-divider>
+          </div>
+          <div nz-col nzSpan="24">
+            <h3 nz-typography class="font-agro-medium">
+              {{ "accountInformation" | translate }}
+            </h3>
+            <nz-divider class="divider-margin"></nz-divider>
+            <div nz-row nzAlign="middle">
+              <div
+                nz-col
+                nzXs="24"
+                nzSm="24"
+                nzMd="8"
+                nzLg="6"
+                nzXl="5"
+                nzXXl="5"
+              >
+                <span
+                  nz-typography
+                  nzType="secondary"
+                  class="font-agro-medium"
+                  >{{ "emailAddress" | translate }}</span
+                >
+              </div>
+              <div
+                nz-col
+                nzXs="16"
+                nzSm="12"
+                nzMd="8"
+                nzLg="6"
+                nzXl="11"
+                nzXXl="11"
+              >
+                <span nz-typography>{{
+                  profile?.email ?? ("no" | translate)
+                }}</span>
+              </div>
+              <div
+                nz-col
+                nzXs="8"
+                nzSm="12"
+                nzMd="8"
+                nzLg="12"
+                nzXl="8"
+                nzXXl="8"
+              >
+                <div nz-row>
+                  <div
+                    nz-col
+                    nzXs="0"
+                    nzSm="0"
+                    nzMd="0"
+                    nzLg="24"
+                    nzXl="24"
+                    nzXXl="24"
+                    class="text-end"
+                  >
+                    <button nz-button nzType="link" (click)="addEditEmail()">
+                      {{
+                        profile?.email
+                          ? ("changeEmailAddress" | translate)
+                          : ("addEmailAddress" | translate)
+                      }}
+                    </button>
+                  </div>
+                  <div
+                    nz-col
+                    nzXs="24"
+                    nzSm="24"
+                    nzMd="24"
+                    nzLg="0"
+                    nzXl="0"
+                    nzXXl="0"
+                    class="text-end"
+                  >
+                    <button nz-button nzType="link" (click)="addEditEmail()">
+                      <i nz-icon nzType="edit" nzTheme="outline"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <nz-divider class="divider-margin"></nz-divider>
+            <div nz-row nzAlign="middle">
+              <div
+                nz-col
+                nzXs="24"
+                nzSm="24"
+                nzMd="8"
+                nzLg="6"
+                nzXl="5"
+                nzXXl="5"
+              >
+                <span nz-typography nzType="secondary" class="font-agro-medium"
+                  >{{ "phoneNumber" | translate }}
+                </span>
+              </div>
+              <div
+                nz-col
+                nzXs="12"
+                nzSm="12"
+                nzMd="8"
+                nzLg="6"
+                nzXl="11"
+                nzXXl="11"
+              >
+                <span nz-typography>
+                  {{
+                    profile?.phone
+                      ? "+" + (profile.phone | mask: "000 00 000 00 00")
+                      : ("no" | translate)
+                  }}</span
+                >
+              </div>
+              <div
+                nz-col
+                nzXs="12"
+                nzSm="12"
+                nzMd="8"
+                nzLg="12"
+                nzXl="8"
+                nzXXl="8"
+              >
+                <div nz-row>
+                  <div
+                    nz-col
+                    nzXs="0"
+                    nzSm="0"
+                    nzMd="0"
+                    nzLg="24"
+                    nzXl="24"
+                    nzXXl="24"
+                    class="text-end"
+                  >
+                    <button nz-button nzType="link" (click)="addEditPhone()">
+                      {{
+                        profile?.phone
+                          ? ("editPhonenumber" | translate)
+                          : ("addPhonenumber" | translate)
+                      }}
+                    </button>
+                  </div>
+                  <div
+                    nz-col
+                    nzXs="24"
+                    nzSm="24"
+                    nzMd="24"
+                    nzLg="0"
+                    nzXl="0"
+                    nzXXl="0"
+                    class="text-end"
+                  >
+                    <button nz-button nzType="link" (click)="addEditPhone()">
+                      <i nz-icon nzType="edit" nzTheme="outline"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <nz-divider class="divider-margin"></nz-divider>
+          </div>
+          <div nz-col nzSpan="24">
+            <h3 nz-typography>{{ "authorizationData" | translate }}</h3>
+            <nz-divider class="divider-margin"></nz-divider>
+            <div nz-row nzAlign="middle">
+              <div
+                nz-col
+                nzXs="24"
+                nzSm="24"
+                nzMd="8"
+                nzLg="6"
+                nzXl="5"
+                nzXXl="5"
+              >
+                <span
+                  nz-typography
+                  nzType="secondary"
+                  class="font-agro-medium"
+                  >{{ "login" | translate }}</span
+                >
+              </div>
+              <div
+                nz-col
+                nzXs="12"
+                nzSm="12"
+                nzMd="8"
+                nzLg="6"
+                nzXl="11"
+                nzXXl="11"
+              >
+                <span nz-typography>{{ profile?.login }}</span>
+              </div>
+              <div
+                nz-col
+                nzXs="12"
+                nzSm="12"
+                nzMd="8"
+                nzLg="12"
+                nzXl="8"
+                nzXXl="8"
+              >
+                <div nz-row>
+                  <div
+                    nz-col
+                    nzXs="0"
+                    nzSm="0"
+                    nzMd="0"
+                    nzLg="24"
+                    nzXl="24"
+                    nzXXl="24"
+                    class="text-end"
+                  >
+                    <button nz-button nzType="link" (click)="addEditLogin()">
+                      {{ "changeLogin" | translate }}
+                    </button>
+                  </div>
+                  <div
+                    nz-col
+                    nzXs="24"
+                    nzSm="24"
+                    nzMd="24"
+                    nzLg="0"
+                    nzXl="0"
+                    nzXXl="0"
+                    class="text-end"
+                  >
+                    <button nz-button nzType="link" (click)="addEditLogin()">
+                      <i nz-icon nzType="edit" nzTheme="outline"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <nz-divider class="divider-margin"></nz-divider>
+            <div nz-row nzAlign="middle">
+              <div
+                nz-col
+                nzXs="24"
+                nzSm="24"
+                nzMd="8"
+                nzLg="6"
+                nzXl="5"
+                nzXXl="5"
+              >
+                <span
+                  nz-typography
+                  nzType="secondary"
+                  class="font-agro-medium"
+                  >{{ "password" | translate }}</span
+                >
+              </div>
+              <div
+                nz-col
+                nzXs="12"
+                nzSm="12"
+                nzMd="8"
+                nzLg="6"
+                nzXl="11"
+                nzXXl="11"
+              >
+                <span nz-typography>************</span>
+              </div>
+              <div
+                nz-col
+                nzXs="12"
+                nzSm="12"
+                nzMd="8"
+                nzLg="12"
+                nzXl="8"
+                nzXXl="8"
+              >
+                <div nz-row>
+                  <div
+                    nz-col
+                    nzXs="0"
+                    nzSm="0"
+                    nzMd="0"
+                    nzLg="24"
+                    nzXl="24"
+                    nzXXl="24"
+                    class="text-end"
+                  >
+                    <button nz-button nzType="link" (click)="editPassword()">
+                      {{ "changePassword" | translate }}
+                    </button>
+                  </div>
+                  <div
+                    nz-col
+                    nzXs="24"
+                    nzSm="24"
+                    nzMd="24"
+                    nzLg="0"
+                    nzXl="0"
+                    nzXXl="0"
+                    class="text-end"
+                  >
+                    <button nz-button nzType="link" (click)="editPassword()">
+                      <i nz-icon nzType="edit" nzTheme="outline"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <nz-divider class="divider-margin"></nz-divider>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<az-user-email-modal
+  *ngIf="profile"
+  [(control)]="profile.email"
+  [(isVisible)]="isVisibleModalEmail"
+></az-user-email-modal>
+
+<az-user-phone-modal
+  *ngIf="profile"
+  [(control)]="profile.phone"
+  [(isVisible)]="isVisibleModalPhone"
+></az-user-phone-modal>
+
+<az-user-login-modal
+  *ngIf="profile"
+  [(isVisible)]="isVisibleModalLogin"
+  [(control)]="profile.login"
+></az-user-login-modal>
+
+<az-user-password-modal
+  *ngIf="profile"
+  [(isVisible)]="isVisibleModalPassword"
+></az-user-password-modal>
+
+<user-name-modal
+  *ngIf="profile"
+  [(isVisible)]="isVisibleModalFullname"
+  [(control)]="profile"
+></user-name-modal>
+
+<az-add-avatar
+  *ngIf="profile"
+  [(isVisible)]="isVisibleModalAvatar"
+  [(avatar)]="profile.photo"
+></az-add-avatar>

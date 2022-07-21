@@ -1,0 +1,20 @@
+<nz-breadcrumb>
+  <nz-breadcrumb-item *ngFor="let bcElement of breadcrumbs; let last = last">
+    <a *ngIf="!last; else lastBc" [routerLink]="bcElement.url">{{
+      bcElement.name | translate
+    }}</a>
+    <ng-template #lastBc>
+      <span>{{ bcElement.name | translate }}</span>
+    </ng-template>
+  </nz-breadcrumb-item>
+  <ng-content></ng-content>
+</nz-breadcrumb>
+
+<div
+  *ngIf="breadcrumbs[breadcrumbs.length - 1] as lastBC"
+  nz-col
+  nzSpan="24"
+  class="container__title"
+>
+  <h3 class="title ">{{ lastBC.name | translate }}</h3>
+</div>

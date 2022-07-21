@@ -1,0 +1,44 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="(editingData ? 'edit' : 'add') | translate"
+  (nzOnCancel)="close()"
+  nzWidth="950px"
+  modal
+>
+  <div *nzModalContent>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <div nz-row>
+        <div nz-col nzSpan="13" class="pr-1">
+          <!-- KEY -->
+          <nz-form-item>
+            <nz-form-label nzFor="key">{{ "key" | translate }}</nz-form-label>
+            <nz-form-control [nzErrorTip]="errorKey">
+              <input nz-input formControlName="key" name="key" type="text" />
+            </nz-form-control>
+            <ng-template #errorKey let-control>
+              <error [control]="control"></error>
+            </ng-template>
+          </nz-form-item>
+
+          <!-- PROJECTS -->
+          <az-transfer
+            [title]="'projects' | translate"
+            [transferItems]="projects"
+          ></az-transfer>
+        </div>
+        <div nz-col nzSpan="11" class="pl-1 overflow-auto languages--height">
+          <az-language-controls
+            [form]="form"
+            [translations]="editingData?.text"
+            [formGroupName]="'text'"
+          ></az-language-controls>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div *nzModalFooter>
+    <button (click)="submit()" nz-button nzType="primary">
+      {{ "save" | translate }}
+    </button>
+  </div>
+</nz-modal>

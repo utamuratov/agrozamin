@@ -1,0 +1,63 @@
+<form [formGroup]="form">
+  <div class="inline-card">
+    <div nz-row [nzGutter]="[0, 30]">
+      <div nz-col nzSpan="24">
+        <h3 class="add-title">{{ "contactData" | translate }}</h3>
+      </div>
+      <div nz-col nzSpan="24">
+        <nz-radio-group formControlName="use_agroid_contact">
+          <label nz-radio [nzValue]="true">{{
+            "useAgroIdData" | translate
+          }}</label>
+          <label nz-radio [nzValue]="false">{{
+            "useAnotherContactData" | translate
+          }}</label>
+        </nz-radio-group>
+
+        <div
+          nz-row
+          [nzGutter]="[30, 0]"
+          class="mt-2"
+          *ngIf="!form.controls['use_agroid_contact'].value"
+          formGroupName="contact"
+        >
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="full_name">{{
+                "firstName" | translate
+              }}</nz-form-label>
+              <nz-form-control>
+                <input
+                  nz-input
+                  type="text"
+                  id="full_name"
+                  nzSize="large"
+                  placeholder="{{ 'inputYourName' | translate }}"
+                  formControlName="full_name"
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="phone">{{
+                "phoneNumber" | translate
+              }}</nz-form-label>
+              <nz-form-control>
+                <input
+                  nz-input
+                  type="text"
+                  id="phone"
+                  nzSize="large"
+                  formControlName="phone"
+                  mask="00 000 00 00"
+                  prefix="+998 "
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

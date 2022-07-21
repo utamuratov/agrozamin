@@ -1,0 +1,20 @@
+<div nz-row [nzGutter]="[0, { xs: 10, sm: 10, md: 20, lg: 20, xl: 20 }]">
+  <div nz-col nzSpan="24">
+    <az-advertisement-list-header
+      [(isInline)]="isInlineCard"
+      [advertisements]="data.data"
+      (sortedByPriceDescandingChange)="sortByPriceDescanding($event)"
+      (sortedByDateDescandingChange)="sortByDateDescanding($event)"
+    ></az-advertisement-list-header>
+  </div>
+
+  <az-grid
+    class="w-100"
+    [data]="data"
+    [isLoaded]="isLoaded"
+    [isInlineCard]="isInlineCard"
+    [query]="query"
+    [pageSize]="pageSize"
+    (pageIndexChange)="paginate($event)"
+  ></az-grid>
+</div>

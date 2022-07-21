@@ -1,0 +1,62 @@
+<div nz-row>
+  <div nz-col nzSpan="20" nzOffset="2" class="home">
+    
+    <h2 class="cabinet-title" nz-typography>
+      Мои сервисы
+      <button nz-button nzShape="circle"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+    </h2>
+
+    <!-- WIDGETS -->
+    <div nz-row [nzGutter]="[15, 15]" class="home__items" >
+      <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
+        <az-bizning-zamin></az-bizning-zamin>
+      </div>
+      <div class="home__card" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
+        <az-agro-job></az-agro-job>
+      </div>
+      <div class="home__card" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
+        <az-agro-bank></az-agro-bank>
+      </div>
+      <div class="home__card" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
+        <az-tele-veterinaria></az-tele-veterinaria>
+      </div>
+    </div>
+    <!--  -->
+    <nz-divider style="background: #CFD3D8; margin: 40px 0;"></nz-divider>
+    <!--  -->
+    <div nz-row [nzGutter]="[15, 15]">
+    
+      <div nz-col class="home__card" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
+        <div nz-row [nzGutter]="[0, 20]">
+          <!-- PROFILE CARD -->
+          <div  nz-col nzSpan="24">
+            <az-profile-widget></az-profile-widget>
+          </div>
+          
+          <!-- SETTINGS CARD -->
+          <div  nz-col nzSpan="24">
+           <az-settings-widget></az-settings-widget>
+          </div>
+          <!-- ADD NEW CATEGORY CARD -->
+        </div>
+      </div>
+      <div nz-col class="home__card" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
+        <div nz-row [nzGutter]="[0, 20]">
+          <!-- MY BUSINESS CARDS -->
+          <div nz-col nzSpan="24">
+            <az-my-cards-widget></az-my-cards-widget>
+          </div>
+          <!-- COMPANY BUSINESS CARDS -->
+          <div nz-col nzSpan="24">
+            <az-my-companies-widget></az-my-companies-widget>
+          </div>
+      </div>
+    </div>
+    <div nz-col class="home__card btn" nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6" nzXXl="6">
+      <button nz-button nzBlock class="add-new-widget" nzType="dashed" nzGhost><i nz-icon nzType="plus" nzTheme="outline" (click)="addNewWidget()"></i></button>
+    </div>
+  </div>
+</div>
+
+
+<az-add-widget [isVisible]="isVisible" (isHide)="closeModal($event)"></az-add-widget>

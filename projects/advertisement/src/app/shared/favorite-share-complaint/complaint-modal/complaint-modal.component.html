@@ -1,0 +1,45 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  (nzOnCancel)="close()"
+  [nzWidth]="410"
+  modal
+>
+  <div *nzModalContent>
+    <div class="text-center">
+      <img src="./assets/images/complaint.svg" />
+      <h1 class="mt-2 mb-0">{{ "complaint" | translate }}</h1>
+      <h4>{{ "whatWrongAdvertisement" | translate }}:</h4>
+    </div>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <nz-radio-group formControlName="complaint_id">
+        <label
+          nz-radio
+          [nzValue]="complaintCategory.id"
+          *ngFor="let complaintCategory of complaintCategories"
+          >{{ complaintCategory.content }}</label
+        >
+      </nz-radio-group>
+
+      <textarea
+        class="mt-1"
+        nz-input
+        formControlName="comment"
+        [placeholder]="'giveFullInformation' | translate"
+        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+      ></textarea>
+    </form>
+  </div>
+  <div *nzModalFooter>
+    <button
+      [disabled]="form.invalid"
+      (click)="sendToComplaint()"
+      nz-button
+      nzBlock
+      nzType="default"
+      class="green-btn"
+    >
+      <i nz-icon nzType="send" nzTheme="outline"></i>
+      {{ "send" | translate }}
+    </button>
+  </div>
+</nz-modal>

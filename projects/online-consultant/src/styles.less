@@ -1,0 +1,162 @@
+// Custom Theming for NG-ZORRO
+// For more information: https://ng.ant.design/docs/customize-theme/en
+@import "../../../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+// Override less variables to here
+// View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less
+
+/* You can add global styles to this file, and also import other style files */
+@primary-color: #2948ff;
+@btn-border-radius-base: 8px;
+@btn-primary-bg: #2948ff;
+@border-radius-base: 8px;
+
+@font-face {
+  font-family: MontBold;
+  src: url(./assets/fonts/Mont-Bold.ttf);
+  font-weight: 700;
+}
+@font-face {
+  font-family: MontMedium;
+  src: url(./assets/fonts/ALSAgrofont-Medium.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: MontLight;
+  src: url(./assets/fonts/Mont-Light.ttf);
+  font-weight: 300;
+}
+@font-face {
+  font-family: MontExtraLight;
+  src: url(./assets/fonts/Mont-ExtraLight.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: MontRegular;
+  src: url(./assets/fonts/Mont-Regular.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: MontSemiBold;
+  src: url(./assets/fonts/Mont-SemiBold.ttf);
+  font-weight: 600;
+}
+@font-face {
+  font-family: MontSemiBoldItalic;
+  src: url(./assets/fonts/Mont-SemiBoldItalic.ttf);
+  font-weight: 700;
+}
+
+
+@font-face {
+  font-family: Agrofont-BExpanded;
+  src: url(./assets/fonts/ALSAgrofont-BoldExpanded.ttf);
+  font-weight: 700;
+}
+
+body {
+  background: #282828;
+}
+
+.container {
+  max-width: 1320px;
+  width: 100%;
+  margin: auto;
+  padding: 0 15px;
+}
+
+//#region HEADER
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: MontSemiBold;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.ml-a {
+  margin-left: auto;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.text-end {
+  text-align: end;
+}
+.ant-modal-content{
+  border-radius: 16px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.dnone {
+  display: none;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.breadcrumb {
+  padding-bottom: 40px;
+  border-bottom: 2px solid #000;
+
+  @media (max-width: 575px) {
+    padding-bottom: 14px;
+  }
+}
+
+.ant-checkbox-inner{
+  border-radius: 4px;
+}
+.ant-drawer-content{
+  border-radius: 16px 16px  0px 0px;
+}
+
+
+.ant-collapse-content > .ant-collapse-content-box {
+  padding: 0;
+}
+
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+  border-right: none;
+}
+
+.ant-menu-sub.ant-menu-inline {
+  background: #fff;
+}
+
+.ant-tabs-nav-list {
+  width: 100%;
+}
+
+.ant-tabs-tab {
+  width: 100%;
+  justify-content: center;
+  border-radius: 16px 0 0 0;
+  margin: 0;
+  color: #B7BBBF;
+}
+
+.ant-tabs-tab + .ant-tabs-tab {
+  margin: 0;
+  border-radius: 0 16px  0 0;
+}
+
+.ant-tabs-tab-active {
+  background: linear-gradient(90deg, rgba(57, 106, 252, 0.15) 0%, rgba(41, 72, 255, 0.15) 100%);
+}

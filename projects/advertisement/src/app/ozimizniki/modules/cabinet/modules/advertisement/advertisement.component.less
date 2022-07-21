@@ -1,0 +1,289 @@
+.advert-cards {
+  background: #fff;
+  border-radius: 8px;
+
+  &__top {
+    border-radius: 8px 0 0 8px;
+    overflow: hidden;
+
+    &__img {
+      width: 220px;
+      height: 220px;
+      @media (max-width: 1200px) {
+        width: 200px;
+        height: 200px;
+      }
+      @media (max-width: 992px) {
+        width: 180px;
+        height: 180px;
+      }
+      @media (max-width: 575px) {
+        padding: 10px;
+        width: 100px;
+        height: 100px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__info {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 8px;
+    }
+  }
+
+  &__content {
+    padding-top: 24px;
+    @media (max-width: 992px) {
+      padding: 20px;
+    }
+    @media (max-width: 575px) {
+      padding: 10px;
+    }
+    &__title {
+      font-family: Agrofont-Regular;
+      h3 {
+        margin: 0;
+        font-size: 18px;
+        line-height: 25px;
+        font-family: Agrofont-Regular !important;
+        color: #1a1a1a;
+
+        @media (max-width: 992px) {
+          font-size: 14px;
+          line-height: 18px;
+        }
+        @media (max-width: 575px) {
+          padding-top: 10px;
+        }
+      }
+    }
+    &__description {
+      p {
+        margin: 0;
+        padding-top: 12px;
+        font-size: 14px;
+        line-height: 18px;
+        color: #86898c;
+      }
+    }
+    &__price {
+      padding-top: 20px;
+      @media (max-width: 1200px) {
+        padding-top: 10px;
+      }
+      @media (max-width: 992px) {
+        padding-top: 10px;
+      }
+      h3 {
+        margin: 0;
+        font-size: 20px;
+        line-height: 25px;
+        color: #377be1;
+
+        @media (max-width: 992px) {
+          font-size: 16px;
+          line-height: 20px;
+        }
+      }
+    }
+
+    &__companyDirector {
+      padding-top: 22px;
+      @media (max-width: 992px) {
+        padding-top: 20px;
+      }
+      @media (max-width: 768px) {
+        padding-top: 5px;
+      }
+      h4 {
+        padding-top: 5px;
+        margin: 0;
+        font-size: 14px;
+        line-height: 16px;
+        color: #86898c;
+        cursor: pointer;
+        &:active {
+          color: #377be1;
+        }
+        font-family: Agrofont-Regular;
+
+        @media (max-width: 992px) {
+          font-size: 12px;
+        }
+      }
+    }
+    &__companyLocation {
+      padding-top: 10px;
+      @media (max-width: 768px) {
+        padding-top: 5px;
+      }
+      h5 {
+        padding-top: 5px;
+        padding-left: 10px;
+        margin: 0;
+        font-size: 14px;
+        line-height: 18px;
+        color: #86898c;
+        cursor: pointer;
+        &:active {
+          color: #377be1;
+        }
+        font-family: Agrofont-Regular;
+        @media (max-width: 992px) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  &__rightContent {
+    padding-top: 24px;
+    padding-left: 20px;
+    &__text {
+      padding-top: 4px;
+      font-size: 14px;
+      line-height: 18px;
+      font-family: Agrofont-Regular;
+      @media (max-width: 992px) {
+        font-size: 13px;
+      }
+    }
+
+    &__bottom {
+      padding-top: 44px;
+      @media (max-width: 1200px) {
+        padding-top: 36px;
+      }
+      button {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #cfd3d8;
+        border-radius: 8px;
+        background: #fff;
+      }
+    }
+  }
+}
+
+.sort {
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+
+  &__left {
+    padding-top: 10px;
+  }
+
+  &__variable {
+    padding: 10px 0;
+    font-size: 16px;
+    font-family: Agrofont-Regular;
+  }
+
+  &__link {
+    padding: 10px 12px;
+    font-size: 16px;
+    font-family: Agrofont-Regular;
+
+    img {
+      margin-left: 4px;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #cfd3d8;
+    transition: 0.3s;
+    cursor: pointer;
+
+    svg {
+      rect {
+        transition: 0.3s;
+      }
+    }
+
+    &:hover {
+      svg {
+        rect {
+          stroke: #377be1;
+        }
+      }
+
+      border: 1px solid #377be1;
+    }
+
+    &.active {
+      background: #377be1;
+      border: 1px solid #22a33f;
+      svg {
+        rect {
+          stroke: #fff;
+        }
+      }
+    }
+  }
+}
+
+.popover {
+  width: 192px;
+  &__content {
+    padding: 0px;
+    &__item {
+      width: 193px;
+      height: 44px;
+      border-radius: 4px;
+      padding: 10px;
+      cursor: pointer;
+      &:active {
+        background: #edeff5;
+        color: #86898c;
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
+:host ::ng-deep .anticon svg path:first-child {
+  fill: #b7bbbf !important;
+}
+
+:host ::ng-deep .anticon svg path:nth-child(2) {
+  fill: #fff !important;
+}
+
+.select-category {
+  width: 175px;
+
+  @media (max-width: 575px) {
+    display: block;
+    width: 100%;
+  }
+}
+
+.select-type {
+  width: 230px;
+
+  @media (max-width: 575px) {
+    width: 100%;
+  }
+}
+
+.selects {
+  @media (max-width: 575px) {
+    width: 100%;
+  }
+}

@@ -1,0 +1,270 @@
+<ng-container *ngIf="data">
+  <!-- HEADER -->
+  <az-header-with-divider-basic
+    [title]="('users' | translate) + (data.total | titleTotal)"
+    (clickedAddEditButton)="addEdit()"
+  >
+    <div *ngIf="!isAdminUsers && checkedUsers.length > 0">
+      <nz-input-group nzCompact>
+        <nz-select
+          name="moderator"
+          [(ngModel)]="moderatorId"
+          [nzPlaceHolder]="'moderators' | translate"
+          style="width: 200px"
+        >
+          <nz-option
+            [nzValue]="moderator.id"
+            [nzLabel]="moderator.full_name"
+            *ngFor="let moderator of moderator$ | async"
+          ></nz-option>
+        </nz-select>
+        <button
+          [disabled]="!moderatorId"
+          (click)="assignToModerator()"
+          nz-button
+          nzType="primary"
+        >
+          {{ "attach" | translate }}
+        </button>
+      </nz-input-group>
+    </div>
+
+    <div class="ml-1">
+      <nz-input-group nzCompact>
+        <nz-select
+          name="searchBy"
+          [(ngModel)]="searchBy"
+          [nzPlaceHolder]="'searchBy' | translate"
+          style="width: 120px"
+        >
+          <nz-option nzValue="id" [nzLabel]="'id' | translate"></nz-option>
+          <nz-option
+            nzValue="login"
+            [nzLabel]="'login' | translate"
+          ></nz-option>
+          <nz-option
+            nzValue="f_name"
+            [nzLabel]="'givenName' | translate"
+          ></nz-option>
+        </nz-select>
+
+        <az-search-input
+          [width]="'230px'"
+          [showSearchIcon]="false"
+          [(searchText)]="searchText"
+          (keyupEnter)="search($event)"
+          (searchTextChange)="searchTextChanged($event)"
+        ></az-search-input>
+
+        <button (click)="search(searchText)" nz-button nzType="primary">
+          <i nz-icon nzType="search"></i> {{ "search" | translate }}
+        </button>
+      </nz-input-group>
+    </div>
+  </az-header-with-divider-basic>
+
+  <!-- BODY -->
+  <nz-table
+    #groupingTable
+    [nzData]="data.data"
+    [nzFrontPagination]="false"
+    [nzTotal]="data.total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="data.current_page"
+    (nzQueryParams)="onQueryParamsChange($event)"
+    nzShowSizeChanger
+    nzBordered
+    nzSize="small"
+    [nzScroll]="(data.total | makeNzScroll: 400:1320 | async)!"
+  >
+    <thead>
+      <tr class="tr__th--border-bottom-0">
+        <th
+          *ngIf="!isAdminUsers"
+          [nzWidth]="'50px'"
+          [(nzChecked)]="checked"
+          (nzCheckedChange)="onAllChecked($event)"
+          nzLeft
+        ></th>
+        <th
+          [nzWidth]="'70px'"
+          nzAlign="center"
+          nzColumnKey="id"
+          [nzSortFn]="true"
+          nzLeft
+        >
+          {{ "id" | translate }}
+        </th>
+        <th
+          [nzWidth]="'150px'"
+          nzAlign="center"
+          nzColumnKey="login"
+          [nzSortFn]="true"
+          nzLeft
+        >
+          {{ "login" | translate }}
+        </th>
+        <th
+          [nzWidth]="'200px'"
+          nzAlign="center"
+          nzColumnKey="f_name"
+          [nzSortFn]="true"
+        >
+          {{ "givenName" | translate }}
+        </th>
+        <th [nzWidth]="'150px'" nzAlign="center">
+          {{ "phoneNumber" | translate }}
+        </th>
+        <th [nzWidth]="'150px'" nzAlign="center" *ngIf="isAdminUsers">
+          {{ "role" | translate }}
+        </th>
+        <th [nzWidth]="'150px'" nzAlign="center" *ngIf="!isAdminUsers">
+          {{ "attachedModerator" | translate }}
+        </th>
+        <th [nzWidth]="'150px'" nzAlign="center">
+          {{ "commentary" | translate }}
+        </th>
+        <th [nzWidth]="'150px'" nzAlign="center">
+          {{ "lastAuthorization" | translate }}
+        </th>
+        <th [nzWidth]="'110px'" nzAlign="center">
+          {{ "userStatus" | translate }}
+        </th>
+        <th [nzWidth]="'140px'" nzAlign="center" nzRight></th>
+      </tr>
+      <tr>
+        <th *ngIf="!isAdminUsers" nzLeft></th>
+        <th nzLeft></th>
+        <th nzLeft></th>
+        <th></th>
+        <th></th>
+        <th *ngIf="isAdminUsers">
+          <nz-select
+            *ngIf="isAdminUsers"
+            [nzAllowClear]="true"
+            [nzPlaceHolder]="'roles' | translate"
+            [(ngModel)]="filterRole"
+            (ngModelChange)="loadInitData()"
+            class="w-100"
+          >
+            <nz-option
+              *ngFor="let role of role$ | async"
+              [nzValue]="role.id"
+              [nzLabel]="role.description"
+            ></nz-option>
+          </nz-select>
+        </th>
+        <th *ngIf="!isAdminUsers">
+          <nz-select
+            *ngIf="!isAdminUsers"
+            name="moderator"
+            class="w-100"
+            [nzAllowClear]="true"
+            [(ngModel)]="filterModerator"
+            (ngModelChange)="loadInitData()"
+            [nzPlaceHolder]="'moderators' | translate"
+          >
+            <nz-option
+              [nzValue]="'0'"
+              [nzLabel]="'Biriktirilmagan'"
+            ></nz-option>
+            <nz-option
+              [nzValue]="moderator.id"
+              [nzLabel]="moderator.full_name"
+              *ngFor="let moderator of moderator$ | async"
+            ></nz-option>
+          </nz-select>
+        </th>
+        <th></th>
+        <th></th>
+        <th>
+          <!-- STATUS -->
+          <nz-select
+            [nzAllowClear]="true"
+            [nzPlaceHolder]="'status' | translate"
+            [(ngModel)]="filterBlocked"
+            (ngModelChange)="loadInitData()"
+            class="w-100"
+          >
+            <nz-option
+              [nzValue]="false"
+              [nzLabel]="'userStatus.active' | translate"
+            ></nz-option>
+            <nz-option
+              [nzValue]="true"
+              [nzLabel]="'userStatus.blocked' | translate"
+            ></nz-option>
+          </nz-select>
+        </th>
+        <th nzRight></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of groupingTable.data">
+        <td
+          *ngIf="!isAdminUsers"
+          [(nzChecked)]="data.isChecked"
+          (nzCheckedChange)="onItemChecked(data, $event)"
+          nzLeft
+        ></td>
+        <!-- ID -->
+        <td nzAlign="center" nzLeft>{{ data.id }}</td>
+
+        <!-- LOGIN -->
+        <td nzLeft>{{ data.login }}</td>
+
+        <!-- GIVEN NAME -->
+        <td>{{ [data.f_name, data.l_name, data.s_name].join(" ") }}</td>
+
+        <!-- PHONE -->
+        <td nzAlign="center">+{{ data.phone | mask: "000 00 000 00 00" }}</td>
+
+        <!-- ROLE -->
+        <td nzAlign="center" *ngIf="isAdminUsers">
+          {{ data.role?.description }}
+        </td>
+
+        <!-- ASSIGNED MODERATOR -->
+        <td nzAlign="center" *ngIf="!isAdminUsers">
+          {{ data.moderator?.full_name }}
+        </td>
+
+        <!-- COMMENTARY -->
+        <td nzAlign="center">{{ data.description }}</td>
+
+        <!-- LAST ACTIVATION TIME -->
+        <td nzAlign="center">{{ data.last_active_time }}</td>
+
+        <!-- STATUS -->
+        <td nzAlign="center">
+          <nz-switch
+            [(ngModel)]="data.isActive"
+            (ngModelChange)="changeStatus(data)"
+          ></nz-switch>
+        </td>
+        <td nzRight nzAlign="center">
+          <nz-button-group>
+            <button (click)="delete(data.id)" nz-button nzType="default">
+              <span>
+                <i nz-icon nzType="delete" nzTheme="twotone"></i>
+              </span>
+            </button>
+            <button (click)="addEdit(data)" nz-button nzType="default">
+              <span>
+                <i nz-icon nzType="edit" nzTheme="twotone"></i>
+              </span>
+            </button>
+          </nz-button-group>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</ng-container>
+
+<az-add-edit-user
+  [isAdminUsers]="isAdminUsers"
+  [(isVisible)]="isVisible"
+  [editingData]="editingData"
+  [role$]="role$"
+  (modified)="modified()"
+></az-add-edit-user>

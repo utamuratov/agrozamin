@@ -1,0 +1,480 @@
+.header {
+  position: relative;
+
+  .nav {
+    box-shadow: 0px 5px 20px rgba(26, 26, 26, 0.1);
+    font-family: Agrofont-Regular;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    background: #fff;
+    width: 100%;
+
+    &__top {
+      padding-top: 8px;
+      font-size: 13px;
+
+      @media (max-width: 992px) {
+        padding-top: 0;
+      }
+    }
+
+    &__menu {
+      &-item {
+        margin-right: 16px;
+        a {
+          padding: 0;
+          color: #86898c;
+          font-size: 13px;
+        }
+
+        .link-divider {
+          display: block;
+          width: 1px;
+          height: 100%;
+          background: #e3e8ed;
+        }
+      }
+    }
+
+    &__currency {
+      i {
+        margin-right: 10px;
+
+        &.red {
+          color: #f57952;
+        }
+      }
+
+      span {
+        font-size: 12px;
+        line-height: 15px;
+        color: #333333;
+        font-family: Agrofont-Regular;
+      }
+    }
+
+    &__weather {
+      display: flex;
+      align-items: center;
+      img {
+        margin-right: 10px;
+      }
+
+      span {
+        font-size: 12px;
+        color: #333333;
+        line-height: 15px;
+      }
+    }
+
+    &__select {
+      font-size: 13px;
+
+      &__option {
+        display: flex;
+        align-items: center;
+
+        span {
+          margin-left: 8px !important;
+        }
+      }
+    }
+
+    &__middle {
+      padding: 16px 0;
+
+      @media (max-width: 1200px) {
+        padding: 20px 5px;
+      }
+    }
+
+    &__contacts {
+      img {
+        margin-right: 12px;
+      }
+
+      span {
+        font-size: 18px;
+        font-family: Agrofont-Medium;
+        color: #333333;
+      }
+    }
+
+    &__bottom {
+      padding-bottom: 16px;
+      margin-top: 8px;
+      &-btn-text {
+        margin-left: 8px;
+      }
+
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
+
+    &__cascader {
+      border-radius: none !important;
+    }
+  }
+
+  &__search-dropdown {
+    position: fixed;
+    top: 175px;
+    width: 100%;
+    min-height: 500px;
+    z-index: 500;
+    overflow-y: auto;
+
+    .region {
+      font-size: 16px;
+      font-family: Agrofont-Medium;
+      color: #1a1a1a;
+      padding: 8px 12px;
+      border-radius: 8px;
+
+      &:hover {
+        background: #f1f2f5;
+        color: #1a1a1a !important;
+      }
+
+      &:active {
+        background: #1e8f37;
+        color: #fff !important;
+      }
+    }
+
+    .regions_border {
+      border-right: 1px solid #cfd3d8;
+    }
+
+    .city {
+      font-size: 16px;
+      color: #1a1a1a;
+      padding: 8px 12px;
+      border-radius: 8px;
+
+      &:hover {
+        background: #f1f2f5;
+        color: #1a1a1a !important;
+      }
+
+      &:active {
+        background: #1e8f37;
+        color: #fff !important;
+      }
+    }
+  }
+
+  &__dropdown {
+    padding: 50px 0;
+  }
+
+  .search__type {
+    color: #86898c;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .search__values {
+    color: #000;
+  }
+
+  .drop-top {
+    background: #fff;
+  }
+
+  .backdrop {
+    background: rgba(0, 0, 0, 0.384);
+    height: 800px;
+  }
+}
+
+.az-drawer {
+  min-height: 100%;
+  background: #fff;
+  // padding: 20px 30px;
+
+  &__title {
+    font-size: 16px;
+    font-family: Agrofont-Regular;
+    line-height: 20px;
+    margin-bottom: 30px;
+  }
+
+  &__service-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__service-name {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  &__link {
+    font-size: 20px;
+    line-height: 20px;
+    // padding-left: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    span {
+      color: #000;
+      margin-left: 10px;
+      transition: 0.7s;
+    }
+
+    &:hover {
+      span {
+        color: #ffaa46;
+      }
+    }
+
+    &:focus {
+      span {
+        color: #41b055;
+      }
+    }
+  }
+
+  &__contacts {
+    font-size: 20px;
+    line-height: 20px;
+    font-family: Agrofont-Regular;
+
+    span {
+      margin-left: 10px;
+    }
+  }
+
+  &_padding {
+    padding: 30px;
+    &.top {
+      padding: 20px 30px;
+      padding-bottom: 0;
+    }
+  }
+
+  .divider {
+    margin: 0;
+  }
+
+  &__language {
+    padding: 30px 30px;
+    border-bottom: 1px solid #e6e9ed;
+
+    &__title {
+      font-size: 16px;
+      line-height: 20px;
+      font-family: Agrofont-Regular;
+      margin-bottom: 16px;
+    }
+
+    &__text {
+      font-size: 20px;
+      line-height: 20px;
+      color: #000;
+    }
+  }
+}
+
+.ava-btn {
+  padding: 0;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.userPopower {
+  width: 248px;
+
+  &__top {
+    &__img {
+      width: 40px;
+      height: 40px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__text {
+      h3 {
+        margin: 0;
+        font-size: 16px;
+        line-height: 20px;
+        font-family: Agrofont-Bold;
+      }
+      span {
+        font-size: 14px;
+        line-height: 18px;
+        color: #86898c;
+      }
+    }
+  }
+
+  &__bottom {
+    &__content {
+      cursor: pointer;
+      padding: 10px;
+
+      &:active {
+        background: #edeff5;
+        border-radius: 4px;
+      }
+
+      &__img {
+        width: 24px;
+        height: 24px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      span {
+        &:hover {
+          color: #86898c;
+        }
+        &:active {
+          color: #86898c;
+        }
+      }
+    }
+  }
+}
+
+.add-advertisement {
+  @media (max-width: 991px) {
+    display: none;
+
+    &.drawer-add {
+      display: inline-block;
+    }
+  }
+
+  @media (max-width: 575px) {
+    &.drawer-add {
+      // display: none;
+    }
+  }
+}
+
+.nav__logo {
+  @media (max-width: 575px) {
+    img {
+      width: 165px;
+      height: 30px;
+    }
+  }
+}
+
+.enter__btn {
+  @media (max-width: 767px) {
+    &_text {
+      display: none;
+    }
+  }
+}
+
+.drawer__btn__info {
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+
+  img {
+    margin-right: 10px;
+  }
+
+  &__arrow {
+    margin-right: 20px;
+    color: #00cd69;
+  }
+}
+
+.location {
+  &__header_panel {
+    font-size: 16px;
+    font-family: Agrofont-Medium;
+    line-height: 20px;
+    color: #000;
+    margin-bottom: 0;
+    padding-left: 18px;
+
+    &.active {
+      color: #377be1;
+    }
+  }
+
+  &__city {
+    font-size: 16px;
+    font-family: Agrofont-Regular;
+    line-height: 20px;
+  }
+}
+
+.lang__info {
+  padding: 30px;
+
+  button {
+    font-size: 16px;
+    line-height: 20px;
+    color: #000;
+    font-family: Agrofont-Regular;
+
+    &:disabled {
+      color: #b7bbbf;
+    }
+  }
+}
+
+.search__drawer {
+  padding: 30px;
+}
+
+
+.drawer {
+  &-user {
+    &-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &-name {
+      font-size: 16px;
+      line-height: 20px;
+      color: #000;
+      margin-bottom: 0;
+    }
+
+    &-service {
+      font-size: 14px;
+      line-height: 18px;
+      color: #86898C;
+    }
+  }
+}

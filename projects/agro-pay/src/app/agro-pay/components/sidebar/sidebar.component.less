@@ -1,0 +1,40 @@
+.sidebar {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  .logo {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 36px;
+
+    h4 {
+      font-size: 24px;
+      line-height: 30px;
+      margin-bottom: 0;
+      margin-left: 8px;
+    }
+
+    .trigger {
+      margin-left: 8px;
+      display: none;
+
+      @media (max-width: 991px) {
+        display: inline-block;
+      }
+    }
+  }
+
+  .dnone {
+    display: none;
+  }
+
+  .darkLogo {
+    display: inline-block;
+  }
+
+  .lightLogo {
+    display: inline-block;
+  }
+}

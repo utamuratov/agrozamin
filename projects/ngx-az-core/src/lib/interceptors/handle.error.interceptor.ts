@@ -9,6 +9,7 @@ import {
 import { catchError, Observable, throwError } from 'rxjs';
 import { ErrorMessage } from '../models/error-message.interface';
 import { ErrorHelper } from '../helpers/error.helper';
+import { Constants } from '../config/constants';
 
 @Injectable()
 export class HandleErrorInterceptor implements HttpInterceptor {
@@ -18,12 +19,18 @@ export class HandleErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        // !Catch error and do SMTH
-        // ! IF SERVER ERROR REDIRECT SERVER ERROR SCREEN (in the future)
-        // alert(this.getError(error))
+        ErrorHelper.catchErrors(error, this.urlSignIn(), true);
         return throwError(() => ErrorHelper.getServerErrors(error));
       })
     );
+  }
+
+  /**
+   *
+   * @returns
+   */
+  private urlSignIn(): string {
+    return `/${Constants.AGROID_ROUTE_PATH}`;
   }
 
   private getError(error: HttpErrorResponse) {

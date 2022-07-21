@@ -1,0 +1,48 @@
+<form [formGroup]="form">
+  <div class="inline-card info">
+    <div nz-row [nzGutter]="[0, 24]">
+      <div nz-col nzSpan="24">
+        <h4 class="add-title">{{ "info" | translate }}</h4>
+      </div>
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzFor="name">{{
+            "advertisementName" | translate
+          }}</nz-form-label>
+          <nz-form-control [nzSpan]="24">
+            <input
+              nz-input
+              type="text"
+              id="name"
+              [placeholder]="'inputAdvertisementName' | translate"
+              nzSize="large"
+              formControlName="name"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="24">
+        <span class="add-subtitle">{{ "category" | translate }}</span>
+        <div class="mb-1" *ngIf="currentCategory">
+          <span class="tag">{{ currentCategory.name }}</span>
+        </div>
+        <div nz-row [nzGutter]="[30, 0]">
+          <div nz-col nzSpan="8" *ngFor="let tree of customTree">
+            <div class="info__category">
+              <ul class="info__category__list">
+                <li
+                  nzSpan="24"
+                  (click)="chooseCategory(category, tree)"
+                  [ngClass]="{ active: category.id === tree.selectedId }"
+                  *ngFor="let category of tree.data"
+                >
+                  {{ category.name }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

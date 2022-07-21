@@ -1,0 +1,60 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="(editingData?.id ? 'edit' : 'add') | translate"
+  (nzOnCancel)="close()"
+  [nzWidth]="'650px'"
+  modal
+>
+  <div *nzModalContent>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <div class="overflow-auto">
+        <!-- KEY -->
+        <nz-form-item>
+          <nz-form-label nzFor="key">{{ "key" | translate }}</nz-form-label>
+          <nz-form-control [nzErrorTip]="errorKey">
+            <input nz-input formControlName="key" name="key" type="text" />
+          </nz-form-control>
+          <ng-template #errorKey let-control>
+            <error [control]="control"></error>
+          </ng-template>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzFor="actions">{{
+            "actions" | translate
+          }}</nz-form-label>
+          <nz-form-control [nzErrorTip]="errorActions">
+            <nz-tree-select
+              id="actions"
+              formControlName="access"
+              [nzNodes]="controlAction"
+              nzShowSearch
+              nzCheckable
+              [nzTreeTemplate]="nzTreeTemplate"
+            ></nz-tree-select>
+            <ng-template #nzTreeTemplate let-node let-origin="origin">
+              <span>{{ origin.description }}</span>
+            </ng-template>
+          </nz-form-control>
+          <ng-template #errorActions let-control>
+            <error [control]="control"></error>
+          </ng-template>
+        </nz-form-item>
+
+        <!-- DESCRIPTION -->
+        <h3>{{ "description" | translate }}</h3>
+        <az-language-controls
+          [form]="form"
+          [translations]="editingData?.description"
+          formGroupName="description"
+          [rows]="2"
+        ></az-language-controls>
+      </div>
+    </form>
+  </div>
+  <div *nzModalFooter>
+    <button (click)="submit()" nz-button nzType="primary">
+      {{ "save" | translate }}
+    </button>
+  </div>
+</nz-modal>

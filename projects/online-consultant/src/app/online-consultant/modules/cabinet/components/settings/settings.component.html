@@ -1,0 +1,110 @@
+<div class="setting">
+  <div class="setting__all">
+    <div nz-row [nzGutter]="[0,{xs:24, sm:36, md:36, lg:36, xl:36}]">
+      <div nz-col nzSpan="24">
+        <h3>Общие настройки</h3>
+      </div>
+      <div nz-col nzSpan="24">
+        <div nz-row [nzGutter]="[24,16]">
+          <div nz-col nzXs="24" nzSm="7" nzMd="7" nzLg="6" nzXl="5"  class="setting__all__photo">
+            <div class="setting__all__photo__img">
+              <img src="/assets/images/Rectangle 18376.svg" alt="">
+            </div>
+          </div>
+          <div nz-col nzXs="24" nzSm="15" nzMd="15" nzLg="12" nzXl="15" class="setting__all__client">
+
+            <div nz-row [nzGutter]="[0,{xs:12, sm:12, md:11, lg:17, xl:17}]">
+              <div nz-col nzSpan="24" class="setting__all__client__tag"> 
+                    <div nz-col>
+                      <span> <i><img src="/assets/images/User_cicrle_light.png" alt=""></i> Клиент</span>
+                    </div>
+              </div>
+              <div nz-col nzSpan="24" class="setting__all__client__title">
+                <h3>Мун Тимур Сергеевич</h3>
+              </div>
+              <div nz-col nzSpan="24" class="setting__all__client__contact">
+                <div nz-row [nzGutter]="[0,16]">
+                  <div nz-col nzSpan="24" >
+                    <div nz-row [nzGutter]="[16,0]" class="setting__all__client__contact__item">
+                      <div nz-col>
+                        <p>Телефон</p>
+                      </div>
+                      <div nz-col>
+                        <span>+7 911 999-99-99</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div nz-col nzSpan="24" >
+                    <div nz-row [nzGutter]="[16,0]" class="setting__all__client__contact__item">
+                      <div nz-col>
+                        <p>Почта</p>
+                      </div>
+                      <div nz-col>
+                        <span>sadovod@mail.ru</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div nz-col nzXs="0" nzSm="7" nzMd="7" nzLg="0" nzXl="0"></div>
+          <div nz-col nzXs="0" nzSm="15" nzMd="15" nzLg="6" nzXl="4">
+            <button nz-button nzSize="large">Редактировать</button>
+          </div>
+          <div nz-col nzXs="24" nzSm="0" nzMd="0" nzLg="0" nzXl="0">
+            <button nz-button nzType="link" nzSize="large">Редактировать</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="setting__notifications">
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <h3>Уведомления</h3>
+      </div>
+      <div nz-col nzSpan="24">
+        <div nz-row>
+          <div nz-col nzSpan="24">
+            <div nz-row [nzGutter]="[0,16]">
+              <div nz-col nzSpan="24" class="setting__notifications__contact">
+                <span>E-mail</span>
+              </div>
+              <div nz-col nzSpan="24">
+                <label nz-checkbox [(ngModel)]="checked">Оповещение перед началом сеанса консультации</label>
+              </div>
+              <div nz-col nzSpan="24">
+                <label nz-checkbox [(ngModel)]="checked">Оповещение перед началом сеанса консультации</label>
+              </div>
+            </div>
+          </div>
+          <div nz-col>
+            <div nz-col nzSpan="24">
+              <div nz-row [nzGutter]="[0,16]">
+                <div nz-col nzSpan="24" class="setting__notifications__contact">
+                  <span>SMS</span>
+                </div>
+                <div nz-col nzSpan="24">
+                  <label nz-checkbox [(ngModel)]="checked">Оповещение перед началом сеанса консультации</label>
+                </div>
+                <div nz-col nzSpan="24">
+                  <label nz-checkbox [(ngModel)]="checked">Оповещение перед началом сеанса консультации</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div nz-col nzXs="0" nzSm="24" nzMd="24" nzLg="24" nzXl="24" class="setting__notifications__btn">
+        <button nz-button nzType="primary" nzSize="large">Сохранить</button>
+      </div>
+      <div nz-col nzXs="24" nzSm="0" nzMd="0" nzLg="0" nzXl="0" class="setting__notifications__btn">
+        <button nz-button nzType="default" nzSize="large">Сохранить</button>
+      </div>
+    </div>
+  </div>
+</div>

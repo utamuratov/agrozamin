@@ -1,8 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { ErrorHandler } from '@angular/core';
 import { Router } from '@angular/router';
 import { Constants } from '../config/constants';
-import { HttpResponseStatusCode } from '../config/http-response-code';
 import { ErrorItem } from '../models/error-item.interface';
 import { InjectorHelper } from './injector.helper';
 
@@ -16,14 +15,25 @@ export class ErrorHelper {
    */
   static getServerErrors(error: HttpErrorResponse): ErrorItem[] {
     if (error.error.errors) {
-      return error.error.errors;
+      if (error.error.errors?.[0].field) {
+        return error.error.errors;
+      }
+
+      return [
+        {
+          field: 'unknown',
+          message: [
+            { key: 'unknown', text: JSON.stringify(error.error.errors) },
+          ],
+        },
+      ];
     }
 
     if (!navigator.onLine) {
       return [
         {
-          field: 'offline',
-          message: [{ key: 'offline', text: 'You are offline' }],
+          field: Constants.OFFLINE,
+          message: [{ key: Constants.OFFLINE, text: 'You are offline' }],
         },
       ];
     }
@@ -40,13 +50,22 @@ export class ErrorHelper {
    *  Catches http errors and responds by status
    * @param error Http error response
    */
-  static catchErrors(error: HttpErrorResponse): void {
+  static catchErrors(
+    error: HttpErrorResponse,
+    urlSignIn: string,
+    withWindowLocationHref?: boolean
+  ): void {
     if (!error) {
       return;
     }
     const router = InjectorHelper.injector.get(Router);
-    if (error.status === HttpResponseStatusCode.UNAUTHENTICATED) {
-      // router.navigate(['/auth/signin']);
+    if (error.status === HttpStatusCode.Unauthorized) {
+      if (withWindowLocationHref) {
+        window.location.href = urlSignIn;
+        return;
+      }
+
+      router.navigate([urlSignIn]);
       return;
     }
   }

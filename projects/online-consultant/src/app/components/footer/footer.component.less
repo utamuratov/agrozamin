@@ -1,0 +1,42 @@
+.footer {
+    &__block {
+        padding: 80px 0;
+        border-bottom: 1px dashed #CFD3D8;
+
+        @media (max-width: 991px) {
+            padding: 40px 0;
+        }
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+
+    &__menu {
+        &__title {
+            font-family: MontBold;
+            font-size: 14px;
+            line-height: 18px;
+            color: #86898C;
+
+            @media (max-width: 575px) {
+                font-size: 12px;
+                line-height: 15px;
+                color: #F1F2F5;
+            }
+        }
+
+        &__item {
+            font-family: MontLight;
+            font-size: 14px;
+            line-height: 18px;
+            color: #EDEFF5;
+
+            @media (max-width: 575px) {
+                font-size: 12px;
+                line-height: 15px;
+                color: #FFF;
+            }
+        }
+    }
+}

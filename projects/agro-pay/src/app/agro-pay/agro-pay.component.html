@@ -1,0 +1,21 @@
+<nz-layout class="layout" (window:resize)="onResize($event)">
+  <nz-sider
+    nzCollapsible
+    nzBreakpoint="lg"
+    [nzCollapsedWidth]="64"
+    [nzWidth]="siderWidth"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+    class="nz-sider"
+  >
+    <az-sidebar [(isCollapsed)]="isCollapsed"></az-sidebar>
+  </nz-sider>
+  <nz-layout class="right-layout">
+    <nz-header class="header-layout">
+      <div class="inner-header"><az-header></az-header></div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content"><router-outlet></router-outlet></div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

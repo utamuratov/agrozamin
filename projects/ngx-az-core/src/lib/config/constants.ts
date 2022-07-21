@@ -1,12 +1,11 @@
-import { Language } from "../models/language.interface";
+import { Language } from '../models/language.interface';
 
 export class Constants {
   /**
    * SECURE DATA FOR LOGIN & REFRESH TOKEN
    */
-  public static readonly CLIENT_ID = '95aafe79-4e63-4d6d-98cc-fde7b302fc3f';
-  public static readonly CLIENT_SECRET =
-    'K44OWIgGSqkpH55vY6QQwZldir6iN17IyepOXD4K';
+  static readonly CLIENT_ID = '96880ad0-7b49-4d00-bbe0-da023ef89cf8'; //"95aafe79-4e63-4d6d-98cc-fde7b302fc3f";
+  static readonly CLIENT_SECRET = '9tyUetFhRxu4PjIy07BJ7HzxNC75lGUSmsVMY0GI'; // "K44OWIgGSqkpH55vY6QQwZldir6iN17IyepOXD4K";
 
   /**
    * DEFAULT DATA FOR USER INTERFACE LANGUAGE
@@ -21,7 +20,7 @@ export class Constants {
     {
       code: 'uz_cyrl',
       name: 'Ўзбекча',
-      short_name: 'Узб',
+      short_name: 'Ўзб',
     },
     {
       code: 'uz_latn',
@@ -29,6 +28,10 @@ export class Constants {
       short_name: 'Uzb',
     },
   ];
+  public static readonly DEFAULT_LOCATION = {
+    latitude: 41.287625,
+    longitude: 69.2281415,
+  };
 
   /**
    * FORM CONTROL NAMES
@@ -48,11 +51,12 @@ export class Constants {
   /**
    * LOCAL STORAGE KEYS
    */
-  public static readonly LANGUAGE = 'language';
+  public static readonly CURRENT_LANGUAGE = 'currentLanguage';
   public static readonly DEFAULT_LANGUAGE = 'defaultLanguage';
   public static readonly LOGIN_TYPE = 'loginType';
-  public static readonly ACCESS_TOKEN = 'access_tokent';
-  public static readonly REFRESH_TOKEN = 'refresh_tokent';
+  public static readonly ACCESS_TOKEN = 'access_token';
+  public static readonly REFRESH_TOKEN = 'refresh_token';
+  public static readonly AUTHORIZED_USER = 'authorizedUser';
 
   /**
    * HEADER
@@ -66,11 +70,18 @@ export class Constants {
   public static readonly PREFIX_PHONENUMBER = '998';
   public static readonly ERROR_MESSAGE_FROM_SERVER = 'errorMessageFromServer';
   public static readonly SERVER_ERROR = 'serverError';
+  public static readonly OFFLINE = 'offline';
 
   /**
    * ROUTE PATHS
    */
   public static readonly AGROZAMIN_PREFIX_ROUTE_PATH = 'az';
+  // * These variables are name of services(projects).
+  // * And they depend on applications name on the iis,
+  // * bundle names of option styles of project 'wrapper'(angular.json)
   public static readonly AGROID_ROUTE_PATH = 'agro-id';
-
+  public static readonly AGRO_ZAMIN_ROUTE_PATH = 'main';
+  static readonly ADVERTISEMENT_ROUTE_PATH = 'advertisement';
+  static readonly ONLINE_CONSULTANT_ROUTE_PATH = 'online-consultant';
+  static readonly AGRO_PAY_ROUTE_PATH = 'agro-pay';
 }

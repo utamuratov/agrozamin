@@ -1,0 +1,97 @@
+<!-- HEADER -->
+<az-header-with-divider-advanced
+  [config]="{
+    title: 'actions' | translate,
+    searchInputAdvancedConfig: searchInputConfig
+  }"
+  (clickedAddEditButton)="addEdit()"
+></az-header-with-divider-advanced>
+
+<!-- BODY -->
+<az-grid
+  [data]="searchInputConfig.filteredData"
+  [columns]="columns"
+  (deleted)="delete($event)"
+  (addEdited)="addEdit($event)"
+  [nzWidthConfig]="nzWidthConfig"
+>
+</az-grid>
+
+<!-- ADD-EDIT MODAL -->
+<az-add-edit-access-action
+  [(isVisible)]="isVisible"
+  [editingData]="editingData"
+  (modified)="modified()"
+></az-add-edit-access-action>
+
+<!-- TODO: REMOVE EVERYTHING WORKS REALLY -->
+<!-- <nz-table
+  #table
+  [nzData]="searchInputConfig.filteredData"
+  nzShowPagination
+  nzShowSizeChanger
+  nzSize="small"
+  nzBordered
+  [nzScroll]="(searchInputConfig.filteredData.length | makeNzScroll | async)!"
+>
+  <thead>
+    <tr>
+      <th
+        rowspan="2"
+        width="100px"
+        nzAlign="center"
+        [nzSortFn]="'id' | azSort: false"
+      >
+        {{ "id" | translate }}
+      </th>
+      <th
+        rowspan="2"
+        width="200px"
+        nzAlign="center"
+        [nzSortFn]="'key' | azSort"
+      >
+        {{ "key" | translate }}
+      </th>
+      <th [colspan]="(language$ | async)!.length" nzAlign="center">
+        {{ "description" | translate }}
+      </th>
+      <th nzRight rowspan="2" width="120px"></th>
+    </tr>
+    <tr>
+      <th
+        *ngFor="let language of language$ | async"
+        nzAlign="center"
+        [nzSortFn]="'description.' + language.code | azSort"
+      >
+        {{ language.name }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data">
+      <td nzAlign="center">
+        {{ data.id }}
+      </td>
+      <td nzAlign="center">
+        {{ data.key }}
+      </td>
+      <td nzAlign="left" *ngFor="let language of language$ | async">
+        {{ data.description[language.code] }}
+      </td>
+      <td nzRight nzAlign="center">
+        <nz-button-group>
+          <button (click)="delete(data.id)" nz-button nzType="default">
+            <span>
+              <i nz-icon nzType="delete" nzTheme="twotone"></i>
+            </span>
+          </button>
+          <button (click)="addEdit(data)" nz-button nzType="default">
+            <span>
+              <i nz-icon nzType="edit" nzTheme="twotone"></i>
+            </span>
+          </button>
+        </nz-button-group>
+      </td>
+    </tr>
+  </tbody>
+</nz-table> -->

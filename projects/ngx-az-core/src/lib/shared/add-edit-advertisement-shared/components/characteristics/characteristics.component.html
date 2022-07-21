@@ -1,0 +1,101 @@
+<div class="inline-card characteristic">
+  <div nz-row [nzGutter]="[0, 30]">
+    <div nz-col nzSpan="24">
+      <h3 class="add-title">{{ "characteristics" | translate }}</h3>
+    </div>
+
+    <div nz-col nzSpan="24" *ngFor="let filter of filters">
+      <div nz-row [nzGutter]="[0, 40]">
+        <div nz-col nzSpan="24">
+          <div nz-row>
+            <div nz-col nzSpan="6">
+              <h4
+                class="characteristic__title required"
+                [ngClass]="{ invalid: filter.invalid }"
+              >
+                {{ filter.name }}
+              </h4>
+            </div>
+            <div nz-col nzSpan="18">
+              <ng-container [ngSwitch]="filter.type_for_creator">
+                <!-- INPUT -->
+                <ng-container *ngSwitchCase="InputTypeForCreator.InputNumber">
+                  <nz-form-item>
+                    <nz-form-control [nzSpan]="6">
+                      <input
+                        nz-input
+                        type="text"
+                        nzSize="large"
+                        [(ngModel)]="filter.value"
+                      />
+                    </nz-form-control>
+                  </nz-form-item>
+                </ng-container>
+
+                <!-- CHECKBOX -->
+                <ng-container *ngSwitchCase="InputTypeForCreator.Checkbox">
+                  <nz-checkbox-group
+                    [(ngModel)]="filter.value"
+                  ></nz-checkbox-group>
+                </ng-container>
+
+                <!-- SELECT -->
+                <ng-container *ngSwitchCase="InputTypeForCreator.Select">
+                  <nz-select
+                    nzShowSearch
+                    nzAllowClear
+                    nzPlaceHolder="Укажите страну"
+                    nzSize="large"
+                    class="characteristic__country"
+                    [(ngModel)]="filter.value"
+                  >
+                    <nz-option
+                      [nzValue]="parameter.filter_parameter_id"
+                      [nzLabel]="parameter.label"
+                      *ngFor="let parameter of filter.parameters"
+                    ></nz-option>
+                  </nz-select>
+                </ng-container>
+
+                <!-- DATE PICKER -->
+                <ng-container *ngSwitchCase="InputTypeForCreator.DatePicker">
+                  <nz-date-picker
+                    nzSize="large"
+                    [(ngModel)]="filter.value"
+                  ></nz-date-picker>
+                </ng-container>
+
+                <!-- DATE YEAR PICKER -->
+                <ng-container
+                  *ngSwitchCase="InputTypeForCreator.DateYearPicker"
+                >
+                  <nz-date-picker
+                    nzMode="year"
+                    nzSize="large"
+                    [(ngModel)]="filter.value"
+                  ></nz-date-picker>
+                </ng-container>
+
+                <!-- RADIO -->
+                <ng-container *ngSwitchCase="InputTypeForCreator.Radio">
+                  <nz-radio-group
+                    nzButtonStyle="solid"
+                    nzSize="large"
+                    [(ngModel)]="filter.value"
+                  >
+                    <label
+                      nz-radio-button
+                      [nzValue]="parameter.filter_parameter_id"
+                      *ngFor="let parameter of filter.parameters"
+                      >{{ parameter.label }}</label
+                    >
+                  </nz-radio-group>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

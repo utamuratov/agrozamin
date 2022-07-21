@@ -1,0 +1,295 @@
+.news {
+  padding: 50px 0;
+
+  &__title {
+    font-size: 32px;
+    line-height: 40px;
+    color: #000000;
+    margin-bottom: 0;
+
+    @media (max-width: 1200px) {
+      font-size: 25px;
+      line-height: 31px;
+    }
+
+    @media (max-width: 992px) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+      line-height: 23px;
+    }
+  }
+
+  &__link {
+    font-size: 16px;
+    line-height: 16px;
+
+    @media (max-width: 992px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 16px;
+      
+    }
+  }
+
+  &__card {
+    &__icon {
+      color: #86898c;
+
+      @media (max-width: 992px) {
+        display: none;
+      }
+      @media (max-width: 576px) {
+        display: block;
+      }
+
+      span {
+        margin-left: 7px;
+        font-size: 13px;
+      }
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 25px;
+      color: #000000;
+      margin-bottom: 8px;
+
+      @media (max-width: 1200px) {
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 14px;
+        line-height: 18px;
+      }
+
+      @media (max-width: 576px) {
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+      @media (max-width: 380px) {
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+
+    &__text {
+      font-size: 14px;
+      line-height: 18px;
+      font-family: Agrofont-Regular;
+      color: #000000;
+      margin-bottom: 0;
+
+      @media (max-width: 768px) {
+        font-size: 12px;
+        line-height: 15px;
+      }
+
+      @media (max-width: 576px) {
+        font-size: 14px;
+        line-height: 18px;
+      }
+
+      @media (max-width: 380px) {
+        font-size: 12px;
+        line-height: 15px;
+      }
+    }
+
+    &__img {
+      max-width: 695px;
+      width: 100%;
+      // width: 349px;
+      // height: 210px;
+      height: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__dropdown {
+      color: #000000;
+      border: 1px solid #cfd3d8;
+      padding: 10px 20px;
+      border-radius: 25px;
+      user-select: none; 
+
+      &:hover {
+        color: #000000 !important;
+      }
+
+      &:active {
+        color: #000000 !important;
+      }
+    }
+
+    &__weather-img {
+      width: 55px;
+      height: 55px;
+
+      @media (max-width: 1200px) {
+        width: 45px;
+        height: 45px;
+      }
+
+      @media (max-width: 992px) {
+        width: 36px;
+        height: 36px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__day {
+      font-size: 48px;
+      line-height: 48px;
+      color: #000000;
+      font-family: Agrofont-Medium;
+
+      @media (max-width: 1200px) {
+        font-size: 40px;
+        line-height: 48px;
+      }
+      @media (max-width: 992px) {
+        font-size: 25px;
+        line-height: 31px;
+      }
+    }
+
+    &__night {
+      font-size: 36px;
+      line-height: 36px;
+      color: #86898c;
+      font-family: Agrofont-Medium;
+
+      @media (max-width: 1200px) {
+        font-size: 35px;
+        line-height: 40px;
+      }
+      @media (max-width: 992px) {
+        font-size: 20px;
+        line-height: 25px;
+      }
+    }
+
+    &__weather-info {
+      font-size: 12px;
+      line-height: 12px;
+      color: #86898c;
+      font-family: Agrofont-Regular;
+
+      @media (max-width: 1200px) {
+        font-size: 11px;
+      }
+    }
+
+    &__weather-part {
+      font-size: 14px;
+      line-height: 18px;
+      font-family: Agrofont-Medium;
+      margin-bottom: 0;
+
+      @media (max-width: 992px) {
+        font-size: 12px;
+        line-height: 15px;
+      }
+    }
+
+    &__weather-daily {
+      width: 40px;
+      height: 40px;
+      margin: auto;
+
+      @media (max-width: 1200px) {
+        width: 30px;
+        height: 30px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .border {
+    border: 1px solid #cfd3d8;
+    border-radius: 12px;
+    padding: 30px;
+    height: 100%;
+
+    @media (max-width: 1200px) {
+      padding: 20px;
+    }
+  }
+
+  .tag {
+    display: block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: #e6f7ff;
+    color: #1890ff;
+    font-size: 12px;
+    line-height: 12px;
+    font-family: Agrofont-Regular;
+    width: max-content;
+  }
+
+  .margin-text {
+    margin: 0;
+  }
+
+  .divider {
+    @media (max-width: 1200px) {
+      margin-top: 14px;
+      margin-bottom: 14px;
+    }
+  }
+
+  
+}
+
+
+.news__card__small {
+  min-height: 215px;   
+
+  @media (max-width: 1200px) {
+    min-height: 200px;
+  }
+  @media (max-width: 992px) {
+    min-height: 180px;
+  }
+  @media (max-width: 768px) {
+    
+  }
+  @media (max-width: 576px) {
+    
+  }
+}
+
+.drop-menu {
+  user-select: none; 
+}

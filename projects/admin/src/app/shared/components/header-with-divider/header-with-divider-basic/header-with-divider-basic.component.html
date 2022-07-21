@@ -1,0 +1,9 @@
+<az-header-with-divider [title]="title">
+  <ng-content></ng-content>
+
+  <button (click)="addEdit()" nz-button nzType="primary" class="ml-1">
+    {{ "add" | translate }}
+  </button>
+
+  <ng-content select="[right]"></ng-content>
+</az-header-with-divider>

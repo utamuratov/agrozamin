@@ -1,0 +1,18 @@
+<div nz-row [nzGutter]="[0, { xs: 20, sm: 20, md: 20, lg: 30, xl: 30 }]">
+  <div class="pt-15 w-100">
+    <az-card-list
+      [data]="data.data"
+      [isLoaded]="isLoaded"
+      [isInlineCard]="isInlineCard"
+    ></az-card-list>
+  </div>
+
+  <div nz-col nzSpan="24">
+    <az-pagination
+      [pageSize]="pageSize"
+      [total]="data.total"
+      [pageIndex]="query.pageIndex"
+      (pageIndexChange)="pageIndexChange.emit($event)"
+    ></az-pagination>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+:host ::ng-deep {
+  .ant-back-top {
+    right: 200px;
+    bottom: 85px;
+
+    @media (max-width: 1440px) {
+      right: 100px;
+      bottom: 180px;
+    }
+
+    @media (max-width: 1200px) {
+      right: 100px;
+    }
+  }
+}
+
+.back-to-top {
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 16px;
+  color: #b7bbbf;
+  font-family: Agrofont-Regular;
+  height: 80px;
+  width: 80px;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 101;
+
+  span {
+    display: block;
+    margin-top: 4px;
+    transition: 0.3s;
+  }
+
+  svg {
+    path {
+      stroke: #377be1;
+      transition: 0.3s;
+    }
+  }
+
+  &:hover {
+    background: #377be1;
+    svg {
+      path {
+        stroke: #fff;
+      }
+    }
+
+    span {
+      color: #fff;
+    }
+  }
+}

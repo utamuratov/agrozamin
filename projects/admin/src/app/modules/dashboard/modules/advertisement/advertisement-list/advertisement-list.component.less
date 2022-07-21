@@ -1,0 +1,33 @@
+.STATUS_NEW {
+  background: #a6dfc4 !important;
+  color: #a6dfc4 !important;
+  padding: 8px 0;
+}
+
+.STATUS_CONFIRMED {
+  background: #6f87e9 !important;
+  color: #6f87e9 !important;
+  padding: 8px 0;
+}
+
+.STATUS_REJECTED {
+  background: #d87b74 !important;
+  color: #d87b74 !important;
+  padding: 8px 0;
+}
+
+.STATUS_ARCHIVED {
+  background: #d6d874 !important;
+  color: #d6d874 !important;
+  padding: 8px 0;
+}
+
+:host ::ng-deep {
+  .ant-table.ant-table-small .ant-table-tbody > tr > td:first-child {
+    padding: 0;
+  }
+
+  .ant-table.ant-table-small .ant-table-thead > tr > th:first-child {
+    border-right: none;
+  }
+}

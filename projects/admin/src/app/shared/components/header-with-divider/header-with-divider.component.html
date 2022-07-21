@@ -1,0 +1,14 @@
+<div class="mb-2">
+  <nz-divider [nzText]="divider" nzOrientation="left" class="position-relative">
+    <ng-template #divider>
+      <div class="divider__left">
+        <div>
+          {{ title }}
+        </div>
+      </div>
+      <div class="divider__right">
+        <ng-content></ng-content>
+      </div>
+    </ng-template>
+  </nz-divider>
+</div>

@@ -1,0 +1,223 @@
+  <div nz-row [nzGutter]="[0,{xs:10, sm:20, md:20, lg:20, xl:20}]">
+    <div nz-col>
+      <div nz-row class="filterOption">
+        
+        <div nz-col nzXs="21" nzSm="21" nzMd="18" nzLg="20" nzXl="20" class="filterOption__content">
+            <div nz-row>
+                <div nz-col nzSpan="24">
+                    <h4>Сельхозтехника / Техника / Тракторы</h4>
+                </div>
+                <div nz-col nzSpan="24" class="filterOption__content__date">
+                    <div nz-row [nzGutter]="[4,0]">
+                        <div nz-col >
+                            <img src="./assets/images/date.png" alt="">
+                        </div>
+                        <div nz-col >
+                            <span>10.02.2022, 15:43</span>
+                        </div>
+                    </div>
+                </div>
+                <div nz-col nzSpan="24" class="filterOption__content__button">
+                    <div nz-row [nzGutter]="[16,10]">
+                        <div nz-col>
+                            <button nz-button>Куплю</button>
+                        </div>
+                        <div nz-col>
+                            <button nz-button>Андижанская область</button>
+                        </div>
+                        <div nz-col>
+                            <button nz-button>от 500 000 сум</button>
+                        </div>
+                        <div nz-col>
+                            <button nz-button>Страна производства: Россия</button>
+                        </div>
+                    </div>
+                </div>
+                <div nz-col nzSpan="24" class="filterOption__content__check">
+                    <div nz-row [nzGutter]="[30,0]">
+                        <div nz-col>
+                            <button nz-button>Показать новое: 15</button>
+                        </div>
+                        <div nz-col>
+                            <label nz-checkbox [(ngModel)]="checked1">Сообщать о новых объявлениях</label> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div  nz-col nzXs="0" nzSm="0" nzMd="6" nzLg="4" nzXl="4" class="filterOption__right">
+          <div nz-row [nzGutter]="[10, 0]">
+            <div nz-col>
+              <img
+                src="./assets/images/button_without_text.png"
+                alt=""
+              />
+            </div>
+            <div nz-col>
+              <img
+                src="./assets/images/button_without_text (1).png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+
+        <div nz-col nzXs="3" nzSm="3" nzMd="0" nzLg="0" nzXl="0">
+            <i
+              nz-icon
+              nz-popover
+              [nzPopoverContent]="contentTemplate"
+              nzPopoverPlacement="bottomRight"
+              nzPopoverTrigger="click"
+            >
+              <img src="/assets/images/top-button.png" alt="" />
+            </i>
+          </div>
+
+      </div>
+    </div>
+
+    <div nz-col>
+        <div nz-row class="filterOption">
+          
+          <div nz-col nzXs="21" nzSm="21" nzMd="18" nzLg="20" nzXl="20" class="filterOption__content">
+              <div nz-row>
+                  <div nz-col nzSpan="24">
+                      <h4>Сельхозтехника / Техника / Тракторы</h4>
+                  </div>
+                  <div nz-col nzSpan="24" class="filterOption__content__date">
+                      <div nz-row [nzGutter]="[4,0]">
+                          <div nz-col >
+                              <img src="/assets/images/date.png" alt="">
+                          </div>
+                          <div nz-col >
+                              <span>10.02.2022, 15:43</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div nz-col nzSpan="24" class="filterOption__content__button">
+                      <div nz-row [nzGutter]="[16,10]">
+                          <div nz-col>
+                              <button nz-button>Сдаю в аренду</button>
+                          </div>
+                          <div nz-col>
+                              <button nz-button>Ташкент</button>
+                          </div>
+                          <div nz-col>
+                              <button nz-button>от 25 000 000 сум</button>
+                          </div>                          
+                      </div>
+                  </div>
+                  <div nz-col nzSpan="24" class="filterOption__content__check">
+                      <div nz-row [nzGutter]="[30,0]">
+                          <div nz-col>
+                              <button style="background: #CFD3D8;" nz-button>Показать новое: 0</button>
+                          </div>
+                          <div nz-col>
+                              <label nz-checkbox [(ngModel)]="checked">Сообщать о новых объявлениях</label> 
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <div nz-col nzXs="0" nzSm="0" nzMd="6" nzLg="4" nzXl="4" class="filterOption__right">
+            <div nz-row [nzGutter]="[10, 0]">
+              <div nz-col>
+                <img
+                  src="/assets/images/button_without_text.png"
+                  alt=""
+                />
+              </div>
+              <div nz-col>
+                <img
+                  src="/assets/images/button_without_text (1).png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzXs="3" nzSm="3" nzMd="0" nzLg="0" nzXl="0">
+            <i
+              nz-icon
+              nz-popover
+              [nzPopoverContent]="contentTemplate"
+              nzPopoverPlacement="bottomRight"
+              nzPopoverTrigger="click"
+            >
+              <img src="/assets/images/top-button.png" alt="" />
+            </i>
+          </div>
+  
+        </div>
+      </div>
+    
+  </div>
+  <ng-template #contentTemplate>
+    <div class="popover">
+      <div nz-row [nzGutter]="[0, 5]">
+        <div nz-col nzSpan="24" class="popover__content">
+          <div class="popover__content__item">
+            <div nz-row>
+              <div nz-col nzSpan="4">
+                <img
+                  src="../../../../../../../../assets/images/archive.png"
+                  alt=""
+                />
+              </div>
+              <div nz-col nzSpan="20">
+                <p>Архивировать</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" class="popover__content">
+          <div class="popover__content__item">
+            <div nz-row>
+              <div nz-col nzSpan="4">
+                <img
+                  src="../../../../../../../../assets/images/bookmark.png"
+                  alt=""
+                />
+              </div>
+              <div nz-col nzSpan="20">
+                <p>Сохранить</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" class="popover__content">
+          <div class="popover__content__item">
+            <div nz-row>
+              <div nz-col nzSpan="4">
+                <img
+                  src="../../../../../../../../assets/images/block.png"
+                  alt=""
+                />
+              </div>
+              <div nz-col nzSpan="20">
+                <p>Заблокировать</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" class="popover__content">
+          <div class="popover__content__item">
+            <div nz-row>
+              <div nz-col nzSpan="4">
+                <img
+                  src="../../../../../../../../assets/images/unlock.png"
+                  alt=""
+                />
+              </div>
+              <div nz-col nzSpan="20">
+                <p>Разблокировать</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>

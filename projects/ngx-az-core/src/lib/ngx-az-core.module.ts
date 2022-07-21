@@ -1,4 +1,8 @@
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -12,6 +16,8 @@ import { SettingsHelper } from './helpers/settings.helper';
 import { GlobalErrorHandler } from './helpers/global-error-handler';
 import { HandleErrorInterceptor } from './interceptors/handle.error.interceptor';
 import { HeaderInterceptor } from './interceptors/header.interceptor';
+import { NgxsModule, Store } from '@ngxs/store';
+import { CoreStateList } from './shared/store/core-state-list';
 
 @NgModule({
   declarations: [],
@@ -40,9 +46,12 @@ import { HeaderInterceptor } from './interceptors/header.interceptor';
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
         useFactory: jwtOptionsFactory,
-        // deps: [Store], // send STORE as parameter
+        deps: [Store], // send STORE as parameter
       },
     }),
+
+    /** NgxsModule for store usage, StateList is for states which ngxs store serves */
+    NgxsModule.forRoot(CoreStateList, {}),
   ],
   exports: [TranslateModule, CommonModule],
   providers: [

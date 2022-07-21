@@ -1,0 +1,278 @@
+// Custom Theming for NG-ZORRO
+// For more information: https://ng.ant.design/docs/customize-theme/en
+@import "../../../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+@import "../../../dist/ngx-az-core/styles/az-global.less";
+
+@primary-color: #3c4bdc;
+@form-item-margin-bottom: 10px;
+@btn-height-base: 42px;
+
+@font-face {
+  font-family: Agrofont-BExpanded;
+  src: url(./assets/fonts/ALSAgrofont-BoldExpanded.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Agrofont-Black;
+  src: url(./assets/fonts/ALSAgrofont-Black.ttf);
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: Agrofont-Bold;
+  src: url(./assets/fonts/ALSAgrofont-Bold.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Agrofont-Medium;
+  src: url(./assets/fonts/ALSAgrofont-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Agrofont-Regular;
+  src: url(./assets/fonts/ALSAgrofont-Regular.ttf);
+  font-weight: 400;
+}
+
+body {
+  font-family: Agrofont-Regular;
+}
+
+label {
+  color: #696f79 !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+//#region HEADER
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Agrofont-BExpanded;
+}
+
+h2.agro-id-form-title {
+  font-size: 36px;
+  line-height: 38px;
+  font-weight: 700;
+}
+
+h2.cabinet-title {
+  font-size: 22px;
+  line-height: 28px;
+  margin-bottom: 40px;
+}
+//#endregion
+
+//#region FONT
+.font {
+  &-agro-black {
+    font-family: Agrofont-Black;
+  }
+
+  &-agro-bold {
+    font-family: Agrofont-Bold;
+  }
+
+  &-agro-medium {
+    font-family: Agrofont-Medium;
+  }
+
+  &-size-12 {
+    @media (max-width: 470px) {
+      font-size: 12px;
+    }
+  }
+}
+//#endregion
+
+//#region NG ZORRO MODIFIED CLASSES
+.ant-layout {
+  background: none;
+}
+
+.ant-input,
+.ant-input-affix-wrapper {
+  border-radius: 6px;
+}
+
+.cabinet {
+  .ant-menu.ant-menu-dark {
+    background: #3c4bdc;
+  }
+
+  &-title {
+    font-size: 22px;
+    line-height: 28px;
+    margin-bottom: 40px !important;
+  }
+}
+
+button.ant-btn.ant-btn-loading {
+  pointer-events: none;
+}
+//#endregion
+
+//#region CUSTOM CLASSES
+
+.custom-btn {
+  max-width: 300px;
+  width: 100%;
+  margin: auto;
+}
+
+.indigo-bg {
+  background: #3c4bdc;
+}
+
+//#region CUSTOM CARD
+.custom-card {
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 14px 1px rgba(0, 0, 0, 0.06);
+  border: 1px solid transparent;
+  background: white;
+
+  &:hover {
+    background: #f9f8f8;
+    border: 1px solid #3c4bdc;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    i {
+      color: #3c4bdc;
+    }
+  }
+
+  &.inline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    i {
+      padding: 0 15px;
+      font-size: 18px;
+    }
+
+    .arrow-right {
+      opacity: 0;
+    }
+
+    .title {
+      flex-grow: 1;
+      padding-left: 15px;
+    }
+
+    &:hover {
+      .arrow-right {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.grid {
+    display: grid;
+    text-align: center;
+    height: 100px;
+  }
+}
+//#endregion
+//#endregion
+
+.divider {
+  color: #fff;
+}
+
+.ant-modal-content {
+  border-radius: 15px;
+}
+
+.ant-modal-header {
+  border-radius: 15px 15px 0 0;
+}
+
+.text {
+  &-start {
+    text-align: start;
+  }
+}
+
+.m-0 {
+  margin: 0;
+}
+
+/* CABINET WIDGETS STYLES */
+.home {
+  &__card {
+    nz-card.widget {
+      height: 305px;
+      border-radius: 5px;
+    }
+    &_title {
+      margin-left: 5px;
+      font-size: 16px;
+      line-height: 20px;
+      font-family: Agrofont-BExpanded;
+    }
+
+    &_divider {
+      margin: 10px 0;
+    }
+
+    &-profile,
+    &-setting {
+      border-radius: 5px;
+    }
+  }
+}
+
+.collpase-bg {
+  background: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.widget-collpase {
+  border-radius: 5px;
+  border: none;
+}
+
+.settings {
+  .ant-switch-checked {
+    background-color: #22a33f !important;
+  }
+}
+
+.ant-popover-inner {
+  border-radius: 15px !important;
+}
+
+.legal__card {
+  .ant-card-body {
+    padding-right: 8px !important;
+  }
+}
+
+.custom {
+  &.ant-spin-nested-loading {
+    height: 100vh;
+    div .ant-spin {
+      max-height: none !important;
+    }
+  }
+}

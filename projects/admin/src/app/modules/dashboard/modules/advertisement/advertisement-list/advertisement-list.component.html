@@ -1,0 +1,41 @@
+<ng-container *ngIf="data">
+  <!-- HEADER -->
+  <az-header-with-divider-basic
+    [title]="('advertisements' | translate) + (data.total | titleTotal)"
+    (clickedAddEditButton)="addEdit()"
+  >
+  </az-header-with-divider-basic>
+
+  <az-grid-with-backend
+    [data]="data"
+    [columns]="columns"
+    [nzWidthConfig]="nzWidthConfig"
+    [showActions]="false"
+    [query]="query"
+    [pageSize]="pageSize"
+    (onQueryParamsChange)="onQueryParamsChange($event)"
+    (pageIndexChange)="paginate($event)"
+    [columnTemplate]="template"
+  >
+    <ng-template #template let-column let-data="data">
+      <ng-container [ngSwitch]="column.field">
+        <ng-container *ngSwitchCase="'status'">
+          <div nz-typography class="mb-0">
+            <code>{{ STATUS[data.status] | translate }}</code>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'actions'">
+          <button (click)="addEdit(data)" nz-button nzType="default">
+            <span>
+              <i nz-icon nzType="eye" nzTheme="twotone"></i>
+            </span>
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="'statusByColor'">
+          <div [class]="STATUS[data.status]">s</div>
+        </ng-container>
+        <div *ngSwitchDefault></div>
+      </ng-container>
+    </ng-template>
+  </az-grid-with-backend>
+</ng-container>

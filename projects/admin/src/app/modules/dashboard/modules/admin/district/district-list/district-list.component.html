@@ -1,0 +1,26 @@
+<!-- HEADER -->
+<az-header-with-divider-advanced
+  [config]="{
+    title: 'districts' | translate,
+    searchInputAdvancedConfig: searchInputConfig
+  }"
+  (clickedAddEditButton)="addEdit()"
+></az-header-with-divider-advanced>
+
+<!-- BODY -->
+<az-grid
+  [data]="searchInputConfig.filteredData"
+  [columns]="columns"
+  (deleted)="delete($event)"
+  (addEdited)="addEdit($event)"
+  [nzWidthConfig]="nzWidthConfig"
+>
+</az-grid>
+
+<!-- ADD-EDIT MODAL -->
+<az-add-edit-district
+  [(isVisible)]="isVisible"
+  [editingData]="editingData"
+  [region$]="region$"
+  (modified)="modified()"
+></az-add-edit-district>

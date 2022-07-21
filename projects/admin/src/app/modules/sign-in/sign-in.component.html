@@ -1,0 +1,76 @@
+<div nz-row style="height: 100%">
+  <div nz-col nzFlex="auto"></div>
+
+  <div nz-col nzFlex="300px">
+    <div nz-row nzJustify="space-around" nzAlign="middle" style="height: 100%">
+      <div nz-col nzSpan="24">
+        <!-- ENTER -->
+        <h1>{{ "entrance" | translate }}</h1>
+
+        <nz-divider style="margin-top: -10px; margin-bottom: 0"></nz-divider>
+
+        <form
+          nz-form
+          [formGroup]="form"
+          class="login-form"
+          (ngSubmit)="submit()"
+        >
+          <!-- LOGIN -->
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="'fillLogin' | translate">
+              <nz-input-group nzPrefixIcon="user">
+                <input
+                  id="login"
+                  type="text"
+                  nz-input
+                  nzSize="large"
+                  formControlName="login"
+                  placeholder="{{ 'usersLogin' | translate }}"
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- PASSWORD -->
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="'fillPassword' | translate">
+              <nz-input-group nzPrefixIcon="lock">
+                <input
+                  id="password"
+                  type="password"
+                  nz-input
+                  nzSize="large"
+                  formControlName="password"
+                  [placeholder]="'password' | translate"
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- !IMPLEMENT OR REMOVE THIS CODE SECTION -->
+          <!-- <div nz-row class="login-form-margin">
+            <div nz-col [nzSpan]="12">
+              <label nz-checkbox formControlName="remember">
+                <span>Запомните меня</span>
+              </label>
+            </div>
+          </div> -->
+
+          <!-- LOGIN -->
+          <div [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }">
+            <button
+              nz-button
+              class="login-form-button login-form-margin"
+              [nzType]="'primary'"
+              [nzLoading]="isWaitingResponse$ | async"
+            >
+              {{ "toComeIn" | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div nz-col nzFlex="auto"></div>
+</div>

@@ -1,0 +1,340 @@
+// Custom Theming for NG-ZORRO
+// For more information: https://ng.ant.design/docs/customize-theme/en
+@import "../../../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+// Override less variables to here
+// View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less
+
+// @primary-color: #1890ff;
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: Agrofont-BExpanded;
+  src: url(./assets/fonts/ALSAgrofont-BoldExpanded.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Agrofont-Black;
+  src: url(./assets/fonts/ALSAgrofont-Black.ttf);
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: Agrofont-Bold;
+  src: url(./assets/fonts/ALSAgrofont-Bold.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Agrofont-Medium;
+  src: url(./assets/fonts/ALSAgrofont-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Agrofont-Regular;
+  src: url(./assets/fonts/ALSAgrofont-Regular.ttf);
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Agrofont-BExpanded;
+  color: #000;
+}
+
+.header__btn {
+  svg {
+    path {
+      transition: 0.4s;
+    }
+    circle {
+      transition: 0.4s;
+    }
+  }
+
+  &:hover {
+    svg {
+      path {
+        stroke: @primary-color-hover;
+      }
+
+      circle {
+        stroke: @primary-color-hover;
+      }
+    }
+  }
+
+  &:active {
+    path {
+      stroke: @primary-color-active;
+    }
+
+    circle {
+      stroke: @primary-color-active;
+    }
+  }
+}
+
+.title-color {
+  color: #292d32;
+}
+
+.text-color-desc {
+  color: #2c3a4b;
+  opacity: 0.5;
+}
+.text-color {
+  color: #000000;
+}
+
+.header-layout {
+  background: #fff;
+  padding: 12px 0;
+  line-height: 0;
+}
+
+.nz-sider {
+  background: #f5f5f7;
+}
+
+.sidebar {
+  .ant-menu {
+    background: none;
+    max-width: 202px;
+    width: 100%;
+    margin: auto;
+    transition: 0;
+  }
+
+  .ant-menu-item {
+    font-family: Agrofont-Regular;
+    font-size: 16px;
+    line-height: 20px;
+    color: #545454;
+    border-radius: 16px;
+    transition: 0.3s;
+    height: 55px;
+
+    i {
+      svg {
+        path {
+          transition: 0.3s;
+        }
+
+        circle {
+          transition: 0.3s;
+        }
+      }
+
+      &.fill {
+        svg {
+          path {
+            transition: 0.3s;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      color: #fff;
+      background: #377be1;
+
+      i {
+        svg {
+          path {
+            stroke: #fff;
+          }
+
+          circle {
+            stroke: #fff;
+          }
+        }
+
+        &.fill {
+          svg {
+            path {
+              fill: #fff;
+            }
+          }
+        }
+      }
+    }
+
+    &::after {
+      border-right: none;
+    }
+  }
+
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background: #377be1;
+  }
+
+  .ant-menu-item-selected {
+    font-family: Agrofont-Medium;
+    color: #fff;
+
+    i {
+      svg {
+        path {
+          stroke: #fff;
+        }
+
+        circle {
+          stroke: #fff;
+        }
+      }
+
+      &.fill {
+        svg {
+          path {
+            fill: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .ant-menu-inline {
+    border-right: none;
+  }
+}
+
+.icon {
+  color: #000;
+}
+
+.btn {
+  border: 1px solid #f4f4f4;
+  background: #fff;
+}
+
+.btn-active {
+  background: #377be1;
+  border: 1px solid #377be1;
+
+  &:hover {
+    background: #377be1;
+  }
+  &:active {
+    background: #377be1;
+  }
+  &:focus {
+    background: #377be1;
+  }
+
+  &.header__btn {
+    svg {
+      path {
+        transition: 0.4s;
+        stroke: #fff;
+      }
+      circle {
+        transition: 0.4s;
+        stroke: #fff;
+      }
+    }
+
+    &:hover {
+      svg {
+        path {
+          stroke: #fff;
+        }
+
+        circle {
+          stroke: #fff;
+        }
+      }
+    }
+
+    &:active {
+      path {
+        stroke: #fff;
+      }
+
+      circle {
+        stroke: #fff;
+      }
+    }
+  }
+}
+
+
+.ant-popover-inner, .ant-popover-arrow-content {
+  background: #fff;
+}
+
+.ant-popover-title {
+  border-bottom: none;
+}
+
+.popover__content {
+  .ant-menu {
+    background: none;
+    max-width: 200px;
+    width: 100%;
+  }
+
+  .ant-menu-item {
+    font-family: Agrofont-Regular;
+    font-size: 14px;
+    line-height: 18px;
+    color: #000;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    transition: none;
+    
+    i {
+      svg {
+        path {
+          stroke: #377BE1;
+        }
+
+        circle {
+          stroke: #377BE1;
+        }
+      }
+
+      &.fill {
+        svg {
+          path {
+            fill: #377BE1;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      background: #EDEFF5;
+    }
+
+    &::after {
+      border-right: none;
+    }
+  }
+
+  .ant-menu-vertical {
+    border-right: none;
+  }
+
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background: #EDEFF5;
+    color: #000;
+  }
+
+  .ant-menu-item-selected {
+    background: #EDEFF5;
+    color: #000;
+  }
+
+  .ant-menu-inline {
+    border-right: none;
+  }
+}
+

@@ -1,0 +1,32 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="'blocking' | translate"
+  (nzOnCancel)="close()"
+  modal
+>
+  <div *nzModalContent>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <nz-form-item>
+        <nz-form-label nzFor="region_id">{{
+          "commentary" | translate
+        }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="errorKey">
+          <textarea
+            nz-input
+            formControlName="comment"
+            [placeholder]="'giveFullInformation' | translate"
+            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+          ></textarea>
+        </nz-form-control>
+        <ng-template #errorKey let-control>
+          <error [control]="control"></error>
+        </ng-template>
+      </nz-form-item>
+    </form>
+  </div>
+  <div *nzModalFooter>
+    <button (click)="block()" nz-button nzType="primary">
+      {{ "blocking" | translate }}
+    </button>
+  </div>
+</nz-modal>

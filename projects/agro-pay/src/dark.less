@@ -1,0 +1,288 @@
+.inner-content {
+  background: #202020 !important;
+  color: #fff;
+}
+
+.header-layout {
+  background: #202020;
+}
+
+.title-color {
+  color: #fff;
+}
+
+.text-color-desc {
+  color: #fff;
+}
+.text-color {
+  color: #fff;
+
+  &.search {
+    color: #000;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #fff;
+}
+
+.sidebar {
+  .ant-menu {
+    background: transparent;
+    max-width: 202px;
+    width: 100%;
+    margin: auto;
+    transition: none;
+  }
+
+  .ant-menu-item {
+    font-family: Agrofont-Regular;
+    font-size: 16px;
+    line-height: 20px;
+    color: #fff;
+    border-radius: 16px;
+    transition: 0.3s;
+    height: 55px;
+
+    i {
+      svg {
+        path {
+          transition: 0.3s;
+          stroke: #fff;
+        }
+
+        circle {
+          transition: 0.3s;
+          stroke: #fff;
+        }
+      }
+
+      &.fill {
+        svg {
+          path {
+            transition: 0.3s;
+            fill: #fff;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      color: #fff;
+      background: #377be1;
+
+      i {
+        svg {
+          path {
+            stroke: #fff;
+          }
+
+          circle {
+            stroke: #fff;
+          }
+        }
+
+        &.fill {
+          svg {
+            path {
+              fill: #fff;
+            }
+          }
+        }
+      }
+    }
+
+    &::after {
+      border-right: none;
+    }
+  }
+
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background: #377be1;
+  }
+
+  .ant-menu-item-selected {
+    font-family: Agrofont-Medium;
+    color: #fff;
+
+    i {
+      svg {
+        path {
+          stroke: #fff;
+        }
+
+        circle {
+          stroke: #fff;
+        }
+      }
+
+      &.fill {
+        svg {
+          path {
+            fill: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .ant-menu-inline {
+    border-right: none;
+  }
+}
+
+.nz-sider {
+  background: #161616;
+}
+
+.icon {
+  color: #fff;
+}
+
+.btn {
+  border: 1px solid #f4f4f4;
+  background: #202020;
+
+  &:hover {
+    background: #377be1;
+    border: 1px solid #377be1;
+  }
+  &:active {
+    background: #377be1;
+    border: 1px solid #377be1;
+  }
+  &:focus {
+    background: #377be1;
+    border: 1px solid #377be1;
+  }
+}
+
+.header__btn {
+  svg {
+    path {
+      transition: 0.4s;
+      stroke: #fff;
+    }
+    circle {
+      transition: 0.4s;
+      stroke: #fff;
+    }
+  }
+
+  &:hover {
+    svg {
+      path {
+        stroke: #fff;
+      }
+
+      circle {
+        stroke: #fff;
+      }
+    }
+  }
+
+  &:active {
+    path {
+      stroke: #fff;
+    }
+
+    circle {
+      stroke: #fff;
+    }
+  }
+}
+
+.btn-active {
+  background: #377be1;
+  border: 1px solid #377be1;
+
+  &:hover {
+    background: #377be1;
+  }
+  &:active {
+    background: #377be1;
+  }
+  &:focus {
+    background: #377be1;
+  }
+
+  &.header__btn {
+    svg {
+      path {
+        transition: 0.4s;
+        stroke: #fff;
+      }
+      circle {
+        transition: 0.4s;
+        stroke: #fff;
+      }
+    }
+
+    &:hover {
+      svg {
+        path {
+          stroke: #fff;
+        }
+
+        circle {
+          stroke: #fff;
+        }
+      }
+    }
+
+    &:active {
+      path {
+        stroke: #fff;
+      }
+
+      circle {
+        stroke: #fff;
+      }
+    }
+  }
+}
+
+.ant-popover-inner,
+.ant-popover-arrow-content {
+  background: #161616;
+}
+
+.popover__content {
+  .ant-menu {
+    background: none;
+  }
+
+  .ant-menu-item {
+    font-family: Agrofont-Regular;
+    font-size: 14px;
+    line-height: 18px;
+    color: #000;
+    height: 44px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background: linear-gradient(135deg, #171717 0%, #292929 100%), #edeff5;
+    }
+
+    &::after {
+      border-right: none;
+    }
+  }
+
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background: linear-gradient(135deg, #171717 0%, #292929 100%), #edeff5;
+    color: #fff;
+  }
+
+  .ant-menu-item-selected {
+    background: linear-gradient(135deg, #171717 0%, #292929 100%), #edeff5;
+    color: #fff;
+  }
+}
+

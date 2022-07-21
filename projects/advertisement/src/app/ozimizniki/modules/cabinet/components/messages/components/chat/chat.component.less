@@ -1,0 +1,644 @@
+// .messages {
+//   height: 700px;
+//   background: #fff;
+//   border-radius: 12px;
+
+//   @media (max-width: 992px) {
+//     height: 480px;
+//   }
+
+//   &__left {
+
+//     border-right: 1px solid #cfd3d8;
+//     height: 700px;
+
+//     &__content {
+//       padding: 20px;
+//       &__input {
+//         padding-bottom: 20px;
+//         input {
+//           height: 40px;
+//         }
+//         button {
+//           height: 40px;
+//         }
+//       }
+//       &__user{
+//         overflow-y: scroll;
+//           &::-webkit-scrollbar {
+//             width: 4px; /* ширина для вертикального скролла */
+//             background-color: #CFD3D8;
+//         }
+//         /* ползунок скроллбара */
+//         &::-webkit-scrollbar-thumb {
+//             background-color: #CFD3D8;
+//             border-radius: 2px;
+//             height: 132px;
+//         }
+
+//         &::-webkit-scrollbar-thumb:hover {
+//             background-color: #253861;
+//         }
+
+//         cursor: pointer;
+//         &:active{
+//             background: #F2F6FC;
+//           }
+//         border-radius: 8px;
+//         p{
+//           margin: 0;
+//           font-size: 14px;
+//           line-height: 18px;
+//           font-family: Agrofont-Medium;
+//         }
+//         span{
+//           font-size: 12px;
+//           line-height: 15px;
+//           color: #86898C;
+//         }
+//       }
+//     }
+//   }
+
+//   &__body{
+//     &__content{
+//       padding-top: 16px;
+//       padding-right: 16px;
+
+//       &__top{
+//         padding: 10px;
+//         i{
+//           padding-left: 10px;
+//           cursor: pointer;
+//         }
+
+//         &__input {
+
+//           input {
+//             height: 40px;
+//           }
+//           button {
+//             height: 40px;
+//             padding-right: 10px;
+//           }
+//         }
+//       }
+
+//       &__middle{
+//         margin-top: 18px;
+//         height: 548px;
+//         border: 1px solid #CFD3D8;
+//         border-radius: 0px 8px 8px 0px;
+//         border-left: none;
+//         padding-left: 5px;
+
+//         @media (max-width: 992px) {
+//           height: 480px;
+//           border: none;
+//         }
+
+//         &__user{
+//           overflow-y: scroll;
+//             &::-webkit-scrollbar {
+//               width: 4px; /* ширина для вертикального скролла */
+//               background-color: #CFD3D8;
+//           }
+//           /* ползунок скроллбара */
+//           &::-webkit-scrollbar-thumb {
+//               background-color: #CFD3D8;
+//               border-radius: 2px;
+//               height: 132px;
+//           }
+
+//           &::-webkit-scrollbar-thumb:hover {
+//               background-color: #253861;
+//           }
+
+//           cursor: pointer;
+//           &:active{
+//               background: #F2F6FC;
+//             }
+//           border-radius: 8px;
+//           p{
+//             margin: 0;
+//             font-size: 14px;
+//             line-height: 18px;
+//             font-family: Agrofont-Medium;
+//           }
+//           span{
+//             font-size: 12px;
+//             line-height: 15px;
+//             color: #86898C;
+//           }
+//         }
+
+//       }
+
+//       &__footer{
+
+//         padding-top: 12px;
+//         .ant-input-affix-wrapper {
+//             padding: 0;
+//             border: none;
+//         }
+//         .ant-input-affix-wrapper:hover{
+//             border: none;
+//         }
+//         button{
+//             background: none;
+//             border: none;
+//             padding: 0;
+//             margin-left: 10px;
+//             padding-right: 0;
+//         }
+//     }
+
+//     }
+//   }
+// }
+
+// .popover{
+//   width: 192px;
+//   &__content{
+//     padding: 0px;
+//     &__item{
+//       width:193px;
+//       height: 44px;
+//       border-radius: 4px;
+//       padding: 10px;
+//       cursor: pointer;
+//       &:active{
+//         background: #EDEFF5;
+//         color: #86898C;
+//       }
+//       p{
+//         margin: 0;
+//       }
+//     }
+//   }
+// }
+// .ant-input-affix-wrapper-focused{
+//   box-shadow: none;
+// }
+
+.chat {
+  min-height: 700px;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+
+  @media (max-width: 775px) {
+    min-height: 505px;
+  }
+
+  &_border {
+    border-right: 1px solid #cfd3d8;
+
+    @media (max-width: 767px) {
+      border: none;
+    }
+  }
+
+  &__list {
+    padding: 20px;
+    height: 700px;
+
+    @media (max-width: 767px) {
+      padding: 15px;
+    }
+
+    @media (max-width: 575px) {
+      padding: 10px;
+    }
+
+    &__items {
+      height: 600px;
+      overflow: auto;
+
+      /* width */
+      &::-webkit-scrollbar {
+        width: 4px;
+        border-radius: 2px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: #f6f7fa;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: #cfd3d8;
+        border-radius: 2px;
+      }
+    }
+
+    &__card {
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+
+      &.active {
+        background: #f2f6fc;
+      }
+
+      &__img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &__owner {
+        font-size: 14px;
+        font-family: Agrofont-Regular;
+        margin-bottom: 0;
+        color: rgb(127, 151, 153);
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &__adv {
+        margin-bottom: 0;
+        font-family: Agrofont-Medium;
+        font-size: 14px;
+        color: #000;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &__save {
+        &.active {
+          svg {
+            path {
+              fill: black;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__dialogs {
+    &__person {
+      padding: 16px;
+      border-bottom: 1px solid #cfd3d8;
+
+      @media (max-width: 767px) {
+        padding: 10px;
+      }
+
+      @media (max-width: 400px) {
+        padding: 10px 5px;
+      }
+
+      &__info {
+        cursor: pointer;
+      }
+
+      &__ava {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &__name {
+        font-family: Agrofont-Medium;
+        font-size: 14px;
+        color: #000;
+        line-height: 17px;
+      }
+
+      &__status {
+        font-size: 12px;
+        font-family: Agrofont-Regular;
+        color: #86898c;
+        line-height: 15px;
+
+        .online {
+          position: relative;
+
+          &::after {
+            content: "";
+            display: block;
+            width: 5px;
+            height: 5px;
+            background: #52c41a;
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            border-radius: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+
+      &__options {
+        &__picker {
+          cursor: pointer;
+        }
+
+        &__img {
+          cursor: pointer;
+          vertical-align: bottom;
+
+          &.active {
+            svg {
+              path {
+                fill: black;
+                stroke: #000;
+              }
+            }
+          }
+        }
+
+        &.drawer {
+          padding: 20px;
+          background: #fff;
+          cursor: pointer;
+        }
+
+        &__text {
+          font-family: Agrofont-Medium;
+          font-size: 16px;
+          line-height: 20px;
+          color: #000;
+          margin-left: 20px;
+        }
+      }
+
+      &__advert {
+        padding: 16px;
+        border-bottom: 1px solid #cfd3d8;
+        cursor: pointer;
+        background: #f2f6fc;
+
+        p {
+          margin-bottom: 0;
+        }
+
+        &__img {
+          width: 50px;
+          height: 50px;
+          border-radius: 2px;
+          overflow: hidden;
+
+          @media (max-width: 575px) {
+            margin: 0 auto;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        &__title {
+          font-size: 14px;
+          font-family: Agrofont-Medium;
+          line-height: 17px;
+          color: #000;
+        }
+
+        &__price {
+          font-family: Agrofont-Bold;
+          font-size: 16px;
+          line-height: 20px;
+          color: #377be1;
+        }
+
+        &__id {
+          font-size: 14px;
+          font-family: Agrofont-Regular;
+          color: #86898c;
+        }
+      }
+
+      &__messages {
+        padding: 16px 8px 16px 16px;
+        height: 464px;
+        overflow: auto;
+
+        @media (max-width: 768px) {
+          height: 280px;
+        }
+
+        /* width */
+        &::-webkit-scrollbar {
+          width: 4px;
+          border-radius: 2px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+          background: #f6f7fa;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+          background: #cfd3d8;
+          border-radius: 2px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+      }
+    }
+  }
+}
+
+.chat__footer {
+  padding: 16px;
+  border-top: 1px solid #cfd3d8;
+
+  .ant-input-affix-wrapper {
+    padding: 0;
+    border: none;
+  }
+  .ant-input-affix-wrapper:hover {
+    border: none;
+  }
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    padding-right: 0;
+  }
+}
+
+:host ::ng-deep {
+  .ant-input-suffix,
+  .ant-input-prefix {
+    align-items: end;
+  }
+
+  .ant-input-affix-wrapper-focused {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+
+  .ant-btn-icon-only{
+    &.arrow {
+      @media (max-width: 575px) {
+        width: 32px;
+        height: 32px;
+      }
+    }
+    &.ellips {
+      @media (max-width: 575px) {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+  
+  
+}
+
+.chat-textarea {
+  resize: none;
+  min-height: 40px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+}
+
+.chat__body {
+  &__user {
+    position: relative;
+    &__message {
+      border-radius: 4px;
+      max-width: 550px;
+      width: max-content;
+      padding: 12px 16px;
+      margin-bottom: 5px;
+      overflow: hidden;
+
+      @media (max-width: 1200px) {
+        max-width: 400px;
+      }
+      @media (max-width: 575px) {
+        max-width: 300px;
+      }
+
+      @media (max-width: 400px) {
+        max-width: 260px;
+      }
+
+      @media (max-width: 359px) {
+        max-width: 220px;
+      }
+
+      p {
+        margin: 0;
+        font-family: Agrofont-Regular;
+        color: #000;
+        font-size: 14px;
+
+        @media (max-width: 575px) {
+          font-size: 12px;
+        }
+      }
+
+      span {
+        font-size: 12px;
+        font-family: Agrofont-Regular;
+      }
+
+      &.left {
+        margin-right: auto;
+        background: #f2f6fc;
+
+        span {
+          color: #86898c;
+        }
+      }
+
+      &.right {
+        margin-left: auto;
+        background: #377be1;
+
+        p {
+          color: #fff;
+        }
+        span {
+          color: rgb(192, 191, 191);
+          display: block;
+          text-align: right;
+        }
+      }
+
+      &.image {
+        background: white;
+
+        .image__error {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: rgba(#07020280, 0.5);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid rgb(243, 86, 86);
+          border-radius: 4px;
+        }
+        img {
+          width: 200px;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &__date {
+    margin: 0;
+    position: sticky;
+    top: 0;
+    p {
+      width: max-content;
+      border-radius: 12px;
+      padding: 4px 17px;
+      background: #f2f6fc;
+      margin: 0;
+      color: #86898c;
+      font-family: Agrofont-Regular;
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+}

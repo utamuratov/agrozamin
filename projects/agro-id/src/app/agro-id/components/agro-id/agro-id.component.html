@@ -1,0 +1,119 @@
+<div nz-row class="sign-up">
+  <div nz-col nzSm="12" nzXs="0" class="sign-up__left_bg">
+    <div class="shadow"></div>
+    <div nz-row class="h-100">
+      <div
+        nz-col
+        nzXs="1"
+        nzSm="2"
+        nzMd="2"
+        nzLg="4"
+        nzXl="4"
+        class="h-100"
+      ></div>
+      <div
+        nz-col
+        nzXs="22"
+        nzSm="20"
+        nzMd="20"
+        nzLg="16"
+        nzXl="16"
+        class="h-100"
+      >
+        <h2 class="logo" nz-typography>{{ "agroId" | translate }}</h2>
+        <div class="sign-up__description">
+          <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0" nzXXl="0">
+            <h3 class="sign-up__title small-title" nz-typography>
+              {{ "wantYouSell" | translate }}
+            </h3>
+            <p class="sign-up__text small-text">
+              {{ "wantYouSellDesc" | translate }}
+            </p>
+          </div>
+          <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24" nzXXl="0">
+            <h3 class="sign-up__title medium-title" nz-typography>
+              {{ "wantYouSell" | translate }}
+            </h3>
+            <p class="sign-up__text medium-text">
+              {{ "wantYouSellDesc" | translate }}
+            </p>
+          </div>
+          <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="0" nzXXl="24">
+            <h3 class="sign-up__title large-title" nz-typography>
+              {{ "wantYouSell" | translate }}
+            </h3>
+            <p class="sign-up__text large-text">
+              {{ "wantYouSellDesc" | translate }}
+            </p>
+          </div>
+          <img
+            src="assets/images/agro-id-images/logo.svg"
+            alt="agrozamin logo"
+          />
+        </div>
+      </div>
+      <div
+        nz-col
+        nzXs="1"
+        nzSm="2"
+        nzMd="2"
+        nzLg="4"
+        nzXl="4"
+        class="h-100"
+      ></div>
+    </div>
+    
+  </div>
+  <div
+    nz-col
+    nzSm="12"
+    nzXs="24"
+    style="
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: 100vh;
+      position: relative;
+    "
+  >
+  <div class="back"></div>
+    <triangle></triangle>
+    <!-- <div class="triangle">
+      <img
+        src="../../../../../assets/images/agro-id-images/topTriangle.png"
+        alt=""
+      />
+    </div> -->
+    <div nz-row class="h-100">
+      <div
+        nz-col
+        nzXs="1"
+        nzSm="2"
+        nzMd="2"
+        nzLg="2"
+        nzXl="4"
+        class="h-100"
+      ></div>
+      <div
+        nz-col
+        nzXs="22"
+        nzSm="20"
+        nzMd="20"
+        nzLg="18"
+        nzXl="16"
+        class="h-100"
+        style="padding-top: 4vh; padding-bottom: 4vh;"
+      >
+        <router-outlet></router-outlet>
+      </div>
+      <div
+        nz-col
+        nzXs="1"
+        nzSm="2"
+        nzMd="2"
+        nzLg="4"
+        nzXl="4"
+        class="h-100"
+      ></div>
+    </div>
+  </div>
+</div>

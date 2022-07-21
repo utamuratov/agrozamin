@@ -1,0 +1,35 @@
+.info {
+  &__category {
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 16px;
+    height: 232px;
+
+    &__list {
+      height: 200px;
+      overflow-y: auto;
+
+      li {
+        cursor: pointer;
+        &.active {
+          color: #377be1;
+        }
+      }
+
+      /* width */
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: #f6f7fa;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: #cfd3d8;
+      }
+    }
+  }
+}

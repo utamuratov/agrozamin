@@ -1,0 +1,35 @@
+<div class="category-page" style="background-color: #f8f9fc">
+  <div class="container">
+    <az-breadcrumb-advertisement
+      [categoriesForBreadcrumb]="categoriesForBreadcrumb"
+    ></az-breadcrumb-advertisement>
+
+    <div nz-row [nzGutter]="[30, 0]">
+      <div nz-col nzXs="0" nzSm="0" nzMd="9" nzLg="8" nzXl="6">
+        <div nz-row [nzGutter]="[0, 30]">
+          <div nz-col nzSpan="24">
+            <div class="menu">
+              <az-child-category [categories]="categories"></az-child-category>
+            </div>
+          </div>
+          <div nz-col nzSpan="24">
+            <az-category-filter
+              [categoryId]="filter.categoryId"
+              [queryParams]="filter.queryParams"
+              (filtersChange)="onChangeFilters($event)"
+            ></az-category-filter>
+          </div>
+          <div nz-col nzSpan="24">
+            <az-just-advertisement></az-just-advertisement>
+          </div>
+        </div>
+      </div>
+      <div nz-col nzXs="24" nzSm="24" nzMd="15" nzLg="16" nzXl="18">
+        <az-advertisement-list
+          [filters]="filters"
+          [filter]="filter"
+        ></az-advertisement-list>
+      </div>
+    </div>
+  </div>
+</div>

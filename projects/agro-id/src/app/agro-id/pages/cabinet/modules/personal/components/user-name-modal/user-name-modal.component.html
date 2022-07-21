@@ -1,0 +1,77 @@
+<!-- USER NAME -->
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="close()">
+  <form nz-form nzLayout="vertical" [formGroup]="form">
+    <div *nzModalTitle>
+      <h4 nz-typography>{{ "changeName" | translate }}</h4>
+    </div>
+    <ng-container *nzModalContent>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="firstName"
+          ><span class="font-agro-medium">{{
+            "firstName" | translate
+          }}</span></nz-form-label
+        >
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="error">
+          <input
+            nz-input
+            type="text"
+            id="firstName"
+            formControlName="f_name"
+            nzSize="large"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="lastName"
+          ><span class="font-agro-medium">{{
+            "lastName" | translate
+          }}</span></nz-form-label
+        >
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="error">
+          <input
+            nz-input
+            type="text"
+            id="lastName"
+            formControlName="l_name"
+            nzSize="large"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <ng-template #error let-control>
+        <error [control]="control"></error>
+        <error-from-server
+          [byMessage]="true"
+          [error]="control.getError(ERROR_MESSAGE_FROM_SERVER)"
+        ></error-from-server>
+      </ng-template>
+    </ng-container>
+    <div *nzModalFooter nz-row nzGutter="10">
+      <div nz-col nzSpan="12">
+        <button
+          class="font-agro-medium"
+          nzBlock
+          nz-button
+          nzType="default"
+          nzShape="round"
+          (click)="close()"
+        >
+          {{ "cancel" | translate }}
+        </button>
+      </div>
+      <div nz-col nzSpan="12">
+        <button
+          nz-button
+          nzBlock
+          nzShape="round"
+          nzType="primary"
+          (click)="submit()"
+          [nzLoading]="isWaitingResponse$ | async"
+          [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }"
+        >
+          {{ "save" | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</nz-modal>

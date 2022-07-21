@@ -1,0 +1,28 @@
+<div class="single-category">
+  <div nz-row [nzGutter]="[0, 27]">
+    <div nz-col nzSpan="24">
+      <a class="single-category__link" (click)="back()">
+        <i nz-icon nzType="left" nzTheme="outline"></i>
+        <img [src]="categories[0].icon" alt="icon" />
+        <span>{{ categories[0].name }}</span>
+      </a>
+    </div>
+    <div nz-col nzSpan="24">
+      <ul nz-row [nzGutter]="[0, 16]">
+        <li
+          nz-col
+          nzSpan="24"
+          *ngFor="let childCategory of categories[0].child_categories"
+        >
+          <a
+            class="single-category__sublink"
+            (click)="navigateByCategoryId(childCategory.id)"
+            >{{ childCategory.name }}
+            <!-- TODO: REMOVE -->
+            <!-- <span>{{ cat.count }}</span> -->
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

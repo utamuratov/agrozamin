@@ -1,24 +1,41 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LanguageUtilit } from 'ngx-az-core';
+import { Constants, LanguageGuard } from 'ngx-az-core';
+import { RootLayoutComponent } from './components/root-layout/root-layout.component';
+import { AuthGuard } from './core/gurad/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: LanguageUtilit.currentLanguage,
+    redirectTo: Constants.AGROZAMIN_PREFIX_ROUTE_PATH,
     pathMatch: 'full',
   },
   {
-    path: ':language',
-    loadChildren: () =>
-      import('./pages/dashboard/dashboard.module').then(
-        (m) => m.DashboardModule
-      ),
-  },
-  {
-    path: ':language/sign-in',
-    loadChildren: () =>
-      import('./pages/sign-in/sign-in.module').then((m) => m.SignInModule),
+    path: Constants.AGROZAMIN_PREFIX_ROUTE_PATH,
+    component: RootLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: Constants.DEFAULT_LANGUAGE_CODE,
+        pathMatch: 'full',
+      },
+      {
+        path: ':language',
+        loadChildren: () =>
+          import('./modules/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+        canActivate: [LanguageGuard, AuthGuard],
+      },
+      {
+        path: ':language/sign-in',
+        loadChildren: () =>
+          import('./modules/sign-in/sign-in.module').then(
+            (m) => m.SignInModule
+          ),
+        canActivate: [LanguageGuard],
+      },
+    ],
   },
 ];
 

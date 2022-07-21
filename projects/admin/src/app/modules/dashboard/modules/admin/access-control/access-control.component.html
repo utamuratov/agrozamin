@@ -1,0 +1,119 @@
+<!-- HEADER -->
+<az-header-with-divider-advanced
+  [config]="{
+    title: 'controls' | translate,
+    searchInputAdvancedConfig: searchInputConfig
+  }"
+  (clickedAddEditButton)="addEdit()"
+></az-header-with-divider-advanced>
+
+<az-grid
+  [data]="searchInputConfig.filteredData"
+  [columns]="columns"
+  [columnTemplate]="columnTemplate"
+  [nzWidthConfig]="nzWidthConfig"
+  (deleted)="delete($event)"
+  (addEdited)="addEdit($event)"
+>
+  <ng-template #columnTemplate let-column let-data="data">
+    <ng-container [ngSwitch]="column.field">
+      <ng-container *ngSwitchCase="'actions'">
+        <span *ngFor="let action of data.actions" nz-typography
+          ><code>{{ action.key }}</code></span
+        >
+      </ng-container>
+    </ng-container>
+  </ng-template>
+</az-grid>
+
+<az-add-edit-access-control
+  [(isVisible)]="isVisible"
+  [editingData]="editingData"
+  (modified)="modified()"
+></az-add-edit-access-control>
+
+<!-- TODO: REMOVE -->
+<!-- <nz-table
+  #table
+  [nzData]="searchInputConfig.filteredData"
+  nzShowPagination
+  nzShowSizeChanger
+  nzSize="small"
+  nzBordered
+  [nzScroll]="(searchInputConfig.filteredData.length | makeNzScroll | async)!"
+>
+  <thead>
+    <tr>
+      <th
+        nzWidth="100px"
+        rowspan="2"
+        nzAlign="center"
+        [nzSortFn]="'id' | azSort: false"
+      >
+        {{ "id" | translate }}
+      </th>
+      <th
+        nzWidth="200px"
+        rowspan="2"
+        nzAlign="center"
+        [nzSortFn]="'key' | azSort"
+      >
+        {{ "key" | translate }}
+      </th>
+      <th [colspan]="(language$ | async)!.length" nzAlign="center">
+        {{ "description" | translate }}
+      </th>
+      <th rowspan="2" nzAlign="center">
+        {{ "url" | translate }}
+      </th>
+      <th rowspan="2" nzAlign="center">
+        {{ "actions" | translate }}
+      </th>
+      <th nzRight rowspan="2"></th>
+    </tr>
+    <tr>
+      <th
+        *ngFor="let language of language$ | async"
+        nzAlign="center"
+        [nzSortFn]="'description.' + language.code | azSort"
+      >
+        {{ language.name }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data">
+      <td nzAlign="center">
+        {{ data.id }}
+      </td>
+      <td nzAlign="center">
+        {{ data.key }}
+      </td>
+      <td nzAlign="left" *ngFor="let language of language$ | async">
+        {{ data.description[language.code] }}
+      </td>
+      <td nzAlign="center">
+        {{ data.url }}
+      </td>
+      <td nzAlign="center">
+        <span *ngFor="let action of data.actions" nz-typography
+          ><code>{{ action.key }}</code></span
+        >
+      </td>
+      <td nzRight nzAlign="center">
+        <nz-button-group>
+          <button (click)="delete(data.id)" nz-button nzType="default">
+            <span>
+              <i nz-icon nzType="delete" nzTheme="twotone"></i>
+            </span>
+          </button>
+          <button (click)="addEdit(data)" nz-button nzType="default">
+            <span>
+              <i nz-icon nzType="edit" nzTheme="twotone"></i>
+            </span>
+          </button>
+        </nz-button-group>
+      </td>
+    </tr>
+  </tbody>
+</nz-table> -->

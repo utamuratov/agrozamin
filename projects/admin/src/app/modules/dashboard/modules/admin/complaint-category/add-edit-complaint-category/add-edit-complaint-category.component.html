@@ -1,0 +1,23 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="(editingData?.id ? 'edit' : 'add') | translate"
+  (nzOnCancel)="close()"
+  modal
+>
+  <div *nzModalContent>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <div class="overflow-auto max-height">
+        <az-language-controls
+          [form]="form"
+          [translations]="editingData?.content"
+          formGroupName="content"
+        ></az-language-controls>
+      </div>
+    </form>
+  </div>
+  <div *nzModalFooter>
+    <button (click)="submit()" nz-button nzType="primary">
+      {{ "save" | translate }}
+    </button>
+  </div>
+</nz-modal>

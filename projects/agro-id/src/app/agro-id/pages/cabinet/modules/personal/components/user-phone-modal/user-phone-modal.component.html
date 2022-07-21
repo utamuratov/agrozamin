@@ -1,0 +1,102 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="close()"
+>
+  <ng-template #modalTitle
+    ><h4 nz-typography>
+      {{
+        control
+          ? ("changingPhonenumber" | translate)
+          : ("addPhonenumber" | translate)
+      }}
+    </h4></ng-template
+  >
+
+  <ng-template #modalContent>
+    <form nz-form [formGroup]="form" nzLayout="vertical">
+      <!-- PHONE -->
+      <p>
+        {{ "changePhoneBody" | translate }}
+      </p>
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="error">
+          <input
+            id="phone"
+            nz-input
+            type="text"
+            mask="00 000 00 00"
+            prefix="+{{ PREFIX_PHONENUMBER }} "
+            nzSize="large"
+            formControlName="phone"
+            [placeholder]="'inputPhonenumber' | translate"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- PASSWORD -->
+      <nz-form-item>
+        <nz-form-label class="text-start" nzFor="password" nzRequired>{{
+          "password" | translate
+        }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="error">
+          <nz-input-group nzPrefixIcon="lock" [nzSuffix]="eye" nzSize="large">
+            <input
+              #password
+              id="password"
+              type="password"
+              nz-input
+              formControlName="password"
+            />
+            <ng-template #eye>
+              <az-password-show-hide
+                [password]="password"
+              ></az-password-show-hide>
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+
+    <ng-template #error let-control>
+      <error [control]="control"></error>
+      <error-from-server
+        [byMessage]="true"
+        [error]="control.getError(ERROR_MESSAGE_FROM_SERVER)"
+      ></error-from-server>
+    </ng-template>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button
+      nz-button
+      nzBlock
+      nzShape="round"
+      nzType="primary"
+      (click)="submit()"
+      [nzLoading]="isWaitingResponse$ | async"
+      [ngClass]="{ 'not-allowed': isWaitingResponse$ | async }"
+    >
+      {{ "go" | translate }}
+    </button>
+  </ng-template>
+</nz-modal>
+
+<az-success-modal
+  [(isVisible)]="isVisibleSuccessModal"
+  [title]="'changingPhonenumber' | translate"
+  [bodyOne]="'congratulations' | translate"
+  [bodyTwo]="'successfullyChangedPhonenumber' | translate"
+></az-success-modal>
+
+<az-confirmation-modal
+  [(isVisible)]="isVisibleConfirmationModal"
+  [title]="'inputCodeFromSMS' | translate"
+  [phone]="PREFIX_PHONENUMBER + form.get('phone')?.value"
+  [password]="form.controls['password'].value"
+  [urlForSend]="'cabinet/change-phone-step-2'"
+  [urlForResend]="'cabinet/change-phone-step-2'"
+  (activationCodeSucceed)="doControlChangedSuccessfully('phone')"
+></az-confirmation-modal>

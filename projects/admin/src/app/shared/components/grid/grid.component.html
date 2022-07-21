@@ -1,0 +1,72 @@
+<nz-table
+  #table
+  [nzData]="data"
+  nzShowPagination
+  nzShowSizeChanger
+  nzSize="small"
+  nzBordered
+  [nzScroll]="
+    (data.length | makeNzScroll: subtrahend:undefined:showScrollbar | async)!
+  "
+  [nzWidthConfig]="nzWidthConfig"
+>
+  <thead>
+    <tr *ngFor="let row of theadRows; let isFirst = first">
+      <th
+        [colspan]="column.colspan"
+        [rowspan]="column.rowspan"
+        [nzAlign]="column.nzAlignHeader"
+        [nzLeft]="column.nzLeft"
+        [nzRight]="column.nzRight"
+        [nzShowSort]="column.sortable"
+        [nzSortFn]="column.field | azSort: column.sortByLocalCompare"
+        *ngFor="let column of row"
+      >
+        {{ column.header | translate }}
+      </th>
+      <!-- FOR ACTIONS -->
+      <th
+        nzRight
+        *ngIf="isFirst && showActions"
+        [rowspan]="theadRows.length"
+      ></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data">
+      <ng-container *ngFor="let column of columns">
+        <td
+          *ngIf="!column.isHeader"
+          [nzAlign]="column.nzAlignBody"
+          [nzLeft]="column.nzLeft"
+          [nzRight]="column.nzRight"
+        >
+          <ng-container
+            *ngIf="column.hasTemplate; else justData"
+            [ngTemplateOutlet]="columnTemplate"
+            [ngTemplateOutletContext]="{ $implicit: column, data: this.data }"
+          >
+          </ng-container>
+          <ng-template #justData>
+            {{ column.field | getDeepValue: data }}
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <td nzRight nzAlign="center" *ngIf="showActions">
+        <nz-button-group>
+          <button (click)="delete(data.id)" nz-button nzType="default">
+            <span>
+              <i nz-icon nzType="delete" nzTheme="twotone"></i>
+            </span>
+          </button>
+          <button (click)="addEdit(data)" nz-button nzType="default">
+            <span>
+              <i nz-icon nzType="edit" nzTheme="twotone"></i>
+            </span>
+          </button>
+        </nz-button-group>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

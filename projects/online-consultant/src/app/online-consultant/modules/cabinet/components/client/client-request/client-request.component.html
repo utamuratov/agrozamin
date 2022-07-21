@@ -1,0 +1,377 @@
+<div class="request" (window:resize)="onResize($event)">
+  <div >
+    <div nz-row [nzGutter]="[0, 24]">
+      <div nz-col nzSpan="24">
+        <h2 class="request__title">Мои заявки</h2>
+      </div>
+      <div nz-col nzSpan="24">
+        <div class="request__content">
+          <nz-tabset>
+            <nz-tab [nzTitle]="tab1">
+              <div class="request__content__block">
+                <div nz-row [nzGutter]="[0, 24]">
+                  <div nz-col nzSpan="24">
+                    <span class="request__filter-text">Фильтр</span>
+                    <nz-select ngModel="date" nzSize="large">
+                      <nz-option nzValue="date" nzLabel="Дата приема"></nz-option>
+                      <nz-option nzValue="name" nzLabel="По имени"></nz-option>
+                      <nz-option nzValue="status" nzLabel="По статусу"></nz-option>
+                      <nz-option nzValue="price" nzLabel="По цене"></nz-option>
+                    </nz-select>
+                  </div>
+
+
+                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
+                    <nz-table
+                      #nzTable
+                      [nzData]="waitingRequests"
+                      nzTableLayout="fixed"
+                      class="table"
+                    >
+                      <thead>
+                        <tr>                          
+                          <th nzWidth="60px">ID</th>
+                          <th>Дата</th>
+                          <th>Время</th>
+                          <th [nzWidth]="size">Имя</th>
+                          <th nzWidth="120px">Направление</th>
+                          <th>Статус</th>
+                          <th>Цена</th>
+                          <th nzWidth="40px"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="let data of nzTable.data">
+                          <tr>
+                            
+                            <td>{{ data.id }}</td>
+                            <td>{{ data.date }}</td>
+                            <td>{{ data.time }}</td>
+                            <td class="text-center"><nz-avatar nzIcon="user" [nzSrc]="data.avatar"></nz-avatar><span class="table__avatar">{{ data.name }}</span></td>
+                            <td>{{ data.direction }}</td>
+                            <td class="table__status" [ngClass]="data.status === 0 ? 'yellow' : data.status === 1 ? 'green' : data.status === 2 ? 'red' : 'green'">{{ data.status === 0 ? 'В ожидании' : data.status === 1 ? 'Принято' : data.status === 2 ? 'Отклонено' : 'Завершено' }}</td>
+                            <td>{{ data.price }}</td>
+                            <td
+                              [nzExpand]="expandSet.has(data.id)"
+                              (nzExpandChange)="onExpandChange(data.id, $event)"
+                            ></td>
+                          </tr>
+                          <tr [nzExpand]="expandSet.has(data.id)">
+                            <nz-comment [nzAuthor]="author" [nzDatetime]="time">
+                              <nz-avatar
+                                nz-comment-avatar
+                                nzIcon="user"
+                                [nzSrc]="data.clientAvatar"
+                              ></nz-avatar>
+                              <nz-comment-content>
+                                <p class="table__description">
+                                  {{data.description}}.
+                                </p>
+                              </nz-comment-content>
+
+                              <ng-template #author>
+                                <h4 class="table__author">Вы</h4>
+                              </ng-template>
+                              
+                              <div nz-row nzJustify="space-between">
+                                <div nz-col>
+                                  <button class="table__btn" nz-button nzType="default" nzDanger nzSize="large">Отменить</button>
+                                </div>
+                                <div nz-col>
+                                  <div nz-row nzAlign="middle" [nzGutter]="[16, 0]">
+                                    <div nz-col *ngIf="data.status === 1">
+                                      <div nz-row [nzGutter]="[8, 0]">
+                                        <div nz-col><span class="counter">До начала</span></div>
+                                        <div nz-col><span class="counter__time">2 д</span></div>
+                                        <div nz-col><span class="counter__time">12 ч</span></div>
+                                        <div nz-col><span class="counter__time">25 м</span></div>
+                                      </div>
+                                    </div>
+                                    <div nz-col><button class="table__btn" nz-button nzType="primary" nzSize="large" disabled>В чат</button></div>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </nz-comment>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </nz-table>
+                  </div>
+
+                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
+                    <nz-table
+                      #nzTable
+                      [nzData]="waitingRequests"
+                      nzTableLayout="fixed"
+                      class="table"
+                    >
+                      <thead>
+                        <tr>                          
+                          <th class="table__row-id">ID</th>
+                          <th class="table__row">Дата</th>
+                          <th class="table__row">Время</th>
+                          <th class="table__row">Статус</th>
+                          <th class="table__row" nzWidth="20px"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="let data of nzTable.data">
+                          <tr>
+                            
+                            <td>{{ data.id }}</td>
+                            <td>{{ data.date }}</td>
+                            <td>{{ data.time }}</td>
+                            <td class="table__status" [ngClass]="data.status === 0 ? 'yellow' : data.status === 1 ? 'green' : data.status === 2 ? 'red' : 'green'">{{ data.status === 0 ? 'В ожидании' : data.status === 1 ? 'Принято' : data.status === 2 ? 'Отклонено' : 'Завершено' }}</td>
+                            <td
+                              [nzExpand]="expandSet.has(data.id)"
+                              (nzExpandChange)="onExpandChange(data.id, $event)"
+                            ></td>
+                          </tr>
+                          <tr [nzExpand]="expandSet.has(data.id)">
+
+                            <nz-table [nzData]="waitingRequests" [nzFrontPagination]="false"
+                            [nzShowPagination]="false">
+                              <thead>
+                                <tr>
+                                  <th>Имя</th>
+                                  <th>Направление</th>
+                                  <th>Цена</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>{{data.name}}</td>
+                                  <td>{{data.direction}}</td>
+                                  <td>{{data.price}}</td>
+                                </tr>
+                              </tbody>
+                            </nz-table>
+
+                            <nz-comment [nzAuthor]="author" [nzDatetime]="time">
+                              <nz-avatar
+                                nz-comment-avatar
+                                nzIcon="user"
+                                [nzSrc]="data.clientAvatar"
+                              ></nz-avatar>
+                              <nz-comment-content>
+                                <p class="table__description">
+                                  {{data.description}}.
+                                </p>
+                              </nz-comment-content>
+
+                              <ng-template #author>
+                                <h4 class="table__author">Вы</h4>
+                              </ng-template>
+                              
+                              <div nz-row nzJustify="space-between" [nzGutter]="[0, 16]">
+                                <div nz-col>
+                                  <button class="table__btn" nz-button nzType="default" nzDanger nzSize="default">Отменить</button>
+                                </div>
+                                <div nz-col>
+                                  <div nz-row nzAlign="middle" [nzGutter]="[16, 0]" nzJustify="center">
+                                    <div nz-col *ngIf="data.status === 1">
+                                      <div nz-row [nzGutter]="[8, 0]">
+                                        <div nz-col><span class="counter__time">2 д</span></div>
+                                        <div nz-col><span class="counter__time">12 ч</span></div>
+                                        <div nz-col><span class="counter__time">25 м</span></div>
+                                      </div>
+                                    </div>
+                                    <div nz-col><button class="table__btn" nz-button nzType="primary" nzSize="default" disabled>В чат</button></div>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </nz-comment>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </nz-table>
+                  </div>
+
+
+                </div>
+              </div>
+            </nz-tab>
+            <nz-tab [nzTitle]="tab2">
+              <div class="request__content__block">
+                <div nz-row [nzGutter]="[0, 24]">
+                  <div nz-col nzSpan="24">
+                    <span class="request__filter-text">Фильтр</span>
+                    <nz-select ngModel="date" nzSize="large">
+                      <nz-option nzValue="date" nzLabel="Дата приема"></nz-option>
+                      <nz-option nzValue="name" nzLabel="По имени"></nz-option>
+                      <nz-option nzValue="status" nzLabel="По статусу"></nz-option>
+                      <nz-option nzValue="price" nzLabel="По цене"></nz-option>
+                    </nz-select>
+                  </div>
+                  <div nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="24">
+                    <nz-table
+                      #nzTableSecond
+                      [nzData]="completedRequests"
+                      nzTableLayout="fixed"
+                      class="table"
+                    >
+                      <thead>
+                        <tr>                          
+                          <th nzWidth="60px">ID</th>
+                          <th>Дата</th>
+                          <th>Время</th>
+                          <th nzWidth="180px">Имя</th>
+                          <th nzWidth="120px">Направление</th>
+                          <th>Статус</th>
+                          <th>Цена</th>
+                          <th nzWidth="40px"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="let data of nzTableSecond.data">
+                          <tr>
+                            
+                            <td>{{ data.id }}</td>
+                            <td>{{ data.date }}</td>
+                            <td>{{ data.time }}</td>
+                            <td><nz-avatar nzIcon="user" [nzSrc]="data.avatar"></nz-avatar><span class="table__avatar">{{ data.name }}</span></td>
+                            <td>{{ data.direction }}</td>
+                            <td class="table__status" [ngClass]="data.status === 3 ? 'green' : 'red'">{{data.status === 3 ? 'Завершено' : 'Отклонено'}}</td>
+                            <td>{{ data.price }}</td>
+                            <td
+                              [nzExpand]="expandSet.has(data.id)"
+                              (nzExpandChange)="onExpandChange(data.id, $event)"
+                            ></td>
+                          </tr>
+                          <tr [nzExpand]="expandSet.has(data.id)">
+                            <nz-comment [nzAuthor]="author" [nzDatetime]="time">
+                              <nz-avatar
+                                nz-comment-avatar
+                                nzIcon="user"
+                                [nzSrc]="data.clientAvatar"
+                              ></nz-avatar>
+                              <nz-comment-content>
+                                <p class="table__description">
+                                  {{data.description}}.
+                                </p>
+                              </nz-comment-content>
+
+                              <ng-template #author>
+                                <h4 class="table__author">Вы</h4>
+                              </ng-template>
+
+                            </nz-comment>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </nz-table>
+                  </div>
+
+                  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="0">
+                    <nz-table
+                      #nzTableSecond
+                      [nzData]="completedRequests"
+                      nzTableLayout="fixed"
+                      class="table"
+                    >
+                      <thead>
+                        <tr>                          
+                          <th class="table__row-id">ID</th>
+                          <th class="table__row">Дата</th>
+                          <th class="table__row">Время</th>
+                          <th class="table__row">Статус</th>
+                          <th class="table__row" nzWidth="20px"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="let data of nzTableSecond.data">
+                          <tr>
+                            
+                            <td>{{ data.id }}</td>
+                            <td>{{ data.date }}</td>
+                            <td>{{ data.time }}</td>
+                            <td class="table__status" [ngClass]="data.status === 3 ? 'green' : 'red'">{{data.status === 3 ? 'Завершено' : 'Отклонено'}}</td>
+                            <td
+                              [nzExpand]="expandSet.has(data.id)"
+                              (nzExpandChange)="onExpandChange(data.id, $event)"
+                            ></td>
+                          </tr>
+                          <tr [nzExpand]="expandSet.has(data.id)">
+
+                            <nz-table [nzData]="waitingRequests" [nzFrontPagination]="false"
+                            [nzShowPagination]="false">
+                              <thead>
+                                <tr>
+                                  <th>Имя</th>
+                                  <th>Направление</th>
+                                  <th>Цена</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>{{data.name}}</td>
+                                  <td>{{data.direction}}</td>
+                                  <td>{{data.price}}</td>
+                                </tr>
+                              </tbody>
+                            </nz-table>
+
+                            <nz-comment [nzAuthor]="author" [nzDatetime]="time">
+                              <nz-avatar
+                                nz-comment-avatar
+                                nzIcon="user"
+                                [nzSrc]="data.clientAvatar"
+                              ></nz-avatar>
+                              <nz-comment-content>
+                                <p class="table__description">
+                                  {{data.description}}.
+                                </p>
+                              </nz-comment-content>
+
+                              <ng-template #author>
+                                <h4 class="table__author">Вы</h4>
+                              </ng-template>
+                              
+                              <div nz-row nzJustify="space-between" [nzGutter]="[0, 16]">
+                                <div nz-col>
+                                  <button class="table__btn" nz-button nzType="default" nzDanger nzSize="default">Отменить</button>
+                                </div>
+                                <div nz-col>
+                                  <div nz-row nzAlign="middle" [nzGutter]="[16, 0]" nzJustify="center">
+                                    <div nz-col *ngIf="data.status === 1">
+                                      <div nz-row [nzGutter]="[8, 0]">
+                                        <div nz-col><span class="counter__time">2 д</span></div>
+                                        <div nz-col><span class="counter__time">12 ч</span></div>
+                                        <div nz-col><span class="counter__time">25 м</span></div>
+                                      </div>
+                                    </div>
+                                    <div nz-col><button class="table__btn" nz-button nzType="primary" nzSize="default" disabled>В чат</button></div>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </nz-comment>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </nz-table>
+                  </div>
+                </div>
+              </div>
+            </nz-tab>
+          </nz-tabset>
+
+          <ng-template #tab1>
+            <div class="tab">
+              <i nz-icon nzType="flag" nzTheme="fill"></i>
+              <span>Новые заявки</span>
+            </div>
+          </ng-template>
+          <ng-template #tab2>
+            <div class="tab">
+              <i nz-icon nzType="clock-circle" nzTheme="fill"></i>
+              <span>История заявок</span>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
