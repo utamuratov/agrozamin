@@ -1,10 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+import SwiperCore, { Pagination, Navigation } from "swiper";
+
+SwiperCore.use([Pagination, Navigation]);
+
 @Component({
   selector: 'az-carousel-footer',
   templateUrl: './carousel-footer.component.html',
   styleUrls: ['./carousel-footer.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CarouselFooterComponent {
   carousel = [
@@ -13,15 +17,15 @@ export class CarouselFooterComponent {
       text: [
         {
           icon: './assets/images/agrozaminAppIcon1.png',
-          text: 'Самый большой каталог поставщиков продукции и услуг',
+          text: 'Самый большой каталог поставщиков продукции и услуг1',
         },
         {
           icon: './assets/images/agrozaminAppIcon2.png',
-          text: 'Незаменимый помощник и удобные сервисы в одном месте',
+          text: 'Незаменимый помощник и удобные сервисы в одном месте1',
         },
         {
           icon: './assets/images/agrozaminAppIcon3.png',
-          text: 'Дополнительные финансовые возможности напрямую от Агробанка',
+          text: 'Дополнительные финансовые возможности напрямую от Агробанка1',
         },
       ],
     },

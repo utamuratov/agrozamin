@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CarouselFooterComponent } from './carousel-footer.component';
-import { SharedModule } from '../shared.module';
-import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { SwiperModule } from 'swiper/angular';
+import { SharedModule } from '../shared.module';
+import { CarouselFooterComponent } from './carousel-footer.component';
 
 @NgModule({
   declarations: [CarouselFooterComponent],
-  imports: [SharedModule, NzCarouselModule, NzGridModule],
+  imports: [SharedModule, NzGridModule, SwiperModule],
   exports: [CarouselFooterComponent],
 })
 export class CarouselFooterModule {}

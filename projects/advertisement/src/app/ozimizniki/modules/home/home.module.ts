@@ -11,18 +11,17 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { SwiperModule } from 'swiper/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { HistoryComponent } from './components/history/history.component';
 import { PopularBoardComponent } from './components/popular-board/popular-board.component';
 import {
+  BannerModule,
+  CarouselFooterModule,
   CreditsModule,
+  HistoryContentModule,
   NewsModule,
+  PartnerModule,
 } from 'ngx-az-core';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CardModule } from '../../../shared/card/card.module';
-import { BannerModule } from './components/banner/banner.module';
-import { HistoryContentComponent } from './components/history-content/history-content.component';
-import { PartnerModule } from './components/partner/partner.module';
-import { CarouselFooterModule } from './components/carousel-footer/carousel-footer.module';
 
 @NgModule({
   imports: [
@@ -40,6 +39,8 @@ import { CarouselFooterModule } from './components/carousel-footer/carousel-foot
     CreditsModule,
     NewsModule,
     CardModule,
+    HistoryContentModule,
+
     /**
      * NG ZORRO
      */
@@ -52,12 +53,6 @@ import { CarouselFooterModule } from './components/carousel-footer/carousel-foot
     NzIconModule,
     SwiperModule,
   ],
-  declarations: [
-    HomeComponent,
-    CategoryListComponent,
-    HistoryComponent,
-    PopularBoardComponent,
-    HistoryContentComponent
-  ],
+  declarations: [HomeComponent, CategoryListComponent, PopularBoardComponent],
 })
 export class HomeModule {}

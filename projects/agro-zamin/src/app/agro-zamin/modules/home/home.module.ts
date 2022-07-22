@@ -15,11 +15,14 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { ServiceComponent } from './components/servis/service.component';
 import { SwiperModule } from 'swiper/angular';
-import { CarouselFooterModule, PartnerModule } from 'ngx-az-core';
+import {
+  BannerModule,
+  CarouselFooterModule,
+  HistoryContentModule,
+  PartnerModule,
+} from 'ngx-az-core';
 import { CreditsModule } from 'projects/ngx-az-core/src/lib/shared/credits/credits.module';
-import { BannerModule } from 'projects/ngx-az-core/src/lib/shared/banner/banner.module';
 import { NewsModule } from 'projects/ngx-az-core/src/lib/shared/news/news.module';
-import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   imports: [
@@ -36,6 +39,7 @@ import { HistoryComponent } from './components/history/history.component';
     CreditsModule,
     BannerModule,
     NewsModule,
+    HistoryContentModule,
 
     /* NG-Zorro */
     NzButtonModule,
@@ -48,7 +52,6 @@ import { HistoryComponent } from './components/history/history.component';
   ],
   declarations: [
     HomeComponent,
-    HistoryComponent,
     AllComponentsComponent,
     CategoryComponent,
     AdvertisementComponent,
