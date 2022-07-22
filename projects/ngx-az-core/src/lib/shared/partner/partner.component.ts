@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
+import { Component, ChangeDetectionStrategy, Input, ViewChild } from '@angular/core';
+import { SwiperComponent } from 'swiper/angular';
 
 @Component({
   selector: 'az-partner',
@@ -8,6 +8,7 @@ import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PartnerComponent {
+  @ViewChild('swiper') swiper!: SwiperComponent
   /**
    *
    */
@@ -18,83 +19,48 @@ export class PartnerComponent {
    *
    */
   @Input()
-  partners = [
-    [
-      {
-        logo: './assets/images/partners-logo1.svg',
-      },
-      {
-        logo: './assets/images/partners-logo2.svg',
-      },
-      {
-        logo: './assets/images/partners-logo3.svg',
-      },
-      {
-        logo: './assets/images/partners-logo4.svg',
-      },
-      {
-        logo: './assets/images/partners-logo5.svg',
-      },
-    ],
-    [
-      {
-        logo: './assets/images/partners-logo1.svg',
-      },
-      {
-        logo: './assets/images/partners-logo2.svg',
-      },
-      {
-        logo: './assets/images/partners-logo3.svg',
-      },
-      {
-        logo: './assets/images/partners-logo4.svg',
-      },
-      {
-        logo: './assets/images/partners-logo5.svg',
-      },
-    ],
-    [
-      {
-        logo: './assets/images/partners-logo1.svg',
-      },
-      {
-        logo: './assets/images/partners-logo2.svg',
-      },
-      {
-        logo: './assets/images/partners-logo3.svg',
-      },
-      {
-        logo: './assets/images/partners-logo4.svg',
-      },
-      {
-        logo: './assets/images/partners-logo5.svg',
-      },
-    ],
-  ];
+
+  partnersCarousel = [
+    {
+      logo: './assets/images/partners-logo1.svg',
+    },
+    {
+      logo: './assets/images/partners-logo2.svg',
+    },
+    {
+      logo: './assets/images/partners-logo3.svg',
+    },
+    {
+      logo: './assets/images/partners-logo4.svg',
+    },
+    {
+      logo: './assets/images/partners-logo5.svg',
+    },
+    {
+      logo: './assets/images/partners-logo1.svg',
+    },
+    {
+      logo: './assets/images/partners-logo2.svg',
+    },
+    {
+      logo: './assets/images/partners-logo3.svg',
+    },
+    {
+      logo: './assets/images/partners-logo4.svg',
+    },
+  ]
 
   /**
    *
    */
-  readonly effect = 'scrollx';
-
-  /**
-   *
-   */
-  readonly carouselScroll = this.partners.flat();
-
-  /**
-   *
-   * @param e
-   */
-  pre(e: NzCarouselComponent) {
-    e.pre();
+  pre() {
+    this.swiper.swiperRef.slidePrev()
   }
 
   /**
    *
-   * @param e
    */
-  next(e: NzCarouselComponent) {
-    e.next();
+  next() {
+    this.swiper.swiperRef.slideNext()
   }
 }

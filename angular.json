@@ -332,7 +332,9 @@
         },
         "serve": {
           "options": {
-            "port": 4204
+            "port": 4204,
+            "browserTarget": "agro-zamin:build",
+            "proxyConfig": "projects/agro-zamin/src/proxy.conf.json"
           },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {

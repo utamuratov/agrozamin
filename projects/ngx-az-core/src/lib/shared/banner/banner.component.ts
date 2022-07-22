@@ -1,4 +1,7 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+// import Swiper core and required modules
+import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
 
 export interface BannerCorusel {
   imgBg: string;
@@ -10,14 +13,14 @@ export interface BannerCorusel {
   slideImg: string;
 }
 
+SwiperCore.use([Pagination, Navigation, Autoplay]);
+
 @Component({
   selector: 'az-banner',
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.less'],
 })
 export class BannerComponent implements OnInit {
-  effect = 'scrollx';
-  dots = true;
 
   bannerCarousel: BannerCorusel[] = [
     {
@@ -51,19 +54,5 @@ export class BannerComponent implements OnInit {
     },
   ];
 
-  ngOnInit() {
-    this.dots = this.clientWidth();
-  }
-
-  clientWidth() {
-    if (window.innerWidth < 480) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  @HostListener('window:resize') onResize() {
-    this.dots = this.clientWidth();
-  }
+  ngOnInit() {}
 }
