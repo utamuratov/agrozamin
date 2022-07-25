@@ -15,6 +15,7 @@ import { PaginationModule } from 'projects/advertisement/src/app/shared/paginati
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { EmptyModule } from 'projects/advertisement/src/app/shared/empty/empty.module';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     CurrencyModule,
     NoImageModule,
     PaginationModule,
+    EmptyModule,
 
     NzSelectModule,
     NzGridModule,
@@ -34,7 +36,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     NzPopoverModule,
     NzTypographyModule,
     NzIconModule,
-    NzToolTipModule
+    NzToolTipModule,
   ],
   declarations: [AdvertisementComponent],
 })

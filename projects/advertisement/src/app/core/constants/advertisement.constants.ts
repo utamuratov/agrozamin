@@ -5,6 +5,7 @@ export class AdvertisementConstants extends GridQueryConstants {
   public static readonly SPLITTER_BETWEEN_FILTERID_AND_VALUE = '_';
   public static readonly SPLITTER_FILTERID_VALUE = ';';
 
+  public static readonly ROUTER_PATH_CABINET_MAIN = 'main';
   public static readonly ROUTER_PATH_ADVERTISEMENTS = 'advertisements';
   public static readonly ROUTER_PATH_SELLERS = 'sellers';
   public static readonly ROUTER_PARAM_CATEGORY_ID = 'categoryId';
@@ -15,6 +16,7 @@ export class AdvertisementConstants extends GridQueryConstants {
   // RESOLVERS
   public static readonly RESOLVERS_SELLERS = 'sellers';
   public static readonly RESOLVERS_FAVORITE_ADVERTISEMENTS = 'advertisements';
+  public static readonly RESOLVERS_FAVORITE_FILTERS = 'filters';
   public static readonly RESOLVERS_ADVERTISEMENTS_BY_CATEGORY =
     'advertisementsByCategory';
   public static readonly RESOLVERS_ADVERTISEMENT_DETAILS =
