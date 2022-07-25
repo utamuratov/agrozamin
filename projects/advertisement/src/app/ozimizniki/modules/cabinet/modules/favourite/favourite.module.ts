@@ -14,11 +14,15 @@ import { FormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { PaginationModule } from 'projects/advertisement/src/app/shared/pagination/pagination.module';
 import { SortModule } from 'projects/advertisement/src/app/shared/sort/sort.module';
-import { CardListModule } from 'projects/advertisement/src/app/shared/card-list/card-list.module';
 import { AdvertisementListHeaderModule } from 'projects/advertisement/src/app/shared/advertisement-list-header/advertisement-list-header.module';
 import { GridModule } from 'projects/advertisement/src/app/shared/grid/grid.module';
 import { NoImageModule } from 'projects/advertisement/src/app/shared/no-image/no-image.module';
 import { ActiveFromModule } from 'projects/advertisement/src/app/shared/active-from/active-from.module';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { SwiperModule } from 'swiper/angular';
+import { TagModule } from '../../../../../shared/tag/tag.module';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { EmptyModule } from 'projects/advertisement/src/app/shared/empty/empty.module';
 
 @NgModule({
   declarations: [
@@ -38,11 +42,15 @@ import { ActiveFromModule } from 'projects/advertisement/src/app/shared/active-f
     AdvertisementListHeaderModule,
     NoImageModule,
     ActiveFromModule,
-
+    NzIconModule,
+    SwiperModule,
+    TagModule,
+    NzCheckboxModule,
     NzGridModule,
     NzDropDownModule,
     NzPopoverModule,
     NzButtonModule,
+    EmptyModule
   ],
 })
 export class FavouriteModule {}

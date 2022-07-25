@@ -17,6 +17,12 @@ export class TagComponent {
    *
    */
   @Input()
+  block = false;
+
+  /**
+   *
+   */
+  @Input()
   category_id = 1;
 
   /**
