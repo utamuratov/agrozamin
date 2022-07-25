@@ -178,7 +178,12 @@
           </div>
         </div>
         <div nz-col nzSpan="24">
-          <button nz-button nzType="primary" nzSize="large">
+          <button
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            (click)="saveFilterParameters()"
+          >
             <i nz-icon nzType="heart" nzTheme="outline"></i>
             {{ "saveParameters" | translate }}
           </button>
