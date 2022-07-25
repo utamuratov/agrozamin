@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { AdvertisementConstants } from '../../../core/constants/advertisement.constants';
 import { CabinetComponent } from './cabinet.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { ArchivedMessagesComponent } from './components/messages/components/archived-messages/archived-messages.component';
@@ -7,6 +8,7 @@ import { ChatComponent } from './components/messages/components/chat/chat.compon
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
 import { SavedMessagesComponent } from './components/messages/components/saved-messages/saved-messages.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { CabinetMenu } from './menu-type.enum';
 
 const routes: Routes = [
   {
@@ -16,25 +18,29 @@ const routes: Routes = [
       bc: 'cabinet',
     },
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'main' },
       {
-        path: 'main',
+        path: '',
+        pathMatch: 'full',
+        redirectTo: AdvertisementConstants.ROUTER_PATH_CABINET_MAIN,
+      },
+      {
+        path: AdvertisementConstants.ROUTER_PATH_CABINET_MAIN,
         component: LayoutComponent,
         children: [
           {
             path: '',
-            redirectTo: `advertisements`,
+            redirectTo: CabinetMenu.advertisements,
             pathMatch: 'full',
           },
           {
-            path: `advertisements`,
+            path: CabinetMenu.advertisements,
             loadChildren: () =>
               import('./modules/advertisement/advertisement.module').then(
                 (m) => m.AdvertisementModule
               ),
           },
           {
-            path: 'messages',
+            path: CabinetMenu.messages,
             component: MessagesComponent,
             children: [
               { path: 'chat', component: ChatComponent },
@@ -45,14 +51,14 @@ const routes: Routes = [
             ],
           },
           {
-            path: 'favourites',
+            path: CabinetMenu.favourites,
             loadChildren: () =>
               import('./modules/favourite/favourite.module').then(
                 (m) => m.FavouriteModule
               ),
           },
           {
-            path: 'support',
+            path: CabinetMenu.support,
             loadChildren: () =>
               import('./modules/support-chat/support-chat.module').then(
                 (m) => m.SupportChatModule
