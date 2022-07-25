@@ -7,12 +7,26 @@ import {
   Output,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Advertisement, Constants, Filter, FilterParameter } from 'ngx-az-core';
+import {
+  Advertisement,
+  BaseService,
+  Constants,
+  Filter,
+  FilterParameter,
+} from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
 import { prefixPath } from '../../core/utilits/advertisement.utilits';
 
 interface ActiveFilter extends FilterParameter {
   name: string;
+}
+
+interface FavoriteFilterRequest {
+  categories: number[];
+  filters: {
+    filter_id: number;
+    parameter_id: number;
+  }[];
 }
 
 @Component({
@@ -58,7 +72,8 @@ export class AdvertisementListHeaderComponent {
   /**
    *
    */
-  activeFilters: ActiveFilter[] = [];
+  @Output()
+  sortedByDateDescandingChange = new EventEmitter<boolean>();
 
   /**
    *
@@ -69,13 +84,11 @@ export class AdvertisementListHeaderComponent {
   /**
    *
    */
-  @Output()
-  sortedByDateDescandingChange = new EventEmitter<boolean>();
+  activeFilters: ActiveFilter[] = [];
 
   /**
    *
    */
-
   isMapActive = false;
 
   /**
@@ -101,6 +114,7 @@ export class AdvertisementListHeaderComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private $baseService: BaseService,
     private cd: ChangeDetectorRef
   ) {
     this.getCurrentLocation();
@@ -122,6 +136,27 @@ export class AdvertisementListHeaderComponent {
     });
 
     return parameters;
+  }
+
+  /**
+   *
+   * @returns
+   */
+  private getRequestForSavingFilter() {
+    const categoryIds =
+      this.route.snapshot.params[
+        AdvertisementConstants.ROUTER_PARAM_CATEGORY_ID
+      ]?.split('_');
+    const request = {
+      categories: categoryIds.map((categoryId: string) => +categoryId),
+      filters: this.activeFilters.map((filter) => {
+        return {
+          filter_id: filter.filter_id,
+          parameter_id: filter.filter_parameter_id,
+        };
+      }),
+    };
+    return request;
   }
 
   /**
@@ -173,7 +208,27 @@ export class AdvertisementListHeaderComponent {
     });
   }
 
+  /**
+   *
+   */
   isMap() {
     this.isMapActive = !this.isMapActive;
+  }
+
+  /**
+   *
+   */
+  saveFilterParameters() {
+    const request = this.getRequestForSavingFilter();
+    this.saveParameters(request).subscribe();
+  }
+
+  /**
+   *
+   * @param request
+   * @returns
+   */
+  saveParameters(request: FavoriteFilterRequest) {
+    return this.$baseService.post<boolean>('cabinet/saved-filter', request);
   }
 }
