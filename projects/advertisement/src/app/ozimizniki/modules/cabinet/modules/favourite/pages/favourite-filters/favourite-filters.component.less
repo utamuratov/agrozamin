@@ -1,83 +1,131 @@
-.filterOption{
+// .filterOption{
+//     background: #fff;
+//     border-radius: 8px;
+//     padding: 24px;
+
+//     &__content{
+
+//         h4{
+//             margin: 0;
+//             font-size: 18px;
+//             line-height: 23px;
+//             font-family: Agrofont-Medium;
+
+//             @media (max-width:992px) {
+//                 font-size: 14px;
+//             }
+//         }
+
+//         &__date{
+//             padding-top: 12px;
+//             span{
+//                 font-size: 13px;
+//                 line-height: 16px;
+//                 color: #86898C;
+//                 @media (max-width:992px) {
+//                     font-size: 12px;
+//                 }
+//             }
+//         }
+//         &__button{
+//             padding-top: 24px;
+//         }
+//         &__check{
+//             padding-top: 16px;
+//             button{
+//                 background: #377BE1;
+//                 color: #fff;
+//             }
+//             label{
+//                 padding-top: 10px;
+//                 font-size: 14px;
+//                 line-height: 18px;
+//                 font-family: Agrofont-Regular;
+
+//             }
+
+//         }
+//     }
+
+//     &__right{
+//         padding-left: 22px;
+//     }
+// }
+
+.filters {
+  &__card {
     background: #fff;
     border-radius: 8px;
     padding: 24px;
-    
-    &__content{
 
-        h4{
-            margin: 0;
-            font-size: 18px;
-            line-height: 23px;
-            font-family: Agrofont-Medium;
-
-            @media (max-width:992px) {
-                font-size: 14px;
-            }
-        }
-
-        &__date{
-            padding-top: 12px;
-            span{
-                font-size: 13px;
-                line-height: 16px;
-                color: #86898C;
-                @media (max-width:992px) {
-                    font-size: 12px;
-                }
-            }
-        }
-        &__button{
-            padding-top: 24px;
-        }
-        &__check{
-            padding-top: 16px;
-            button{
-                background: #377BE1;
-                color: #fff;
-            }
-            label{
-                padding-top: 10px;
-                font-size: 14px;
-                line-height: 18px;
-                font-family: Agrofont-Regular;
-                
-            }
-          
-        }
+    @media (max-width: 767px) {
+        padding: 16px;
     }
-    
-    &__right{
-        padding-left: 22px;
-    }
-}
 
-.popover{
-    width: 192px;  
-    &__content{
-      padding: 0px;
-      &__item{
-        width:193px; 
-        height: 44px; 
-        border-radius: 4px; 
+    @media (max-width: 575px) {
         padding: 10px;
-        cursor: pointer;
-        &:active{
-          background: #EDEFF5;
-          color: #86898C;
-        }
-        p{
-          margin: 0;
-        }
+    }
+
+    &__title {
+      font-family: Agrofont-Medium;
+      font-size: 18px;
+      line-height: 22px;
+      color: #000;
+      margin-bottom: 0;
+
+      @media (max-width: 767px) {
+        font-size: 14px;
+        line-height: 18px;
+      }
+
+      @media (max-width: 575px) {
+        font-size: 12px;
+        line-height: 16px;
+      }
+    }
+
+    &__date {
+      font-family: Agrofont-Regular;
+      font-size: 13px;
+      line-height: 16px;
+      color: #86898c;
+
+      &__icon {
+        vertical-align: bottom;
+        margin-right: 4px;
       }
     }
   }
-
-:host ::ng-deep .ant-checkbox-checked .ant-checkbox-inner{
-    background-color: #00CD69;
-    box-shadow: none;
 }
 
-:host ::ng-deep .ant-checkbox-checked::after{
-    border: #86898C;
+.popover {
+  width: 192px;
+  &__content {
+    padding: 0px;
+    &__item {
+      width: 193px;
+      height: 44px;
+      border-radius: 4px;
+      padding: 10px;
+      cursor: pointer;
+      &:active {
+        background: #edeff5;
+        color: #86898c;
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
 }
+
+// :host ::ng-deep .ant-checkbox-checked .ant-checkbox-inner{
+//     background-color: #00CD69;
+//     box-shadow: none;
+// }
+
+// :host ::ng-deep .ant-checkbox-checked::after{
+//     border: #86898C;
+// }
+
+

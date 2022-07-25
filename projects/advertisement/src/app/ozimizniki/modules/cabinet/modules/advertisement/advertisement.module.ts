@@ -12,6 +12,9 @@ import { CurrencyModule } from 'projects/advertisement/src/app/shared/currency/c
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NoImageModule } from 'projects/advertisement/src/app/shared/no-image/no-image.module';
 import { PaginationModule } from 'projects/advertisement/src/app/shared/pagination/pagination.module';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 @NgModule({
   imports: [
@@ -29,6 +32,9 @@ import { PaginationModule } from 'projects/advertisement/src/app/shared/paginati
     NzGridModule,
     NzButtonModule,
     NzPopoverModule,
+    NzTypographyModule,
+    NzIconModule,
+    NzToolTipModule
   ],
   declarations: [AdvertisementComponent],
 })

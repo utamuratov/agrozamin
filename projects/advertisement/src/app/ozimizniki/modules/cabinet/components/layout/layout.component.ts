@@ -20,7 +20,7 @@ export class LayoutComponent {
 
   openMap: { [name: string]: boolean } = {
     sub1: false,
-    sub2: true,
+    sub2: false,
     sub3: false
   };
 

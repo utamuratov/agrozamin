@@ -1,223 +1,119 @@
-  <div nz-row [nzGutter]="[0,{xs:10, sm:20, md:20, lg:20, xl:20}]">
-    <div nz-col>
-      <div nz-row class="filterOption">
-        
-        <div nz-col nzXs="21" nzSm="21" nzMd="18" nzLg="20" nzXl="20" class="filterOption__content">
-            <div nz-row>
-                <div nz-col nzSpan="24">
-                    <h4>Сельхозтехника / Техника / Тракторы</h4>
-                </div>
-                <div nz-col nzSpan="24" class="filterOption__content__date">
-                    <div nz-row [nzGutter]="[4,0]">
-                        <div nz-col >
-                            <img src="./assets/images/date.png" alt="">
-                        </div>
-                        <div nz-col >
-                            <span>10.02.2022, 15:43</span>
-                        </div>
-                    </div>
-                </div>
-                <div nz-col nzSpan="24" class="filterOption__content__button">
-                    <div nz-row [nzGutter]="[16,10]">
-                        <div nz-col>
-                            <button nz-button>Куплю</button>
-                        </div>
-                        <div nz-col>
-                            <button nz-button>Андижанская область</button>
-                        </div>
-                        <div nz-col>
-                            <button nz-button>от 500 000 сум</button>
-                        </div>
-                        <div nz-col>
-                            <button nz-button>Страна производства: Россия</button>
-                        </div>
-                    </div>
-                </div>
-                <div nz-col nzSpan="24" class="filterOption__content__check">
-                    <div nz-row [nzGutter]="[30,0]">
-                        <div nz-col>
-                            <button nz-button>Показать новое: 15</button>
-                        </div>
-                        <div nz-col>
-                            <label nz-checkbox [(ngModel)]="checked1">Сообщать о новых объявлениях</label> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div  nz-col nzXs="0" nzSm="0" nzMd="6" nzLg="4" nzXl="4" class="filterOption__right">
-          <div nz-row [nzGutter]="[10, 0]">
-            <div nz-col>
-              <img
-                src="./assets/images/button_without_text.png"
-                alt=""
-              />
-            </div>
-            <div nz-col>
-              <img
-                src="./assets/images/button_without_text (1).png"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
+<div *ngIf="filter.length; else empty" class="filters">
+  <div nz-row [nzGutter]="[0, {xs:10, sm:20}]">
+    <div nz-col nzSpan="24" *ngFor="let info of filter">
+      <div class="filters__card">
+        <div nz-row [nzGutter]="[0, 24]">
 
-        <div nz-col nzXs="3" nzSm="3" nzMd="0" nzLg="0" nzXl="0">
-            <i
-              nz-icon
-              nz-popover
-              [nzPopoverContent]="contentTemplate"
-              nzPopoverPlacement="bottomRight"
-              nzPopoverTrigger="click"
-            >
-              <img src="/assets/images/top-button.png" alt="" />
-            </i>
-          </div>
-
-      </div>
-    </div>
-
-    <div nz-col>
-        <div nz-row class="filterOption">
-          
-          <div nz-col nzXs="21" nzSm="21" nzMd="18" nzLg="20" nzXl="20" class="filterOption__content">
-              <div nz-row>
+          <div nz-col nzSpan="24">
+            <div nz-row  nzJustify="space-between">
+              <div nz-col nzSpan="19">
+                <div nz-row [nzGutter]="[5, 10]">
+                  <div nz-col nzSpan="24"><h4 class="filters__card__title">{{info.title}}</h4></div>
                   <div nz-col nzSpan="24">
-                      <h4>Сельхозтехника / Техника / Тракторы</h4>
+                    <i nz-icon class="filters__card__date__icon">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.9564 1.66602C7.27749 1.66602 7.53779 1.92632 7.53779 2.24741V4.573C7.53779 4.89409 7.27749 5.15439 6.9564 5.15439C6.6353 5.15439 6.375 4.89409 6.375 4.573V2.24741C6.375 1.92632 6.6353 1.66602 6.9564 1.66602Z" fill="#86898C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.1595 1.66602C13.4806 1.66602 13.7409 1.92632 13.7409 2.24741V4.573C13.7409 4.89409 13.4806 5.15439 13.1595 5.15439C12.8384 5.15439 12.5781 4.89409 12.5781 4.573V2.24741C12.5781 1.92632 12.8384 1.66602 13.1595 1.66602Z" fill="#86898C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.88672 7.74351C2.88672 7.42241 3.14702 7.16211 3.46811 7.16211H16.6464C16.9675 7.16211 17.2278 7.42241 17.2278 7.74351C17.2278 8.0646 16.9675 8.3249 16.6464 8.3249H3.46811C3.14702 8.3249 2.88672 8.0646 2.88672 7.74351Z" fill="#86898C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.42798 4.87103C3.93129 5.40592 3.66279 6.21183 3.66279 7.28549V13.8747C3.66279 14.9483 3.93129 15.7542 4.42798 16.2891C4.91743 16.8162 5.71159 17.1692 6.95737 17.1692H13.1589C14.4047 17.1692 15.1989 16.8162 15.6883 16.2891C16.185 15.7542 16.4535 14.9483 16.4535 13.8747V7.28549C16.4535 6.21183 16.185 5.40592 15.6883 4.87103C15.1989 4.34393 14.4047 3.99092 13.1589 3.99092H6.95737C5.71159 3.99092 4.91743 4.34393 4.42798 4.87103ZM3.5759 4.0798C4.34614 3.25031 5.48997 2.82812 6.95737 2.82812H13.1589C14.6263 2.82812 15.7702 3.25031 16.5404 4.0798C17.3034 4.9015 17.6163 6.03358 17.6163 7.28549V13.8747C17.6163 15.1266 17.3034 16.2586 16.5404 17.0803C15.7702 17.9098 14.6263 18.332 13.1589 18.332H6.95737C5.48997 18.332 4.34614 17.9098 3.5759 17.0803C2.81289 16.2586 2.5 15.1266 2.5 13.8747V7.28549C2.5 6.03358 2.81289 4.9015 3.5759 4.0798Z" fill="#86898C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3398 11.3177C12.3398 10.9966 12.6001 10.7363 12.9212 10.7363H12.9282C13.2493 10.7363 13.5096 10.9966 13.5096 11.3177C13.5096 11.6388 13.2493 11.8991 12.9282 11.8991H12.9212C12.6001 11.8991 12.3398 11.6388 12.3398 11.3177Z" fill="#86898C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3398 13.6439C12.3398 13.3228 12.6001 13.0625 12.9212 13.0625H12.9282C13.2493 13.0625 13.5096 13.3228 13.5096 13.6439C13.5096 13.965 13.2493 14.2253 12.9282 14.2253H12.9212C12.6001 14.2253 12.3398 13.965 12.3398 13.6439Z" fill="#86898C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.47266 11.3177C9.47266 10.9966 9.73296 10.7363 10.0541 10.7363H10.061C10.3821 10.7363 10.6424 10.9966 10.6424 11.3177C10.6424 11.6388 10.3821 11.8991 10.061 11.8991H10.0541C9.73296 11.8991 9.47266 11.6388 9.47266 11.3177Z" fill="#86898C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.47266 13.6439C9.47266 13.3228 9.73296 13.0625 10.0541 13.0625H10.061C10.3821 13.0625 10.6424 13.3228 10.6424 13.6439C10.6424 13.965 10.3821 14.2253 10.061 14.2253H10.0541C9.73296 14.2253 9.47266 13.965 9.47266 13.6439Z" fill="#86898C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.60352 11.3177C6.60352 10.9966 6.86382 10.7363 7.18491 10.7363H7.19187C7.51297 10.7363 7.77327 10.9966 7.77327 11.3177C7.77327 11.6388 7.51297 11.8991 7.19187 11.8991H7.18491C6.86382 11.8991 6.60352 11.6388 6.60352 11.3177Z" fill="#86898C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.60352 13.6439C6.60352 13.3228 6.86382 13.0625 7.18491 13.0625H7.19187C7.51297 13.0625 7.77327 13.3228 7.77327 13.6439C7.77327 13.965 7.51297 14.2253 7.19187 14.2253H7.18491C6.86382 14.2253 6.60352 13.965 6.60352 13.6439Z" fill="#86898C"/>
+                      </svg>                        
+                    </i>
+                    <span class="filters__card__date">{{info.date}}</span>
                   </div>
-                  <div nz-col nzSpan="24" class="filterOption__content__date">
-                      <div nz-row [nzGutter]="[4,0]">
-                          <div nz-col >
-                              <img src="/assets/images/date.png" alt="">
-                          </div>
-                          <div nz-col >
-                              <span>10.02.2022, 15:43</span>
-                          </div>
-                      </div>
-                  </div>
-                  <div nz-col nzSpan="24" class="filterOption__content__button">
-                      <div nz-row [nzGutter]="[16,10]">
-                          <div nz-col>
-                              <button nz-button>Сдаю в аренду</button>
-                          </div>
-                          <div nz-col>
-                              <button nz-button>Ташкент</button>
-                          </div>
-                          <div nz-col>
-                              <button nz-button>от 25 000 000 сум</button>
-                          </div>                          
-                      </div>
-                  </div>
-                  <div nz-col nzSpan="24" class="filterOption__content__check">
-                      <div nz-row [nzGutter]="[30,0]">
-                          <div nz-col>
-                              <button style="background: #CFD3D8;" nz-button>Показать новое: 0</button>
-                          </div>
-                          <div nz-col>
-                              <label nz-checkbox [(ngModel)]="checked">Сообщать о новых объявлениях</label> 
-                          </div>
-                      </div>
-                  </div>
+                </div>
               </div>
-          </div>
-          
-          <div nz-col nzXs="0" nzSm="0" nzMd="6" nzLg="4" nzXl="4" class="filterOption__right">
-            <div nz-row [nzGutter]="[10, 0]">
-              <div nz-col>
-                <img
-                  src="/assets/images/button_without_text.png"
-                  alt=""
-                />
-              </div>
-              <div nz-col>
-                <img
-                  src="/assets/images/button_without_text (1).png"
-                  alt=""
-                />
+              <div nz-col nzSpan="5">
+                <div nz-row >
+                  <div nz-col nzXs="0" nzSm="24">
+                    <div nz-row [nzGutter]="[10, 0]" nzJustify="end">
+                      <div nz-col>
+                        <button nz-button nzType="default" (click)="viewFilter(info.id)"><i nz-icon nzType="eye" nzTheme="outline"></i></button>
+                      </div>
+                      <div nz-col>
+                        <button nz-button nzType="default" (click)="deleteFilter(info.id)"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                  <div nz-col nzXs="24" nzSm="0" class="text-end">
+                    <button
+                      nz-button 
+                      nzType="default" 
+                      nz-popover
+                      [nzPopoverContent]="contentTemplate"
+                      nzPopoverPlacement="bottomRight"
+                      nzPopoverTrigger="click"><i nz-icon nzType="ellipsis" nzTheme="outline"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div nz-col nzXs="3" nzSm="3" nzMd="0" nzLg="0" nzXl="0">
-            <i
-              nz-icon
-              nz-popover
-              [nzPopoverContent]="contentTemplate"
-              nzPopoverPlacement="bottomRight"
-              nzPopoverTrigger="click"
-            >
-              <img src="/assets/images/top-button.png" alt="" />
-            </i>
-          </div>
-  
-        </div>
-      </div>
-    
-  </div>
-  <ng-template #contentTemplate>
-    <div class="popover">
-      <div nz-row [nzGutter]="[0, 5]">
-        <div nz-col nzSpan="24" class="popover__content">
-          <div class="popover__content__item">
-            <div nz-row>
-              <div nz-col nzSpan="4">
-                <img
-                  src="../../../../../../../../assets/images/archive.png"
-                  alt=""
-                />
-              </div>
-              <div nz-col nzSpan="20">
-                <p>Архивировать</p>
+          <div nz-col nzSpan="24">
+            <div nz-row [nzGutter]="[{xs:10, sm: 10, md: 10, lg: 10, xl: 16}, 10]">
+              <div nz-col *ngFor="let filter of info.filterParams">
+                <button nz-button nzType="default">{{filter}}</button>
               </div>
             </div>
           </div>
-        </div>
-        <div nz-col nzSpan="24" class="popover__content">
-          <div class="popover__content__item">
-            <div nz-row>
-              <div nz-col nzSpan="4">
-                <img
-                  src="../../../../../../../../assets/images/bookmark.png"
-                  alt=""
-                />
+
+          <div nz-col nzSpan="24">
+            <div nz-row nzAlign="middle" [nzGutter]="[{xs: 0, sm: 20, xl: 30}, {xs: 20, sm: 0}]">
+              <div nz-col nzXs="24" nzSm="10" nzMd="8" nzLg="6">
+                <button nz-button nzType="primary" nzBlock [disabled]="info.newPosts < 1">Показать новое: {{info.newPosts}}</button>
               </div>
-              <div nz-col nzSpan="20">
-                <p>Сохранить</p>
+              <div nz-col nzXs="24" nzSm="14">
+                <label nz-checkbox [(ngModel)]="info.notification">Сообщать о новых объявлениях</label>
               </div>
             </div>
           </div>
-        </div>
-        <div nz-col nzSpan="24" class="popover__content">
-          <div class="popover__content__item">
-            <div nz-row>
-              <div nz-col nzSpan="4">
-                <img
-                  src="../../../../../../../../assets/images/block.png"
-                  alt=""
-                />
-              </div>
-              <div nz-col nzSpan="20">
-                <p>Заблокировать</p>
+
+          <ng-template #contentTemplate>
+            <div class="popover">
+              <div nz-row [nzGutter]="[0, 5]">
+                <div nz-col nzSpan="24" class="popover__content" (click)="viewFilter(info.id)">
+                  <div class="popover__content__item">
+                    <div nz-row>
+                      <div nz-col nzSpan="4">
+                        <i nz-icon nzType="eye" nzTheme="outline"></i>
+                      </div>
+                      <div nz-col nzSpan="20">
+                        <p>Смотреть</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div nz-col nzSpan="24" class="popover__content" (click)="deleteFilter(info.id)">
+                  <div class="popover__content__item">
+                    <div nz-row>
+                      <div nz-col nzSpan="4">
+                        <i nz-icon nzType="delete" nzTheme="outline"></i>
+                      </div>
+                      <div nz-col nzSpan="20">
+                        <p>Удалить</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div nz-col nzSpan="24" class="popover__content">
-          <div class="popover__content__item">
-            <div nz-row>
-              <div nz-col nzSpan="4">
-                <img
-                  src="../../../../../../../../assets/images/unlock.png"
-                  alt=""
-                />
-              </div>
-              <div nz-col nzSpan="20">
-                <p>Разблокировать</p>
-              </div>
-            </div>
-          </div>
+          </ng-template>
+
         </div>
       </div>
     </div>
-  </ng-template>
+  </div>
+</div>
+
+<ng-template #empty>
+  <az-empty></az-empty>
+</ng-template>
+
+
+

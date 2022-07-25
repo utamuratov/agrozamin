@@ -21,6 +21,8 @@ import { AdvertisementService } from './services/advertisment.service';
   providers: [AdvertisementService],
 })
 export class AdvertisementComponent extends GridLogic<Advertisement> {
+  favourite = false
+
   /**
    *
    */
