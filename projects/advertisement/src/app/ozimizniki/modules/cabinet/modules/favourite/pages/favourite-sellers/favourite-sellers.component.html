@@ -32,8 +32,10 @@
                 <div nz-col nzSpan="24">
                   <div class="seller__info__category">
                     <swiper
+                      #swiper
                       [slidesPerView]="2"
                       [spaceBetween]="8"
+                      [scrollbar]="true"
                       [breakpoints]="{
                         '576': {
                           slidesPerView: 3
@@ -173,6 +175,7 @@
     </div>
   </div>
 </ng-container>
+
 <ng-template #empty>
   <az-empty></az-empty>
 </ng-template>

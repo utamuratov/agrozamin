@@ -7,6 +7,7 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
   styleUrls: ['./chat.component.less'],
 })
 export class ChatComponent implements OnInit {
+  action = true
   savedMessage = false;
   blockedChat = false;
   isOnline = true;

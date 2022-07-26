@@ -14,6 +14,7 @@
 @import "~swiper/less";
 @import "~swiper/less/effect-coverflow";
 @import "~swiper/less/pagination";
+@import "~swiper/less/scrollbar";
 
 @import "../../../dist/ngx-az-core/styles/az-global.less";
 
@@ -243,6 +244,14 @@ ul {
   border-radius: 12px;
   background: #fff;
   margin-bottom: 20px;
+
+  @media (max-width: 991px) {
+    padding: 20px;
+  }
+
+  @media (max-width: 575px) {
+    padding: 10px;
+  }
 }
 
 .map-description {

@@ -158,15 +158,97 @@
     }
 
     &__right {
-      padding: 24px;
       height: 100%;
 
-      @media (max-width: 992px) {
-        padding: 20px;
+      &__middle {
+        padding: 24px 0 24px 24px;
+
+        @media (max-width: 992px) {
+          padding: 20px;
+        }
+
+        @media (max-width: 360px) {
+          padding: 10px;
+        }
       }
 
-      @media (max-width: 360px) {
-        padding: 10px;
+      &__links {
+        // padding: 24px 24px 24px 0px;
+        position: relative;
+        height: 100%;
+
+        // @media (max-width: 992px) {
+        //   padding: 0 20px;
+        // }
+
+        // @media (max-width: 360px) {
+        //   padding: 0 10px;
+        // }
+
+        &__seller {
+          position: absolute;
+          top: 24px;
+
+          @media (max-width: 991px) {
+            top: 0;
+            padding: 0 20px;
+          }
+
+          @media (max-width: 360px) {
+            padding: 0 10px;
+          }
+
+          i {
+            vertical-align: sub;
+            margin-right: 6px;
+          }
+
+          span {
+            font-size: 14px;
+            font-family: Agrofont-Regular;
+            line-height: 16px;
+            color: #377be1;
+          }
+
+          &.loc {
+            top: 50px;
+
+            @media (max-width: 991px) {
+              top: 30px;
+            }
+
+            @media (max-width: 767px) {
+              top: 20px;
+            }
+
+            span {
+              color: #86898c;
+            }
+          }
+        }
+
+        &__btn {
+          position: absolute;
+          bottom: 24px;
+
+          @media (max-width: 991px) {
+            display: none;
+          }
+        }
+
+        &__space {
+          height: 100%;
+          width: 100%;
+          padding: 24px 24px 24px 0px;
+
+          @media (max-width: 992px) {
+            padding: 0 20px;
+          }
+
+          @media (max-width: 360px) {
+            padding: 0 10px;
+          }
+        }
       }
 
       &__title {

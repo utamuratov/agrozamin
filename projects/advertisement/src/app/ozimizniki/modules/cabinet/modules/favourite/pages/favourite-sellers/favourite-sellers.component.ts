@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Constants, GridLogic } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
@@ -6,12 +6,20 @@ import { prefixPath } from 'projects/advertisement/src/app/core/utilits/advertis
 import { Seller } from '../../dto/seller.interface';
 import { SellerService } from '../../services/seller.service';
 
+import SwiperCore, { Navigation, Scrollbar } from "swiper";
+import { SwiperComponent } from 'swiper/angular';
+SwiperCore.use([Navigation, Scrollbar]);
+
 @Component({
   selector: 'az-sellers',
   templateUrl: './favourite-sellers.component.html',
   styleUrls: ['./favourite-sellers.component.less'],
 })
 export class FavouriteSellersComponent extends GridLogic<Seller> {
+  /**
+   * 
+   */
+  @ViewChild('swiper', { static: false }) swiper!: SwiperComponent;
   /**
    *
    */
@@ -58,5 +66,13 @@ export class FavouriteSellersComponent extends GridLogic<Seller> {
       AdvertisementConstants.ROUTER_PATH_SELLERS,
       sellerId,
     ]);
+  }
+
+  prev() {
+    this.swiper.swiperRef.slidePrev()
+  }
+
+  next() {
+    this.swiper.swiperRef.slideNext()
   }
 }

@@ -1,17 +1,17 @@
 <form [formGroup]="form">
   <div class="inline-card">
-    <div nz-row [nzGutter]="[0, 30]">
+    <div nz-row [nzGutter]="[0, {xs: 10, sm: 15, md: 20, xl: 24}]">
       <div nz-col nzSpan="24">
         <h3 class="add-title">{{ "price" | translate }}</h3>
       </div>
       <div nz-col nzSpan="24">
-        <div nz-row>
-          <div nz-col nzSpan="12">
+        <div nz-row [nzGutter]="[20, {xs: 10, sm: 0}]">
+          <div nz-col nzXs="24" nzSm="12">
             <nz-form-item>
               <nz-form-label [nzSpan]="24" nzFor="price">{{
                 "priceUZS" | translate
               }}</nz-form-label>
-              <nz-form-control [nzSpan]="16">
+              <nz-form-control nzXs="24" nzSm="24" nzMd="16">
                 <input
                   nz-input
                   type="number"
@@ -34,7 +34,7 @@
               </nz-form-control>
             </nz-form-item>
           </div>
-          <div nz-col nzSpan="12">
+          <div nz-col nzXs="24" nzSm="12">
             <nz-form-item>
               <nz-form-label [nzSpan]="24" nzFor="price">{{
                 "agreementPrice" | translate

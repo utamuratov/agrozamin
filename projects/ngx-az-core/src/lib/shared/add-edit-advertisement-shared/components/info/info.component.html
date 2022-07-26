@@ -1,12 +1,12 @@
 <form [formGroup]="form">
   <div class="inline-card info">
-    <div nz-row [nzGutter]="[0, 24]">
+    <div nz-row [nzGutter]="[0, {xs: 10, sm: 15, md: 20, xl: 24}]">
       <div nz-col nzSpan="24">
         <h4 class="add-title">{{ "info" | translate }}</h4>
       </div>
       <div nz-col nzSpan="24">
         <nz-form-item>
-          <nz-form-label [nzSpan]="6" nzFor="name">{{
+          <nz-form-label [nzSpan]="24" nzFor="name">{{
             "advertisementName" | translate
           }}</nz-form-label>
           <nz-form-control [nzSpan]="24">
@@ -26,8 +26,8 @@
         <div class="mb-1" *ngIf="currentCategory">
           <span class="tag">{{ currentCategory.name }}</span>
         </div>
-        <div nz-row [nzGutter]="[30, 0]">
-          <div nz-col nzSpan="8" *ngFor="let tree of customTree">
+        <div nz-row [nzGutter]="[{xs: 0, sm: 10, md: 10, lg: 30}, {xs: 10, sm: 0}]">
+          <div nz-col nzXs="24" nzSm="8" *ngFor="let tree of customTree">
             <div class="info__category">
               <ul class="info__category__list">
                 <li

@@ -75,6 +75,19 @@ export class CardComponent implements OnInit {
   }
 
   /**
+   * 
+   * @param sellerId 
+   */
+  navigateToSeller(sellerId: number) {
+    this.router.navigate([
+      prefixPath,
+      Constants.DEFAULT_LANGUAGE_CODE,
+      AdvertisementConstants.ROUTER_PATH_SELLERS,
+      sellerId,
+    ]);
+  }
+
+  /**
    *
    * @param advertisement
    */
