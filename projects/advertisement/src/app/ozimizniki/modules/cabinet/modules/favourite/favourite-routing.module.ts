@@ -6,6 +6,7 @@ import { FavouriteAdvertisementComponent } from './pages/favourite-advertisement
 import { FavouriteFiltersComponent } from './pages/favourite-filters/favourite-filters.component';
 import { FavouriteSellersComponent } from './pages/favourite-sellers/favourite-sellers.component';
 import { FavouriteAdvertisementResolver } from './services/favourite-advertisement.resolver';
+import { FavouriteFilterResolver } from './services/favourite-filter.resolver';
 import { FavouriteSellerResolver } from './services/favourite-seller.resolver';
 
 const routes: Routes = [
@@ -29,7 +30,14 @@ const routes: Routes = [
           [AdvertisementConstants.RESOLVERS_SELLERS]: FavouriteSellerResolver,
         },
       },
-      { path: 'filter-options', component: FavouriteFiltersComponent },
+      {
+        path: 'filter-options',
+        component: FavouriteFiltersComponent,
+        resolve: {
+          [AdvertisementConstants.RESOLVERS_FAVORITE_FILTERS]:
+            FavouriteFilterResolver,
+        },
+      },
     ],
   },
 ];

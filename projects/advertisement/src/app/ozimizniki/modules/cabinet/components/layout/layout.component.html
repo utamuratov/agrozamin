@@ -5,14 +5,13 @@
     <div nz-row [nzGutter]="[{ xs: 20, sm: 20, lg: 20, xl: 30 }, 0]">
       <div class="wrapper" nz-col nzXs="0" nzSm="0" nzMd="0" nzLg="0" nzXl="6">
         <div class="wrapper_bg">
-          
           <ul nz-menu nzMode="inline" class="menu">
             <li
               nz-submenu
               [nzTitle]="title1"
               nzOpen
-              [(nzOpen)]="openMap['sub1']"
-              (nzOpenChange)="openHandler('sub1')"
+              [(nzOpen)]="openMenu[CabinetMenu.advertisements]"
+              (nzOpenChange)="openCloseMenuHandler(CabinetMenu.advertisements)"
             >
               <ng-template #title1>
                 <div class="menu__item">
@@ -65,8 +64,8 @@
             <li
               nz-submenu
               [nzTitle]="title2"
-              [(nzOpen)]="openMap['sub2']"
-              (nzOpenChange)="openHandler('sub2')"
+              [(nzOpen)]="openMenu[CabinetMenu.messages]"
+              (nzOpenChange)="openCloseMenuHandler(CabinetMenu.messages)"
             >
               <ng-template #title2>
                 <div class="menu__item">
@@ -147,8 +146,8 @@
             <li
               nz-submenu
               [nzTitle]="title3"
-              [(nzOpen)]="openMap['sub3']"
-              (nzOpenChange)="openHandler('sub3')"
+              [(nzOpen)]="openMenu[CabinetMenu.favourites]"
+              (nzOpenChange)="openCloseMenuHandler(CabinetMenu.favourites)"
             >
               <ng-template #title3>
                 <div class="menu__item">

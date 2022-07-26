@@ -213,9 +213,8 @@ export class CategoryFilterComponent {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
-        characteristics: characteristics.join(
-          AdvertisementConstants.SPLITTER_FILTERID_VALUE
-        ),
+        [AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS]:
+          characteristics.join(AdvertisementConstants.SPLITTER_FILTERID_VALUE),
       },
     });
   }

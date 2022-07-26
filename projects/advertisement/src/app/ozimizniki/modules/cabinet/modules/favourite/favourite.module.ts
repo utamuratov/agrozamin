@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { FavouriteRoutingModule } from './favourite-routing.module';
 import { FavouriteComponent } from './favourite.component';
@@ -23,6 +22,7 @@ import { SwiperModule } from 'swiper/angular';
 import { TagModule } from '../../../../../shared/tag/tag.module';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { EmptyModule } from 'projects/advertisement/src/app/shared/empty/empty.module';
+import { CategoriesAsStringPipe } from './pipes/categories-as-string.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import { EmptyModule } from 'projects/advertisement/src/app/shared/empty/empty.m
     FavouriteAdvertisementComponent,
     FavouriteSellersComponent,
     FavouriteFiltersComponent,
+    CategoriesAsStringPipe,
   ],
   imports: [
     FavouriteRoutingModule,
@@ -50,7 +51,7 @@ import { EmptyModule } from 'projects/advertisement/src/app/shared/empty/empty.m
     NzDropDownModule,
     NzPopoverModule,
     NzButtonModule,
-    EmptyModule
+    EmptyModule,
   ],
 })
 export class FavouriteModule {}
