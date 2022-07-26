@@ -29,6 +29,8 @@ import { SavedMessagesComponent } from './components/messages/components/saved-m
 import { ArchivedMessagesComponent } from './components/messages/components/archived-messages/archived-messages.component';
 import { BlockedMessagesComponent } from './components/messages/components/blocked-messages/blocked-messages.component';
 import { ChatModule } from './components/messages/components/chat/chat.module';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { BreadcrumbCabinetComponent } from './components/breadcrumb-cabinet/breadcrumb-cabinet.component';
 
 @NgModule({
   imports: [
@@ -57,7 +59,8 @@ import { ChatModule } from './components/messages/components/chat/chat.module';
     NzTypographyModule,
     NzSelectModule,
     NzBadgeModule,
-    ChatModule
+    NzBreadCrumbModule,
+    ChatModule,
   ],
   declarations: [
     LayoutComponent,
@@ -66,7 +69,8 @@ import { ChatModule } from './components/messages/components/chat/chat.module';
     Messages2Component,
     SavedMessagesComponent,
     ArchivedMessagesComponent,
-    BlockedMessagesComponent
+    BlockedMessagesComponent,
+    BreadcrumbCabinetComponent,
   ],
 })
 export class CabinetModule {}

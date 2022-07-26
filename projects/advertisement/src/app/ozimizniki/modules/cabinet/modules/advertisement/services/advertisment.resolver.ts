@@ -27,14 +27,14 @@ export class AdvertisementResolver
     | Promise<GridModel<Advertisement>>
     | GridModel<Advertisement> {
     const query = AdvertisementConstants.DEFAULT_GRID_QUERY;
-    const status = +route.params['status'];
+    const status = +route.url[0].path;
 
     if (status === AdvertisementStatus.STATUS_ARCHIVED) {
       // ARCHIVED ADVERTISEMENTS
       query.filter = [
         {
           key: 'archive',
-          value: [String(+status === AdvertisementStatus.STATUS_ARCHIVED)],
+          value: [String(status === AdvertisementStatus.STATUS_ARCHIVED)],
         },
       ];
     } else {

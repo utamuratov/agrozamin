@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Breadcrumb } from 'ngx-az-core';
 import { AdvertisementConstants } from 'projects/advertisement/src/app/core/constants/advertisement.constants';
@@ -37,9 +42,10 @@ export class BreadcrumbAdvertisementComponent extends Breadcrumb {
    */
   constructor(
     protected override router: Router,
+    protected override cd: ChangeDetectorRef,
     private route: ActivatedRoute
   ) {
-    super(router);
+    super(router, cd);
   }
 
   /**

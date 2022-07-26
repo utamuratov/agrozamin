@@ -1,0 +1,42 @@
+<nz-breadcrumb>
+  <nz-breadcrumb-item *ngFor="let bcElement of breadcrumbs; let last = last">
+    <ng-container *ngIf="bcElement.data; else simpleBC">
+      <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+        {{ bcElement.data.name | translate }}
+        <i nz-icon nzType="down"></i>
+      </a>
+
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li
+            nz-menu-item
+            (click)="navigateBySequence(bcElement.url, menu.value)"
+            *ngFor="let menu of bcElement.data.list"
+            [ngClass]="{
+              active: bcElement.data.value === menu.value
+            }"
+          >
+            {{ menu.name | translate }}
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </ng-container>
+    <ng-template #simpleBC>
+      <a [routerLink]="bcElement.url">{{ bcElement.name | translate }}</a>
+    </ng-template>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div
+  nz-col
+  nzSpan="24"
+  class="container__title"
+  *ngIf="breadcrumbs[breadcrumbs.length - 1] as lastBC"
+>
+  <ng-container *ngIf="lastBC.data; else justName">
+    <h3 class="title">{{ lastBC.data.name | translate }}</h3>
+  </ng-container>
+  <ng-template #justName>
+    <h3 class="title">{{ lastBC.name | translate }}</h3>
+  </ng-template>
+</div>

@@ -43,10 +43,10 @@ export class AdvertisementListByCategoryPage extends Breadcrumb {
    */
   constructor(
     protected override router: Router,
-    private route: ActivatedRoute,
-    private cd: ChangeDetectorRef
+    protected override cd: ChangeDetectorRef,
+    private route: ActivatedRoute
   ) {
-    super(router);
+    super(router, cd);
 
     this.route.data.subscribe((data) => {
       this.filter = {
