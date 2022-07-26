@@ -78,10 +78,33 @@
     }
 
     &__category {
+      position: relative;
+      max-width: 430px;
+      width: 100%;
+
+      &__btn {
+        position: absolute;
+        top: 50%;
+        z-index: 100;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        outline: none;
+        color: #377BE1;
+
+        &.prev {
+          left: 0;
+        }
+
+        &.next {
+          right: 0;
+        }
+      }
+
       &__swiper {
-        max-width: 430px;
-        width: 100%;
-        margin: 0;
+        height: 32px;
+
+        
       }
     }
 
@@ -144,5 +167,16 @@
         margin: 0;
       }
     }
+  }
+}
+
+
+:host ::ng-deep {
+  .swiper-scrollbar {
+    height: 3px;
+  }
+
+  .swiper-scrollbar-drag {
+    background: #377BE1;
   }
 }

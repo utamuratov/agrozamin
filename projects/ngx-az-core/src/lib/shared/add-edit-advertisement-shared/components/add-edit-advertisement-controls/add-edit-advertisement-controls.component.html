@@ -53,21 +53,24 @@
   </label>
 </div>
 
-<div [hidden]="isHiddenUserAgreement" nz-row [nzGutter]="[16, 0]" class="mt-1">
-  <div nz-col>
-    <button
-      nz-button
-      nzType="primary"
-      nzSize="large"
-      class="secondary"
-      [disabled]="!isAgreeUserAgreement"
-    >
-      <span>{{ "postAdvertisement" | translate }}</span>
-    </button>
-  </div>
-  <div nz-col>
-    <button nz-button nzType="primary" nzSize="large">
-      <span class="nav__bottom-btn-text">{{ "clear" | translate }}</span>
-    </button>
+<div [hidden]="isHiddenUserAgreement" class="mt-1">
+  <div nz-row [nzGutter]="[16, 16]">
+    <div nz-col nzXs="24" nzSm="12" nzMd="8" nzLg="6" nzXl="6">
+      <button
+        nz-button
+        nzType="primary"
+        nzSize="large"
+        class="secondary"
+        [disabled]="!isAgreeUserAgreement"
+        nzBlock
+      >
+        <span>{{ "postAdvertisement" | translate }}</span>
+      </button>
+    </div>
+    <div nz-col nzXs="24" nzSm="12" nzMd="6" nzLg="4" nzXl="4">
+      <button nz-button nzType="primary" nzSize="large" nzBlock>
+        <span class="nav__bottom-btn-text">{{ "clear" | translate }}</span>
+      </button>
+    </div>
   </div>
 </div>

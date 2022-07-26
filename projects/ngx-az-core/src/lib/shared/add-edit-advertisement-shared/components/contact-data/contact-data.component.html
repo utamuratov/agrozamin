@@ -1,6 +1,6 @@
 <form [formGroup]="form">
   <div class="inline-card">
-    <div nz-row [nzGutter]="[0, 30]">
+    <div nz-row [nzGutter]="[0, {xs: 10, sm: 15, md: 20, xl: 24}]">
       <div nz-col nzSpan="24">
         <h3 class="add-title">{{ "contactData" | translate }}</h3>
       </div>
@@ -21,7 +21,7 @@
           *ngIf="!form.controls['use_agroid_contact'].value"
           formGroupName="contact"
         >
-          <div nz-col nzSpan="8">
+          <div nz-col nzXs="24" nzSm="12" nzMd="8">
             <nz-form-item>
               <nz-form-label nzFor="full_name">{{
                 "firstName" | translate
@@ -38,7 +38,7 @@
               </nz-form-control>
             </nz-form-item>
           </div>
-          <div nz-col nzSpan="8">
+          <div nz-col nzXs="24" nzSm="12" nzMd="8">
             <nz-form-item>
               <nz-form-label nzFor="phone">{{
                 "phoneNumber" | translate

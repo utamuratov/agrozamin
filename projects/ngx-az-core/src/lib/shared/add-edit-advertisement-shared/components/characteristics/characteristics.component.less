@@ -7,7 +7,12 @@
   }
 
   &__country {
-    width: 390px;
+    max-width: 390px;
+    width: 100%;
+
+    @media (max-width: 575px) {
+      max-width: 100%;
+    }
   }
 }
 
@@ -17,4 +22,20 @@
 
 .invalid {
   color: red;
+}
+
+:host ::ng-deep {
+
+  .ant-radio-group-large .ant-radio-button-wrapper {
+    margin-right: 5px;
+  }
+
+  .ant-radio-group-large .ant-radio-button-wrapper:last-child {
+    border-radius: 0 !important;
+    margin-right: 0;
+  }
+
+  .ant-radio-group-large .ant-radio-button-wrapper:first-child {
+    border-radius: 0 !important;
+  }
 }
