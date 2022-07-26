@@ -11,14 +11,21 @@
         </ng-template>
       </div>
       <div nz-col nzSpan="6">
-        <button nz-button nzType="primary" (click)="showModal()">Добавить</button>
+        <button nz-button nzType="primary" (click)="showModal()">
+          Добавить
+        </button>
       </div>
     </div>
   </div>
 
   <div nz-col nzSpan="24">
     <!-- TABLE -->
-    <nz-table #basicTable [nzData]="data" [nzPageSize]="10" [nzScroll]="{ y: '500px' }">
+    <nz-table
+      #basicTable
+      [nzData]="data"
+      [nzPageSize]="10"
+      [nzScroll]="{ y: '500px' }"
+    >
       <thead>
         <tr>
           <th class="th-table">Ключ</th>
@@ -31,15 +38,31 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
-          <td>{{data.key}}</td>
-          <td>{{data.text.ru}}</td>
-          <td>{{data.text.uz_cyrl}}</td>
-          <td>{{data.text.uz_latn}}</td>
-          <td><nz-tag *ngFor="let tag of data.projects">{{tag.name}}</nz-tag></td>
+          <td>{{ data.key }}</td>
+          <td>{{ data.text.ru }}</td>
+          <td>{{ data.text.uz_cyrl }}</td>
+          <td>{{ data.text.uz_latn }}</td>
+          <td>
+            <nz-tag *ngFor="let tag of data.projects">{{ tag.name }}</nz-tag>
+          </td>
           <td>
             <nz-button-group>
-              <button nz-button nzType="default" nzSize="large" (click)="deleteInterface(data.id)"><i nz-icon nzType="delete" nzTheme="twotone"></i></button>
-              <button nz-button nzType="default" nzSize="large" (click)="showModal(data)"><i nz-icon nzType="edit" nzTheme="twotone"></i></button>
+              <button
+                nz-button
+                nzType="default"
+                nzSize="large"
+                (click)="deleteInterface(data.id)"
+              >
+                <i nz-icon nzType="delete" nzTheme="twotone"></i>
+              </button>
+              <button
+                nz-button
+                nzType="default"
+                nzSize="large"
+                (click)="showModal(data)"
+              >
+                <i nz-icon nzType="edit" nzTheme="twotone"></i>
+              </button>
             </nz-button-group>
           </td>
         </tr>
@@ -50,5 +73,10 @@
   <!-- MODAL -->
 </div>
 
-
-<az-interface-modal [(isVisible)]="isVisible" [editingData]="editingData" [form]="form" (projects)="getProjectList($event)"></az-interface-modal>
+<az-interface-modal
+  [(isVisible)]="isVisible"
+  [editingData]="editingData"
+  [form]="form"
+  (isLoading)="afterSuccess($event)"
+  [list]="list"
+></az-interface-modal>

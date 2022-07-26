@@ -3,12 +3,12 @@ import { FormGroup } from '@angular/forms';
 import { TranslateList } from '../../../../dto/interface/translate-list.interface';
 import { TransferItem } from 'ng-zorro-antd/transfer';
 import { InterfaceService } from '../../services/interface.service';
-import { ProjectList } from '../../../../dto/interface/project-list.interface';
-import { map, Observable, takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs';
 import { NgDestroy } from 'ngx-az-core';
+import { InterfaceRequest } from '../../../../dto/interface/interface-request.interface';
 
 export interface Key {
-  [key: number]: number
+  [key: number]: number;
 }
 
 @Component({
@@ -16,81 +16,142 @@ export interface Key {
   templateUrl: './interface-modal.component.html',
   styleUrls: ['./interface-modal.component.less'],
 })
-export class InterfaceModalComponent implements OnInit {
-  @Output() projects = new EventEmitter<Key>();
+export class InterfaceModalComponent {
+  /**
+   *
+   */
+  @Output()
+  isLoading = new EventEmitter<boolean>();
 
+  /**
+   *
+   */
   @Output()
   isVisibleChange = new EventEmitter<boolean>();
 
+  /**
+   *
+   */
   @Input()
   isVisible!: boolean;
 
-  @Input() editingData?: TranslateList;
+  /**
+   *
+   */
+  @Input()
+  editingData?: TranslateList;
 
-  @Input() form!: FormGroup;
+  /**
+   *
+   */
+  @Input()
+  form!: FormGroup;
 
-  projectList!: Observable<ProjectList[]>;
+  /**
+   *
+   */
+  @Input() list: TransferItem[] = [];
 
-  pr!: Key;
+  /**
+   *
+   */
+  selectedProjects: number[] = [];
 
-  selectedProjects: any = [];
-
-  list: TransferItem[] = [];
-
+  /**
+   *
+   * @param $data
+   * @param $destroy
+   */
   constructor(private $data: InterfaceService, private $destroy: NgDestroy) {}
 
-  private getProjects() {
-    this.projectList = this.$data.getProjects().pipe(
-      map((res) => {
-        return res.data;
-      })
-    );
+  /**
+   *
+   * @returns
+   */
+  private requestFields(): InterfaceRequest {
+    return {
+      key: this.form.value.key,
+      text: {
+        ru: this.form.value.ru,
+        uz_cyrl: this.form.value.uz_cyrl,
+        uz_latn: this.form.value.uz_latn,
+      },
+      project: {...this.selectedProjects},
+      type: 1,
+    };
   }
 
-  private buildTransferList() {
-    this.projectList.pipe(takeUntil(this.$destroy)).subscribe((res) => {
-      for (let i = 0; i < res.length; i++) {
-        this.list.push({
-          key: res[i].id,
-          title: res[i].name,
-          direction: 'left',
-        });
-      }   
-      // [2, 3].forEach(idx => (this.list[idx].direction = 'right'));   
-    });
-
-    
+  /**
+   *
+   */
+  private doAfterSuccess() {
+    this.isLoading.emit(true);
+    this.handleCancel();
   }
 
-  ngOnInit(): void {
-    this.getProjects();
-    this.buildTransferList();
-    
+  /**
+   *
+   */
+  addInterface() {
+    const bodyRequest: InterfaceRequest = this.requestFields();
+    this.$data
+      .add(bodyRequest)
+      .pipe(takeUntil(this.$destroy))
+      .subscribe(() => {
+        this.doAfterSuccess();
+      });
   }
 
+  /**
+   * 
+   * @param id 
+   */
+  editInterface(id: number) {
+    const bodyRequest: InterfaceRequest = this.requestFields();
+    this.$data
+      .edit(id, bodyRequest)
+      .pipe(takeUntil(this.$destroy))
+      .subscribe(() => {
+        this.doAfterSuccess();
+      });
+  }
+
+  /**
+   *
+   * @returns
+   */
   handleOk(): void {
-    this.pr = { ...this.selectedProjects };
-    console.log(this.projects);
-    this.isVisibleChange.emit(false);
-    this.projects.emit(this.pr);
+    if (this.editingData) {
+      this.editInterface(this.editingData.id);
+      return;
+    }
+    this.addInterface();
   }
 
+  /**
+   *
+   */
   handleCancel(): void {
     this.isVisibleChange.emit(false);
+    this.form.reset();
+    this.list.forEach((el, idx) => (this.list[idx].direction = 'left'));
   }
 
+  /**
+   *
+   * @param ret
+   */
   change(ret: any): void {
-    console.log('nzChange', ret);
     if (ret.to === 'right') {
-      ret.list.forEach((el: any) => {
-        this.selectedProjects.push(el.key);
+      ret.list.forEach((el: TransferItem) => {
+        this.selectedProjects.push(el['key']);
       });
     }
 
     if (ret.to === 'left') {
-      ret.list.forEach((el: any) => {
+      ret.list.forEach((el: TransferItem) => {
         this.selectedProjects = this.selectedProjects.filter(
-          (id: number) => id !== el.key
+          (id: number) => id !== el['key']
         );
       });
     }

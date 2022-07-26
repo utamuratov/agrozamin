@@ -6,7 +6,7 @@
   [nzWidth]="1000"
 >
   <ng-container *nzModalContent>
-    <form nz-form [formGroup]="form" nzLayout="vertical">
+    <form nz-form [formGroup]="form" nzLayout="vertical" (ngSubmit)="handleOk()">
       <div nz-row [nzGutter]="[20, 0]">
         <div nz-col nzSpan="12">
           <nz-form-item>
