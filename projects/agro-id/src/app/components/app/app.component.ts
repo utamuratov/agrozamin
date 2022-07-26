@@ -3,7 +3,6 @@ import {
   NavigationCancel,
   NavigationEnd,
   NavigationError,
-  NavigationStart,
   Router,
 } from '@angular/router';
 import { Store } from '@ngxs/store';

@@ -8,7 +8,7 @@ import { ChatComponent } from './components/messages/components/chat/chat.compon
 import { Messages2Component } from './components/messages/components/messages2/messages2.component';
 import { SavedMessagesComponent } from './components/messages/components/saved-messages/saved-messages.component';
 import { MessagesComponent } from './components/messages/messages.component';
-import { CabinetMenu } from './menu-type.enum';
+import { CabinetMenu, CabinetMenuList } from './menu-type.enum';
 
 const routes: Routes = [
   {
@@ -38,11 +38,26 @@ const routes: Routes = [
               import('./modules/advertisement/advertisement.module').then(
                 (m) => m.AdvertisementModule
               ),
+            data: {
+              bc: {
+                name: CabinetMenu.advertisements,
+                value: CabinetMenu.advertisements,
+                list: CabinetMenuList,
+              },
+            },
           },
           {
             path: CabinetMenu.messages,
             component: MessagesComponent,
+            data: {
+              bc: {
+                name: CabinetMenu.messages,
+                value: CabinetMenu.messages,
+                list: CabinetMenuList,
+              },
+            },
             children: [
+              { path: '', pathMatch: 'full', redirectTo: 'chat' },
               { path: 'chat', component: ChatComponent },
               { path: 'messages2', component: Messages2Component },
               { path: 'saved', component: SavedMessagesComponent },

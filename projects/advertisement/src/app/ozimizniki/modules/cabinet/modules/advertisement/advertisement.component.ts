@@ -1,5 +1,12 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  Router,
+  UrlSegment,
+} from '@angular/router';
 import {
   AdvertisementStatus,
   IdName,
@@ -21,7 +28,7 @@ import { AdvertisementService } from './services/advertisment.service';
   providers: [AdvertisementService],
 })
 export class AdvertisementComponent extends GridLogic<Advertisement> {
-  favourite = false
+  favourite = false;
 
   /**
    *
@@ -68,12 +75,15 @@ export class AdvertisementComponent extends GridLogic<Advertisement> {
   ) {
     super($data, cd);
     this.getFilterData();
-
-    this.route.params.pipe(takeUntil(this.$destroy)).subscribe((params) => {
-      this.status = +params['status'];
-      this.initQuery();
-      this.data = this.route.snapshot.data['advertisment'];
-    });
+    this.route.url
+      .pipe(takeUntil(this.$destroy))
+      .subscribe((urlSegment: UrlSegment[]) => {
+        if (urlSegment) {
+          this.status = +urlSegment[0].path as AdvertisementStatus;
+          this.initQuery();
+          this.data = this.route.snapshot.data['advertisment'];
+        }
+      });
   }
 
   /**

@@ -58,17 +58,35 @@ export class FavouriteFiltersComponent extends GridLogic<SavedFilter> {
   /**
    *
    * @param savedFilter
+   * @returns
    */
-  viewFilter(savedFilter: SavedFilter) {
-    const categories = savedFilter.categories
-      .map((category) => category.id)
-      .join(AdvertisementConstants.SPLITTER_CATEGORY_ID);
-    const filterParams = savedFilter.parameters
+  private joinedFilterParameters(savedFilter: SavedFilter) {
+    return savedFilter.parameters
       .map(
         (filter) =>
           `${filter.filter_id}${AdvertisementConstants.SPLITTER_BETWEEN_FILTERID_AND_VALUE}${filter.parameter_id}`
       )
       .join(AdvertisementConstants.SPLITTER_FILTERID_VALUE);
+  }
+
+  /**
+   *
+   * @param savedFilter
+   * @returns
+   */
+  private joinedCategoryIds(savedFilter: SavedFilter) {
+    return savedFilter.categories
+      .map((category) => category.id)
+      .join(AdvertisementConstants.SPLITTER_CATEGORY_ID);
+  }
+
+  /**
+   *
+   * @param savedFilter
+   */
+  viewFilter(savedFilter: SavedFilter) {
+    const categories = this.joinedCategoryIds(savedFilter);
+    const filterParams = this.joinedFilterParameters(savedFilter);
     this.navigateToAdvertisements(categories, filterParams);
   }
 
@@ -78,7 +96,9 @@ export class FavouriteFiltersComponent extends GridLogic<SavedFilter> {
    */
   deleteFilter(id: number) {
     this.$data.delete(id).subscribe((result) => {
-      this.loadData();
+      if (result.success) {
+        this.loadData();
+      }
     });
   }
 

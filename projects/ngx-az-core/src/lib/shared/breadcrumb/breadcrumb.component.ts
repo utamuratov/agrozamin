@@ -1,5 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { Router, ActivatedRouteSnapshot, UrlSegment } from '@angular/router';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
 @Component({
   template: '',
@@ -11,6 +16,14 @@ export class Breadcrumb {
    */
   breadcrumbs: {
     name: string;
+    data?: {
+      name: string;
+      value: string;
+      list: {
+        name: string;
+        value: string;
+      }[];
+    };
     url: string;
   }[] = [];
 
@@ -18,10 +31,11 @@ export class Breadcrumb {
    *
    * @param router
    */
-  constructor(protected router: Router) {
+  constructor(protected router: Router, protected cd: ChangeDetectorRef) {
     this.router.events.subscribe(() => {
       this.breadcrumbs = [];
       this.parseRoute(this.router.routerState.snapshot.root);
+      this.cd.markForCheck();
     });
   }
 
@@ -30,7 +44,8 @@ export class Breadcrumb {
    * @param node
    */
   parseRoute(node: ActivatedRouteSnapshot) {
-    if (node.data['bc']) {
+    const bc = node.data['bc'];
+    if (bc) {
       let urlSegments: UrlSegment[] = [];
       node.pathFromRoot.forEach((routerState) => {
         urlSegments = urlSegments.concat(routerState.url);
@@ -46,10 +61,18 @@ export class Breadcrumb {
         return;
       }
 
-      this.breadcrumbs.push({
-        name: node.data['bc'],
-        url,
-      });
+      if (typeof bc === 'string') {
+        this.breadcrumbs.push({
+          name: bc,
+          url,
+        });
+      } else {
+        this.breadcrumbs.push({
+          data: bc,
+          name: '',
+          url,
+        });
+      }
     }
 
     if (node.firstChild) {
