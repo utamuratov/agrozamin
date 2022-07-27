@@ -28,6 +28,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { InterfaceComponent } from './components/interface/interface.component';
 import { InterfaceModalComponent } from './components/interface/components/interface-modal/interface-modal.component';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
+import { AgroUsersComponent } from './components/agro-users/agro-users.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NzTransferModule } from 'ng-zorro-antd/transfer';
     RolesComponent,
     RoleModalComponent,
     InterfaceComponent,
-    InterfaceModalComponent
+    InterfaceModalComponent,
+    AgroUsersComponent
   ],
   imports: [
     CommonModule,

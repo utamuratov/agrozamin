@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegionComponent } from '../region/region.component';
+import { AgroUsersComponent } from './components/agro-users/agro-users.component';
 import { DistrictComponent } from './components/district/district.component';
 import { InterfaceComponent } from './components/interface/interface.component';
 import { RegionsComponent } from './components/regions/regions.component';
@@ -14,6 +14,7 @@ const routes: Routes = [
     {path: 'district', component: DistrictComponent},
     {path: 'roles', component: RolesComponent},
     {path: 'interface', component: InterfaceComponent},
+    {path: 'agro-users', component: AgroUsersComponent},
   ] },
 ];
 
