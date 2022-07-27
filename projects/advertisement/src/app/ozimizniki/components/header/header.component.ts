@@ -80,29 +80,105 @@ export class HeaderComponent implements OnInit {
 
   searchParamas = [
     {
-      type: 'История поиска:',
+      category: 'Сельхозтехника',
+      product: 'Трактор',
       id: 1,
-      values: [
-        { name: 'ворес', id: 1 },
-        { name: 'овощная сеялка', id: 2 },
-      ],
     },
     {
-      type: 'Часто ищут:',
-      id: 1,
-      values: [
-        { name: 'виноград', id: 1 },
-        { name: 'время кофе', id: 2 },
-      ],
+      category: 'Спецтранспорт',
+      product: 'Трактор',
+      id: 2,
     },
-    { type: 'Категории:', id: 1, values: [{ name: 'В мешках', id: 1 }] },
-    { type: 'Продавец:', id: 1, values: [{ name: 'ООО “Вымпел”', id: 1 }] },
     {
-      type: 'Товары:',
-      id: 1,
-      values: [{ name: 'Круглошлифовальный станок', id: 1 }],
+      category: 'Сельхозтехника',
+      product: 'Трактор МТЗ 30',
+      id: 3,
     },
-    { type: 'Производитель:', id: 1, values: [{ name: 'ООО Company', id: 1 }] },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор Беларус 82.1',
+      id: 4,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
+    {
+      category: 'Сельхозтехника',
+      product: 'Трактор ANT 4050',
+      id: 5,
+    },
   ];
 
   regions = [
@@ -664,5 +740,26 @@ export class HeaderComponent implements OnInit {
     this.drawerWidthValue = this.azDrawerWidth();
     this.drawerWidthValueCatalog = this.azDrawerWidthCatalog();
     this.drawerOffsetValue = this.azDrawerOffsetCatalog();
+  }
+
+
+  setCity(city: string) {
+    
+    this.searchForm.controls['cityInput'].setValue(city)
+    this.searchCityDropDown = false;
+
+    if (!this.searchForm.value.searchInput) {
+      this.searchDropDown = true;
+    }
+  }
+
+  setSearchValue(value: string) {
+    this.searchForm.controls['searchInput'].setValue(value)
+    this.searchDropDown = false;
+  }
+
+  closeDrops() {
+    this.searchDropDown = false;
+    this.searchCityDropDown = false;
   }
 }

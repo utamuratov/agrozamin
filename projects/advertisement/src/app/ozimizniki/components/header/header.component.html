@@ -401,7 +401,6 @@
               <nz-input-group
                 style="width: 30%"
                 nzSize="large"
-                [nzSuffix]="arrowIcon"
                 [nzPrefix]="locationIcon"
               >
                 <input
@@ -424,15 +423,6 @@
                 [ngStyle]="{ color: touched ? '#1A1A1A' : '#999999' }"
               ></i
             ></ng-template>
-
-            <ng-template #arrowIcon>
-              <i
-                nz-icon
-                nzType="down"
-                nzTheme="outline"
-                [ngStyle]="{ color: touched ? '#1A1A1A' : '#999999' }"
-              ></i>
-            </ng-template>
 
             <ng-template #suffixIconButton>
               <button
@@ -479,91 +469,115 @@
   <div class="header__search-dropdown" *ngIf="searchDropDown">
     <div class="drop-top">
       <div class="container">
-        <div class="header__dropdown">
-          <div nz-row [nzGutter]="[0, 30]">
-            <div nz-col nzSpan="24" *ngFor="let param of searchParamas">
-              <div nz-row [nzGutter]="[30, 0]">
-                <div nz-col nzSpan="3">
-                  <p nz-typography class="text-end search__type">
-                    {{ param.type }}
-                  </p>
-                </div>
-                <div nz-col nzSpan="21">
-                  <div nz-row>
-                    <div nz-col nzSpan="24" *ngFor="let value of param.values">
-                      <a class="search__values">{{ value.name }}</a>
+        <div class="header__dropdown">          
+          <div class="header__dropdown__content">
+            <div nz-row [nzGutter]="[0, 30]">
+              <div nz-col nzSpan="24">
+                <div nz-row [nzGutter]="[30, 0]">
+                  <div nz-col nzXl="3" nzLg="4" nzMd="5">
+                    <span nz-typography class="text-end search__type">
+                      Рекомендации:
+                    </span>
+                  </div>
+  
+                  <div nz-col nzXl="21" nzLg="20" nzMd="19">
+                    <div nz-row [nzGutter]="[0 , 10]">
+                      <div nz-col nzSpan="24" *ngFor="let value of searchParamas">
+                        <div class="search__values" (click)="setSearchValue(value.product)">
+                          <div  nz-row>
+                            <div nz-col nzSpan="24" class="search__values__prod">{{ value.product }}</div>
+                            <div nz-col nzSpan="24" class="search__values__cat">{{ value.category }}</div>
+                          </div>
+                        </div>                      
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="header__dropdown__btn">
+            <button nz-button nzType="default" nzShape="circle" (click)="closeDrops()">
+              <i nz-icon nzType="close" nzTheme="outline"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="backdrop"></div>
+    <div class="backdrop" (click)="closeDrops()"></div>
   </div>
 
   <div class="header__search-dropdown" *ngIf="searchCityDropDown">
     <div class="drop-top">
       <div class="container">
         <div class="header__dropdown">
-          <div nz-row [nzGutter]="[0, 30]">
-            <div nz-col nzSpan="12">
-              <input
-                nz-input
-                type="text"
-                placeholder="Поиск по названию"
-                nzSize="large"
-                [(ngModel)]="search"
-              />
-            </div>
-            <div nz-col nzSpan="24">
-              <div nz-row [nzGutter]="[30, 0]">
-                <div nz-col nzSpan="6" class="regions_border">
-                  <div nz-row [nzGutter]="[0, 16]">
-                    <div
-                      nz-col
-                      nzSpan="24"
-                      *ngFor="let region of regions | filter: search"
-                    >
-                      <a class="region" (mouseenter)="getCities(region.id)">{{
-                        region.name
-                      }}</a>
+          <div class="header__dropdown__content">
+            <div nz-row [nzGutter]="[0, 30]">
+              <div nz-col nzSpan="12">
+                <div>
+                  <input
+                  nz-input
+                  type="text"
+                  placeholder="Поиск по названию"
+                  nzSize="large"
+                  [(ngModel)]="search"
+                />
+                </div>
+              </div>
+              <div nz-col nzSpan="24">
+                <div nz-row [nzGutter]="[30, 0]">
+                  <div nz-col nzSpan="6" class="regions_border">
+                    <div nz-row [nzGutter]="[0, 16]">
+                      <div
+                        nz-col
+                        nzSpan="24"
+                        *ngFor="let region of regions | filter: search"
+                      >
+                        <div class="region"  (mouseenter)="getCities(region.id)">
+                          <span >{{
+                            region.name
+                          }}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <div nz-col nzSpan="18" *ngIf="search.length < 1">
-                  <div nz-row [nzGutter]="[0, 16]">
-                    <div
-                      nz-col
-                      nzSpan="8"
-                      *ngFor="let city of regionsChild | filter: search"
-                    >
-                      <a class="city">{{ city.name }}</a>
+  
+                  <div nz-col nzSpan="18" *ngIf="search.length < 1">
+                    <div nz-row [nzGutter]="[0, 16]">
+                      <div
+                        nz-col
+                        nzSpan="8"
+                        *ngFor="let city of regionsChild | filter: search"
+                      >
+                        <a class="city" (click)="setCity(city.name)">{{ city.name }}</a>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <div nz-col nzSpan="18" *ngIf="search.length > 0">
-                  <div nz-row [nzGutter]="[0, 16]">
-                    <div
-                      nz-col
-                      nzSpan="8"
-                      *ngFor="let city of regionsChild | filter: search"
-                    >
-                      <a class="city">{{ city.name }}</a>
+  
+                  <div nz-col nzSpan="18" *ngIf="search.length > 0">
+                    <div nz-row [nzGutter]="[0, 16]">
+                      <div
+                        nz-col
+                        nzSpan="8"
+                        *ngFor="let city of regionsChild | filter: search"
+                      >
+                        <a class="city" >{{ city.name }}</a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="header__dropdown__btn">
+            <button nz-button nzType="default" nzShape="circle" (click)="closeDrops()">
+              <i nz-icon nzType="close" nzTheme="outline"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="backdrop"></div>
+    <div class="backdrop" (click)="closeDrops()"></div>
   </div>
 </div>
 
@@ -709,7 +723,6 @@
         </div>
 
         <div nz-col nzXs="24" nzSm="24" nzMd="0">
-
           <div class="az-drawer__language">
             <div nz-row [nzGutter]="[0, 20]">
               <div nz-col nzXs="24" nzSm="0">
@@ -719,7 +732,10 @@
                   class="drawer__btn__info"
                   (click)="navigateTo(['cabinet'])"
                 >
-                  <img src="'../../../../../../assets/images/bell.png" alt="icon" />
+                  <img
+                    src="'../../../../../../assets/images/bell.png"
+                    alt="icon"
+                  />
                   <span class="az-drawer__language__text">Уведомления</span>
                 </button>
               </div>
@@ -730,7 +746,10 @@
                   class="drawer__btn__info"
                   (click)="navigateTo(['cabinet'])"
                 >
-                  <img src="'../../../../../../assets/images/menu-Vector.png" alt="icon" />
+                  <img
+                    src="'../../../../../../assets/images/menu-Vector.png"
+                    alt="icon"
+                  />
                   <span class="az-drawer__language__text">Объявления</span>
                 </button>
               </div>
@@ -741,7 +760,10 @@
                   class="drawer__btn__info"
                   (click)="navigateTo(['cabinet/main/messages/chat'])"
                 >
-                  <img src="'../../../../../../assets/images/menu-message.png" alt="icon" />
+                  <img
+                    src="'../../../../../../assets/images/menu-message.png"
+                    alt="icon"
+                  />
                   <span class="az-drawer__language__text">Сообщения</span>
                 </button>
               </div>
@@ -750,9 +772,14 @@
                   nz-button
                   nzType="link"
                   class="drawer__btn__info"
-                  (click)="navigateTo(['cabinet/main/favourites/advertisements'])"
+                  (click)="
+                    navigateTo(['cabinet/main/favourites/advertisements'])
+                  "
                 >
-                  <img src="'../../../../../../assets/images/menu-heart.png" alt="icon" />
+                  <img
+                    src="'../../../../../../assets/images/menu-heart.png"
+                    alt="icon"
+                  />
                   <span class="az-drawer__language__text">Избранное</span>
                 </button>
               </div>
@@ -763,17 +790,19 @@
                   class="drawer__btn__info"
                   (click)="navigateTo(['cabinet'])"
                 >
-                  <img src="'../../../../../../assets/images/menu-settings.png" alt="icon" />
+                  <img
+                    src="'../../../../../../assets/images/menu-settings.png"
+                    alt="icon"
+                  />
                   <span class="az-drawer__language__text">Настройки</span>
                 </button>
               </div>
               <div nz-col nzXs="24" nzSm="0">
-                <button
-                  nz-button
-                  nzType="link"
-                  class="drawer__btn__info"                  
-                >
-                  <img src="'../../../../../../assets/images/menu-logout.png" alt="icon" />
+                <button nz-button nzType="link" class="drawer__btn__info">
+                  <img
+                    src="'../../../../../../assets/images/menu-logout.png"
+                    alt="icon"
+                  />
                   <span class="az-drawer__language__text">Выйти</span>
                 </button>
               </div>
