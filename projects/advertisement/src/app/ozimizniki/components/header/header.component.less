@@ -126,6 +126,14 @@
     z-index: 500;
     overflow-y: auto;
 
+    @media (max-width: 991px) {
+      top: 140px;
+    }
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+
     .region {
       font-size: 16px;
       font-family: Agrofont-Medium;
@@ -168,20 +176,53 @@
 
   &__dropdown {
     padding: 50px 0;
+    position: relative;
+
+    &__btn {
+      position: absolute;
+      top: 50px;
+      right: 0;
+    }
   }
 
   .search__type {
     color: #86898c;
     font-size: 16px;
     line-height: 20px;
+    position: fixed;
   }
 
-  .search__values {
-    color: #000;
+  .search__values { 
+    font-family: Agrofont-Regular;
+    cursor: pointer;
+    width: max-content;
+    padding: 10px;
+    border-radius: 8px;
+    transition: 0.3s;
+
+    &:hover {
+      background: #EDEFF5;      
+    }
+
+    &__prod {
+      font-size: 16px;
+      line-height: 20px;
+      color: #000;
+    }
+
+    &__cat {
+      font-size: 14px;
+      line-height: 18px;
+      color: #86898C;
+    }
+
+    
   }
 
   .drop-top {
     background: #fff;
+    max-height: 436px;
+    overflow: auto;
   }
 
   .backdrop {
@@ -448,7 +489,6 @@
   padding: 30px;
 }
 
-
 .drawer {
   &-user {
     &-avatar {
@@ -474,7 +514,7 @@
     &-service {
       font-size: 14px;
       line-height: 18px;
-      color: #86898C;
+      color: #86898c;
     }
   }
 }
