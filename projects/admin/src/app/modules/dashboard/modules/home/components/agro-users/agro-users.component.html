@@ -149,7 +149,7 @@
               <td>{{ data.id }}</td>
               <td>{{ data.login }}</td>
               <td>{{ data.f_name + " " + data.l_name }}</td>
-              <td>{{ "+" + data.phone }}</td>
+              <td>{{ data.phone | mask: '+000 00 000 00 00'}}</td>
               <td>{{ data.moderator?.full_name }}</td>
               <td>{{ data.description }}</td>
               <td>{{ data.last_active_time | date: "dd.MM.y h:mm a" }}</td>

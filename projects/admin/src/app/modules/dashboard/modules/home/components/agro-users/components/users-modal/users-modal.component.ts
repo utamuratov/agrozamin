@@ -48,7 +48,7 @@ export class UsersModalComponent {
   private requestBody(): CreateUser {
     return {
       login: this.form.value.login,
-      phone: this.form.value.phone,
+      phone: +('998' + this.form.value.phone),
       f_name: this.form.value.f_name,
       l_name: this.form.value.l_name,
       description: this.form.value.description,

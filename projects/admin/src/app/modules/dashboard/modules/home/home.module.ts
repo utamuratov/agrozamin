@@ -32,6 +32,12 @@ import { AgroUsersComponent } from './components/agro-users/agro-users.component
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { UsersModalComponent } from './components/agro-users/components/users-modal/users-modal.component';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   declarations: [
@@ -68,7 +74,8 @@ import { UsersModalComponent } from './components/agro-users/components/users-mo
     NzToolTipModule,
     NzTransferModule,
     NzPopconfirmModule,
-    NzSwitchModule
+    NzSwitchModule,
+    NgxMaskModule.forRoot(maskConfig),
   ]
 })
 export class HomeModule { }
