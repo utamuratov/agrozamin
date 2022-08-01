@@ -1,11 +1,14 @@
-export interface User {
-  id: number;
-  role: number | null;
+export interface CreateUser {
   login: string;
   phone: number;
   f_name: string;
   l_name: string;
   description: string | null;
+}
+
+export interface User extends CreateUser {  
+  role?: Role | null;
+  id: number;
   blocked: boolean;
   created_at: Date;
   created_by: string | null;
@@ -13,10 +16,8 @@ export interface User {
   moderator: Moderator | null;
   s_name: string | null;
   status: number;
-
-
   //
-   edit: boolean;
+  edit: boolean;
 }
 
 export interface Moderator {
@@ -47,4 +48,9 @@ export interface UserResponse {
 export interface AttachModerator {
   moderator_id: number;
   users: number[];
+}
+
+export interface Role {
+  id: number,
+  description: string
 }

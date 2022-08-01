@@ -1,0 +1,51 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Добавить"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <form nz-form nzLayout="vertical" [formGroup]="form">
+      <nz-form-item>
+        <nz-form-label nzFor="email">Логин</nz-form-label>
+        <nz-form-control>
+          <input nz-input type="text" id="email" formControlName="login" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzFor="name">Имя</nz-form-label>
+        <nz-form-control>
+          <input nz-input type="text" id="name" formControlName="f_name" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzFor="surname">Фамилия</nz-form-label>
+        <nz-form-control>
+          <input nz-input type="text" id="surname" formControlName="l_name" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzFor="phone">Телефон</nz-form-label>
+        <nz-form-control>
+          <input nz-input type="text" id="phone" formControlName="phone" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzFor="commend">Комментарии</nz-form-label>
+        <nz-form-control>
+          <textarea
+            nz-input
+            id="commend"
+            placeholder="Напишиет заметку..."
+            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+            formControlName="description"
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>

@@ -31,6 +31,7 @@ import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { AgroUsersComponent } from './components/agro-users/agro-users.component';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { UsersModalComponent } from './components/agro-users/components/users-modal/users-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
     RoleModalComponent,
     InterfaceComponent,
     InterfaceModalComponent,
-    AgroUsersComponent
+    AgroUsersComponent,
+    UsersModalComponent
   ],
   imports: [
     CommonModule,

@@ -2,170 +2,243 @@
   <!-- HEADER: SEARCH -->
   <div nz-col nzSpan="24">
     <div nz-row [nzGutter]="[10, 0]" nzJustify="end">
+      <div nz-col *ngIf="selectVisible">
+        <nz-input-group nzCompact>
+          <nz-select style="width: 200px" nzPlaceHolder="Модераторы" [(ngModel)]="selectedModerator">
+            <nz-option
+              *ngFor="let moderator of moderatorsList"
+              [nzLabel]="moderator.f_name + ' ' + moderator.l_name"
+              nzCustomContent
+              [nzValue]="moderator.id"
+            >
+              {{ moderator.f_name }} {{ moderator.l_name }}
+            </nz-option>
+          </nz-select>
+          <button nz-button nzType="primary" [disabled]="!selectedModerator" (click)="attachModerator(selectedModerator)">
+            Применить
+          </button>
+        </nz-input-group>
+      </div>
       <div nz-col>
         <nz-input-group nzCompact>
-          <nz-select [ngModel]="'id'" style="width: 100px">
-            <nz-option [nzLabel]="'ID'" [nzValue]="'id'"></nz-option>
-            <nz-option [nzLabel]="'Логин'" [nzValue]="'login'"></nz-option>
-            <nz-option [nzLabel]="'ФИО'" [nzValue]="'name'"></nz-option>
+          <nz-select [(ngModel)]="selectedFilterBy" style="width: 100px">
+            <nz-option *ngFor="let searchBy of selectFilterBy" [nzLabel]="searchBy.label" [nzValue]="searchBy.value"></nz-option>
           </nz-select>
           <input
             type="text"
             nz-input
             placeholder="Поиск..."
             style="width: 250px"
+            [(ngModel)]="searchText"
           />
-          <button nz-button nzType="primary" nzSearch>
+          <button nz-button nzType="primary" nzSearch (click)="search(selectedFilterBy, searchText)">
             <i nz-icon nzType="search" nzTheme="outline"></i> Поиск
           </button>
         </nz-input-group>
       </div>
       <div nz-col>
-        <button nz-button nzType="primary">Добавить</button>
+        <button nz-button nzType="primary" (click)="showModal()">
+          Добавить
+        </button>
       </div>
     </div>
   </div>
 
   <div nz-col nzSpan="24">
     <!-- TABLE -->
+    <form nz-form [formGroup]="form">
+      <nz-table
+        #table
+        nzShowSizeChanger
+        nzBordered
+        [nzData]="($data | async) ?? []"
+        nzTableLayout="fixed"
+        (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+        [nzScroll]="{ y: '450px' }"
+        nzSize="small"
+        [nzFrontPagination]="false"
+        [nzTotal]="total"
+        [nzLoading]="loading"
+        [nzPageSize]="pageSize"
+        [nzPageIndex]="pageIndex"
+        (nzQueryParams)="onQueryParamsChange($event)"
+      >
+        <thead>
+          <tr>
+            <th
+              class="th"
+              nzWidth="4%"
+              [nzChecked]="checked"
+              [nzIndeterminate]="indeterminate"
+              (nzCheckedChange)="onAllChecked($event)"
+            ></th>
+            <th class="th" nzWidth="5%" nzColumnKey="id" [nzSortFn]="true">
+              ID
+            </th>
+            <th class="th" nzColumnKey="login" [nzSortFn]="true">Логин</th>
+            <th class="th" nzColumnKey="f_name" [nzSortFn]="true">ФИО</th>
+            <th class="th">Номер телефона</th>
+            <th class="th">
+              Прикрепленный модератор
+              <nz-select nzPlaceHolder="Модераторы" class="th__select" [ngModelOptions]="{standalone: true}" [(ngModel)]="moderatorFilter" (ngModelChange)="filterByModerator(moderatorFilter)">
+                <nz-option nzValue="doNotAttachment" nzLabel="Не закрепленные"></nz-option>
+                <nz-option
+                  *ngFor="let moderator of moderatorsList"
+                  [nzLabel]="moderator.f_name + ' ' + moderator.l_name"
+                  nzCustomContent
+                  [nzValue]="moderator.id"
+                >
+                  {{ moderator.f_name }} {{ moderator.l_name }}
+                </nz-option>
+              </nz-select>
+            </th>
+            <th class="th">Комментарий</th>
+            <th class="th">Последняя авторизация</th>
+            <th class="th">
+              Состояние пользователя
+              <nz-select nzPlaceHolder="Статус" class="th__select">
+                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+              </nz-select>
+            </th>
+            <th class="th"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of table.data">
+            <ng-container *ngIf="!data.edit; else editTemplate">
+              <td
+                [nzChecked]="setOfCheckedId.has(data.id)"
+                (nzCheckedChange)="onItemChecked(data.id, $event)"
+              ></td>
+              <td>{{ data.id }}</td>
+              <td>{{ data.login }}</td>
+              <td>{{ data.f_name + " " + data.l_name }}</td>
+              <td>{{ "+" + data.phone }}</td>
+              <td>{{ data.moderator?.full_name }}</td>
+              <td>{{ data.description }}</td>
+              <td>{{ data.last_active_time | date: "dd.MM.y h:mm a" }}</td>
+              <td>
+                <nz-switch
+                  [(ngModel)]="!data.blocked"
+                  [ngModelOptions]="{ standalone: true }"
+                  (click)="handleBlockUser(data)"
+                ></nz-switch>
+              </td>
+              <td>
+                <nz-button-group nzSize="large">
+                  <button nz-button nzType="default" (click)="deleteUser(data.id)">
+                    <i nz-icon nzType="delete" nzTheme="twotone"></i>
+                  </button>
+                  <button nz-button nzType="default" (click)="edit(data)">
+                    <i nz-icon nzType="edit" nzTheme="twotone"></i>
+                  </button>
+                </nz-button-group>
+              </td>
+            </ng-container>
+            <ng-template #editTemplate>
+              <td
+              ></td>
+              <td>{{ data.id }}</td>
 
-    <nz-table
-      #table
-      nzShowSizeChanger
-      nzBordered
-      [nzData]="($data | async) ?? []"
-      nzTableLayout="fixed"
-      (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
-      [nzScroll]="{ y: '450px' }"
-      nzSize="small"
+              <td>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input
+                      type="text"
+                      nz-input
+                      placeholder="Логин"
+                      formControlName="login"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </td>
 
-      [nzFrontPagination]="false"
-      [nzTotal]="total"
-      [nzLoading]="loading"
-      [nzPageSize]="pageSize"
-      [nzPageIndex]="pageIndex"
-      (nzQueryParams)="onQueryParamsChange($event)"
-    >
-      <thead>
-        <tr>
-          <th class="th" nzWidth="4%" [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
-          <th class="th" nzWidth="5%" nzColumnKey="id" [nzSortFn]="true">ID</th>
-          <th class="th" nzColumnKey="login" [nzSortFn]="true">Логин</th>
-          <th class="th" nzColumnKey="f_name" [nzSortFn]="true">ФИО</th>
-          <th class="th">Номер телефона</th>
-          <th class="th">
-            Прикрепленный модератор
-            <nz-select nzPlaceHolder="Модераторы" class="th__select">
-              <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-              <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-            </nz-select>
-          </th>
-          <th class="th">Комментарий</th>
-          <th class="th">Последняя авторизация</th>
-          <th class="th">
-            Состояние пользователя
-            <nz-select nzPlaceHolder="Статус" class="th__select">
-              <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-              <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-            </nz-select>
-          </th>
-          <th class="th"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of table.data">
-          <ng-container *ngIf="!data.edit; else editTemplate">
-            <td
-            [nzChecked]="setOfCheckedId.has(data.id)"
-            (nzCheckedChange)="onItemChecked(data.id, $event)"
-          ></td>
-            <td>{{ data.id }}</td>
-            <td>{{ data.login }}</td>
-            <td>{{ data.f_name + ' ' + data.l_name }}</td>
-            <td>{{ '+' + data.phone }}</td>
-            <td>{{ data.moderator?.full_name }}</td>
-            <td>{{ data.description }}</td>
-            <td>{{ data.last_active_time | date: 'dd.MM.y h:mm a' }}</td>
-            <td><nz-switch [(ngModel)]="!data.blocked"></nz-switch></td>
-            <td>
-              <nz-button-group nzSize="large">
-                <button nz-button nzType="default">
-                  <i nz-icon nzType="delete" nzTheme="twotone"></i>
+              <td>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input
+                      style="margin-bottom: 5px"
+                      type="text"
+                      nz-input
+                      placeholder="Имя"
+                      formControlName="f_name"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                  <nz-form-control>
+                    <input
+                      type="text"
+                      nz-input
+                      placeholder="Фамилия"
+                      formControlName="l_name"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </td>
+
+              <td>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input
+                      type="Номер телефона"
+                      nz-input
+                      formControlName="phone"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </td>
+
+              <td>{{ editingUser.moderator?.full_name }}</td>
+
+              <td>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input
+                      type="Заметка"
+                      nz-input
+                      formControlName="description"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </td>
+
+              <td>{{ data.last_active_time | date: "dd.MM.y h:mm a" }}</td>
+              <!-- <td>                
+                <nz-switch
+                  [(ngModel)]="!editingUser.blocked"
+                  (click)="handleBlockUser(data)"
+                  [ngModelOptions]="{ standalone: true }"
+                ></nz-switch>
+              </td> -->
+              <td></td>
+
+              <td>
+                <button nz-button (click)="saveEdit(data)" class="save">
+                  <i nz-icon nzType="check" nzTheme="outline"></i>
                 </button>
-                <button nz-button nzType="default" (click)="edit(data)">
-                  <i nz-icon nzType="edit" nzTheme="twotone"></i>
-                </button>                
-              </nz-button-group>
-            </td>
-          </ng-container>
-          <ng-template #editTemplate>
-            <td
-              [nzChecked]="setOfCheckedId.has(data.id)"
-              (nzCheckedChange)="onItemChecked(data.id, $event)"
-              >
-            </td>
-            <td>{{ data.id }}</td>
-
-            <td>
-              <input
-                type="text"
-                nz-input
-                placeholder="Логин"
-                [(ngModel)]="editingUser.login"
-              />
-            </td>
-
-            <td>
-              <input
-                style="margin-bottom: 5px;"
-                type="text"
-                nz-input
-                placeholder="Имя"
-                [(ngModel)]="editingUser.f_name"
-              />
-              <input
-                type="text"
-                nz-input
-                placeholder="Фамилия"
-                [(ngModel)]="editingUser.l_name"
-              />
-            </td>
-
-            <td>
-              <input
-                type="Номер телефона"
-                nz-input
-                [(ngModel)]="editingUser.phone"
-              />
-            </td>
-
-            <td>{{ editingUser.moderator?.full_name }}</td>
-
-            <td>
-              <input
-                type="Заметка"
-                nz-input
-                [(ngModel)]="editingUser.description"
-              />
-            </td>
-            
-            <td>{{ data.last_active_time | date: 'dd.MM.y h:mm a' }}</td>
-            <td><nz-switch [(ngModel)]="!editingUser.blocked"></nz-switch></td>
-
-            <td>
-              <button nz-button (click)="saveEdit(data)" class="save"><i nz-icon nzType="check" nzTheme="outline"></i></button>
-              <button
-                nz-button
-                nz-popconfirm
-                nzPopconfirmTitle="Уверены что хотите отменить?"
-                (nzOnConfirm)="data.edit = false"
-                ><i nz-icon nzType="close" nzTheme="outline"></i></button
-              >
-            </td>
-          </ng-template>
-        </tr>
-      </tbody>
-    </nz-table>
+                <button
+                  nz-button
+                  nz-popconfirm
+                  nzPopconfirmTitle="Уверены что хотите отменить?"
+                  (nzOnConfirm)="cancelEdit(data)"
+                >
+                  <i nz-icon nzType="close" nzTheme="outline"></i>
+                </button>
+              </td>
+            </ng-template>
+          </tr>
+        </tbody>
+      </nz-table>
+    </form>
   </div>
 </div>
 <!-- MODAL -->
+
+<az-users-modal
+  [(isVisible)]="isVisible"
+  [form]="form"
+  (isLoading)="doAfterSuccess($event)"
+></az-users-modal>
