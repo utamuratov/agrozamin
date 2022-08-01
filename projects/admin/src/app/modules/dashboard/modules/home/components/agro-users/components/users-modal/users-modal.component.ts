@@ -10,20 +10,41 @@ import { AgroIdUsersService } from '../../services/agro-id-users.service';
   templateUrl: './users-modal.component.html',
   styleUrls: ['./users-modal.component.less'],
 })
-export class UsersModalComponent implements OnInit {
+export class UsersModalComponent {
+  /**
+   * 
+   */
   @Input()
   isVisible!: boolean;
 
+  /**
+   * 
+   */
   @Output()
   isVisibleChange = new EventEmitter<boolean>();
 
+  /**
+   * 
+   */
   @Input() form!: FormGroup;
 
+  /**
+   * 
+   */
   @Output()
   isLoading = new EventEmitter<boolean>();
 
+  /**
+   * 
+   * @param data$ 
+   * @param destroy$ 
+   */
   constructor(private data$: AgroIdUsersService, private destroy$: NgDestroy) {}
 
+  /**
+   * 
+   * @returns 
+   */
   private requestBody(): CreateUser {
     return {
       login: this.form.value.login,
@@ -34,6 +55,10 @@ export class UsersModalComponent implements OnInit {
     };
   }
 
+  /**
+   * 
+   * @returns 
+   */
   private addUser() {
     if (this.form.invalid) {
       return;
@@ -49,13 +74,17 @@ export class UsersModalComponent implements OnInit {
       });
   }
 
-  ngOnInit() {}
-
+  /**
+   * 
+   */
   handleCancel() {
     this.isVisibleChange.emit(false);
     this.form.reset();
   }
 
+  /**
+   * 
+   */
   handleOk() {
     this.addUser();
   }

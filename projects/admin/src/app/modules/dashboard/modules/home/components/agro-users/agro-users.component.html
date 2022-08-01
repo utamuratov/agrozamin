@@ -4,7 +4,11 @@
     <div nz-row [nzGutter]="[10, 0]" nzJustify="end">
       <div nz-col *ngIf="selectVisible">
         <nz-input-group nzCompact>
-          <nz-select style="width: 200px" nzPlaceHolder="Модераторы" [(ngModel)]="selectedModerator">
+          <nz-select
+            style="width: 200px"
+            nzPlaceHolder="Модераторы"
+            [(ngModel)]="selectedModerator"
+          >
             <nz-option
               *ngFor="let moderator of moderatorsList"
               [nzLabel]="moderator.f_name + ' ' + moderator.l_name"
@@ -14,7 +18,12 @@
               {{ moderator.f_name }} {{ moderator.l_name }}
             </nz-option>
           </nz-select>
-          <button nz-button nzType="primary" [disabled]="!selectedModerator" (click)="attachModerator(selectedModerator)">
+          <button
+            nz-button
+            nzType="primary"
+            [disabled]="!selectedModerator"
+            (click)="attachModerator(selectedModerator)"
+          >
             Применить
           </button>
         </nz-input-group>
@@ -22,7 +31,11 @@
       <div nz-col>
         <nz-input-group nzCompact>
           <nz-select [(ngModel)]="selectedFilterBy" style="width: 100px">
-            <nz-option *ngFor="let searchBy of selectFilterBy" [nzLabel]="searchBy.label" [nzValue]="searchBy.value"></nz-option>
+            <nz-option
+              *ngFor="let searchBy of selectFilterBy"
+              [nzLabel]="searchBy.label"
+              [nzValue]="searchBy.value"
+            ></nz-option>
           </nz-select>
           <input
             type="text"
@@ -31,7 +44,12 @@
             style="width: 250px"
             [(ngModel)]="searchText"
           />
-          <button nz-button nzType="primary" nzSearch (click)="search(selectedFilterBy, searchText)">
+          <button
+            nz-button
+            nzType="primary"
+            nzSearch
+            (click)="search(selectedFilterBy, searchText)"
+          >
             <i nz-icon nzType="search" nzTheme="outline"></i> Поиск
           </button>
         </nz-input-group>
@@ -80,8 +98,15 @@
             <th class="th">Номер телефона</th>
             <th class="th">
               Прикрепленный модератор
-              <nz-select nzPlaceHolder="Модераторы" class="th__select" [ngModelOptions]="{standalone: true}" [(ngModel)]="moderatorFilter" (ngModelChange)="filterByModerator(moderatorFilter)">
-                <nz-option nzValue="doNotAttachment" nzLabel="Не закрепленные"></nz-option>
+              <nz-select
+                nzPlaceHolder="Модераторы"
+                class="th__select"
+                [ngModelOptions]="{ standalone: true }"
+                nzAllowClear
+                [(ngModel)]="moderatorFilter"
+                (ngModelChange)="filterByModerator(moderatorFilter)"
+              >
+                <nz-option nzValue="0" nzLabel="Не закрепленные"></nz-option>
                 <nz-option
                   *ngFor="let moderator of moderatorsList"
                   [nzLabel]="moderator.f_name + ' ' + moderator.l_name"
@@ -96,9 +121,19 @@
             <th class="th">Последняя авторизация</th>
             <th class="th">
               Состояние пользователя
-              <nz-select nzPlaceHolder="Статус" class="th__select">
-                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+              <nz-select
+                nzPlaceHolder="Статус"
+                class="th__select"
+                nzAllowClear
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="statusSelector"
+                (ngModelChange)="changeStatus(statusSelector)"
+              >
+                <nz-option
+                  *ngFor="let status of selectStatus"
+                  [nzValue]="status.value"
+                  [nzLabel]="status.label"
+                ></nz-option>
               </nz-select>
             </th>
             <th class="th"></th>
@@ -127,7 +162,11 @@
               </td>
               <td>
                 <nz-button-group nzSize="large">
-                  <button nz-button nzType="default" (click)="deleteUser(data.id)">
+                  <button
+                    nz-button
+                    nzType="default"
+                    (click)="deleteUser(data.id)"
+                  >
                     <i nz-icon nzType="delete" nzTheme="twotone"></i>
                   </button>
                   <button nz-button nzType="default" (click)="edit(data)">
@@ -137,8 +176,7 @@
               </td>
             </ng-container>
             <ng-template #editTemplate>
-              <td
-              ></td>
+              <td></td>
               <td>{{ data.id }}</td>
 
               <td>
@@ -206,13 +244,6 @@
               </td>
 
               <td>{{ data.last_active_time | date: "dd.MM.y h:mm a" }}</td>
-              <!-- <td>                
-                <nz-switch
-                  [(ngModel)]="!editingUser.blocked"
-                  (click)="handleBlockUser(data)"
-                  [ngModelOptions]="{ standalone: true }"
-                ></nz-switch>
-              </td> -->
               <td></td>
 
               <td>

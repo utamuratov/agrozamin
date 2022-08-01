@@ -6,7 +6,7 @@ export interface CreateUser {
   description: string | null;
 }
 
-export interface User extends CreateUser {  
+export interface User extends CreateUser {
   role?: Role | null;
   id: number;
   blocked: boolean;
@@ -51,6 +51,17 @@ export interface AttachModerator {
 }
 
 export interface Role {
-  id: number,
-  description: string
+  id: number;
+  description: string;
+}
+
+export interface ResponseSettings {
+  pageIndex: number;
+  pageSize: number;
+  sortField: string | null;
+  sortOrder: string | null;
+  searchBy: string;
+  searchText: string | null;
+  moderator: string | null;
+  blocked: boolean | null;
 }
