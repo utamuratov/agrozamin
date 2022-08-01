@@ -1,6 +1,7 @@
 import { GridQueryConstants } from 'ngx-az-core';
 
 export class AdvertisementConstants extends GridQueryConstants {
+  public static readonly SPLITTER = '_';
   public static readonly SPLITTER_CATEGORY_ID = '_';
   public static readonly SPLITTER_BETWEEN_FILTERID_AND_VALUE = '_';
   public static readonly SPLITTER_FILTERID_VALUE = ';';

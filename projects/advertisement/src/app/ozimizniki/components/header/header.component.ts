@@ -1,13 +1,27 @@
 import { DOCUMENT } from '@angular/common';
+import { HttpParams } from '@angular/common/http';
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Select, Store } from '@ngxs/store';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
-import { AuthState, Constants, Data } from 'ngx-az-core';
+import {
+  AuthState,
+  BaseService,
+  Constants,
+  Data,
+  IdName,
+  Language,
+  LanguageState,
+} from 'ngx-az-core';
 import { AuthorizedUserModel } from 'projects/ngx-az-core/src/public-api';
-import { Observable } from 'rxjs';
+import { finalize, map, Observable, of } from 'rxjs';
+import { AdvertisementConstants } from '../../../core/constants/advertisement.constants';
+import { prefixPath } from '../../../core/utilits/advertisement.utilits';
+import { RegionWithDistrict } from './dto/region-with-district.interface';
+import { Announcement, Category, SearchResponse } from './dto/search.response';
 
 @Component({
   selector: 'az-header',
@@ -25,6 +39,23 @@ export class HeaderComponent implements OnInit {
    */
   @Select(AuthState.authorizedUser)
   authorizedUser$!: Observable<AuthorizedUserModel>;
+
+  /**
+   *
+   */
+  @Select(LanguageState.languages)
+  language$!: Observable<Language[]>;
+
+  /**
+   *
+   */
+  @Select(LanguageState.currentLanguage)
+  currentLanguage$!: Observable<string>;
+
+  /**
+   *
+   */
+  isUserAuthenticated = true;
 
   /**
    *
@@ -51,403 +82,76 @@ export class HeaderComponent implements OnInit {
    */
   drawerOffsetValue = 280;
 
-  validateForm!: FormGroup;
+  /**
+   *
+   */
+  searchResult$!: Observable<SearchResponse>;
+
+  /**
+   *
+   */
+  region$!: Observable<RegionWithDistrict[]>;
+
+  /**
+   *
+   */
+  isOpenSearchResults = false;
+
+  /**
+   *
+   */
+  isOpenRegions = false;
+
+  /**
+   *
+   */
+  districts: IdName[] = [];
+  regionId!: number;
+
+  /**
+   *
+   */
+  selectedDistrict?: IdName;
+
+  /**
+   *
+   */
+  selectedRegion?: RegionWithDistrict;
+
+  /**
+   *
+   */
+  selectedRegionAndDistrict!: string;
+
+  /**
+   *
+   */
+  searchText = '';
+
+  /**
+   *
+   */
+  isOpenBurgerMenu = false;
+
+  /**
+   *
+   */
+  isLoadingSearchResult!: boolean;
+
+  /**
+   *
+   */
+  isVisibleMobileSearchDrawer = false;
+
+  /**
+   *
+   */
+  selectedCategoryOrAnnouncement!: Category | Announcement;
 
   //!
-  isOpened = false;
 
-  isWidth = '280px';
-  placement: NzDrawerPlacement = 'left';
-  touched = false;
-  serachInputDrawer = false;
-  inputValue = 2;
-  searchForm!: FormGroup;
-  searchDropDown = false;
-  searchCityDropDown = false;
-  search = '';
   /* AZ-DRAWER */
-  azVisible = false;
   /* ************************** */
-  profileImage = true;
-
-  visibleServicesPopover = false;
-
-  cityFilter!: FormGroup;
-  isUserAuthenticated = true;
-  regionsChild: any = [];
-
-  regionsValue: any = [];
-
-  searchParamas = [
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор',
-      id: 1,
-    },
-    {
-      category: 'Спецтранспорт',
-      product: 'Трактор',
-      id: 2,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор МТЗ 30',
-      id: 3,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор Беларус 82.1',
-      id: 4,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-    {
-      category: 'Сельхозтехника',
-      product: 'Трактор ANT 4050',
-      id: 5,
-    },
-  ];
-
-  regions = [
-    { id: 1, name: 'Весь Узбекистан', cities: [] },
-    {
-      id: 2,
-      name: 'Андижанская область',
-      cities: [
-        { id: 1, name: 'Акалтын' },
-        { id: 2, name: 'Алтынкуль' },
-        { id: 3, name: 'Андижан' },
-        { id: 4, name: 'Асака' },
-        { id: 5, name: 'Ахунбабаев' },
-        { id: 6, name: 'Балыкчи' },
-        { id: 7, name: 'Боз' },
-        { id: 8, name: 'Булакбаши' },
-        { id: 10, name: 'Карасу' },
-        { id: 11, name: 'Куйганъяр' },
-        { id: 12, name: 'Кургантепа' },
-        { id: 13, name: 'Мархамат' },
-        { id: 14, name: 'Пайтуг' },
-        { id: 15, name: 'Пахтаабад' },
-        { id: 16, name: 'Шахрихан' },
-        { id: 17, name: 'Ханабад' },
-      ],
-    },
-    {
-      id: 3,
-      name: 'Бухарская область',
-      cities: [
-        { id: 1, name: 'Акалтын' },
-        { id: 2, name: 'Алтынкуль' },
-        { id: 3, name: 'Андижан' },
-        { id: 4, name: 'Асака' },
-        { id: 5, name: 'Ахунбабаев' },
-        { id: 6, name: 'Балыкчи' },
-        { id: 7, name: 'Боз' },
-        { id: 8, name: 'Булакбаши' },
-        { id: 10, name: 'Карасу' },
-        { id: 11, name: 'Куйганъяр' },
-        { id: 12, name: 'Кургантепа' },
-        { id: 13, name: 'Мархамат' },
-        { id: 14, name: 'Пайтуг' },
-        { id: 15, name: 'Пахтаабад' },
-        { id: 16, name: 'Шахрихан' },
-        { id: 17, name: 'Ханабад' },
-      ],
-    },
-    {
-      id: 4,
-      name: 'Джизакская область',
-      cities: [
-        { id: 1, name: 'Акалтын' },
-        { id: 2, name: 'Алтынкуль' },
-        { id: 3, name: 'Андижан' },
-        { id: 4, name: 'Асака' },
-        { id: 5, name: 'Ахунбабаев' },
-        { id: 6, name: 'Балыкчи' },
-        { id: 7, name: 'Боз' },
-        { id: 8, name: 'Булакбаши' },
-        { id: 10, name: 'Карасу' },
-        { id: 11, name: 'Куйганъяр' },
-        { id: 12, name: 'Кургантепа' },
-        { id: 13, name: 'Мархамат' },
-        { id: 14, name: 'Пайтуг' },
-        { id: 15, name: 'Пахтаабад' },
-        { id: 16, name: 'Шахрихан' },
-        { id: 17, name: 'Ханабад' },
-      ],
-    },
-    {
-      id: 5,
-      name: 'Каракалпакстан',
-      cities: [
-        { id: 1, name: 'Акалтын' },
-        { id: 2, name: 'Алтынкуль' },
-        { id: 3, name: 'Андижан' },
-        { id: 4, name: 'Асака' },
-        { id: 5, name: 'Ахунбабаев' },
-        { id: 6, name: 'Балыкчи' },
-        { id: 7, name: 'Боз' },
-        { id: 8, name: 'Булакбаши' },
-        { id: 10, name: 'Карасу' },
-        { id: 11, name: 'Куйганъяр' },
-        { id: 12, name: 'Кургантепа' },
-        { id: 13, name: 'Мархамат' },
-        { id: 14, name: 'Пайтуг' },
-        { id: 15, name: 'Пахтаабад' },
-        { id: 16, name: 'Шахрихан' },
-        { id: 17, name: 'Ханабад' },
-      ],
-    },
-    {
-      id: 6,
-      name: 'Навоийская область',
-      cities: [
-        { id: 1, name: 'Акалтын' },
-        { id: 2, name: 'Алтынкуль' },
-        { id: 3, name: 'Андижан' },
-        { id: 4, name: 'Асака' },
-        { id: 5, name: 'Ахунбабаев' },
-        { id: 6, name: 'Балыкчи' },
-        { id: 7, name: 'Боз' },
-        { id: 8, name: 'Булакбаши' },
-        { id: 10, name: 'Карасу' },
-        { id: 11, name: 'Куйганъяр' },
-        { id: 12, name: 'Кургантепа' },
-        { id: 13, name: 'Мархамат' },
-        { id: 14, name: 'Пайтуг' },
-        { id: 15, name: 'Пахтаабад' },
-        { id: 16, name: 'Шахрихан' },
-        { id: 17, name: 'Ханабад' },
-      ],
-    },
-    {
-      id: 7,
-      name: 'Наманганская область',
-      cities: [
-        { id: 1, name: 'Акалтын' },
-        { id: 2, name: 'Алтынкуль' },
-        { id: 3, name: 'Андижан' },
-        { id: 4, name: 'Асака' },
-        { id: 5, name: 'Ахунбабаев' },
-        { id: 6, name: 'Балыкчи' },
-        { id: 7, name: 'Боз' },
-        { id: 8, name: 'Булакбаши' },
-        { id: 10, name: 'Карасу' },
-        { id: 11, name: 'Куйганъяр' },
-        { id: 12, name: 'Кургантепа' },
-        { id: 13, name: 'Мархамат' },
-        { id: 14, name: 'Пайтуг' },
-        { id: 15, name: 'Пахтаабад' },
-        { id: 16, name: 'Шахрихан' },
-        { id: 17, name: 'Ханабад' },
-      ],
-    },
-    {
-      id: 8,
-      name: 'Самаркандская область',
-      cities: [
-        { id: 1, name: 'Акалтын' },
-        { id: 2, name: 'Алтынкуль' },
-        { id: 3, name: 'Андижан' },
-        { id: 4, name: 'Асака' },
-        { id: 5, name: 'Ахунбабаев' },
-        { id: 6, name: 'Балыкчи' },
-        { id: 7, name: 'Боз' },
-        { id: 8, name: 'Булакбаши' },
-        { id: 10, name: 'Карасу' },
-        { id: 11, name: 'Куйганъяр' },
-        { id: 12, name: 'Кургантепа' },
-        { id: 13, name: 'Мархамат' },
-        { id: 14, name: 'Пайтуг' },
-        { id: 15, name: 'Пахтаабад' },
-        { id: 16, name: 'Шахрихан' },
-        { id: 17, name: 'Ханабад' },
-      ],
-    },
-    {
-      id: 9,
-      name: 'Сурхандарьинская область',
-      cities: [
-        { id: 1, name: 'Акалтын' },
-        { id: 2, name: 'Алтынкуль' },
-        { id: 3, name: 'Андижан' },
-        { id: 4, name: 'Асака' },
-        { id: 5, name: 'Ахунбабаев' },
-        { id: 6, name: 'Балыкчи' },
-        { id: 7, name: 'Боз' },
-        { id: 8, name: 'Булакбаши' },
-        { id: 10, name: 'Карасу' },
-        { id: 11, name: 'Куйганъяр' },
-        { id: 12, name: 'Кургантепа' },
-        { id: 13, name: 'Мархамат' },
-        { id: 14, name: 'Пайтуг' },
-        { id: 15, name: 'Пахтаабад' },
-        { id: 16, name: 'Шахрихан' },
-        { id: 17, name: 'Ханабад' },
-      ],
-    },
-    {
-      id: 10,
-      name: 'Сырдарьинская область',
-      cities: [
-        { id: 1, name: 'Акалтын' },
-        { id: 2, name: 'Алтынкуль' },
-        { id: 3, name: 'Андижан' },
-        { id: 4, name: 'Асака' },
-        { id: 5, name: 'Ахунбабаев' },
-        { id: 6, name: 'Балыкчи' },
-        { id: 7, name: 'Боз' },
-        { id: 8, name: 'Булакбаши' },
-        { id: 10, name: 'Карасу' },
-        { id: 11, name: 'Куйганъяр' },
-        { id: 12, name: 'Кургантепа' },
-        { id: 13, name: 'Мархамат' },
-        { id: 14, name: 'Пайтуг' },
-        { id: 15, name: 'Пахтаабад' },
-        { id: 16, name: 'Шахрихан' },
-        { id: 17, name: 'Ханабад' },
-      ],
-    },
-    {
-      id: 11,
-      name: 'Ташкентская область',
-      cities: [
-        { id: 1, name: 'Акалтын' },
-        { id: 2, name: 'Алтынкуль' },
-        { id: 3, name: 'Андижан' },
-        { id: 4, name: 'Асака' },
-        { id: 5, name: 'Ахунбабаев' },
-        { id: 6, name: 'Балыкчи' },
-        { id: 7, name: 'Боз' },
-        { id: 8, name: 'Булакбаши' },
-        { id: 10, name: 'Карасу' },
-        { id: 11, name: 'Куйганъяр' },
-        { id: 12, name: 'Кургантепа' },
-        { id: 13, name: 'Мархамат' },
-        { id: 14, name: 'Пайтуг' },
-        { id: 15, name: 'Пахтаабад' },
-        { id: 16, name: 'Шахрихан' },
-        { id: 17, name: 'Ханабад' },
-      ],
-    },
-    {
-      id: 12,
-      name: 'Ферганская область',
-      cities: [
-        { id: 1, city: 'Акалтын' },
-        { id: 2, city: 'Алтынкуль' },
-        { id: 3, city: 'Андижан' },
-        { id: 4, city: 'Асака' },
-        { id: 5, city: 'Ахунбабаев' },
-        { id: 6, city: 'Балыкчи' },
-        { id: 7, city: 'Боз' },
-        { id: 8, city: 'Булакбаши' },
-        { id: 10, city: 'Карасу' },
-        { id: 11, city: 'Куйганъяр' },
-        { id: 12, city: 'Кургантепа' },
-        { id: 13, city: 'Мархамат' },
-        { id: 14, city: 'Пайтуг' },
-        { id: 15, city: 'Пахтаабад' },
-        { id: 16, city: 'Шахрихан' },
-        { id: 17, city: 'Ханабад' },
-      ],
-    },
-    {
-      id: 13,
-      name: 'Хорезмская область',
-      cities: [
-        { id: 1, name: 'Акалтын' },
-        { id: 2, name: 'Алтынкуль' },
-        { id: 3, name: 'Андижан' },
-        { id: 4, name: 'Асака' },
-        { id: 5, name: 'Ахунбабаев' },
-        { id: 6, name: 'Балыкчи' },
-        { id: 7, name: 'Боз' },
-        { id: 8, name: 'Булакбаши' },
-        { id: 10, name: 'Карасу' },
-        { id: 11, name: 'Куйганъяр' },
-        { id: 12, name: 'Кургантепа' },
-        { id: 13, name: 'Мархамат' },
-        { id: 14, name: 'Пайтуг' },
-        { id: 15, name: 'Пахтаабад' },
-        { id: 16, name: 'Шахрихан' },
-        { id: 17, name: 'Ханабад' },
-      ],
-    },
-  ];
 
   /**
    *
@@ -464,7 +168,6 @@ export class HeaderComponent implements OnInit {
 
   visibleLocationDrawer = false;
   visibleLangDrawer = false;
-  visibleSearchDrawer = false;
 
   panels = [
     {
@@ -514,8 +217,11 @@ export class HeaderComponent implements OnInit {
     private $store: Store,
     private router: Router,
     private route: ActivatedRoute,
+    private $base: BaseService,
     @Inject(DOCUMENT) private document: Document
-  ) {}
+  ) {
+    this.getRegionsWithDistricts();
+  }
 
   /**
    *
@@ -577,27 +283,10 @@ export class HeaderComponent implements OnInit {
 
   /**
    *
-   * TODO: IMPLEMENT FULLY OR REMOVE
-   */
-  private initForms() {
-    this.searchForm = this.fb.group({
-      searchInput: [null],
-      cityInput: [null],
-    });
-
-    this.validateForm = this.fb.group({
-      title: [null, [Validators.required]],
-      city: [null, [Validators.required]],
-    });
-  }
-
-  /**
-   *
    */
   ngOnInit(): void {
     this.checkUserToAuthenticated();
     this.calcDrawersSettings();
-    this.initForms();
   }
 
   /**
@@ -614,46 +303,67 @@ export class HeaderComponent implements OnInit {
     this.visibleSecondaryCatalogue = true;
   }
 
-  submit() {
-    console.log(this.searchForm);
-  }
-
-  clickMe(): void {
-    this.visibleServicesPopover = false;
-  }
-
   change(value: boolean): void {
     console.log(value);
   }
 
-  openAz(): void {
-    this.azVisible = true;
+  openLocationDrawer(): void {
+    this.visibleLocationDrawer = true;
   }
 
-  closeAz(): void {
-    this.azVisible = false;
+  closeLocationDrawer(): void {
+    this.visibleLocationDrawer = false;
   }
 
-  closed() {
-    this.isOpened = false;
+  openLangDrawer(): void {
+    this.visibleLangDrawer = true;
   }
 
-  getCities(id: any) {
-    this.regionsChild = this.regions.filter((e) => e.id === id)[0].cities;
+  closeLangDrawer(): void {
+    this.visibleLangDrawer = false;
   }
 
-  openSearchDrop() {
-    if (this.searchCityDropDown) {
-      this.searchCityDropDown = false;
-    }
-    this.searchDropDown = true;
+  openTabDrawer() {
+    this.visibleSecondaryCatalogue = true;
+    console.log('hello');
   }
 
-  openFilterDrop() {
-    if (this.searchDropDown) {
-      this.searchDropDown = false;
-    }
-    this.searchCityDropDown = true;
+  /**
+   *
+   */
+  @HostListener('window:resize')
+  onResize() {
+    this.drawerWidthValue = this.azDrawerWidth();
+    this.drawerWidthValueCatalog = this.azDrawerWidthCatalog();
+    this.drawerOffsetValue = this.azDrawerOffsetCatalog();
+  }
+
+  /**
+   *
+   */
+  openMobileSearchDrawer(): void {
+    this.isVisibleMobileSearchDrawer = true;
+  }
+
+  /**
+   *
+   */
+  closeMobileSearchDrawer(): void {
+    this.isVisibleMobileSearchDrawer = false;
+  }
+
+  /**
+   *
+   */
+  openBurgerMenu(): void {
+    this.isOpenBurgerMenu = true;
+  }
+
+  /**
+   *
+   */
+  closeBurgerMenu(): void {
+    this.isOpenBurgerMenu = false;
   }
 
   /**
@@ -684,82 +394,233 @@ export class HeaderComponent implements OnInit {
     this.navigateToSignIn();
   }
 
-  openLocationDrawer(): void {
-    this.visibleLocationDrawer = true;
-  }
-
-  closeLocationDrawer(): void {
-    this.visibleLocationDrawer = false;
-  }
-
-  openLangDrawer(): void {
-    this.visibleLangDrawer = true;
-  }
-
-  closeLangDrawer(): void {
-    this.visibleLangDrawer = false;
-  }
-
-  openSearchDrawer(): void {
-    this.visibleSearchDrawer = true;
-  }
-
-  closeSearchDrawer(): void {
-    this.visibleSearchDrawer = false;
-  }
-
-  submitForm(): void {
-    if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
-    } else {
-      Object.values(this.validateForm.controls).forEach((control) => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
-  }
-
-  genderChange(value: string): void {
-    this.validateForm
-      .get('note')!
-      .setValue(value === 'male' ? 'Hi, man!' : 'Hi, lady!');
-  }
-
-  openTabDrawer() {
-    this.visibleSecondaryCatalogue = true;
-    console.log('hello');
+  /**
+   *
+   */
+  closeRegions() {
+    this.isOpenRegions = false;
   }
 
   /**
    *
    */
-  @HostListener('window:resize')
-  onResize() {
-    this.drawerWidthValue = this.azDrawerWidth();
-    this.drawerWidthValueCatalog = this.azDrawerWidthCatalog();
-    this.drawerOffsetValue = this.azDrawerOffsetCatalog();
+  private openRegions() {
+    this.isOpenRegions = true;
   }
 
+  /**
+   *
+   */
+  closeSearchResults() {
+    this.isOpenSearchResults = false;
+  }
 
-  setCity(city: string) {
-    
-    this.searchForm.controls['cityInput'].setValue(city)
-    this.searchCityDropDown = false;
+  /**
+   *
+   */
+  private openSearchResults() {
+    this.isOpenSearchResults = true;
+  }
 
-    if (!this.searchForm.value.searchInput) {
-      this.searchDropDown = true;
+  /**
+   *
+   * @param category
+   * @returns
+   */
+  private makeCategoryId(category: Category) {
+    let categoryId = category.parents
+      .map((c) => c.category_id)
+      .join(AdvertisementConstants.SPLITTER_CATEGORY_ID);
+    if (categoryId.length > 0) {
+      categoryId += AdvertisementConstants.SPLITTER_CATEGORY_ID;
+    }
+    categoryId += category.id;
+    return categoryId;
+  }
+
+  /**
+   *
+   */
+  closeSearchResultsAndRegions() {
+    this.closeSearchResults();
+    this.closeRegions();
+  }
+
+  /**
+   *
+   */
+  openRegionDropdown() {
+    if (this.isOpenSearchResults) {
+      this.isOpenSearchResults = false;
+    }
+    this.isOpenRegions = true;
+  }
+
+  /**
+   *
+   */
+  openisOpenSearchResults() {
+    if (this.isOpenRegions) {
+      this.isOpenRegions = false;
+    }
+    this.isOpenSearchResults = true;
+  }
+
+  /**
+   *
+   * @param region
+   */
+  chooseRegion(region: RegionWithDistrict) {
+    this.selectedDistrict = undefined;
+    this.selectedRegion = region;
+    this.selectedRegionAndDistrict = `${region.id}`;
+    this.closeRegions();
+    this.openSearchResults();
+    this.search(this.searchText);
+  }
+
+  /**
+   *
+   * @param district
+   */
+  chooseDistrict(district: IdName) {
+    this.selectedRegion = undefined;
+    this.selectedDistrict = district;
+    this.selectedRegionAndDistrict = `${this.regionId}${AdvertisementConstants.SPLITTER}${district.id}`;
+    this.closeRegions();
+    this.openSearchResults();
+    this.search(this.searchText);
+  }
+
+  /**
+   *
+   * @param announcement
+   */
+  clickAnnouncementFromDesctop(announcement: Announcement) {
+    this.closeSearchResults();
+    this.navigateToAnnouncement(announcement);
+  }
+
+  /**
+   *
+   * @param announcement
+   */
+  navigateToAnnouncement(announcement: Announcement) {
+    this.router.navigate([
+      prefixPath,
+      Constants.DEFAULT_LANGUAGE_CODE,
+      AdvertisementConstants.ROUTER_PATH_ADVERTISEMENTS,
+      announcement.category.id,
+      announcement.id,
+    ]);
+  }
+
+  /**
+   *
+   * @param category
+   */
+  clickCategoryFromDesctop(category: Category) {
+    this.closeSearchResults();
+    this.navigateToCategory(category);
+  }
+
+  /**
+   *
+   * @param category
+   */
+  navigateToCategory(category: Category) {
+    const categoryId = this.makeCategoryId(category);
+    this.router.navigate([
+      prefixPath,
+      Constants.DEFAULT_LANGUAGE_CODE,
+      AdvertisementConstants.ROUTER_PATH_ADVERTISEMENTS,
+      categoryId,
+    ]);
+  }
+
+  /**
+   *
+   * @param data
+   */
+  clickRegionOrDistrictFromMobile(data: NzSafeAny) {
+    // Category | Announcement
+    this.closeMobileSearchDrawer();
+    this.closeBurgerMenu();
+
+    if (data.parents) {
+      // CATEGORY
+      this.navigateToCategory(data);
+    } else {
+      // ANNOUNCEMENT
+      this.navigateToAnnouncement(data);
     }
   }
 
-  setSearchValue(value: string) {
-    this.searchForm.controls['searchInput'].setValue(value)
-    this.searchDropDown = false;
+  /**
+   *
+   * @param e
+   */
+  inputSearchText(searchText: string) {
+    if (searchText.length >= 2) {
+      this.openisOpenSearchResults();
+      this.search(searchText);
+      return;
+    }
+
+    if (searchText.length === 0) {
+      this.searchResult$ = of();
+      this.isOpenSearchResults = false;
+      return;
+    }
   }
 
-  closeDrops() {
-    this.searchDropDown = false;
-    this.searchCityDropDown = false;
+  /**
+   *
+   * @param id
+   */
+  getDistricts(districts: IdName[], regionId: number) {
+    this.districts = districts;
+    this.regionId = regionId;
+  }
+
+  /**
+   *
+   * @param searchText
+   * @returns
+   */
+  search(searchText: string) {
+    let query = new HttpParams().set('q', searchText);
+    const regionDistrict = this.selectedRegionAndDistrict.split(
+      AdvertisementConstants.SPLITTER
+    );
+
+    if (regionDistrict[1]) {
+      query = query.append('district_id', regionDistrict[1]);
+    } else if (regionDistrict[0]) {
+      query = query.append('region_id', regionDistrict[0]);
+    }
+
+    this.isLoadingSearchResult = true;
+    this.searchResult$ = this.$base
+      .get<SearchResponse>('announcement/search', query)
+      .pipe(
+        finalize(() => (this.isLoadingSearchResult = false)),
+        map((result) => {
+          return {
+            ...result.data,
+            total:
+              result.data.announcements.length + result.data.categories.length,
+          };
+        })
+      );
+  }
+
+  /**
+   *
+   */
+  getRegionsWithDistricts() {
+    this.region$ = this.$base
+      .get<RegionWithDistrict[]>('region/with-district')
+      .pipe(map((result) => result.data));
   }
 }

@@ -140,6 +140,7 @@
       color: #1a1a1a;
       padding: 8px 12px;
       border-radius: 8px;
+      cursor: pointer;
 
       &:hover {
         background: #f1f2f5;
@@ -192,7 +193,7 @@
     position: fixed;
   }
 
-  .search__values { 
+  .search__values {
     font-family: Agrofont-Regular;
     cursor: pointer;
     width: max-content;
@@ -201,7 +202,7 @@
     transition: 0.3s;
 
     &:hover {
-      background: #EDEFF5;      
+      background: #edeff5;
     }
 
     &__prod {
@@ -213,10 +214,8 @@
     &__cat {
       font-size: 14px;
       line-height: 18px;
-      color: #86898C;
+      color: #86898c;
     }
-
-    
   }
 
   .drop-top {
@@ -332,12 +331,6 @@
 .ava-btn {
   padding: 0;
   overflow: hidden;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 }
 
 .userPopower {
@@ -470,21 +463,6 @@
   }
 }
 
-.lang__info {
-  padding: 30px;
-
-  button {
-    font-size: 16px;
-    line-height: 20px;
-    color: #000;
-    font-family: Agrofont-Regular;
-
-    &:disabled {
-      color: #b7bbbf;
-    }
-  }
-}
-
 .search__drawer {
   padding: 30px;
 }
@@ -517,4 +495,9 @@
       color: #86898c;
     }
   }
+}
+
+.close--btn {
+  position: fixed;
+  margin-left: -50px;
 }

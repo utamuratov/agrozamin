@@ -1,0 +1,6 @@
+<ng-container *ngIf="userPhoto; else noUserPhoto">
+  <img [src]="userPhoto" alt="ava-btn" />
+</ng-container>
+<ng-template #noUserPhoto>
+  <i nz-icon nzType="user" nzTheme="outline"></i>
+</ng-template>

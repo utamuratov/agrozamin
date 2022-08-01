@@ -2,6 +2,6 @@
   <nz-empty [nzNotFoundContent]="emptyContent"></nz-empty>
 
   <ng-template #emptyContent>
-    <h5 class="empty__title">Данные отсутствуют</h5>
+    <h5 class="empty__title">{{ "noData" | translate }}</h5>
   </ng-template>
 </div>

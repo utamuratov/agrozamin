@@ -1,0 +1,41 @@
+<div class="az-drawer__language">
+  <div nz-row [nzGutter]="[0, 20]">
+    <div nz-col nzSpan="24">
+      <button
+        nz-button
+        nzType="link"
+        class="drawer__btn__info"
+        (click)="closeLanguage.emit(true)"
+      >
+        <i
+          nz-icon
+          nzType="left"
+          nzTheme="outline"
+          class="drawer__btn__info__arrow"
+        ></i>
+        <img src="./assets/images/planet-lang.svg" alt="icon" />
+        <ng-container *ngFor="let language of language$ | async">
+          <span
+            class="az-drawer__language__text"
+            *ngIf="language.code === currentLanguageCode"
+          >
+            {{ language.name }}
+          </span>
+        </ng-container>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="lang__info" nz-row>
+  <div nz-col nzSpan="24" *ngFor="let language of language$ | async">
+    <button
+      nz-button
+      nzType="link"
+      (click)="onChangeLanguage(language.code)"
+      [disabled]="currentLanguageCode === language.code"
+    >
+      {{ language.name }}
+    </button>
+  </div>
+</div>
