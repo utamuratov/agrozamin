@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AgroUsersComponent } from './components/agro-users/agro-users.component';
 import { DistrictComponent } from './components/district/district.component';
 import { InterfaceComponent } from './components/interface/interface.component';
+import { OzimiznikiComponent } from './components/ozimizniki/ozimizniki.component';
 import { RegionsComponent } from './components/regions/regions.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { HomeComponent } from './home.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
     {path: 'roles', component: RolesComponent},
     {path: 'interface', component: InterfaceComponent},
     {path: 'agro-users', component: AgroUsersComponent},
+    {path: 'uzimizniki', component: OzimiznikiComponent},
   ] },
 ];
 

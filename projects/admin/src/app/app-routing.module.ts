@@ -35,6 +35,14 @@ const routes: Routes = [
           ),
         canActivate: [LanguageGuard],
       },
+      {
+        path: ':language/sign-in-test',
+        loadChildren: () =>
+          import('./modules/sign-in-test/sign-in-test.module').then(
+            (m) => m.SignInTestModule
+          ),
+        canActivate: [LanguageGuard],
+      },
     ],
   },
 ];
