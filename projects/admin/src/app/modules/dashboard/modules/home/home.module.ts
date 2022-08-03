@@ -34,7 +34,8 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { UsersModalComponent } from './components/agro-users/components/users-modal/users-modal.component';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { OzimiznikiComponent } from './components/ozimizniki/ozimizniki.component';
-
+import { ModalOzimiznikiComponent } from './components/ozimizniki/components/modal-ozimizniki/modal-ozimizniki.component';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -53,7 +54,8 @@ const maskConfig: Partial<IConfig> = {
     InterfaceModalComponent,
     AgroUsersComponent,
     UsersModalComponent,
-    OzimiznikiComponent
+    OzimiznikiComponent,
+    ModalOzimiznikiComponent
   ],
   imports: [
     CommonModule,
@@ -77,6 +79,7 @@ const maskConfig: Partial<IConfig> = {
     NzTransferModule,
     NzPopconfirmModule,
     NzSwitchModule,
+    NzUploadModule,
     NgxMaskModule.forRoot(maskConfig),
   ]
 })
