@@ -77,6 +77,30 @@ export class AdvertisementListComponent extends GridLogic {
         key: AdvertisementConstants.QUERY_PARAM_CHARACTERISTICS,
         value: [this.characteristics || ''],
       },
+      {
+        key: AdvertisementConstants.QUERY_PARAM_SEARCHTEXT,
+        value: [
+          this.filter?.queryParams[
+            AdvertisementConstants.QUERY_PARAM_SEARCHTEXT
+          ] || '',
+        ],
+      },
+      {
+        key: AdvertisementConstants.QUERY_PARAM_REGION_ID,
+        value: [
+          this.filter?.queryParams[
+            AdvertisementConstants.QUERY_PARAM_REGION_ID
+          ] || '',
+        ],
+      },
+      {
+        key: AdvertisementConstants.QUERY_PARAM_DISTRICT_ID,
+        value: [
+          this.filter?.queryParams[
+            AdvertisementConstants.QUERY_PARAM_DISTRICT_ID
+          ] || '',
+        ],
+      },
       { key: 'category_id', value: [String(this.filter?.categoryId || '')] },
     ];
   }

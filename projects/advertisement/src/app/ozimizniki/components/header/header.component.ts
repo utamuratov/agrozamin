@@ -1,12 +1,19 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Select, Store } from '@ngxs/store';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
 import {
   AuthState,
   BaseService,
@@ -15,6 +22,7 @@ import {
   IdName,
   Language,
   LanguageState,
+  LocalStorageUtilit,
 } from 'ngx-az-core';
 import { AuthorizedUserModel } from 'projects/ngx-az-core/src/public-api';
 import { finalize, map, Observable, of } from 'rxjs';
@@ -29,6 +37,18 @@ import { Announcement, Category, SearchResponse } from './dto/search.response';
   styleUrls: ['./header.component.less'],
 })
 export class HeaderComponent implements OnInit {
+  /**
+   *
+   */
+  @ViewChild('toggleInput')
+  toggleInput?: ElementRef;
+
+  /**
+   *
+   */
+  @ViewChild('searchMenu')
+  searchMenu?: ElementRef;
+
   /**
    *
    */
@@ -51,6 +71,25 @@ export class HeaderComponent implements OnInit {
    */
   @Select(LanguageState.currentLanguage)
   currentLanguage$!: Observable<string>;
+
+  /**
+   *
+   */
+  public get userRegionOrDistrict(): IdName | undefined {
+    const regionOrDistrict = LocalStorageUtilit.get(
+      AdvertisementConstants.USER_REGION_OR_DISTRICT
+    );
+    if (regionOrDistrict) {
+      return JSON.parse(regionOrDistrict);
+    }
+    return undefined;
+  }
+  public set userRegionOrDistrict(v: IdName | undefined) {
+    LocalStorageUtilit.set(
+      AdvertisementConstants.USER_REGION_OR_DISTRICT,
+      JSON.stringify(v)
+    );
+  }
 
   /**
    *
@@ -146,7 +185,22 @@ export class HeaderComponent implements OnInit {
   /**
    *
    */
-  selectedCategoryOrAnnouncement!: Category | Announcement;
+  isOpenSearchResult = false;
+
+  /**
+   *
+   */
+  isVisibleAddressModal = false;
+
+  /**
+   *
+   */
+  isVisibleAddressMobileDrawer = false;
+
+  /**
+   *
+   */
+  isVisibleLanguageDrawer = false;
 
   //!
 
@@ -166,51 +220,6 @@ export class HeaderComponent implements OnInit {
    */
   readonly SERVICES = Data.SERVICES;
 
-  visibleLocationDrawer = false;
-  visibleLangDrawer = false;
-
-  panels = [
-    {
-      name: 'Андижанская область',
-    },
-    {
-      name: 'Бухарская область',
-    },
-    {
-      name: 'Джизакская область',
-    },
-    {
-      name: 'Каракалпакстан',
-    },
-    {
-      name: 'Кашкадарьинская область',
-    },
-    {
-      name: 'Навоийская область',
-    },
-    {
-      name: 'Наманганская область',
-    },
-    {
-      name: 'Самаркандская область',
-    },
-    {
-      name: 'Сурхандарьинская область',
-    },
-    {
-      name: 'Сырдарьинская область',
-    },
-    {
-      name: 'Ташкентская область',
-    },
-    {
-      name: 'Ферганская область',
-    },
-    {
-      name: 'Хорезмская область',
-    },
-  ];
-
   constructor(
     private fb: FormBuilder,
     private $jwtHelper: JwtHelperService,
@@ -218,9 +227,28 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private $base: BaseService,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2
   ) {
     this.getRegionsWithDistricts();
+    /**
+     * This events get called by all clicks on the page
+     */
+    this.renderer.listen('window', 'click', (e: Event) => {
+      /**
+       * Only run when toggleButton is not clicked
+       * If we don't check this, all clicks (even on the toggle button) gets into this
+       * section which in the result we might never see the menu open!
+       * And the menu itself is checked here, and it's where we check just outside of
+       * the menu and button the condition abbove must close the menu
+       */
+      if (
+        e.target !== this.toggleInput?.nativeElement &&
+        e.target !== this.searchMenu?.nativeElement
+      ) {
+        this.isOpenSearchResult = false;
+      }
+    });
   }
 
   /**
@@ -303,39 +331,32 @@ export class HeaderComponent implements OnInit {
     this.visibleSecondaryCatalogue = true;
   }
 
-  change(value: boolean): void {
-    console.log(value);
-  }
-
-  openLocationDrawer(): void {
-    this.visibleLocationDrawer = true;
-  }
-
-  closeLocationDrawer(): void {
-    this.visibleLocationDrawer = false;
-  }
-
-  openLangDrawer(): void {
-    this.visibleLangDrawer = true;
-  }
-
-  closeLangDrawer(): void {
-    this.visibleLangDrawer = false;
-  }
-
-  openTabDrawer() {
-    this.visibleSecondaryCatalogue = true;
-    console.log('hello');
+  /**
+   *
+   */
+  openLanguageDrawer(): void {
+    this.isVisibleLanguageDrawer = true;
   }
 
   /**
    *
    */
-  @HostListener('window:resize')
-  onResize() {
-    this.drawerWidthValue = this.azDrawerWidth();
-    this.drawerWidthValueCatalog = this.azDrawerWidthCatalog();
-    this.drawerOffsetValue = this.azDrawerOffsetCatalog();
+  closeLanguageDrawer(): void {
+    this.isVisibleLanguageDrawer = false;
+  }
+
+  /**
+   *
+   */
+  openAddressMobileDrawer(): void {
+    this.isVisibleAddressMobileDrawer = true;
+  }
+
+  /**
+   *
+   */
+  closeAddressMobileDrawer(): void {
+    this.isVisibleAddressMobileDrawer = false;
   }
 
   /**
@@ -498,21 +519,37 @@ export class HeaderComponent implements OnInit {
    */
   clickAnnouncementFromDesctop(announcement: Announcement) {
     this.closeSearchResults();
-    this.navigateToAnnouncement(announcement);
+    this.navigateToAnnouncementsBySerchtext(announcement);
   }
 
   /**
    *
    * @param announcement
    */
-  navigateToAnnouncement(announcement: Announcement) {
-    this.router.navigate([
-      prefixPath,
-      Constants.DEFAULT_LANGUAGE_CODE,
-      AdvertisementConstants.ROUTER_PATH_ADVERTISEMENTS,
-      announcement.category.id,
-      announcement.id,
-    ]);
+  navigateToAnnouncementsBySerchtext(announcement: Announcement) {
+    const regionDistrict = this.splitRegionAndDistrict();
+    const queryParams: Params = {
+      [AdvertisementConstants.QUERY_PARAM_SEARCHTEXT]: announcement.name,
+    };
+
+    if (regionDistrict[1]) {
+      queryParams[AdvertisementConstants.QUERY_PARAM_DISTRICT_ID] =
+        regionDistrict[1];
+    } else if (regionDistrict[0]) {
+      queryParams[AdvertisementConstants.QUERY_PARAM_REGION_ID] =
+        regionDistrict[0];
+    }
+
+    this.router.navigate(
+      [
+        prefixPath,
+        Constants.DEFAULT_LANGUAGE_CODE,
+        AdvertisementConstants.ROUTER_PATH_ADVERTISEMENTS,
+      ],
+      {
+        queryParams,
+      }
+    );
   }
 
   /**
@@ -542,17 +579,30 @@ export class HeaderComponent implements OnInit {
    *
    * @param data
    */
-  clickRegionOrDistrictFromMobile(data: NzSafeAny) {
-    // Category | Announcement
+  clickCategoryFromMobile(data: Category) {
     this.closeMobileSearchDrawer();
     this.closeBurgerMenu();
+    this.navigateToCategory(data);
+  }
 
-    if (data.parents) {
-      // CATEGORY
-      this.navigateToCategory(data);
-    } else {
-      // ANNOUNCEMENT
-      this.navigateToAnnouncement(data);
+  /**
+   *
+   * @param data
+   */
+  clickAnnouncementFromMobile(data: Announcement) {
+    this.closeMobileSearchDrawer();
+    this.closeBurgerMenu();
+    this.navigateToAnnouncementsBySerchtext(data);
+  }
+
+  /**
+   *
+   * @param e
+   */
+  inputSearch(e: NzSafeAny) {
+    const searchText = e.target.value;
+    if (searchText) {
+      this.inputSearchText(searchText);
     }
   }
 
@@ -567,11 +617,9 @@ export class HeaderComponent implements OnInit {
       return;
     }
 
-    if (searchText.length === 0) {
-      this.searchResult$ = of();
-      this.isOpenSearchResults = false;
-      return;
-    }
+    this.searchResult$ = of();
+    this.isOpenSearchResults = false;
+    return;
   }
 
   /**
@@ -590,14 +638,18 @@ export class HeaderComponent implements OnInit {
    */
   search(searchText: string) {
     let query = new HttpParams().set('q', searchText);
-    const regionDistrict = this.selectedRegionAndDistrict.split(
-      AdvertisementConstants.SPLITTER
-    );
+    const regionDistrict = this.splitRegionAndDistrict();
 
-    if (regionDistrict[1]) {
-      query = query.append('district_id', regionDistrict[1]);
-    } else if (regionDistrict[0]) {
-      query = query.append('region_id', regionDistrict[0]);
+    if (regionDistrict?.[1]) {
+      query = query.append(
+        AdvertisementConstants.QUERY_PARAM_DISTRICT_ID,
+        regionDistrict[1]
+      );
+    } else if (regionDistrict?.[0]) {
+      query = query.append(
+        AdvertisementConstants.QUERY_PARAM_REGION_ID,
+        regionDistrict[0]
+      );
     }
 
     this.isLoadingSearchResult = true;
@@ -615,6 +667,12 @@ export class HeaderComponent implements OnInit {
       );
   }
 
+  private splitRegionAndDistrict() {
+    return this.selectedRegionAndDistrict?.split(
+      AdvertisementConstants.SPLITTER
+    );
+  }
+
   /**
    *
    */
@@ -622,5 +680,31 @@ export class HeaderComponent implements OnInit {
     this.region$ = this.$base
       .get<RegionWithDistrict[]>('region/with-district')
       .pipe(map((result) => result.data));
+  }
+
+  /**
+   *
+   * @param regionOrDistrict
+   */
+  chooseRegionOrDistrict(regionOrDistrict: IdName) {
+    this.closeAddressModal();
+    this.userRegionOrDistrict = regionOrDistrict;
+  }
+
+  /**
+   *
+   */
+  closeAddressModal() {
+    this.isVisibleAddressModal = false;
+  }
+
+  /**
+   *
+   */
+  @HostListener('window:resize')
+  onResize() {
+    this.drawerWidthValue = this.azDrawerWidth();
+    this.drawerWidthValueCatalog = this.azDrawerWidthCatalog();
+    this.drawerOffsetValue = this.azDrawerOffsetCatalog();
   }
 }

@@ -39,10 +39,18 @@
             >
               <div nz-row nzJustify="end" [nzGutter]="[24, 0]">
                 <div nz-col>
-                  <nz-select ngModel="1" nzBorderless>
-                    <nz-option nzValue="1" nzLabel="Ташкент"></nz-option>
-                    <nz-option nzValue="2" nzLabel="Самарканд"></nz-option>
-                  </nz-select>
+                  <div (click)="isVisibleAddressModal = true" class="address">
+                    <img
+                      _ngcontent-aiy-c242=""
+                      src="./assets/images/Union.svg"
+                      alt="icon"
+                    />
+                    {{
+                      userRegionOrDistrict
+                        ? userRegionOrDistrict.name
+                        : ("yourAddress" | translate)
+                    }}
+                  </div>
                 </div>
                 <div nz-col class="text-end">
                   <az-language
@@ -241,7 +249,7 @@
                     nz-button
                     nzType="primary"
                     nzSize="large"
-                    (click)="openTabDrawer()"
+                    (click)="openSecondaryCatalogue()"
                     nzBlock
                   >
                     <i><img src="./assets/images/catalog.svg" alt="icon" /></i>
@@ -261,7 +269,7 @@
                   </button>
                 </div>
                 <div nz-col *ngIf="!isUserAuthenticated">
-                  <button nz-button nzSize="large">
+                  <button nz-button nzSize="large" (click)="navigateToSignIn()">
                     <i nz-icon nzType="user" nzTheme="outline"></i>
                   </button>
                 </div>
@@ -456,73 +464,91 @@
                 *ngIf="searchResult$ | async as searchResult"
               >
                 <div nz-row [nzGutter]="[30, 0]">
-                  <div nz-col nzXl="3" nzLg="4" nzMd="5">
-                    <span nz-typography class="text-end search__type">
-                      Рекомендации:
-                    </span>
-                  </div>
+                  <ng-container *ngIf="searchResult.total; else empty">
+                    <ng-container *ngIf="searchResult.categories.length">
+                      <div nz-col nzXl="3" nzLg="4" nzMd="5">
+                        <span nz-typography class="text-end search__type">
+                          {{ "categories" | translate }}:
+                        </span>
+                      </div>
 
-                  <div nz-col nzXl="21" nzLg="20" nzMd="19">
-                    <div nz-row [nzGutter]="[0, 10]">
-                      <!-- CATEGORIES -->
-                      <div
-                        nz-col
-                        nzSpan="24"
-                        *ngFor="let category of searchResult.categories"
-                      >
-                        <div
-                          class="search__values"
-                          (click)="clickCategoryFromDesctop(category)"
-                        >
-                          <div nz-row>
+                      <div nz-col nzXl="21" nzLg="20" nzMd="19">
+                        <div nz-row [nzGutter]="[0, 10]">
+                          <!-- CATEGORIES -->
+                          <div
+                            nz-col
+                            nzSpan="24"
+                            *ngFor="let category of searchResult.categories"
+                          >
                             <div
-                              nz-col
-                              nzSpan="24"
-                              class="search__values__prod"
+                              class="search__values"
+                              (click)="clickCategoryFromDesctop(category)"
                             >
-                              {{ category.name }}
-                            </div>
-                            <div nz-col nzSpan="24" class="search__values__cat">
-                              {{ category.parents | categoryAsString }}
+                              <div nz-row>
+                                <div
+                                  nz-col
+                                  nzSpan="24"
+                                  class="search__values__prod"
+                                >
+                                  {{ category.name }}
+                                </div>
+                                <div
+                                  nz-col
+                                  nzSpan="24"
+                                  class="search__values__cat"
+                                >
+                                  {{ category.parents | categoryAsString }}
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                    </ng-container>
 
-                      <!-- ADVERTISEMENTS -->
-                      <div
-                        nz-col
-                        nzSpan="24"
-                        *ngFor="let announcement of searchResult.announcements"
-                      >
-                        <div
-                          class="search__values"
-                          (click)="clickAnnouncementFromDesctop(announcement)"
-                        >
-                          <div nz-row>
+                    <ng-container *ngIf="searchResult.announcements.length">
+                      <div nz-col nzXl="3" nzLg="4" nzMd="5">
+                        <span nz-typography class="text-end search__type">
+                          {{ "advertisements" | translate }}:
+                        </span>
+                      </div>
+
+                      <div nz-col nzXl="21" nzLg="20" nzMd="19">
+                        <div nz-row [nzGutter]="[0, 10]">
+                          <!-- ADVERTISEMENTS -->
+                          <div
+                            nz-col
+                            nzSpan="24"
+                            *ngFor="
+                              let announcement of searchResult.announcements
+                            "
+                          >
                             <div
-                              nz-col
-                              nzSpan="24"
-                              class="search__values__prod"
+                              class="search__values"
+                              (click)="
+                                clickAnnouncementFromDesctop(announcement)
+                              "
                             >
-                              {{ announcement.name }}
-                            </div>
-                            <div nz-col nzSpan="24" class="search__values__cat">
-                              {{ announcement.category.name }}
+                              <div nz-row>
+                                <div
+                                  nz-col
+                                  nzSpan="24"
+                                  class="search__values__prod"
+                                >
+                                  {{ announcement.name }}
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-
-                      <a nz-button nzType="link" class="link p-0">
-                        {{ "showAll" | translate }} ...
-                      </a>
-
-                      <ng-container *ngIf="searchResult.total === 0">
-                        {{ "noData" | translate }}
-                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                  <ng-template #empty>
+                    <div nz-col nzXs="24">
+                      <nz-empty></nz-empty>
                     </div>
-                  </div>
+                  </ng-template>
                 </div>
               </div>
             </div>
@@ -622,7 +648,7 @@
   [drawerOffsetValue]="drawerOffsetValue"
 ></az-catalogue>
 
-<!-- MOBILE DRAWER -->
+<!-- MOBILE BURGER MENU -->
 <nz-drawer
   [nzClosable]="false"
   [nzVisible]="isOpenBurgerMenu"
@@ -637,109 +663,92 @@
             <div nz-row [nzGutter]="[10, 0]" nzJustify="space-between">
               <div nz-col nzXs="24" nzSm="20">
                 <div nz-row [nzGutter]="[10, 10]">
-                  <div nz-col nzSm="0" *ngIf="!isUserAuthenticated">
-                    <button
-                      *ngIf="isUserAuthenticated"
-                      nz-button
-                      nzType="default"
-                      nzSize="large"
-                    >
-                      <i nz-icon nzType="user" nzTheme="outline"></i>
-                      {{ "profile" | translate }}
-                    </button>
-                    <button
-                      *ngIf="!isUserAuthenticated"
-                      nz-button
-                      nzType="default"
-                      nzSize="large"
-                      (click)="navigateToSignIn()"
-                    >
-                      <i nz-icon nzType="user" nzTheme="outline"></i>
-                      {{ "toComeIn" | translate }}
-                    </button>
-                  </div>
-                  <!-- TODO: REMOVE -->
-                  <!-- <div nz-col nzSm="0" *ngIf="isUserAuthenticated">
-                    <nz-button-group
-                      nz-popover
-                      [nzPopoverContent]="contentTemplate"
-                      [(nzPopoverVisible)]="isVisibleProfilePopupDrawer"
-                      nzPopoverTrigger="click"
-                      nzPopoverPlacement="bottomRight"
-                    >
-                      <button
-                        nz-button
-                        nzType="default"
-                        nzSize="large"
-                        class="ava-btn"
-                        *ngIf="profileImage"
-                      >
-                        <img [src]="'./assets/images/ava.jpg'" alt="ava-btn" />
-                      </button>
-                      <button
-                        nz-button
-                        nzType="default"
-                        nzSize="large"
-                        class="ava-btn"
-                        *ngIf="!profileImage"
-                      >
-                        <i nz-icon nzType="user" nzTheme="outline"></i>
-                      </button>
-                    </nz-button-group>
-                  </div> -->
-                  <div nz-col nzXs="24" nzSm="0">
-                    <div nz-row>
-                      <div nz-col nzSpan="20">
-                        <div nz-row [nzGutter]="[16, 0]">
-                          <div nz-col nzSpan="5">
-                            <div class="drawer-user-avatar">
-                              <az-user-photo
-                                [userPhoto]="(authorizedUser$ | async)?.photo"
-                              ></az-user-photo>
-                            </div>
-                          </div>
-                          <div nz-col nzSpan="19">
-                            <div nz-row>
-                              <div nz-col nzSpan="24">
-                                <h3 class="drawer-user-name">
-                                  {{ authorizedUser$ | async | fullName }}
-                                </h3>
+                  <ng-container
+                    *ngIf="!isUserAuthenticated; else authenticated"
+                  >
+                    <div nz-col nzXs="24" nzSm="0">
+                      <div nz-row>
+                        <div nz-col nzSpan="20">
+                          <button
+                            nz-button
+                            nzType="default"
+                            nzSize="large"
+                            (click)="navigateToSignIn()"
+                          >
+                            <i nz-icon nzType="user" nzTheme="outline"></i>
+                            {{ "toComeIn" | translate }}
+                          </button>
+                        </div>
+                        <div nz-col nzSpan="4" class="text-end">
+                          <button
+                            nz-button
+                            nzType="default"
+                            nzSize="large"
+                            (click)="closeBurgerMenu()"
+                          >
+                            <i nz-icon nzType="close" nzTheme="outline"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #authenticated>
+                    <div nz-col nzXs="24" nzSm="0">
+                      <div nz-row>
+                        <div nz-col nzSpan="20">
+                          <div nz-row [nzGutter]="[16, 0]">
+                            <div nz-col nzSpan="5">
+                              <div class="drawer-user-avatar">
+                                <az-user-photo
+                                  [userPhoto]="(authorizedUser$ | async)?.photo"
+                                ></az-user-photo>
                               </div>
-                              <div nz-col nzSpan="24">
-                                <!-- TODOD: IDENTIFY THIS STATIC TEXT -->
-                                <span class="drawer-user-service">Agro ID</span>
+                            </div>
+                            <div nz-col nzSpan="19">
+                              <div nz-row>
+                                <div nz-col nzSpan="24">
+                                  <h3 class="drawer-user-name">
+                                    {{ authorizedUser$ | async | fullName }}
+                                  </h3>
+                                </div>
+                                <div nz-col nzSpan="24">
+                                  <!-- TODOD: IDENTIFY THIS STATIC TEXT -->
+                                  <span class="drawer-user-service"
+                                    >Agro ID</span
+                                  >
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div nz-col nzSpan="4" class="text-end">
-                        <button
-                          nz-button
-                          nzType="default"
-                          nzSize="large"
-                          (click)="closeBurgerMenu()"
-                        >
-                          <i nz-icon nzType="close" nzTheme="outline"></i>
-                        </button>
+                        <div nz-col nzSpan="4" class="text-end">
+                          <button
+                            nz-button
+                            nzType="default"
+                            nzSize="large"
+                            (click)="closeBurgerMenu()"
+                          >
+                            <i nz-icon nzType="close" nzTheme="outline"></i>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div nz-col nzXs="24" nzSm="24" nzMd="0">
-                    <button
-                      nz-button
-                      nzType="primary"
-                      nzSize="large"
-                      class="secondary"
-                      routerLink="cabinet/advertisement/add"
-                      nzBlock
-                    >
-                      <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
-                      <span class="add-advertisement drawer-add">{{
-                        "submitAdvertisement" | translate
-                      }}</span>
-                    </button>
-                  </div>
+                    <div nz-col nzXs="24" nzSm="24" nzMd="0">
+                      <button
+                        nz-button
+                        nzType="primary"
+                        nzSize="large"
+                        class="secondary"
+                        routerLink="cabinet/advertisement/add"
+                        nzBlock
+                      >
+                        <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                        <span class="add-advertisement drawer-add">{{
+                          "submitAdvertisement" | translate
+                        }}</span>
+                      </button>
+                    </div>
+                  </ng-template>
                 </div>
               </div>
               <div nz-col nzXs="0" nzSm="4">
@@ -756,7 +765,7 @@
           </div>
         </div>
 
-        <div nz-col nzXs="24" nzSm="24" nzMd="0">
+        <div nz-col nzXs="24" nzSm="24" nzMd="0" *ngIf="isUserAuthenticated">
           <div class="az-drawer__language">
             <div nz-row [nzGutter]="[0, 20]">
               <div nz-col nzXs="24" nzSm="0">
@@ -830,19 +839,8 @@
                   nz-button
                   nzType="link"
                   class="drawer__btn__info"
-                  (click)="navigateTo(['cabinet'])"
+                  (click)="logout()"
                 >
-                  <img
-                    src="'../../../../../../assets/images/menu-settings.png"
-                    alt="icon"
-                  />
-                  <span class="az-drawer__language__text">{{
-                    "settings" | translate
-                  }}</span>
-                </button>
-              </div>
-              <div nz-col nzXs="24" nzSm="0">
-                <button nz-button nzType="link" class="drawer__btn__info">
                   <img
                     src="'../../../../../../assets/images/menu-logout.png"
                     alt="icon"
@@ -857,13 +855,6 @@
         </div>
 
         <div nz-col nzXs="24" nzSm="24" nzMd="0">
-          <!-- <div class="az-drawer__language">
-            <az-language
-              [title]="'language' | translate"
-              [template]="'button'"
-            ></az-language>
-          </div> -->
-
           <div class="az-drawer__language">
             <div nz-row [nzGutter]="[0, 20]">
               <div nz-col nzXs="24" nzSm="0">
@@ -884,10 +875,14 @@
                   nz-button
                   nzType="link"
                   class="drawer__btn__info"
-                  (click)="openLocationDrawer()"
+                  (click)="openAddressMobileDrawer()"
                 >
                   <img src="./assets/images/Union.svg" alt="icon" />
-                  <span class="az-drawer__language__text">Ташкент</span>
+                  <span class="az-drawer__language__text">{{
+                    userRegionOrDistrict
+                      ? userRegionOrDistrict.name
+                      : ("yourAddress" | translate)
+                  }}</span>
                 </button>
               </div>
               <div nz-col nzSpan="24">
@@ -895,7 +890,7 @@
                   nz-button
                   nzType="link"
                   class="drawer__btn__info"
-                  (click)="openLangDrawer()"
+                  (click)="openLanguageDrawer()"
                 >
                   <img src="./assets/images/planet-lang.svg" alt="icon" />
                   <span class="az-drawer__language__text">{{
@@ -1092,20 +1087,6 @@
       </div>
       <div nz-row>
         <div nz-col nzSpan="24" class="userPopower__bottom__content">
-          <div nz-row (click)="navigateTo(['cabinet', 'support'])">
-            <div nz-col nzSpan="4">
-              <div class="userPopower__bottom__img">
-                <img src="/assets/images/menu-settings.png" alt="" />
-              </div>
-            </div>
-            <div nz-col nzSpan="20">
-              <span>{{ "settings" | translate }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div nz-row>
-        <div nz-col nzSpan="24" class="userPopower__bottom__content">
           <div nz-row (click)="logout()">
             <div nz-col nzSpan="4">
               <div class="userPopower__bottom__img">
@@ -1125,7 +1106,7 @@
 <!-- LocationDrawer -->
 <nz-drawer
   [nzClosable]="false"
-  [nzVisible]="visibleLocationDrawer"
+  [nzVisible]="isVisibleAddressMobileDrawer"
   nzPlacement="right"
   [nzWidth]="drawerWidthValue"
 >
@@ -1140,7 +1121,7 @@
                   nz-button
                   nzType="default"
                   nzSize="large"
-                  (click)="closeLocationDrawer()"
+                  (click)="closeAddressMobileDrawer()"
                 >
                   <i nz-icon nzType="close" nzTheme="outline"></i>
                 </button>
@@ -1157,7 +1138,7 @@
                   nz-button
                   nzType="link"
                   class="drawer__btn__info"
-                  (click)="closeLocationDrawer()"
+                  (click)="closeAddressMobileDrawer()"
                 >
                   <i
                     nz-icon
@@ -1166,7 +1147,11 @@
                     class="drawer__btn__info__arrow"
                   ></i>
                   <img src="./assets/images/Union.svg" alt="icon" />
-                  <span class="az-drawer__language__text">Ташкент</span>
+                  <span class="az-drawer__language__text">{{
+                    userRegionOrDistrict
+                      ? userRegionOrDistrict.name
+                      : ("yourAddress" | translate)
+                  }}</span>
                 </button>
               </div>
             </div>
@@ -1181,29 +1166,31 @@
           [nzExpandIconPosition]="'right'"
         >
           <nz-collapse-panel
-            #p
-            *ngFor="let panel of panels"
+            #collapse
+            *ngFor="let region of region$ | async"
             [nzHeader]="header"
-            [nzExtra]="arrow"
+            [nzExtra]="region.districts.length > 0 ? arrow : ''"
             [nzShowArrow]="false"
           >
             <ng-template #header>
               <h5
+                (click)="chooseRegionOrDistrict(region)"
                 class="location__header_panel"
-                [ngClass]="p.nzActive ? 'active' : ''"
+                [ngClass]="collapse.nzActive ? 'active' : ''"
               >
-                {{ panel.name }}
+                {{ region.name }}
               </h5>
             </ng-template>
 
             <div nz-row>
-              <div
-                nz-col
-                nzSpan="12"
-                *ngFor="let num of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]"
-              >
-                <button nz-button nzType="text" class="location__city">
-                  Андижан
+              <div nz-col nzSpan="12" *ngFor="let district of region.districts">
+                <button
+                  nz-button
+                  nzType="text"
+                  class="location__city"
+                  (click)="chooseRegionOrDistrict(district)"
+                >
+                  {{ district.name }}
                 </button>
               </div>
             </div>
@@ -1213,7 +1200,7 @@
                 nz-icon
                 nzType="up"
                 nzTheme="outline"
-                [nzRotate]="p.nzActive ? 0 : 180"
+                [nzRotate]="collapse.nzActive ? 0 : 180"
               ></i>
             </ng-template>
           </nz-collapse-panel>
@@ -1226,7 +1213,7 @@
 <!-- language drawer -->
 <nz-drawer
   [nzClosable]="false"
-  [nzVisible]="visibleLangDrawer"
+  [nzVisible]="isVisibleLanguageDrawer"
   nzPlacement="right"
   [nzWidth]="drawerWidthValue"
 >
@@ -1241,7 +1228,7 @@
                   nz-button
                   nzType="default"
                   nzSize="large"
-                  (click)="closeLangDrawer()"
+                  (click)="closeLanguageDrawer()"
                 >
                   <i nz-icon nzType="close" nzTheme="outline"></i>
                 </button>
@@ -1252,7 +1239,7 @@
 
         <div nz-col nzXs="24" nzSm="24" nzMd="0">
           <az-language-mobile
-            (closeLanguage)="closeLangDrawer()"
+            (closeLanguage)="closeLanguageDrawer()"
           ></az-language-mobile>
         </div>
       </div>
@@ -1304,50 +1291,58 @@
         </nz-form-item>
         <nz-form-item>
           <nz-form-control [nzSpan]="24">
-            <nz-select
-              nzShowSearch
-              nzAllowClear
-              nzServerSearch
-              [nzPlaceHolder]="searchTemplate"
-              nzSize="large"
-              (nzOnSearch)="inputSearchText($event)"
-              [nzShowArrow]="false"
-              [(ngModel)]="selectedCategoryOrAnnouncement"
-              (ngModelChange)="clickRegionOrDistrictFromMobile($event)"
-            >
-              <ng-container *ngIf="!isLoadingSearchResult; else loading">
-                <ng-container *ngIf="searchResult$ | async as searchResult">
-                  <nz-option
-                    *ngFor="let category of searchResult.categories"
-                    [nzValue]="category"
-                    [nzLabel]="
-                      category.parents | categoryAsString: category.name
-                    "
-                  ></nz-option>
-                  <nz-option
-                    *ngFor="let announcement of searchResult.announcements"
-                    [nzValue]="announcement"
-                    [nzLabel]="announcement.name"
-                  ></nz-option>
-                </ng-container>
-              </ng-container>
-              <ng-template #loading>
-                <nz-option
-                  *ngIf="isLoadingSearchResult"
-                  nzDisabled
-                  nzCustomContent
-                >
-                  <i nz-icon nzType="loading" class="loading-icon"></i>
-                  Loading Data...
-                </nz-option>
-              </ng-template>
-            </nz-select>
-            <ng-template #searchTemplate>
+            <nz-input-group [nzPrefix]="prefixIconSearch" nzSize="large">
+              <input
+                type="text"
+                nz-input
+                placeholder="Найти среди 273 000 обьявлений"
+                (click)="isOpenSearchResult = true"
+                (input)="inputSearch($event)"
+                [(ngModel)]="searchText"
+                #toggleInput
+              />
+            </nz-input-group>
+            <ng-template #prefixIconSearch>
               <i nz-icon nzType="search" nzTheme="outline"></i>
-              <span style="margin-left: 8px"
-                >Найти среди 273 000 обьявлений</span
-              >
             </ng-template>
+
+            <div class="search-result" *ngIf="isOpenSearchResult" #searchMenu>
+              <ng-container *ngIf="isLoadingSearchResult; else result">
+                <div class="search-result__option">
+                  <i nz-icon nzType="loading" class="loading-icon"></i>
+                  {{ "loadingData" | translate }}
+                </div>
+              </ng-container>
+              <ng-template #result>
+                <ng-container *ngIf="searchResult$ | async as searchResult">
+                  <ng-container *ngIf="searchResult.total; else empty">
+                    <div
+                      class="search-result__option"
+                      *ngFor="let category of searchResult.categories"
+                      (click)="clickCategoryFromMobile(category)"
+                    >
+                      {{ category.name }}
+                      <div>
+                        <small>{{ category.parents | categoryAsString }}</small>
+                      </div>
+                    </div>
+                    <div
+                      class="search-result__option"
+                      *ngFor="let announcement of searchResult.announcements"
+                      (click)="clickAnnouncementFromMobile(announcement)"
+                    >
+                      {{ announcement.name }}
+                    </div>
+                  </ng-container>
+                  <ng-template #empty>
+                    <nz-empty
+                      nzNotFoundImage="simple"
+                      [nzNotFoundContent]="null"
+                    ></nz-empty>
+                  </ng-template>
+                </ng-container>
+              </ng-template>
+            </div>
           </nz-form-control>
         </nz-form-item>
         <!-- TODO: REMOVE -->
@@ -1364,3 +1359,42 @@
     </div>
   </ng-container>
 </nz-drawer>
+
+<!-- ADDRESS MODAL -->
+<nz-modal
+  [(nzVisible)]="isVisibleAddressModal"
+  [nzWidth]="'80%'"
+  [nzTitle]="'yourAddress' | translate"
+  [nzFooter]="null"
+  (nzOnCancel)="closeAddressModal()"
+>
+  <ng-container *nzModalContent>
+    <div class="address-modal-body">
+      <div class="region" *ngFor="let region of region$ | async">
+        <h3
+          [ngClass]="{
+            active:
+              userRegionOrDistrict?.id === region.id &&
+              userRegionOrDistrict?.name === region.name
+          }"
+          (click)="chooseRegionOrDistrict(region)"
+        >
+          {{ region.name }}
+        </h3>
+        <div class="districts">
+          <p
+            [ngClass]="{
+              active:
+                userRegionOrDistrict?.id === district.id &&
+                userRegionOrDistrict?.name === district.name
+            }"
+            (click)="chooseRegionOrDistrict(district)"
+            *ngFor="let district of region.districts"
+          >
+            {{ district.name }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

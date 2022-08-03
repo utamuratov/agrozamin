@@ -7,7 +7,7 @@ export interface SearchResponse {
 }
 
 export interface Announcement extends IdName {
-  category: IdName;
+  name: string;
 }
 
 export interface Category extends IdName {
