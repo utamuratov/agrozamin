@@ -112,6 +112,10 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.575);
       backdrop-filter: blur(12px);
+
+      @media (max-width: 575px) {
+        padding: 0;
+      }
     }
 
     .swiper-slide {
@@ -122,6 +126,12 @@
       border-radius: 12px;
       overflow: hidden;
       background: none;
+
+      @media (max-width: 575px) {
+        width: 100%;
+        height: 100%;
+        border-radius: none;
+      }
     }
 
     .swiper-slide img {
@@ -199,6 +209,10 @@
         top: 20px;
         left: 20px;
         width: 370px;
+
+        @media (max-width: 575px) {
+          width: 100%;
+        }
 
         .progress {
           display: block;
