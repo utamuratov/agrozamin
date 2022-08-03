@@ -160,7 +160,12 @@
                   [disabled]="savedFilter.new_announcements < 1"
                   (click)="viewFilter(savedFilter)"
                 >
-                  Показать новое: {{ savedFilter.new_announcements }}
+                  Показать новое:
+                  {{
+                    savedFilter.new_announcements > 999
+                      ? "999+"
+                      : savedFilter.new_announcements
+                  }}
                 </button>
               </div>
               <div nz-col nzXs="24" nzSm="14">
